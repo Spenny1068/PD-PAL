@@ -5,6 +5,6 @@ iOS exercise app, designed for PD patients, which aims to reduce Parkinson's Dis
 Initial Commit of Git Repository.
 :)
 
-Tets push by William H.
 
-Test** push by Izyl C. 
+Tetss push by William H. from both laptop and library
+
