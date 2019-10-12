@@ -6,6 +6,6 @@ Initial Commit of Git Repository.
 :)
 
 
-Tests push by William H. from both laptop and library
+Test push by William H. from laptop, library, and home.
 
 Test push by Julia
