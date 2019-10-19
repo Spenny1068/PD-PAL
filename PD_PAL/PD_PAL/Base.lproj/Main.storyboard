@@ -16,10 +16,10 @@
             </objects>
             <point key="canvasLocation" x="2671" y="-479"/>
         </scene>
-        <!--View Controller-->
+        <!--Categories View Controller-->
         <scene sceneID="nN8-PU-VdJ">
             <objects>
-                <viewController storyboardIdentifier="Categories" id="oG4-tW-LNd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Categories" id="oG4-tW-LNd" customClass="CategoriesViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ry2-t0-sMf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,11 +40,11 @@
             </objects>
             <point key="canvasLocation" x="4471.0144927536239" y="-488.31521739130437"/>
         </scene>
-        <!--View Controller-->
+        <!--Trend View Controller-->
         <scene sceneID="lXf-sP-dVF">
             <objects>
-                <viewController storyboardIdentifier="Trends" id="eOn-hd-4pY" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dst-kA-BfX">
+                <viewController storyboardIdentifier="Trends" id="eOn-hd-4pY" customClass="TrendViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dst-kA-BfX" customClass="Trend" customModule="PD_PAL" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -59,15 +59,18 @@
                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="qeJ-Cn-5Zn"/>
                     </view>
+                    <connections>
+                        <outlet property="Title_label" destination="aNf-SW-EVY" id="MxV-aA-gar"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ayO-5W-k77" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5354" y="-488"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="do0-3e-ocv">
             <objects>
-                <viewController storyboardIdentifier="Settings" id="McI-Zk-BC7" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Settings" id="McI-Zk-BC7" customClass="SettingsViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SVW-LK-URR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="6241" y="-495"/>
         </scene>
-        <!--View Controller-->
+        <!--Routines View Controller-->
         <scene sceneID="veJ-ET-Iur">
             <objects>
-                <viewController storyboardIdentifier="Routines" id="SRg-S4-km8" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Routines" id="SRg-S4-km8" customClass="RoutinesViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e5v-d8-iSg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
