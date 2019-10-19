@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */; };
+		2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */; };
+		2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */; };
+		2EF0AFD2235ABC6C0036EF36 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFD1235ABC6C0036EF36 /* RoutinesViewController.swift */; };
+		2EF0AFD4235ABCA30036EF36 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFD3235ABCA30036EF36 /* SettingsViewController.swift */; };
 		4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9BD2351587700E5ED83 /* AppDelegate.swift */; };
 		4517F9C72351587700E5ED83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9C52351587700E5ED83 /* Main.storyboard */; };
 		4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9C82351587800E5ED83 /* Assets.xcassets */; };
@@ -35,6 +39,10 @@
 
 /* Begin PBXFileReference section */
 		2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainPageViewController.swift; sourceTree = "<group>"; };
+		2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
+		2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		2EF0AFD1235ABC6C0036EF36 /* RoutinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesViewController.swift; sourceTree = "<group>"; };
+		2EF0AFD3235ABCA30036EF36 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4517F9BA2351587700E5ED83 /* PD_PAL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PD_PAL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4517F9BD2351587700E5ED83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4517F9C62351587700E5ED83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -99,7 +107,11 @@
 			children = (
 				4517F9BD2351587700E5ED83 /* AppDelegate.swift */,
 				4517F9C52351587700E5ED83 /* Main.storyboard */,
+				2EF0AFD3235ABCA30036EF36 /* SettingsViewController.swift */,
+				2EF0AFD1235ABC6C0036EF36 /* RoutinesViewController.swift */,
+				2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */,
 				2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */,
+				2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */,
 				4517F9C82351587800E5ED83 /* Assets.xcassets */,
 				4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */,
 				4517F9CD2351587800E5ED83 /* Info.plist */,
@@ -257,7 +269,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */,
+				2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */,
+				2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */,
 				2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */,
+				2EF0AFD2235ABC6C0036EF36 /* RoutinesViewController.swift in Sources */,
+				2EF0AFD4235ABCA30036EF36 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
