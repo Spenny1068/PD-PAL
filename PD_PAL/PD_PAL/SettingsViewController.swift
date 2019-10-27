@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SQLite
+
 
 class SettingsViewController: UIViewController {
 
