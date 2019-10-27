@@ -6,6 +6,14 @@
 //  Copyright © 2019 WareOne. All rights reserved.
 //
 
+/*
+Revision History
+ 
+ - 26/10/2019 : William Xue
+     Added simple database test, "testDatabase_insertion"
+ */
+
+
 import XCTest
 @testable import PD_PAL
 
