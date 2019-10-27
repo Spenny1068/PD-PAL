@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController {
     var database: Connection!
     let exerciseList = Table("exercises")
     let name = Expression<String>("exerciseName") //column of sql table
-    let description = Expression<String>("descriptions")
+    let descriptions = Expression<String>("description")
     let strength = Expression<Bool> ("strength")
     let balance = Expression<Bool> ("balance")
     let flexMob = Expression<Bool> ("flexMob")
@@ -43,7 +43,7 @@ class SettingsViewController: UIViewController {
     @IBAction func createTable() {
         let createTable = self.exerciseList.create { (table) in
             table.column(self.name, primaryKey: true)
-            table.column(self.description)
+            table.column(self.descriptions)
             table.column(self.strength)
             table.column(self.balance)
             table.column(self.flexMob)
@@ -86,7 +86,7 @@ class SettingsViewController: UIViewController {
         do{
             let exercises = try self.database.prepare(self.exerciseList)
             for ex in exercises {
-                print("exercise: \(ex[self.name]), description: \(ex[self.description])")
+                print("exercise: \(ex[self.name]), description: \(ex[self.descriptions])")
             }
         }catch{
             print(error)
