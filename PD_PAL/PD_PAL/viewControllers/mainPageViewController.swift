@@ -10,8 +10,6 @@ import UIKit
 
 class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
-    
-    
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.newVc(viewController: "RoutinesPage"),
                 self.newVc(viewController: "CategoriesPage"),
@@ -24,6 +22,9 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
+        
+        self.navigationController!.navigationBar.topItem!.title = "monday"
+        
         if let firstViewController = orderedViewControllers.first{
             setViewControllers([firstViewController],
                                direction: .forward,

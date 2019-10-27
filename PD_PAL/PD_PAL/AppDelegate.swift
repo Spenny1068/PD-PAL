@@ -18,28 +18,26 @@ struct Setup {
     static var m_bgColor = UIColor(red: 170/255.0, green: 200/255.0, blue: 226/255.0, alpha: 1.0)
     
     
-    //static let m_pageNameSize = 30.0
-   // static let m_subHeaderNameSize = 15.0
-    
 }
 
 // UILabel methods
 extension UILabel {
     func applyPageNameDesign() {
-        self.frame = CGRect(x: -40, y: 50, width: 300, height: 100)            // rectangle coordinates
+        self.frame = CGRect(x: -40, y: 40, width: 300, height: 100)            // rectangle coordinates
         self.textAlignment = .center                                           // text alignment
         //self.translatesAutoresizingMaskIntoConstraints = false
         self.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)
     }
     
     func applyPageMsgDesign() {
-        self.frame = CGRect(x: -30, y: 80, width: 300, height: 100)
+        self.frame = CGRect(x: -30, y: 70, width: 300, height: 100)
         self.textAlignment = .center                                           // text alignment
         //msg.translatesAutoresizingMaskIntoConstraints = false
         self.font = UIFont(name:"HelveticaNeue-Bold", size: 15.0)
         self.textColor = UIColor(red: 154/255.0, green: 141/255.0, blue: 141/255.0, alpha: 1.0)
     }
 }
+
 // UIButton methods
 extension UIButton {
     func applyDesign() {

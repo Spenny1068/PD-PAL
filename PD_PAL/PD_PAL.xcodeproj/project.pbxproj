@@ -35,19 +35,18 @@
 		4517F9E22351587800E5ED83 /* PD_PALUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9E12351587800E5ED83 /* PD_PALUITests.swift */; };
 		4565C7282361900000426C7E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565C72323618FFF00426C7E /* SettingsViewController.swift */; };
 		4589CA462364F710003EDE0E /* strength.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4589CA452364F70F003EDE0E /* strength.jpg */; };
-		45EA1DD6236583D000E6D070 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DD0236583D000E6D070 /* RoutinesViewController.swift */; };
 		45EA1DD7236583D000E6D070 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DD1236583D000E6D070 /* TrendViewController.swift */; };
 		45EA1DD8236583D000E6D070 /* CardioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DD2236583D000E6D070 /* CardioViewController.swift */; };
 		45EA1DD9236583D000E6D070 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DD3236583D000E6D070 /* CategoriesViewController.swift */; };
 		45EA1DDB236583D000E6D070 /* mainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DD5236583D000E6D070 /* mainPageViewController.swift */; };
 		45EA1DE0236595BD00E6D070 /* Cardio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EA1DDE236595BD00E6D070 /* Cardio.storyboard */; };
-		45EA1DE3236596B700E6D070 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DE1236596B700E6D070 /* RoutinesViewController.swift */; };
 		45EA1DE82365971500E6D070 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EA1DE72365971500E6D070 /* Categories.storyboard */; };
 		45EA1DEC2365978D00E6D070 /* RoutineGenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DEB2365978D00E6D070 /* RoutineGenericViewController.swift */; };
 		45EA1DEE236597B800E6D070 /* RoutineGenericpage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */; };
 		45EA1DF0236598B900E6D070 /* StrengthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DEF236598B900E6D070 /* StrengthViewController.swift */; };
 		45EA1DF2236598D000E6D070 /* FlexibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DF1236598D000E6D070 /* FlexibilityViewController.swift */; };
 		45EA1DF4236598E100E6D070 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DF3236598E100E6D070 /* BalanceViewController.swift */; };
+		45EA1DF82366329D00E6D070 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DF72366329D00E6D070 /* RoutinesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,19 +101,18 @@
 		4517F9E32351587800E5ED83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4565C72323618FFF00426C7E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4589CA452364F70F003EDE0E /* strength.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = strength.jpg; sourceTree = "<group>"; };
-		45EA1DD0236583D000E6D070 /* RoutinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutinesViewController.swift; sourceTree = "<group>"; };
 		45EA1DD1236583D000E6D070 /* TrendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
 		45EA1DD2236583D000E6D070 /* CardioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardioViewController.swift; sourceTree = "<group>"; };
 		45EA1DD3236583D000E6D070 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		45EA1DD5236583D000E6D070 /* mainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainPageViewController.swift; sourceTree = "<group>"; };
 		45EA1DDE236595BD00E6D070 /* Cardio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cardio.storyboard; sourceTree = "<group>"; };
-		45EA1DE1236596B700E6D070 /* RoutinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoutinesViewController.swift; path = viewControllers/RoutinesViewController.swift; sourceTree = "<group>"; };
 		45EA1DE72365971500E6D070 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
 		45EA1DEB2365978D00E6D070 /* RoutineGenericViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineGenericViewController.swift; sourceTree = "<group>"; };
 		45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RoutineGenericpage.storyboard; sourceTree = "<group>"; };
 		45EA1DEF236598B900E6D070 /* StrengthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthViewController.swift; sourceTree = "<group>"; };
 		45EA1DF1236598D000E6D070 /* FlexibilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibilityViewController.swift; sourceTree = "<group>"; };
 		45EA1DF3236598E100E6D070 /* BalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
+		45EA1DF72366329D00E6D070 /* RoutinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutinesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */,
-				45EA1DE1236596B700E6D070 /* RoutinesViewController.swift */,
 				45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */,
 				45EA1DE72365971500E6D070 /* Categories.storyboard */,
 				45EA1DDE236595BD00E6D070 /* Cardio.storyboard */,
@@ -229,12 +226,12 @@
 		45EA1DCF236583D000E6D070 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				45EA1DD0236583D000E6D070 /* RoutinesViewController.swift */,
 				45EA1DEF236598B900E6D070 /* StrengthViewController.swift */,
 				4565C72323618FFF00426C7E /* SettingsViewController.swift */,
 				45EA1DF3236598E100E6D070 /* BalanceViewController.swift */,
 				45EA1DF1236598D000E6D070 /* FlexibilityViewController.swift */,
 				45EA1DD1236583D000E6D070 /* TrendViewController.swift */,
+				45EA1DF72366329D00E6D070 /* RoutinesViewController.swift */,
 				45EA1DEB2365978D00E6D070 /* RoutineGenericViewController.swift */,
 				45EA1DD2236583D000E6D070 /* CardioViewController.swift */,
 				45EA1DD3236583D000E6D070 /* CategoriesViewController.swift */,
@@ -401,13 +398,12 @@
 				45EA1DDB236583D000E6D070 /* mainPageViewController.swift in Sources */,
 				45EA1DD8236583D000E6D070 /* CardioViewController.swift in Sources */,
 				45EA1DD7236583D000E6D070 /* TrendViewController.swift in Sources */,
+				45EA1DF82366329D00E6D070 /* RoutinesViewController.swift in Sources */,
 				45EA1DF4236598E100E6D070 /* BalanceViewController.swift in Sources */,
 				45EA1DD9236583D000E6D070 /* CategoriesViewController.swift in Sources */,
-				45EA1DE3236596B700E6D070 /* RoutinesViewController.swift in Sources */,
 				45EA1DF0236598B900E6D070 /* StrengthViewController.swift in Sources */,
 				45EA1DEC2365978D00E6D070 /* RoutineGenericViewController.swift in Sources */,
 				4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */,
-				45EA1DD6236583D000E6D070 /* RoutinesViewController.swift in Sources */,
 				4565C7282361900000426C7E /* SettingsViewController.swift in Sources */,
 				45EA1DF2236598D000E6D070 /* FlexibilityViewController.swift in Sources */,
 			);

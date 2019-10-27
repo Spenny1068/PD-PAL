@@ -10,14 +10,33 @@ import UIKit
 
 class StrengthViewController: UIViewController {
 
+    @IBOutlet weak var ArmsButton: UIButton!
+    @IBOutlet weak var BackButton: UIButton!
+    @IBOutlet weak var CoreButton: UIButton!
+    @IBOutlet weak var LegsButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
 
+        // page name
         let pageName = UILabel()
         pageName.text = "STRENGTH"
         pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)    }
+        self.view.addSubview(pageName)
+        
+        // message
+        let msg = UILabel()
+        msg.text = "Choose a body part!"
+        msg.applyPageMsgDesign()
+        self.view.addSubview(msg)
+        
+        ArmsButton.applyDesign()
+        BackButton.applyDesign()
+        CoreButton.applyDesign()
+        LegsButton.applyDesign()
+        
+    }
     
 
     /*

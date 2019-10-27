@@ -35,8 +35,14 @@ class RoutinesViewController: UIViewController {
         msg.applyPageMsgDesign()
         self.view.addSubview(msg)
 
+        // routine buttons
+        E1.setTitle("Routine 1", for: .normal)
         E1.applyDesign()
+        
+        E2.setTitle("Routine 2", for: .normal)
         E2.applyDesign()
+        
+        E3.setTitle("Routine 3", for: .normal)
         E3.applyDesign()
 
        
