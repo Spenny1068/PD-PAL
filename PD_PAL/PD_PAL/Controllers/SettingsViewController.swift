@@ -1,5 +1,5 @@
 //
-//  CategoriesViewController.swift
+//  SettingsViewController.swift
 //  PD_PAL
 //
 //  Created by Zhong Jia Xue on 2019-10-18.
@@ -8,10 +8,11 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController {
+class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Setup.m_bgColor
 
         // Do any additional setup after loading the view.
     }

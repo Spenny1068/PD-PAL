@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9rI-Qd-Sap">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9rI-Qd-Sap">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,31 +21,110 @@
         <!--Categories View Controller-->
         <scene sceneID="nN8-PU-VdJ">
             <objects>
-                <viewController storyboardIdentifier="Categories" id="oG4-tW-LNd" customClass="CategoriesViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoriesPage" id="oG4-tW-LNd" customClass="CategoriesViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ry2-t0-sMf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYo-Q6-jbg">
-                                <rect key="frame" x="106" y="111" width="203" height="59"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="nhQ-1q-jtQ">
+                                <rect key="frame" x="0.0" y="12" width="70" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCT-sS-g4i">
+                                <rect key="frame" x="106" y="240" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.088593773543834686" green="0.71315187215805054" blue="0.14149701595306396" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="tgH-ao-R5f" kind="showDetail" id="uZA-fe-k8r"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zq2-km-irW">
+                                <rect key="frame" x="294" y="239" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.064303718507289886" green="0.058489106595516205" blue="0.96557289361953735" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="VTA-7V-rBg" kind="showDetail" id="qR9-IN-pbF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cy4-Kv-bgG">
+                                <rect key="frame" x="106" y="378" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.99524575471878052" green="0.0030876216478645802" blue="0.1092260554432869" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="a1r-sQ-RhN" kind="showDetail" id="XK2-nx-B10"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dsw-eA-mwf">
+                                <rect key="frame" x="294" y="378" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="A2F-xU-PJS" kind="showDetail" id="jSj-eF-7aV"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="c2u-L3-5Wj"/>
                     </view>
+                    <connections>
+                        <outlet property="Balance" destination="Dsw-eA-mwf" id="SXW-T6-cLH"/>
+                        <outlet property="Cardio" destination="Zq2-km-irW" id="zko-UQ-nof"/>
+                        <outlet property="Strength" destination="Cy4-Kv-bgG" id="ccg-OA-iuz"/>
+                        <outlet property="flexibility" destination="bCT-sS-g4i" id="KgF-L5-qVw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aO3-r0-eE5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4471.0144927536239" y="-488.31521739130437"/>
         </scene>
+        <!--StrengthVC-->
+        <scene sceneID="Mo0-Bx-5iE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="StrengthVC" id="a1r-sQ-RhN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gae-Rl-vIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4133" y="-902"/>
+        </scene>
+        <!--CardioVC-->
+        <scene sceneID="o7v-Mq-Wme">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="CardioVC" id="VTA-7V-rBg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fg1-j0-1lK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4385" y="-902"/>
+        </scene>
+        <!--FlexibilityVC-->
+        <scene sceneID="V0w-a5-KCc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="FlexibilityVC" id="tgH-ao-R5f" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cWM-VD-bJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4624" y="-902"/>
+        </scene>
+        <!--BalanceVC-->
+        <scene sceneID="7l0-ud-htp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="BalanceVC" id="A2F-xU-PJS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="20L-Lk-VVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4875" y="-902"/>
+        </scene>
         <!--Trend View Controller-->
         <scene sceneID="lXf-sP-dVF">
             <objects>
-                <viewController storyboardIdentifier="Trends" id="eOn-hd-4pY" customClass="TrendViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TrendsPage" id="eOn-hd-4pY" customClass="TrendViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dst-kA-BfX" customClass="Trend" customModule="PD_PAL" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,7 +137,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qeJ-Cn-5Zn"/>
                     </view>
                     <connections>
@@ -70,7 +151,7 @@
         <!--Settings View Controller-->
         <scene sceneID="do0-3e-ocv">
             <objects>
-                <viewController storyboardIdentifier="Settings" id="McI-Zk-BC7" customClass="SettingsViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsPage" id="McI-Zk-BC7" customClass="SettingsViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SVW-LK-URR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +164,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Djm-G2-Hm1"/>
                     </view>
                 </viewController>
@@ -94,7 +175,7 @@
         <!--Routines View Controller-->
         <scene sceneID="veJ-ET-Iur">
             <objects>
-                <viewController storyboardIdentifier="Routines" id="SRg-S4-km8" customClass="RoutinesViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RoutinesPage" id="SRg-S4-km8" customClass="RoutinesViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e5v-d8-iSg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,13 +188,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ghK-kk-p8l"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C46-VL-qTh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3647.826086956522" y="-488.31521739130437"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="977" height="722"/>
+    </resources>
 </document>

@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  RoutinesViewController.swift
 //  PD_PAL
 //
 //  Created by Zhong Jia Xue on 2019-10-18.
@@ -8,12 +8,13 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class RoutinesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        view.backgroundColor = Setup.m_bgColor
     }
     
 

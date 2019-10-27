@@ -6,13 +6,25 @@
 //  Copyright © 2019 WareOne. All rights reserved.
 //
 
+// REVISION HISTORY:
+// <Date, Name, Changes made>
+// <Oct. 26, 2019, Spencer Lall, Added struct for global variables>
+
 import UIKit
+
+/* put global variables in this struct */
+struct Setup {
+    // color schemes
+    static var m_bgColor = UIColor(red: 170/255.0, green: 200/255.0, blue: 226/255.0, alpha: 1.0)
+    static let m_pageNameSize = 30.0
+    static let m_subHeaderNameSize = 15.0
+    
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

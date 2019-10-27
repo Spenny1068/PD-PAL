@@ -10,11 +10,13 @@ import UIKit
 
 class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
+    
+    
     lazy var orderedViewControllers: [UIViewController] = {
-        return [self.newVc(viewController: "Routines"),
-                self.newVc(viewController: "Categories"),
-                self.newVc(viewController: "Trends"),
-                self.newVc(viewController: "Settings")]
+        return [self.newVc(viewController: "RoutinesPage"),
+                self.newVc(viewController: "CategoriesPage"),
+                self.newVc(viewController: "TrendsPage"),
+                self.newVc(viewController: "SettingsPage")]
     }()
 
     var pageControl = UIPageControl()

@@ -1,5 +1,5 @@
 //
-//  RoutinesViewController.swift
+//  TrendViewController.swift
 //  PD_PAL
 //
 //  Created by Zhong Jia Xue on 2019-10-18.
@@ -8,15 +8,20 @@
 
 import UIKit
 
-class RoutinesViewController: UIViewController {
+class TrendViewController: UIViewController {
 
+
+    @IBOutlet weak var Title_label: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = Setup.m_bgColor
+        
         // Do any additional setup after loading the view.
     }
-    
 
+    
+    
     /*
     // MARK: - Navigation
 
