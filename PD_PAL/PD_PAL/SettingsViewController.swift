@@ -9,9 +9,7 @@
 import UIKit
 import SQLite
 
-
 class SettingsViewController: UIViewController {
-
     var database: Connection!
     let exerciseList = Table("exercises")
     let name = Expression<String>("exerciseName") //column of sql table
@@ -23,11 +21,8 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-    }
-    
-
         do{
             //to get the location of the file
             let documentDirectory = try FileManager.default.url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) //don't create a file if file doesn't exist
