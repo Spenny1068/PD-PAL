@@ -12,8 +12,17 @@
 Revision History
  
  - 26/10/2019 : William Huong, Julia Kim, William Xue
-     Created file, implemented constructor, insert function.	
+     Created file, implemented constructor, insert function.
+ - 27/10/2019 : William Huong
+     Commented out broken code related to getting contents of documents directory.
  */
+
+/*
+Known Bugs
+ 
+- 26/10/2019 : William Xue
+     Call to get contents of documents directory in constructor throws an error.
+*/
 
 import Foundation
 import SQLite
@@ -39,7 +48,8 @@ class ExerciseDatabase {
         do {
             //to get the location of the file
             let documentDirectory = try FileManager.default.url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) //don't create a file if file doesn't exist
-            
+
+            /*
             //Look for the SQLite3 database file. Note whether or not it already exists.
             let files = try FileManager.default.contentsOfDirectory(atPath: documentDirectory.absoluteString)
             
@@ -50,6 +60,7 @@ class ExerciseDatabase {
                     database_already_exists = true
                 }
             }
+            */
             
             let fileUrl = documentDirectory.appendingPathComponent("exercises").appendingPathExtension("sqlite3") //create a file named users using sqlite3 extension
             
@@ -57,10 +68,13 @@ class ExerciseDatabase {
             let database = try Connection(fileUrl.path) //anything written to the DB will be saved to the file
             self.database = database //set it to the global DB
             
+            /*
             //If the SQLite3 database does not already exist, is is empty, so we need to fill it.
             if( !database_already_exists ) {
                 self.fill_database()
             }
+            */
+            
         }
         catch {
             print("Failed to connect to database")
