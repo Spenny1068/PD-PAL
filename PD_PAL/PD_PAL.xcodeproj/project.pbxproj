@@ -33,17 +33,21 @@
 		4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */; };
 		4517F9D72351587800E5ED83 /* PD_PALTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9D62351587800E5ED83 /* PD_PALTests.swift */; };
 		4517F9E22351587800E5ED83 /* PD_PALUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9E12351587800E5ED83 /* PD_PALUITests.swift */; };
-		454F8FA32362984D005506A0 /* Cardio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 454F8FA22362984D005506A0 /* Cardio.storyboard */; };
-		4565C71B23602D9A00426C7E /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4565C71A23602D9A00426C7E /* Categories.storyboard */; };
-		4565C7242361900000426C7E /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565C71F23618FFF00426C7E /* RoutinesViewController.swift */; };
-		4565C7252361900000426C7E /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565C72023618FFF00426C7E /* TrendViewController.swift */; };
-		4565C7262361900000426C7E /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565C72123618FFF00426C7E /* CategoriesViewController.swift */; };
-		4565C7272361900000426C7E /* mainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565C72223618FFF00426C7E /* mainPageViewController.swift */; };
 		4565C7282361900000426C7E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565C72323618FFF00426C7E /* SettingsViewController.swift */; };
 		4589CA462364F710003EDE0E /* strength.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4589CA452364F70F003EDE0E /* strength.jpg */; };
-		4589CA482364F8AB003EDE0E /* CardioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589CA472364F8AB003EDE0E /* CardioViewController.swift */; };
-		AE7627812363B1850097353C /* RoutineGenericpage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7627802363B1850097353C /* RoutineGenericpage.storyboard */; };
-		AE7627832363C0F90097353C /* RoutineGenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7627822363C0F90097353C /* RoutineGenericViewController.swift */; };
+		45EA1DD6236583D000E6D070 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DD0236583D000E6D070 /* RoutinesViewController.swift */; };
+		45EA1DD7236583D000E6D070 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DD1236583D000E6D070 /* TrendViewController.swift */; };
+		45EA1DD8236583D000E6D070 /* CardioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DD2236583D000E6D070 /* CardioViewController.swift */; };
+		45EA1DD9236583D000E6D070 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DD3236583D000E6D070 /* CategoriesViewController.swift */; };
+		45EA1DDB236583D000E6D070 /* mainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DD5236583D000E6D070 /* mainPageViewController.swift */; };
+		45EA1DE0236595BD00E6D070 /* Cardio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EA1DDE236595BD00E6D070 /* Cardio.storyboard */; };
+		45EA1DE3236596B700E6D070 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DE1236596B700E6D070 /* RoutinesViewController.swift */; };
+		45EA1DE82365971500E6D070 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EA1DE72365971500E6D070 /* Categories.storyboard */; };
+		45EA1DEC2365978D00E6D070 /* RoutineGenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DEB2365978D00E6D070 /* RoutineGenericViewController.swift */; };
+		45EA1DEE236597B800E6D070 /* RoutineGenericpage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */; };
+		45EA1DF0236598B900E6D070 /* StrengthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DEF236598B900E6D070 /* StrengthViewController.swift */; };
+		45EA1DF2236598D000E6D070 /* FlexibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DF1236598D000E6D070 /* FlexibilityViewController.swift */; };
+		45EA1DF4236598E100E6D070 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA1DF3236598E100E6D070 /* BalanceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,17 +100,21 @@
 		4517F9DD2351587800E5ED83 /* PD_PALUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PD_PALUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4517F9E12351587800E5ED83 /* PD_PALUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD_PALUITests.swift; sourceTree = "<group>"; };
 		4517F9E32351587800E5ED83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		454F8FA22362984D005506A0 /* Cardio.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cardio.storyboard; sourceTree = "<group>"; };
-		4565C71A23602D9A00426C7E /* Categories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
-		4565C71F23618FFF00426C7E /* RoutinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutinesViewController.swift; sourceTree = "<group>"; };
-		4565C72023618FFF00426C7E /* TrendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
-		4565C72123618FFF00426C7E /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
-		4565C72223618FFF00426C7E /* mainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainPageViewController.swift; sourceTree = "<group>"; };
 		4565C72323618FFF00426C7E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4589CA452364F70F003EDE0E /* strength.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = strength.jpg; sourceTree = "<group>"; };
-		4589CA472364F8AB003EDE0E /* CardioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioViewController.swift; sourceTree = "<group>"; };
-		AE7627802363B1850097353C /* RoutineGenericpage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RoutineGenericpage.storyboard; sourceTree = "<group>"; };
-		AE7627822363C0F90097353C /* RoutineGenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineGenericViewController.swift; sourceTree = "<group>"; };
+		45EA1DD0236583D000E6D070 /* RoutinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutinesViewController.swift; sourceTree = "<group>"; };
+		45EA1DD1236583D000E6D070 /* TrendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
+		45EA1DD2236583D000E6D070 /* CardioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardioViewController.swift; sourceTree = "<group>"; };
+		45EA1DD3236583D000E6D070 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		45EA1DD5236583D000E6D070 /* mainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainPageViewController.swift; sourceTree = "<group>"; };
+		45EA1DDE236595BD00E6D070 /* Cardio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cardio.storyboard; sourceTree = "<group>"; };
+		45EA1DE1236596B700E6D070 /* RoutinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoutinesViewController.swift; path = viewControllers/RoutinesViewController.swift; sourceTree = "<group>"; };
+		45EA1DE72365971500E6D070 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
+		45EA1DEB2365978D00E6D070 /* RoutineGenericViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineGenericViewController.swift; sourceTree = "<group>"; };
+		45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RoutineGenericpage.storyboard; sourceTree = "<group>"; };
+		45EA1DEF236598B900E6D070 /* StrengthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthViewController.swift; sourceTree = "<group>"; };
+		45EA1DF1236598D000E6D070 /* FlexibilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibilityViewController.swift; sourceTree = "<group>"; };
+		45EA1DF3236598E100E6D070 /* BalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,11 +188,13 @@
 		4517F9BC2351587700E5ED83 /* PD_PAL */ = {
 			isa = PBXGroup;
 			children = (
-				4589CA472364F8AB003EDE0E /* CardioViewController.swift */,
-				4565C72223618FFF00426C7E /* mainPageViewController.swift */,
-				4565C72123618FFF00426C7E /* CategoriesViewController.swift */,
-				4565C72023618FFF00426C7E /* TrendViewController.swift */,
-				4565C71F23618FFF00426C7E /* RoutinesViewController.swift */,
+				4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */,
+				45EA1DE1236596B700E6D070 /* RoutinesViewController.swift */,
+				45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */,
+				45EA1DE72365971500E6D070 /* Categories.storyboard */,
+				45EA1DDE236595BD00E6D070 /* Cardio.storyboard */,
+				4517F9C52351587700E5ED83 /* Main.storyboard */,
+				45EA1DCF236583D000E6D070 /* viewControllers */,
 				4589CA452364F70F003EDE0E /* strength.jpg */,
 				4510852E23639DB800338F82 /* cardio.png */,
 				4510853323639DB800338F82 /* balance.png */,
@@ -192,19 +202,7 @@
 				4510852823639DB800338F82 /* flexibility.png */,
 				4510852723639DB800338F82 /* images */,
 				4517F9BD2351587700E5ED83 /* AppDelegate.swift */,
-				4517F9C52351587700E5ED83 /* Main.storyboard */,
-				454F8FA22362984D005506A0 /* Cardio.storyboard */,
-				4565C71A23602D9A00426C7E /* Categories.storyboard */,
-				4565C71E23618FFF00426C7E /* Controllers */,
-				AE7627802363B1850097353C /* RoutineGenericpage.storyboard */,
-				AE7627822363C0F90097353C /* RoutineGenericViewController.swift */,
-				2EF0AFD3235ABCA30036EF36 /* SettingsViewController.swift */,
-				2EF0AFD1235ABC6C0036EF36 /* RoutinesViewController.swift */,
-				2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */,
-				2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */,
-				2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */,
 				4517F9C82351587800E5ED83 /* Assets.xcassets */,
-				4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */,
 				4517F9CD2351587800E5ED83 /* Info.plist */,
 			);
 			path = PD_PAL;
@@ -228,12 +226,21 @@
 			path = PD_PALUITests;
 			sourceTree = "<group>";
 		};
-		4565C71E23618FFF00426C7E /* Controllers */ = {
+		45EA1DCF236583D000E6D070 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				45EA1DD0236583D000E6D070 /* RoutinesViewController.swift */,
+				45EA1DEF236598B900E6D070 /* StrengthViewController.swift */,
 				4565C72323618FFF00426C7E /* SettingsViewController.swift */,
+				45EA1DF3236598E100E6D070 /* BalanceViewController.swift */,
+				45EA1DF1236598D000E6D070 /* FlexibilityViewController.swift */,
+				45EA1DD1236583D000E6D070 /* TrendViewController.swift */,
+				45EA1DEB2365978D00E6D070 /* RoutineGenericViewController.swift */,
+				45EA1DD2236583D000E6D070 /* CardioViewController.swift */,
+				45EA1DD3236583D000E6D070 /* CategoriesViewController.swift */,
+				45EA1DD5236583D000E6D070 /* mainPageViewController.swift */,
 			);
-			path = Controllers;
+			path = viewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,23 +357,23 @@
 				4510854A23639DB800338F82 /* Screen Shot 2019-10-15 at 9.52.19 AM.png in Resources */,
 				4510853E23639DB800338F82 /* routine4.jpg in Resources */,
 				4510853F23639DB800338F82 /* routine1.jpg in Resources */,
+				45EA1DE82365971500E6D070 /* Categories.storyboard in Resources */,
 				4510854D23639DB800338F82 /* 512px-Man_Doing_Warm_Up_Exercise_Cartoon.svg.png in Resources */,
 				4510854E23639DB800338F82 /* Screen Shot 2019-10-07 at 3.23.50 PM.png in Resources */,
 				4510853D23639DB800338F82 /* flexibility.png in Resources */,
 				4510854F23639DB800338F82 /* play.jpg in Resources */,
 				4510854523639DB800338F82 /* Screen Shot 2019-10-11 at 10.13.56 AM.png in Resources */,
-				AE7627812363B1850097353C /* RoutineGenericpage.storyboard in Resources */,
 				4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */,
-				4565C71B23602D9A00426C7E /* Categories.storyboard in Resources */,
+				45EA1DE0236595BD00E6D070 /* Cardio.storyboard in Resources */,
 				4510855123639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png in Resources */,
 				4517F9C72351587700E5ED83 /* Main.storyboard in Resources */,
 				4510854C23639DB800338F82 /* strength.png in Resources */,
-				454F8FA32362984D005506A0 /* Cardio.storyboard in Resources */,
 				4510854023639DB800338F82 /* Steps.png in Resources */,
 				4510854823639DB800338F82 /* balance.png in Resources */,
 				4510854423639DB800338F82 /* Cardio.jpg in Resources */,
 				4589CA462364F710003EDE0E /* strength.jpg in Resources */,
 				4510854323639DB800338F82 /* cardio.png in Resources */,
+				45EA1DEE236597B800E6D070 /* RoutineGenericpage.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,19 +398,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45EA1DDB236583D000E6D070 /* mainPageViewController.swift in Sources */,
+				45EA1DD8236583D000E6D070 /* CardioViewController.swift in Sources */,
+				45EA1DD7236583D000E6D070 /* TrendViewController.swift in Sources */,
+				45EA1DF4236598E100E6D070 /* BalanceViewController.swift in Sources */,
+				45EA1DD9236583D000E6D070 /* CategoriesViewController.swift in Sources */,
+				45EA1DE3236596B700E6D070 /* RoutinesViewController.swift in Sources */,
+				45EA1DF0236598B900E6D070 /* StrengthViewController.swift in Sources */,
+				45EA1DEC2365978D00E6D070 /* RoutineGenericViewController.swift in Sources */,
 				4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */,
-				4565C7252361900000426C7E /* TrendViewController.swift in Sources */,
-				4565C7262361900000426C7E /* CategoriesViewController.swift in Sources */,
-				4565C7272361900000426C7E /* mainPageViewController.swift in Sources */,
-				4565C7242361900000426C7E /* RoutinesViewController.swift in Sources */,
-				4589CA482364F8AB003EDE0E /* CardioViewController.swift in Sources */,
+				45EA1DD6236583D000E6D070 /* RoutinesViewController.swift in Sources */,
 				4565C7282361900000426C7E /* SettingsViewController.swift in Sources */,
-				2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */,
-				2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */,
-				AE7627832363C0F90097353C /* RoutineGenericViewController.swift in Sources */,
-				2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */,
-				2EF0AFD2235ABC6C0036EF36 /* RoutinesViewController.swift in Sources */,
-				2EF0AFD4235ABCA30036EF36 /* SettingsViewController.swift in Sources */,
+				45EA1DF2236598D000E6D070 /* FlexibilityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

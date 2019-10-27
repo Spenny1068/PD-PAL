@@ -14,23 +14,34 @@
 import UIKit
 
 class RoutinesViewController: UIViewController {
-
-    @IBOutlet var Routine1Button: UIButton!
-    @IBOutlet var Routine2Button: UIButton!
-    @IBOutlet var Routine3Button: UIButton!
+    
+    @IBOutlet weak var E1: UIButton!
+    @IBOutlet weak var E2: UIButton!
+    @IBOutlet weak var E3: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Setup.m_bgColor
         
+        // page name
+        let pageName = UILabel()
+        pageName.text = "ROUTINES"
+        pageName.applyPageNameDesign()
+        self.view.addSubview(pageName)
+        
+        // message
+        let msg = UILabel()
+        msg.text = "Choose a routine to try!"
+        msg.applyPageMsgDesign()
+        self.view.addSubview(msg)
+
+        E1.applyDesign()
+        E2.applyDesign()
+        E3.applyDesign()
+
        
-
-        Routine1Button.RoutineDesign()
-        Routine2Button.RoutineDesign()
-        Routine3Button.RoutineDesign()
-
-        // Do any additional setup after loading the view.
     }
-    
+   
 
     /*
     // MARK: - Navigation
@@ -42,14 +53,11 @@ class RoutinesViewController: UIViewController {
     }
     */
 
-}
-
-extension UIButton
-{
-    func RoutineDesign()
-    {
-        self.backgroundColor = UIColor.black
-        self.setTitleColor(UIColor.white, for: .normal)
+    @objc func buttonAction(sender: UIButton!) {
+        print("button tapped")
     }
 }
+
+
+
 

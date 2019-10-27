@@ -24,7 +24,12 @@ class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Setup.m_bgColor  
+        view.backgroundColor = Setup.m_bgColor
+        
+        // get screen dimensions
+        let screenRect = UIScreen.main.bounds
+        let screenWidth = screenRect.size.width     // width of view controller
+        let screenHeight = screenRect.size.height   // height of view controller
         
         // PD_PAL header top right of screen
         let label = UILabel(frame: CGRect.zero)
@@ -41,47 +46,32 @@ class CategoriesViewController: UIViewController {
             label.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),         // 10 points below top of view
             ])
         
+        
         // Page Name
-        let pageName = UILabel(frame: CGRect.zero)
+        let pageName = UILabel()
         pageName.text = "CATEGORIES"
-        pageName.textAlignment = .center                                           // text alignment
-        pageName.translatesAutoresizingMaskIntoConstraints = false
-        pageName.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)
+        pageName.applyPageNameDesign()
         self.view.addSubview(pageName)
+        //NSLayoutConstraint.activate([
+        //    pageName.widthAnchor.constraint(equalToConstant: 300),
+        //    pageName.heightAnchor.constraint(equalToConstant: 50),
+        //    pageName.leftAnchor.constraint(equalToConstant: 115),   /
+        //    pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75),
+        //    ])
 
-        NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 300),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.centerXAnchor.constraint(equalTo: view.leftAnchor, constant: 115),   // 15 points left of right view anchor
-            pageName.topAnchor.constraint(equalTo: view.topAnchor, constant: 75),         // 10 points below top of view
-            ])
         
         // message
-        let msg = UILabel(frame: CGRect.zero)
-        msg.text = "Choose a category to try!"
-        msg.textAlignment = .center                                           // text alignment
-        msg.translatesAutoresizingMaskIntoConstraints = false
-        msg.font = UIFont(name:"HelveticaNeue-Bold", size: 15.0)
-        msg.textColor = UIColor(red: 154/255.0, green: 141/255.0, blue: 141/255.0, alpha: 1.0)
+        let msg = UILabel()
+        msg.text = "Choose a category to work!"
+        msg.applyPageMsgDesign()
         self.view.addSubview(msg)
         
-        NSLayoutConstraint.activate([
-            msg.widthAnchor.constraint(equalToConstant: 300),
-            msg.heightAnchor.constraint(equalToConstant: 50),
-            msg.centerXAnchor.constraint(equalTo: view.leftAnchor, constant: 115),   // 15 points left of right view anchor
-            msg.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),         // 10 points below top of view
-            ])
-        
-        // PD_PAL green top banner
-        
-        // category buttons
-        
-        
-        let screenRect = UIScreen.main.bounds
-        let screenWidth = screenRect.size.width     // width of view controller
-        let screenHeight = screenRect.size.height   // height of view controller
-        
-        //let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+        //NSLayoutConstraint.activate([
+        //   msg.widthAnchor.constraint(equalToConstant: 300),
+        //    msg.heightAnchor.constraint(equalToConstant: 50),
+        //   msg.centerXAnchor.constraint(equalTo: view.leftAnchor, constant: 115),
+        //   msg.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
+        //   ])
         
         // flexiblity button
         flexibility.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 - 150, width: 100, height: 150)
@@ -135,9 +125,6 @@ class CategoriesViewController: UIViewController {
         cardioText.textAlignment = .center                                           // text alignment
         //balanceText.backgroundColor = .yellow
         self.view.addSubview(cardioText)
-
-        //button.layer.cornerRadius = 50
-        //button.clipsToBounds = true
     
     }
     

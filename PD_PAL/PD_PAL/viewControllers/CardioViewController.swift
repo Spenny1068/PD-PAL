@@ -44,21 +44,11 @@ class CardioViewController: UIViewController {
         self.view.addSubview(backButton)
         
         // Page Name
-        let pageName = UILabel(frame: CGRect.zero)
+        let pageName = UILabel()
         pageName.text = "CARDIO"
-        pageName.textAlignment = .center                                           // text alignment
-        pageName.translatesAutoresizingMaskIntoConstraints = false
-        pageName.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)
+        pageName.applyPageNameDesign()
         self.view.addSubview(pageName)
-        
-        NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 300),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.centerXAnchor.constraint(equalTo: view.leftAnchor, constant: 115),   // 15 points left of right view anchor
-            pageName.topAnchor.constraint(equalTo: view.topAnchor, constant: 75),         // 10 points below top of view
-            ])
 
-        // Do any additional setup after loading the view.
     }
     
 

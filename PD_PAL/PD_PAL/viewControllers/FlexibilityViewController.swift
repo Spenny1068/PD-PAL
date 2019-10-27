@@ -1,27 +1,25 @@
 //
-//  TrendViewController.swift
+//  FlexibilityViewController.swift
 //  PD_PAL
 //
-//  Created by Zhong Jia Xue on 2019-10-18.
+//  Created by SpenC on 2019-10-27.
 //  Copyright © 2019 WareOne. All rights reserved.
 //
 
 import UIKit
 
-class TrendViewController: UIViewController {
+class FlexibilityViewController: UIViewController {
 
-
-    @IBOutlet weak var Title_label: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        Title_label.text = "TRENDS"
-        // Do any additional setup after loading the view.
-    }
+        view.backgroundColor = Setup.m_bgColor
 
+        let pageName = UILabel()
+        pageName.text = "FLEXIBILITY"
+        pageName.applyPageNameDesign()
+        self.view.addSubview(pageName)    }
     
-    
+
     /*
     // MARK: - Navigation
 

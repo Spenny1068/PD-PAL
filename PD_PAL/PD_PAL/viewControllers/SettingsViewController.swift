@@ -13,6 +13,19 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        view.backgroundColor = Setup.m_bgColor
+
+        // page name
+        let pageName = UILabel()
+        pageName.text = "SETTINGS"
+        pageName.applyPageNameDesign()
+        self.view.addSubview(pageName)
+        
+        // message
+        let msg = UILabel()
+        msg.text = "Change your settings!"
+        msg.applyPageMsgDesign()
+        self.view.addSubview(msg)
         // Do any additional setup after loading the view.
     }
     
