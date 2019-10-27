@@ -109,8 +109,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ROUTINES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NH2-eC-Nyh">
-                                <rect key="frame" x="20" y="158.33333333333334" width="202" height="39.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ROUTINES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NH2-eC-Nyh">
+                                <rect key="frame" x="20" y="155" width="157.33333333333334" height="39.666666666666657"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -126,8 +127,8 @@
                                 <state key="normal" title="Routine 3"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNm-yA-YQF">
-                                <rect key="frame" x="50" y="268" width="314" height="46"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <rect key="frame" x="50" y="269" width="314" height="45"/>
+                                <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="28"/>
                                 <state key="normal" title="Routine 1"/>
                                 <connections>
                                     <segue destination="KTJ-wd-Mt6" kind="showDetail" id="9Od-hv-Xov"/>
@@ -138,7 +139,6 @@
                         <constraints>
                             <constraint firstItem="UC1-YQ-pEg" firstAttribute="leading" secondItem="ghK-kk-p8l" secondAttribute="leading" constant="50" id="3kj-IF-Lr1"/>
                             <constraint firstItem="CNm-yA-YQF" firstAttribute="leading" secondItem="ghK-kk-p8l" secondAttribute="leading" constant="50" id="8Hq-KG-ZKA"/>
-                            <constraint firstItem="CNm-yA-YQF" firstAttribute="top" secondItem="NH2-eC-Nyh" secondAttribute="bottom" constant="70" id="9jv-2o-O9S"/>
                             <constraint firstItem="ghK-kk-p8l" firstAttribute="trailing" secondItem="UC1-YQ-pEg" secondAttribute="trailing" constant="50" id="Bt6-cP-LGO"/>
                             <constraint firstItem="CNm-yA-YQF" firstAttribute="leading" secondItem="ghK-kk-p8l" secondAttribute="leading" constant="50" id="GGM-xa-ZgD"/>
                             <constraint firstItem="XX2-nJ-eaT" firstAttribute="top" secondItem="CNm-yA-YQF" secondAttribute="bottom" constant="110" id="JYm-tl-WsJ"/>
