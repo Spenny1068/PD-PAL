@@ -42,6 +42,8 @@
 		4565C7282361900000426C7E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565C72323618FFF00426C7E /* SettingsViewController.swift */; };
 		4589CA462364F710003EDE0E /* strength.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4589CA452364F70F003EDE0E /* strength.jpg */; };
 		4589CA482364F8AB003EDE0E /* CardioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4589CA472364F8AB003EDE0E /* CardioViewController.swift */; };
+		AE7627812363B1850097353C /* RoutineGenericpage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7627802363B1850097353C /* RoutineGenericpage.storyboard */; };
+		AE7627832363C0F90097353C /* RoutineGenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7627822363C0F90097353C /* RoutineGenericViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,8 @@
 		4565C72323618FFF00426C7E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4589CA452364F70F003EDE0E /* strength.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = strength.jpg; sourceTree = "<group>"; };
 		4589CA472364F8AB003EDE0E /* CardioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioViewController.swift; sourceTree = "<group>"; };
+		AE7627802363B1850097353C /* RoutineGenericpage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RoutineGenericpage.storyboard; sourceTree = "<group>"; };
+		AE7627822363C0F90097353C /* RoutineGenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineGenericViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +196,13 @@
 				454F8FA22362984D005506A0 /* Cardio.storyboard */,
 				4565C71A23602D9A00426C7E /* Categories.storyboard */,
 				4565C71E23618FFF00426C7E /* Controllers */,
+				AE7627802363B1850097353C /* RoutineGenericpage.storyboard */,
+				AE7627822363C0F90097353C /* RoutineGenericViewController.swift */,
+				2EF0AFD3235ABCA30036EF36 /* SettingsViewController.swift */,
+				2EF0AFD1235ABC6C0036EF36 /* RoutinesViewController.swift */,
+				2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */,
+				2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */,
+				2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */,
 				4517F9C82351587800E5ED83 /* Assets.xcassets */,
 				4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */,
 				4517F9CD2351587800E5ED83 /* Info.plist */,
@@ -344,6 +355,7 @@
 				4510853D23639DB800338F82 /* flexibility.png in Resources */,
 				4510854F23639DB800338F82 /* play.jpg in Resources */,
 				4510854523639DB800338F82 /* Screen Shot 2019-10-11 at 10.13.56 AM.png in Resources */,
+				AE7627812363B1850097353C /* RoutineGenericpage.storyboard in Resources */,
 				4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */,
 				4565C71B23602D9A00426C7E /* Categories.storyboard in Resources */,
 				4510855123639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png in Resources */,
@@ -386,6 +398,12 @@
 				4565C7242361900000426C7E /* RoutinesViewController.swift in Sources */,
 				4589CA482364F8AB003EDE0E /* CardioViewController.swift in Sources */,
 				4565C7282361900000426C7E /* SettingsViewController.swift in Sources */,
+				2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */,
+				2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */,
+				AE7627832363C0F90097353C /* RoutineGenericViewController.swift in Sources */,
+				2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */,
+				2EF0AFD2235ABC6C0036EF36 /* RoutinesViewController.swift in Sources */,
+				2EF0AFD4235ABCA30036EF36 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,7 +580,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
-				DEVELOPMENT_TEAM = DWKB22S268;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PD_PAL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -580,7 +598,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DWKB22S268;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PD_PAL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
