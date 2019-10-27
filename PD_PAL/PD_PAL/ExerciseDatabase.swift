@@ -2,9 +2,18 @@
 //  ExerciseDatabase.swift
 //  PD_PAL
 //
+//  This file implements a database to store our exercises and their properties.
+//
 //  Created by whuong on 2019-10-26.
 //  Copyright © 2019 WareOne. All rights reserved.
 //
+
+/*
+Revision History
+ 
+ - 26/10/2019 : William Huong, Julia Kim, William Xue
+     Created file, implemented constructor, insert function.	
+ */
 
 import Foundation
 import SQLite
