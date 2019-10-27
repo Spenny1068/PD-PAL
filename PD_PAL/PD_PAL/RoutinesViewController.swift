@@ -8,6 +8,7 @@
 //Revision History:
 // <Date, Name, Changes made>
 // <October 25 2019, Arian Vafadar, Designed Routine and Subroutine page>
+// <October 26, 2019, Arian Vafadar, added pictures and updated Main routine page>
 //
 
 import UIKit

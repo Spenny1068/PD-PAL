@@ -15,7 +15,7 @@ class TrendViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Title_label.text = "Happy day workout"
+        Title_label.text = "TRENDS"
         // Do any additional setup after loading the view.
     }
 
