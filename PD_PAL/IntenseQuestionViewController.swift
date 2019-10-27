@@ -4,7 +4,8 @@
 //
 //  Created by icanonic on 2019-10-26.
 //  Copyright © 2019 WareOne. All rights reserved.
-//
+//<Date, Name, Changes made>
+//<Oct. 27, 2019, Izyl Canonicato, programmatic labels >
 
 import UIKit
 
@@ -12,6 +13,20 @@ class IntenseQuestionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let screenRect = UIScreen.main.bounds
+        let screenWidth = screenRect.size.width
+        let screenHeight = screenRect.size.height
+        
+        //Question
+        let frameLabel1:CGRect = CGRect(x: screenWidth/2-150, y:screenHeight/2 - 150, width: 300, height: 150)
+        let question = UILabel(frame: frameLabel1)
+        question.text = "How intense would you like your exercise to be?"
+        question.lineBreakMode = .byWordWrapping
+        question.numberOfLines = 2
+        question.textAlignment = .center
+        question.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
+        self.view.addSubview(question)
         // Do any additional setup after loading the view.
     }
     

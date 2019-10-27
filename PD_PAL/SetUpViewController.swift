@@ -1,17 +1,16 @@
 //
-//  WalkingQuestionViewController.swift
+//  SetUpViewController.swift
 //  PD_PAL
 //
-//  Created by icanonic on 2019-10-26.
+//  Created by icanonic on 2019-10-27.
 //  Copyright © 2019 WareOne. All rights reserved.
 //<Date, Name, Changes made>
 //<Oct. 27, 2019, Izyl Canonicato, programmatic labels >
 
 import UIKit
 
-class WalkingQuestionViewController: UIViewController {
+class SetUpViewController: UIViewController {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,14 +19,15 @@ class WalkingQuestionViewController: UIViewController {
         let screenHeight = screenRect.size.height
         
         //Question
-        let frameLabel:CGRect = CGRect(x: screenWidth/2-150, y:screenHeight/2-150, width: 300, height: 150)
-        let question = UILabel(frame: frameLabel)
-        question.text = "How long would you like your walking exercise to be?"
-        question.numberOfLines = 3
-        question.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
+        let frameLabel1:CGRect = CGRect(x: screenWidth/2-150, y:screenHeight/2 - 150, width: 300, height: 150)
+        let question = UILabel(frame: frameLabel1)
+        question.text = "Would you like to set-up your preferences now?"
+        question.numberOfLines = 2
+        question.lineBreakMode = .byWordWrapping
         question.textAlignment = .center
+        question.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
         self.view.addSubview(question)
-        
+
         // Do any additional setup after loading the view.
     }
     

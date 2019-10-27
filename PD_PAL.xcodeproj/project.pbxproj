@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		264A437F236637870052C3D9 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A437E236637870052C3D9 /* SetUpViewController.swift */; };
 		26D4926B2365329D00E74957 /* EquipmentQuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4926A2365329D00E74957 /* EquipmentQuestionnaireViewController.swift */; };
 		26D4926D23654AA100E74957 /* IntenseQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4926C23654AA100E74957 /* IntenseQuestionViewController.swift */; };
 		26D4926F23654D9600E74957 /* WalkingQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4926E23654D9600E74957 /* WalkingQuestionViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		264A437E236637870052C3D9 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		26D4926A2365329D00E74957 /* EquipmentQuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentQuestionnaireViewController.swift; sourceTree = "<group>"; };
 		26D4926C23654AA100E74957 /* IntenseQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntenseQuestionViewController.swift; sourceTree = "<group>"; };
 		26D4926E23654D9600E74957 /* WalkingQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingQuestionViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				26D4926A2365329D00E74957 /* EquipmentQuestionnaireViewController.swift */,
 				26D4926C23654AA100E74957 /* IntenseQuestionViewController.swift */,
 				26D4926E23654D9600E74957 /* WalkingQuestionViewController.swift */,
+				264A437E236637870052C3D9 /* SetUpViewController.swift */,
 			);
 			path = PD_PAL;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				264A437F236637870052C3D9 /* SetUpViewController.swift in Sources */,
 				26DC60F22364CB460064B314 /* LoginViewController.swift in Sources */,
 				26D4926D23654AA100E74957 /* IntenseQuestionViewController.swift in Sources */,
 				26D4926B2365329D00E74957 /* EquipmentQuestionnaireViewController.swift in Sources */,
@@ -476,6 +480,7 @@
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				DEVELOPMENT_TEAM = DWKB22S268;
 				INFOPLIST_FILE = PD_PAL/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -494,6 +499,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DWKB22S268;
 				INFOPLIST_FILE = PD_PAL/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
