@@ -176,6 +176,11 @@
 		4517F9BC2351587700E5ED83 /* PD_PAL */ = {
 			isa = PBXGroup;
 			children = (
+				4589CA472364F8AB003EDE0E /* CardioViewController.swift */,
+				4565C72223618FFF00426C7E /* mainPageViewController.swift */,
+				4565C72123618FFF00426C7E /* CategoriesViewController.swift */,
+				4565C72023618FFF00426C7E /* TrendViewController.swift */,
+				4565C71F23618FFF00426C7E /* RoutinesViewController.swift */,
 				4589CA452364F70F003EDE0E /* strength.jpg */,
 				4510852E23639DB800338F82 /* cardio.png */,
 				4510853323639DB800338F82 /* balance.png */,
@@ -215,11 +220,6 @@
 		4565C71E23618FFF00426C7E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4565C71F23618FFF00426C7E /* RoutinesViewController.swift */,
-				4565C72023618FFF00426C7E /* TrendViewController.swift */,
-				4565C72123618FFF00426C7E /* CategoriesViewController.swift */,
-				4589CA472364F8AB003EDE0E /* CardioViewController.swift */,
-				4565C72223618FFF00426C7E /* mainPageViewController.swift */,
 				4565C72323618FFF00426C7E /* SettingsViewController.swift */,
 			);
 			path = Controllers;
