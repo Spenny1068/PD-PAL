@@ -15,7 +15,6 @@ import UIKit
 
 class CardioViewController: UIViewController {
 
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var walking: UIButton!
     @IBOutlet weak var Running: UIButton!
     
@@ -37,11 +36,6 @@ class CardioViewController: UIViewController {
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),   // 15 points left of right view anchor
             label.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),         // 10 points below top of view
             ])
-        
-        // back button
-        backButton.frame = CGRect(x: 0, y: 0, width: 250, height: 100)
-        backButton.setTitle("Back", for: UIControl.State.normal)
-        self.view.addSubview(backButton)
         
         // Page Name
         let pageName = UILabel()

@@ -25,6 +25,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="325" height="96"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="ARMS"/>
+                                        <connections>
+                                            <segue destination="x7V-kN-9xv" kind="push" id="95L-aa-l8k"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR0-Jb-KYz">
                                         <rect key="frame" x="0.0" y="171" width="325" height="52"/>
@@ -75,6 +78,16 @@
             </objects>
             <point key="canvasLocation" x="-18.399999999999999" y="559.07046476761627"/>
         </scene>
+        <!--ArmsVC-->
+        <scene sceneID="yKb-fb-qy3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Arms" referencedIdentifier="ArmsVC" id="x7V-kN-9xv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="6v0-gz-1bW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1AE-we-peC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-18" y="990"/>
+        </scene>
         <!--Flexibility-->
         <scene sceneID="BBK-5x-cjT">
             <objects>
@@ -104,16 +117,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYd-z2-KvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1364" y="559.97001499250382"/>
-        </scene>
-        <!--mainNavVC-->
-        <scene sceneID="Qch-IH-Yb5">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="mainNavVC" id="Wv0-zO-g0c" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="zTP-ix-9gI"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="076-jO-ykL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="397" y="1146"/>
         </scene>
         <!--WalkingVC-->
         <scene sceneID="ilD-XG-1QV">
@@ -169,62 +172,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CH5-6F-XKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2076" y="557.27136431784118"/>
-        </scene>
-        <!--Categories View Controller-->
-        <scene sceneID="6WH-13-rPF">
-            <objects>
-                <viewController storyboardIdentifier="CategoriesPage" id="Jv2-dH-S18" customClass="CategoriesViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wwk-4G-S1S">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mv-vw-KeI">
-                                <rect key="frame" x="106" y="111" width="203" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Km-EE-DGG">
-                                <rect key="frame" x="147" y="221" width="120" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="go to cardio">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ofp-3a-7dS">
-                                <rect key="frame" x="123" y="293" width="169" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="go to strength">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRf-h0-HU4">
-                                <rect key="frame" x="137" y="378" width="141" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="go to flexiblity">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uX7-IL-3ad">
-                                <rect key="frame" x="147" y="449" width="126" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="go to balance">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="kDp-Ir-Tuv"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Mh-gb-VxA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="54" y="-142"/>
         </scene>
     </scenes>
 </document>

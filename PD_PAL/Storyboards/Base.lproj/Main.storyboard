@@ -18,7 +18,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtY-dY-F2O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3576.811594202899" y="-479.34782608695656"/>
+            <point key="canvasLocation" x="6261" y="258"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="nN8-PU-VdJ">
@@ -40,7 +40,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="tgH-ao-R5f" kind="showDetail" id="uZA-fe-k8r"/>
+                                    <segue destination="tgH-ao-R5f" kind="push" id="g1a-rv-eRH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zq2-km-irW">
@@ -51,7 +51,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="VTA-7V-rBg" kind="showDetail" id="qR9-IN-pbF"/>
+                                    <segue destination="VTA-7V-rBg" kind="push" id="1Zk-qw-rVQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cy4-Kv-bgG">
@@ -62,7 +62,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="a1r-sQ-RhN" kind="showDetail" id="XK2-nx-B10"/>
+                                    <segue destination="a1r-sQ-RhN" kind="push" id="9FF-t1-ldO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dsw-eA-mwf">
@@ -73,7 +73,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="A2F-xU-PJS" kind="showDetail" id="jSj-eF-7aV"/>
+                                    <segue destination="A2F-xU-PJS" kind="push" id="4EH-k9-bU4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -94,42 +94,52 @@
         <!--RoutineGenericVC-->
         <scene sceneID="Brg-et-FPV">
             <objects>
-                <viewControllerPlaceholder storyboardName="RoutineGenericpage" referencedIdentifier="RoutineGenericVC" id="VMk-fN-Ww1" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="RoutineGenericpage" referencedIdentifier="RoutineGenericVC" id="VMk-fN-Ww1" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="unN-qV-Qa5"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4l-vc-dgq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3613" y="-904"/>
+            <point key="canvasLocation" x="4535" y="-904"/>
         </scene>
         <!--StrengthVC-->
         <scene sceneID="Mo0-Bx-5iE">
             <objects>
-                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="StrengthVC" id="a1r-sQ-RhN" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="StrengthVC" id="a1r-sQ-RhN" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="2xq-hK-MPe"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gae-Rl-vIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4133" y="-902"/>
+            <point key="canvasLocation" x="5058" y="-904"/>
         </scene>
         <!--CardioVC-->
         <scene sceneID="o7v-Mq-Wme">
             <objects>
-                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="CardioVC" id="VTA-7V-rBg" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="CardioVC" id="VTA-7V-rBg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="XCU-P2-ruN"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fg1-j0-1lK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4385" y="-902"/>
+            <point key="canvasLocation" x="5288" y="-904"/>
         </scene>
         <!--FlexibilityVC-->
         <scene sceneID="V0w-a5-KCc">
             <objects>
-                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="FlexibilityVC" id="tgH-ao-R5f" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="FlexibilityVC" id="tgH-ao-R5f" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="oWS-nq-sJk"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWM-VD-bJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4624" y="-902"/>
+            <point key="canvasLocation" x="5526" y="-904"/>
         </scene>
         <!--BalanceVC-->
         <scene sceneID="7l0-ud-htp">
             <objects>
-                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="BalanceVC" id="A2F-xU-PJS" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Categories" referencedIdentifier="BalanceVC" id="A2F-xU-PJS" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="lsZ-mS-pXJ"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20L-Lk-VVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4875" y="-902"/>
+            <point key="canvasLocation" x="5775" y="-904"/>
         </scene>
         <!--Trend View Controller-->
         <scene sceneID="lXf-sP-dVF">
@@ -183,7 +193,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
-                                                    <segue destination="VMk-fN-Ww1" kind="showDetail" id="9W7-FK-WwJ"/>
+                                                    <segue destination="VMk-fN-Ww1" kind="push" id="elz-gz-FfX"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Weights_image" translatesAutoresizingMaskIntoConstraints="NO" id="WYL-Qh-4V9">
@@ -212,7 +222,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
-                                                    <segue destination="VMk-fN-Ww1" kind="showDetail" id="fEa-Rz-EB0"/>
+                                                    <segue destination="VMk-fN-Ww1" kind="push" id="sg9-WA-xDm"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kettle Bell image" translatesAutoresizingMaskIntoConstraints="NO" id="q4i-F6-wjw">
@@ -235,7 +245,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
-                                                    <segue destination="VMk-fN-Ww1" kind="showDetail" id="Spg-s9-RWn"/>
+                                                    <segue destination="VMk-fN-Ww1" kind="push" id="ee4-JB-kKe"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Track" translatesAutoresizingMaskIntoConstraints="NO" id="zvE-WI-Gsg">
@@ -304,7 +314,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qY2-ro-OZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2669.5652173913045" y="-479.34782608695656"/>
+            <point key="canvasLocation" x="5378" y="259"/>
         </scene>
     </scenes>
     <resources>
@@ -314,6 +324,6 @@
         <image name="logo" width="977" height="722"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Spg-s9-RWn"/>
+        <segue reference="ee4-JB-kKe"/>
     </inferredMetricsTieBreakers>
 </document>

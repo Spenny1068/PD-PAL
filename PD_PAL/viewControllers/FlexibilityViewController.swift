@@ -5,6 +5,9 @@
 //  Created by SpenC on 2019-10-27.
 //  Copyright © 2019 WareOne. All rights reserved.
 //
+// Revision History:
+// <Date, Name, Changes made>
+// <October 27, 2019, Spencer Lall, applied default page design>
 
 import UIKit
 

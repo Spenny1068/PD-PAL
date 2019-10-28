@@ -9,6 +9,7 @@
 // REVISION HISTORY:
 // <Date, Name, Changes made>
 // <Oct. 26, 2019, Spencer Lall, added categories buttons>
+// <October 27, 2019, Spencer Lall, applied default page design>
 
 
 import UIKit

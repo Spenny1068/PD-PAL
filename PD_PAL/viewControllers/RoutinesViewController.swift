@@ -5,11 +5,11 @@
 //  Created by Zhong Jia Xue on 2019-10-18.
 //  Copyright © 2019 WareOne. All rights reserved.
 //
-//Revision History:
+// Revision History:
 // <Date, Name, Changes made>
 // <October 25 2019, Arian Vafadar, Designed Routine and Subroutine page>
 // <October 26, 2019, Arian Vafadar, added pictures and updated Main routine page>
-//
+// <October 27, 2019, Spencer Lall, applied default page design>
 
 import UIKit
 

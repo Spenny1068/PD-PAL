@@ -6,26 +6,41 @@
 //  Copyright © 2019 WareOne. All rights reserved.
 //
 
+// REVISION HISTORY:
+// <Date, Name, Changes made>
+// <Oct. 27, 2019, Spencer Lall, Setup navigation bar and code refactor>
+
+
 import UIKit
 
 class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
+    var pageControl = UIPageControl()
+
+    // view controllers in PageViewController
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.newVc(viewController: "RoutinesPage"),
                 self.newVc(viewController: "CategoriesPage"),
                 self.newVc(viewController: "TrendsPage"),
                 self.newVc(viewController: "SettingsPage")]
     }()
-
-    var pageControl = UIPageControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
         
-        self.navigationController!.navigationBar.topItem!.title = "monday"
+                                    /* MAIN PAGE NAVIGATION BAR CODE */
         
-        if let firstViewController = orderedViewControllers.first{
+        self.navigationController!.navigationBar.topItem!.title = "SpenC"           // nav bar text
+        self.navigationController?.navigationBar.barTintColor = Setup.m_bgColor     // nav bar color
+        
+        let homeButton = UIBarButtonItem(image: UIImage(named: "logo.png"), style: .plain, target: self, action: #selector(homeButtonTapped))
+        //self.navigationItem.rightBarButtonItem  = homeButton
+        
+        
+                                    /* PAGE VIEW CONTROLLER CODE */
+        
+        if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
                                direction: .forward,
                                animated: true,
@@ -33,10 +48,20 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         }
         self.delegate = self
         configurePageControl()
-        // Do any additional setup after loading the view.
     }
     
-    func configurePageControl(){
+                                    /* MAIN PAGE VIEW CONTROLLER FUNCTIONS */
+    
+    // when home button on nav bar is tapped
+    @objc func homeButtonTapped(sender: UIButton!)
+    {
+        let homeView = self.storyboard?.instantiateViewController(withIdentifier: "mainPage")
+        present(homeView!, animated: true, completion: nil)
+        
+    }
+    
+    func configurePageControl()
+    {
         pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height:50))
         pageControl.numberOfPages = orderedViewControllers.count
         pageControl.currentPage = 0
@@ -45,11 +70,14 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         pageControl.currentPageIndicatorTintColor = UIColor.black
         self.view.addSubview(pageControl)
     }
-    func newVc(viewController: String) -> UIViewController{
+    
+    func newVc(viewController: String) -> UIViewController
+    {
         return UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: viewController)
     }
 
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?
+    {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {return nil}
         let prevIndex = viewControllerIndex - 1
         guard prevIndex >= 0 else {
@@ -62,26 +90,28 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         return orderedViewControllers[prevIndex]
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {return nil}
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController?
+    {
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else { return nil }
+       
         let nextIndex = viewControllerIndex + 1
-        guard orderedViewControllers.count != nextIndex else {
-            return orderedViewControllers.first
-        }
-        guard orderedViewControllers.count > nextIndex else{
-            return nil
-        }
+        guard orderedViewControllers.count != nextIndex else { return orderedViewControllers.first }
+        guard orderedViewControllers.count > nextIndex else { return nil }
         
         return orderedViewControllers[nextIndex]
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool)
+    {
         let pageContentViewController = pageViewController.viewControllers![0]
         self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
     }
-    override func didReceiveMemoryWarning() {
+    
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
     }
+    
     /*
     // MARK: - Navigation
 
