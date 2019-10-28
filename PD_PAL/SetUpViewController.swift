@@ -27,8 +27,6 @@ class SetUpViewController: UIViewController {
         question.textAlignment = .center
         question.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
         self.view.addSubview(question)
-
-        // Do any additional setup after loading the view.
     }
     
 
