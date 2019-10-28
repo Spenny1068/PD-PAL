@@ -28,6 +28,12 @@
 		4510854F23639DB800338F82 /* play.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4510853A23639DB800338F82 /* play.jpg */; };
 		4510855023639DB800338F82 /* playbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853B23639DB800338F82 /* playbutton.png */; };
 		4510855123639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853C23639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png */; };
+		26DC60F22364CB460064B314 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC60F12364CB460064B314 /* LoginViewController.swift */; };
+		2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */; };
+		2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */; };
+		2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */; };
+		2EF0AFD2235ABC6C0036EF36 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFD1235ABC6C0036EF36 /* RoutinesViewController.swift */; };
+		2EF0AFD4235ABCA30036EF36 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFD3235ABCA30036EF36 /* SettingsViewController.swift */; };
 		4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9BD2351587700E5ED83 /* AppDelegate.swift */; };
 		4517F9C72351587700E5ED83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9C52351587700E5ED83 /* Main.storyboard */; };
 		4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9C82351587800E5ED83 /* Assets.xcassets */; };
@@ -96,6 +102,12 @@
 		4510853A23639DB800338F82 /* play.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = play.jpg; sourceTree = "<group>"; };
 		4510853B23639DB800338F82 /* playbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playbutton.png; sourceTree = "<group>"; };
 		4510853C23639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wall_Sit_squat_F_WorkoutLabs.png; sourceTree = "<group>"; };
+		26DC60F12364CB460064B314 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainPageViewController.swift; sourceTree = "<group>"; };
+		2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
+		2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		2EF0AFD1235ABC6C0036EF36 /* RoutinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesViewController.swift; sourceTree = "<group>"; };
+		2EF0AFD3235ABCA30036EF36 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		4517F9BA2351587700E5ED83 /* PD_PAL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PD_PAL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4517F9BD2351587700E5ED83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4517F9C62351587700E5ED83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -213,6 +225,11 @@
 				4517F9BD2351587700E5ED83 /* AppDelegate.swift */,
 				4517F9C82351587800E5ED83 /* Assets.xcassets */,
 				4517F9CD2351587800E5ED83 /* Info.plist */,
+				26DC60F12364CB460064B314 /* LoginViewController.swift */,
+				26D4926A2365329D00E74957 /* EquipmentQuestionnaireViewController.swift */,
+				26D4926C23654AA100E74957 /* IntenseQuestionViewController.swift */,
+				26D4926E23654D9600E74957 /* WalkingQuestionViewController.swift */,
+				264A437E236637870052C3D9 /* SetUpViewController.swift */,
 			);
 			path = PD_PAL;
 			sourceTree = "<group>";
@@ -447,6 +464,12 @@
 				4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */,
 				45BE9262236660010076E729 /* EquipmentQuestionnaireViewController.swift in Sources */,
 				45BE9259236660010076E729 /* BalanceViewController.swift in Sources */,
+				26D4926F23654D9600E74957 /* WalkingQuestionViewController.swift in Sources */,
+				2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */,
+				2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */,
+				2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */,
+				2EF0AFD2235ABC6C0036EF36 /* RoutinesViewController.swift in Sources */,
+				2EF0AFD4235ABCA30036EF36 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

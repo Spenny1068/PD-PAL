@@ -10,7 +10,9 @@
 import UIKit
 
 class WalkingQuestionViewController: UIViewController {
-
+    let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
+    @IBOutlet weak var completeButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,26 @@ class WalkingQuestionViewController: UIViewController {
         question.textAlignment = .center
         self.view.addSubview(question)
         
-        // Do any additional setup after loading the view.
+        //Navigation Buttons
+        completeButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
+        backButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 100, height: 150)
+    }
+    
+//    @IBAction func completeTapped(_ sender: Any) {
+//        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "mainPage") as? mainPageViewController else{
+//            print("Couldn't find the view controller")
+//            return
+//        }
+//        present(destinationViewController, animated: true, completion: nil)
+//    }
+    
+    @IBAction func backTapped(_ sender: Any) {
+        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "EquipmentQuestionPage") as? EquipmentQuestionnaireViewController else{
+            print("Couldn't find the view controller")
+            return
+        }
+        present(destinationViewController, animated: true, completion: nil)
+        
     }
     
 

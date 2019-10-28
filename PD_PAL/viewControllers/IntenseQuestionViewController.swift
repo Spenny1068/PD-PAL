@@ -10,7 +10,8 @@
 import UIKit
 
 class IntenseQuestionViewController: UIViewController {
-
+    @IBOutlet weak var nextButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,10 +28,19 @@ class IntenseQuestionViewController: UIViewController {
         question.textAlignment = .center
         question.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
         self.view.addSubview(question)
-        // Do any additional setup after loading the view.
+        
+        nextButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
     }
     
-
+    @IBAction func nextTapped(_ sender: Any) {
+        let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
+        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "EquipmentQuestionPage") as? EquipmentQuestionnaireViewController else{
+            print("Couldn't find the view controller")
+            return
+        }
+        present(destinationViewController, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
