@@ -19,7 +19,7 @@ import XCTest
 
 class PD_PALTests: XCTestCase {
 
-    let exDB = ExerciseDatabase()
+
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -33,10 +33,12 @@ class PD_PALTests: XCTestCase {
     //
     func testDatabase_insertion() {
         
-        var desc = "Elevate Weights while keepings arms still"
-        var cat = "Strength"
-        var body = "Arms"
-        var name = "Bicep Curls"
+        let exDB = ExerciseDatabase()
+        
+        let desc = "Elevate Weights while keepings arms still"
+        let cat = "Strength"
+        let body = "Arms"
+        let name = "Bicep Curls"
         exDB.insert_exercise(Name: name , Desc: desc, Category: cat, Body: body)
         
         

@@ -22,6 +22,9 @@ Known Bugs
  
 - 26/10/2019 : William Xue
      Call to get contents of documents directory in constructor throws an error.
+- 27/10/2019 : William Xue
+    File persistance of iOS simulator behviour is unknown, it is possible that the file name persists but the file is empty
+    thus when we try to insert, the system crashes
 */
 
 import Foundation
@@ -43,42 +46,87 @@ class ExerciseDatabase {
     let descriptions = Expression<String>("Desc")
     let category = Expression<String>("Category")
     let body = Expression<String>("Body")
+
     
     init() {
+        
+        let fileName = "exercises"
+        let fileExtension = "sqlite3"
+        let fullFileName = fileName + "." + fileExtension
+        var database_already_exists = false
+        var fileURL : URL
+        
+        
+        /*Will X: copied from Stackoverflow: https://stackoverflow.com/questions/27721418/getting-list-of-files-in-documents-folder*/
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        print (documentsURL.path)
         do {
-            //to get the location of the file
-            let documentDirectory = try FileManager.default.url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) //don't create a file if file doesn't exist
-
-            /*
-            //Look for the SQLite3 database file. Note whether or not it already exists.
-            let files = try FileManager.default.contentsOfDirectory(atPath: documentDirectory.absoluteString)
-            
-            var database_already_exists = false
-            
-            for file in files {
-                if file == "exercises.sqlite3" {
+            let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            // process files
+            for file in fileURLs {
+                if file.lastPathComponent == fullFileName {
+                    //in this control loop, file already exists and has proper name
+                    
+                    //check if the file is empty, due to bug found on 27/10/2019, desc above
+                    var isFileEmpty:Bool = false
+                    do {
+                        let attr = try FileManager.default.attributesOfItem(atPath: file.path)
+                        var fileSize = attr[FileAttributeKey.size] as! UInt64
+                        let dict = attr as NSDictionary
+                        fileSize = dict.fileSize()
+                        if(fileSize == 0)
+                        {
+                            print("Found empty file with name: \(fullFileName) at : \(file.path)")
+                            isFileEmpty = true
+                        }
+                    } catch {
+                        print("Error: \(error)")
+                    }
+                    //end of checking if found file is empty
+                    
                     database_already_exists = true
+                    fileURL = file.absoluteURL
+                    print(file.absoluteURL.path)
+                    
+                    //create connection to DB
+                     do{
+                         let database = try Connection(fileURL.path) //anything written to the DB will be saved to the file
+                         self.database = database //set it to the global DB
+                        if isFileEmpty{self.fill_database() }
+                     }
+                     catch
+                     {
+                         print("Error while creating connection from URL to Database")
+                         print("fileURL: \(fileURL.path)")
+                         print(error.localizedDescription)
+                     }
                 }
             }
-            */
-            
-            let fileUrl = documentDirectory.appendingPathComponent("exercises").appendingPathExtension("sqlite3") //create a file named users using sqlite3 extension
-            
+        } catch {
+            print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
+        }
+        
+        if database_already_exists == false
+        {
+            //creting the file it it doesn't exist
+            fileURL = documentsURL.appendingPathComponent(fileName).appendingPathExtension(fileExtension) //create a file named users using sqlite3 extension
             //create connection to DB
-            let database = try Connection(fileUrl.path) //anything written to the DB will be saved to the file
-            self.database = database //set it to the global DB
-            
-            /*
-            //If the SQLite3 database does not already exist, is is empty, so we need to fill it.
-            if( !database_already_exists ) {
+             do{
+                let database = try Connection(fileURL.path) //anything written to the DB will be saved to the file
+                self.database = database //set it to the global DB
+                //fill the database since it did not already exist
                 self.fill_database()
-            }
-            */
+             }
+             catch
+             {
+                 print("Error while creating connection from URL to Database")
+                 print("fileURL: \(fileURL.path)")
+                 print(error.localizedDescription)
+             }
+               
+        }
             
-        }
-        catch {
-            print("Failed to connect to database")
-        }
     }
 
     //Assuming the database is empty, create the table and insert all exercises.
@@ -99,6 +147,7 @@ class ExerciseDatabase {
         //Insert all exercises here.
     }
     
+    
     //Insert an individual exercise.
     func insert_exercise(Name: String , Desc: String, Category: String, Body: String) {
         let insert = exerciseList.insert(name <- Name, descriptions <- Desc, category <- Category, body <- Body)
@@ -106,7 +155,7 @@ class ExerciseDatabase {
         let rowid = try database.run(insert)
         }
         catch {
-            print("Failed to insert \(Name) into database")
+            print("Failed to insert \(Name) into database: \(error.localizedDescription)")
         }
     }
 }
