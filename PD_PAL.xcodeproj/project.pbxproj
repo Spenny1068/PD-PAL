@@ -13,7 +13,6 @@
 		26D4926F23654D9600E74957 /* WalkingQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4926E23654D9600E74957 /* WalkingQuestionViewController.swift */; };
 		26DC60F02364C51C0064B314 /* Questionnare.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DC60EF2364C51C0064B314 /* Questionnare.storyboard */; };
 		26DC60F22364CB460064B314 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC60F12364CB460064B314 /* LoginViewController.swift */; };
-		26DC60F42364CD9C0064B314 /* QuestionnaireNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC60F32364CD9C0064B314 /* QuestionnaireNavController.swift */; };
 		2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */; };
 		2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */; };
 		2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */; };
@@ -51,7 +50,6 @@
 		26D4926E23654D9600E74957 /* WalkingQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingQuestionViewController.swift; sourceTree = "<group>"; };
 		26DC60EF2364C51C0064B314 /* Questionnare.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Questionnare.storyboard; sourceTree = "<group>"; };
 		26DC60F12364CB460064B314 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		26DC60F32364CD9C0064B314 /* QuestionnaireNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireNavController.swift; sourceTree = "<group>"; };
 		2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainPageViewController.swift; sourceTree = "<group>"; };
 		2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
 		2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 				4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */,
 				4517F9CD2351587800E5ED83 /* Info.plist */,
 				26DC60F12364CB460064B314 /* LoginViewController.swift */,
-				26DC60F32364CD9C0064B314 /* QuestionnaireNavController.swift */,
 				26D4926A2365329D00E74957 /* EquipmentQuestionnaireViewController.swift */,
 				26D4926C23654AA100E74957 /* IntenseQuestionViewController.swift */,
 				26D4926E23654D9600E74957 /* WalkingQuestionViewController.swift */,
@@ -300,7 +297,6 @@
 				2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */,
 				2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */,
 				2EF0AFD2235ABC6C0036EF36 /* RoutinesViewController.swift in Sources */,
-				26DC60F42364CD9C0064B314 /* QuestionnaireNavController.swift in Sources */,
 				2EF0AFD4235ABCA30036EF36 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

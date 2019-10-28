@@ -38,9 +38,10 @@ class LoginViewController: UIViewController{
     //Give access to Questionnaire Storyboard
     private func navigateToQuestionnaire(){
         let mainStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
-        guard let quesNavigationVC = mainStoryboard.instantiateViewController(withIdentifier: "QuestionnaireNavController") as? QuestionnaireNavController else {
+        guard let quesNavigationVC = mainStoryboard.instantiateViewController(withIdentifier: "SetUpQuestionPage") as? SetUpViewController else {
             return
         }
+        
         //modular 
         present(quesNavigationVC, animated: true ,completion: nil)
     }

@@ -5,15 +5,18 @@
 //  Created by icanonic on 2019-10-26.
 //  Copyright © 2019 WareOne. All rights reserved.
 //<Date, Name, Changes made>
-//<Oct. 27, 2019, Izyl Canonicato, programmatic labels >
+//<Oct. 27, 2019, Izyl Canonicato, programmatic labels and buttons>
 
 import UIKit
 
 class EquipmentQuestionnaireViewController: UIViewController {
+    let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
     @IBOutlet weak var RBandCheckbox:UIButton!
     @IBOutlet weak var chairCheckbox:UIButton!
     @IBOutlet weak var weightsCheckbox:UIButton!
     @IBOutlet weak var poolCheckbox:UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +50,12 @@ class EquipmentQuestionnaireViewController: UIViewController {
         weightsCheckbox.setImage(UIImage(named:"Checkmarks"), for: .selected)
         poolCheckbox.setImage(UIImage(named:"Unchecked marks"), for: .normal)
         poolCheckbox.setImage(UIImage(named:"Checkmarks"), for: .selected)
-        // Do any additional setup after loading the view.
+        
+        
+        //Navigation Buttons
+        nextButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
+        backButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 100, height: 150)
+        
     }
     
     @IBAction func checkMarkTapped(sender: UIButton){
@@ -61,6 +69,22 @@ class EquipmentQuestionnaireViewController: UIViewController {
         }
     }
     
+    @IBAction func nextTapped(_ sender: Any) {
+        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "WalkingQuestionPage") as? WalkingQuestionViewController else{
+            print("Couldn't find the view controller")
+            return
+        }
+        present(destinationViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func backTapped(_ sender: Any) {
+        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "IntenseQuestionPage") as? IntenseQuestionViewController else{
+            print("Couldn't find the view controller")
+            return
+        }
+        present(destinationViewController, animated: true, completion: nil)
+        
+    }
     /*
     // MARK: - Navigation
 
