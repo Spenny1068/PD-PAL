@@ -39,8 +39,19 @@ class PD_PALTests: XCTestCase {
         let cat = "Strength"
         let body = "Arms"
         let name = "Bicep Curls"
-        exDB.insert_exercise(Name: name , Desc: desc, Category: cat, Body: body)
+        let link = "bicep_curl.mp4"
+        exDB.insert_exercise(Name: name , Desc: desc, Category: cat, Body: body, Link: link)
         
+        let readResult = exDB.read_exercise(NameOfExercise: name)
+        
+        //making sure we read what we written
+        XCTAssert( readResult.Description == desc ) ;
+        XCTAssert( readResult.Category == cat ) ;
+        XCTAssert( readResult.Body == body ) ;
+        XCTAssert( readResult.Link == link) ;
+        
+        //delete the database when we are done with it
+        exDB.remove_database()
         
     }
 
