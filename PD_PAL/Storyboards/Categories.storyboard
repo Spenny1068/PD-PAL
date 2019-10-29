@@ -25,14 +25,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="325" height="96"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="ARMS"/>
-                                        <connections>
-                                            <segue destination="x7V-kN-9xv" kind="push" id="95L-aa-l8k"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR0-Jb-KYz">
                                         <rect key="frame" x="0.0" y="171" width="325" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                        <state key="normal" title="BACK"/>
+                                        <state key="normal" title="CHEST"/>
+                                        <connections>
+                                            <segue destination="x7V-kN-9xv" kind="push" id="Fig-Vp-NkI"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J04-IT-aiS">
                                         <rect key="frame" x="0.0" y="298" width="325" height="52"/>
@@ -78,15 +78,35 @@
             </objects>
             <point key="canvasLocation" x="-18.399999999999999" y="559.07046476761627"/>
         </scene>
-        <!--ArmsVC-->
+        <!--ChestVC-->
         <scene sceneID="yKb-fb-qy3">
             <objects>
-                <viewControllerPlaceholder storyboardName="Arms" referencedIdentifier="ArmsVC" id="x7V-kN-9xv" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Chest" referencedIdentifier="ChestVC" id="x7V-kN-9xv" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="6v0-gz-1bW"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1AE-we-peC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-18" y="990"/>
+        </scene>
+        <!--ChairStretchVC-->
+        <scene sceneID="XJo-EA-Phf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Chairstretch" referencedIdentifier="ChairStretchVC" id="QKt-nn-xdI" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="7Cp-wP-uFx"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CBM-7j-zQ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="654" y="990"/>
+        </scene>
+        <!--OneLegSquatVC-->
+        <scene sceneID="bpG-DN-Zha">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OneLegSquat" referencedIdentifier="OneLegSquatVC" id="eND-9L-UOu" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="FaW-t6-wNL"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0kN-Bd-iaS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1364" y="990"/>
         </scene>
         <!--Flexibility-->
         <scene sceneID="BBK-5x-cjT">
@@ -95,6 +115,17 @@
                     <view key="view" contentMode="scaleToFill" id="N0r-mi-ctA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leZ-3F-RaX">
+                                <rect key="frame" x="61" y="263" width="252" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="Chair Stretch"/>
+                                <connections>
+                                    <segue destination="QKt-nn-xdI" kind="push" id="h0F-oV-kzg"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aIP-1o-aD2"/>
                     </view>
@@ -110,6 +141,17 @@
                     <view key="view" contentMode="scaleToFill" id="7RX-SJ-x4a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r5f-ET-Dt8">
+                                <rect key="frame" x="103" y="289" width="199" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="One-Leg Squat"/>
+                                <connections>
+                                    <segue destination="eND-9L-UOu" kind="push" id="Lq5-Nw-Ijs"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xa1-vf-FGr"/>
                     </view>
@@ -121,18 +163,12 @@
         <!--WalkingVC-->
         <scene sceneID="ilD-XG-1QV">
             <objects>
-                <viewControllerPlaceholder storyboardName="Cardio" referencedIdentifier="WalkingVC" id="ZXd-fz-gRp" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Walking" referencedIdentifier="WalkingVC" id="ZXd-fz-gRp" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="4ly-JU-gWc"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ThA-T0-nKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="930" y="191"/>
-        </scene>
-        <!--RunningVC-->
-        <scene sceneID="Jbc-YN-enP">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Cardio" referencedIdentifier="RunningVC" id="Ufa-Z5-XWc" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bTk-xW-fhg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1124" y="191"/>
+            <point key="canvasLocation" x="2633" y="464"/>
         </scene>
         <!--Cardio-->
         <scene sceneID="Tvs-OT-pZy">
@@ -148,16 +184,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="walking"/>
                                 <connections>
-                                    <segue destination="ZXd-fz-gRp" kind="showDetail" id="74u-EB-jZv"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIb-0d-yRQ">
-                                <rect key="frame" x="151" y="371" width="113" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" title="Running"/>
-                                <connections>
-                                    <segue destination="Ufa-Z5-XWc" kind="showDetail" id="IcM-td-eDp"/>
+                                    <segue destination="ZXd-fz-gRp" kind="push" id="hbU-6Q-gZC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -165,7 +192,6 @@
                         <viewLayoutGuide key="safeArea" id="Kcg-Qn-kDI"/>
                     </view>
                     <connections>
-                        <outlet property="Running" destination="hIb-0d-yRQ" id="NHe-ct-eY3"/>
                         <outlet property="walking" destination="g7T-TQ-oqE" id="VL4-aw-8aF"/>
                     </connections>
                 </viewController>
