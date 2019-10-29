@@ -35,14 +35,6 @@ class WalkingQuestionViewController: UIViewController {
         backButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 100, height: 150)
     }
     
-//    @IBAction func completeTapped(_ sender: Any) {
-//        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "mainPage") as? mainPageViewController else{
-//            print("Couldn't find the view controller")
-//            return
-//        }
-//        present(destinationViewController, animated: true, completion: nil)
-//    }
-    
     @IBAction func backTapped(_ sender: Any) {
         guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "EquipmentQuestionPage") as? EquipmentQuestionnaireViewController else{
             print("Couldn't find the view controller")
@@ -52,7 +44,6 @@ class WalkingQuestionViewController: UIViewController {
         
     }
     
-
     /*
     // MARK: - Navigation
 

@@ -31,7 +31,7 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         
                                     /* MAIN PAGE NAVIGATION BAR CODE */
         
-        self.navigationController!.navigationBar.topItem!.title = "SpenC"           // nav bar text
+        self.navigationController?.navigationBar.topItem!.title = "SpenC"           // nav bar text
         self.navigationController?.navigationBar.barTintColor = Setup.m_bgColor     // nav bar color
         
         let homeButton = UIBarButtonItem(image: UIImage(named: "logo.png"), style: .plain, target: self, action: #selector(homeButtonTapped))

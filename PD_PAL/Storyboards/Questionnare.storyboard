@@ -158,7 +158,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <action selector="nextTapped:" destination="GL6-Qk-9Op" eventType="touchDragInside" id="F7V-za-sxG"/>
+                                    <action selector="nextTapped:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="Ns6-k1-lE8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfx-Pg-NLq">
@@ -238,6 +238,9 @@
                                 <rect key="frame" x="256" y="574" width="67" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Complete"/>
+                                <connections>
+                                    <segue destination="yx5-Ak-3AR" kind="showDetail" id="3jK-03-ToS"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -245,12 +248,20 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="8pE-Kg-kQP" id="9eT-y1-Azn"/>
-                        <outlet property="completeButton" destination="euJ-fI-7G4" id="oXc-Vl-Jss"/>
+                        <outlet property="completeButton" destination="euJ-fI-7G4" id="yUu-fk-h37"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mY9-Ng-GS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4624.8000000000002" y="960.2698650674663"/>
+        </scene>
+        <!--mainPage-->
+        <scene sceneID="gFS-LD-zv0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="mainPage" id="yx5-Ak-3AR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L01-QV-LXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4200" y="1455"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zlo-zp-z0j">
