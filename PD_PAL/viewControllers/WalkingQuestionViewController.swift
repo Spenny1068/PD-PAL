@@ -6,6 +6,7 @@
 //  Copyright © 2019 WareOne. All rights reserved.
 //<Date, Name, Changes made>
 //<Oct. 27, 2019, Izyl Canonicato, programmatic labels >
+//<Oct. 28, 2019, Izyl Canonicato, Navigation to Routines (Home page)>
 
 import UIKit
 
@@ -22,12 +23,9 @@ class WalkingQuestionViewController: UIViewController {
         let screenHeight = screenRect.size.height
         
         //Question
-        let frameLabel:CGRect = CGRect(x: screenWidth/2-150, y:screenHeight/2-150, width: 300, height: 150)
-        let question = UILabel(frame: frameLabel)
+        let question = UILabel()
         question.text = "How long would you like your walking exercise to be?"
-        question.numberOfLines = 3
-        question.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
-        question.textAlignment = .center
+        question.applyQuestionDesign()
         self.view.addSubview(question)
         
         //Navigation Buttons

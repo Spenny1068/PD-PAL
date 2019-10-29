@@ -53,6 +53,14 @@
             </objects>
             <point key="canvasLocation" x="338.39999999999998" y="91.304347826086968"/>
         </scene>
+        <!--mainPage-->
+        <scene sceneID="Wch-sA-0va">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="mainPage" id="flm-uW-Jzc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lJ1-gv-OMC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1780" y="480"/>
+        </scene>
         <!--Set Up View Controller-->
         <scene sceneID="h8W-oY-d4g">
             <objects>
@@ -66,7 +74,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Ask me later"/>
                                 <connections>
-                                    <action selector="SkipSetupTapped:" destination="qG0-vu-hk0" eventType="touchUpInside" id="wBR-AD-hbJ"/>
+                                    <segue destination="flm-uW-Jzc" kind="showDetail" id="RUv-bB-kft"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwO-Qe-IXo">

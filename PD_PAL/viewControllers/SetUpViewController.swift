@@ -6,6 +6,7 @@
 //  Copyright © 2019 WareOne. All rights reserved.
 //<Date, Name, Changes made>
 //<Oct. 27, 2019, Izyl Canonicato, programmatic labels and buttons>
+//<Oct. 28, 2019, Izyl Canonicato, navigation to Routines (Home page)>
 
 import UIKit
 
@@ -22,13 +23,9 @@ class SetUpViewController: UIViewController {
         let screenHeight = screenRect.size.height
         
         //Question
-        let frameLabel1:CGRect = CGRect(x: screenWidth/2-150, y:screenHeight/2 - 150, width: 300, height: 150)
-        let question = UILabel(frame: frameLabel1)
+        let question = UILabel()
         question.text = "Would you like to set-up your preferences now?"
-        question.numberOfLines = 2
-        question.lineBreakMode = .byWordWrapping
-        question.textAlignment = .center
-        question.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
+        question.applyQuestionDesign()
         self.view.addSubview(question)
         
         //Navigation Buttons
@@ -46,16 +43,6 @@ class SetUpViewController: UIViewController {
         
         present(destinationViewController, animated: true, completion: nil)
     }
-    
-//    @IBAction func SkipSetupTapped(_ sender: Any) {
-//        guard let destinationViewController1 = QuestionStoryboard.instantiateViewController(withIdentifier: "mainPage") as? mainPageViewController else{
-//            print("Couldn't find the view controller")
-//            return
-//        }
-//
-//        present(destinationViewController1, animated: true, completion: nil)
-    
-//    }
     
     /*
     // MARK: - Navigation

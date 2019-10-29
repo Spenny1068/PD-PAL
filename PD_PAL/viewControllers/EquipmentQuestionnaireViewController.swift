@@ -25,12 +25,9 @@ class EquipmentQuestionnaireViewController: UIViewController {
         let screenHeight = screenRect.size.height
         
         //Question
-        let frameLabel1:CGRect = CGRect(x: screenWidth/2-150, y:screenHeight/2 - 150, width: 300, height: 150)
-        let question = UILabel(frame: frameLabel1)
+        let question = UILabel()
         question.text = "Do you have access to a(n):"
-        question.numberOfLines = 1
-        question.textAlignment = .center
-        question.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
+        question.applyQuestionDesign()
         self.view.addSubview(question)
         
         //Instruction msg

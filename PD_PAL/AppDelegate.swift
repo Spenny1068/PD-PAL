@@ -38,6 +38,15 @@ extension UILabel {
         self.font = UIFont(name:"HelveticaNeue-Bold", size: 15.0)              // text font and size
         self.textColor = UIColor(red: 154/255.0, green: 141/255.0, blue: 141/255.0, alpha: 1.0)     // text color
     }
+
+    func applyQuestionDesign(){
+        self.frame = CGRect(x: 36, y: 120, width: 300, height: 150)
+        self.lineBreakMode = .byWordWrapping
+        self.numberOfLines = 2
+        self.textAlignment = .center
+        self.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)
+        self.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
+    }
 }
 
 /* UIButton methods */

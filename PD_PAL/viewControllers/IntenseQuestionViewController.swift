@@ -20,13 +20,9 @@ class IntenseQuestionViewController: UIViewController {
         let screenHeight = screenRect.size.height
         
         //Question
-        let frameLabel1:CGRect = CGRect(x: screenWidth/2-150, y:screenHeight/2 - 150, width: 300, height: 150)
-        let question = UILabel(frame: frameLabel1)
+        let question = UILabel()
         question.text = "How intense would you like your exercise to be?"
-        question.lineBreakMode = .byWordWrapping
-        question.numberOfLines = 2
-        question.textAlignment = .center
-        question.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
+        question.applyQuestionDesign()
         self.view.addSubview(question)
         
         nextButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)

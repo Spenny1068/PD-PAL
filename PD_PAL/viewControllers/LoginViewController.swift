@@ -18,6 +18,10 @@ class LoginViewController: UIViewController{
         super.viewDidLoad()
         ValidationMessage.isHidden = true
         userNameTextField.delegate = self
+        let title = UILabel()
+        title.text = "Welcome to PD PAL!"
+        title.applyQuestionDesign()
+        self.view.addSubview(title)
     }
     
     @IBAction func LoginTapped(_ sender: Any) {
