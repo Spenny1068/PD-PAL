@@ -19,6 +19,10 @@ class StrengthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       // [UIButton, buttonWithType,:UIButtonTypeSystem]
+        
+        
         view.backgroundColor = Setup.m_bgColor
 
         // page name
@@ -38,8 +42,21 @@ class StrengthViewController: UIViewController {
         CoreButton.applyDesign()
         LegsButton.applyDesign()
         
+        // home button on navigation bar
+        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
+        self.navigationItem.rightBarButtonItem  = homeButton
+
+        /* need to change button type to Custom in xib file to load picture */
+        //let logo = UIImage(named: "logo.png")
+        //homeButton.image = logo
     }
     
+    // called when home button on navigation bar is tapped
+    @objc func homeButtonTapped(sender: UIButton!) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+        self.present(newViewController, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

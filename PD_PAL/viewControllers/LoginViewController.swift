@@ -25,7 +25,7 @@ class LoginViewController: UIViewController{
     }
     
     @IBAction func LoginTapped(_ sender: Any) {
-        //let userName = userNameTextField.text
+        // let userName = userNameTextField.text
         ValidationMessage.isHidden = true
         guard let userName = userNameTextField.text, (userNameTextField.text?.count != 0), !(isValidName(name: userNameTextField.text!)) else {
             ValidationMessage.text = "Please enter a valid name"

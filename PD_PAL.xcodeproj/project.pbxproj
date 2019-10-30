@@ -34,6 +34,10 @@
 		4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */; };
 		4517F9D72351587800E5ED83 /* PD_PALTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9D62351587800E5ED83 /* PD_PALTests.swift */; };
 		4517F9E22351587800E5ED83 /* PD_PALUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9E12351587800E5ED83 /* PD_PALUITests.swift */; };
+		4561391723696BAE00E5694E /* E1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4561391623696BAE00E5694E /* E1ViewController.swift */; };
+		4561391923696BBE00E5694E /* E2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4561391823696BBE00E5694E /* E2ViewController.swift */; };
+		4561391B23696BC900E5694E /* E3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4561391A23696BC900E5694E /* E3ViewController.swift */; };
+		4561391D23696BD500E5694E /* E4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4561391C23696BD500E5694E /* E4ViewController.swift */; };
 		457C0F6A2366B54500A918B2 /* Chest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457C0F692366B54500A918B2 /* Chest.storyboard */; };
 		457C0F6C2366B6C700A918B2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 457C0F6B2366B6C700A918B2 /* logo.png */; };
 		45BE9269236660920076E729 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45BE9268236660920076E729 /* Categories.storyboard */; };
@@ -110,6 +114,10 @@
 		4517F9DD2351587800E5ED83 /* PD_PALUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PD_PALUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4517F9E12351587800E5ED83 /* PD_PALUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD_PALUITests.swift; sourceTree = "<group>"; };
 		4517F9E32351587800E5ED83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4561391623696BAE00E5694E /* E1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E1ViewController.swift; sourceTree = "<group>"; };
+		4561391823696BBE00E5694E /* E2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E2ViewController.swift; sourceTree = "<group>"; };
+		4561391A23696BC900E5694E /* E3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E3ViewController.swift; sourceTree = "<group>"; };
+		4561391C23696BD500E5694E /* E4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E4ViewController.swift; sourceTree = "<group>"; };
 		457C0F692366B54500A918B2 /* Chest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chest.storyboard; sourceTree = "<group>"; };
 		457C0F6B2366B6C700A918B2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		45BE9268236660920076E729 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
@@ -244,13 +252,13 @@
 			children = (
 				45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */,
 				4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */,
-				45EA1DDE236595BD00E6D070 /* Walking.storyboard */,
 				4517F9C52351587700E5ED83 /* Main.storyboard */,
 				26DC60EF2364C51C0064B314 /* Questionnare.storyboard */,
 				45BE9268236660920076E729 /* Categories.storyboard */,
 				45EB46272367C5BE009BA044 /* OneLegSquat.storyboard */,
 				45EB46252367C4CF009BA044 /* Chairstretch.storyboard */,
 				457C0F692366B54500A918B2 /* Chest.storyboard */,
+				45EA1DDE236595BD00E6D070 /* Walking.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -268,6 +276,10 @@
 				45EB460C2367C0AA009BA044 /* CategoriesViewController.swift */,
 				45EB460D2367C0AA009BA044 /* QuestionnaireNavController.swift */,
 				45EB460E2367C0AA009BA044 /* RoutineGenericViewController.swift */,
+				4561391623696BAE00E5694E /* E1ViewController.swift */,
+				4561391823696BBE00E5694E /* E2ViewController.swift */,
+				4561391A23696BC900E5694E /* E3ViewController.swift */,
+				4561391C23696BD500E5694E /* E4ViewController.swift */,
 				45EB460F2367C0AA009BA044 /* mainPageViewController.swift */,
 				45EB46102367C0AA009BA044 /* EquipmentQuestionnaireViewController.swift */,
 				45EB46112367C0AA009BA044 /* SetUpViewController.swift */,
@@ -438,19 +450,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				45EB461A2367C0AA009BA044 /* TrendViewController.swift in Sources */,
+				4561391B23696BC900E5694E /* E3ViewController.swift in Sources */,
 				45EB461B2367C0AA009BA044 /* CardioViewController.swift in Sources */,
 				45EB46192367C0AA009BA044 /* IntenseQuestionViewController.swift in Sources */,
+				4561391923696BBE00E5694E /* E2ViewController.swift in Sources */,
 				4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */,
 				45EB461C2367C0AA009BA044 /* CategoriesViewController.swift in Sources */,
 				45EB461D2367C0AA009BA044 /* QuestionnaireNavController.swift in Sources */,
 				45EB461F2367C0AA009BA044 /* mainPageViewController.swift in Sources */,
 				45EB46202367C0AA009BA044 /* EquipmentQuestionnaireViewController.swift in Sources */,
 				45EB46182367C0AA009BA044 /* StrengthViewController.swift in Sources */,
+				4561391723696BAE00E5694E /* E1ViewController.swift in Sources */,
 				45EB46232367C0AA009BA044 /* WalkingQuestionViewController.swift in Sources */,
 				45EB46212367C0AA009BA044 /* SetUpViewController.swift in Sources */,
 				45EB46152367C0AA009BA044 /* RoutinesViewController.swift in Sources */,
 				45EB46172367C0AA009BA044 /* BalanceViewController.swift in Sources */,
 				45EB46222367C0AA009BA044 /* LoginViewController.swift in Sources */,
+				4561391D23696BD500E5694E /* E4ViewController.swift in Sources */,
 				45EB46162367C0AA009BA044 /* FlexibilityViewController.swift in Sources */,
 				4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */,
 				45EB461E2367C0AA009BA044 /* RoutineGenericViewController.swift in Sources */,

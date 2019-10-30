@@ -22,13 +22,13 @@ class WalkingQuestionViewController: UIViewController {
         let screenWidth = screenRect.size.width
         let screenHeight = screenRect.size.height
         
-        //Question
+        // Question
         let question = UILabel()
         question.text = "How long would you like your walking exercise to be?"
         question.applyQuestionDesign()
         self.view.addSubview(question)
         
-        //Navigation Buttons
+        // Navigation Buttons
         completeButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
         backButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 100, height: 150)
     }

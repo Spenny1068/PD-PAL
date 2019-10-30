@@ -13,7 +13,7 @@
         <!--ChairStretch-->
         <scene sceneID="sZ5-0y-jxx">
             <objects>
-                <viewController storyboardIdentifier="ChairStretchVC" title="ChairStretch" id="jyJ-aL-JF4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChairStretchVC" title="ChairStretch" id="jyJ-aL-JF4" customClass="E2ViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kDe-MN-ccd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

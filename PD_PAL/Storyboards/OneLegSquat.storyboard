@@ -13,10 +13,19 @@
         <!--OneLegSquat-->
         <scene sceneID="fVT-nH-Eqg">
             <objects>
-                <viewController storyboardIdentifier="OneLegSquatVC" title="OneLegSquat" id="EK4-z6-9tE" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OneLegSquatVC" title="OneLegSquat" id="EK4-z6-9tE" customClass="E1ViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fB9-kH-bGN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="One-Leg Squat Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdN-Ak-LIt">
+                                <rect key="frame" x="87" y="207" width="241" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bRB-ej-NEC"/>
                     </view>

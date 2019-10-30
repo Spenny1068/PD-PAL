@@ -17,6 +17,8 @@ import UIKit
 struct Setup {
     // color schemes
     static var m_bgColor = UIColor(red: 170/255.0, green: 200/255.0, blue: 226/255.0, alpha: 1.0)   // view controller background color
+    
+    
 }
 
 /* UILabel methods */
@@ -57,6 +59,7 @@ extension UIButton {
         self.setTitleColor(UIColor.white, for: .normal)         // text color
     }
 }
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

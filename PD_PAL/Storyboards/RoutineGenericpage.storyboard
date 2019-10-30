@@ -26,26 +26,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQo-oj-707">
-                                <rect key="frame" x="21" y="65" width="44" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <segue destination="LhT-q0-csB" kind="showDetail" id="7v4-iK-EZ3"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="routine 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FJ-Nq-4hy">
-                                <rect key="frame" x="158" y="215" width="96" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="Ch4-T8-vcX">
+                                <rect key="frame" x="25" y="149" width="364" height="678"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3d-B8-ler">
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="218"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cl1-Rr-tkz">
+                                        <rect key="frame" x="0.0" y="418" width="364" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWe-Uu-aDb">
+                                        <rect key="frame" x="0.0" y="648" width="364" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Sj-dg-Qd4" firstAttribute="bottom" secondItem="Ch4-T8-vcX" secondAttribute="bottom" constant="35" id="baN-h3-Xhv"/>
+                            <constraint firstItem="6Sj-dg-Qd4" firstAttribute="trailing" secondItem="Ch4-T8-vcX" secondAttribute="trailing" constant="25" id="c16-dX-gPd"/>
+                            <constraint firstItem="Ch4-T8-vcX" firstAttribute="top" secondItem="6Sj-dg-Qd4" secondAttribute="top" constant="105" id="k0F-L4-EAc"/>
+                            <constraint firstItem="Ch4-T8-vcX" firstAttribute="leading" secondItem="6Sj-dg-Qd4" secondAttribute="leading" constant="25" id="y9N-mP-Xfb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Sj-dg-Qd4"/>
                     </view>
+                    <connections>
+                        <outlet property="Exercise2Button" destination="cl1-Rr-tkz" id="vep-5C-aKp"/>
+                        <outlet property="Exercise3Button" destination="WWe-Uu-aDb" id="HXr-wK-Hsg"/>
+                        <outlet property="ExerciseButton" destination="I3d-B8-ler" id="LR1-WB-uFH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agr-z5-pV9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
