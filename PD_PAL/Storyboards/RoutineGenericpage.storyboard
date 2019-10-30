@@ -26,37 +26,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="Ch4-T8-vcX">
-                                <rect key="frame" x="25" y="149" width="364" height="678"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="225" translatesAutoresizingMaskIntoConstraints="NO" id="Ch4-T8-vcX">
+                                <rect key="frame" x="25" y="149" width="364" height="613"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3d-B8-ler">
-                                        <rect key="frame" x="0.0" y="0.0" width="364" height="218"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYM-Qp-f6t">
+                                        <rect key="frame" x="62" y="0.0" width="240" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="7yx-JV-V38"/>
+                                            <constraint firstAttribute="height" constant="50" id="ArD-Bd-ENL"/>
+                                        </constraints>
+                                        <state key="normal" title="Exercise 1"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cl1-Rr-tkz">
-                                        <rect key="frame" x="0.0" y="418" width="364" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3d-B8-ler">
+                                        <rect key="frame" x="62" y="275" width="240" height="63"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="5c9-l9-ViT"/>
+                                            <constraint firstAttribute="width" constant="240" id="Ytt-Kl-S5g"/>
+                                        </constraints>
+                                        <state key="normal" title="Exercise 3"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWe-Uu-aDb">
-                                        <rect key="frame" x="0.0" y="648" width="364" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cl1-Rr-tkz">
+                                        <rect key="frame" x="62" y="563" width="240" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="XU1-HH-Pxx"/>
+                                            <constraint firstAttribute="height" constant="50" id="o0x-XM-802"/>
+                                        </constraints>
+                                        <state key="normal" title="Exercise 2"/>
                                     </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Sj-dg-Qd4" firstAttribute="bottom" secondItem="Ch4-T8-vcX" secondAttribute="bottom" constant="35" id="baN-h3-Xhv"/>
                             <constraint firstItem="6Sj-dg-Qd4" firstAttribute="trailing" secondItem="Ch4-T8-vcX" secondAttribute="trailing" constant="25" id="c16-dX-gPd"/>
+                            <constraint firstItem="6Sj-dg-Qd4" firstAttribute="bottom" secondItem="Ch4-T8-vcX" secondAttribute="bottom" constant="100" id="cHk-0M-PUU"/>
                             <constraint firstItem="Ch4-T8-vcX" firstAttribute="top" secondItem="6Sj-dg-Qd4" secondAttribute="top" constant="105" id="k0F-L4-EAc"/>
                             <constraint firstItem="Ch4-T8-vcX" firstAttribute="leading" secondItem="6Sj-dg-Qd4" secondAttribute="leading" constant="25" id="y9N-mP-Xfb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Sj-dg-Qd4"/>
                     </view>
                     <connections>
-                        <outlet property="Exercise2Button" destination="cl1-Rr-tkz" id="vep-5C-aKp"/>
-                        <outlet property="Exercise3Button" destination="WWe-Uu-aDb" id="HXr-wK-Hsg"/>
-                        <outlet property="ExerciseButton" destination="I3d-B8-ler" id="LR1-WB-uFH"/>
+                        <outlet property="Exercise2Button" destination="I3d-B8-ler" id="SYF-g5-T9v"/>
+                        <outlet property="Exercise3Button" destination="cl1-Rr-tkz" id="GOG-KH-ntV"/>
+                        <outlet property="ExerciseButton" destination="lYM-Qp-f6t" id="ZBi-LH-ypQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agr-z5-pV9" userLabel="First Responder" sceneMemberID="firstResponder"/>

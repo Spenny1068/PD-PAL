@@ -22,17 +22,24 @@ class RoutineGenericViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
         
+        
+        // page name
+        let pageName = UILabel()
+        pageName.text = "ROUTINE X"
+        pageName.applyPageNameDesign()
+        self.view.addSubview(pageName)
+        
+        // message
+        let msg = UILabel()
+        msg.text = "aewofijawef!"
+        msg.applyPageMsgDesign()
+        self.view.addSubview(msg)
+        
+        // apply button designs
         ExerciseButton.applyDesign()
         Exercise2Button.applyDesign()
         Exercise3Button.applyDesign()
         
-        //RoutineButton.backgroundColor = UIColor.red
-        //RoutineButton.setTitleColor(UIColor.black, for: .normal)
-        //RoutineButton.layer.shadowColor = UIColor.red.cgColor
-        //RoutineButton.layer.shadowRadius = 4
-        //RoutineButton.layer.shadowOpacity = 0.5
-        //RoutineButton.layer.shadowOffset = CGSize(width: 0, height: 0)
-
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
