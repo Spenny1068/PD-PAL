@@ -21,6 +21,7 @@
 		4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */; };
 		4517F9D72351587800E5ED83 /* PD_PALTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9D62351587800E5ED83 /* PD_PALTests.swift */; };
 		4517F9E22351587800E5ED83 /* PD_PALUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9E12351587800E5ED83 /* PD_PALUITests.swift */; };
+		7D8B4E40236B5D7200DC8CAD /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B4E3F236B5D7200DC8CAD /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		4517F9DD2351587800E5ED83 /* PD_PALUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PD_PALUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4517F9E12351587800E5ED83 /* PD_PALUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD_PALUITests.swift; sourceTree = "<group>"; };
 		4517F9E32351587800E5ED83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D8B4E3F236B5D7200DC8CAD /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				2EB197C323656486004869D3 /* ExerciseDatabase.swift */,
+				7D8B4E3F236B5D7200DC8CAD /* UserData.swift */,
 				4517F9BD2351587700E5ED83 /* AppDelegate.swift */,
 				4517F9C52351587700E5ED83 /* Main.storyboard */,
 				2EF0AFD3235ABCA30036EF36 /* SettingsViewController.swift */,
@@ -423,6 +426,7 @@
 			files = (
 				2EB197C423656486004869D3 /* ExerciseDatabase.swift in Sources */,
 				4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */,
+				7D8B4E40236B5D7200DC8CAD /* UserData.swift in Sources */,
 				2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */,
 				2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */,
 				2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */,
