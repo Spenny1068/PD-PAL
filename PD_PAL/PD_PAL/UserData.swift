@@ -26,6 +26,8 @@
  
  File persistance of iOS simulator behviour is unknown, it is possible that the file name persists but the file is empty
  thus when we try to insert, the system crashes
+ - 31/10/2019 : William Huong
+ Update_User_Data() does not properly update QuestionsAnswered
  */
 
 import Foundation
@@ -35,12 +37,13 @@ class UserData {
     
     //Non-database user data.
     var UserName: String
-    var WalkingOK: Bool?
-    var ChairAccess: Bool?
-    var WeightsAccess: Bool?
-    var	ResistBandAccess: Bool?
-    var Intensity: Bool?
-    var PushNotifications: Bool?
+    var QuestionsAnswered: Bool
+    var WalkingOK: Bool
+    var ChairAccess: Bool
+    var WeightsAccess: Bool
+    var	ResistBandAccess: Bool
+    var Intensity: Bool
+    var PushNotifications: Bool
     
     //Routines database
     var Routines: Connection!
@@ -79,12 +82,13 @@ class UserData {
     {
         
         UserName = nameGiven
-        WalkingOK = walkingDesired ?? nil
-        ChairAccess = chairAvailable ?? nil
-        WeightsAccess = weightsAvailable ?? nil
-        ResistBandAccess = resistBandAvailable ?? nil
-        Intensity = intensityDesired ?? nil
-        PushNotifications = pushNotificationsDesired ?? nil
+        QuestionsAnswered = (walkingDesired != nil) ? true : false
+        WalkingOK = walkingDesired ?? false
+        ChairAccess = chairAvailable ?? false
+        WeightsAccess = weightsAvailable ?? false
+        ResistBandAccess = resistBandAvailable ?? false
+        Intensity = intensityDesired ?? false
+        PushNotifications = pushNotificationsDesired ?? false
         
         //Declare some variables we will use to search for our databases.
         var routinesDatabaseReady = false
@@ -257,8 +261,8 @@ class UserData {
     
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
-    func Get_User_Data() -> (String, Bool, Bool, Bool, Bool, Bool, Bool){
-        return (UserName, WalkingOK!, ChairAccess!, WeightsAccess!, ResistBandAccess!, Intensity!, PushNotifications!)
+    func Get_User_Data() -> (String, Bool, Bool, Bool, Bool, Bool, Bool, Bool){
+        return (UserName, QuestionsAnswered, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
     }
     
     //Gets all the routines available.
