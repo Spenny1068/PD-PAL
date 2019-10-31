@@ -262,9 +262,14 @@ class UserData {
     }
     
     //Gets all the routines available.
-    //If RoutineName is provided, will return a single tuple with every exercise name as a string.
-    //If no RoutineName is given, returns all routines in an array of Tuples of the form (RoutineName: String, ExercisesString: String).
-    func Get_Routines(RoutineName: String?) {
+    //Returns all routines in an array of Tuples of the form (RoutineName: String, ExercisesString: String).
+    func Get_Routines() {
+        
+    }
+    
+    //Gets a specific routine.
+    //Returns an array of exercise names.
+    func Get_Routine(RoutineName: String) {
         
     }
     
@@ -295,6 +300,7 @@ class UserData {
         intensityDesired: Bool?,
         pushNotificationsDesired: Bool?)
     {
+        //Makes use of the nil-coalescing operator. Equivalent to: if b != nil { a = b } else { a = c }
         UserName = nameGiven ?? UserName
         WalkingOK = walkingDesired ?? WalkingOK
         ChairAccess = chairAvailable ?? ChairAccess
