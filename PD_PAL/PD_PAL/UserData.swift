@@ -29,8 +29,9 @@ import SQLite
 
 class UserData {
     
+    //Non-database user data.
     var UserName: String
-    var Walking: Bool?
+    var WalkingOK: Bool?
     var ChairAccess: Bool?
     var WeightsAccess: Bool?
     var	ResistBandAccess: Bool?
@@ -73,7 +74,7 @@ class UserData {
         pushNotificationsDesired: Bool?) {
         
         UserName = nameGiven
-        Walking = walkingDesired
+        WalkingOK = walkingDesired
         ChairAccess = chairAvailable
         WeightsAccess = weightsAvailable
         ResistBandAccess = resistBandAvailable
@@ -238,4 +239,77 @@ class UserData {
         }
         
     }
+    
+    
+    /*
+    Methods
+    */
+    
+    
+    /*
+    Methods that get data from class.
+    */
+    
+    //Gets all the non-database user data.
+    //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
+    func Get_User_Data() {
+        
+    }
+    
+    //Gets all the routines available.
+    //If RoutineName is provided, will return a single tuple with every exercise name as a string.
+    //If no RoutineName is given, returns all routines in an array of Tuples of the form (RoutineName: String, ExercisesString: String).
+    func Get_Routines(RoutineName: String?) {
+        
+    }
+    
+    //Gets all exercises done in a specific hour.
+    //Returns an array of Strings.
+    func Get_Exercises(TargetYear: Int64, TargetMonth: Int64, TargetDay: Int64, TargetHour: Int64) {
+        
+    }
+    
+    //Gets the steps taken in a specific hour.
+    //Returns an Int64.
+    func Get_Steps(TargetYear: Int64, TargetMonth: Int64, TargetDay: Int64, TargetHour: Int64) {
+        
+    }
+    
+    /*
+    Methods that insert or update data.
+    */
+    
+    //Updates the non-database user data.
+    //Any parameters that are left as NIL will not be updated.
+    func Update_User_Data(
+        nameGiven: String,
+        walkingDesired: Bool?,
+        chairAvailable: Bool?,
+        weightsAvailable: Bool?,
+        resistBandAvailable: Bool?,
+        intensityDesired: Bool?,
+        pushNotificationsDesired: Bool?) {
+        
+    }
+    
+    //Add a routine to the Routines database.
+    //ExercisesIncluded should be a comma delimited string.
+    func Add_Routine(Name: String, ExercisesIncluded: String) {
+        
+    }
+    
+    //Add an exercise to the UserExerciseData database.
+    //Call this once each time the user completes an exercise.
+    //If any one of YearDone, MonthDone, DayDone, HourDone are left as NIL, assumes that the values should be set to the current time and date.
+    func Add_Exercise_Done(exerciseName: String, YearDone: Int64?, MonthDone: Int64?, DayDone: Int64?, HourDone: Int64?) {
+        
+    }
+    
+    //Set the steps taken for that hour to the StepCount database.
+    //Call this each time you wish to update the number of steps taken within an hour.
+    //If any one of YearDone, MonthDone, DayDone, HourDone are left as NIL, assumes that the values should be set to the current time and date.
+    func Update_Steps_Taken(Steps: Int64, YearDone: Int64?, MonthDone: Int64?, DayDone: Int64?, HourDone: Int64?) {
+        
+    }
+
 }
