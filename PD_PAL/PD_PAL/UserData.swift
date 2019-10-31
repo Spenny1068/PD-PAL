@@ -14,12 +14,16 @@
  
  - 31/10/2019 : William Huong
  Created file
+ - 31/10/2019 : William Huong
+ Added some method declarations
  */
 
 /*
  Known Bugs
  
  - 27/10/2019 : William Xue
+ Copied over from ExerciseDatabase.swift because I use the same implementation of an SQLite database.
+ 
  File persistance of iOS simulator behviour is unknown, it is possible that the file name persists but the file is empty
  thus when we try to insert, the system crashes
  */
@@ -71,15 +75,16 @@ class UserData {
         weightsAvailable: Bool?,
         resistBandAvailable: Bool?,
         intensityDesired: Bool?,
-        pushNotificationsDesired: Bool?) {
+        pushNotificationsDesired: Bool?)
+    {
         
         UserName = nameGiven
-        WalkingOK = walkingDesired
-        ChairAccess = chairAvailable
-        WeightsAccess = weightsAvailable
-        ResistBandAccess = resistBandAvailable
-        Intensity = intensityDesired
-        PushNotifications = pushNotificationsDesired
+        WalkingOK = walkingDesired ?? nil
+        ChairAccess = chairAvailable ?? nil
+        WeightsAccess = weightsAvailable ?? nil
+        ResistBandAccess = resistBandAvailable ?? nil
+        Intensity = intensityDesired ?? nil
+        PushNotifications = pushNotificationsDesired ?? nil
         
         //Declare some variables we will use to search for our databases.
         var routinesDatabaseReady = false
@@ -252,8 +257,8 @@ class UserData {
     
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
-    func Get_User_Data() {
-        
+    func Get_User_Data() -> (String, Bool, Bool, Bool, Bool, Bool, Bool){
+        return (UserName, WalkingOK!, ChairAccess!, WeightsAccess!, ResistBandAccess!, Intensity!, PushNotifications!)
     }
     
     //Gets all the routines available.
@@ -280,16 +285,23 @@ class UserData {
     */
     
     //Updates the non-database user data.
-    //Any parameters that are left as NIL will not be updated.
+    //Any parameters that are left as nil will not be updated.
     func Update_User_Data(
-        nameGiven: String,
+        nameGiven: String?,
         walkingDesired: Bool?,
         chairAvailable: Bool?,
         weightsAvailable: Bool?,
         resistBandAvailable: Bool?,
         intensityDesired: Bool?,
-        pushNotificationsDesired: Bool?) {
-        
+        pushNotificationsDesired: Bool?)
+    {
+        UserName = nameGiven ?? UserName
+        WalkingOK = walkingDesired ?? WalkingOK
+        ChairAccess = chairAvailable ?? ChairAccess
+        WeightsAccess = weightsAvailable ?? WeightsAccess
+        ResistBandAccess = resistBandAvailable ?? ResistBandAccess
+        Intensity = intensityDesired ?? Intensity
+        PushNotifications = pushNotificationsDesired ?? PushNotifications
     }
     
     //Add a routine to the Routines database.
@@ -300,14 +312,14 @@ class UserData {
     
     //Add an exercise to the UserExerciseData database.
     //Call this once each time the user completes an exercise.
-    //If any one of YearDone, MonthDone, DayDone, HourDone are left as NIL, assumes that the values should be set to the current time and date.
+    //If any one of YearDone, MonthDone, DayDone, HourDone are left as nil, assumes that the values should be set to the current time and date.
     func Add_Exercise_Done(exerciseName: String, YearDone: Int64?, MonthDone: Int64?, DayDone: Int64?, HourDone: Int64?) {
         
     }
     
     //Set the steps taken for that hour to the StepCount database.
     //Call this each time you wish to update the number of steps taken within an hour.
-    //If any one of YearDone, MonthDone, DayDone, HourDone are left as NIL, assumes that the values should be set to the current time and date.
+    //If any one of YearDone, MonthDone, DayDone, HourDone are left as nil, assumes that the values should be set to the current time and date.
     func Update_Steps_Taken(Steps: Int64, YearDone: Int64?, MonthDone: Int64?, DayDone: Int64?, HourDone: Int64?) {
         
     }
