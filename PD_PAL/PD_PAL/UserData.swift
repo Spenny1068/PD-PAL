@@ -20,6 +20,8 @@
     Created and passed user info unit tests
  - 01/11/2019 : William Huong
     Finished implementing methods
+ - 01/11/2019 : William Huong
+    User Info now uses a database to store data between reboots
  */
 
 /*
