@@ -32,6 +32,8 @@
     thus when we try to insert, the system crashes
  - 31/10/2019 : William Huong
     User name and questionnaire info does not persist through app reboots.
+ - 01/11/2019 : William Huong
+    If there is an exercise is done more than once an hour, Delete_Exercise_Done() will remove all instances of it. This may or may not be an issue that needs to be fixed.
  */
 
 import Foundation
@@ -346,7 +348,7 @@ Methods that get data from class
     
     //Gets the steps taken in a specific hour.
     //Returns an Int64.
-    func Get_Steps(TargetYear: Int64, TargetMonth: Int64, TargetDay: Int64, TargetHour: Int64) ->(Int64) {
+    func Get_Steps_Taken(TargetYear: Int64, TargetMonth: Int64, TargetDay: Int64, TargetHour: Int64) ->(Int64) {
         do {
             for row in try StepCount.prepare(StepCountTable.filter(TrendYear == TargetYear && TrendMonth == TargetMonth && TrendDay == TargetDay && TrendHour == TargetHour)) {
                 return row[StepsTaken]
@@ -388,7 +390,7 @@ Methods that insert or update data.
     
     //Add a routine to the Routines database.
     //ExercisesIncluded should be a comma delimited string.
-    func Add_Routine(Name: String, ExercisesIncluded: [String]) {
+    func Add_Routine(NameOfRoutine: String, ExercisesIncluded: [String]) {
         
         var exerciseString = ""
         
@@ -400,9 +402,9 @@ Methods that insert or update data.
         }
         
         do {
-            try Routines.run(RoutinesTable.insert( or: .replace, RoutineName <- Name, RoutineContent <- exerciseString))
+            try Routines.run(RoutinesTable.insert( or: .replace, RoutineName <- NameOfRoutine, RoutineContent <- exerciseString))
         } catch {
-            print("Failed to insert \(Name) routine into Routines database")
+            print("Failed to insert \(NameOfRoutine) routine into Routines database")
         }
     }
     
@@ -423,6 +425,41 @@ Methods that insert or update data.
             try StepCount.run(StepCountTable.insert(or: .replace, StepYear <- YearDone, StepMonth <- MonthDone, StepDay <- DayDone, StepHour <- HourDone, StepsTaken <- Steps))
         } catch {
             print("Failed to insert \(Steps) taken on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into StepCount database")
+        }
+    }
+    
+/*
+Deletion Methods
+*/
+    
+    //Deletes the specified routine from the database.
+    func Delete_Routine(NameOfRoutine: String) {
+        let deletion = RoutinesTable.filter(RoutineName == NameOfRoutine)
+        do {
+            try Routines.run(deletion.delete())
+        } catch {
+            print("Failed to delete routine \(NameOfRoutine)")
+        }
+    }
+    
+    //Deletes the specified instance of an exercise.
+    func Delete_Exercise_Done(ExerciseName: String, YearDone: Int64, MonthDone: Int64, DayDone: Int64, HourDone: Int64) {
+        let deletion = UserExerciseDataTable.filter(TrendExercise == ExerciseName && TrendYear == YearDone && TrendMonth == MonthDone && TrendDay == DayDone && TrendHour == HourDone)
+        do {
+            try UserExerciseData.run(deletion.delete())
+        } catch {
+            print("Failed to delete exercise \(ExerciseName) from \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone)")
+        }
+    }
+    
+    //Deletes the step count from a specific hour.
+    //Due to the assumption made in Get_Steps_Taken(), this is equivalent to updating with a value of 0.
+    func Delete_Steps_Taken(YearDone: Int64, MonthDone: Int64, DayDone: Int64, HourDone: Int64) {
+        let deletion = StepCountTable.filter( StepYear == YearDone && StepMonth == MonthDone && StepDay == DayDone && StepHour == HourDone)
+        do {
+            try StepCount.run(deletion.delete())
+        } catch {
+            print("Failed to delete step count from \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone)")
         }
     }
     
