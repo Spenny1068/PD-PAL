@@ -10,6 +10,7 @@
 		2EB197B823653798004869D3 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB197AA2365378A004869D3 /* SQLite.framework */; };
 		2EB197B923653798004869D3 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB197AA2365378A004869D3 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EB197C423656486004869D3 /* ExerciseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB197C323656486004869D3 /* ExerciseDatabase.swift */; };
+		2EB197D9236CA9B6004869D3 /* testExerciseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB197D8236CA9B6004869D3 /* testExerciseDB.swift */; };
 		2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */; };
 		2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */; };
 		2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */; };
@@ -107,6 +108,7 @@
 /* Begin PBXFileReference section */
 		2EB1979F2365378A004869D3 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		2EB197C323656486004869D3 /* ExerciseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDatabase.swift; sourceTree = "<group>"; };
+		2EB197D8236CA9B6004869D3 /* testExerciseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testExerciseDB.swift; sourceTree = "<group>"; };
 		2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainPageViewController.swift; sourceTree = "<group>"; };
 		2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
 		2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				4517F9D62351587800E5ED83 /* PD_PALTests.swift */,
+				2EB197D8236CA9B6004869D3 /* testExerciseDB.swift */,
 				4517F9D82351587800E5ED83 /* Info.plist */,
 			);
 			path = PD_PALTests;
@@ -440,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4517F9D72351587800E5ED83 /* PD_PALTests.swift in Sources */,
+				2EB197D9236CA9B6004869D3 /* testExerciseDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
