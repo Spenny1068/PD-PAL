@@ -11,6 +11,8 @@ Revision History
  
  - 26/10/2019 : William Xue
      Added simple database test, "testDatabase_insertion"
+ - 31/10/2019 : William Huong
+     Added Tests for UserData class.
  */
 
 
@@ -52,6 +54,58 @@ class PD_PALTests: XCTestCase {
         
         //delete the database when we are done with it
         exDB.remove_database()
+        
+    }
+    
+    func test_userData_userInfo() {
+        
+        //Initialize some variables. These are all different than default assigned values.
+        let testName = "John"
+        let testName2 = "Jane"
+        
+        //Create the object.
+        let userDB = UserData(nameGiven: testName, questionsAnswered: false, walkingDesired: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        
+        //Get the object when we only pass a name and check all default variables are correctly assigned.
+        var userData = userDB.Get_User_Data()
+        
+        XCTAssert( userData.UserName == "John" )
+        XCTAssert( userData.QuestionsAnswered == false )
+        XCTAssert( userData.WalkingOK == false )
+        XCTAssert( userData.ChairAccess == false )
+        XCTAssert( userData.WeightsAccess == false )
+        XCTAssert( userData.ResistBandAccess == false )
+        XCTAssert( userData.Intensity == 0 )
+        XCTAssert( userData.PushNotifications == false )
+        
+        //Change some of the values to check we only update the values given.
+        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDesired: true, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        
+        userData = userDB.Get_User_Data()
+        
+        //Check values.
+        XCTAssert( userData.UserName == "John" )
+        XCTAssert( userData.QuestionsAnswered == true )
+        XCTAssert( userData.WalkingOK == true )
+        XCTAssert( userData.ChairAccess == false )
+        XCTAssert( userData.WeightsAccess == false )
+        XCTAssert( userData.ResistBandAccess == false )
+        XCTAssert( userData.Intensity == 0 )
+        XCTAssert( userData.PushNotifications == false )
+        
+        //Change the rest of the values.
+        userDB.Update_User_Data(nameGiven: testName2, questionsAnswered: nil, walkingDesired: nil, chairAvailable: true, weightsAvailable: true, resistBandAvailable: true, intensityDesired: 5, pushNotificationsDesired: true)
+        
+        userData = userDB.Get_User_Data()
+        
+        XCTAssert( userData.UserName == "Jane" )
+        XCTAssert( userData.QuestionsAnswered == true )
+        XCTAssert( userData.WalkingOK == true )
+        XCTAssert( userData.ChairAccess == true )
+        XCTAssert( userData.WeightsAccess == true )
+        XCTAssert( userData.ResistBandAccess == true )
+        XCTAssert( userData.Intensity == 5 )
+        XCTAssert( userData.PushNotifications == true )
         
     }
 

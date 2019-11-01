@@ -13,21 +13,23 @@
  Revision History
  
  - 31/10/2019 : William Huong
- Created file
+    Created file
  - 31/10/2019 : William Huong
- Added some method declarations
+    Added some method declarations
+ - 31/10/2019 : William Huong
+    Created and passed user info unit tests
  */
 
 /*
  Known Bugs
  
  - 27/10/2019 : William Xue
- Copied over from ExerciseDatabase.swift because I use the same implementation of an SQLite database.
+    Copied over from ExerciseDatabase.swift because I use the same implementation of an SQLite database.
  
- File persistance of iOS simulator behviour is unknown, it is possible that the file name persists but the file is empty
- thus when we try to insert, the system crashes
+    File persistance of iOS simulator behviour is unknown, it is possible that the file name persists but the file is empty
+    thus when we try to insert, the system crashes
  - 31/10/2019 : William Huong
- Update_User_Data() does not properly update QuestionsAnswered
+    User name and questionnaire info does not persist through app reboots.
  */
 
 import Foundation
@@ -42,7 +44,7 @@ class UserData {
     var ChairAccess: Bool
     var WeightsAccess: Bool
     var	ResistBandAccess: Bool
-    var Intensity: Bool
+    var Intensity: Int64
     var PushNotifications: Bool
     
     //Routines database
@@ -73,26 +75,30 @@ class UserData {
     
     init(
         nameGiven: String,
+        questionsAnswered: Bool?,
         walkingDesired: Bool?,
         chairAvailable: Bool?,
         weightsAvailable: Bool?,
         resistBandAvailable: Bool?,
-        intensityDesired: Bool?,
+        intensityDesired: Int64?,
         pushNotificationsDesired: Bool?)
     {
         
         UserName = nameGiven
-        QuestionsAnswered = (walkingDesired != nil) ? true : false
+        QuestionsAnswered = questionsAnswered ?? false
         WalkingOK = walkingDesired ?? false
         ChairAccess = chairAvailable ?? false
         WeightsAccess = weightsAvailable ?? false
         ResistBandAccess = resistBandAvailable ?? false
-        Intensity = intensityDesired ?? false
+        Intensity = intensityDesired ?? 0
         PushNotifications = pushNotificationsDesired ?? false
         
         //Declare some variables we will use to search for our databases.
+        var routinesDatabaseExists = false
         var routinesDatabaseReady = false
+        var exerciseDatabaseExists = false
         var exerciseDatabaseReady = false
+        var stepCountDatabaseExists = false
         var stepCountDatabaseReady = false
         
         let fileExtension = "sqlite3"
@@ -120,6 +126,9 @@ class UserData {
                 //We need to look for the existance of the file, along with having contents.
                 if fileName == routinesFileName {
                     
+                    routinesDatabaseExists = true
+                    routinesURL = file.absoluteURL
+                    
                     do {
                         let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
                         var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
@@ -133,9 +142,10 @@ class UserData {
                         print("Error checking Routines.sqlite3")
                     }
                     
-                    routinesURL = file.absoluteURL
-                    
                 } else if fileName == exerciseFileName {
+                    
+                    exerciseDatabaseExists = true
+                    exerciseURL = file.absoluteURL
                     
                     do {
                         let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
@@ -150,9 +160,10 @@ class UserData {
                         print("Error checking UserExerciseData.sqlite3")
                     }
                     
-                    exerciseURL = file.absoluteURL
-                    
                 } else if fileName == stepFileName {
+                    
+                    stepCountDatabaseExists = true
+                    stepURL = file.absoluteURL
                     
                     do {
                         let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
@@ -167,13 +178,23 @@ class UserData {
                         print("Error checking StepCount.sqlite3")
                     }
                     
-                    stepURL = file.absoluteURL
-                    
                 }
                 
             }
         } catch {
             print("Error searching Documents Directory")
+        }
+        
+        if !routinesDatabaseExists {
+            routinesURL = documentsURL.appendingPathComponent("Routines").appendingPathExtension(fileExtension)
+        }
+        
+        if !exerciseDatabaseExists {
+            exerciseURL = documentsURL.appendingPathComponent("UserExerciseData").appendingPathExtension(fileExtension)
+        }
+        
+        if !stepCountDatabaseExists {
+            stepURL = documentsURL.appendingPathComponent("StepCount").appendingPathExtension(fileExtension)
         }
         
         //Connect to each database.
@@ -261,7 +282,7 @@ class UserData {
     
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
-    func Get_User_Data() -> (String, Bool, Bool, Bool, Bool, Bool, Bool, Bool){
+    func Get_User_Data() -> (UserName: String, QuestionsAnswered: Bool, WalkingOK: Bool, ChairAccess: Bool, WeightsAccess: Bool, ResistBandAccess: Bool, Intensity: Int64, PushNotifications: Bool){
         return (UserName, QuestionsAnswered, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
     }
     
@@ -297,15 +318,17 @@ class UserData {
     //Any parameters that are left as nil will not be updated.
     func Update_User_Data(
         nameGiven: String?,
+        questionsAnswered: Bool?,
         walkingDesired: Bool?,
         chairAvailable: Bool?,
         weightsAvailable: Bool?,
         resistBandAvailable: Bool?,
-        intensityDesired: Bool?,
+        intensityDesired: Int64?,
         pushNotificationsDesired: Bool?)
     {
         //Makes use of the nil-coalescing operator. Equivalent to: if b != nil { a = b } else { a = c }
         UserName = nameGiven ?? UserName
+        QuestionsAnswered = questionsAnswered ?? QuestionsAnswered
         WalkingOK = walkingDesired ?? WalkingOK
         ChairAccess = chairAvailable ?? ChairAccess
         WeightsAccess = weightsAvailable ?? WeightsAccess
