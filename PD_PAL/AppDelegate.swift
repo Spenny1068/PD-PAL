@@ -60,7 +60,12 @@ extension UILabel {
         self.lineBreakMode = .byWordWrapping                                   // Word wrapping
         self.numberOfLines = 2
         self.textAlignment = .center                                           // text alignment
-        self.font = UIFont(name:"HelveticaNeue", size: 35.0)              // text font and size
+        self.font = UIFont(name:"HelveticaNeue", size: 35.0)                   // text font and size
+        self.textColor = UIColor.black
+    }
+    
+    func applyQlabels(){
+        self.font = UIFont(name:"HelveticaNeue", size: 25.0)                   // text font and size
         self.textColor = UIColor.black
     }
     
@@ -69,35 +74,40 @@ extension UILabel {
 /* UIButton methods */
 extension UIButton {
     func applyDesign() {
-        self.backgroundColor = UIColor.black                    // background color
-        self.layer.cornerRadius = self.frame.height / 2         // make button round
-        self.setTitleColor(UIColor.white, for: .normal)         // text color
+        self.backgroundColor = UIColor.black                                    // background color
+        self.layer.cornerRadius = self.frame.height / 2                         // make button round
+        self.setTitleColor(UIColor.white, for: .normal)                         // text color
     }
     
+    // Applied to Questionnaire buttons
     func applyQButton() {
-        self.backgroundColor = UIColor.gray                    // background color
-        self.layer.cornerRadius = self.frame.height / 2         // make button round
-        self.setTitleColor(UIColor.white, for: .normal)         // text color
+        self.backgroundColor = UIColor.gray                                     // background color
+        self.layer.cornerRadius = self.frame.height / 2                         // make button round
+        self.setTitleColor(UIColor.white, for: .normal)                         // text color
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
     }
     
+    // Applied to Enter button on Registration page
     func applyInputButton(){
-        self.backgroundColor = UIColor.black                //background color
-        self.layer.cornerRadius = self.frame.height / 4         // make button rounded
-        self.setTitleColor(UIColor.white, for: .normal)         // text color
+        self.backgroundColor = UIColor.black                                    //background color
+        self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
+        self.setTitleColor(UIColor.white, for: .normal)                         // text color
     }
     
+    // Applied to navigation to next Q in Questionnaire
     func applyNextQButton(){
         self.backgroundColor = UIColor(red: 172/255, green: 237/255, blue: 175/255, alpha: 1.0)                //background color
-        self.layer.cornerRadius = self.frame.height / 4         // make button rounded
-        self.setTitleColor(UIColor.white, for: .normal)         // text color
-        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
+        self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
+        self.setTitleColor(UIColor.white, for: .normal)                         // text color
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)         // text font and size
     }
     
+    // Applied to navigation to previous Q in Questionnaire
     func applyPrevQButton(){
         self.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1.0)              //background color
-        self.layer.cornerRadius = self.frame.height / 4         // make button rounded
-        self.setTitleColor(UIColor.white, for: .normal)         // text color
-        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
+        self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
+        self.setTitleColor(UIColor.white, for: .normal)                         // text color
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)         // text font and size 
     }
 }
 

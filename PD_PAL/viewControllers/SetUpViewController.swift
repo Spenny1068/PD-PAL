@@ -11,29 +11,22 @@
 import UIKit
 
 class SetUpViewController: UIViewController {
+    @IBOutlet weak var QuestionLabel: UILabel!
     @IBOutlet weak var SetUpButton: UIButton!
     @IBOutlet weak var SkipSetUpButton: UIButton!
     let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let screenRect = UIScreen.main.bounds
-        let screenWidth = screenRect.size.width
-        let screenHeight = screenRect.size.height
-        
+    
         //Question
-        let question = UILabel()
-        question.text = "Would you like to set-up your preferences now?"
-        question.applyQuestionDesign()
-        self.view.addSubview(question)
+        QuestionLabel.text = "Would you like to set-up your preferences now?"
+        QuestionLabel.applyQuestionDesign()
+        self.view.addSubview(QuestionLabel)
         
         //Navigation Buttons
-//        SetUpButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 200, height: 100)
         SetUpButton.applyNextQButton()
         self.view.addSubview(SetUpButton)
-        
-//        SkipSetUpButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 200, height: 100)
         SkipSetUpButton.applyPrevQButton()
         self.view.addSubview(SkipSetUpButton)
         
