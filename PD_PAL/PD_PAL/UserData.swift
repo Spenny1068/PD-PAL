@@ -34,6 +34,8 @@
     User name and questionnaire info does not persist through app reboots.
  - 01/11/2019 : William Huong
     If there is an exercise is done more than once an hour, Delete_Exercise_Done() will remove all instances of it. This may or may not be an issue that needs to be fixed.
+ - 01/11/2019 : William Huong
+    Update_Steps_Taken is not updating already present values.
  */
 
 import Foundation
@@ -48,7 +50,7 @@ class UserData {
     var ChairAccess: Bool
     var WeightsAccess: Bool
     var	ResistBandAccess: Bool
-    var Intensity: Int64
+    var Intensity: Int
     var PushNotifications: Bool
     
     //Routines database
@@ -64,20 +66,20 @@ class UserData {
     let UserExerciseDataDatabaseName = "UserExerciseData"
     var UserExerciseData: Connection!
     let UserExerciseDataTable = Table("ExerciseData")
-    let TrendYear = Expression<Int64>("Year")
-    let TrendMonth = Expression<Int64>("Month")
-    let TrendDay = Expression<Int64>("Day")
-    let TrendHour = Expression<Int64>("Hour")
+    let TrendYear = Expression<Int>("Year")
+    let TrendMonth = Expression<Int>("Month")
+    let TrendDay = Expression<Int>("Day")
+    let TrendHour = Expression<Int>("Hour")
     let TrendExercise = Expression<String>("ExerciseName")
     
     //Step count database
     let StepCountDatabaseName = "StepCount"
     var StepCount: Connection!
     let StepCountTable = Table("StepCount")
-    let StepYear = Expression<Int64>("Year")
-    let StepMonth = Expression<Int64>("Month")
-    let StepDay = Expression<Int64>("Day")
-    let StepHour = Expression<Int64>("Hour")
+    let StepYear = Expression<Int>("Year")
+    let StepMonth = Expression<Int>("Month")
+    let StepDay = Expression<Int>("Day")
+    let StepHour = Expression<Int>("Hour")
     let StepsTaken = Expression<Int64>("StepsTaken")
     
     //Misc
@@ -90,7 +92,7 @@ class UserData {
         chairAvailable: Bool?,
         weightsAvailable: Bool?,
         resistBandAvailable: Bool?,
-        intensityDesired: Int64?,
+        intensityDesired: Int?,
         pushNotificationsDesired: Bool?)
     {
         
@@ -293,7 +295,7 @@ Methods that get data from class
     
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
-    func Get_User_Data() -> (UserName: String, QuestionsAnswered: Bool, WalkingOK: Bool, ChairAccess: Bool, WeightsAccess: Bool, ResistBandAccess: Bool, Intensity: Int64, PushNotifications: Bool){
+    func Get_User_Data() -> (UserName: String, QuestionsAnswered: Bool, WalkingOK: Bool, ChairAccess: Bool, WeightsAccess: Bool, ResistBandAccess: Bool, Intensity: Int, PushNotifications: Bool){
         return (UserName, QuestionsAnswered, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
     }
     
@@ -333,7 +335,7 @@ Methods that get data from class
     
     //Gets all exercises done in a specific hour.
     //Returns an array of Strings.
-    func Get_Exercises(TargetYear: Int64, TargetMonth: Int64, TargetDay: Int64, TargetHour: Int64) ->([String]) {
+    func Get_Exercises(TargetYear: Int, TargetMonth: Int, TargetDay: Int, TargetHour: Int) ->([String]) {
         var returnArr = [String]()
         do {
             for row in try UserExerciseData.prepare(UserExerciseDataTable.filter(TrendYear == TargetYear && TrendMonth == TargetMonth && TrendDay == TargetDay && TrendHour == TargetHour)) {
@@ -348,7 +350,7 @@ Methods that get data from class
     
     //Gets the steps taken in a specific hour.
     //Returns an Int64.
-    func Get_Steps_Taken(TargetYear: Int64, TargetMonth: Int64, TargetDay: Int64, TargetHour: Int64) ->(Int64) {
+    func Get_Steps_Taken(TargetYear: Int, TargetMonth: Int, TargetDay: Int, TargetHour: Int) ->(Int64) {
         do {
             for row in try StepCount.prepare(StepCountTable.filter(TrendYear == TargetYear && TrendMonth == TargetMonth && TrendDay == TargetDay && TrendHour == TargetHour)) {
                 return row[StepsTaken]
@@ -374,7 +376,7 @@ Methods that insert or update data.
         chairAvailable: Bool?,
         weightsAvailable: Bool?,
         resistBandAvailable: Bool?,
-        intensityDesired: Int64?,
+        intensityDesired: Int?,
         pushNotificationsDesired: Bool?)
     {
         //Makes use of the nil-coalescing operator. Equivalent to: if b != nil { a = b } else { a = c }
@@ -410,9 +412,9 @@ Methods that insert or update data.
     
     //Add an exercise to the UserExerciseData database.
     //Call this once each time the user completes an exercise.
-    func Add_Exercise_Done(ExerciseName: String, YearDone: Int64, MonthDone: Int64, DayDone: Int64, HourDone: Int64) {
+    func Add_Exercise_Done(ExerciseName: String, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
         do {
-            try UserExerciseData.run(UserExerciseDataTable.insert(or: .replace, TrendYear <- YearDone, TrendMonth <- MonthDone, TrendDay <- DayDone, TrendHour <- HourDone))
+            try UserExerciseData.run(UserExerciseDataTable.insert(or: .replace, TrendExercise <- ExerciseName, TrendYear <- YearDone, TrendMonth <- MonthDone, TrendDay <- DayDone, TrendHour <- HourDone))
         } catch {
             print("Failed to to exercise \(ExerciseName) completed on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into UserExerciseData database")
         }
@@ -420,9 +422,9 @@ Methods that insert or update data.
     
     //Set the steps taken for that hour to the StepCount database.
     //Call this each time you wish to update the number of steps taken within an hour.
-    func Update_Steps_Taken(Steps: Int64, YearDone: Int64, MonthDone: Int64, DayDone: Int64, HourDone: Int64) {
+    func Update_Steps_Taken(Steps: Int64, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
         do {
-            try StepCount.run(StepCountTable.insert(or: .replace, StepYear <- YearDone, StepMonth <- MonthDone, StepDay <- DayDone, StepHour <- HourDone, StepsTaken <- Steps))
+            try StepCount.run(StepCountTable.insert(or: .replace, StepsTaken <- Steps, StepYear <- YearDone, StepMonth <- MonthDone, StepDay <- DayDone, StepHour <- HourDone))
         } catch {
             print("Failed to insert \(Steps) taken on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into StepCount database")
         }
@@ -443,7 +445,7 @@ Deletion Methods
     }
     
     //Deletes the specified instance of an exercise.
-    func Delete_Exercise_Done(ExerciseName: String, YearDone: Int64, MonthDone: Int64, DayDone: Int64, HourDone: Int64) {
+    func Delete_Exercise_Done(ExerciseName: String, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
         let deletion = UserExerciseDataTable.filter(TrendExercise == ExerciseName && TrendYear == YearDone && TrendMonth == MonthDone && TrendDay == DayDone && TrendHour == HourDone)
         do {
             try UserExerciseData.run(deletion.delete())
@@ -454,7 +456,7 @@ Deletion Methods
     
     //Deletes the step count from a specific hour.
     //Due to the assumption made in Get_Steps_Taken(), this is equivalent to updating with a value of 0.
-    func Delete_Steps_Taken(YearDone: Int64, MonthDone: Int64, DayDone: Int64, HourDone: Int64) {
+    func Delete_Steps_Taken(YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
         let deletion = StepCountTable.filter( StepYear == YearDone && StepMonth == MonthDone && StepDay == DayDone && StepHour == HourDone)
         do {
             try StepCount.run(deletion.delete())
