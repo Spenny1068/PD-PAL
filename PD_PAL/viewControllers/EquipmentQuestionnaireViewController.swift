@@ -17,6 +17,8 @@ class EquipmentQuestionnaireViewController: UIViewController {
     @IBOutlet weak var poolCheckbox:UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var QuestionLabel: UILabel!
+    @IBOutlet weak var InstructionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,29 +27,18 @@ class EquipmentQuestionnaireViewController: UIViewController {
         let screenHeight = screenRect.size.height
         
         //Question
-        let question = UILabel()
-        question.text = "Do you have access to a(n):"
-        question.applyQuestionDesign()
-        self.view.addSubview(question)
+        QuestionLabel.text = "Do you have access to a(n):"
+        QuestionLabel.applyQuestionDesign()
+        self.view.addSubview(QuestionLabel)
         
         //Instruction msg
-        let frameLabel2:CGRect = CGRect(x: screenWidth/2-150, y: screenHeight/2 - 100, width: 300, height: 150)
-        let msg = UILabel(frame: frameLabel2)
-        msg.text = "(Check any that you have)"
-        msg.numberOfLines = 1
-        msg.textAlignment = .center
-        msg.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
-        self.view.addSubview(msg)
-        
-        RBandCheckbox.setImage(UIImage(named:"Unchecked marks"), for: .normal)
-        RBandCheckbox.setImage(UIImage(named:"Checkmarks"), for: .selected)
-        chairCheckbox.setImage(UIImage(named:"Unchecked marks"), for: .normal)
-        chairCheckbox.setImage(UIImage(named:"Checkmarks"), for: .selected)
-        weightsCheckbox.setImage(UIImage(named:"Unchecked marks"), for: .normal)
-        weightsCheckbox.setImage(UIImage(named:"Checkmarks"), for: .selected)
-        poolCheckbox.setImage(UIImage(named:"Unchecked marks"), for: .normal)
-        poolCheckbox.setImage(UIImage(named:"Checkmarks"), for: .selected)
-        
+//        let frameLabel2:CGRect = CGRect(x: screenWidth/2-150, y: screenHeight/2 - 100, width: 300, height: 150)
+        //let msg = UILabel(frame: frameLabel2)
+        InstructionLabel.text = "(Check any that you have)"
+        InstructionLabel.numberOfLines = 1
+        InstructionLabel.textAlignment = .center
+        InstructionLabel.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
+        self.view.addSubview(InstructionLabel)
         
         //Navigation Buttons
 //        nextButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)

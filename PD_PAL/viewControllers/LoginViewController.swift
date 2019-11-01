@@ -11,21 +11,22 @@ import Foundation
 import UIKit
 
 class LoginViewController: UIViewController{
+    @IBOutlet weak var TitleLabel: UILabel!
     @IBOutlet weak var LoginButton: UIButton!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var ValidationMessage: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //load error label and title label
         ValidationMessage.isHidden = true
         userNameTextField.delegate = self
-        let title = UILabel()
-        title.text = "Welcome to PD PAL!"
-        title.applyQuestionDesign()
-        //myButton.titleLabel?.font =  UIFont(name: YourfontName, size: 20)
+        TitleLabel.text = "Welcome to PD PAL!"
+        TitleLabel.applyTitle()
         LoginButton.applyInputButton()
         LoginButton.titleLabel!.font = UIFont(name: "HelveticaNeue", size: 20)
-        self.view.addSubview(title)
+        self.view.addSubview(TitleLabel)
     }
     
     @IBAction func LoginTapped(_ sender: Any) {

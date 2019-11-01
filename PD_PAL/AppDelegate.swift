@@ -54,12 +54,28 @@ extension UILabel {
         self.font = UIFont(name:"HelveticaNeue-Italic", size: 15.0)
         self.textColor = UIColor.red
     }
+    
+    // applies title on Questionnaire storyboard
+    func applyTitle(){
+        self.lineBreakMode = .byWordWrapping                                   // Word wrapping
+        self.numberOfLines = 2
+        self.textAlignment = .center                                           // text alignment
+        self.font = UIFont(name:"HelveticaNeue", size: 35.0)              // text font and size
+        self.textColor = UIColor.black
+    }
+    
 }
 
 /* UIButton methods */
 extension UIButton {
     func applyDesign() {
         self.backgroundColor = UIColor.black                    // background color
+        self.layer.cornerRadius = self.frame.height / 2         // make button round
+        self.setTitleColor(UIColor.white, for: .normal)         // text color
+    }
+    
+    func applyQButton() {
+        self.backgroundColor = UIColor.gray                    // background color
         self.layer.cornerRadius = self.frame.height / 2         // make button round
         self.setTitleColor(UIColor.white, for: .normal)         // text color
     }
@@ -74,12 +90,14 @@ extension UIButton {
         self.backgroundColor = UIColor(red: 172/255, green: 237/255, blue: 175/255, alpha: 1.0)                //background color
         self.layer.cornerRadius = self.frame.height / 4         // make button rounded
         self.setTitleColor(UIColor.white, for: .normal)         // text color
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
     }
     
     func applyPrevQButton(){
         self.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1.0)              //background color
         self.layer.cornerRadius = self.frame.height / 4         // make button rounded
         self.setTitleColor(UIColor.white, for: .normal)         // text color
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
     }
 }
 

@@ -14,6 +14,7 @@ class IntenseQuestionViewController: UIViewController {
     @IBOutlet weak var lightIntensity: UIButton!
     @IBOutlet weak var modIntensity: UIButton!
     @IBOutlet weak var intenseIntensity: UIButton!
+    @IBOutlet weak var QuestionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +24,15 @@ class IntenseQuestionViewController: UIViewController {
         let screenHeight = screenRect.size.height
         
         //Question
-        let question = UILabel()
-        question.text = "How intense would you like your exercise to be?"
-        question.applyQuestionDesign()
-        self.view.addSubview(question)
+        //let question = UILabel()
+        QuestionLabel.text = "How intense would you like your exercise to be?"
+        QuestionLabel.applyQuestionDesign()
+        self.view.addSubview(QuestionLabel)
         
 //        nextButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
-        lightIntensity.applyDesign()
-        modIntensity.applyDesign()
-        intenseIntensity.applyDesign()
+        lightIntensity.applyQButton()
+        modIntensity.applyQButton()
+        intenseIntensity.applyQButton()
         nextButton.applyNextQButton()
         self.view.addSubview(nextButton)
     }

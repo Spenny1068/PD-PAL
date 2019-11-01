@@ -14,6 +14,7 @@ class WalkingQuestionViewController: UIViewController {
     let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var QuestionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +24,10 @@ class WalkingQuestionViewController: UIViewController {
         let screenHeight = screenRect.size.height
         
         //Question
-        let question = UILabel()
-        question.text = "How long would you like your walking exercise to be?"
-        question.applyQuestionDesign()
-        self.view.addSubview(question)
+        
+        QuestionLabel.text = "How long would you like your walking exercise to be?"
+        QuestionLabel.applyQuestionDesign()
+        self.view.addSubview(QuestionLabel)
         
         //Navigation Buttons
 //        completeButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
