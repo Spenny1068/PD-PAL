@@ -18,6 +18,8 @@
     Added some method declarations
  - 31/10/2019 : William Huong
     Created and passed user info unit tests
+ - 01/11/2019 : William Huong
+    Finished implementing methods
  */
 
 /*
@@ -124,9 +126,11 @@ class UserData {
             //Get all the files in the Documents directory.
             let documentFiles = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
             
+            var fileName: String
+            
             //Look at each file to see if it is a file we want.
             for file in documentFiles {
-                var fileName = file.lastPathComponent
+                fileName = file.lastPathComponent
                 
                 //We need to look for the existance of the file, along with having contents.
                 if fileName == routinesFileName {
@@ -292,27 +296,67 @@ Methods that get data from class
     }
     
     //Gets all the routines available.
-    //Returns all routines in an array of Tuples of the form (RoutineName: String, ExercisesString: String).
-    func Get_Routines() {
+    //Returns all routines in an array of Tuples of the form ([(RoutineName: String, Exercises: [String])]).
+    func Get_Routines() ->([(RoutineName: String, Exercises: [String])]) {
+        var returnArr = [(RoutineName: String, Exercises: [String])]()
         
+        do {
+            for row in try Routines.prepare(RoutinesTable) {
+                let routineName = row[RoutineName]
+                let routineContents = row[RoutineContent]
+                let exerciseList = routineContents.components(separatedBy: ",")
+                returnArr.append((RoutineName: routineName, Exercises: exerciseList))
+            }
+        } catch {
+            print("Failed to collect routines")
+        }
+        
+        return returnArr
     }
     
     //Gets a specific routine.
     //Returns an array of exercise names.
-    func Get_Routine(RoutineName: String) {
+    func Get_Routine(NameOfRoutine: String) ->([String]) {
+        do {
+            for row in try Routines.prepare(RoutinesTable.filter(RoutineName == NameOfRoutine)) {
+                let exercises = row[RoutineContent]
+                return exercises.components(separatedBy: ",")
+            }
+        } catch {
+            print("Failed to find a routine by the name of \(NameOfRoutine) in Routines database")
+        }
         
+        return [String]()
     }
     
     //Gets all exercises done in a specific hour.
     //Returns an array of Strings.
-    func Get_Exercises(TargetYear: Int64, TargetMonth: Int64, TargetDay: Int64, TargetHour: Int64) {
+    func Get_Exercises(TargetYear: Int64, TargetMonth: Int64, TargetDay: Int64, TargetHour: Int64) ->([String]) {
+        var returnArr = [String]()
+        do {
+            for row in try UserExerciseData.prepare(UserExerciseDataTable.filter(TrendYear == TargetYear && TrendMonth == TargetMonth && TrendDay == TargetDay && TrendHour == TargetHour)) {
+                returnArr.append(row[TrendExercise])
+            }
+        } catch {
+            print("No exercises found on \(TargetYear)-\(TargetMonth)-\(TargetDay) at \(TargetHour)")
+        }
         
+        return returnArr
     }
     
     //Gets the steps taken in a specific hour.
     //Returns an Int64.
-    func Get_Steps(TargetYear: Int64, TargetMonth: Int64, TargetDay: Int64, TargetHour: Int64) {
+    func Get_Steps(TargetYear: Int64, TargetMonth: Int64, TargetDay: Int64, TargetHour: Int64) ->(Int64) {
+        do {
+            for row in try StepCount.prepare(StepCountTable.filter(TrendYear == TargetYear && TrendMonth == TargetMonth && TrendDay == TargetDay && TrendHour == TargetHour)) {
+                return row[StepsTaken]
+            }
+        } catch {
+            print("No step count value was found on \(TargetYear)-\(TargetMonth)-\(TargetDay) at \(TargetHour)")
+            print("Returning 0")
+        }
         
+        return 0
     }
     
 /*
@@ -344,22 +388,42 @@ Methods that insert or update data.
     
     //Add a routine to the Routines database.
     //ExercisesIncluded should be a comma delimited string.
-    func Add_Routine(Name: String, ExercisesIncluded: String) {
+    func Add_Routine(Name: String, ExercisesIncluded: [String]) {
         
+        var exerciseString = ""
+        
+        for exercise in ExercisesIncluded {
+            if exerciseString != "" {
+                exerciseString = exerciseString + ","
+            }
+            exerciseString = exerciseString + exercise
+        }
+        
+        do {
+            try Routines.run(RoutinesTable.insert( or: .replace, RoutineName <- Name, RoutineContent <- exerciseString))
+        } catch {
+            print("Failed to insert \(Name) routine into Routines database")
+        }
     }
     
     //Add an exercise to the UserExerciseData database.
     //Call this once each time the user completes an exercise.
-    //If any one of YearDone, MonthDone, DayDone, HourDone are left as nil, assumes that the values should be set to the current time and date.
-    func Add_Exercise_Done(exerciseName: String, YearDone: Int64?, MonthDone: Int64?, DayDone: Int64?, HourDone: Int64?) {
-        
+    func Add_Exercise_Done(ExerciseName: String, YearDone: Int64, MonthDone: Int64, DayDone: Int64, HourDone: Int64) {
+        do {
+            try UserExerciseData.run(UserExerciseDataTable.insert(or: .replace, TrendYear <- YearDone, TrendMonth <- MonthDone, TrendDay <- DayDone, TrendHour <- HourDone))
+        } catch {
+            print("Failed to to exercise \(ExerciseName) completed on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into UserExerciseData database")
+        }
     }
     
     //Set the steps taken for that hour to the StepCount database.
     //Call this each time you wish to update the number of steps taken within an hour.
-    //If any one of YearDone, MonthDone, DayDone, HourDone are left as nil, assumes that the values should be set to the current time and date.
-    func Update_Steps_Taken(Steps: Int64, YearDone: Int64?, MonthDone: Int64?, DayDone: Int64?, HourDone: Int64?) {
-        
+    func Update_Steps_Taken(Steps: Int64, YearDone: Int64, MonthDone: Int64, DayDone: Int64, HourDone: Int64) {
+        do {
+            try StepCount.run(StepCountTable.insert(or: .replace, StepYear <- YearDone, StepMonth <- MonthDone, StepDay <- DayDone, StepHour <- HourDone, StepsTaken <- Steps))
+        } catch {
+            print("Failed to insert \(Steps) taken on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into StepCount database")
+        }
     }
     
 /*
@@ -408,6 +472,5 @@ Auxiliary Methods
         }
         
     }
-    
     
 }
