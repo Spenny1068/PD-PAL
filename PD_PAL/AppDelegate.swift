@@ -39,13 +39,20 @@ extension UILabel {
         self.textColor = UIColor(red: 154/255.0, green: 141/255.0, blue: 141/255.0, alpha: 1.0)     // text color
     }
 
+    // applies questions on Questionnaire storyboard
     func applyQuestionDesign(){
-        self.frame = CGRect(x: 36, y: 120, width: 300, height: 150)
-        self.lineBreakMode = .byWordWrapping
+        self.frame = CGRect(x: 36, y: 120, width: 300, height: 150)            // rectangle coordinates
+        self.lineBreakMode = .byWordWrapping                                   // Word wrapping
         self.numberOfLines = 2
-        self.textAlignment = .center
-        self.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)
-        self.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
+        self.textAlignment = .center                                           // text alignment
+        self.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
+        self.textColor = UIColor.black
+    }
+    
+    // applies to any input Error message 
+    func applyErrorDesign(){
+        self.font = UIFont(name:"HelveticaNeue-Italic", size: 15.0)
+        self.textColor = UIColor.red
     }
 }
 
@@ -54,6 +61,24 @@ extension UIButton {
     func applyDesign() {
         self.backgroundColor = UIColor.black                    // background color
         self.layer.cornerRadius = self.frame.height / 2         // make button round
+        self.setTitleColor(UIColor.white, for: .normal)         // text color
+    }
+    
+    func applyInputButton(){
+        self.backgroundColor = UIColor.black                //background color
+        self.layer.cornerRadius = self.frame.height / 4         // make button rounded
+        self.setTitleColor(UIColor.white, for: .normal)         // text color
+    }
+    
+    func applyNextQButton(){
+        self.backgroundColor = UIColor(red: 172/255, green: 237/255, blue: 175/255, alpha: 1.0)                //background color
+        self.layer.cornerRadius = self.frame.height / 4         // make button rounded
+        self.setTitleColor(UIColor.white, for: .normal)         // text color
+    }
+    
+    func applyPrevQButton(){
+        self.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1.0)              //background color
+        self.layer.cornerRadius = self.frame.height / 4         // make button rounded
         self.setTitleColor(UIColor.white, for: .normal)         // text color
     }
 }
