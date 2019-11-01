@@ -11,6 +11,7 @@
 		2EB197B923653798004869D3 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB197AA2365378A004869D3 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EB197C423656486004869D3 /* ExerciseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB197C323656486004869D3 /* ExerciseDatabase.swift */; };
 		2EB197D9236CA9B6004869D3 /* testExerciseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB197D8236CA9B6004869D3 /* testExerciseDB.swift */; };
+		2EB197EC236CACB0004869D3 /* userDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB197EB236CACB0004869D3 /* userDataTests.swift */; };
 		2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */; };
 		2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */; };
 		2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */; };
@@ -20,7 +21,6 @@
 		4517F9C72351587700E5ED83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9C52351587700E5ED83 /* Main.storyboard */; };
 		4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9C82351587800E5ED83 /* Assets.xcassets */; };
 		4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */; };
-		4517F9D72351587800E5ED83 /* PD_PALTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9D62351587800E5ED83 /* PD_PALTests.swift */; };
 		4517F9E22351587800E5ED83 /* PD_PALUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9E12351587800E5ED83 /* PD_PALUITests.swift */; };
 		7D8B4E40236B5D7200DC8CAD /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B4E3F236B5D7200DC8CAD /* UserData.swift */; };
 /* End PBXBuildFile section */
@@ -109,6 +109,7 @@
 		2EB1979F2365378A004869D3 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		2EB197C323656486004869D3 /* ExerciseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDatabase.swift; sourceTree = "<group>"; };
 		2EB197D8236CA9B6004869D3 /* testExerciseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testExerciseDB.swift; sourceTree = "<group>"; };
+		2EB197EB236CACB0004869D3 /* userDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userDataTests.swift; sourceTree = "<group>"; };
 		2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainPageViewController.swift; sourceTree = "<group>"; };
 		2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
 		2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		4517F9CB2351587800E5ED83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4517F9CD2351587800E5ED83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4517F9D22351587800E5ED83 /* PD_PALTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PD_PALTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4517F9D62351587800E5ED83 /* PD_PALTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD_PALTests.swift; sourceTree = "<group>"; };
 		4517F9D82351587800E5ED83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4517F9DD2351587800E5ED83 /* PD_PALUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PD_PALUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4517F9E12351587800E5ED83 /* PD_PALUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD_PALUITests.swift; sourceTree = "<group>"; };
@@ -176,9 +176,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2EB197EA236CABE3004869D3 /* Database_and_Back_End */ = {
+			isa = PBXGroup;
+			children = (
+				2EB197C323656486004869D3 /* ExerciseDatabase.swift */,
+				7D8B4E3F236B5D7200DC8CAD /* UserData.swift */,
+			);
+			path = Database_and_Back_End;
+			sourceTree = "<group>";
+		};
 		4517F9B12351587700E5ED83 = {
 			isa = PBXGroup;
 			children = (
+				2EB197EA236CABE3004869D3 /* Database_and_Back_End */,
 				4517F9BC2351587700E5ED83 /* PD_PAL */,
 				4517F9D52351587800E5ED83 /* PD_PALTests */,
 				4517F9E02351587800E5ED83 /* PD_PALUITests */,
@@ -201,8 +211,6 @@
 		4517F9BC2351587700E5ED83 /* PD_PAL */ = {
 			isa = PBXGroup;
 			children = (
-				2EB197C323656486004869D3 /* ExerciseDatabase.swift */,
-				7D8B4E3F236B5D7200DC8CAD /* UserData.swift */,
 				4517F9BD2351587700E5ED83 /* AppDelegate.swift */,
 				4517F9C52351587700E5ED83 /* Main.storyboard */,
 				2EF0AFD3235ABCA30036EF36 /* SettingsViewController.swift */,
@@ -220,8 +228,8 @@
 		4517F9D52351587800E5ED83 /* PD_PALTests */ = {
 			isa = PBXGroup;
 			children = (
-				4517F9D62351587800E5ED83 /* PD_PALTests.swift */,
 				2EB197D8236CA9B6004869D3 /* testExerciseDB.swift */,
+				2EB197EB236CACB0004869D3 /* userDataTests.swift */,
 				4517F9D82351587800E5ED83 /* Info.plist */,
 			);
 			path = PD_PALTests;
@@ -442,7 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4517F9D72351587800E5ED83 /* PD_PALTests.swift in Sources */,
+				2EB197EC236CACB0004869D3 /* userDataTests.swift in Sources */,
 				2EB197D9236CA9B6004869D3 /* testExerciseDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

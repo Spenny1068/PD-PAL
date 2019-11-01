@@ -1,6 +1,6 @@
 //
-//  PD_PALTests.swift
-//  PD_PALTests
+//  UserDataTests.swift
+//  UserDataTests
 //
 //  Created by SpenC on 2019-10-11.
 //  Copyright © 2019 WareOne. All rights reserved.
@@ -21,7 +21,7 @@ Revision History
 import XCTest
 @testable import PD_PAL
 
-class PD_PALTests: XCTestCase {
+class UserDataTests: XCTestCase {
 
 
     
