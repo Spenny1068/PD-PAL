@@ -15,13 +15,10 @@ class IntenseQuestionViewController: UIViewController {
     @IBOutlet weak var modIntensity: UIButton!
     @IBOutlet weak var intenseIntensity: UIButton!
     @IBOutlet weak var QuestionLabel: UILabel!
+    var button_clicked = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let screenRect = UIScreen.main.bounds
-        let screenWidth = screenRect.size.width
-        let screenHeight = screenRect.size.height
         
         //Question
         //let question = UILabel()
@@ -29,12 +26,26 @@ class IntenseQuestionViewController: UIViewController {
         QuestionLabel.applyQuestionDesign()
         self.view.addSubview(QuestionLabel)
         
-//        nextButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
         lightIntensity.applyQButton()
         modIntensity.applyQButton()
         intenseIntensity.applyQButton()
         nextButton.applyNextQButton()
-        self.view.addSubview(nextButton)
+        nextButton.isEnabled = false
+    }
+    
+    @IBAction func lightSelected(_ sender: UIButton) {
+        button_clicked = true
+        nextButton.isEnabled = true
+    }
+    
+    @IBAction func moderateSelected(_ sender: UIButton) {
+        button_clicked = true
+        nextButton.isEnabled = true
+    }
+    
+    @IBAction func intenseSelected(_ sender: UIButton) {
+        button_clicked = true
+        nextButton.isEnabled = true
     }
     
     @IBAction func nextTapped(_ sender: Any) {
@@ -44,6 +55,7 @@ class IntenseQuestionViewController: UIViewController {
             return
         }
         present(destinationViewController, animated: true, completion: nil)
+        //else prompt message
     }
     
     /*

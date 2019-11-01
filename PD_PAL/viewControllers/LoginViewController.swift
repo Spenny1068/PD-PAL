@@ -19,14 +19,13 @@ class LoginViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //load error label and title label
+        //Load error and title label
         ValidationMessage.isHidden = true
         userNameTextField.delegate = self
         TitleLabel.text = "Welcome to PD PAL!"
         TitleLabel.applyTitle()
         LoginButton.applyInputButton()
         LoginButton.titleLabel!.font = UIFont(name: "HelveticaNeue", size: 20)
-        self.view.addSubview(TitleLabel)
     }
     
     @IBAction func LoginTapped(_ sender: Any) {
@@ -38,10 +37,8 @@ class LoginViewController: UIViewController{
             ValidationMessage.isHidden = false
             return
         }
-        
         //Store username here
         navigateToQuestionnaire()
-        
     }
     
     //Give access to Questionnaire Storyboard

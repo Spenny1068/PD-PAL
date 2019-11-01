@@ -19,7 +19,7 @@ class SetUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        //Question
+        //Question Label
         QuestionLabel.text = "Would you like to set-up your preferences now?"
         QuestionLabel.applyQuestionDesign()
         self.view.addSubview(QuestionLabel)

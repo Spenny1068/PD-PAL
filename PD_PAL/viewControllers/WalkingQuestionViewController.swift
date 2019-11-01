@@ -34,7 +34,7 @@ class WalkingQuestionViewController: UIViewController {
         self.view.addSubview(QuestionLabel)
         
         //Slider
-        walkingVal.text = "15 mins"
+        walkingVal.text = "0 mins"
         walkingVal.textAlignment = .center
         walkingVal.applyQlabels()
         

@@ -77,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFv-kF-owo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="338.39999999999998" y="91.304347826086968"/>
+            <point key="canvasLocation" x="1289" y="91"/>
         </scene>
         <!--mainNavVC-->
         <scene sceneID="Wch-sA-0va">
@@ -171,6 +171,9 @@
                                             <constraint firstAttribute="height" constant="50" id="zZA-L5-eoL"/>
                                         </constraints>
                                         <state key="normal" title="Light"/>
+                                        <connections>
+                                            <action selector="lightSelected:" destination="Xbb-C1-2M8" eventType="touchUpInside" id="PIo-vg-Q8J"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voI-32-rT9">
                                         <rect key="frame" x="0.0" y="90" width="315" height="50"/>
@@ -179,6 +182,9 @@
                                             <constraint firstAttribute="width" constant="315" id="aVz-Vn-3Qg"/>
                                         </constraints>
                                         <state key="normal" title="Moderate"/>
+                                        <connections>
+                                            <action selector="moderateSelected:" destination="Xbb-C1-2M8" eventType="touchUpInside" id="Rh2-5i-JJx"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWn-3e-5Aw">
                                         <rect key="frame" x="0.0" y="180" width="315" height="50"/>
@@ -187,6 +193,9 @@
                                             <constraint firstAttribute="width" constant="315" id="QNg-2a-mnr"/>
                                         </constraints>
                                         <state key="normal" title="Intense"/>
+                                        <connections>
+                                            <action selector="intenseSelected:" destination="Xbb-C1-2M8" eventType="touchUpInside" id="GyP-5J-4y4"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -501,7 +510,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="w3y-cf-ssf">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="w3y-cf-ssf">
                                 <rect key="frame" x="28" y="370" width="319" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="EQp-Qy-0gs"/>
