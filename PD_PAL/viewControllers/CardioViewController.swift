@@ -22,26 +22,17 @@ class CardioViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
 
-        // PD_PAL header top right of screen
-        let label = UILabel(frame: CGRect.zero)
-        label.text = "PD_PAL"
-        label.textAlignment = .center                                           // text alignment
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)                                    // font size
-        self.view.addSubview(label)
-        
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalToConstant: 250),
-            label.heightAnchor.constraint(equalToConstant: 100),
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),   // 15 points left of right view anchor
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),         // 10 points below top of view
-            ])
-        
         // Page Name
-        let pageName = UILabel()
+        let pageName = UILabel(frame: CGRect.zero)
         pageName.text = "CARDIO"
         pageName.applyPageNameDesign()
         self.view.addSubview(pageName)
+        NSLayoutConstraint.activate([
+            pageName.widthAnchor.constraint(equalToConstant: 350),
+            pageName.heightAnchor.constraint(equalToConstant: 50),
+            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75),
+        ])
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))

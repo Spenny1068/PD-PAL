@@ -10,15 +10,13 @@
 // <Date, Name, Changes made>
 // <Oct. 26, 2019, Spencer Lall, Added struct for global variables>
 // <Oct. 27, 2019, Spencer Lall, Added methods for designs, constraints, and positions for labels and buttons>
+// <Nov. 1, 2019, Spencer Lall, PageName label uses constraints now instead of CGRect>
 
 import UIKit
 
 /* put global variables in this struct */
 struct Setup {
-    // color schemes
     static var m_bgColor = UIColor(red: 170/255.0, green: 200/255.0, blue: 226/255.0, alpha: 1.0)   // view controller background color
-    
-    
 }
 
 /* UILabel methods */
@@ -26,16 +24,16 @@ extension UILabel {
     
     // applies position, constraint, and design properties to page name labels
     func applyPageNameDesign() {
-        self.frame = CGRect(x: -40, y: 40, width: 300, height: 100)            // rectangle coordinates
-        self.textAlignment = .center                                           // text alignment
-        //self.translatesAutoresizingMaskIntoConstraints = false               // turn off rectangle coordinates
-        self.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)              // text font and size
+        //self.frame = CGRect(x: -40, y: 40, width: 300, height: 100)        // rectangle coordinates
+        self.textAlignment = .left                                           // text alignment
+        self.translatesAutoresizingMaskIntoConstraints = false               // turn off rectangle coordinates
+        self.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)            // text font and size
     }
     
     // applies position, constraint, and design properties to page message labels
     func applyPageMsgDesign() {
-        self.frame = CGRect(x: -30, y: 70, width: 300, height: 100)            // rectangle coordinates
-        self.textAlignment = .center                                           // text alignment
+        self.frame = CGRect(x: 25, y: 80, width: 300, height: 100)            // rectangle coordinates
+        self.textAlignment = .left                                           // text alignment
         //msg.translatesAutoresizingMaskIntoConstraints = false                // turn off rectangle coordinates
         self.font = UIFont(name:"HelveticaNeue-Bold", size: 15.0)              // text font and size
         self.textColor = UIColor(red: 154/255.0, green: 141/255.0, blue: 141/255.0, alpha: 1.0)     // text color
