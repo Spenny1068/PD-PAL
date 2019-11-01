@@ -48,6 +48,7 @@ class UserData {
     var PushNotifications: Bool
     
     //Routines database
+    let RoutinesDatabaseName = "Routines"
     var Routines: Connection!
     let RoutinesTable = Table("Routines")
     let RoutineName = Expression<String>("Name")
@@ -56,6 +57,7 @@ class UserData {
     let RoutineContent = Expression<String>("Content")
     
     //Exercise data database
+    let UserExerciseDataDatabaseName = "UserExerciseData"
     var UserExerciseData: Connection!
     let UserExerciseDataTable = Table("ExerciseData")
     let TrendYear = Expression<Int64>("Year")
@@ -65,6 +67,7 @@ class UserData {
     let TrendExercise = Expression<String>("ExerciseName")
     
     //Step count database
+    let StepCountDatabaseName = "StepCount"
     var StepCount: Connection!
     let StepCountTable = Table("StepCount")
     let StepYear = Expression<Int64>("Year")
@@ -72,6 +75,9 @@ class UserData {
     let StepDay = Expression<Int64>("Day")
     let StepHour = Expression<Int64>("Hour")
     let StepsTaken = Expression<Int64>("StepsTaken")
+    
+    //Misc
+    let fileExtension = "sqlite3"
     
     init(
         nameGiven: String,
@@ -101,10 +107,9 @@ class UserData {
         var stepCountDatabaseExists = false
         var stepCountDatabaseReady = false
         
-        let fileExtension = "sqlite3"
-        let routinesFileName = "Routines" + "." + fileExtension
-        let exerciseFileName = "UserExerciseData" + "." + fileExtension
-        let stepFileName = "StepCount" + "." + fileExtension
+        let routinesFileName = RoutinesDatabaseName + "." + fileExtension
+        let exerciseFileName = UserExerciseDataDatabaseName + "." + fileExtension
+        let stepFileName = StepCountDatabaseName + "." + fileExtension
         
         var routinesURL: URL?
         var exerciseURL: URL?
@@ -186,15 +191,15 @@ class UserData {
         }
         
         if !routinesDatabaseExists {
-            routinesURL = documentsURL.appendingPathComponent("Routines").appendingPathExtension(fileExtension)
+            routinesURL = documentsURL.appendingPathComponent(RoutinesDatabaseName).appendingPathExtension(fileExtension)
         }
         
         if !exerciseDatabaseExists {
-            exerciseURL = documentsURL.appendingPathComponent("UserExerciseData").appendingPathExtension(fileExtension)
+            exerciseURL = documentsURL.appendingPathComponent(UserExerciseDataDatabaseName).appendingPathExtension(fileExtension)
         }
         
         if !stepCountDatabaseExists {
-            stepURL = documentsURL.appendingPathComponent("StepCount").appendingPathExtension(fileExtension)
+            stepURL = documentsURL.appendingPathComponent(StepCountDatabaseName).appendingPathExtension(fileExtension)
         }
         
         //Connect to each database.
@@ -271,14 +276,14 @@ class UserData {
     }
     
     
-    /*
-    Methods
-    */
+/*
+Methods
+*/
     
     
-    /*
-    Methods that get data from class.
-    */
+/*
+Methods that get data from class
+*/
     
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
@@ -310,9 +315,9 @@ class UserData {
         
     }
     
-    /*
-    Methods that insert or update data.
-    */
+/*
+Methods that insert or update data.
+*/
     
     //Updates the non-database user data.
     //Any parameters that are left as nil will not be updated.
@@ -356,5 +361,53 @@ class UserData {
     func Update_Steps_Taken(Steps: Int64, YearDone: Int64?, MonthDone: Int64?, DayDone: Int64?, HourDone: Int64?) {
         
     }
+    
+/*
+Auxiliary Methods
+*/
 
+    //Searches for and then deletes the .sqlite3 file for the specified database.
+    //Almost 1:1 copy of the version William Xue wrote for ExerciseDatabase.
+    func Delete_Database(dbToDelete: String) {
+        
+        var dbName: String
+        
+        switch dbToDelete {
+        case RoutinesDatabaseName:
+            print("Deleting the Routines database")
+            dbName = RoutinesDatabaseName
+        case UserExerciseDataDatabaseName:
+            print("Deleting the UserExerciseData database")
+            dbName = UserExerciseDataDatabaseName
+        case StepCountDatabaseName:
+            print("Deleting the StepCount database")
+            dbName = StepCountDatabaseName
+        default:
+            print("Error: Invalid database")
+            return
+        }
+        
+        let fileName = dbName + "." + fileExtension
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        do {
+            let files = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            
+            for file in files {
+                if file.lastPathComponent == fileName {
+                    do {
+                        try FileManager.default.removeItem(at: file.absoluteURL)
+                    } catch {
+                        print("Error: \(error)")
+                    }
+                }
+            }
+        } catch {
+            print("\(error)")
+        }
+        
+    }
+    
+    
 }
