@@ -6,6 +6,11 @@
 //  Copyright © 2019 WareOne. All rights reserved.
 //
 
+/*Revision History:
+ -30/10/2019 Julia Kim: added step counter instance to call track_steps upon the app launch
+ 
+ */
+
 import UIKit
 
 class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
@@ -18,9 +23,12 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     }()
 
     var pageControl = UIPageControl()
+    let stepTracker = StepCount()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        stepTracker.track_steps()
+       
         self.dataSource = self
         if let firstViewController = orderedViewControllers.first{
             setViewControllers([firstViewController],

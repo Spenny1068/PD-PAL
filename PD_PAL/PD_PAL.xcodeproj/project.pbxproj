@@ -12,6 +12,7 @@
 		2EB197C423656486004869D3 /* ExerciseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB197C323656486004869D3 /* ExerciseDatabase.swift */; };
 		2EB197D9236CA9B6004869D3 /* testExerciseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB197D8236CA9B6004869D3 /* testExerciseDB.swift */; };
 		2EB197EC236CACB0004869D3 /* userDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB197EB236CACB0004869D3 /* userDataTests.swift */; };
+		2EB197D4236CA647004869D3 /* stepCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB197D3236CA647004869D3 /* stepCounter.swift */; };
 		2EF0AFCC235A9E140036EF36 /* mainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */; };
 		2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */; };
 		2EF0AFD0235ABBE00036EF36 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */; };
@@ -110,6 +111,7 @@
 		2EB197C323656486004869D3 /* ExerciseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDatabase.swift; sourceTree = "<group>"; };
 		2EB197D8236CA9B6004869D3 /* testExerciseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testExerciseDB.swift; sourceTree = "<group>"; };
 		2EB197EB236CACB0004869D3 /* userDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userDataTests.swift; sourceTree = "<group>"; };
+		2EB197D3236CA647004869D3 /* stepCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stepCounter.swift; sourceTree = "<group>"; };
 		2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainPageViewController.swift; sourceTree = "<group>"; };
 		2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
 		2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				2EF0AFCF235ABBE00036EF36 /* CategoriesViewController.swift */,
 				2EF0AFCB235A9E140036EF36 /* mainPageViewController.swift */,
 				2EF0AFCD235AB9FC0036EF36 /* TrendViewController.swift */,
+				2EB197D3236CA647004869D3 /* stepCounter.swift */,
 				4517F9C82351587800E5ED83 /* Assets.xcassets */,
 				4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */,
 				4517F9CD2351587800E5ED83 /* Info.plist */,
@@ -436,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EB197C423656486004869D3 /* ExerciseDatabase.swift in Sources */,
+				2EB197D4236CA647004869D3 /* stepCounter.swift in Sources */,
 				4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */,
 				7D8B4E40236B5D7200DC8CAD /* UserData.swift in Sources */,
 				2EF0AFCE235AB9FC0036EF36 /* TrendViewController.swift in Sources */,
