@@ -41,13 +41,18 @@ extension UILabel {
         self.textColor = UIColor(red: 154/255.0, green: 141/255.0, blue: 141/255.0, alpha: 1.0)     // text color
     }
 
-    func applyQuestionDesign(){
+    func applyQuestionDesign() {
         self.frame = CGRect(x: 36, y: 120, width: 300, height: 150)
         self.lineBreakMode = .byWordWrapping
         self.numberOfLines = 2
         self.textAlignment = .center
         self.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)
         self.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
+    }
+    
+    func DescriptionDurationDesign() {
+        self.backgroundColor = UIColor.black                   // background color
+        self.textColor = UIColor.white
     }
 }
 
@@ -58,8 +63,12 @@ extension UIButton {
         self.layer.cornerRadius = self.frame.height / 2         // make button round
         self.setTitleColor(UIColor.white, for: .normal)         // text color
     }
+    
+    func DesignSelect() {
+        self.backgroundColor = UIColor.init(red: 54/255, green: 141/255, blue: 241/255, alpha: 1)
+        self.setTitleColor(UIColor.white, for: .normal)                        // text color
+    }
 }
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

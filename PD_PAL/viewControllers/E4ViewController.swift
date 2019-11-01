@@ -10,6 +10,10 @@ import UIKit
 
 class E4ViewController: UIViewController {
 
+    @IBOutlet weak var DescriptionLabel: UILabel!
+    @IBOutlet weak var DurationLabel: UILabel!
+    @IBOutlet weak var SelectButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
@@ -17,6 +21,17 @@ class E4ViewController: UIViewController {
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
+
+        // page name
+        let pageName = UILabel()
+        pageName.text = "WALKING"
+        pageName.applyPageNameDesign()
+        self.view.addSubview(pageName)
+        
+        
+        DescriptionLabel.DescriptionDurationDesign()
+        DurationLabel.DescriptionDurationDesign()
+        SelectButton.DesignSelect()
 
         // Do any additional setup after loading the view.
     }

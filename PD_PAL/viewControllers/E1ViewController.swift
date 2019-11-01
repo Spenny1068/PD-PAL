@@ -10,6 +10,9 @@ import UIKit
 
 class E1ViewController: UIViewController {
 
+    @IBOutlet weak var DurationLabel: UILabel!
+    @IBOutlet weak var DescriptionLabel: UILabel!
+    @IBOutlet weak var SelectButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
@@ -18,8 +21,16 @@ class E1ViewController: UIViewController {
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
 
-
-        // Do any additional setup after loading the view.
+        // page name
+        let pageName = UILabel()
+        pageName.text = "QUAD STRETCH"
+        pageName.applyPageNameDesign()
+        self.view.addSubview(pageName)
+               
+        DescriptionLabel.DescriptionDurationDesign()
+        DurationLabel.DescriptionDurationDesign()
+        SelectButton.DesignSelect()
+        
     }
     
     // called when home button on navigation bar is tapped
