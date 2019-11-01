@@ -57,6 +57,10 @@
 		45EB46242367C0AA009BA044 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB46142367C0AA009BA044 /* SettingsViewController.swift */; };
 		45EB46262367C4CF009BA044 /* Chairstretch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EB46252367C4CF009BA044 /* Chairstretch.storyboard */; };
 		45EB46282367C5BE009BA044 /* OneLegSquat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EB46272367C5BE009BA044 /* OneLegSquat.storyboard */; };
+		AE4D724B236BAF10003A8BE3 /* OneLegSquatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */; };
+		AE4D724D236BCB5A003A8BE3 /* WallPushUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */; };
+		AE4D724F236BD963003A8BE3 /* SingleLegStanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */; };
+		AE4D7251236BDD42003A8BE3 /* WalkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +137,10 @@
 		45EB46142367C0AA009BA044 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		45EB46252367C4CF009BA044 /* Chairstretch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chairstretch.storyboard; sourceTree = "<group>"; };
 		45EB46272367C5BE009BA044 /* OneLegSquat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OneLegSquat.storyboard; sourceTree = "<group>"; };
+		AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLegSquatViewController.swift; sourceTree = "<group>"; };
+		AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPushUpViewController.swift; sourceTree = "<group>"; };
+		AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLegStanceViewController.swift; sourceTree = "<group>"; };
+		AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +282,10 @@
 				45EB46122367C0AA009BA044 /* LoginViewController.swift */,
 				45EB46132367C0AA009BA044 /* WalkingQuestionViewController.swift */,
 				45EB46142367C0AA009BA044 /* SettingsViewController.swift */,
+				AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */,
+				AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */,
+				AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */,
+				AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -437,7 +449,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE4D724F236BD963003A8BE3 /* SingleLegStanceViewController.swift in Sources */,
 				45EB461A2367C0AA009BA044 /* TrendViewController.swift in Sources */,
+				AE4D724D236BCB5A003A8BE3 /* WallPushUpViewController.swift in Sources */,
+				AE4D724B236BAF10003A8BE3 /* OneLegSquatViewController.swift in Sources */,
 				45EB461B2367C0AA009BA044 /* CardioViewController.swift in Sources */,
 				45EB46192367C0AA009BA044 /* IntenseQuestionViewController.swift in Sources */,
 				4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */,
@@ -450,6 +465,7 @@
 				45EB46212367C0AA009BA044 /* SetUpViewController.swift in Sources */,
 				45EB46152367C0AA009BA044 /* RoutinesViewController.swift in Sources */,
 				45EB46172367C0AA009BA044 /* BalanceViewController.swift in Sources */,
+				AE4D7251236BDD42003A8BE3 /* WalkingViewController.swift in Sources */,
 				45EB46222367C0AA009BA044 /* LoginViewController.swift in Sources */,
 				45EB46162367C0AA009BA044 /* FlexibilityViewController.swift in Sources */,
 				4517F9BE2351587700E5ED83 /* AppDelegate.swift in Sources */,
