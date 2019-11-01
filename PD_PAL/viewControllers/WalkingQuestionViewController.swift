@@ -7,35 +7,40 @@
 //<Date, Name, Changes made>
 //<Oct. 27, 2019, Izyl Canonicato, programmatic labels >
 //<Oct. 28, 2019, Izyl Canonicato, Navigation to Routines (Home page)>
+//<Nov. 1, 2019, Izyl Canonicato, Slider functionality)>
 
 import UIKit
 
 class WalkingQuestionViewController: UIViewController {
     let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
+    //Buttons
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
+    //Labels
+    @IBOutlet weak var QuestionLabel: UILabel!
+    @IBOutlet weak var walkingVal: UILabel!
+    
+    //Slider
+    @IBAction func sliderChanged(_ sender: UISlider) {
+        walkingVal.text = String(Int(sender.value)) + " mins"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let screenRect = UIScreen.main.bounds
-        let screenWidth = screenRect.size.width
-        let screenHeight = screenRect.size.height
-        
         //Question
-        let question = UILabel()
-        question.text = "How long would you like your walking exercise to be?"
-        question.applyQuestionDesign()
-        self.view.addSubview(question)
+        QuestionLabel.text = "How long would you like your walking exercises to be?"
+        QuestionLabel.applyQuestionDesign()
+        self.view.addSubview(QuestionLabel)
+        
+        //Slider
+        walkingVal.text = "0 mins"
+        walkingVal.textAlignment = .center
+        walkingVal.applyQlabels()
         
         //Navigation Buttons
-//        completeButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
-//        backButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 100, height: 150)
         completeButton.applyNextQButton()
-        self.view.addSubview(completeButton)
-        
         backButton.applyPrevQButton()
-        self.view.addSubview(backButton)
     }
     
     @IBAction func backTapped(_ sender: Any) {

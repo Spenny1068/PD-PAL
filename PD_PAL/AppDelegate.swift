@@ -10,6 +10,7 @@
 // <Date, Name, Changes made>
 // <Oct. 26, 2019, Spencer Lall, Added struct for global variables>
 // <Oct. 27, 2019, Spencer Lall, Added methods for designs, constraints, and positions for labels and buttons>
+// <Nov. 1, 2019, Izyl Canonicato, Added Questionnaire page button and label methods>
 
 import UIKit
 
@@ -54,32 +55,65 @@ extension UILabel {
         self.font = UIFont(name:"HelveticaNeue-Italic", size: 15.0)
         self.textColor = UIColor.red
     }
+    
+    // applies to title on Questionnaire storyboard
+    func applyTitle(){
+        self.lineBreakMode = .byWordWrapping                                   // Word wrapping
+        self.numberOfLines = 2
+        self.textAlignment = .center                                           // text alignment
+        self.font = UIFont(name:"HelveticaNeue", size: 35.0)                   // text font and size
+        self.textColor = UIColor.black
+    }
+    
+    // applies to instructional labels in Questionnaire
+    func applyQlabels(){
+        self.font = UIFont(name:"HelveticaNeue", size: 25.0)                   // text font and size
+        self.textColor = UIColor.black
+    }
+    
 }
 
 /* UIButton methods */
 extension UIButton {
     func applyDesign() {
-        self.backgroundColor = UIColor.black                    // background color
-        self.layer.cornerRadius = self.frame.height / 2         // make button round
-        self.setTitleColor(UIColor.white, for: .normal)         // text color
+        self.backgroundColor = UIColor.black                                    // background color
+        self.layer.cornerRadius = self.frame.height / 2                         // make button round
+        self.setTitleColor(UIColor.white, for: .normal)                         // text color
     }
     
+    // applies to Questionnaire buttons
+    func applyQButton() {
+        self.backgroundColor = UIColor.gray                                     // background color
+        self.layer.cornerRadius = self.frame.height / 2                         // make button round
+        self.setTitleColor(UIColor.white, for: .normal)                         // normal text colour
+        self.setTitleColor(UIColor.gray, for: .highlighted)                         // selected text color
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
+    }
+    
+    // applied to Enter button on Registration page
     func applyInputButton(){
-        self.backgroundColor = UIColor.black                //background color
-        self.layer.cornerRadius = self.frame.height / 4         // make button rounded
-        self.setTitleColor(UIColor.white, for: .normal)         // text color
+        self.backgroundColor = UIColor.black                                    //background color
+        self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
+        self.setTitleColor(UIColor.white, for: .normal)                         // text color
     }
     
+    // applied to navigation to next Q in Questionnaire
     func applyNextQButton(){
         self.backgroundColor = UIColor(red: 172/255, green: 237/255, blue: 175/255, alpha: 1.0)                //background color
-        self.layer.cornerRadius = self.frame.height / 4         // make button rounded
-        self.setTitleColor(UIColor.white, for: .normal)         // text color
+        self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
+        self.setTitleColor(UIColor.white, for: .normal)                         // enabled text colour
+        self.setTitleColor(UIColor.gray, for: .disabled)                         // disabled text color
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)         // text font and size
+
     }
     
+    // applied to navigation to previous Q in Questionnaire
     func applyPrevQButton(){
         self.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1.0)              //background color
-        self.layer.cornerRadius = self.frame.height / 4         // make button rounded
-        self.setTitleColor(UIColor.white, for: .normal)         // text color
+        self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
+        self.setTitleColor(UIColor.white, for: .normal)                         // enable text colour
+        self.setTitleColor(UIColor.gray, for: .disabled)                         // disabled text color
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)         // text font and size
     }
 }
 
