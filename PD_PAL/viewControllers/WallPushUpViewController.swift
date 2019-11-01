@@ -23,9 +23,21 @@ class WallPushUpViewController: UIViewController {
         DurationLabel.DescriptionDurationDesign()
         SelectButton.DesignSelect()
 
+        // home button on navigation bar
+        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
+        self.navigationItem.rightBarButtonItem  = homeButton
+
         // Do any additional setup after loading the view.
     }
     
+    // called when home button on navigation bar is tapped
+    @objc func homeButtonTapped(sender: UIButton!) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+        self.present(newViewController, animated: true, completion: nil)
+    }
+
+
 
     /*
     // MARK: - Navigation

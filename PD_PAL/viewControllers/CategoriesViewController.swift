@@ -32,22 +32,6 @@ class CategoriesViewController: UIViewController {
         let screenWidth = screenRect.size.width     // width of view controller
         let screenHeight = screenRect.size.height   // height of view controller
         
-        // PD_PAL header top right of screen
-        let label = UILabel(frame: CGRect.zero)
-        label.text = "PD_PAL"
-        label.textAlignment = .center                                           // text alignment
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)                                    // font size
-        self.view.addSubview(label)
-        
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalToConstant: 250),
-            label.heightAnchor.constraint(equalToConstant: 100),
-            label.centerXAnchor.constraint(equalTo: view.rightAnchor, constant: -45),   // 15 points left of right view anchor
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),         // 10 points below top of view
-            ])
-        
-        
         // Page Name
         let pageName = UILabel()
         pageName.text = "CATEGORIES"

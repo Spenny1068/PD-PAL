@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6sL-ZT-lhB">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6sL-ZT-lhB">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,28 +17,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="rTL-vt-A86">
-                                <rect key="frame" x="25" y="155" width="325" height="477"/>
+                                <rect key="frame" x="25" y="135" width="325" height="497"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYY-WR-nFx">
-                                        <rect key="frame" x="0.0" y="0.0" width="325" height="96"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="116"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="ARMS"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR0-Jb-KYz">
-                                        <rect key="frame" x="0.0" y="171" width="325" height="52"/>
+                                        <rect key="frame" x="0.0" y="191" width="325" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="CHEST"/>
                                         <connections>
-                                            <segue destination="x7V-kN-9xv" kind="push" id="Fig-Vp-NkI"/>
+                                            <segue destination="XZh-1V-QUz" kind="push" id="4j4-Zi-uBu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J04-IT-aiS">
-                                        <rect key="frame" x="0.0" y="298" width="325" height="52"/>
+                                        <rect key="frame" x="0.0" y="318" width="325" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="CORE"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNI-sT-LvN">
-                                        <rect key="frame" x="0.0" y="425" width="325" height="52"/>
+                                        <rect key="frame" x="0.0" y="445" width="325" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="LEGS"/>
                                     </button>
@@ -79,12 +77,12 @@
             <point key="canvasLocation" x="-18.399999999999999" y="559.07046476761627"/>
         </scene>
         <!--ChestVC-->
-        <scene sceneID="yKb-fb-qy3">
+        <scene sceneID="Nbo-RY-FIg">
             <objects>
-                <viewControllerPlaceholder storyboardName="Chest" referencedIdentifier="ChestVC" id="x7V-kN-9xv" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="6v0-gz-1bW"/>
+                <viewControllerPlaceholder storyboardName="Chest" referencedIdentifier="ChestVC" id="XZh-1V-QUz" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="bhb-eA-cWg"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1AE-we-peC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jsQ-HQ-Tpe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-18" y="990"/>
         </scene>
@@ -120,7 +118,7 @@
                                 <rect key="frame" x="61" y="151" width="252" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" title="Chair Stretch"/>
+                                <state key="normal" title="Single Leg Stance"/>
                                 <connections>
                                     <segue destination="QKt-nn-xdI" kind="push" id="h0F-oV-kzg"/>
                                 </connections>
@@ -143,10 +141,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r5f-ET-Dt8">
-                                <rect key="frame" x="103" y="289" width="199" height="48"/>
+                                <rect key="frame" x="102" y="177" width="171" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="One-Leg Squat"/>
+                                <state key="normal" title="Quad Stretch"/>
                                 <connections>
                                     <segue destination="eND-9L-UOu" kind="push" id="Lq5-Nw-Ijs"/>
                                 </connections>
@@ -179,9 +177,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7T-TQ-oqE">
-                                <rect key="frame" x="139" y="232" width="136" height="105"/>
+                                <rect key="frame" x="119" y="144" width="136" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="walking"/>
                                 <connections>
                                     <segue destination="ZXd-fz-gRp" kind="push" id="hbU-6Q-gZC"/>
