@@ -35,14 +35,14 @@
  - 01/11/2019 : William Huong
     If there is an exercise is done more than once an hour, Delete_Exercise_Done() will remove all instances of it. This may or may not be an issue that needs to be fixed.
  - 01/11/2019 : William Huong
-    Update_Steps_Taken is not updating already present values.
+    Update_Steps_Taken() is not updating already present values.
  */
 
 import Foundation
 import SQLite
 
 class UserData {
-    
+/*
     //Non-database user data.
     var UserName: String
     var QuestionsAnswered: Bool
@@ -52,6 +52,20 @@ class UserData {
     var	ResistBandAccess: Bool
     var Intensity: Int
     var PushNotifications: Bool
+*/
+    
+    //User Info
+    let UserInfoDatabaseName = "UserInfo"
+    var UserInfo: Connection!
+    let UserInfoTable = Table("UserInfo")
+    let UserName = Expression<String>("Name")
+    let QuestionsAnswered = Expression<Bool>("QuestionsAnswered")
+    let WalkingOK = Expression<Bool>("WalkingOK")
+    let ChairAccessible = Expression<Bool>("ChairAccessible")
+    let WeightsAccessible = Expression<Bool>("WeightsAccessible")
+    let ResistBandAccessible = Expression<Bool>("ResistBandAccessible")
+    let Intensity = Expression<Int>("Intensity")
+    let PushNotifications = Expression<Bool>("PushNotifications")
     
     //Routines database
     let RoutinesDatabaseName = "Routines"
@@ -86,6 +100,7 @@ class UserData {
     let fileExtension = "sqlite3"
     
     init(
+/*
         nameGiven: String,
         questionsAnswered: Bool?,
         walkingDesired: Bool?,
@@ -93,9 +108,10 @@ class UserData {
         weightsAvailable: Bool?,
         resistBandAvailable: Bool?,
         intensityDesired: Int?,
-        pushNotificationsDesired: Bool?)
+        pushNotificationsDesired: Bool?
+ */     )
     {
-        
+/*
         UserName = nameGiven
         QuestionsAnswered = questionsAnswered ?? false
         WalkingOK = walkingDesired ?? false
@@ -104,8 +120,10 @@ class UserData {
         ResistBandAccess = resistBandAvailable ?? false
         Intensity = intensityDesired ?? 0
         PushNotifications = pushNotificationsDesired ?? false
-        
+*/
         //Declare some variables we will use to search for our databases.
+        var userInfoDatabaseExists = false
+        var userInfoDatabaseReady = false
         var routinesDatabaseExists = false
         var routinesDatabaseReady = false
         var exerciseDatabaseExists = false
@@ -113,10 +131,12 @@ class UserData {
         var stepCountDatabaseExists = false
         var stepCountDatabaseReady = false
         
+        let userInfoFileName = UserInfoDatabaseName + "." + fileExtension
         let routinesFileName = RoutinesDatabaseName + "." + fileExtension
         let exerciseFileName = UserExerciseDataDatabaseName + "." + fileExtension
         let stepFileName = StepCountDatabaseName + "." + fileExtension
         
+        var userInfoURL: URL?
         var routinesURL: URL?
         var exerciseURL: URL?
         var stepURL: URL?
@@ -137,6 +157,24 @@ class UserData {
                 fileName = file.lastPathComponent
                 
                 //We need to look for the existance of the file, along with having contents.
+                if fileName == userInfoFileName {
+                    userInfoDatabaseExists = true
+                    userInfoURL = file.absoluteURL
+                    
+                    do {
+                       let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
+                        var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
+                        let dict = fileAttributes as NSDictionary
+                        fileSize = dict.fileSize()
+                        
+                        if fileSize != 0 {
+                            userInfoDatabaseReady = true
+                        }
+                    } catch {
+                        print("Error checking UserInfo.sqlite3")
+                    }
+                }
+                
                 if fileName == routinesFileName {
                     
                     routinesDatabaseExists = true
@@ -198,6 +236,10 @@ class UserData {
             print("Error searching Documents Directory")
         }
         
+        if !userInfoDatabaseExists {
+            userInfoURL = documentsURL.appendingPathComponent(UserInfoDatabaseName).appendingPathExtension(fileExtension)
+        }
+        
         if !routinesDatabaseExists {
             routinesURL = documentsURL.appendingPathComponent(RoutinesDatabaseName).appendingPathExtension(fileExtension)
         }
@@ -211,6 +253,36 @@ class UserData {
         }
         
         //Connect to each database.
+        do {
+            let database = try Connection((userInfoURL!).path)
+            self.UserInfo = database
+            
+            //Create the table if the file did not exist or was empty.
+            if !userInfoDatabaseReady {
+                let createTable = UserInfoTable.create{ (table) in
+                    table.column(UserName, primaryKey: true)
+                    table.column(QuestionsAnswered)
+                    table.column(WalkingOK)
+                    table.column(ChairAccessible)
+                    table.column(WeightsAccessible)
+                    table.column(ResistBandAccessible)
+                    table.column(Intensity)
+                    table.column(PushNotifications)
+                }
+                
+                do {
+                    try self.UserInfo.run(createTable)
+                } catch {
+                    print("Error creating UserInfo table")
+                }
+                
+                //User Info is special. We need it to always have a single row.
+                self.Update_User_Data(nameGiven: "Default", questionsAnswered: false, walkingDesired: false, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, intensityDesired: -1, pushNotificationsDesired: false)
+            }
+        } catch {
+            print("Error connecting to the UserInfo database")
+        }
+        
         do {
             let database = try Connection((routinesURL!).path)
             self.Routines = database
@@ -295,8 +367,21 @@ Methods that get data from class
     
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
-    func Get_User_Data() -> (UserName: String, QuestionsAnswered: Bool, WalkingOK: Bool, ChairAccess: Bool, WeightsAccess: Bool, ResistBandAccess: Bool, Intensity: Int, PushNotifications: Bool){
-        return (UserName, QuestionsAnswered, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
+    func Get_User_Data() -> (UserName: String, QuestionsAnswered: Bool, WalkingOK: Bool, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, Intensity: Int, PushNotifications: Bool) {
+        //return (UserName, QuestionsAnswered, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
+        do {
+            let userInfo = try UserInfo.pluck(UserInfoTable)
+            
+            if userInfo == nil {
+                return (UserName: "Error", QuestionsAnswered: false, WalkingOK: false, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, Intensity: 0, PushNotifications: false)
+            }
+            
+            return (UserName: userInfo![UserName], QuestionsAnswered: userInfo![QuestionsAnswered], WalkingOK: userInfo![WalkingOK], ChairAccessible: userInfo![ChairAccessible], WeightsAccessible: userInfo![WeightsAccessible], ResistBandAccessible: userInfo![ResistBandAccessible], Intensity: userInfo![Intensity], PushNotifications: userInfo![PushNotifications])
+        } catch {
+            print("Failed to get User Info")
+        }
+        
+        return (UserName: "Error", QuestionsAnswered: false, WalkingOK: false, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, Intensity: 0, PushNotifications: false)
     }
     
     //Gets all the routines available.
@@ -379,6 +464,7 @@ Methods that insert or update data.
         intensityDesired: Int?,
         pushNotificationsDesired: Bool?)
     {
+/*
         //Makes use of the nil-coalescing operator. Equivalent to: if b != nil { a = b } else { a = c }
         UserName = nameGiven ?? UserName
         QuestionsAnswered = questionsAnswered ?? QuestionsAnswered
@@ -388,6 +474,28 @@ Methods that insert or update data.
         ResistBandAccess = resistBandAvailable ?? ResistBandAccess
         Intensity = intensityDesired ?? Intensity
         PushNotifications = pushNotificationsDesired ?? PushNotifications
+*/
+        //Store the old values
+        let currentUserInfo = self.Get_User_Data()
+        
+        //Delete what is currently there, since we only have a single user
+        self.Delete_userInfo()
+        
+        //Create the new user info row
+        do {
+            try UserInfo.run(UserInfoTable.insert(UserName <- (nameGiven ?? currentUserInfo.UserName),
+                                                  QuestionsAnswered <- (questionsAnswered ?? currentUserInfo.QuestionsAnswered),
+                                                  WalkingOK <- (walkingDesired ?? currentUserInfo.WalkingOK),
+                                                  ChairAccessible <- (chairAvailable ?? currentUserInfo.ChairAccessible),
+                                                  WeightsAccessible <- (weightsAvailable ?? currentUserInfo.WeightsAccessible),
+                                                  ResistBandAccessible <- (resistBandAvailable ?? currentUserInfo.ResistBandAccessible),
+                                                  Intensity <- (intensityDesired ?? currentUserInfo.Intensity),
+                                                  PushNotifications <- (pushNotificationsDesired ?? currentUserInfo.PushNotifications)
+                                                  ))
+        } catch {
+            print("Failed to update user info")
+        }
+        
     }
     
     //Add a routine to the Routines database.
@@ -420,7 +528,7 @@ Methods that insert or update data.
         }
     }
     
-    //Set the steps taken for that hour to the StepCount database.
+    //Set the steps taken for that hour in the StepCount database.
     //Call this each time you wish to update the number of steps taken within an hour.
     func Update_Steps_Taken(Steps: Int64, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
         do {
@@ -433,6 +541,15 @@ Methods that insert or update data.
 /*
 Deletion Methods
 */
+    
+    //Delete the user info.
+    func Delete_userInfo() {
+        do {
+            try UserInfo.run(UserInfoTable.delete())
+        } catch {
+            print("Failed to delete user info")
+        }
+    }
     
     //Deletes the specified routine from the database.
     func Delete_Routine(NameOfRoutine: String) {
