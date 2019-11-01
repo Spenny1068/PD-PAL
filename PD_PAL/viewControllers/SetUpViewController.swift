@@ -29,9 +29,13 @@ class SetUpViewController: UIViewController {
         self.view.addSubview(question)
         
         //Navigation Buttons
-        SetUpButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
+//        SetUpButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 200, height: 100)
+        SetUpButton.applyNextQButton()
+        self.view.addSubview(SetUpButton)
         
-        SkipSetUpButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 100, height: 150)
+//        SkipSetUpButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 200, height: 100)
+        SkipSetUpButton.applyPrevQButton()
+        self.view.addSubview(SkipSetUpButton)
         
     }
     

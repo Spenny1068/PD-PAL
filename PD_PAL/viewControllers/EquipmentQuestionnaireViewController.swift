@@ -50,8 +50,13 @@ class EquipmentQuestionnaireViewController: UIViewController {
         
         
         //Navigation Buttons
-        nextButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
-        backButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 100, height: 150)
+//        nextButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
+//        backButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 100, height: 150)
+        nextButton.applyNextQButton()
+        self.view.addSubview(nextButton)
+        
+        backButton.applyPrevQButton()
+        self.view.addSubview(backButton)
         
     }
     

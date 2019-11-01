@@ -29,8 +29,13 @@ class WalkingQuestionViewController: UIViewController {
         self.view.addSubview(question)
         
         //Navigation Buttons
-        completeButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
-        backButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 100, height: 150)
+//        completeButton.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 150, width: 100, height: 150)
+//        backButton.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 150, width: 100, height: 150)
+        completeButton.applyNextQButton()
+        self.view.addSubview(completeButton)
+        
+        backButton.applyPrevQButton()
+        self.view.addSubview(backButton)
     }
     
     @IBAction func backTapped(_ sender: Any) {

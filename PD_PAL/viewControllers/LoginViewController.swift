@@ -11,6 +11,7 @@ import Foundation
 import UIKit
 
 class LoginViewController: UIViewController{
+    @IBOutlet weak var LoginButton: UIButton!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var ValidationMessage: UILabel!
     
@@ -21,6 +22,9 @@ class LoginViewController: UIViewController{
         let title = UILabel()
         title.text = "Welcome to PD PAL!"
         title.applyQuestionDesign()
+        //myButton.titleLabel?.font =  UIFont(name: YourfontName, size: 20)
+        LoginButton.applyInputButton()
+        LoginButton.titleLabel!.font = UIFont(name: "HelveticaNeue", size: 20)
         self.view.addSubview(title)
     }
     
@@ -29,12 +33,12 @@ class LoginViewController: UIViewController{
         ValidationMessage.isHidden = true
         guard let userName = userNameTextField.text, (userNameTextField.text?.count != 0), !(isValidName(name: userNameTextField.text!)) else {
             ValidationMessage.text = "Please enter a valid name"
+            ValidationMessage.applyErrorDesign()
             ValidationMessage.isHidden = false
             return
         }
         
         //Store username here
-        
         navigateToQuestionnaire()
         
     }
