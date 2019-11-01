@@ -27,7 +27,7 @@ class PD_PALTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         //Kill the files before the testing so that we are starting from a known state.
-        let userData = UserData(nameGiven: "Harold", questionsAnswered: nil, walkingDesired: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        let userData = UserData()
         userData.Delete_Database(dbToDelete: "Routines")
         userData.Delete_Database(dbToDelete: "UserExerciseData")
         userData.Delete_Database(dbToDelete: "StepCount")
@@ -69,17 +69,20 @@ UserData Class Tests
     func test_userData_UserInfo() {
         
         //Create the object.
-        let userDB = UserData(nameGiven: "Margaret", questionsAnswered: false, walkingDesired: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        let userDB = UserData()
         
-        //Get the object when we only pass a name and check all default variables are correctly assigned.
+        //Provide user data.
+        userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: false, walkingDesired: false, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, intensityDesired: 0, pushNotificationsDesired: false)
+        
+        //Get the user info
         var userData = userDB.Get_User_Data()
         
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingOK == false )
-        XCTAssert( userData.ChairAccess == false )
-        XCTAssert( userData.WeightsAccess == false )
-        XCTAssert( userData.ResistBandAccess == false )
+        XCTAssert( userData.ChairAccessible == false )
+        XCTAssert( userData.WeightsAccessible == false )
+        XCTAssert( userData.ResistBandAccessible == false )
         XCTAssert( userData.Intensity == 0 )
         XCTAssert( userData.PushNotifications == false )
         
@@ -92,9 +95,9 @@ UserData Class Tests
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == true )
         XCTAssert( userData.WalkingOK == true )
-        XCTAssert( userData.ChairAccess == false )
-        XCTAssert( userData.WeightsAccess == false )
-        XCTAssert( userData.ResistBandAccess == false )
+        XCTAssert( userData.ChairAccessible == false )
+        XCTAssert( userData.WeightsAccessible == false )
+        XCTAssert( userData.ResistBandAccessible == false )
         XCTAssert( userData.Intensity == 0 )
         XCTAssert( userData.PushNotifications == false )
         
@@ -106,9 +109,9 @@ UserData Class Tests
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == true )
         XCTAssert( userData.WalkingOK == true )
-        XCTAssert( userData.ChairAccess == true )
-        XCTAssert( userData.WeightsAccess == true )
-        XCTAssert( userData.ResistBandAccess == true )
+        XCTAssert( userData.ChairAccessible == true )
+        XCTAssert( userData.WeightsAccessible == true )
+        XCTAssert( userData.ResistBandAccessible == true )
         XCTAssert( userData.Intensity == 5 )
         XCTAssert( userData.PushNotifications == true )
         
@@ -124,7 +127,7 @@ UserData Class Tests
         let routine1exercises = ["Bicep Curls", "5 minute walk", "one legged stand"]
         let routine2exercises = ["squats", "sit ups", "bulgarian hamstring stretch", "whatever involved the chair"]
         
-        let userData = UserData(nameGiven: "Richard", questionsAnswered: false, walkingDesired: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        let userData = UserData()
         
         //Confirm the database is empty and Get_Routines() and Get_Routine() behave properly.
         let initialRoutines = userData.Get_Routines()
@@ -202,7 +205,7 @@ UserData Class Tests
         let fourthDay = 30
         let fourthHour = 18
         
-        let userData = UserData(nameGiven: "Bertha", questionsAnswered: nil, walkingDesired: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        let userData = UserData()
         
         //Make sure there aren't any exercies already in place, and that Get_Exercises() behaves as expected when nothing is found.
         let emptyDay1 = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 10, TargetDay: 30, TargetHour: 18)
@@ -256,7 +259,7 @@ UserData Class Tests
         let secondDay = 01
         let secondHour = 01
         
-        let userData = UserData(nameGiven: "Carson", questionsAnswered: nil, walkingDesired: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        let userData = UserData()
         
         //Confirm nothing is in the target rows currently
         let firstEmpty = userData.Get_Steps_Taken(TargetYear: firstYear, TargetMonth: firstMonth, TargetDay: firstDay, TargetHour: firstHour)
