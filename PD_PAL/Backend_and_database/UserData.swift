@@ -26,6 +26,8 @@
     Fixed Update_Step_Count(), Added Increment_Step_Count()
  - 01/11/2019 : William Huong
     Added UserInfo database to Delete_Database()
+ - 01/11/2019 : William Huong
+    Updated User Info columns to match questions asked
  */
 
 /*
