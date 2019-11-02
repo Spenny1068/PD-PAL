@@ -21,6 +21,8 @@ Revision History
     Updated test_UserData_UserInfo()
  - 02/11/2019 : William Huong
     test_UserData_UserInfo() now checks state after calling Delete_userInfo()
+ - 02/11/2019 : William Huong
+    Changed test_UserData_UserInfo() for slightly better coverage
  */
 
 
@@ -88,7 +90,7 @@ UserData Class Tests
         XCTAssert( userData.PushNotifications == false )
         
         //Change some of the values to check we only update the values given.
-        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: 30, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: 30, chairAvailable: nil, weightsAvailable: true, resistBandAvailable: nil, poolAvailable: true, intensityDesired: nil, pushNotificationsDesired: true)
         
         userData = userDB.Get_User_Data()
         
@@ -97,26 +99,26 @@ UserData Class Tests
         XCTAssert( userData.QuestionsAnswered == true )
         XCTAssert( userData.WalkingDuration == 30 )
         XCTAssert( userData.ChairAccessible == false )
-        XCTAssert( userData.WeightsAccessible == false )
+        XCTAssert( userData.WeightsAccessible == true )
         XCTAssert( userData.ResistBandAccessible == false )
-        XCTAssert( userData.PoolAccessible == false )
+        XCTAssert( userData.PoolAccessible == true )
         XCTAssert( userData.Intensity == "Light" )
-        XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.PushNotifications == true )
         
         //Change the rest of the values.
-        userDB.Update_User_Data(nameGiven: "Ebenezer Scrooge", questionsAnswered: nil, walkingDuration: nil, chairAvailable: true, weightsAvailable: true, resistBandAvailable: true, poolAvailable: true, intensityDesired: "Intense", pushNotificationsDesired: true)
+        userDB.Update_User_Data(nameGiven: "Ebenezer Scrooge", questionsAnswered: false, walkingDuration: nil, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Intense", pushNotificationsDesired: false)
         
         userData = userDB.Get_User_Data()
         
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
-        XCTAssert( userData.QuestionsAnswered == true )
+        XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 30 )
         XCTAssert( userData.ChairAccessible == true )
-        XCTAssert( userData.WeightsAccessible == true )
+        XCTAssert( userData.WeightsAccessible == false )
         XCTAssert( userData.ResistBandAccessible == true )
-        XCTAssert( userData.PoolAccessible == true )
+        XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Intense" )
-        XCTAssert( userData.PushNotifications == true )
+        XCTAssert( userData.PushNotifications == false )
         
         //Check Get_User_Data() returns the default values after deleting the user data. Important because of the way I have implemented this database.
         userDB.Delete_userInfo()
