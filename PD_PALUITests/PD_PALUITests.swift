@@ -29,6 +29,72 @@ class PD_PALUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        
+        let app2 = app
+        app.textFields["Enter your name"].tap()
+        
+        let wKey = app2/*@START_MENU_TOKEN@*/.keys["W"]/*[[".keyboards.keys[\"W\"]",".keys[\"W\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        wKey.tap()
+        
+        let aKey = app2/*@START_MENU_TOKEN@*/.keys["a"]/*[[".keyboards.keys[\"a\"]",".keys[\"a\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        aKey.tap()
+
+        app2/*@START_MENU_TOKEN@*/.keys["r"]/*[[".keyboards.keys[\"r\"]",".keys[\"r\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let eKey = app2/*@START_MENU_TOKEN@*/.keys["e"]/*[[".keyboards.keys[\"e\"]",".keys[\"e\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        eKey.tap()
+        
+        app2/*@START_MENU_TOKEN@*/.buttons["shift"]/*[[".keyboards.buttons[\"shift\"]",".buttons[\"shift\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app2/*@START_MENU_TOKEN@*/.keys["O"]/*[[".keyboards.keys[\"O\"]",".keys[\"O\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let nKey = app2/*@START_MENU_TOKEN@*/.keys["n"]/*[[".keyboards.keys[\"n\"]",".keys[\"n\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        nKey.tap()
+        eKey.tap()
+
+        app2/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.buttons["Enter"].tap()
+        app.buttons["Set-up"].tap()
+        
+        let nextButton = app.buttons["Next"]
+        nextButton.tap()
+        app.buttons["Light"].tap()
+        app.buttons["Intense"].tap()
+        app.buttons["Moderate"].tap()
+        nextButton.tap()
+        
+        let window = app.children(matching: .window).element(boundBy: 0)
+        let element = window.children(matching: .other).element(boundBy: 2).children(matching: .other).element
+        element.children(matching: .other).element(boundBy: 1).buttons["Unchecked marks"].tap()
+        element.children(matching: .other).element(boundBy: 2).buttons["Unchecked marks"].tap()
+        nextButton.tap()
+        app.sliders["0%"].swipeRight()
+        app.buttons["Complete"].tap()
+        app.buttons["Routine 1"].tap()
+        app.buttons["Exercise 1"].tap()
+        app.buttons["Exercise 2"].tap()
+        app.buttons["Exercise 3"].tap()
+        app.staticTexts["ROUTINE 1"].tap()
+        
+        let element2 = window.children(matching: .other).element(boundBy: 4).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element2.tap()
+        element2.tap()
+        app.navigationBars["Routine 1"].buttons["Main"].tap()
+        
+        let element3 = element2.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element3.children(matching: .other).element.children(matching: .other).element(boundBy: 0).swipeLeft()
+        element3.children(matching: .button).matching(identifier: "Button").element(boundBy: 2).tap()
+        app.buttons["ARMS"].tap()
+        app.buttons["CHEST"].tap()
+        
+    }
+    
+    func basicSequenceTest()
+    {
+        
+        
+        
     }
 
 }
