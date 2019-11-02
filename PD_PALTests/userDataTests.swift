@@ -15,6 +15,8 @@ Revision History
      Added Tests for UserData class.
  - 01/11/2019 : William Xue
      Moved testDatabase_insertion to it's own file
+ - 01/11/2019 : William Huong
+    Updated test for greater coverage
  */
 
 
