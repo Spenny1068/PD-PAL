@@ -28,6 +28,9 @@
     Added UserInfo database to Delete_Database()
  - 01/11/2019 : William Huong
     Updated User Info columns to match questions asked
+ - 02/11/2019 : William Huong
+    Delete_userInfo() preserves user name
+    Delete_userInfo() and Update_User_Info() no longer dependent on each other
  */
 
 /*
@@ -490,11 +493,11 @@ Methods that insert or update data.
         //Store the old values
         let currentUserInfo = self.Get_User_Data()
         
-        //Delete what is currently there, since we only have a single user
-        self.Delete_userInfo()
-        
-        //Create the new user info row
         do {
+            //Delete what is currently there, since we only have a single user locally
+            try UserInfo.run(UserInfoTable.delete())
+            
+            //Re-insert user
             try UserInfo.run(UserInfoTable.insert(UserName <- (nameGiven ?? currentUserInfo.UserName),
                                                   QuestionsAnswered <- (questionsAnswered ?? currentUserInfo.QuestionsAnswered),
                                                   WalkingDuration <- (walkingDuration ?? currentUserInfo.WalkingDuration),
@@ -565,10 +568,17 @@ Methods that insert or update data.
 Deletion Methods
 */
     
-    //Delete the user info.
+    //Delete the user info. Preserves user name.
     func Delete_userInfo() {
+        //Grab the current user name.
+        let currentUserName = self.Get_User_Data().UserName
+        
+        //Kill the data in the database.
         do {
             try UserInfo.run(UserInfoTable.delete())
+            
+            //Re-insert user name plus default values for everything else.
+            try UserInfo.run(UserInfoTable.insert(UserName <- currentUserName, QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false))
         } catch {
             print("Failed to delete user info")
         }
