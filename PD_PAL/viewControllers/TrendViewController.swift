@@ -11,14 +11,22 @@
 
 import UIKit
 
-class TrendViewController: UIViewController {
+class TrendViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var Title_label: UILabel!
+    
+    let exerciseData = global_UserData.Get_Exercises_all()
+    
+
+    @IBOutlet weak var trendTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
-
+        
+        trendTableView.dataSource = self
+        
+        
         let userData = global_UserData.Get_User_Data()
         
         // page name
@@ -39,9 +47,28 @@ class TrendViewController: UIViewController {
         msg.applyPageMsgDesign()
         self.view.addSubview(msg)
         
+        
+    }
+    
+    //Table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y
+    func numberOfSections(in tableView: UITableView) -> Int {
+        //one section for exercise history and one section for step count
+        return 1
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return exerciseData.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
+        let text = "\(exerciseData[indexPath.row].Year)/\(exerciseData[indexPath.row].Month)/" +
+        "\(exerciseData[indexPath.row].Day) Hour: \(exerciseData[indexPath.row].Hour)       \(exerciseData[indexPath.row].nameOfExercise)"
+        
+        cell.textLabel?.text = text
+        return cell
+    }
+
     
     /*
     // MARK: - Navigation
