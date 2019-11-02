@@ -36,12 +36,12 @@ class UserDataTests: XCTestCase {
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        //Kill the files before the testing so that we are starting from a known state.
+        //Kill the files before the testing tp confirm that the files are being created properly.
         let userData = UserData()
-        userData.Delete_Database(dbToDelete: "UserInfo")
-        userData.Delete_Database(dbToDelete: "Routines")
-        userData.Delete_Database(dbToDelete: "UserExerciseData")
-        userData.Delete_Database(dbToDelete: "StepCount")
+        userData.Delete_Database_File(dbToDelete: "UserInfo")
+        userData.Delete_Database_File(dbToDelete: "Routines")
+        userData.Delete_Database_File(dbToDelete: "UserExerciseData")
+        userData.Delete_Database_File(dbToDelete: "StepCount")
     }
 
     override func tearDown() {
@@ -135,6 +135,21 @@ UserData Class Tests
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
         
+        //Call the clear function.
+        userDB.Clear_UserInfo_Database()
+        
+        userData = userDB.Get_User_Data()
+        
+        XCTAssert( userData.UserName == "DEFAULT_NAME" )
+        XCTAssert( userData.QuestionsAnswered == false )
+        XCTAssert( userData.WalkingDuration == 0 )
+        XCTAssert( userData.ChairAccessible == false )
+        XCTAssert( userData.WeightsAccessible == false )
+        XCTAssert( userData.ResistBandAccessible == false )
+        XCTAssert( userData.PoolAccessible == false )
+        XCTAssert( userData.Intensity == "Light" )
+        XCTAssert( userData.PushNotifications == false )
+        
     }
     
     func test_UserData_Routines() {
@@ -196,6 +211,20 @@ UserData Class Tests
         //Confirm we still can't access our nullRoutine.
         let deletionNull = userData.Get_Routine(NameOfRoutine: nullRoutine)
         XCTAssert( deletionNull.isEmpty == true )
+        
+        //Call the clear function
+        userData.Clear_Routines_Database()
+        
+        let clearedRoutines = userData.Get_Routines()
+        let clearedRoutine1 = userData.Get_Routine(NameOfRoutine: routine1name)
+        let clearedRoutine2 = userData.Get_Routine(NameOfRoutine: routine2name)
+        let clearedRoutineNull = userData.Get_Routine(NameOfRoutine: nullRoutine)
+        
+        XCTAssert( clearedRoutines.isEmpty == true )
+        XCTAssert( clearedRoutine1.isEmpty == true )
+        XCTAssert( clearedRoutine2.isEmpty == true )
+        XCTAssert( clearedRoutineNull.isEmpty == true )
+        
     }
     
     func test_UserData_UserExerciseData() {
@@ -286,7 +315,17 @@ UserData Class Tests
         XCTAssert( deletedDay2 == ["Bicep Curls","Bicep Curls"] )
         XCTAssert( deletedNull.isEmpty == true )
         
-        print("Tests Complete")
+        //Call clear function
+        userData.Clear_UserExerciseData_Database()
+        
+        let clearedDay1 = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 10, TargetDay: 30, TargetHour: 18)
+        let clearedDay2 = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 11, TargetDay: 01, TargetHour: 01)
+        let clearedNull = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 10, TargetDay: 31, TargetHour: 12)
+        
+        XCTAssert(clearedDay1.isEmpty == true )
+        XCTAssert(clearedDay2.isEmpty == true )
+        XCTAssert(clearedNull.isEmpty == true )
+        
     }
     
     func test_UserData_StepCount() {
@@ -294,6 +333,7 @@ UserData Class Tests
         //Declare some vaiables to use
         let firstSteps1 = Int64(1337)
         let firstSteps2 = Int64(404)
+        let firstStepsIncrement = Int64(9000)
         let firstYear = 2019
         let firstMonth = 10
         let firstDay = 31
@@ -301,10 +341,16 @@ UserData Class Tests
         
         let secondSteps1 = Int64(7887)
         let secondSteps2 = Int64(818)
-        let secondYear = 2019
+        let secondStepsIncrement = Int64(604)
+        let secondYear = 2020
         let secondMonth = 11
         let secondDay = 01
-        let secondHour = 01
+        let secondHour = 03
+        
+        let nullYear = 2017
+        let nullMonth = 01
+        let nullDay = 02
+        let nullHour = 00
         
         let userData = UserData()
         
@@ -321,7 +367,7 @@ UserData Class Tests
         
         let first1 = userData.Get_Steps_Taken(TargetYear: firstYear, TargetMonth: firstMonth, TargetDay: firstDay, TargetHour: firstHour)
         let second1 = userData.Get_Steps_Taken(TargetYear: secondYear, TargetMonth: secondMonth, TargetDay: secondDay, TargetHour: secondHour)
-        let null1 = userData.Get_Steps_Taken(TargetYear: 2018, TargetMonth: 01, TargetDay: 01, TargetHour: 01)
+        let null1 = userData.Get_Steps_Taken(TargetYear: nullYear, TargetMonth: nullMonth, TargetDay: nullDay, TargetHour: nullHour)
         
         XCTAssert( first1 == firstSteps1 )
         XCTAssert( second1 == secondSteps1 )
@@ -333,7 +379,7 @@ UserData Class Tests
         
         let first2 = userData.Get_Steps_Taken(TargetYear: firstYear, TargetMonth: firstMonth, TargetDay: firstDay, TargetHour: firstHour)
         let second2 = userData.Get_Steps_Taken(TargetYear: secondYear, TargetMonth: secondMonth, TargetDay: secondDay, TargetHour: secondHour)
-        let null2 = userData.Get_Steps_Taken(TargetYear: 2018, TargetMonth: 01, TargetDay: 01, TargetHour: 01)
+        let null2 = userData.Get_Steps_Taken(TargetYear: nullYear, TargetMonth: nullMonth, TargetDay: nullDay, TargetHour: nullHour)
         
         XCTAssert( first2 == firstSteps2 )
         XCTAssert( second2 == secondSteps2 )
@@ -344,11 +390,34 @@ UserData Class Tests
         
         let first3 = userData.Get_Steps_Taken(TargetYear: firstYear, TargetMonth: firstMonth, TargetDay: firstDay, TargetHour: firstHour)
         let second3 = userData.Get_Steps_Taken(TargetYear: secondYear, TargetMonth: secondMonth, TargetDay: secondDay, TargetHour: secondHour)
-        let null3 = userData.Get_Steps_Taken(TargetYear: 2018, TargetMonth: 01, TargetDay: 01, TargetHour: 01)
+        let null3 = userData.Get_Steps_Taken(TargetYear: nullYear, TargetMonth: nullMonth, TargetDay: nullDay, TargetHour: nullHour)
         
         XCTAssert( first3 == 0 )
         XCTAssert( second3 == secondSteps2 )
         XCTAssert( null3 == 0 )
+        
+        //Confirm increment works
+        userData.Increment_Steps_Taken(Steps: firstStepsIncrement, YearDone: firstYear, MonthDone: firstMonth, DayDone: firstDay, HourDone: firstHour)
+        userData.Increment_Steps_Taken(Steps: secondStepsIncrement, YearDone: secondYear, MonthDone: secondMonth, DayDone: secondDay, HourDone: secondHour)
+        
+        let firstIncrement = userData.Get_Steps_Taken(TargetYear: firstYear, TargetMonth: firstMonth, TargetDay: firstDay, TargetHour: firstHour)
+        let secondIncrement = userData.Get_Steps_Taken(TargetYear: secondYear, TargetMonth: secondMonth, TargetDay: secondDay, TargetHour: secondHour)
+        let nullIncrement = userData.Get_Steps_Taken(TargetYear: nullYear, TargetMonth: nullMonth, TargetDay: nullDay, TargetHour: nullHour)
+        
+        XCTAssert( firstIncrement == first3 + firstStepsIncrement )
+        XCTAssert( secondIncrement == second3 + secondStepsIncrement )
+        XCTAssert( nullIncrement == 0 )
+        
+        //Call clear function
+        userData.Clear_StepCount_Database()
+        
+        let firstCleared = userData.Get_Steps_Taken(TargetYear: firstYear, TargetMonth: firstMonth, TargetDay: firstDay, TargetHour: firstDay)
+        let secondCleared = userData.Get_Steps_Taken(TargetYear: secondYear, TargetMonth: secondMonth, TargetDay: secondDay, TargetHour: secondDay)
+        let nullCleared = userData.Get_Steps_Taken(TargetYear: nullYear, TargetMonth: nullMonth, TargetDay: nullDay, TargetHour: nullHour)
+        
+        XCTAssert( firstCleared == 0 )
+        XCTAssert( secondCleared == 0 )
+        XCTAssert( nullCleared == 0 )
         
     }
 
