@@ -49,7 +49,6 @@ class WalkingQuestionViewController: UIViewController {
             return
         }
         present(destinationViewController, animated: true, completion: nil)
-        
     }
     
     /*

@@ -15,6 +15,7 @@ class SetUpViewController: UIViewController {
     @IBOutlet weak var SetUpButton: UIButton!
     @IBOutlet weak var SkipSetUpButton: UIButton!
     let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
+    //var userN = uData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,8 @@ class SetUpViewController: UIViewController {
             print("Couldn't find the view controller")
             return
         }
-        
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+      
         present(destinationViewController, animated: true, completion: nil)
     }
     

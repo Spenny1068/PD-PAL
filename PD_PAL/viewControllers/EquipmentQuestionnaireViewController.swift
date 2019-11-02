@@ -27,6 +27,11 @@ class EquipmentQuestionnaireViewController: UIViewController {
     @IBOutlet weak var chairLabel: UILabel!
     @IBOutlet weak var weightsLabel: UILabel!
     @IBOutlet weak var poolLabel: UILabel!
+    var counter1 = 0
+    var counter2 = 0
+    var counter3 = 0
+    var counter4 = 0
+    var value1 = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,22 +62,42 @@ class EquipmentQuestionnaireViewController: UIViewController {
         
     }
     
-    @IBAction func checkMarkTapped(sender: UIButton){
-        UIView.animate(withDuration: 0.1, delay: 0.1, options: .curveLinear, animations:{
-            sender.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        }){(success) in
-            UIView.animate(withDuration: 0.1, delay: 0.1, options: .curveLinear, animations: {
-                sender.isSelected = !sender.isSelected
-                sender.transform = .identity
-            }, completion: nil)
-        }
+    @IBAction func resistiveBandTapped(_ sender: UIButton) {
+        counter1 += 1
+        if(counter1 == 1){value1 = false}
+        if(counter1 == 2){counter1 = 0}
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: value1, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
     }
+    
+    @IBAction func chairTapped(_ sender: UIButton) {
+        counter2 += 1
+        if(counter2 == 1){value1 = false}
+        if(counter2 == 2){counter1 = 0}
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: value1, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+    }
+    
+    @IBAction func weightsTapped(_ sender: UIButton) {
+        counter3 += 1
+        if(counter3 == 1){value1 = false}
+        if(counter3 == 2){counter1 = 0}
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: value1, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+    }
+    
+    @IBAction func poolTapped(_ sender: UIButton) {
+        counter4 += 1
+        if(counter4 == 1){value1 = false}
+        if(counter4 == 2){counter1 = 0}
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: value1, intensityDesired: nil, pushNotificationsDesired: nil)
+    }
+    
     
     @IBAction func nextTapped(_ sender: Any) {
         guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "WalkingQuestionPage") as? WalkingQuestionViewController else{
             print("Couldn't find the view controller")
             return
         }
+        print("equipment")
+        print(global_UserData.Get_User_Data())
         present(destinationViewController, animated: true, completion: nil)
     }
     
@@ -82,7 +107,6 @@ class EquipmentQuestionnaireViewController: UIViewController {
             return
         }
         present(destinationViewController, animated: true, completion: nil)
-
     }
     /*
     // MARK: - Navigation
