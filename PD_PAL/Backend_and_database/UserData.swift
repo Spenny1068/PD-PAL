@@ -607,6 +607,9 @@ Auxiliary Methods
         var dbName: String
         
         switch dbToDelete {
+        case UserInfoDatabaseName:
+            print("Deleting the UserInfo database")
+            dbName = UserInfoDatabaseName
         case RoutinesDatabaseName:
             print("Deleting the Routines database")
             dbName = RoutinesDatabaseName
