@@ -12,10 +12,7 @@ import UIKit
 
 class StrengthViewController: UIViewController {
 
-    @IBOutlet weak var ArmsButton: UIButton!
-    @IBOutlet weak var BackButton: UIButton!
-    @IBOutlet weak var CoreButton: UIButton!
-    @IBOutlet weak var LegsButton: UIButton!
+    @IBOutlet weak var WallPushUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +36,8 @@ class StrengthViewController: UIViewController {
         msg.applyPageMsgDesign()
         self.view.addSubview(msg)
         
-        ArmsButton.applyDesign()
-        BackButton.applyDesign()
-        CoreButton.applyDesign()
-        LegsButton.applyDesign()
+        
+        WallPushUpButton.applyDesign()
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))

@@ -24,7 +24,7 @@ class TrendViewController: UIViewController {
         
         // page name
         let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = username + "'s TRENDS"
+        pageName.text = username + "'S TRENDS"
         pageName.applyPageNameDesign()
         self.view.addSubview(pageName)
         NSLayoutConstraint.activate([
