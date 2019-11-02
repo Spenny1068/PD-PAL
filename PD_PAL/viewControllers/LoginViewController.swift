@@ -6,6 +6,7 @@
 //  Copyright © 2019 WareOne. All rights reserved.
 //<Date, Name, Changes made>
 //<Oct. 27, 2019, Izyl Canonicato, Error handling>
+//<Nov. 2, 2019, Izyl Canonicato, Insert/Update questionsAnswered into UserData>
 
 import Foundation
 import UIKit
@@ -40,6 +41,8 @@ class LoginViewController: UIViewController{
         //Store username to DB
         if(userNameTextField.text?.count != 0){
             global_UserData.Update_User_Data(nameGiven: userName, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+            print("Update Username")
+            print(global_UserData.Get_User_Data())
         }
         navigateToQuestionnaire()
     }

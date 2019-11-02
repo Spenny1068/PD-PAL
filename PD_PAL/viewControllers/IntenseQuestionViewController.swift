@@ -5,7 +5,8 @@
 //  Created by icanonic on 2019-10-26.
 //  Copyright © 2019 WareOne. All rights reserved.
 //<Date, Name, Changes made>
-//<Oct. 27, 2019, Izyl Canonicato, programmatic labels >
+//<Oct. 27, 2019, Izyl Canonicato, programmatic labels>
+//<Nov. 2, 2019, Izyl Canonicato, Insert/Update Intensity into UserData>
 
 import UIKit
 
@@ -34,6 +35,8 @@ class IntenseQuestionViewController: UIViewController {
         
         if(button_clicked.count != 0){
             global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil)
+            print("Update Intensity")
+            print(global_UserData.Get_User_Data())
         }
     }
     

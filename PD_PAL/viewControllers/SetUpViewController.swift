@@ -7,6 +7,7 @@
 //<Date, Name, Changes made>
 //<Oct. 27, 2019, Izyl Canonicato, programmatic labels and buttons>
 //<Oct. 28, 2019, Izyl Canonicato, navigation to Routines (Home page)>
+//<Nov. 2, 2019, Izyl Canonicato, Insert/Update UserName into UserData>
 
 import UIKit
 
@@ -15,7 +16,6 @@ class SetUpViewController: UIViewController {
     @IBOutlet weak var SetUpButton: UIButton!
     @IBOutlet weak var SkipSetUpButton: UIButton!
     let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
-    //var userN = uData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +39,8 @@ class SetUpViewController: UIViewController {
             return
         }
         global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        print("Update: QuestionsAnswered")
+        print(global_UserData.Get_User_Data())
       
         present(destinationViewController, animated: true, completion: nil)
     }
