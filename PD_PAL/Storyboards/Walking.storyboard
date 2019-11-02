@@ -43,7 +43,7 @@ EER1cmF0aW9uA
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Walk for 15-30 minutes" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Np2-Gc-g9D">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Np2-Gc-g9D">
                                 <rect key="frame" x="16" y="547" width="343" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,8 +69,9 @@ EER1cmF0aW9uA
                     </view>
                     <connections>
                         <outlet property="DescriptionLabel" destination="Fj5-Gh-6Bm" id="Yj9-O2-ETH"/>
-                        <outlet property="DescriptionText" destination="Z1Y-0T-oVi" id="Qbe-w2-aVE"/>
+                        <outlet property="DescriptionText" destination="Z1Y-0T-oVi" id="V5k-sR-hK7"/>
                         <outlet property="DurationLabel" destination="Qoh-6Z-Uem" id="9yh-sy-ZWO"/>
+                        <outlet property="DurationText" destination="Np2-Gc-g9D" id="AqM-9g-irw"/>
                         <outlet property="ExerciseLabel" destination="n8W-kH-wuO" id="YyE-gQ-zKu"/>
                         <outlet property="SelectButton" destination="Xxd-eN-dlL" id="BRZ-qw-RkV"/>
                     </connections>

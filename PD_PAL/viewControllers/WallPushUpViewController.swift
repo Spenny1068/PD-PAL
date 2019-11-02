@@ -13,14 +13,11 @@ class WallPushUpViewController: UIViewController {
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet var SelectButton: UIButton!
-    @IBOutlet weak var DescriptionText: UITextView!
+    @IBOutlet var DescriptionText: UITextView!
+    @IBOutlet var DurationText: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        
         
         ExerciseLabel.ExerciseDesign()
         DescriptionLabel.DescriptionDurationDesign()
@@ -34,6 +31,7 @@ class WallPushUpViewController: UIViewController {
         // read exercise info into labels
         let readResult = exDB.read_exercise(NameOfExercise: "WALL PUSH-UP")
         DescriptionText.text = readResult.Description
+        DurationText.text = readResult.Duration
 
     }
     

@@ -150,28 +150,28 @@ class ExerciseDatabase {
                         Category: "Strength",
                         Body: "Chest",
                         Link: "bubba",
-                        Duration: "")
+                        Duration: "Complete 3 sets of 10 repititions")
         
         insert_exercise(Name: "WALKING",
                         Desc: "For optimal results perform this exercise on a track.",
                         Category: "Cardio",
                         Body: "None",
                         Link: "bubba",
-                        Duration: "")
+                        Duration: "Walk for 15-30 minutes")
         
         insert_exercise(Name: "SINGLE LEG STANCE",
                         Desc: "The One Leg Stance is done to impove balance. To perform a One leg Stance, bend your knee and raise your leg. Hold the chair with the other hand for support.",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "Bubba",
-                        Duration: "")
+                        Duration: "Complete 3 sets of 10 repititions")
         
         insert_exercise(Name: "QUAD STRETCH",
                         Desc: "A Quad Stretch is done to stretch the thigh and improve leg flexibility. To perform a Quad stretch, stand on one leg and and hold you your leg with your hand. ",
                         Category: "Balance",
                         Body: "None",
                         Link: "Bubba",
-                        Duration: "")
+                        Duration: "Stand on each leg for one minute. Repeat 3 times")
         
         
     }

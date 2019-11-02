@@ -46,7 +46,7 @@ EERlc2NyaXB0aW9uA
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Complete 3 sets of 10 repititions" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dBS-Oj-E5M">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dBS-Oj-E5M">
                                 <rect key="frame" x="16" y="547" width="343" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,6 +71,7 @@ EER1cmF0aW9uA
                         <outlet property="DescriptionLabel" destination="KeH-5m-TYS" id="KRn-7b-ToQ"/>
                         <outlet property="DescriptionText" destination="QHC-h9-0XD" id="xCH-Nj-5Ul"/>
                         <outlet property="DurationLabel" destination="Uec-V3-b2M" id="Zem-Vi-m1f"/>
+                        <outlet property="DurationText" destination="dBS-Oj-E5M" id="r4G-he-pRf"/>
                         <outlet property="ExerciseLabel" destination="pPc-7p-bTs" id="ch6-cY-tQQ"/>
                         <outlet property="SelectButtion" destination="XaH-0Z-Gwx" id="xSB-x8-k7n"/>
                     </connections>

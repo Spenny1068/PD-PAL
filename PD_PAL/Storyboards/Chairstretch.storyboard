@@ -49,7 +49,7 @@ EER1cmF0aW9uA
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Select"/>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Complete 3 sets of 10 repititions" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IYN-Zf-6SG">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IYN-Zf-6SG">
                                 <rect key="frame" x="16" y="547" width="343" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,6 +71,7 @@ EER1cmF0aW9uA
                         <outlet property="DescriptionLabel" destination="06O-4h-ogB" id="Ho6-W6-f0L"/>
                         <outlet property="DescriptionText" destination="wlM-Xl-ByF" id="hfT-HR-gbT"/>
                         <outlet property="DurationLabel" destination="ja5-M3-QHw" id="onq-bY-p5z"/>
+                        <outlet property="DurationText" destination="IYN-Zf-6SG" id="4f5-Pr-Ede"/>
                         <outlet property="ExerciseLabel" destination="B0e-As-KNZ" id="rbi-5g-YLM"/>
                         <outlet property="SelectButton" destination="ANn-l6-g0r" id="bsp-FR-tYY"/>
                     </connections>

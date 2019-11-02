@@ -53,7 +53,7 @@ EFFVQUQgU1RSRVRDSA
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Stand on each leg for one minute. Repeat 3 times" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QYL-Pb-sVK">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QYL-Pb-sVK">
                                 <rect key="frame" x="16" y="547" width="343" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -74,6 +74,7 @@ EFFVQUQgU1RSRVRDSA
                         <outlet property="DescriptionLabel" destination="j5g-zb-Pn5" id="yEI-Wu-Dxy"/>
                         <outlet property="DescriptionText" destination="fVt-Eb-CpK" id="rAS-bd-4dt"/>
                         <outlet property="DurationLabel" destination="c9C-aO-uPs" id="iUQ-Ag-cNx"/>
+                        <outlet property="DurationText" destination="QYL-Pb-sVK" id="Jeb-7C-erI"/>
                         <outlet property="ExerciseLabel" destination="yFQ-NZ-Qxp" id="SoS-6u-Eg1"/>
                         <outlet property="SelectButton" destination="DBk-Pp-Y34" id="VoT-Qy-N5s"/>
                     </connections>

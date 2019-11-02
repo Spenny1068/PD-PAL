@@ -362,10 +362,10 @@
 			children = (
 				45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */,
 				4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */,
-				45EA1DDE236595BD00E6D070 /* Walking.storyboard */,
 				4517F9C52351587700E5ED83 /* Main.storyboard */,
 				26DC60EF2364C51C0064B314 /* Questionnare.storyboard */,
 				45BE9268236660920076E729 /* Categories.storyboard */,
+				45EA1DDE236595BD00E6D070 /* Walking.storyboard */,
 				45EB46272367C5BE009BA044 /* OneLegSquat.storyboard */,
 				45EB46252367C4CF009BA044 /* Chairstretch.storyboard */,
 				457C0F692366B54500A918B2 /* Chest.storyboard */,

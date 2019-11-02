@@ -13,8 +13,9 @@ class WalkingViewController: UIViewController {
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet var SelectButton: UIButton!
+    @IBOutlet var DurationText: UITextView!
+    @IBOutlet var DescriptionText: UITextView!
     
-    @IBOutlet weak var DescriptionText: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +33,7 @@ class WalkingViewController: UIViewController {
         // read exercise info into labels
         let readResult = exDB.read_exercise(NameOfExercise: "WALKING")
         DescriptionText.text = readResult.Description
-
+        DurationText.text = readResult.Duration
     }
     
     // called when home button on navigation bar is tapped

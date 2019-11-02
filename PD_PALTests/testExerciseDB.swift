@@ -29,6 +29,7 @@ class testExerciseDB: XCTestCase {
     func testDatabase_insertion() {
         
         let exDB = ExerciseDatabase()
+  
         
         let desc = "Elevate Weights while keepings arms still"
         let cat = "Strength"
