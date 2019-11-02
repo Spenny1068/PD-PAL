@@ -531,13 +531,23 @@ Methods that insert or update data.
     }
     
     //Set the steps taken for that hour in the StepCount database.
-    //Call this each time you wish to update the number of steps taken within an hour.
+    //Call this each time you wish to update the number of steps taken within an hour, ignoring what was previously there.
     func Update_Steps_Taken(Steps: Int64, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
+        //Theres is an odd behaviour with or: .replace, so it will be easier to just delete the row and re-insert.
+        self.Delete_Steps_Taken(YearDone: YearDone, MonthDone: MonthDone, DayDone: DayDone, HourDone: HourDone)
         do {
             try StepCount.run(StepCountTable.insert(or: .replace, StepsTaken <- Steps, StepYear <- YearDone, StepMonth <- MonthDone, StepDay <- DayDone, StepHour <- HourDone))
         } catch {
             print("Failed to insert \(Steps) taken on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into StepCount database")
         }
+    }
+    
+    //Increments the number of steps taken for a specific hour.
+    //Call this function when you want to add extra steps onto what is currently there.
+    func Increment_Steps_Taken(Steps: Int64, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
+        //Get the current value, then call Update_Step_Count().
+        let currentStepCount = self.Get_Steps_Taken(TargetYear: YearDone, TargetMonth: MonthDone, TargetDay: MonthDone, TargetHour: HourDone)
+        self.Update_Steps_Taken(Steps: (currentStepCount + Steps), YearDone: YearDone, MonthDone: MonthDone, DayDone: DayDone, HourDone: HourDone)
     }
     
 /*
