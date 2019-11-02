@@ -24,6 +24,8 @@
     User Info now uses a database to store data between reboots
  - 01/11/2019 : William Huong
     Fixed Update_Step_Count(), Added Increment_Step_Count()
+ - 01/11/2019 : William Huong
+    Added UserInfo database to Delete_Database()
  */
 
 /*
@@ -281,7 +283,7 @@ class UserData {
                 }
                 
                 //User Info is special. We need it to always have a single row.
-                self.Update_User_Data(nameGiven: "Default", questionsAnswered: false, walkingDesired: false, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, intensityDesired: -1, pushNotificationsDesired: false)
+                self.Update_User_Data(nameGiven: "DEFAULT_NAME", questionsAnswered: false, walkingDesired: false, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, intensityDesired: -1, pushNotificationsDesired: false)
             }
         } catch {
             print("Error connecting to the UserInfo database")
@@ -385,7 +387,7 @@ Methods that get data from class
             print("Failed to get User Info")
         }
         
-        return (UserName: "Error", QuestionsAnswered: false, WalkingOK: false, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, Intensity: 0, PushNotifications: false)
+        return (UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingOK: false, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, Intensity: -1, PushNotifications: false)
     }
     
     //Gets all the routines available.

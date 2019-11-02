@@ -30,6 +30,7 @@ class UserDataTests: XCTestCase {
         
         //Kill the files before the testing so that we are starting from a known state.
         let userData = UserData()
+        userData.Delete_Database(dbToDelete: "UserInfo")
         userData.Delete_Database(dbToDelete: "Routines")
         userData.Delete_Database(dbToDelete: "UserExerciseData")
         userData.Delete_Database(dbToDelete: "StepCount")
@@ -51,11 +52,23 @@ UserData Class Tests
         //Create the object.
         let userDB = UserData()
         
+        //Check that the default values before inserting.
+        var userData = userDB.Get_User_Data()
+        
+        XCTAssert( userData.UserName == "DEFAULT_NAME" )
+        XCTAssert( userData.QuestionsAnswered == false )
+        XCTAssert( userData.WalkingOK == false )
+        XCTAssert( userData.ChairAccessible == false )
+        XCTAssert( userData.WeightsAccessible == false )
+        XCTAssert( userData.ResistBandAccessible == false )
+        XCTAssert( userData.Intensity == -1 )
+        XCTAssert( userData.PushNotifications == false )
+        
         //Provide user data.
         userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: false, walkingDesired: false, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, intensityDesired: 0, pushNotificationsDesired: false)
         
         //Get the user info
-        var userData = userDB.Get_User_Data()
+        userData = userDB.Get_User_Data()
         
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == false )
