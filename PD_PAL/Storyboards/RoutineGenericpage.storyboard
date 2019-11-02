@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kxx-sF-VzX">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kxx-sF-VzX">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,14 +28,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3qq-P1-biq">
-                                <rect key="frame" x="2" y="197" width="371" height="400"/>
+                                <rect key="frame" x="2" y="196" width="371" height="400"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvP-dt-mly">
                                         <rect key="frame" x="0.0" y="0.0" width="371" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="61" id="QCQ-al-HUT"/>
                                             <constraint firstAttribute="width" constant="371" id="SV6-Eh-3fo"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="360" id="gpv-qR-Sht"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Exercise 1"/>
@@ -41,8 +42,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3U-Dh-tBy">
                                         <rect key="frame" x="0.0" y="169.5" width="371" height="61"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="371" id="7SN-OM-bfw"/>
                                             <constraint firstAttribute="height" constant="61" id="hom-qw-q3m"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="360" id="wvI-AG-TRj"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Exercise 2"/>
@@ -50,8 +51,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBc-6D-fh7">
                                         <rect key="frame" x="0.0" y="339" width="371" height="61"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="371" id="6To-YN-LEB"/>
                                             <constraint firstAttribute="height" constant="61" id="PHT-CL-EZP"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="360" id="whP-jX-rqG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Exercise 3"/>
@@ -67,6 +68,10 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Sj-dg-Qd4" firstAttribute="bottom" secondItem="3qq-P1-biq" secondAttribute="bottom" constant="71" id="1wO-Mg-fqL"/>
+                            <constraint firstItem="3qq-P1-biq" firstAttribute="top" secondItem="6Sj-dg-Qd4" secondAttribute="top" constant="176" id="2mM-5k-Jaj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Sj-dg-Qd4"/>
                     </view>
                     <connections>
