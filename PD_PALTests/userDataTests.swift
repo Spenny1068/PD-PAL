@@ -19,6 +19,8 @@ Revision History
     Updated test for greater coverage
  - 01/11/2019 : William Huong
     Updated test_UserData_UserInfo()
+ - 02/11/2019 : William Huong
+    test_UserData_UserInfo() now checks state after calling Delete_userInfo()
  */
 
 
@@ -115,6 +117,21 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == true )
         XCTAssert( userData.Intensity == "Intense" )
         XCTAssert( userData.PushNotifications == true )
+        
+        //Check Get_User_Data() returns the default values after deleting the user data. Important because of the way I have implemented this database.
+        userDB.Delete_userInfo()
+        
+        userData = userDB.Get_User_Data()
+        
+        XCTAssert( userData.UserName == "Ebenezer Scrooge" )
+        XCTAssert( userData.QuestionsAnswered == false )
+        XCTAssert( userData.WalkingDuration == 0 )
+        XCTAssert( userData.ChairAccessible == false )
+        XCTAssert( userData.WeightsAccessible == false )
+        XCTAssert( userData.ResistBandAccessible == false )
+        XCTAssert( userData.PoolAccessible == false )
+        XCTAssert( userData.Intensity == "Light" )
+        XCTAssert( userData.PushNotifications == false )
         
     }
     
