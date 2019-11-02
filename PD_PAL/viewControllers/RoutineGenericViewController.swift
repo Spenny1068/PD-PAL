@@ -19,28 +19,30 @@ class RoutineGenericViewController: UIViewController {
     @IBOutlet var Exercise1: UIButton!
     @IBOutlet var Exercise2: UIButton!
     @IBOutlet var Exercise3: UIButton!
-    
-    @IBOutlet var Routine1Button: UILabel!
-    
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
+        
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
         
+        // page name
+        let pageName = UILabel(frame: CGRect.zero)
+        pageName.text = "ROUTINE X"
+        pageName.applyPageNameDesign()
+        self.view.addSubview(pageName)
+        NSLayoutConstraint.activate([
+            pageName.widthAnchor.constraint(equalToConstant: 350),
+            pageName.heightAnchor.constraint(equalToConstant: 50),
+            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+        ])
+        
         Exercise1.applyDesign()
         Exercise2.applyDesign()
         Exercise3.applyDesign()
-        Routine1Button.RoutineButtonDesign()
-        
-        
-
-
-        
-        // Do any additional setup after loading the view.
     }
     
     // called when home button on navigation bar is tapped
@@ -50,11 +52,6 @@ class RoutineGenericViewController: UIViewController {
         self.present(newViewController, animated: true, completion: nil)
     }
     
-    
-    
-
-    
-
     /*
     // MARK: - Navigation
 
@@ -65,13 +62,6 @@ class RoutineGenericViewController: UIViewController {
     }
     */
 
-}
-
-extension UILabel {
-    func RoutineButtonDesign() {
-        self.backgroundColor = UIColor.black                                    // background color
-        self.textColor = UIColor.white 
-    }
 }
 
 

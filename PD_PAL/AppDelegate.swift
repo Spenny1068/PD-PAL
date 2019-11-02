@@ -26,9 +26,9 @@ extension UILabel {
     
     // applies position, constraint, and design properties to page name labels
     func applyPageNameDesign() {
-        self.frame = CGRect(x: -40, y: 40, width: 300, height: 100)            // rectangle coordinates
-        self.textAlignment = .center                                           // text alignment
-        //self.translatesAutoresizingMaskIntoConstraints = false               // turn off rectangle coordinates
+        //self.frame = CGRect(x: -40, y: 40, width: 300, height: 100)            // rectangle coordinates
+        self.textAlignment = .left                                             // text alignment
+        self.translatesAutoresizingMaskIntoConstraints = false               // turn off rectangle coordinates
         self.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)              // text font and size
     }
     

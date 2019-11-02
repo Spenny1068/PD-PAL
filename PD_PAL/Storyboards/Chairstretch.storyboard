@@ -16,13 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SINGLE LEG STANCE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0e-As-KNZ">
-                                <rect key="frame" x="16" y="75" width="286" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06O-4h-ogB">
                                 <rect key="frame" x="16" y="313" width="162" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -72,7 +65,6 @@ EER1cmF0aW9uA
                         <outlet property="DescriptionText" destination="wlM-Xl-ByF" id="hfT-HR-gbT"/>
                         <outlet property="DurationLabel" destination="ja5-M3-QHw" id="onq-bY-p5z"/>
                         <outlet property="DurationText" destination="IYN-Zf-6SG" id="4f5-Pr-Ede"/>
-                        <outlet property="ExerciseLabel" destination="B0e-As-KNZ" id="rbi-5g-YLM"/>
                         <outlet property="SelectButton" destination="ANn-l6-g0r" id="bsp-FR-tYY"/>
                     </connections>
                 </viewController>

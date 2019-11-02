@@ -56,13 +56,6 @@ EER1cmF0aW9uA
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Select"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WALKING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8W-kH-wuO">
-                                <rect key="frame" x="16" y="75" width="229" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6rl-rO-asZ"/>
@@ -72,7 +65,6 @@ EER1cmF0aW9uA
                         <outlet property="DescriptionText" destination="Z1Y-0T-oVi" id="V5k-sR-hK7"/>
                         <outlet property="DurationLabel" destination="Qoh-6Z-Uem" id="9yh-sy-ZWO"/>
                         <outlet property="DurationText" destination="Np2-Gc-g9D" id="AqM-9g-irw"/>
-                        <outlet property="ExerciseLabel" destination="n8W-kH-wuO" id="YyE-gQ-zKu"/>
                         <outlet property="SelectButton" destination="Xxd-eN-dlL" id="BRZ-qw-RkV"/>
                     </connections>
                 </viewController>
