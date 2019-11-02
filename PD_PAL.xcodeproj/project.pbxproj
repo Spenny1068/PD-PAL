@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		26DC60F02364C51C0064B314 /* Questionnare.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26DC60EF2364C51C0064B314 /* Questionnare.storyboard */; };
+		2EF4E7FD236CFFEB00CCECBB /* ExerciseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4E7FC236CFFEB00CCECBB /* ExerciseDatabase.swift */; };
+		2EF4E7FF236CFFFA00CCECBB /* stepCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4E7FE236CFFFA00CCECBB /* stepCounter.swift */; };
+		2EF4E801236D000B00CCECBB /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4E800236D000B00CCECBB /* UserData.swift */; };
 		4510853D23639DB800338F82 /* flexibility.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510852823639DB800338F82 /* flexibility.png */; };
 		4510853E23639DB800338F82 /* routine4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4510852923639DB800338F82 /* routine4.jpg */; };
 		4510853F23639DB800338F82 /* routine1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4510852A23639DB800338F82 /* routine1.jpg */; };
@@ -82,6 +85,9 @@
 
 /* Begin PBXFileReference section */
 		26DC60EF2364C51C0064B314 /* Questionnare.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Questionnare.storyboard; sourceTree = "<group>"; };
+		2EF4E7FC236CFFEB00CCECBB /* ExerciseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDatabase.swift; sourceTree = "<group>"; };
+		2EF4E7FE236CFFFA00CCECBB /* stepCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stepCounter.swift; sourceTree = "<group>"; };
+		2EF4E800236D000B00CCECBB /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		4510852823639DB800338F82 /* flexibility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flexibility.png; sourceTree = "<group>"; };
 		4510852923639DB800338F82 /* routine4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = routine4.jpg; sourceTree = "<group>"; };
 		4510852A23639DB800338F82 /* routine1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = routine1.jpg; sourceTree = "<group>"; };
@@ -168,6 +174,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EF4E802236D002100CCECBB /* Backend_and_database */ = {
+			isa = PBXGroup;
+			children = (
+				2EF4E800236D000B00CCECBB /* UserData.swift */,
+				2EF4E7FE236CFFFA00CCECBB /* stepCounter.swift */,
+				2EF4E7FC236CFFEB00CCECBB /* ExerciseDatabase.swift */,
+			);
+			path = Backend_and_database;
+			sourceTree = "<group>";
+		};
 		4510852723639DB800338F82 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +230,7 @@
 		4517F9BC2351587700E5ED83 /* PD_PAL */ = {
 			isa = PBXGroup;
 			children = (
+				2EF4E802236D002100CCECBB /* Backend_and_database */,
 				45EB46042367C0AA009BA044 /* viewControllers */,
 				45BE9267236660920076E729 /* Storyboards */,
 				4510852E23639DB800338F82 /* cardio.png */,
@@ -449,6 +466,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EF4E801236D000B00CCECBB /* UserData.swift in Sources */,
+				2EF4E7FF236CFFFA00CCECBB /* stepCounter.swift in Sources */,
+				2EF4E7FD236CFFEB00CCECBB /* ExerciseDatabase.swift in Sources */,
 				AE4D724F236BD963003A8BE3 /* SingleLegStanceViewController.swift in Sources */,
 				45EB461A2367C0AA009BA044 /* TrendViewController.swift in Sources */,
 				AE4D724D236BCB5A003A8BE3 /* WallPushUpViewController.swift in Sources */,

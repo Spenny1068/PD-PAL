@@ -6,9 +6,13 @@
 //  Copyright © 2019 WareOne. All rights reserved.
 //
 
-// REVISION HISTORY:
-// <Date, Name, Changes made>
-// <Oct. 27, 2019, Spencer Lall, Setup navigation bar and code refactor>
+/*
+REVISION HISTORY:
+ <Date, Name, Changes made>
+ <Oct. 27, 2019, Spencer Lall, Setup navigation bar and code refactor>
+ -30/10/2019 Julia Kim: added step counter instance to call track_steps upon the app launch
+ 
+ */
 
 
 import UIKit
@@ -16,6 +20,7 @@ import UIKit
 class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     var pageControl = UIPageControl()
+    let stepTracker = StepCount()
 
     // view controllers in PageViewController
     lazy var orderedViewControllers: [UIViewController] = {
@@ -24,9 +29,13 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
                 self.newVc(viewController: "TrendsPage"),
                 self.newVc(viewController: "SettingsPage")]
     }()
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        stepTracker.track_steps()
+       
         self.dataSource = self
         
                                     /* MAIN PAGE NAVIGATION BAR CODE */
