@@ -13,7 +13,6 @@ import UIKit
 
 class TrendViewController: UIViewController {
 
-
     @IBOutlet weak var Title_label: UILabel!
     
     override func viewDidLoad() {

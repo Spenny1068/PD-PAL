@@ -22,6 +22,12 @@
     Finished implementing methods
  - 01/11/2019 : William Huong
     User Info now uses a database to store data between reboots
+ - 01/11/2019 : William Huong
+    Fixed Update_Step_Count(), Added Increment_Step_Count()
+ - 01/11/2019 : William Huong
+    Added UserInfo database to Delete_Database()
+ - 01/11/2019 : William Huong
+    Updated User Info columns to match questions asked
  */
 
 /*
@@ -62,11 +68,13 @@ class UserData {
     let UserInfoTable = Table("UserInfo")
     let UserName = Expression<String>("Name")
     let QuestionsAnswered = Expression<Bool>("QuestionsAnswered")
-    let WalkingOK = Expression<Bool>("WalkingOK")
+    let WalkingDuration = Expression<Int>("WalkingDuration")
     let ChairAccessible = Expression<Bool>("ChairAccessible")
     let WeightsAccessible = Expression<Bool>("WeightsAccessible")
     let ResistBandAccessible = Expression<Bool>("ResistBandAccessible")
-    let Intensity = Expression<Int>("Intensity")
+    let PoolAccessible = Expression<Bool>("PoolAccessible")
+    //Can take the values 'Light', 'Moderate', 'Intense'
+    let Intensity = Expression<String>("Intensity")
     let PushNotifications = Expression<Bool>("PushNotifications")
     
     //Routines database
@@ -264,10 +272,11 @@ class UserData {
                 let createTable = UserInfoTable.create{ (table) in
                     table.column(UserName, primaryKey: true)
                     table.column(QuestionsAnswered)
-                    table.column(WalkingOK)
+                    table.column(WalkingDuration)
                     table.column(ChairAccessible)
                     table.column(WeightsAccessible)
                     table.column(ResistBandAccessible)
+                    table.column(PoolAccessible)
                     table.column(Intensity)
                     table.column(PushNotifications)
                 }
@@ -279,7 +288,7 @@ class UserData {
                 }
                 
                 //User Info is special. We need it to always have a single row.
-                self.Update_User_Data(nameGiven: "Default", questionsAnswered: false, walkingDesired: false, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, intensityDesired: -1, pushNotificationsDesired: false)
+                self.Update_User_Data(nameGiven: "DEFAULT_NAME", questionsAnswered: false, walkingDuration: 0, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, poolAvailable: false, intensityDesired: "Light", pushNotificationsDesired: false)
             }
         } catch {
             print("Error connecting to the UserInfo database")
@@ -369,21 +378,21 @@ Methods that get data from class
     
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
-    func Get_User_Data() -> (UserName: String, QuestionsAnswered: Bool, WalkingOK: Bool, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, Intensity: Int, PushNotifications: Bool) {
-        //return (UserName, QuestionsAnswered, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
+    func Get_User_Data() -> (UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool) {
+        //return (UserName, QuestionsAnswered, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, PoolAccessible, Intensity, PushNotifications)
         do {
             let userInfo = try UserInfo.pluck(UserInfoTable)
             
             if userInfo == nil {
-                return (UserName: "Error", QuestionsAnswered: false, WalkingOK: false, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, Intensity: 0, PushNotifications: false)
+                return (UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
             }
             
-            return (UserName: userInfo![UserName], QuestionsAnswered: userInfo![QuestionsAnswered], WalkingOK: userInfo![WalkingOK], ChairAccessible: userInfo![ChairAccessible], WeightsAccessible: userInfo![WeightsAccessible], ResistBandAccessible: userInfo![ResistBandAccessible], Intensity: userInfo![Intensity], PushNotifications: userInfo![PushNotifications])
+            return (UserName: userInfo![UserName], QuestionsAnswered: userInfo![QuestionsAnswered], WalkingDuration: userInfo![WalkingDuration], ChairAccessible: userInfo![ChairAccessible], WeightsAccessible: userInfo![WeightsAccessible], ResistBandAccessible: userInfo![ResistBandAccessible], PoolAccessible: userInfo![PoolAccessible], Intensity: userInfo![Intensity], PushNotifications: userInfo![PushNotifications])
         } catch {
             print("Failed to get User Info")
         }
         
-        return (UserName: "Error", QuestionsAnswered: false, WalkingOK: false, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, Intensity: 0, PushNotifications: false)
+        return (UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
     }
     
     //Gets all the routines available.
@@ -459,11 +468,12 @@ Methods that insert or update data.
     func Update_User_Data(
         nameGiven: String?,
         questionsAnswered: Bool?,
-        walkingDesired: Bool?,
+        walkingDuration: Int?,
         chairAvailable: Bool?,
         weightsAvailable: Bool?,
         resistBandAvailable: Bool?,
-        intensityDesired: Int?,
+        poolAvailable: Bool?,
+        intensityDesired: String?,
         pushNotificationsDesired: Bool?)
     {
 /*
@@ -487,10 +497,11 @@ Methods that insert or update data.
         do {
             try UserInfo.run(UserInfoTable.insert(UserName <- (nameGiven ?? currentUserInfo.UserName),
                                                   QuestionsAnswered <- (questionsAnswered ?? currentUserInfo.QuestionsAnswered),
-                                                  WalkingOK <- (walkingDesired ?? currentUserInfo.WalkingOK),
+                                                  WalkingDuration <- (walkingDuration ?? currentUserInfo.WalkingDuration),
                                                   ChairAccessible <- (chairAvailable ?? currentUserInfo.ChairAccessible),
                                                   WeightsAccessible <- (weightsAvailable ?? currentUserInfo.WeightsAccessible),
                                                   ResistBandAccessible <- (resistBandAvailable ?? currentUserInfo.ResistBandAccessible),
+                                                  PoolAccessible <- (resistBandAvailable ?? currentUserInfo.PoolAccessible),
                                                   Intensity <- (intensityDesired ?? currentUserInfo.Intensity),
                                                   PushNotifications <- (pushNotificationsDesired ?? currentUserInfo.PushNotifications)
                                                   ))
@@ -531,13 +542,23 @@ Methods that insert or update data.
     }
     
     //Set the steps taken for that hour in the StepCount database.
-    //Call this each time you wish to update the number of steps taken within an hour.
+    //Call this each time you wish to update the number of steps taken within an hour, ignoring what was previously there.
     func Update_Steps_Taken(Steps: Int64, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
+        //Theres is an odd behaviour with or: .replace, so it will be easier to just delete the row and re-insert.
+        self.Delete_Steps_Taken(YearDone: YearDone, MonthDone: MonthDone, DayDone: DayDone, HourDone: HourDone)
         do {
             try StepCount.run(StepCountTable.insert(or: .replace, StepsTaken <- Steps, StepYear <- YearDone, StepMonth <- MonthDone, StepDay <- DayDone, StepHour <- HourDone))
         } catch {
             print("Failed to insert \(Steps) taken on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into StepCount database")
         }
+    }
+    
+    //Increments the number of steps taken for a specific hour.
+    //Call this function when you want to add extra steps onto what is currently there.
+    func Increment_Steps_Taken(Steps: Int64, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
+        //Get the current value, then call Update_Step_Count().
+        let currentStepCount = self.Get_Steps_Taken(TargetYear: YearDone, TargetMonth: MonthDone, TargetDay: MonthDone, TargetHour: HourDone)
+        self.Update_Steps_Taken(Steps: (currentStepCount + Steps), YearDone: YearDone, MonthDone: MonthDone, DayDone: DayDone, HourDone: HourDone)
     }
     
 /*
@@ -595,6 +616,9 @@ Auxiliary Methods
         var dbName: String
         
         switch dbToDelete {
+        case UserInfoDatabaseName:
+            print("Deleting the UserInfo database")
+            dbName = UserInfoDatabaseName
         case RoutinesDatabaseName:
             print("Deleting the Routines database")
             dbName = RoutinesDatabaseName

@@ -11,8 +11,12 @@
 // <Oct. 26, 2019, Spencer Lall, Added struct for global variables>
 // <Oct. 27, 2019, Spencer Lall, Added methods for designs, constraints, and positions for labels and buttons>
 // <Nov. 1, 2019, Izyl Canonicato, Added Questionnaire page button and label methods>
+// <Nov. 1, 2019, William Huong, Added global variables for UserData, ExerciseDatabase>
 
 import UIKit
+
+let exDB = ExerciseDatabase()
+
 
 /* put global variables in this struct */
 struct Setup {
@@ -150,3 +154,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+//Global instances of our classes
+let global_UserData = UserData()
+let global_ExerciseData = ExerciseDatabase()

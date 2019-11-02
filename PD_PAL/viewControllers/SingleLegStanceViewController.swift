@@ -13,6 +13,7 @@ class SingleLegStanceViewController: UIViewController {
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet var SelectButton: UIButton!
+    @IBOutlet weak var DescriptionText: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +24,15 @@ class SingleLegStanceViewController: UIViewController {
         DescriptionLabel.DescriptionDurationDesign()
         DurationLabel.DescriptionDurationDesign()
         SelectButton.DesignSelect()
+                
+        // read exercise info into labels
+        let readResult = exDB.read_exercise(NameOfExercise: "SINGLE LEG STANCE")
+        DescriptionText.text = readResult.Description
+        
         
         // home button on navigation bar
-               let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-               self.navigationItem.rightBarButtonItem  = homeButton
+        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
+        self.navigationItem.rightBarButtonItem  = homeButton
 
     }
     

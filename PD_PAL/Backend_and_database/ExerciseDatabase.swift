@@ -17,6 +17,8 @@ Revision History
      Commented out broken code related to getting contents of documents directory.
  - 27/10/2019 : William Xue
      Fixed File Initialization sequence, added read_exercise func and remove_database func
+ - 01/11/2019 : William Xue
+     Added function to return all of the exercise names
  */
 
 /*
@@ -50,6 +52,7 @@ class ExerciseDatabase {
     let body = Expression<String>("Body")
     //create link "Identifier to actual media"
     let link = Expression<String>("Link")
+    let duration = Expression<String>("Duration")
     
     
     let fileName = "exercises"
@@ -61,8 +64,7 @@ class ExerciseDatabase {
     //if the File exercises.sqlite3 exists, will read and check that it's not empty, then open with SQLite Library
     //if the file does not exist, will open and create the SQLite Database and insert Table
     init() {
-        
-
+    
         var database_already_exists = false
         var fileURL : URL
         
@@ -141,7 +143,37 @@ class ExerciseDatabase {
              }
                
         }
-            
+        
+        // hardcoding 4 default exercises for version 1
+        insert_exercise(Name: "WALL PUSH-UP",
+                        Desc: "A Wall Push-up is done to strengthen the upper body with a focus on the arms and chest. To perform a Wall Push-up, face the wall and extend your hands towards the wall. Now bend your elbows and lean towards the wall" ,
+                        Category: "Strength",
+                        Body: "Chest",
+                        Link: "bubba",
+                        Duration: "")
+        
+        insert_exercise(Name: "WALKING",
+                        Desc: "For optimal results perform this exercise on a track.",
+                        Category: "Cardio",
+                        Body: "None",
+                        Link: "bubba",
+                        Duration: "")
+        
+        insert_exercise(Name: "SINGLE LEG STANCE",
+                        Desc: "The One Leg Stance is done to impove balance. To perform a One leg Stance, bend your knee and raise your leg. Hold the chair with the other hand for support.",
+                        Category: "Flexibility",
+                        Body: "None",
+                        Link: "Bubba",
+                        Duration: "")
+        
+        insert_exercise(Name: "QUAD STRETCH",
+                        Desc: "A Quad Stretch is done to stretch the thigh and improve leg flexibility. To perform a Quad stretch, stand on one leg and and hold you your leg with your hand. ",
+                        Category: "Balance",
+                        Body: "None",
+                        Link: "Bubba",
+                        Duration: "")
+        
+        
     }
 
     //Assuming the database is empty,
@@ -154,6 +186,7 @@ class ExerciseDatabase {
             table.column(category)
             table.column(body)
             table.column(link)
+            table.column(duration)
         }
         do{
             try self.database.run(createTable)
@@ -167,8 +200,9 @@ class ExerciseDatabase {
     
     
     //Insert an individual exercise.
-    func insert_exercise(Name: String , Desc: String, Category: String, Body: String, Link: String) {
-        let insert = exerciseList.insert(name <- Name, descriptions <- Desc, category <- Category, body <- Body, link <- Link)
+    func insert_exercise(Name: String , Desc: String, Category: String, Body: String, Link: String, Duration: String) {
+        let insert = exerciseList.insert(name <- Name, descriptions <- Desc, category <- Category,
+                                         body <- Body, link <- Link, duration <- Duration)
         do {
             try database.run(insert)
         }
@@ -178,17 +212,40 @@ class ExerciseDatabase {
     }
     
     
+    //returns all exercise names in an array
+    func exercise_names() -> ([String])
+    {
+        var returnVal = [String]()
+        do{
+            let query = exerciseList
+            for exercise in try database.prepare(query)
+            {
+                //add all the names to the end
+                returnVal.append(exercise[name])
+            }
+            return returnVal
+        }
+        catch
+        {
+            print("\(error.localizedDescription)")
+        }
+        
+        //could not find so return empty
+        return returnVal
+    }
+    
+    
     
     //Read an individual exercise
     //Will X, func tested in Unit Test testDatabase_insertion
     //Make sure to give it a NameOfExercise that exists in the database, otherwise will return empty string
-    func read_exercise(NameOfExercise: String) ->(Description: String,Category: String, Body: String, Link: String)
+    func read_exercise(NameOfExercise: String) ->(Description: String,Category: String, Body: String, Link: String, Duration: String)
     {
         do{
             let query = exerciseList.filter(name == NameOfExercise)
             for exercise in try database.prepare(query)
             {
-                let returnVal = (exercise[descriptions],exercise[category],exercise[body], exercise[link])
+                let returnVal = (exercise[descriptions],exercise[category],exercise[body], exercise[link], exercise[duration])
                 return returnVal
             }
         }
@@ -198,7 +255,7 @@ class ExerciseDatabase {
         }
         
         //could not find so return empty
-        return ("","","","")
+        return ("","","","","")
     }
     
     
