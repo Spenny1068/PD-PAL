@@ -15,9 +15,6 @@
 
 import UIKit
 
-let exDB = ExerciseDatabase()
-
-
 /* put global variables in this struct */
 struct Setup {
     // color schemes

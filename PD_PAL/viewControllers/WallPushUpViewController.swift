@@ -29,7 +29,7 @@ class WallPushUpViewController: UIViewController {
         self.navigationItem.rightBarButtonItem  = homeButton
         
         // read exercise info into labels
-        let readResult = exDB.read_exercise(NameOfExercise: "WALL PUSH-UP")
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALL PUSH-UP")
         DescriptionText.text = readResult.Description
         DurationText.text = readResult.Duration
 

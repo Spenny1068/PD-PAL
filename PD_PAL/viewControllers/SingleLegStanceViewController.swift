@@ -28,7 +28,7 @@ class SingleLegStanceViewController: UIViewController {
         SelectButton.DesignSelect()
                 
         // read exercise info into labels
-        let readResult = exDB.read_exercise(NameOfExercise: "SINGLE LEG STANCE")
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: "SINGLE LEG STANCE")
         DescriptionText.text = readResult.Description
         DurationText.text = readResult.Duration
 

@@ -19,9 +19,11 @@ class TrendViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
 
+        let userData = global_UserData.Get_User_Data()
+        
         // page name
         let pageName = UILabel()
-        pageName.text = "YOUR TRENDS"
+        pageName.text = userData.UserName + " TRENDS"
         pageName.applyPageNameDesign()
         self.view.addSubview(pageName)
         
@@ -30,6 +32,10 @@ class TrendViewController: UIViewController {
         msg.text = "Doing great!"
         msg.applyPageMsgDesign()
         self.view.addSubview(msg)
+        
+        
+        
+    
         
     }
 

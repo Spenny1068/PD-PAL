@@ -35,7 +35,7 @@ class OneLegSquatViewController: UIViewController {
         self.navigationItem.rightBarButtonItem  = homeButton
         
         // read exercise info into labels
-        let readResult = exDB.read_exercise(NameOfExercise: "QUAD STRETCH")
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: "QUAD STRETCH")
         DescriptionText.text = readResult.Description
         DurationText.text = readResult.Duration
         

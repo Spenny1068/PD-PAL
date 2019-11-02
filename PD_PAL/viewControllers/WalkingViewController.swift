@@ -31,7 +31,7 @@ class WalkingViewController: UIViewController {
         self.navigationItem.rightBarButtonItem  = homeButton
         
         // read exercise info into labels
-        let readResult = exDB.read_exercise(NameOfExercise: "WALKING")
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALKING")
         DescriptionText.text = readResult.Description
         DurationText.text = readResult.Duration
     }
