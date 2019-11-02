@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kxx-sF-VzX">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kxx-sF-VzX">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,20 +24,74 @@
             <objects>
                 <viewController storyboardIdentifier="RoutineGenericVC" title="Routine 1" id="Kxx-sF-VzX" customClass="RoutineGenericViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wnE-c7-HE4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="routine 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FJ-Nq-4hy">
-                                <rect key="frame" x="158" y="215" width="96" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROUTINE 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FJ-Nq-4hy">
+                                <rect key="frame" x="16" y="58" width="158" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="1PL-Va-NBV"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3qq-P1-biq">
+                                <rect key="frame" x="2" y="217" width="371" height="400"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvP-dt-mly">
+                                        <rect key="frame" x="0.0" y="0.0" width="371" height="61"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="61" id="QCQ-al-HUT"/>
+                                            <constraint firstAttribute="width" constant="371" id="SV6-Eh-3fo"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="360" id="gpv-qR-Sht"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Exercise 1"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3U-Dh-tBy">
+                                        <rect key="frame" x="0.0" y="169.5" width="371" height="61"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="61" id="hom-qw-q3m"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="360" id="wvI-AG-TRj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Exercise 2"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBc-6D-fh7">
+                                        <rect key="frame" x="0.0" y="339" width="371" height="61"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="61" id="PHT-CL-EZP"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="360" id="whP-jX-rqG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Exercise 3"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="2PQ-Sy-X78"/>
+                                    <constraint firstItem="bBc-6D-fh7" firstAttribute="leading" secondItem="3qq-P1-biq" secondAttribute="leading" id="BF4-0r-IVy"/>
+                                    <constraint firstItem="q3U-Dh-tBy" firstAttribute="leading" secondItem="3qq-P1-biq" secondAttribute="leading" id="CtC-Od-Q9t"/>
+                                    <constraint firstAttribute="trailing" secondItem="bBc-6D-fh7" secondAttribute="trailing" id="FKg-1V-Wbq"/>
+                                    <constraint firstAttribute="trailing" secondItem="q3U-Dh-tBy" secondAttribute="trailing" id="qxq-Ua-ANJ"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3qq-P1-biq" firstAttribute="top" secondItem="7FJ-Nq-4hy" secondAttribute="bottom" constant="94" id="KDU-NB-cwc"/>
+                            <constraint firstItem="7FJ-Nq-4hy" firstAttribute="top" secondItem="6Sj-dg-Qd4" secondAttribute="top" constant="38" id="QJT-ix-QG4"/>
+                            <constraint firstItem="6Sj-dg-Qd4" firstAttribute="trailing" secondItem="7FJ-Nq-4hy" secondAttribute="trailing" constant="201" id="Tbr-tx-k77"/>
+                            <constraint firstItem="7FJ-Nq-4hy" firstAttribute="leading" secondItem="6Sj-dg-Qd4" secondAttribute="leading" constant="16" id="rfH-Sa-dDT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Sj-dg-Qd4"/>
                     </view>
+                    <connections>
+                        <outlet property="Exercise1" destination="SvP-dt-mly" id="Zwi-ym-P7v"/>
+                        <outlet property="Exercise2" destination="q3U-Dh-tBy" id="0JQ-1g-OKD"/>
+                        <outlet property="Exercise3" destination="bBc-6D-fh7" id="LOy-bO-KQJ"/>
+                        <outlet property="Routine1Button" destination="7FJ-Nq-4hy" id="YZU-ks-Bfw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agr-z5-pV9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
