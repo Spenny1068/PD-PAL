@@ -13,13 +13,30 @@
 import UIKit
 
 class RoutineGenericViewController: UIViewController {
-
+    
+    
+    
+    @IBOutlet var Exercise1: UIButton!
+    @IBOutlet var Exercise2: UIButton!
+    @IBOutlet var Exercise3: UIButton!
+    
+    @IBOutlet var Routine1Button: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
+        
+        Exercise1.applyDesign()
+        Exercise2.applyDesign()
+        Exercise3.applyDesign()
+        Routine1Button.RoutineButtonDesign()
+        
+        
 
 
         
@@ -32,6 +49,9 @@ class RoutineGenericViewController: UIViewController {
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
     }
+    
+    
+    
 
     
 
@@ -45,6 +65,13 @@ class RoutineGenericViewController: UIViewController {
     }
     */
 
+}
+
+extension UILabel {
+    func RoutineButtonDesign() {
+        self.backgroundColor = UIColor.black                                    // background color
+        self.textColor = UIColor.white 
+    }
 }
 
 
