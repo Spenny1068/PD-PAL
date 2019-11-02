@@ -125,6 +125,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Delete persisten User info
+        let setUpUser = UserData()
+        setUpUser.Delete_Database(dbToDelete: "UserInfo")
+        
         return true
     }
 
