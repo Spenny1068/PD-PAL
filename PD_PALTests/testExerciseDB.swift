@@ -45,6 +45,10 @@ class testExerciseDB: XCTestCase {
         XCTAssert( readResult.Body == body ) ;
         XCTAssert( readResult.Link == link) ;
         
+        //check that the return all names function works
+        XCTAssert( exDB.exercise_names().count == 1)
+        XCTAssert( exDB.exercise_names()[0] == name)
+        
         //delete the database when we are done with it
         exDB.remove_database()
         

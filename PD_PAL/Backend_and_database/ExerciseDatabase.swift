@@ -17,6 +17,8 @@ Revision History
      Commented out broken code related to getting contents of documents directory.
  - 27/10/2019 : William Xue
      Fixed File Initialization sequence, added read_exercise func and remove_database func
+ - 01/11/2019 : William Xue
+     Added function to return all of the exercise names
  */
 
 /*
@@ -175,6 +177,29 @@ class ExerciseDatabase {
         catch {
             print("Failed to insert \(Name) into database: \(error)")
         }
+    }
+    
+    
+    //returns all exercise names in an array
+    func exercise_names() -> ([String])
+    {
+        var returnVal = [String]()
+        do{
+            let query = exerciseList
+            for exercise in try database.prepare(query)
+            {
+                //add all the names to the end
+                returnVal.append(exercise[name])
+            }
+            return returnVal
+        }
+        catch
+        {
+            print("\(error.localizedDescription)")
+        }
+        
+        //could not find so return empty
+        return returnVal
     }
     
     
