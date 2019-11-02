@@ -15,6 +15,10 @@ Revision History
      Added Tests for UserData class.
  - 01/11/2019 : William Xue
      Moved testDatabase_insertion to it's own file
+ - 01/11/2019 : William Huong
+    Updated test for greater coverage
+ - 01/11/2019 : William Huong
+    Updated test_UserData_UserInfo()
  */
 
 
@@ -57,55 +61,59 @@ UserData Class Tests
         
         XCTAssert( userData.UserName == "DEFAULT_NAME" )
         XCTAssert( userData.QuestionsAnswered == false )
-        XCTAssert( userData.WalkingOK == false )
+        XCTAssert( userData.WalkingDuration == 0 )
         XCTAssert( userData.ChairAccessible == false )
         XCTAssert( userData.WeightsAccessible == false )
         XCTAssert( userData.ResistBandAccessible == false )
-        XCTAssert( userData.Intensity == -1 )
+        XCTAssert( userData.PoolAccessible == false )
+        XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
         
-        //Provide user data.
-        userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: false, walkingDesired: false, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, intensityDesired: 0, pushNotificationsDesired: false)
+        //Provide just the user name.
+        userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
         
         //Get the user info
         userData = userDB.Get_User_Data()
         
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == false )
-        XCTAssert( userData.WalkingOK == false )
+        XCTAssert( userData.WalkingDuration == 0 )
         XCTAssert( userData.ChairAccessible == false )
         XCTAssert( userData.WeightsAccessible == false )
         XCTAssert( userData.ResistBandAccessible == false )
-        XCTAssert( userData.Intensity == 0 )
+        XCTAssert( userData.PoolAccessible == false )
+        XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
         
         //Change some of the values to check we only update the values given.
-        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDesired: true, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: 30, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
         
         userData = userDB.Get_User_Data()
         
         //Check values.
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == true )
-        XCTAssert( userData.WalkingOK == true )
+        XCTAssert( userData.WalkingDuration == 30 )
         XCTAssert( userData.ChairAccessible == false )
         XCTAssert( userData.WeightsAccessible == false )
         XCTAssert( userData.ResistBandAccessible == false )
-        XCTAssert( userData.Intensity == 0 )
+        XCTAssert( userData.PoolAccessible == false )
+        XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
         
         //Change the rest of the values.
-        userDB.Update_User_Data(nameGiven: "Ebenezer Scrooge", questionsAnswered: nil, walkingDesired: nil, chairAvailable: true, weightsAvailable: true, resistBandAvailable: true, intensityDesired: 5, pushNotificationsDesired: true)
+        userDB.Update_User_Data(nameGiven: "Ebenezer Scrooge", questionsAnswered: nil, walkingDuration: nil, chairAvailable: true, weightsAvailable: true, resistBandAvailable: true, poolAvailable: true, intensityDesired: "Intense", pushNotificationsDesired: true)
         
         userData = userDB.Get_User_Data()
         
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == true )
-        XCTAssert( userData.WalkingOK == true )
+        XCTAssert( userData.WalkingDuration == 30 )
         XCTAssert( userData.ChairAccessible == true )
         XCTAssert( userData.WeightsAccessible == true )
         XCTAssert( userData.ResistBandAccessible == true )
-        XCTAssert( userData.Intensity == 5 )
+        XCTAssert( userData.PoolAccessible == true )
+        XCTAssert( userData.Intensity == "Intense" )
         XCTAssert( userData.PushNotifications == true )
         
     }
