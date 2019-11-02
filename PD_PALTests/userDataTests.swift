@@ -30,6 +30,7 @@ class UserDataTests: XCTestCase {
         
         //Kill the files before the testing so that we are starting from a known state.
         let userData = UserData()
+        userData.Delete_Database(dbToDelete: "UserInfo")
         userData.Delete_Database(dbToDelete: "Routines")
         userData.Delete_Database(dbToDelete: "UserExerciseData")
         userData.Delete_Database(dbToDelete: "StepCount")
@@ -51,11 +52,23 @@ UserData Class Tests
         //Create the object.
         let userDB = UserData()
         
+        //Check that the default values before inserting.
+        var userData = userDB.Get_User_Data()
+        
+        XCTAssert( userData.UserName == "DEFAULT_NAME" )
+        XCTAssert( userData.QuestionsAnswered == false )
+        XCTAssert( userData.WalkingOK == false )
+        XCTAssert( userData.ChairAccessible == false )
+        XCTAssert( userData.WeightsAccessible == false )
+        XCTAssert( userData.ResistBandAccessible == false )
+        XCTAssert( userData.Intensity == -1 )
+        XCTAssert( userData.PushNotifications == false )
+        
         //Provide user data.
         userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: false, walkingDesired: false, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, intensityDesired: 0, pushNotificationsDesired: false)
         
         //Get the user info
-        var userData = userDB.Get_User_Data()
+        userData = userDB.Get_User_Data()
         
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == false )
@@ -196,8 +209,35 @@ UserData Class Tests
         
         //Insert our exercises and confirm
         userData.Add_Exercise_Done(ExerciseName: firstName, YearDone: firstYear, MonthDone: firstMonth, DayDone: firstDay, HourDone: firstHour)
+        
+        let insert1Day1 = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 10, TargetDay: 30, TargetHour: 18)
+        let insert1Day2 = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 11, TargetDay: 01, TargetHour: 01)
+        let insert1Null = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 10, TargetDay: 31, TargetHour: 12)
+        
+        XCTAssert( insert1Day1.isEmpty == true )
+        XCTAssert( insert1Day2 == ["Bicep Curls"] )
+        XCTAssert( insert1Null.isEmpty )
+        
         userData.Add_Exercise_Done(ExerciseName: secondName, YearDone: secondYear, MonthDone: secondMonth, DayDone: secondDay, HourDone: secondHour)
+        
+        let insert2Day1 = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 10, TargetDay: 30, TargetHour: 18)
+        let insert2Day2 = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 11, TargetDay: 01, TargetHour: 01)
+        let insert2Null = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 10, TargetDay: 31, TargetHour: 12)
+        
+        XCTAssert( insert2Day1.isEmpty == true )
+        XCTAssert( insert2Day2 == ["Bicep Curls", "Bicep Curls"] )
+        XCTAssert( insert2Null.isEmpty )
+        
         userData.Add_Exercise_Done(ExerciseName: thirdName, YearDone: thirdYear, MonthDone: thirdMonth, DayDone: thirdDay, HourDone: thirdHour)
+        
+        let insert3Day1 = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 10, TargetDay: 30, TargetHour: 18)
+        let insert3Day2 = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 11, TargetDay: 01, TargetHour: 01)
+        let insert3Null = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 10, TargetDay: 31, TargetHour: 12)
+        
+        XCTAssert( insert3Day1.isEmpty == true )
+        XCTAssert( insert3Day2 == ["Bicep Curls", "Bicep Curls", "Squats"] )
+        XCTAssert( insert3Null.isEmpty )
+        
         userData.Add_Exercise_Done(ExerciseName: fourthName, YearDone: fourthYear, MonthDone: fourthMonth, DayDone: fourthDay, HourDone: fourthHour)
         
         let filledDay1 = userData.Get_Exercises(TargetYear: 2019, TargetMonth: 10, TargetDay: 30, TargetHour: 18)

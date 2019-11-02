@@ -22,6 +22,10 @@
     Finished implementing methods
  - 01/11/2019 : William Huong
     User Info now uses a database to store data between reboots
+ - 01/11/2019 : William Huong
+    Fixed Update_Step_Count(), Added Increment_Step_Count()
+ - 01/11/2019 : William Huong
+    Added UserInfo database to Delete_Database()
  */
 
 /*
@@ -279,7 +283,7 @@ class UserData {
                 }
                 
                 //User Info is special. We need it to always have a single row.
-                self.Update_User_Data(nameGiven: "Default", questionsAnswered: false, walkingDesired: false, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, intensityDesired: -1, pushNotificationsDesired: false)
+                self.Update_User_Data(nameGiven: "DEFAULT_NAME", questionsAnswered: false, walkingDesired: false, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, intensityDesired: -1, pushNotificationsDesired: false)
             }
         } catch {
             print("Error connecting to the UserInfo database")
@@ -383,7 +387,7 @@ Methods that get data from class
             print("Failed to get User Info")
         }
         
-        return (UserName: "Error", QuestionsAnswered: false, WalkingOK: false, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, Intensity: 0, PushNotifications: false)
+        return (UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingOK: false, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, Intensity: -1, PushNotifications: false)
     }
     
     //Gets all the routines available.
@@ -531,13 +535,23 @@ Methods that insert or update data.
     }
     
     //Set the steps taken for that hour in the StepCount database.
-    //Call this each time you wish to update the number of steps taken within an hour.
+    //Call this each time you wish to update the number of steps taken within an hour, ignoring what was previously there.
     func Update_Steps_Taken(Steps: Int64, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
+        //Theres is an odd behaviour with or: .replace, so it will be easier to just delete the row and re-insert.
+        self.Delete_Steps_Taken(YearDone: YearDone, MonthDone: MonthDone, DayDone: DayDone, HourDone: HourDone)
         do {
             try StepCount.run(StepCountTable.insert(or: .replace, StepsTaken <- Steps, StepYear <- YearDone, StepMonth <- MonthDone, StepDay <- DayDone, StepHour <- HourDone))
         } catch {
             print("Failed to insert \(Steps) taken on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into StepCount database")
         }
+    }
+    
+    //Increments the number of steps taken for a specific hour.
+    //Call this function when you want to add extra steps onto what is currently there.
+    func Increment_Steps_Taken(Steps: Int64, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
+        //Get the current value, then call Update_Step_Count().
+        let currentStepCount = self.Get_Steps_Taken(TargetYear: YearDone, TargetMonth: MonthDone, TargetDay: MonthDone, TargetHour: HourDone)
+        self.Update_Steps_Taken(Steps: (currentStepCount + Steps), YearDone: YearDone, MonthDone: MonthDone, DayDone: DayDone, HourDone: HourDone)
     }
     
 /*
@@ -595,6 +609,9 @@ Auxiliary Methods
         var dbName: String
         
         switch dbToDelete {
+        case UserInfoDatabaseName:
+            print("Deleting the UserInfo database")
+            dbName = UserInfoDatabaseName
         case RoutinesDatabaseName:
             print("Deleting the Routines database")
             dbName = RoutinesDatabaseName
