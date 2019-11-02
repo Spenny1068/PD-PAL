@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -45,7 +43,6 @@ EERlc2NyaXB0aW9uA
                                 <rect key="frame" x="16" y="361" width="343" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">A Wall Push-up is done to strengthen the upper body with a focus on the arms and chest. To perform a Wall Push-up, face the wall and extend your hands towards the wall. Now bend your elbows and lean towards the wall. </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -72,6 +69,7 @@ EER1cmF0aW9uA
                     </view>
                     <connections>
                         <outlet property="DescriptionLabel" destination="KeH-5m-TYS" id="KRn-7b-ToQ"/>
+                        <outlet property="DescriptionText" destination="QHC-h9-0XD" id="xCH-Nj-5Ul"/>
                         <outlet property="DurationLabel" destination="Uec-V3-b2M" id="Zem-Vi-m1f"/>
                         <outlet property="ExerciseLabel" destination="pPc-7p-bTs" id="ch6-cY-tQQ"/>
                         <outlet property="SelectButtion" destination="XaH-0Z-Gwx" id="xSB-x8-k7n"/>

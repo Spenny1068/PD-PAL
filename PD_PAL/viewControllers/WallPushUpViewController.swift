@@ -13,9 +13,13 @@ class WallPushUpViewController: UIViewController {
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet var SelectButton: UIButton!
+    @IBOutlet weak var DescriptionText: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         
         
         ExerciseLabel.ExerciseDesign()
@@ -26,8 +30,11 @@ class WallPushUpViewController: UIViewController {
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
+        
+        // read exercise info into labels
+        let readResult = exDB.read_exercise(NameOfExercise: "WALL PUSH-UP")
+        DescriptionText.text = readResult.Description
 
-        // Do any additional setup after loading the view.
     }
     
     // called when home button on navigation bar is tapped

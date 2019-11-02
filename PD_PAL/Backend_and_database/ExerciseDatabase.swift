@@ -61,8 +61,7 @@ class ExerciseDatabase {
     //if the File exercises.sqlite3 exists, will read and check that it's not empty, then open with SQLite Library
     //if the file does not exist, will open and create the SQLite Database and insert Table
     init() {
-        
-
+    
         var database_already_exists = false
         var fileURL : URL
         
@@ -141,7 +140,33 @@ class ExerciseDatabase {
              }
                
         }
-            
+        
+        // hardcoding 4 default exercises for version 1
+        insert_exercise(Name: "WALL PUSH-UP",
+                        Desc: "A Wall Push-up is done to strengthen the upper body with a focus on the arms and chest. To perform a Wall Push-up, face the wall and extend your hands towards the wall. Now bend your elbows and lean towards the wall" ,
+                        Category: "Strength",
+                        Body: "Chest",
+                        Link: "bubba")
+        
+        insert_exercise(Name: "WALKING",
+                        Desc: "For optimal results perform this exercise on a track.",
+                        Category: "Cardio",
+                        Body: "None",
+                        Link: "bubba")
+        
+        insert_exercise(Name: "SINGLE LEG STANCE",
+                        Desc: "The One Leg Stance is done to impove balance. To perform a One leg Stance, bend your knee and raise your leg. Hold the chair with the other hand for support.",
+                        Category: "Flexibility",
+                        Body: "None",
+                        Link: "Bubba")
+        
+        insert_exercise(Name: "QUAD STRETCH",
+                        Desc: "A Quad Stretch is done to stretch the thigh and improve leg flexibility. To perform a Quad stretch, stand on one leg and and hold you your leg with your hand. ",
+                        Category: "Balance",
+                        Body: "None",
+                        Link: "Bubba")
+        
+        
     }
 
     //Assuming the database is empty,
