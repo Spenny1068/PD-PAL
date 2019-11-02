@@ -18,6 +18,8 @@ class OneLegSquatViewController: UIViewController {
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet var SelectButton: UIButton!
+    @IBOutlet weak var DescriptionText: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,10 @@ class OneLegSquatViewController: UIViewController {
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
+        
+        // read exercise info into labels
+        let readResult = exDB.read_exercise(NameOfExercise: "QUAD STRETCH")
+        DescriptionText.text = readResult.Description
 
         
 

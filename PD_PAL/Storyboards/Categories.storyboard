@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6sL-ZT-lhB">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6sL-ZT-lhB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,15 +19,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="rTL-vt-A86">
-                                <rect key="frame" x="25" y="135" width="325" height="497"/>
+                                <rect key="frame" x="25" y="155" width="325" height="477"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYY-WR-nFx">
-                                        <rect key="frame" x="0.0" y="0.0" width="325" height="116"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="96"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="ARMS"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR0-Jb-KYz">
-                                        <rect key="frame" x="0.0" y="191" width="325" height="52"/>
+                                        <rect key="frame" x="0.0" y="171" width="325" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="CHEST"/>
                                         <connections>
@@ -33,12 +35,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J04-IT-aiS">
-                                        <rect key="frame" x="0.0" y="318" width="325" height="52"/>
+                                        <rect key="frame" x="0.0" y="298" width="325" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="CORE"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNI-sT-LvN">
-                                        <rect key="frame" x="0.0" y="445" width="325" height="52"/>
+                                        <rect key="frame" x="0.0" y="425" width="325" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                         <state key="normal" title="LEGS"/>
                                     </button>
