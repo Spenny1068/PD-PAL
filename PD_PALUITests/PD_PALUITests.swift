@@ -8,6 +8,7 @@
 
 import XCTest
 
+
 class PD_PALUITests: XCTestCase {
 
     override func setUp() {
@@ -31,8 +32,8 @@ class PD_PALUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let app = XCUIApplication()
-        
         let app2 = app
+        
         app.textFields["Enter your name"].tap()
 
         // SpenC
@@ -83,6 +84,33 @@ class PD_PALUITests: XCTestCase {
     func basicSequenceTest()
     {
         
+        
+        
+    }
+    
+    //test to show to trends table in the trends pages 
+    func testTrendsTable()
+    {
+
+            
+       
+        
+        let app = XCUIApplication()
+        app.textFields["Enter your name"].tap()
+        
+        let wKey = app/*@START_MENU_TOKEN@*/.keys["W"]/*[[".keyboards.keys[\"W\"]",".keys[\"W\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        wKey.tap()
+
+        app/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.buttons["Enter"].tap()
+        app.buttons["Ask me later"].tap()
+        
+        let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element.children(matching: .other).element.children(matching: .other).element(boundBy: 1).swipeLeft()
+        element.swipeLeft()
+  
+        
+
         
         
     }
