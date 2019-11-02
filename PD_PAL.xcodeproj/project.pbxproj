@@ -63,6 +63,7 @@
 		45EB46262367C4CF009BA044 /* Chairstretch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EB46252367C4CF009BA044 /* Chairstretch.storyboard */; };
 		45EB46282367C5BE009BA044 /* OneLegSquat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EB46272367C5BE009BA044 /* OneLegSquat.storyboard */; };
 		7D7B90E5236D2E54005247CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9BD2351587700E5ED83 /* AppDelegate.swift */; };
+		7DF12D04236E197300FC94D6 /* logoLaunch.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF12CFC236E197200FC94D6 /* logoLaunch.png */; };
 		AE4D724B236BAF10003A8BE3 /* OneLegSquatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */; };
 		AE4D724D236BCB5A003A8BE3 /* WallPushUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */; };
 		AE4D724F236BD963003A8BE3 /* SingleLegStanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */; };
@@ -211,6 +212,7 @@
 		45EB46142367C0AA009BA044 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		45EB46252367C4CF009BA044 /* Chairstretch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chairstretch.storyboard; sourceTree = "<group>"; };
 		45EB46272367C5BE009BA044 /* OneLegSquat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OneLegSquat.storyboard; sourceTree = "<group>"; };
+		7DF12CFC236E197200FC94D6 /* logoLaunch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoLaunch.png; sourceTree = "<group>"; };
 		AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLegSquatViewController.swift; sourceTree = "<group>"; };
 		AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPushUpViewController.swift; sourceTree = "<group>"; };
 		AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLegStanceViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				45BE9267236660920076E729 /* Storyboards */,
 				4510852E23639DB800338F82 /* cardio.png */,
 				4510853323639DB800338F82 /* balance.png */,
+				7DF12CFC236E197200FC94D6 /* logoLaunch.png */,
 				457C0F6B2366B6C700A918B2 /* logo.png */,
 				4510853723639DB800338F82 /* strength.png */,
 				4510852823639DB800338F82 /* flexibility.png */,
@@ -576,6 +579,7 @@
 				4510853F23639DB800338F82 /* routine1.jpg in Resources */,
 				4510854D23639DB800338F82 /* 512px-Man_Doing_Warm_Up_Exercise_Cartoon.svg.png in Resources */,
 				45EB46262367C4CF009BA044 /* Chairstretch.storyboard in Resources */,
+				7DF12D04236E197300FC94D6 /* logoLaunch.png in Resources */,
 				4510854E23639DB800338F82 /* Screen Shot 2019-10-07 at 3.23.50 PM.png in Resources */,
 				4510853D23639DB800338F82 /* flexibility.png in Resources */,
 				4510854F23639DB800338F82 /* play.jpg in Resources */,
