@@ -20,7 +20,6 @@ import UIKit
 class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     var pageControl = UIPageControl()
-    let stepTracker = StepCount()
 
     // view controllers in PageViewController
     lazy var orderedViewControllers: [UIViewController] = {
@@ -29,13 +28,10 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
                 self.newVc(viewController: "TrendsPage"),
                 self.newVc(viewController: "SettingsPage")]
     }()
-
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stepTracker.track_steps()
-       
+        global_StepTracker.track_steps() //call step counter
         self.dataSource = self
         
                                     /* MAIN PAGE NAVIGATION BAR CODE */

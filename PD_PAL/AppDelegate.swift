@@ -157,3 +157,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //Global instances of our classes
 let global_UserData = UserData()
 let global_ExerciseData = ExerciseDatabase()
+let global_StepTracker = StepCount()
