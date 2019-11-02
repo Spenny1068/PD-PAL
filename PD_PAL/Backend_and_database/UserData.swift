@@ -60,17 +60,6 @@ import Foundation
 import SQLite
 
 class UserData {
-/*
-    //Non-database user data.
-    var UserName: String
-    var QuestionsAnswered: Bool
-    var WalkingOK: Bool
-    var ChairAccess: Bool
-    var WeightsAccess: Bool
-    var	ResistBandAccess: Bool
-    var Intensity: Int
-    var PushNotifications: Bool
-*/
     
     //User Info
     let UserInfoDatabaseName = "UserInfo"
@@ -119,28 +108,9 @@ class UserData {
     //Misc
     let fileExtension = "sqlite3"
     
-    init(
-/*
-        nameGiven: String,
-        questionsAnswered: Bool?,
-        walkingDesired: Bool?,
-        chairAvailable: Bool?,
-        weightsAvailable: Bool?,
-        resistBandAvailable: Bool?,
-        intensityDesired: Int?,
-        pushNotificationsDesired: Bool?
- */     )
+    init()
     {
-/*
-        UserName = nameGiven
-        QuestionsAnswered = questionsAnswered ?? false
-        WalkingOK = walkingDesired ?? false
-        ChairAccess = chairAvailable ?? false
-        WeightsAccess = weightsAvailable ?? false
-        ResistBandAccess = resistBandAvailable ?? false
-        Intensity = intensityDesired ?? 0
-        PushNotifications = pushNotificationsDesired ?? false
-*/
+
         //Declare some variables we will use to search for our databases.
         var userInfoDatabaseExists = false
         var userInfoDatabaseReady = false
@@ -390,7 +360,6 @@ Methods that get data from class
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
     func Get_User_Data() -> (UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool) {
-        //return (UserName, QuestionsAnswered, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, PoolAccessible, Intensity, PushNotifications)
         do {
             let userInfo = try UserInfo.pluck(UserInfoTable)
             
@@ -488,17 +457,7 @@ Methods that insert or update data.
         intensityDesired: String?,
         pushNotificationsDesired: Bool?)
     {
-/*
-        //Makes use of the nil-coalescing operator. Equivalent to: if b != nil { a = b } else { a = c }
-        UserName = nameGiven ?? UserName
-        QuestionsAnswered = questionsAnswered ?? QuestionsAnswered
-        WalkingOK = walkingDesired ?? WalkingOK
-        ChairAccess = chairAvailable ?? ChairAccess
-        WeightsAccess = weightsAvailable ?? WeightsAccess
-        ResistBandAccess = resistBandAvailable ?? ResistBandAccess
-        Intensity = intensityDesired ?? Intensity
-        PushNotifications = pushNotificationsDesired ?? PushNotifications
-*/
+
         //Store the old values
         let currentUserInfo = self.Get_User_Data()
         
