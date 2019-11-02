@@ -9,7 +9,6 @@
 import UIKit
 
 class WallPushUpViewController: UIViewController {
-    @IBOutlet var ExerciseLabel: UILabel!
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet var SelectButton: UIButton!
@@ -19,19 +18,32 @@ class WallPushUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ExerciseLabel.ExerciseDesign()
+        // read exercise info into labels
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALL PUSH-UP")
+        DescriptionText.text = readResult.Description
+        DurationText.text = readResult.Duration
+        
         DescriptionLabel.DescriptionDurationDesign()
         DurationLabel.DescriptionDurationDesign()
         SelectButton.DesignSelect()
+        
+        // page name
+        let pageName = UILabel(frame: CGRect.zero)
+        pageName.text = "WALL PUSH-UP"
+        pageName.applyPageNameDesign()
+        self.view.addSubview(pageName)
+        NSLayoutConstraint.activate([
+            pageName.widthAnchor.constraint(equalToConstant: 350),
+            pageName.heightAnchor.constraint(equalToConstant: 50),
+            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+        ])
 
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
         
-        // read exercise info into labels
-        let readResult = exDB.read_exercise(NameOfExercise: "WALL PUSH-UP")
-        DescriptionText.text = readResult.Description
-        DurationText.text = readResult.Duration
+        
 
     }
     

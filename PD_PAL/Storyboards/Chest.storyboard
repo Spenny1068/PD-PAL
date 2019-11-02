@@ -26,13 +26,6 @@ EERlc2NyaXB0aW9uA
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WALL PUSH-UP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPc-7p-bTs">
-                                <rect key="frame" x="16" y="75" width="229" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaH-0Z-Gwx">
                                 <rect key="frame" x="127" y="606" width="120" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -72,7 +65,6 @@ EER1cmF0aW9uA
                         <outlet property="DescriptionText" destination="QHC-h9-0XD" id="xCH-Nj-5Ul"/>
                         <outlet property="DurationLabel" destination="Uec-V3-b2M" id="Zem-Vi-m1f"/>
                         <outlet property="DurationText" destination="dBS-Oj-E5M" id="r4G-he-pRf"/>
-                        <outlet property="ExerciseLabel" destination="pPc-7p-bTs" id="ch6-cY-tQQ"/>
                         <outlet property="SelectButtion" destination="XaH-0Z-Gwx" id="xSB-x8-k7n"/>
                     </connections>
                 </viewController>

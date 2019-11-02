@@ -9,7 +9,6 @@
 import UIKit
 
 class SingleLegStanceViewController: UIViewController {
-    @IBOutlet var ExerciseLabel: UILabel!
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet var SelectButton: UIButton!
@@ -20,17 +19,28 @@ class SingleLegStanceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // read exercise info into labels
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: "SINGLE LEG STANCE")
+        DescriptionText.text = readResult.Description
+        DurationText.text = readResult.Duration
         
-        ExerciseLabel.ExerciseDesign()
+        // page name
+        let pageName = UILabel(frame: CGRect.zero)
+        pageName.text = "SINGLE LEG STANCE"
+        pageName.applyPageNameDesign()
+        self.view.addSubview(pageName)
+        NSLayoutConstraint.activate([
+            pageName.widthAnchor.constraint(equalToConstant: 350),
+            pageName.heightAnchor.constraint(equalToConstant: 50),
+            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+        ])
+        
         DescriptionLabel.DescriptionDurationDesign()
         DurationLabel.DescriptionDurationDesign()
         SelectButton.DesignSelect()
                 
-        // read exercise info into labels
-        let readResult = exDB.read_exercise(NameOfExercise: "SINGLE LEG STANCE")
-        DescriptionText.text = readResult.Description
-        DurationText.text = readResult.Duration
+        
 
         
         

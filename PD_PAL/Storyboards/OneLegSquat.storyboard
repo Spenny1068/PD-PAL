@@ -36,16 +36,6 @@ EER1cmF0aW9uA
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFQ-NZ-Qxp">
-                                <rect key="frame" x="16" y="75" width="229" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text" base64-UTF8="YES">
-EFFVQUQgU1RSRVRDSA
-</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fVt-Eb-CpK">
                                 <rect key="frame" x="16" y="361" width="343" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -75,7 +65,6 @@ EFFVQUQgU1RSRVRDSA
                         <outlet property="DescriptionText" destination="fVt-Eb-CpK" id="rAS-bd-4dt"/>
                         <outlet property="DurationLabel" destination="c9C-aO-uPs" id="iUQ-Ag-cNx"/>
                         <outlet property="DurationText" destination="QYL-Pb-sVK" id="Jeb-7C-erI"/>
-                        <outlet property="ExerciseLabel" destination="yFQ-NZ-Qxp" id="SoS-6u-Eg1"/>
                         <outlet property="SelectButton" destination="DBk-Pp-Y34" id="VoT-Qy-N5s"/>
                     </connections>
                 </viewController>

@@ -19,11 +19,19 @@ class TrendViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
 
+        let userData = global_UserData.Get_User_Data()
+        
         // page name
-        let pageName = UILabel()
-        pageName.text = "YOUR TRENDS"
+        let pageName = UILabel(frame: CGRect.zero)
+        pageName.text = userData.UserName + " TRENDS"
         pageName.applyPageNameDesign()
         self.view.addSubview(pageName)
+        NSLayoutConstraint.activate([
+            pageName.widthAnchor.constraint(equalToConstant: 350),
+            pageName.heightAnchor.constraint(equalToConstant: 50),
+            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+        ])
         
         // message
         let msg = UILabel()
