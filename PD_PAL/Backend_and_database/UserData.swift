@@ -22,6 +22,8 @@
     Finished implementing methods
  - 01/11/2019 : William Huong
     User Info now uses a database to store data between reboots
+ - 01/11/2019 : William Huong
+    Fixed Update_Step_Count(), Added Increment_Step_Count()
  */
 
 /*
