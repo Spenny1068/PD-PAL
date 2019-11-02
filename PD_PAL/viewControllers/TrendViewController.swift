@@ -29,7 +29,8 @@ class TrendViewController: UIViewController {
         let msg = UILabel()
         msg.text = "Doing great!"
         msg.applyPageMsgDesign()
-        self.view.addSubview(msg)        // Do any additional setup after loading the view.
+        self.view.addSubview(msg)
+        
     }
 
     

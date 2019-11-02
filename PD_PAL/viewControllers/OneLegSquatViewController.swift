@@ -38,11 +38,7 @@ class OneLegSquatViewController: UIViewController {
         let readResult = exDB.read_exercise(NameOfExercise: "QUAD STRETCH")
         DescriptionText.text = readResult.Description
         DurationText.text = readResult.Duration
-
-
         
-
-        // Do any additional setup after loading the view.
     }
     
     // called when home button on navigation bar is tapped
