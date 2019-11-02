@@ -150,3 +150,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+let global_UserData = UserData()
+let global_ExerciseData = ExerciseDatabase()
