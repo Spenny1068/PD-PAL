@@ -31,6 +31,8 @@
  - 02/11/2019 : William Huong
     Delete_userInfo() preserves user name
     Delete_userInfo() and Update_User_Info() no longer dependent on each other
+ - 02/11/2019 : William Huong
+    Fixed a bug where PoolAccessible is being set to resistBandAvailable in Update_User_Info()
  */
 
 /*
@@ -504,7 +506,7 @@ Methods that insert or update data.
                                                   ChairAccessible <- (chairAvailable ?? currentUserInfo.ChairAccessible),
                                                   WeightsAccessible <- (weightsAvailable ?? currentUserInfo.WeightsAccessible),
                                                   ResistBandAccessible <- (resistBandAvailable ?? currentUserInfo.ResistBandAccessible),
-                                                  PoolAccessible <- (resistBandAvailable ?? currentUserInfo.PoolAccessible),
+                                                  PoolAccessible <- (poolAvailable ?? currentUserInfo.PoolAccessible),
                                                   Intensity <- (intensityDesired ?? currentUserInfo.Intensity),
                                                   PushNotifications <- (pushNotificationsDesired ?? currentUserInfo.PushNotifications)
                                                   ))
