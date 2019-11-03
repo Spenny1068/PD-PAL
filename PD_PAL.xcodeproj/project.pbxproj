@@ -379,26 +379,26 @@
 		45EB46042367C0AA009BA044 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				45EB46052367C0AA009BA044 /* RoutinesViewController.swift */,
-				45EB46062367C0AA009BA044 /* FlexibilityViewController.swift */,
 				45EB46072367C0AA009BA044 /* BalanceViewController.swift */,
-				45EB46082367C0AA009BA044 /* StrengthViewController.swift */,
-				45EB46092367C0AA009BA044 /* IntenseQuestionViewController.swift */,
-				45EB460A2367C0AA009BA044 /* TrendViewController.swift */,
 				45EB460B2367C0AA009BA044 /* CardioViewController.swift */,
 				45EB460C2367C0AA009BA044 /* CategoriesViewController.swift */,
+				45EB46102367C0AA009BA044 /* EquipmentQuestionnaireViewController.swift */,
+				45EB46062367C0AA009BA044 /* FlexibilityViewController.swift */,
+				45EB46092367C0AA009BA044 /* IntenseQuestionViewController.swift */,
+				45EB46122367C0AA009BA044 /* LoginViewController.swift */,
+				45EB460F2367C0AA009BA044 /* mainPageViewController.swift */,
+				AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */,
 				45EB460D2367C0AA009BA044 /* QuestionnaireNavController.swift */,
 				45EB460E2367C0AA009BA044 /* RoutineGenericViewController.swift */,
-				45EB460F2367C0AA009BA044 /* mainPageViewController.swift */,
-				45EB46102367C0AA009BA044 /* EquipmentQuestionnaireViewController.swift */,
-				45EB46112367C0AA009BA044 /* SetUpViewController.swift */,
-				45EB46122367C0AA009BA044 /* LoginViewController.swift */,
-				45EB46132367C0AA009BA044 /* WalkingQuestionViewController.swift */,
+				45EB46052367C0AA009BA044 /* RoutinesViewController.swift */,
 				45EB46142367C0AA009BA044 /* SettingsViewController.swift */,
-				AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */,
-				AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */,
+				45EB46112367C0AA009BA044 /* SetUpViewController.swift */,
 				AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */,
+				45EB46082367C0AA009BA044 /* StrengthViewController.swift */,
+				45EB460A2367C0AA009BA044 /* TrendViewController.swift */,
+				45EB46132367C0AA009BA044 /* WalkingQuestionViewController.swift */,
 				AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */,
+				AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
