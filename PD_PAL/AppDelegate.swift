@@ -128,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Delete persisten User info
         let setUpUser = UserData()
-        setUpUser.Delete_Database(dbToDelete: "UserInfo")
+        setUpUser.Delete_Database_File(dbToDelete: "UserInfo")
         
         return true
     }
