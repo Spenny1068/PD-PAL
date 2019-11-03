@@ -14,11 +14,14 @@ class WalkingViewController: UIViewController {
     @IBOutlet var SelectButton: UIButton!
     @IBOutlet var DurationText: UITextView!
     @IBOutlet var DescriptionText: UITextView!
+    @IBOutlet var image: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = Setup.m_bgColor
+        
+        image.image = UIImage(named: "Walking.png")
 
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALKING")

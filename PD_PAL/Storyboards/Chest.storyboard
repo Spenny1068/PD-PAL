@@ -56,6 +56,14 @@ EER1cmF0aW9uA
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4S2-sq-X3v">
+                                <rect key="frame" x="16" y="145" width="162" height="169"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pgA-um-jVJ">
+                                <rect key="frame" x="186" y="145" width="173" height="169"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nJD-7O-RLd"/>
@@ -66,11 +74,14 @@ EER1cmF0aW9uA
                         <outlet property="DurationLabel" destination="Uec-V3-b2M" id="Zem-Vi-m1f"/>
                         <outlet property="DurationText" destination="dBS-Oj-E5M" id="r4G-he-pRf"/>
                         <outlet property="SelectButtion" destination="XaH-0Z-Gwx" id="xSB-x8-k7n"/>
+                        <outlet property="SelectButton" destination="XaH-0Z-Gwx" id="em6-aL-mye"/>
+                        <outlet property="image" destination="4S2-sq-X3v" id="Wj6-YS-Bpv"/>
+                        <outlet property="image2" destination="pgA-um-jVJ" id="nAZ-Ra-Abk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bx7-Ee-Atr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-51" y="90"/>
+            <point key="canvasLocation" x="-52" y="89.505247376311857"/>
         </scene>
     </scenes>
 </document>

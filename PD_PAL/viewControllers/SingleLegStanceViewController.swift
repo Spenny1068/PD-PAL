@@ -14,11 +14,13 @@ class SingleLegStanceViewController: UIViewController {
     @IBOutlet var SelectButton: UIButton!
     @IBOutlet var DescriptionText: UITextView!
     @IBOutlet var DurationText: UITextView!
-    
+    @IBOutlet var image: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
+        image.image = UIImage(named: "leg_stance2.png")
+
 
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "SINGLE LEG STANCE")

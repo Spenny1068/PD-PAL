@@ -56,6 +56,10 @@ EER1cmF0aW9uA
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Select"/>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="drH-Cn-GUa">
+                                <rect key="frame" x="16" y="129" width="343" height="166"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6rl-rO-asZ"/>
@@ -66,11 +70,12 @@ EER1cmF0aW9uA
                         <outlet property="DurationLabel" destination="Qoh-6Z-Uem" id="9yh-sy-ZWO"/>
                         <outlet property="DurationText" destination="Np2-Gc-g9D" id="AqM-9g-irw"/>
                         <outlet property="SelectButton" destination="Xxd-eN-dlL" id="BRZ-qw-RkV"/>
+                        <outlet property="image" destination="drH-Cn-GUa" id="3Kd-so-w32"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEu-dS-P9J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-203" y="-619"/>
+            <point key="canvasLocation" x="-204" y="-619.34032983508246"/>
         </scene>
     </scenes>
 </document>

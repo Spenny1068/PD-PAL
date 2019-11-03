@@ -19,11 +19,13 @@ class OneLegSquatViewController: UIViewController {
     @IBOutlet var SelectButton: UIButton!
     @IBOutlet var DurationText: UITextView!
     @IBOutlet var DescriptionText: UITextView!
+    @IBOutlet weak var image: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
-
+        
+        image.image = UIImage(named: "leg_stretch.png")
         
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "QUAD STRETCH")

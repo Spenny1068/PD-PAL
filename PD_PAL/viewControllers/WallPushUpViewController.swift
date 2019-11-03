@@ -11,9 +11,12 @@ import UIKit
 class WallPushUpViewController: UIViewController {
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
-    @IBOutlet var SelectButton: UIButton!
+    @IBOutlet weak var SelectButton: UIButton!
     @IBOutlet var DescriptionText: UITextView!
     @IBOutlet var DurationText: UITextView!
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var image2: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +58,8 @@ class WallPushUpViewController: UIViewController {
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
         
-        
+        image.image = UIImage(named: "pushup_step1.png")
+        image2.image = UIImage(named: "pushup_step2.png")
 
     }
     
