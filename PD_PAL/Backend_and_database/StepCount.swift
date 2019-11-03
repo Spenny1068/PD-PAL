@@ -83,7 +83,7 @@ class StepCount{
                 let hour = Calendar.current.component(.hour, from: Date())
                 
                 //update # of steps taken by incrementing
-                global_UserData.Increment_Steps_Taken(Steps: pedData.numberOfSteps as! Int64, YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+                global_UserData.Update_Steps_Taken(Steps: pedData.numberOfSteps as! Int64, YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
                 
                 //get # of steps from UserData DB
                 self.steps = global_UserData.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour)
