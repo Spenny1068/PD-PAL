@@ -43,7 +43,7 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         
         // message
         let msg = UILabel()
-        msg.text = "Your Doing Great!"
+        msg.text = "You're Doing Great!"
         msg.applyPageMsgDesign()
         self.view.addSubview(msg)
       
