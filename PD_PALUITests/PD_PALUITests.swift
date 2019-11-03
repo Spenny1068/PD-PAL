@@ -32,15 +32,14 @@ class PD_PALUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         /* UITests variables */
-        let SETUP = 1   // make = 1 to run questionnaire setup
+        let SETUP = 0   // make = 1 to run questionnaire setup
 
-    
         let app = XCUIApplication()
         let app2 = app
         
-        app.textFields["Enter your name"].tap()
 
-        // SpenC
+        // Enter user name: SpenC
+        app.textFields["Enter your name"].tap()
         app2.keys["S"].tap()
         app2.keys["p"].tap()
         app2.keys["e"].tap()
@@ -131,9 +130,6 @@ class PD_PALUITests: XCTestCase {
 
             /* Trends main page */
             //app.buttons["Balance"].tap()
-
-
-            
 
 }
         

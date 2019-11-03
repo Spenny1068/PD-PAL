@@ -72,6 +72,11 @@ extension UILabel {
         self.textColor = UIColor.black
     }
     
+    func DescriptionDurationDesign() {
+        self.backgroundColor = UIColor.black                   // background color
+        self.textColor = UIColor.white                          // text color
+    }
+    
 }
 
 /* UIButton methods */
@@ -115,6 +120,11 @@ extension UIButton {
         self.setTitleColor(UIColor.white, for: .normal)                         // enable text colour
         self.setTitleColor(UIColor.gray, for: .disabled)                         // disabled text color
         self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)         // text font and size
+    }
+    
+    func DesignSelect() {
+        self.backgroundColor = UIColor.init(red: 54/255, green: 141/255, blue: 241/255, alpha: 1)
+        self.setTitleColor(UIColor.white, for: .normal)                        // text color
     }
 }
 
