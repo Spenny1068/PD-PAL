@@ -35,7 +35,7 @@
     Fixed a bug where PoolAccessible is being set to resistBandAvailable in Update_User_Info()
  - 02/11/2019 : William Huong
     Implemented database clearing functions
-    FIxed bug where Increment_Steps_Taken() sometimes just replaced the value instead of incrementing
+    Fixed bug where Increment_Steps_Taken() sometimes just replaced the value instead of incrementing
  - 02/11/2019 : William Xue
     Added method to get all exercises in UserExerciseData database
  */
@@ -60,6 +60,46 @@
 
 import Foundation
 import SQLite
+
+/*
+ 
+ This class will contain all of the data related to the user. It is a glorified wrapper for the 4 different databases we have chosen to implement persistent storage.
+ 
+ The four databases are:
+ - UserInfo: This database stores the name the user gives us, along with their answers to our questionnaire on first launch
+    Columns:
+        - UserName = <String> The name the user provides
+        - QuestionsAnswered = <Bool> Whether or not the user answered the questionnaire
+        - WalkingDuration = <Int> The duration for a walking exercise provided by the user
+        - ChairAccessible = <Bool> Whether or not the user has access to a chair
+        - WeightsAccessible = <Boo> Whether or not the user has access to weights
+        - ResistBandAccessible = <Bool> Whether or not the user has access to a resistance band
+        - PoolAccessible = <Bool> Whether or not the user has access to a pool
+        - Intensity = <String> The desired workout intensity. Can be "Light", "Moderate", "Intense"
+        - PushNotifications = <Bool> Whether or not the user would like to receive push notifications
+ 
+ - Routines: This database stores the routines that are created.
+    Columns:
+        - RoutineName = <String> The name of the routine
+        - RoutineContent = <String> The exercises in the routine. This should be a comma-delimited string.
+ 
+ - UserExerciseData: This database stores each instance of an exercise the user does for every hour.
+    Columns:
+        - TrendYear = <Int> The year the exercise was done in
+        - TrendMonth = <Int> The month the exercise was done in. Should be [1,12]
+        - TrendDay = <Int> The day the exercise was done in. Should be [1,31]
+        - TrendHour = <Int> The hour the exercise was done in. Should be [0,23]
+        - TrendExercise = <Int> The name of the exercise done.
+ 
+ - Step Count: This database stores the number of steps the user takes every hour.
+    Columns:
+        - StepYear = <Int> The year the steps were taken in
+        - StepMonth = <Int> The month the steps were taken in. Should be [1,12]
+        - StepDay = <Int> The day the steps were taken in. Should be [1,31]
+        - StepHour = <Int> The hour the steps were taken in. Should be [0,23]
+        - StepsTaken = <Int64> The number of steps taken
+ 
+*/
 
 class UserData {
     
@@ -110,10 +150,13 @@ class UserData {
     //Misc
     private let fileExtension = "sqlite3"
     
+    //Constructor. This constructor will look for the database files and connect to them.
+    //If the database is empty, it will write the table to the file.
+    //If the databse file does not exist, it will create the file, then write the table to the file.
     init()
     {
 
-        //Declare some variables we will use to search for our databases.
+        //Declare some variables we will use to keep track of the state of our databases on initialization
         var userInfoDatabaseExists = false
         var userInfoDatabaseReady = false
         var routinesDatabaseExists = false
@@ -123,11 +166,13 @@ class UserData {
         var stepCountDatabaseExists = false
         var stepCountDatabaseReady = false
         
+        //Define the filenames for the databases
         let userInfoFileName = UserInfoDatabaseName + "." + fileExtension
         let routinesFileName = RoutinesDatabaseName + "." + fileExtension
         let exerciseFileName = UserExerciseDataDatabaseName + "." + fileExtension
         let stepFileName = StepCountDatabaseName + "." + fileExtension
         
+        //Define a variable to hold the location of each database file
         var userInfoURL: URL?
         var routinesURL: URL?
         var exerciseURL: URL?
@@ -137,22 +182,27 @@ class UserData {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         
+        //Start searching for the database files
         do {
             
             //Get all the files in the Documents directory.
             let documentFiles = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
             
+            //Temp variable to hold filenames of interest during search
             var fileName: String
             
             //Look at each file to see if it is a file we want.
             for file in documentFiles {
                 fileName = file.lastPathComponent
                 
-                //We need to look for the existance of the file, along with having contents.
+                
                 if fileName == userInfoFileName {
+                    
+                    //Found the UserInfo database file
                     userInfoDatabaseExists = true
                     userInfoURL = file.absoluteURL
                     
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
                     do {
                        let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
                         var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
@@ -165,13 +215,14 @@ class UserData {
                     } catch {
                         print("Error checking UserInfo.sqlite3")
                     }
-                }
-                
-                if fileName == routinesFileName {
                     
+                } else if fileName == routinesFileName {
+                    
+                    //Found the Routines database file
                     routinesDatabaseExists = true
                     routinesURL = file.absoluteURL
                     
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
                     do {
                         let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
                         var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
@@ -187,9 +238,11 @@ class UserData {
                     
                 } else if fileName == exerciseFileName {
                     
+                    //Found the UserExerciseData database file
                     exerciseDatabaseExists = true
                     exerciseURL = file.absoluteURL
                     
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
                     do {
                         let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
                         var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
@@ -205,9 +258,11 @@ class UserData {
                     
                 } else if fileName == stepFileName {
                     
+                    //Found the StepCount database file
                     stepCountDatabaseExists = true
                     stepURL = file.absoluteURL
                     
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
                     do {
                         let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
                         var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
@@ -228,18 +283,22 @@ class UserData {
             print("Error searching Documents Directory")
         }
         
+        //The UserInfo database file does not exist. Create it at the root of the documents directory
         if !userInfoDatabaseExists {
             userInfoURL = documentsURL.appendingPathComponent(UserInfoDatabaseName).appendingPathExtension(fileExtension)
         }
         
+        //The Routines database file does not exist. Create it at the root of the documents directory
         if !routinesDatabaseExists {
             routinesURL = documentsURL.appendingPathComponent(RoutinesDatabaseName).appendingPathExtension(fileExtension)
         }
         
+        //The UserExerciseData database file does not exist. Create it at the root of the documents directory
         if !exerciseDatabaseExists {
             exerciseURL = documentsURL.appendingPathComponent(UserExerciseDataDatabaseName).appendingPathExtension(fileExtension)
         }
         
+        //The StepCount database file does not exist. Create it at the root of the documents directory
         if !stepCountDatabaseExists {
             stepURL = documentsURL.appendingPathComponent(StepCountDatabaseName).appendingPathExtension(fileExtension)
         }
@@ -251,6 +310,7 @@ class UserData {
             
             //Create the table if the file did not exist or was empty.
             if !userInfoDatabaseReady {
+                //Create the table
                 let createTable = UserInfoTable.create{ (table) in
                     table.column(UserName, primaryKey: true)
                     table.column(QuestionsAnswered)
@@ -263,6 +323,7 @@ class UserData {
                     table.column(PushNotifications)
                 }
                 
+                //Write the table to the database file
                 do {
                     try self.UserInfo.run(createTable)
                 } catch {
@@ -282,11 +343,13 @@ class UserData {
             
             //Create the table if the file did not exist or was empty.
             if !routinesDatabaseReady {
+                //Create the table
                 let createTable = RoutinesTable.create{ (table) in
                     table.column(RoutineName, primaryKey: true)
                     table.column(RoutineContent)
                 }
                 
+                //Write the table to the database file
                 do {
                     try self.Routines.run(createTable)
                 } catch {
@@ -303,6 +366,7 @@ class UserData {
             
             //Create the table if the file did not exist or was empty.
             if !exerciseDatabaseReady {
+                //Create the table
                 let createTable = UserExerciseDataTable.create{ (table) in
                     table.column(TrendYear)
                     table.column(TrendMonth)
@@ -311,6 +375,7 @@ class UserData {
                     table.column(TrendExercise)
                 }
                 
+                //Write the table to the database file
                 do {
                     try self.UserExerciseData.run(createTable)
                 } catch {
@@ -327,6 +392,7 @@ class UserData {
             
             //Create the table if the file did not exist or was empty.
             if !stepCountDatabaseReady {
+                //Create the table
                 let createTable = StepCountTable.create{ (table) in
                     table.column(StepYear)
                     table.column(StepMonth)
@@ -335,6 +401,7 @@ class UserData {
                     table.column(StepsTaken)
                 }
                 
+                //Write the table to the database file
                 do {
                     try self.StepCount.run(createTable)
                 } catch {
@@ -658,7 +725,7 @@ Testing Methods
     //Searches for and then deletes the .sqlite3 file for the specified database.
     //Almost 1:1 copy of the version William Xue wrote for ExerciseDatabase.
     //Only use this for temporary testing. Since you need to instantiate the class to call this method, you will get errors about breaking the connections to the database.
-    //Ideally you instantiate a temp instance of this class to use this function, since there is currently no functionality to recreate and reconnect if the file is deleted after the constructor finishes.
+    //Ideally you instantiate a temp instance of this class to use this function, since there is currently no functionality to recreate and reconnect to the database if the file is deleted after the constructor finishes.
     func Delete_Database_File(dbToDelete: String) {
         
         var dbName: String
