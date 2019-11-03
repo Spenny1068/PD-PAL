@@ -189,6 +189,16 @@
                     <view key="view" contentMode="scaleToFill" id="SVW-LK-URR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CK7-Bd-oTj">
+                                <rect key="frame" x="143" y="318" width="89" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Setup Profile"/>
+                                <connections>
+                                    <segue destination="CLY-6M-EBX" kind="showDetail" id="5hH-ck-r0k"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Djm-G2-Hm1"/>
                     </view>
@@ -196,6 +206,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4b-k2-MBM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7147.826086956522" y="-495.6521739130435"/>
+        </scene>
+        <!--IntenseQuestionPage-->
+        <scene sceneID="6UZ-MB-F1U">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="IntenseQuestionPage" storyboardName="Questionnare" referencedIdentifier="IntenseQuestionPage" id="CLY-6M-EBX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BgD-6D-kJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7228" y="-29"/>
         </scene>
         <!--Routines View Controller-->
         <scene sceneID="veJ-ET-Iur">
