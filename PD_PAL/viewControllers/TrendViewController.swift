@@ -8,6 +8,7 @@
 // Revision History:
 // <Date, Name, Changes made>
 // <October 27, 2019, Spencer Lall, applied default page design>
+// <November 2, 2019, William Xue , Added table displaying exercise history and step count
 
 import UIKit
 
