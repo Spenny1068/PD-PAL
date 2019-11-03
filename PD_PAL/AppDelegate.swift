@@ -134,9 +134,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        
+        //On cold start, if user does not exist, enter Questionnaire storyboard
+        if(!global_UserData.User_Exists()){
+            print("USERNMAE: " + global_UserData.Get_User_Data().UserName)
+            //global_UserData.Clear_UserInfo_Database()
+            let view = UIStoryboard(name: "Questionnare", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
+            window?.rootViewController = view
+        }
         return true
     }
 
