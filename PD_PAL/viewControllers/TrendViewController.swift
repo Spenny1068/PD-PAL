@@ -82,8 +82,8 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     }
 
     @IBAction func Update(_ sender: UIButton) {
-        self.trendTableView.reloadData()
         exerciseData = global_UserData.Get_Exercises_all()
+        self.trendTableView.reloadData()
     }
     
 
