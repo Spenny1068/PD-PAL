@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ufv-8F-F2U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ufv-8F-F2U">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +24,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="Vza-xG-MVJ"/>
                                 </constraints>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
@@ -270,7 +269,7 @@
                                 </constraints>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <action selector="nextTapped:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="Ns6-k1-lE8"/>
+                                    <action selector="nextTapped:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="ruF-jD-JnH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfx-Pg-NLq">
@@ -294,16 +293,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JwL-3R-ybp">
-                                <rect key="frame" x="30" y="232" width="315" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="D9n-Me-XjQ">
                                 <rect key="frame" x="52" y="282.5" width="270" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAv-c6-C5a">
+                                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAv-c6-C5a">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="1Fu-2d-m5l"/>
@@ -315,7 +308,8 @@
                                         <state key="selected" image="Checkmarks"/>
                                         <connections>
                                             <action selector="ResistiveBandButton:" destination="ngc-XK-XRK" eventType="touchUpInside" id="Kch-hN-1Ma"/>
-                                            <action selector="checkMarkTappedWithSender:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="TGV-KW-6Io"/>
+                                            <action selector="checkMarkTappedWithSender:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="ifr-Mi-3xb"/>
+                                            <action selector="resistiveBandTapped:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="H9P-S8-WDS"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jam-eb-ms6">
@@ -346,7 +340,8 @@
                                         </state>
                                         <state key="selected" image="Checkmarks"/>
                                         <connections>
-                                            <action selector="checkMarkTappedWithSender:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="djq-ug-yxg"/>
+                                            <action selector="chairTapped:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="Mf3-Uu-98n"/>
+                                            <action selector="checkMarkTappedWithSender:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="XJA-o7-SPq"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdt-Ps-gS6">
@@ -376,7 +371,8 @@
                                         </state>
                                         <state key="selected" image="Checkmarks"/>
                                         <connections>
-                                            <action selector="checkMarkTappedWithSender:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="IxC-86-0OM"/>
+                                            <action selector="checkMarkTappedWithSender:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="xom-eP-nJj"/>
+                                            <action selector="poolTapped:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="gyA-7s-rG4"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lj3-jf-iCL">
@@ -406,7 +402,8 @@
                                         </state>
                                         <state key="selected" image="Checkmarks"/>
                                         <connections>
-                                            <action selector="checkMarkTappedWithSender:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="p27-fQ-pJp"/>
+                                            <action selector="checkMarkTappedWithSender:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="iFB-mS-D6n"/>
+                                            <action selector="weightsTapped:" destination="GL6-Qk-9Op" eventType="touchUpInside" id="nzP-G6-7iI"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIR-z4-hGu">
@@ -422,6 +419,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JwL-3R-ybp">
+                                <rect key="frame" x="30" y="230" width="315" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -453,15 +456,11 @@
                     <connections>
                         <outlet property="InstructionLabel" destination="JwL-3R-ybp" id="0sD-Ov-NcA"/>
                         <outlet property="QuestionLabel" destination="Z4D-5z-vaM" id="dEw-LY-njf"/>
-                        <outlet property="RBandCheckbox" destination="cAv-c6-C5a" id="ALJ-mX-MDD"/>
                         <outlet property="backButton" destination="gfx-Pg-NLq" id="FOU-vp-RB0"/>
-                        <outlet property="chairCheckbox" destination="VgG-aS-vzy" id="Ddu-vs-wMF"/>
                         <outlet property="chairLabel" destination="Xdt-Ps-gS6" id="5Sy-GL-t0b"/>
                         <outlet property="nextButton" destination="KUA-qj-lCl" id="dab-lE-180"/>
-                        <outlet property="poolCheckbox" destination="USv-xS-fTh" id="9ZA-mG-G22"/>
                         <outlet property="poolLabel" destination="Lj3-jf-iCL" id="FVN-MG-VzU"/>
                         <outlet property="resistiveBandLabel" destination="jam-eb-ms6" id="a6f-QK-9CP"/>
-                        <outlet property="weightsCheckbox" destination="jdN-7c-rAj" id="agv-9n-AUK"/>
                         <outlet property="weightsLabel" destination="aIR-z4-hGu" id="smj-bh-e2v"/>
                     </connections>
                 </viewController>
@@ -497,6 +496,7 @@
                                 </constraints>
                                 <state key="normal" title="Complete"/>
                                 <connections>
+                                    <action selector="completeTapped:" destination="h0A-NA-g2G" eventType="touchUpInside" id="AHP-90-5WC"/>
                                     <segue destination="yx5-Ak-3AR" kind="showDetail" id="3jK-03-ToS"/>
                                 </connections>
                             </button>

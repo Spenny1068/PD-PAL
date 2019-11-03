@@ -8,6 +8,7 @@
 //<Oct. 27, 2019, Izyl Canonicato, programmatic labels >
 //<Oct. 28, 2019, Izyl Canonicato, Navigation to Routines (Home page)>
 //<Nov. 1, 2019, Izyl Canonicato, Slider functionality)>
+//<Nov. 2, 2019, Izyl Canonicato, Update/Insert WalkingDuration in UserData>
 
 import UIKit
 
@@ -20,10 +21,12 @@ class WalkingQuestionViewController: UIViewController {
     //Labels
     @IBOutlet weak var QuestionLabel: UILabel!
     @IBOutlet weak var walkingVal: UILabel!
+    var walkingDurationVal = 0
     
     //Slider
     @IBAction func sliderChanged(_ sender: UISlider) {
         walkingVal.text = String(Int(sender.value)) + " mins"
+        walkingDurationVal = Int(sender.value)
     }
     
     override func viewDidLoad() {
@@ -49,7 +52,12 @@ class WalkingQuestionViewController: UIViewController {
             return
         }
         present(destinationViewController, animated: true, completion: nil)
-        
+    }
+    
+    @IBAction func completeTapped(_ sender: UIButton) {
+        //Update user's preferred walking duration
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        print(global_UserData.Get_User_Data())
     }
     
     /*

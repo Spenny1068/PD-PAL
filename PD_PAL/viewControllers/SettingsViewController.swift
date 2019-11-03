@@ -19,10 +19,16 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = Setup.m_bgColor
 
         // page name
-        let pageName = UILabel()
+        let pageName = UILabel(frame: CGRect.zero)
         pageName.text = "SETTINGS"
         pageName.applyPageNameDesign()
         self.view.addSubview(pageName)
+        NSLayoutConstraint.activate([
+            pageName.widthAnchor.constraint(equalToConstant: 350),
+            pageName.heightAnchor.constraint(equalToConstant: 50),
+            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+        ])
         
         // message
         let msg = UILabel()

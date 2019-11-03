@@ -12,20 +12,23 @@ import UIKit
 
 class StrengthViewController: UIViewController {
 
-    @IBOutlet weak var ArmsButton: UIButton!
-    @IBOutlet weak var BackButton: UIButton!
-    @IBOutlet weak var CoreButton: UIButton!
-    @IBOutlet weak var LegsButton: UIButton!
+    @IBOutlet weak var WallPushUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
 
         // page name
-        let pageName = UILabel()
+        let pageName = UILabel(frame: CGRect.zero)
         pageName.text = "STRENGTH"
         pageName.applyPageNameDesign()
         self.view.addSubview(pageName)
+        NSLayoutConstraint.activate([
+            pageName.widthAnchor.constraint(equalToConstant: 350),
+            pageName.heightAnchor.constraint(equalToConstant: 50),
+            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+        ])
         
         // message
         let msg = UILabel()
@@ -33,10 +36,8 @@ class StrengthViewController: UIViewController {
         msg.applyPageMsgDesign()
         self.view.addSubview(msg)
         
-        ArmsButton.applyDesign()
-        BackButton.applyDesign()
-        CoreButton.applyDesign()
-        LegsButton.applyDesign()
+        
+        WallPushUpButton.applyDesign()
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))

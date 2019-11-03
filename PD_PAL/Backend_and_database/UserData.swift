@@ -424,6 +424,29 @@ Methods that get data from class
         return returnArr
     }
     
+    
+    
+    //Gets all exercises done in all hours
+    //Returns an array of Tuples
+    func Get_Exercises_all() ->([(nameOfExercise: String, Year: Int, Month: Int, Day: Int, Hour: Int)]) {
+        var returnArr = [(nameOfExercise: String, Year: Int,
+                          Month: Int, Day: Int, Hour: Int)]()
+        do {
+            let query = UserExerciseDataTable
+            for row in try UserExerciseData.prepare(query) {
+                returnArr.append((row[TrendExercise], row[TrendYear],row[TrendMonth],
+                                  row[TrendDay],row[TrendHour]))
+            }
+        } catch {
+            print(error)
+        }
+        
+        return returnArr
+    }
+    
+    
+    
+    
     //Gets the steps taken in a specific hour.
     //Returns an Int64.
     func Get_Steps_Taken(TargetYear: Int, TargetMonth: Int, TargetDay: Int, TargetHour: Int) ->(Int64) {
