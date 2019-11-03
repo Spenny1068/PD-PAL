@@ -36,6 +36,8 @@
  - 02/11/2019 : William Huong
     Implemented database clearing functions
     FIxed bug where Increment_Steps_Taken() sometimes just replaced the value instead of incrementing
+ - 02/11/2019 : William Xue
+    Added method to get all exercises in UserExerciseData database
  */
 
 /*
@@ -62,51 +64,51 @@ import SQLite
 class UserData {
     
     //User Info
-    let UserInfoDatabaseName = "UserInfo"
-    var UserInfo: Connection!
-    let UserInfoTable = Table("UserInfo")
-    let UserName = Expression<String>("Name")
-    let QuestionsAnswered = Expression<Bool>("QuestionsAnswered")
-    let WalkingDuration = Expression<Int>("WalkingDuration")
-    let ChairAccessible = Expression<Bool>("ChairAccessible")
-    let WeightsAccessible = Expression<Bool>("WeightsAccessible")
-    let ResistBandAccessible = Expression<Bool>("ResistBandAccessible")
-    let PoolAccessible = Expression<Bool>("PoolAccessible")
+    private let UserInfoDatabaseName = "UserInfo"
+    private var UserInfo: Connection!
+    private let UserInfoTable = Table("UserInfo")
+    private let UserName = Expression<String>("Name")
+    private let QuestionsAnswered = Expression<Bool>("QuestionsAnswered")
+    private let WalkingDuration = Expression<Int>("WalkingDuration")
+    private let ChairAccessible = Expression<Bool>("ChairAccessible")
+    private let WeightsAccessible = Expression<Bool>("WeightsAccessible")
+    private let ResistBandAccessible = Expression<Bool>("ResistBandAccessible")
+    private let PoolAccessible = Expression<Bool>("PoolAccessible")
     //Can take the values 'Light', 'Moderate', 'Intense'
-    let Intensity = Expression<String>("Intensity")
-    let PushNotifications = Expression<Bool>("PushNotifications")
+    private let Intensity = Expression<String>("Intensity")
+    private let PushNotifications = Expression<Bool>("PushNotifications")
     
     //Routines database
-    let RoutinesDatabaseName = "Routines"
-    var Routines: Connection!
-    let RoutinesTable = Table("Routines")
-    let RoutineName = Expression<String>("Name")
+    private let RoutinesDatabaseName = "Routines"
+    private var Routines: Connection!
+    private let RoutinesTable = Table("Routines")
+    private let RoutineName = Expression<String>("Name")
     //Will list the exercise names in the routine in a comma delimited string.
     //Ex: "ex1,ex2,ex3,ex4"
-    let RoutineContent = Expression<String>("Content")
+    private let RoutineContent = Expression<String>("Content")
     
     //Exercise data database
-    let UserExerciseDataDatabaseName = "UserExerciseData"
-    var UserExerciseData: Connection!
-    let UserExerciseDataTable = Table("ExerciseData")
-    let TrendYear = Expression<Int>("Year")
-    let TrendMonth = Expression<Int>("Month")
-    let TrendDay = Expression<Int>("Day")
-    let TrendHour = Expression<Int>("Hour")
-    let TrendExercise = Expression<String>("ExerciseName")
+    private let UserExerciseDataDatabaseName = "UserExerciseData"
+    private var UserExerciseData: Connection!
+    private let UserExerciseDataTable = Table("ExerciseData")
+    private let TrendYear = Expression<Int>("Year")
+    private let TrendMonth = Expression<Int>("Month")
+    private let TrendDay = Expression<Int>("Day")
+    private let TrendHour = Expression<Int>("Hour")
+    private let TrendExercise = Expression<String>("ExerciseName")
     
     //Step count database
-    let StepCountDatabaseName = "StepCount"
-    var StepCount: Connection!
-    let StepCountTable = Table("StepCount")
-    let StepYear = Expression<Int>("Year")
-    let StepMonth = Expression<Int>("Month")
-    let StepDay = Expression<Int>("Day")
-    let StepHour = Expression<Int>("Hour")
-    let StepsTaken = Expression<Int64>("StepsTaken")
+    private let StepCountDatabaseName = "StepCount"
+    private var StepCount: Connection!
+    private let StepCountTable = Table("StepCount")
+    private let StepYear = Expression<Int>("Year")
+    private let StepMonth = Expression<Int>("Month")
+    private let StepDay = Expression<Int>("Day")
+    private let StepHour = Expression<Int>("Hour")
+    private let StepsTaken = Expression<Int64>("StepsTaken")
     
     //Misc
-    let fileExtension = "sqlite3"
+    private let fileExtension = "sqlite3"
     
     init()
     {
