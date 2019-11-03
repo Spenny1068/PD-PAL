@@ -718,6 +718,16 @@ Database clear methods
     }
     
 /*
+Auxiliary Methods
+    These methods do not fit into the above categories
+*/
+    
+    //Returns whether or not the user exists. Condition for existance is whether or not we have a name from them.
+    func User_Exists() ->(Bool){
+        return !( (self.Get_User_Data()).UserName == "DEFAULT_NAME" )
+    }
+    
+/*
 Testing Methods
      These methods are methods that are either unlikely to be used or should not be used in normal operation. Some methods 'break' the object, and are useful purely for testing.
 */

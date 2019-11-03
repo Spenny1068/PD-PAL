@@ -62,6 +62,9 @@ UserData Class Tests
         //Create the object.
         let userDB = UserData()
         
+        //Check that User_Exists() returns false right now.
+        XCTAssert( userDB.User_Exists() == false )
+        
         //Check that the default values before inserting.
         var userData = userDB.Get_User_Data()
         
@@ -77,6 +80,9 @@ UserData Class Tests
         
         //Provide just the user name.
         userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        
+        //Check that User_Exists() returns true right now.
+        XCTAssert( userDB.User_Exists() == true )
         
         //Get the user info
         userData = userDB.Get_User_Data()
@@ -137,6 +143,9 @@ UserData Class Tests
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
         
+        //Check that User_Exists() returns false right now.
+        XCTAssert( userDB.User_Exists() == true )
+        
         //Call the clear function.
         userDB.Clear_UserInfo_Database()
         
@@ -151,6 +160,9 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        
+        //Check that User_Exists() returns false right now.
+        XCTAssert( userDB.User_Exists() == false )
         
     }
     
