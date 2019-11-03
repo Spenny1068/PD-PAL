@@ -33,39 +33,33 @@
     Delete_userInfo() and Update_User_Info() no longer dependent on each other
  - 02/11/2019 : William Huong
     Fixed a bug where PoolAccessible is being set to resistBandAvailable in Update_User_Info()
+ - 02/11/2019 : William Huong
+    Implemented database clearing functions
+    FIxed bug where Increment_Steps_Taken() sometimes just replaced the value instead of incrementing
  */
 
 /*
  Known Bugs
  
- - 27/10/2019 : William Xue
+ - 27/10/2019 : William Xue --- Fixed
     Copied over from ExerciseDatabase.swift because I use the same implementation of an SQLite database.
  
     File persistance of iOS simulator behviour is unknown, it is possible that the file name persists but the file is empty
     thus when we try to insert, the system crashes
- - 31/10/2019 : William Huong
+ - 31/10/2019 : William Huong --- Fixed
     User name and questionnaire info does not persist through app reboots.
- - 01/11/2019 : William Huong
+ - 01/11/2019 : William Huong --- Acceptable behaviour
     If there is an exercise is done more than once an hour, Delete_Exercise_Done() will remove all instances of it. This may or may not be an issue that needs to be fixed.
- - 01/11/2019 : William Huong
-    Update_Steps_Taken() is not updating already present values.
+ - 01/11/2019 : William Huong --- Fixed
+    Update_Steps_Taken() is not replacing already present values.
+ - 02/11/2019 : William Huong --- Fixed
+    Incrememt_Steps_Taken() inconsistently just replaces the values instead of incrementing.
  */
 
 import Foundation
 import SQLite
 
 class UserData {
-/*
-    //Non-database user data.
-    var UserName: String
-    var QuestionsAnswered: Bool
-    var WalkingOK: Bool
-    var ChairAccess: Bool
-    var WeightsAccess: Bool
-    var	ResistBandAccess: Bool
-    var Intensity: Int
-    var PushNotifications: Bool
-*/
     
     //User Info
     let UserInfoDatabaseName = "UserInfo"
@@ -114,28 +108,9 @@ class UserData {
     //Misc
     let fileExtension = "sqlite3"
     
-    init(
-/*
-        nameGiven: String,
-        questionsAnswered: Bool?,
-        walkingDesired: Bool?,
-        chairAvailable: Bool?,
-        weightsAvailable: Bool?,
-        resistBandAvailable: Bool?,
-        intensityDesired: Int?,
-        pushNotificationsDesired: Bool?
- */     )
+    init()
     {
-/*
-        UserName = nameGiven
-        QuestionsAnswered = questionsAnswered ?? false
-        WalkingOK = walkingDesired ?? false
-        ChairAccess = chairAvailable ?? false
-        WeightsAccess = weightsAvailable ?? false
-        ResistBandAccess = resistBandAvailable ?? false
-        Intensity = intensityDesired ?? 0
-        PushNotifications = pushNotificationsDesired ?? false
-*/
+
         //Declare some variables we will use to search for our databases.
         var userInfoDatabaseExists = false
         var userInfoDatabaseReady = false
@@ -379,12 +354,12 @@ Methods
     
 /*
 Methods that get data from class
+     These methods will retrieve data from within a database.
 */
     
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
     func Get_User_Data() -> (UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool) {
-        //return (UserName, QuestionsAnswered, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, PoolAccessible, Intensity, PushNotifications)
         do {
             let userInfo = try UserInfo.pluck(UserInfoTable)
             
@@ -489,6 +464,7 @@ Methods that get data from class
     
 /*
 Methods that insert or update data.
+     These methods will insert new data into a database, and may update as well UserInfo and StepCount.
 */
     
     //Updates the non-database user data.
@@ -504,17 +480,7 @@ Methods that insert or update data.
         intensityDesired: String?,
         pushNotificationsDesired: Bool?)
     {
-/*
-        //Makes use of the nil-coalescing operator. Equivalent to: if b != nil { a = b } else { a = c }
-        UserName = nameGiven ?? UserName
-        QuestionsAnswered = questionsAnswered ?? QuestionsAnswered
-        WalkingOK = walkingDesired ?? WalkingOK
-        ChairAccess = chairAvailable ?? ChairAccess
-        WeightsAccess = weightsAvailable ?? WeightsAccess
-        ResistBandAccess = resistBandAvailable ?? ResistBandAccess
-        Intensity = intensityDesired ?? Intensity
-        PushNotifications = pushNotificationsDesired ?? PushNotifications
-*/
+
         //Store the old values
         let currentUserInfo = self.Get_User_Data()
         
@@ -585,12 +551,13 @@ Methods that insert or update data.
     //Call this function when you want to add extra steps onto what is currently there.
     func Increment_Steps_Taken(Steps: Int64, YearDone: Int, MonthDone: Int, DayDone: Int, HourDone: Int) {
         //Get the current value, then call Update_Step_Count().
-        let currentStepCount = self.Get_Steps_Taken(TargetYear: YearDone, TargetMonth: MonthDone, TargetDay: MonthDone, TargetHour: HourDone)
+        let currentStepCount = self.Get_Steps_Taken(TargetYear: YearDone, TargetMonth: MonthDone, TargetDay: DayDone, TargetHour: HourDone)
         self.Update_Steps_Taken(Steps: (currentStepCount + Steps), YearDone: YearDone, MonthDone: MonthDone, DayDone: DayDone, HourDone: HourDone)
     }
     
 /*
 Deletion Methods
+     These methods will delete data from a database. The exact action is deleting rows, so Delete_Exercise_Done() works slightly differently.
 */
     
     //Delete the user info. Preserves user name.
@@ -641,12 +608,56 @@ Deletion Methods
     }
     
 /*
-Auxiliary Methods
+Database clear methods
+     These methods will clear out the entirety of the data in a database, without deleting the file or breaking the connection to said file.
+*/
+    
+    //This function will completely clear out the data in the UserInfo database without destroying the file or breaking the connection.
+    func Clear_UserInfo_Database() {
+        do {
+            try UserInfo.run(UserInfoTable.delete())
+        } catch {
+            print("Error clearing the UserInfo database")
+        }
+    }
+    
+    //This function will completely clear out the data in the Routines database without destroying the file or breaking the connection.
+    func Clear_Routines_Database() {
+        do {
+            try Routines.run(RoutinesTable.delete())
+        } catch {
+            print("Error clearing the Routines database")
+        }
+    }
+    
+    //This function will completely clear out the data in the UserExerciseData database without destroying the file or breaking the connection.
+    func Clear_UserExerciseData_Database() {
+        do {
+            try UserExerciseData.run(UserExerciseDataTable.delete())
+        } catch {
+            print("Error clearing the UserExerciseData database")
+        }
+    }
+    
+    //This function will completely clear out the data in the StepCount database without destroying the file or breaking the connection.
+    func Clear_StepCount_Database() {
+        do {
+            try StepCount.run(StepCountTable.delete())
+        } catch {
+            print("Error clearing the StepCount database")
+        }
+    }
+    
+/*
+Testing Methods
+     These methods are methods that are either unlikely to be used or should not be used in normal operation. Some methods 'break' the object, and are useful purely for testing.
 */
 
     //Searches for and then deletes the .sqlite3 file for the specified database.
     //Almost 1:1 copy of the version William Xue wrote for ExerciseDatabase.
-    func Delete_Database(dbToDelete: String) {
+    //Only use this for temporary testing. Since you need to instantiate the class to call this method, you will get errors about breaking the connections to the database.
+    //Ideally you instantiate a temp instance of this class to use this function, since there is currently no functionality to recreate and reconnect if the file is deleted after the constructor finishes.
+    func Delete_Database_File(dbToDelete: String) {
         
         var dbName: String
         

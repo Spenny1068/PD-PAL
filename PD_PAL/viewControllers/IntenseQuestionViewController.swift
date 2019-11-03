@@ -5,7 +5,8 @@
 //  Created by icanonic on 2019-10-26.
 //  Copyright © 2019 WareOne. All rights reserved.
 //<Date, Name, Changes made>
-//<Oct. 27, 2019, Izyl Canonicato, programmatic labels >
+//<Oct. 27, 2019, Izyl Canonicato, programmatic labels>
+//<Nov. 2, 2019, Izyl Canonicato, Insert/Update Intensity into UserData>
 
 import UIKit
 
@@ -15,7 +16,7 @@ class IntenseQuestionViewController: UIViewController {
     @IBOutlet weak var modIntensity: UIButton!
     @IBOutlet weak var intenseIntensity: UIButton!
     @IBOutlet weak var QuestionLabel: UILabel!
-    var button_clicked = false;
+    var button_clicked = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,21 +32,30 @@ class IntenseQuestionViewController: UIViewController {
         intenseIntensity.applyQButton()
         nextButton.applyNextQButton()
         nextButton.isEnabled = false
+        
+        if(button_clicked.count != 0){
+            global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil)
+            print("Update Intensity")
+            print(global_UserData.Get_User_Data())
+        }
     }
     
     @IBAction func lightSelected(_ sender: UIButton) {
-        button_clicked = true
+        button_clicked = "Light"
         nextButton.isEnabled = true
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil,       resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil)
     }
     
     @IBAction func moderateSelected(_ sender: UIButton) {
-        button_clicked = true
+        button_clicked = "Moderate"
         nextButton.isEnabled = true
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil)
     }
     
     @IBAction func intenseSelected(_ sender: UIButton) {
-        button_clicked = true
+        button_clicked = "Intense"
         nextButton.isEnabled = true
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil)
     }
     
     @IBAction func nextTapped(_ sender: Any) {
@@ -54,8 +64,10 @@ class IntenseQuestionViewController: UIViewController {
             print("Couldn't find the view controller")
             return
         }
+        
+        print("intensity")
+        print(global_UserData.Get_User_Data())
         present(destinationViewController, animated: true, completion: nil)
-        //else prompt message
     }
     
     /*

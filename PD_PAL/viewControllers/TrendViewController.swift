@@ -28,10 +28,11 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         
         
         let userData = global_UserData.Get_User_Data()
+        let username = userData.UserName.uppercased()
         
         // page name
         let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = userData.UserName + " TRENDS"
+        pageName.text = username + "'S TRENDS"
         pageName.applyPageNameDesign()
         self.view.addSubview(pageName)
         NSLayoutConstraint.activate([

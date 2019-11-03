@@ -34,7 +34,7 @@ extension UILabel {
     
     // applies position, constraint, and design properties to page message labels
     func applyPageMsgDesign() {
-        self.frame = CGRect(x: -30, y: 70, width: 300, height: 100)            // rectangle coordinates
+        self.frame = CGRect(x: -30, y: 80, width: 300, height: 100)            // rectangle coordinates
         self.textAlignment = .center                                           // text alignment
         //msg.translatesAutoresizingMaskIntoConstraints = false                // turn off rectangle coordinates
         self.font = UIFont(name:"HelveticaNeue-Bold", size: 15.0)              // text font and size
@@ -125,6 +125,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Delete persisten User info
+        let setUpUser = UserData()
+        setUpUser.Delete_Database(dbToDelete: "UserInfo")
+        
         return true
     }
 
