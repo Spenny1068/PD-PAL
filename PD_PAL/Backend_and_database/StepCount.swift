@@ -31,7 +31,7 @@ class StepCount{
     var pedometer = CMPedometer() //instance of CMPedometer class
     var getHistory: Bool
     var date: Date
-    var steps: NSNumber
+    var steps: Int64
     
     init()
     {
@@ -93,7 +93,7 @@ class StepCount{
                 global_UserData.Increment_Steps_Taken(Steps: pedData.numberOfSteps as! Int64, YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
                 
                 print("Steps from DB: \(global_UserData.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour))")
-                //global_UserData.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour)
+                self.steps = global_UserData.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour)
                 }
             }
     }

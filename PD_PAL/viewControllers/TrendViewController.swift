@@ -14,15 +14,10 @@ import UIKit
 class TrendViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var Title_label: UILabel!
-
-    
-    let exerciseData = global_UserData.Get_Exercises_all()
-    
-
     @IBOutlet weak var trendTableView: UITableView!
-    
-    
+    @IBOutlet weak var UpdateButton: UIButton!
 
+    let exerciseData = global_UserData.Get_Exercises_all()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,12 +87,10 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     }
 
     @IBAction func Update(_ sender: UIButton) {
-        refresh()
-    }
-    
-    func refresh(){
         self.trendTableView.reloadData()
     }
+    
+
     
     /*
     // MARK: - Navigation
