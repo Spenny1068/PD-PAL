@@ -150,7 +150,7 @@ class ExerciseDatabase {
                         Category: "Strength",
                         Body: "Chest",
                         Link: "bubba",
-                        Duration: "Complete 3 sets of 10 repititions")
+                        Duration: "Complete 3 sets of 10 repetitions")
         
         insert_exercise(Name: "WALKING",
                         Desc: "For optimal results perform this exercise on a track.",
@@ -164,7 +164,7 @@ class ExerciseDatabase {
                         Category: "Flexibility",
                         Body: "None",
                         Link: "Bubba",
-                        Duration: "Complete 3 sets of 10 repititions")
+                        Duration: "Complete 3 sets of 10 repetitions")
         
         insert_exercise(Name: "QUAD STRETCH",
                         Desc: "A Quad Stretch is done to stretch the thigh and improve leg flexibility. To perform a Quad stretch, stand on one leg and and hold you your leg with your hand. ",

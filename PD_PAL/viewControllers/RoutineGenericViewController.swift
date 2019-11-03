@@ -30,7 +30,7 @@ class RoutineGenericViewController: UIViewController {
         
         // page name
         let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = "ROUTINE X"
+        pageName.text = "HAPPY DAY WORKOUT"
         pageName.applyPageNameDesign()
         self.view.addSubview(pageName)
         NSLayoutConstraint.activate([
