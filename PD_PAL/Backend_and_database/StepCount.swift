@@ -1,5 +1,5 @@
 //
-//  StepCounter.swift
+//  StepCount.swift
 //  PD_PAL
 //
 // This file implements step counter using the CMPedometer
@@ -25,7 +25,7 @@ import Foundation
 import Dispatch //only if we want to execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.
 
 
-//create pedometer
+//Track steps
 class StepCount{
     
     var pedometer = CMPedometer() //instance of CMPedometer class
@@ -35,19 +35,20 @@ class StepCount{
     
     init()
     {
-        getHistory = false
+        getHistory = false //user has not selected the date
         date = Date() //initialize to the current date
-        steps = 0
+        steps = 0 //no steps are recorded
     }
+    
     //see if specific date was selected
-    //need to finish this function for version 2
+    //need to finish dateBtnSelected() function for version 2
     @IBAction func dateBtnSelected() -> Void{
         getHistory = true
-        //date = //date specified by user
+        //self.date = //date specified by user
     }
     
     
-    //This function determines if user requested to see the step data for specific dates or live data
+    //track_steps() function determines if user requested to see the step data for specific dates or live data
     func track_steps(){
         //check if step counting data is available
         if CMPedometer.isStepCountingAvailable() {
@@ -66,13 +67,12 @@ class StepCount{
         }
     }
     
-    //This function allows tracking of user step data and adds that data to the DB
+    //live_updates() function allows tracking of user step data and adds that data to the DB
     func live_updates(){
         /* This function was written using the following source with minor changes.
          Source: wysockikamil.com/coremotion-pedometer-swift */
         //var dateString = date_format()
         //Date() gets the current date
-        //let TVC = TrendViewController()
         pedometer.startUpdates(from: Date()) { pedometerData, error in
                 guard let pedData = pedometerData, error == nil else {return}
             DispatchQueue.main.async{
@@ -82,40 +82,32 @@ class StepCount{
                 let day = Calendar.current.component(.day, from: Date())
                 let hour = Calendar.current.component(.hour, from: Date())
                 
-                print(Date())
-                print("Year: \(year)")
-                print("Month: \(month)")
-                print("Day: \(day)")
-                print("Hour: \(hour)")
-                
                 //update # of steps taken by incrementing
-                //TVC.Steps_label.text = "\(pedData.numberOfSteps)"
                 global_UserData.Increment_Steps_Taken(Steps: pedData.numberOfSteps as! Int64, YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
                 
-                print("Steps from DB: \(global_UserData.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour))")
+                //get # of steps from UserData DB
                 self.steps = global_UserData.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour)
                 }
             }
     }
     
     
-    //This function allows user to query steps for specified date
+    //query_steps() function allows user to query steps for specified date
     //this is for version 2
     func query_steps(date: Date){
         //to used for version2
         /* This function was written using the following source with minor changes.
          Source: wysockikamil.com/coremotion-pedometer-swift */
-       //query step data for specified date from the database
+       
+        //query step data for specified date from the database
         let year = Calendar.current.component(.year, from: date)
         let month = Calendar.current.component(.month, from: date)
         let day = Calendar.current.component(.day, from: date)
         let hour = Calendar.current.component(.hour, from: date)
         
-        //print the number of steps taken for the date selected
-        print(global_UserData.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour))
-        
+        //get the number of steps taken for the date selected
+        self.steps = global_UserData.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour)
     }
-  
 }
 
 

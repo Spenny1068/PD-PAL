@@ -10,7 +10,7 @@
 REVISION HISTORY:
  <Date, Name, Changes made>
  <Oct. 27, 2019, Spencer Lall, Setup navigation bar and code refactor>
- -30/10/2019 Julia Kim: added step counter instance to call track_steps upon the app launch
+ <Oct. 30, 2019, Julia Kim, Added step counter instance to call track_steps upon the app launch>
  
  */
 

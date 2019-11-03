@@ -43,14 +43,9 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         
         // message
         let msg = UILabel()
-        msg.text = "Your Doing Great!"
+        msg.text = "You're Doing Great!"
         msg.applyPageMsgDesign()
-        self.view.addSubview(msg)
-      
-
-        print("\(global_StepTracker.steps)")
-        
-        
+        self.view.addSubview(msg)        
     }
     
     //Table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y

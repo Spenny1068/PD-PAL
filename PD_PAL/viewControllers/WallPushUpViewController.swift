@@ -17,6 +17,8 @@ class WallPushUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Setup.m_bgColor
+
         
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALL PUSH-UP")
@@ -38,6 +40,16 @@ class WallPushUpViewController: UIViewController {
             pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
             pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
         ])
+        
+        // select button
+        SelectButton.addTarget(self, action: #selector(selectButtonTapped), for: .touchUpInside)
+        SelectButton.contentHorizontalAlignment = .center
+        NSLayoutConstraint.activate([
+            SelectButton.widthAnchor.constraint(equalToConstant: 240),
+            SelectButton.heightAnchor.constraint(equalToConstant: 50),
+            SelectButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            SelectButton.topAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 75)
+        ])
 
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
@@ -53,8 +65,16 @@ class WallPushUpViewController: UIViewController {
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
     }
-
-
+    
+    @objc func selectButtonTapped(sender: UIButton!) {
+        let year = Calendar.current.component(.year, from: Date())
+        let month = Calendar.current.component(.month, from: Date())
+        let day = Calendar.current.component(.day, from: Date())
+        let hour = Calendar.current.component(.hour, from: Date())
+        
+        // insert excercise as done
+        global_UserData.Add_Exercise_Done(ExerciseName: "WALL PUSH-UP", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+    }
 
     /*
     // MARK: - Navigation

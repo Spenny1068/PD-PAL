@@ -22,9 +22,11 @@ class OneLegSquatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Setup.m_bgColor
+
         
         // read exercise info into labels
-        let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALL PUSH-UP")
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: "QUAD STRETCH")
         DescriptionText.text = readResult.Description
         DurationText.text = readResult.Duration
         
@@ -44,6 +46,16 @@ class OneLegSquatViewController: UIViewController {
             pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
         ])
         
+        // select button
+        SelectButton.addTarget(self, action: #selector(selectButtonTapped), for: .touchUpInside)
+        SelectButton.contentHorizontalAlignment = .center
+        NSLayoutConstraint.activate([
+            SelectButton.widthAnchor.constraint(equalToConstant: 240),
+            SelectButton.heightAnchor.constraint(equalToConstant: 50),
+            SelectButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            SelectButton.topAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 75)
+        ])
+        
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
@@ -57,8 +69,15 @@ class OneLegSquatViewController: UIViewController {
         self.present(newViewController, animated: true, completion: nil)
     }
 
-    
-
+    @objc func selectButtonTapped(sender: UIButton!) {
+        let year = Calendar.current.component(.year, from: Date())
+        let month = Calendar.current.component(.month, from: Date())
+        let day = Calendar.current.component(.day, from: Date())
+        let hour = Calendar.current.component(.hour, from: Date())
+        
+        // insert excercise as done
+        global_UserData.Add_Exercise_Done(ExerciseName: "QUAD STRETCH", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+    }
     /*
     // MARK: - Navigation
 
@@ -70,26 +89,3 @@ class OneLegSquatViewController: UIViewController {
     */
 
 }
-
-extension UILabel
-{
-    func ExerciseDesign()
-    {
-        self.backgroundColor = UIColor.init(red: 222/255, green: 124/255, blue: 11/255, alpha: 1)
-        self.textColor = UIColor.white                          // text color
-    }
-    func DescriptionDurationDesign()
-    {
-        self.backgroundColor = UIColor.black                   // background color
-        self.textColor = UIColor.white                          // text color
-    }
-}
-extension UIButton
-{
-    func DesignSelect()
-    {
-        self.backgroundColor = UIColor.init(red: 54/255, green: 141/255, blue: 241/255, alpha: 1)
-        self.setTitleColor(UIColor.white, for: .normal)                        // text color
-    }
-}
-
