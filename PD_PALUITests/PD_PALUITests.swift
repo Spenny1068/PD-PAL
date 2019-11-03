@@ -81,10 +81,7 @@ class PD_PALUITests: XCTestCase {
         
     }
     
-    func basicSequenceTest()
-    {
-        
-        
+    func stepCounter(){
         
     }
     

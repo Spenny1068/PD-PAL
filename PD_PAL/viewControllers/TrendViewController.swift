@@ -14,6 +14,7 @@ import UIKit
 class TrendViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var Title_label: UILabel!
+    @IBOutlet weak var Steps_label: UILabel!
     
     let exerciseData = global_UserData.Get_Exercises_all()
     

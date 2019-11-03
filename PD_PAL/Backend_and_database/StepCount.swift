@@ -29,15 +29,23 @@ import Dispatch //only if we want to execute code concurrently on multicore hard
 class StepCount{
     
     var pedometer = CMPedometer() //instance of CMPedometer class
-    var getHistory = false
-    var date = Date() //initialize to the current date
+    var getHistory: Bool
+    var date: Date
+    var steps: NSNumber
     
+    init()
+    {
+        getHistory = false
+        date = Date() //initialize to the current date
+        steps = 0
+    }
     //see if specific date was selected
     //need to finish this function for version 2
     @IBAction func dateBtnSelected() -> Void{
         getHistory = true
         //date = //date specified by user
     }
+    
     
     //This function determines if user requested to see the step data for specific dates or live data
     func track_steps(){
@@ -48,7 +56,7 @@ class StepCount{
             {
                    //for version 2
                    //query step counter data
-                    query_steps(date: date) //need to pass in the date selected by the user for version 2
+                    query_steps(date: self.date) //need to pass in the date selected by the user for version 2
             }
             else
             {
@@ -64,6 +72,7 @@ class StepCount{
          Source: wysockikamil.com/coremotion-pedometer-swift */
         //var dateString = date_format()
         //Date() gets the current date
+        //let TVC = TrendViewController()
         pedometer.startUpdates(from: Date()) { pedometerData, error in
                 guard let pedData = pedometerData, error == nil else {return}
             DispatchQueue.main.async{
@@ -77,11 +86,14 @@ class StepCount{
                 print("Year: \(year)")
                 print("Month: \(month)")
                 print("Day: \(day)")
+                print("Hour: \(hour)")
                 
                 //update # of steps taken by incrementing
-                global_UserData.Increment_Steps_Taken(Steps: Int64(pedData.numberOfSteps), YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+                //TVC.Steps_label.text = "\(pedData.numberOfSteps)"
+                global_UserData.Increment_Steps_Taken(Steps: pedData.numberOfSteps as! Int64, YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
                 
                 print("Steps from DB: \(global_UserData.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour))")
+                //global_UserData.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour)
                 }
             }
     }
