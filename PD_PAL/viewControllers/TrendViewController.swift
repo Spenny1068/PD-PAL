@@ -21,6 +21,9 @@ class TrendViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var trendTableView: UITableView!
     
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Setup.m_bgColor
@@ -70,7 +73,8 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
-        var row = indexPath.row - 1
+        //so that the first row is step count and the other rows are from exerciseData
+        let row = indexPath.row - 1
         
         if(row == -1)
         {
@@ -87,6 +91,13 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         return cell
     }
 
+    @IBAction func Update(_ sender: UIButton) {
+        refresh()
+    }
+    
+    func refresh(){
+        self.trendTableView.reloadData()
+    }
     
     /*
     // MARK: - Navigation
