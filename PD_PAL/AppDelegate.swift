@@ -72,6 +72,11 @@ extension UILabel {
         self.textColor = UIColor.black
     }
     
+    func DescriptionDurationDesign() {
+        self.backgroundColor = UIColor.black                   // background color
+        self.textColor = UIColor.white                          // text color
+    }
+    
 }
 
 /* UIButton methods */
@@ -116,6 +121,11 @@ extension UIButton {
         self.setTitleColor(UIColor.gray, for: .disabled)                         // disabled text color
         self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)         // text font and size
     }
+    
+    func DesignSelect() {
+        self.backgroundColor = UIColor.init(red: 54/255, green: 141/255, blue: 241/255, alpha: 1)
+        self.setTitleColor(UIColor.white, for: .normal)                        // text color
+    }
 }
 
 @UIApplicationMain
@@ -124,12 +134,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        // Delete persisten User info
-        let setUpUser = UserData()
-        setUpUser.Delete_Database_File(dbToDelete: "UserInfo")
-        
+        //On cold start, if user does not exist, enter Questionnaire storyboard
+        if(!global_UserData.User_Exists()){
+            print("USERNMAE: " + global_UserData.Get_User_Data().UserName)
+            //global_UserData.Clear_UserInfo_Database()
+            let view = UIStoryboard(name: "Questionnare", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
+            window?.rootViewController = view
+        }
         return true
     }
 

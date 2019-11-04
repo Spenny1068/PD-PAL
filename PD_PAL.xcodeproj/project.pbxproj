@@ -39,6 +39,12 @@
 		4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9C82351587800E5ED83 /* Assets.xcassets */; };
 		4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */; };
 		4517F9E22351587800E5ED83 /* PD_PALUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9E12351587800E5ED83 /* PD_PALUITests.swift */; };
+		455E1BF0236E9B0B00309A1D /* pushup_step1.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1BEB236E9B0A00309A1D /* pushup_step1.png */; };
+		455E1BF1236E9B0B00309A1D /* pushup_step2.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1BEC236E9B0A00309A1D /* pushup_step2.png */; };
+		455E1BF2236E9B0B00309A1D /* Leg_Stance.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1BED236E9B0A00309A1D /* Leg_Stance.png */; };
+		455E1BF3236E9B0B00309A1D /* leg_stretch.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1BEE236E9B0B00309A1D /* leg_stretch.png */; };
+		455E1BF4236E9B0B00309A1D /* Walking.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1BEF236E9B0B00309A1D /* Walking.png */; };
+		455E1BF6236EA1BB00309A1D /* leg_stance2.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1BF5236EA1BB00309A1D /* leg_stance2.png */; };
 		457C0F6A2366B54500A918B2 /* Chest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457C0F692366B54500A918B2 /* Chest.storyboard */; };
 		457C0F6C2366B6C700A918B2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 457C0F6B2366B6C700A918B2 /* logo.png */; };
 		45BE9269236660920076E729 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45BE9268236660920076E729 /* Categories.storyboard */; };
@@ -189,6 +195,12 @@
 		4517F9DD2351587800E5ED83 /* PD_PALUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PD_PALUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4517F9E12351587800E5ED83 /* PD_PALUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PD_PALUITests.swift; sourceTree = "<group>"; };
 		4517F9E32351587800E5ED83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		455E1BEB236E9B0A00309A1D /* pushup_step1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushup_step1.png; sourceTree = "<group>"; };
+		455E1BEC236E9B0A00309A1D /* pushup_step2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushup_step2.png; sourceTree = "<group>"; };
+		455E1BED236E9B0A00309A1D /* Leg_Stance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Leg_Stance.png; sourceTree = "<group>"; };
+		455E1BEE236E9B0B00309A1D /* leg_stretch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_stretch.png; sourceTree = "<group>"; };
+		455E1BEF236E9B0B00309A1D /* Walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walking.png; sourceTree = "<group>"; };
+		455E1BF5236EA1BB00309A1D /* leg_stance2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_stance2.png; sourceTree = "<group>"; };
 		457C0F692366B54500A918B2 /* Chest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chest.storyboard; sourceTree = "<group>"; };
 		457C0F6B2366B6C700A918B2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		45BE9268236660920076E729 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
@@ -280,7 +292,19 @@
 			isa = PBXGroup;
 			children = (
 				4510852923639DB800338F82 /* routine4.jpg */,
+				4510852E23639DB800338F82 /* cardio.png */,
+				4510853323639DB800338F82 /* balance.png */,
+				7DF12CFC236E197200FC94D6 /* logoLaunch.png */,
+				457C0F6B2366B6C700A918B2 /* logo.png */,
+				4510853723639DB800338F82 /* strength.png */,
+				4510852823639DB800338F82 /* flexibility.png */,
 				4510852A23639DB800338F82 /* routine1.jpg */,
+				455E1BF5236EA1BB00309A1D /* leg_stance2.png */,
+				455E1BED236E9B0A00309A1D /* Leg_Stance.png */,
+				455E1BEE236E9B0B00309A1D /* leg_stretch.png */,
+				455E1BEB236E9B0A00309A1D /* pushup_step1.png */,
+				455E1BEC236E9B0A00309A1D /* pushup_step2.png */,
+				455E1BEF236E9B0B00309A1D /* Walking.png */,
 				4510852B23639DB800338F82 /* Steps.png */,
 				4510852C23639DB800338F82 /* routine2.jpg */,
 				4510852D23639DB800338F82 /* radar.png */,
@@ -327,12 +351,6 @@
 				2EF4E802236D002100CCECBB /* Backend_and_database */,
 				45EB46042367C0AA009BA044 /* viewControllers */,
 				45BE9267236660920076E729 /* Storyboards */,
-				4510852E23639DB800338F82 /* cardio.png */,
-				4510853323639DB800338F82 /* balance.png */,
-				7DF12CFC236E197200FC94D6 /* logoLaunch.png */,
-				457C0F6B2366B6C700A918B2 /* logo.png */,
-				4510853723639DB800338F82 /* strength.png */,
-				4510852823639DB800338F82 /* flexibility.png */,
 				4510852723639DB800338F82 /* images */,
 				4517F9BD2351587700E5ED83 /* AppDelegate.swift */,
 				4517F9C82351587800E5ED83 /* Assets.xcassets */,
@@ -379,26 +397,26 @@
 		45EB46042367C0AA009BA044 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				45EB46052367C0AA009BA044 /* RoutinesViewController.swift */,
-				45EB46062367C0AA009BA044 /* FlexibilityViewController.swift */,
 				45EB46072367C0AA009BA044 /* BalanceViewController.swift */,
-				45EB46082367C0AA009BA044 /* StrengthViewController.swift */,
-				45EB46092367C0AA009BA044 /* IntenseQuestionViewController.swift */,
-				45EB460A2367C0AA009BA044 /* TrendViewController.swift */,
 				45EB460B2367C0AA009BA044 /* CardioViewController.swift */,
 				45EB460C2367C0AA009BA044 /* CategoriesViewController.swift */,
+				45EB46102367C0AA009BA044 /* EquipmentQuestionnaireViewController.swift */,
+				45EB46062367C0AA009BA044 /* FlexibilityViewController.swift */,
+				45EB46092367C0AA009BA044 /* IntenseQuestionViewController.swift */,
+				45EB46122367C0AA009BA044 /* LoginViewController.swift */,
+				45EB460F2367C0AA009BA044 /* mainPageViewController.swift */,
+				AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */,
 				45EB460D2367C0AA009BA044 /* QuestionnaireNavController.swift */,
 				45EB460E2367C0AA009BA044 /* RoutineGenericViewController.swift */,
-				45EB460F2367C0AA009BA044 /* mainPageViewController.swift */,
-				45EB46102367C0AA009BA044 /* EquipmentQuestionnaireViewController.swift */,
-				45EB46112367C0AA009BA044 /* SetUpViewController.swift */,
-				45EB46122367C0AA009BA044 /* LoginViewController.swift */,
-				45EB46132367C0AA009BA044 /* WalkingQuestionViewController.swift */,
+				45EB46052367C0AA009BA044 /* RoutinesViewController.swift */,
 				45EB46142367C0AA009BA044 /* SettingsViewController.swift */,
-				AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */,
-				AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */,
+				45EB46112367C0AA009BA044 /* SetUpViewController.swift */,
 				AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */,
+				45EB46082367C0AA009BA044 /* StrengthViewController.swift */,
+				45EB460A2367C0AA009BA044 /* TrendViewController.swift */,
+				45EB46132367C0AA009BA044 /* WalkingQuestionViewController.swift */,
 				AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */,
+				AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -569,6 +587,7 @@
 				4510854B23639DB800338F82 /* Screen Shot 2019-10-11 at 9.07.38 AM.png in Resources */,
 				4510854623639DB800338F82 /* Screen Shot 2019-10-11 at 9.15.49 AM.png in Resources */,
 				4510854223639DB800338F82 /* radar.png in Resources */,
+				455E1BF2236E9B0B00309A1D /* Leg_Stance.png in Resources */,
 				4510854723639DB800338F82 /* resistance.png in Resources */,
 				26DC60F02364C51C0064B314 /* Questionnare.storyboard in Resources */,
 				4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */,
@@ -581,11 +600,13 @@
 				45EB46262367C4CF009BA044 /* Chairstretch.storyboard in Resources */,
 				7DF12D04236E197300FC94D6 /* logoLaunch.png in Resources */,
 				4510854E23639DB800338F82 /* Screen Shot 2019-10-07 at 3.23.50 PM.png in Resources */,
+				455E1BF0236E9B0B00309A1D /* pushup_step1.png in Resources */,
 				4510853D23639DB800338F82 /* flexibility.png in Resources */,
 				4510854F23639DB800338F82 /* play.jpg in Resources */,
 				4510854523639DB800338F82 /* Screen Shot 2019-10-11 at 10.13.56 AM.png in Resources */,
 				457C0F6C2366B6C700A918B2 /* logo.png in Resources */,
 				4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */,
+				455E1BF1236E9B0B00309A1D /* pushup_step2.png in Resources */,
 				457C0F6A2366B54500A918B2 /* Chest.storyboard in Resources */,
 				45EA1DE0236595BD00E6D070 /* Walking.storyboard in Resources */,
 				4510855123639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png in Resources */,
@@ -593,11 +614,14 @@
 				4510854C23639DB800338F82 /* strength.png in Resources */,
 				4510854023639DB800338F82 /* Steps.png in Resources */,
 				4510854823639DB800338F82 /* balance.png in Resources */,
+				455E1BF3236E9B0B00309A1D /* leg_stretch.png in Resources */,
 				45BE9269236660920076E729 /* Categories.storyboard in Resources */,
 				4510854423639DB800338F82 /* Cardio.jpg in Resources */,
+				455E1BF6236EA1BB00309A1D /* leg_stance2.png in Resources */,
 				4510854323639DB800338F82 /* cardio.png in Resources */,
 				45EB46282367C5BE009BA044 /* OneLegSquat.storyboard in Resources */,
 				45EA1DEE236597B800E6D070 /* RoutineGenericpage.storyboard in Resources */,
+				455E1BF4236E9B0B00309A1D /* Walking.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +782,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphonesimulator*]" = SETUP;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -823,14 +848,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
-				DEVELOPMENT_TEAM = U8HFG99JW8;
+				DEVELOPMENT_TEAM = DWKB22S268;
 				INFOPLIST_FILE = PD_PAL/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JuliaKimTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WareOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -842,14 +867,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U8HFG99JW8;
+				DEVELOPMENT_TEAM = DWKB22S268;
 				INFOPLIST_FILE = PD_PAL/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JuliaKimTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WareOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

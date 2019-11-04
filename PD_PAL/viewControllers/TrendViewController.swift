@@ -8,17 +8,17 @@
 // Revision History:
 // <Date, Name, Changes made>
 // <October 27, 2019, Spencer Lall, applied default page design>
+// <November 2, 2019, William Xue , Added table displaying exercise history and step count
 
 import UIKit
 
 class TrendViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var Title_label: UILabel!
-    
-    let exerciseData = global_UserData.Get_Exercises_all()
-    
-
     @IBOutlet weak var trendTableView: UITableView!
+    @IBOutlet weak var UpdateButton: UIButton!
+
+    var exerciseData = global_UserData.Get_Exercises_all()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +44,9 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         
         // message
         let msg = UILabel()
-        msg.text = "Doing great!"
+        msg.text = "You're Doing Great!"
         msg.applyPageMsgDesign()
-        self.view.addSubview(msg)
-        
-        
+        self.view.addSubview(msg)        
     }
     
     //Table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y
@@ -58,17 +56,37 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return exerciseData.count
+            return exerciseData.count + 1
     }
     
+
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
-        let text = "\(exerciseData[indexPath.row].Year)/\(exerciseData[indexPath.row].Month)/" +
-        "\(exerciseData[indexPath.row].Day) Hour: \(exerciseData[indexPath.row].Hour)       \(exerciseData[indexPath.row].nameOfExercise)"
         
-        cell.textLabel?.text = text
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
+        //so that the first row is step count and the other rows are from exerciseData
+        let row = indexPath.row - 1
+        
+        if(row == -1)
+        {
+            let text =  "Step Count This Hour: " + global_StepTracker.steps.description
+            cell.textLabel?.text = text
+        }
+        else{
+            let text = "\(exerciseData[row].Year)/\(exerciseData[row].Month)/" +
+            "\(exerciseData[row].Day) Hour: \(exerciseData[row].Hour)       \(exerciseData[row].nameOfExercise)"
+            cell.textLabel?.text = text
+        }
+    
+        
         return cell
     }
+
+    @IBAction func Update(_ sender: UIButton) {
+        exerciseData = global_UserData.Get_Exercises_all()
+        self.trendTableView.reloadData()
+    }
+    
 
     
     /*

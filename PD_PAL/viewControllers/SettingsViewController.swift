@@ -12,6 +12,8 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
 
     override func viewDidLoad() {
         super.viewDidLoad()
