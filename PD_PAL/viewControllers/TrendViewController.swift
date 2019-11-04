@@ -14,6 +14,7 @@ import UIKit
 
 class TrendViewController: UIViewController, UITableViewDataSource {
 
+    // IBOutlet labels
     @IBOutlet weak var Title_label: UILabel!
     @IBOutlet weak var trendTableView: UITableView!
     @IBOutlet weak var UpdateButton: UIButton!
@@ -22,10 +23,9 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Setup.m_bgColor
-        
+
+        view.backgroundColor = Setup.m_bgColor  // background color
         trendTableView.dataSource = self
-        
         
         let userData = global_UserData.Get_User_Data()
         let username = userData.UserName.uppercased()
@@ -49,7 +49,7 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         self.view.addSubview(msg)        
     }
     
-    //Table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y
+    // table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y
     func numberOfSections(in tableView: UITableView) -> Int {
         //one section for exercise history and one section for step count
         return 1
@@ -59,26 +59,23 @@ class TrendViewController: UIViewController, UITableViewDataSource {
             return exerciseData.count + 1
     }
     
-
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")!
+
         //so that the first row is step count and the other rows are from exerciseData
         let row = indexPath.row - 1
         
-        if(row == -1)
-        {
+        if(row == -1) {
             let text =  "Step Count This Hour: " + global_StepTracker.steps.description
             cell.textLabel?.text = text
         }
-        else{
+
+        else {
             let text = "\(exerciseData[row].Year)/\(exerciseData[row].Month)/" +
             "\(exerciseData[row].Day) Hour: \(exerciseData[row].Hour)       \(exerciseData[row].nameOfExercise)"
             cell.textLabel?.text = text
         }
-    
-        
         return cell
     }
 
@@ -86,9 +83,7 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         exerciseData = global_UserData.Get_Exercises_all()
         self.trendTableView.reloadData()
     }
-    
 
-    
     /*
     // MARK: - Navigation
 

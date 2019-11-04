@@ -15,6 +15,7 @@ import UIKit
 
 class RoutinesViewController: UIViewController {
     
+    // IBOutlet buttons
     @IBOutlet weak var E1: UIButton!
     @IBOutlet weak var E2: UIButton!
     @IBOutlet weak var E3: UIButton!

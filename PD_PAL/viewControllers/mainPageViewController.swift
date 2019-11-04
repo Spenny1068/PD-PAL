@@ -14,7 +14,6 @@ REVISION HISTORY:
  
  */
 
-
 import UIKit
 
 class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
@@ -58,15 +57,13 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
                                     /* MAIN PAGE VIEW CONTROLLER FUNCTIONS */
     
     // when home button on nav bar is tapped
-    @objc func homeButtonTapped(sender: UIButton!)
-    {
+    @objc func homeButtonTapped(sender: UIButton!) {
         let homeView = self.storyboard?.instantiateViewController(withIdentifier: "mainPage")
         present(homeView!, animated: true, completion: nil)
         
     }
     
-    func configurePageControl()
-    {
+    func configurePageControl() {
         pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height:50))
         pageControl.numberOfPages = orderedViewControllers.count
         pageControl.currentPage = 0
@@ -76,13 +73,11 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         self.view.addSubview(pageControl)
     }
     
-    func newVc(viewController: String) -> UIViewController
-    {
+    func newVc(viewController: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: viewController)
     }
 
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?
-    {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {return nil}
         let prevIndex = viewControllerIndex - 1
         guard prevIndex >= 0 else {
@@ -95,8 +90,7 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         return orderedViewControllers[prevIndex]
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController?
-    {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else { return nil }
        
         let nextIndex = viewControllerIndex + 1
@@ -106,14 +100,12 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         return orderedViewControllers[nextIndex]
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool)
-    {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let pageContentViewController = pageViewController.viewControllers![0]
         self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
     }
     
-    override func didReceiveMemoryWarning()
-    {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
@@ -126,5 +118,4 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         // Pass the selected object to the new view controller.
     }
     */
-
 }

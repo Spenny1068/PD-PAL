@@ -14,6 +14,7 @@ import UIKit
 
 class OneLegSquatViewController: UIViewController {
 
+    // IBOutlet labels and buttons
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet var SelectButton: UIButton!
@@ -23,8 +24,8 @@ class OneLegSquatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Setup.m_bgColor
-        
+
+        view.backgroundColor = Setup.m_bgColor   // background color
         image.image = UIImage(named: "leg_stretch.png")
         
         // read exercise info into labels
@@ -32,6 +33,7 @@ class OneLegSquatViewController: UIViewController {
         DescriptionText.text = readResult.Description
         DurationText.text = readResult.Duration
         
+        // apply standard designs to buttons and labels
         DescriptionLabel.DescriptionDurationDesign()
         DurationLabel.DescriptionDurationDesign()
         SelectButton.DesignSelect()

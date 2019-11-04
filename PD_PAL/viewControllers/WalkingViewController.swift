@@ -9,6 +9,8 @@
 import UIKit
 
 class WalkingViewController: UIViewController {
+
+    // IBOutlet buttons and labels
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet var SelectButton: UIButton!
@@ -19,8 +21,7 @@ class WalkingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Setup.m_bgColor
-        
+        view.backgroundColor = Setup.m_bgColor  // background color
         image.image = UIImage(named: "Walking.png")
 
         // read exercise info into labels
@@ -40,6 +41,7 @@ class WalkingViewController: UIViewController {
             pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
         ])
         
+        // apply standard button and label designs
         DescriptionLabel.DescriptionDurationDesign()
         DurationLabel.DescriptionDurationDesign()
         SelectButton.DesignSelect()

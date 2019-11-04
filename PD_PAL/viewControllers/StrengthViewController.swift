@@ -16,7 +16,8 @@ class StrengthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Setup.m_bgColor
+
+        view.backgroundColor = Setup.m_bgColor  // background color
 
         // page name
         let pageName = UILabel(frame: CGRect.zero)
@@ -42,8 +43,6 @@ class StrengthViewController: UIViewController {
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
-
-        
     }
     
     // called when home button on navigation bar is tapped

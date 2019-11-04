@@ -9,6 +9,8 @@
 import UIKit
 
 class WallPushUpViewController: UIViewController {
+
+    // IBOutlet Labels
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet weak var SelectButton: UIButton!
@@ -20,14 +22,15 @@ class WallPushUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Setup.m_bgColor
 
+        view.backgroundColor = Setup.m_bgColor  // background color
         
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALL PUSH-UP")
         DescriptionText.text = readResult.Description
         DurationText.text = readResult.Duration
         
+        // apply standard label and buttons designs
         DescriptionLabel.DescriptionDurationDesign()
         DurationLabel.DescriptionDurationDesign()
         SelectButton.DesignSelect()

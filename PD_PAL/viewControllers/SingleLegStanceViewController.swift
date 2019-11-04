@@ -9,6 +9,8 @@
 import UIKit
 
 class SingleLegStanceViewController: UIViewController {
+
+    // IBOutlet labels and 
     @IBOutlet var DescriptionLabel: UILabel!
     @IBOutlet var DurationLabel: UILabel!
     @IBOutlet var SelectButton: UIButton!
@@ -17,8 +19,10 @@ class SingleLegStanceViewController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        view.backgroundColor = Setup.m_bgColor
+
+        view.backgroundColor = Setup.m_bgColor  // background color
         image.image = UIImage(named: "Leg_Stance.png")
 
 
@@ -53,10 +57,6 @@ class SingleLegStanceViewController: UIViewController {
         DurationLabel.DescriptionDurationDesign()
         SelectButton.DesignSelect()
                 
-        
-
-        
-        
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton

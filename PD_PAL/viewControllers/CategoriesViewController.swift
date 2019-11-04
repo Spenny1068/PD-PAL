@@ -25,7 +25,7 @@ class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Setup.m_bgColor
+        view.backgroundColor = Setup.m_bgColor  // background color
         
         // get screen dimensions
         let screenRect = UIScreen.main.bounds
@@ -65,6 +65,7 @@ class CategoriesViewController: UIViewController {
         flexibility.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         self.view.addSubview(flexibility)
 
+        // flexibility text
         let flexibilityText = UILabel(frame: CGRect(x: screenWidth/2 - 150, y: screenHeight/2, width: 100, height: 30))
         flexibilityText.text = "Flexiblity"
         flexibilityText.textAlignment = .center                                           // text alignment
@@ -78,6 +79,7 @@ class CategoriesViewController: UIViewController {
         strength.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         self.view.addSubview(strength)
         
+        // strength text
         let strengthText = UILabel(frame: CGRect(x: screenWidth/2 - 150, y: screenHeight - 80, width: 100, height: 30))
         strengthText.text = "Strength"
         strengthText.textAlignment = .center                                           // text alignment
@@ -92,6 +94,7 @@ class CategoriesViewController: UIViewController {
         balance.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         self.view.addSubview(balance)
         
+        // balance text
         let balanceText = UILabel(frame: CGRect(x: screenWidth/2 + 50, y: screenHeight - 80, width: 100, height: 30))
         balanceText.text = "Balance"
         balanceText.textAlignment = .center                                           // text alignment
@@ -105,6 +108,7 @@ class CategoriesViewController: UIViewController {
         cardio.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         self.view.addSubview(cardio)
         
+        // cardio text
         let cardioText = UILabel(frame: CGRect(x: screenWidth/2 + 50, y: screenHeight/2, width: 100, height: 30))
         cardioText.text = "Cardio"
         cardioText.textAlignment = .center                                           // text alignment
@@ -113,19 +117,7 @@ class CategoriesViewController: UIViewController {
     
     }
     
-@objc func buttonAction(sender: UIButton!) {
-    print("button tapped")
-}
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func buttonAction(sender: UIButton!) {
+        print("button tapped")
     }
-    */
-
 }
