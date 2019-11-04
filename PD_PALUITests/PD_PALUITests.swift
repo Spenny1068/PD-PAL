@@ -32,7 +32,7 @@ class PD_PALUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         /* UITests variables */
-        let SETUP = 0   // make = 1 to run questionnaire setup
+        let SETUP = 1   // make = 1 to run questionnaire setup
 
         let app = XCUIApplication()
         let app2 = app
@@ -51,7 +51,7 @@ class PD_PALUITests: XCTestCase {
         app.buttons["Enter"].tap()
         
         // do setup page
-        if SETUP == 1 {
+        if SETUP == 0 {
             app.buttons["Set-up"].tap()
                 
             app.buttons["Light"].tap()
@@ -89,7 +89,7 @@ class PD_PALUITests: XCTestCase {
             app.buttons["Ask me later"].tap()
             
             // routine main apge
-            app.buttons["Routine 1"].tap()
+            app.buttons["Happy Day Workout"].tap()
             app.buttons["Exercise 1"].tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
             app.buttons["Exercise 2"].tap()

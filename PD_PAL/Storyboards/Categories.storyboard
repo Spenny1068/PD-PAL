@@ -20,7 +20,9 @@
                                 <rect key="frame" x="102" y="181" width="178" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" title="Wall Push-up"/>
+                                <state key="normal" title="Wall Push-up">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <segue destination="7ea-g1-tEb" kind="push" id="G5s-jM-gmi"/>
                                 </connections>
@@ -80,7 +82,9 @@
                                 <rect key="frame" x="61" y="151" width="252" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" title="Single Leg Stance"/>
+                                <state key="normal" title="Single Leg Stance">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <segue destination="QKt-nn-xdI" kind="push" id="h0F-oV-kzg"/>
                                 </connections>
@@ -106,7 +110,10 @@
                                 <rect key="frame" x="100" y="177" width="176" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" title="Quad Stretch"/>
+                                <state key="normal" title="Quad Stretch">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <segue destination="eND-9L-UOu" kind="push" id="Lq5-Nw-Ijs"/>
                                 </connections>
@@ -142,7 +149,9 @@
                                 <rect key="frame" x="119" y="144" width="136" height="105"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" title="Walking"/>
+                                <state key="normal" title="Walking">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <segue destination="ZXd-fz-gRp" kind="push" id="hbU-6Q-gZC"/>
                                 </connections>
