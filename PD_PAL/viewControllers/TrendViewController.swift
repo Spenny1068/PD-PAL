@@ -8,8 +8,8 @@
 // Revision History:
 // <Date, Name, Changes made>
 // <October 27, 2019, Spencer Lall, applied default page design>
-// <November 2, 2019, William Xue , Added table displaying exercise history and step count
-
+// <November 2, 2019, William Xue , Added table displaying exercise history and step count>
+// <November 8, 2019, Julia Kim, Adding graphs>
 import UIKit
 
 class TrendViewController: UIViewController, UITableViewDataSource {
@@ -84,6 +84,11 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         self.trendTableView.reloadData()
     }
 
+    func generateGraphs(){
+        //fetches user data to generate graphs
+        
+    }
+    
     /*
     // MARK: - Navigation
 
