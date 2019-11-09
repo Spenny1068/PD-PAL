@@ -9,8 +9,10 @@
 // <Date, Name, Changes made>
 // <October 27, 2019, Spencer Lall, applied default page design>
 // <November 2, 2019, William Xue , Added table displaying exercise history and step count>
-// <November 8, 2019, Julia Kim, Adding graphs>
+// <November 8, 2019, Julia Kim, Getting counts for each category>
+
 import UIKit
+import Charts //import to allow creating graphs
 
 class TrendViewController: UIViewController, UITableViewDataSource {
 
@@ -18,7 +20,13 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var Title_label: UILabel!
     @IBOutlet weak var trendTableView: UITableView!
     @IBOutlet weak var UpdateButton: UIButton!
-
+    @IBOutlet weak var radarChartView: RadarChartView!
+    
+    var strengthCounter = 0
+    var flexCounter = 0
+    var cardioCounter = 0
+    var balanceCounter = 0
+    
     var exerciseData = global_UserData.Get_Exercises_all()
     
     override func viewDidLoad() {
@@ -46,7 +54,9 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         let msg = UILabel()
         msg.text = "You're Doing Great!"
         msg.applyPageMsgDesign()
-        self.view.addSubview(msg)        
+        self.view.addSubview(msg)
+      
+        
     }
     
     // table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y
@@ -82,11 +92,58 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     @IBAction func Update(_ sender: UIButton) {
         exerciseData = global_UserData.Get_Exercises_all()
         self.trendTableView.reloadData()
+        //generateRadarChart() //need its own button
     }
 
-    func generateGraphs(){
-        //fetches user data to generate graphs
+    func generateRadarChart(){
+        //var dataEntries = exerciseCategoryCount()
         
+    }
+    
+    //This function fetches exercises done by the user, identifies the category to count how many exercises are done in each category
+    func exerciseCategoryCount() -> [Int]{
+        let exerciseData = global_UserData.Get_Exercises_all()
+        var categoryMatch = (" ", " ", " ", " ", " ")
+        var catCount = [0, 1, 2, 3]
+        for entry in exerciseData{
+            //get the category of the exercise done fetched from the DB
+            categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry.nameOfExercise)
+            
+            //figure out which counter to increment
+            if categoryMatch.1 as String == "Flexibility"
+            {
+                flexCounter += 1
+                //print(categoryMatch.1)
+                //print(flexCounter)
+                catCount[0] = flexCounter
+            }
+            else if categoryMatch.1 as String == "Cardio"
+            {
+                cardioCounter += 1
+                //print(categoryMatch.1)
+                //print(cardioCounter)
+                catCount[1] = cardioCounter
+            }
+            else if categoryMatch.1 as String == "Balance"
+            {
+                balanceCounter += 1
+                catCount[2] = balanceCounter
+            }
+            else if categoryMatch.1 as String == "Strength"
+            {
+                strengthCounter += 1
+                catCount[3] = strengthCounter
+            }
+            else
+            {
+                print("Not a valid category")
+            }
+            
+            
+            
+        }
+        
+        return catCount
     }
     
     /*
