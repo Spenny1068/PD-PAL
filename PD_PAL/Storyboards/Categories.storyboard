@@ -117,6 +117,14 @@
                                     <segue destination="QKt-nn-xdI" kind="push" id="txs-Dd-Wen"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW1-bb-i21">
+                                <rect key="frame" x="178" y="526" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="QKt-nn-xdI" kind="push" id="gsb-6r-0B2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aIP-1o-aD2"/>
@@ -125,6 +133,7 @@
                         <outlet property="exerciseButton" destination="3gl-iI-Vgt" id="CN4-z9-aLd"/>
                         <outlet property="exerciseButton2" destination="x89-LX-OJD" id="Pvo-p5-PMh"/>
                         <outlet property="exerciseButton3" destination="nod-Xp-V4T" id="OYg-KQ-Un5"/>
+                        <outlet property="exerciseButton4" destination="pW1-bb-i21" id="dwg-4e-9no"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HCi-Xk-4Nn" userLabel="First Responder" sceneMemberID="firstResponder"/>

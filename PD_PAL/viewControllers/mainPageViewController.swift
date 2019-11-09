@@ -35,7 +35,6 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         
                                     /* MAIN PAGE NAVIGATION BAR CODE */
         
-        self.navigationController?.navigationBar.topItem!.title = "Main"           // nav bar text
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
         
         let homeButton = UIBarButtonItem(image: UIImage(named: "logo.png"), style: .plain, target: self, action: #selector(homeButtonTapped))
@@ -50,10 +49,10 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
                                animated: true,
                                completion: nil)
         }
+        
         self.delegate = self
         configurePageControl()
     }
-    
                                     /* MAIN PAGE VIEW CONTROLLER FUNCTIONS */
     
     // when home button on nav bar is tapped
@@ -79,6 +78,10 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {return nil}
+        
+        
+        
+
         let prevIndex = viewControllerIndex - 1
         guard prevIndex >= 0 else {
             return orderedViewControllers.last
@@ -103,6 +106,8 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let pageContentViewController = pageViewController.viewControllers![0]
         self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
+        
+        
     }
     
     override func didReceiveMemoryWarning() {

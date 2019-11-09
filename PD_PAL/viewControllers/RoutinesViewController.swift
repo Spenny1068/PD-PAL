@@ -16,9 +16,20 @@ import UIKit
 class RoutinesViewController: UIViewController {
     
     // IBOutlet buttons
-    @IBOutlet weak var E1: UIButton!
-    @IBOutlet weak var E2: UIButton!
-    @IBOutlet weak var E3: UIButton!
+    @IBOutlet weak var routineButton1: UIButton!
+    @IBOutlet weak var routineButton2: UIButton!
+    @IBOutlet weak var routineButton3: UIButton!
+    
+    
+    /* stack view containing exercise buttons */
+    lazy var stackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [routineButton1, routineButton2, routineButton3])    // elements in stackview
+        sv.translatesAutoresizingMaskIntoConstraints = false    // use constraints
+        sv.axis = .vertical                                     // stackview orientation
+        sv.spacing = 25                                        // spacing between elements
+        sv.distribution = .fillEqually
+        return sv
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +42,23 @@ class RoutinesViewController: UIViewController {
         // message
         self.present_message(s1: "Select A Routine To Try!", s2: "Routine")
 
-        // routine buttons
-        E1.setTitle("Happy Day Workout", for: .normal)
-        E1.applyDesign()
+        // apply designs to routine buttons
+        routineButton1.setTitle("Happy Day Workout", for: .normal)
+        routineButton1.routineButtonDesign()
         
-        E2.setTitle("Friday Night Chill", for: .normal)
-        E2.applyDesign()
+        routineButton2.setTitle("Friday Night Chill", for: .normal)
+        routineButton2.routineButtonDesign()
         
-        E3.setTitle("Monday Morning Mood", for: .normal)
-        E3.applyDesign()
+        routineButton3.setTitle("Monday Morning Mood", for: .normal)
+        routineButton3.routineButtonDesign()
+        
+        /* routine button constraints */
+        applyExerciseButtonConstraint(button: routineButton1)
+        applyExerciseButtonConstraint(button: routineButton2)
+        applyExerciseButtonConstraint(button: routineButton3)
+        
+        self.view.addSubview(stackView)
+        applyStackViewConstraints(SV: stackView)
     }
     
    // called when home button on navigation bar is tapped

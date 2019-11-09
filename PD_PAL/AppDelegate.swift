@@ -28,19 +28,21 @@ struct Global {
         static var m_blue3 = UIColor(rgb: 0x9EC8E6).withAlphaComponent(1.0)          // Launch
         static var m_blue4 = UIColor(rgb: 0xD2E7F7).withAlphaComponent(1.0)          // Ques selected/Cardio
         
-        static var m_flexButton = UIColor(rgb: 0xF8FBFD).withAlphaComponent(1.0)      // Flexibility
+        static var m_flexButton = UIColor(rgb: 0xF8FBFD).withAlphaComponent(1.0)     // Flexibility
         static var m_lightGrey = UIColor(rgb: 0xBEBEBE).withAlphaComponent(1.0)      // Prev unselected
         static var m_lightGreen = UIColor(rgb: 0x95F98E).withAlphaComponent(1.0)     // Next unselected
         static var m_grey = UIColor(rgb: 0xBFBFBF).withAlphaComponent(1.0)           // Button border
     }
     
-    // system fonts
+    // preset fonts and sizes
     struct text_fonts {
-        static var m_font1 = UIFont(name:"HelveticaNeue-Bold", size: 30.0)
-        static var m_font2 = UIFont(name:"HelveticaNeue-Italic", size: 15.0)
-        static var m_font3 = UIFont(name:"HelveticaNeue", size: 35.0)
+        static var m_exerciseButtonFont = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
 
+        static var m_font2 = "HelveticaNeue-Italic"
+        static var m_font3 = "HelveticaNeue"
     }
+    
+    
 }
 
 /* So we can use hex valued colors */
@@ -65,6 +67,18 @@ extension UIColor {
 /* UIViewController methods */
 extension UIViewController {
     
+    // applies constraints for the stack view containing exercise buttons
+    func applyStackViewConstraints(SV: UIStackView) {
+        NSLayoutConstraint.activate([
+            SV.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            SV.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            SV.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 25),
+            SV.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -25),
+            SV.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150),
+            SV.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50)
+        ])
+    }
+    
     // page message
     func present_message(s1: String, s2: String) {
         let msg = UILabel()
@@ -84,6 +98,27 @@ extension UIViewController {
             msg.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
         ])
     }
+    
+    // applies constraints for a single exercise button
+    func applyExerciseButtonConstraint(button: UIButton) {
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 304),
+            button.heightAnchor.constraint(equalToConstant: 81),
+            button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 36),
+            button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -36),
+        ])
+    }
+    
+    // applies constraints for a single routine button
+    func applyRoutineButtonConstraint(button: UIButton) {
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 300),
+            button.heightAnchor.constraint(equalToConstant: 150),
+            button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 38),
+            button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
+        ])
+    }
+    
 }
 
 /* UILabel methods */
@@ -174,14 +209,30 @@ extension UIButton {
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
         self.contentHorizontalAlignment = .left                            // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
-        self.titleLabel?.font =  UIFont(name: "HelveticaNeue-Bold", size: 20.0)
+        self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
         
         // play button image
         let exerciseImage = UIImage(named: "ppp.png")
         self.setImage(exerciseImage , for: UIControl.State.normal)
         self.tintColor = UIColor.black
-        self.imageEdgeInsets = UIEdgeInsets(top: 15.0, left: 250, bottom: 15.0, right: 20)
+        self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 260, bottom: 20.0, right: 20)
+    }
+    
+    func routineButtonDesign() {
+        self.translatesAutoresizingMaskIntoConstraints = false               // turn on constraints
+
+        // design
+        self.layer.cornerRadius = 45                                         // rounded edges
+        self.layer.borderWidth = 3                                           // border width in points
+        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
+        
+        // text
+        self.setTitleColor(UIColor.black, for: .normal)                      // button text color
+        self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
+        self.contentVerticalAlignment = .center                              // button text aligned bottom of self
+        self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
     }
     
     func applyDesign() {

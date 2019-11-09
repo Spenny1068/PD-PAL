@@ -15,6 +15,15 @@ class StrengthViewController: UIViewController {
     @IBOutlet weak var exerciseButton2: UIButton!
     @IBOutlet weak var exerciseButton3: UIButton!
     
+    lazy var stackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [exerciseButton, exerciseButton2, exerciseButton3])    // elements in stackview
+        sv.translatesAutoresizingMaskIntoConstraints = false    // use constraints
+        sv.axis = .vertical                                     // stackview orientation
+        sv.spacing = 25                                        // spacing between elements
+        sv.distribution = .fillEqually
+        return sv
+    }()
+    
     @IBOutlet weak var WallPushUpButton: UIButton!
     
     override func viewDidLoad() {
@@ -46,37 +55,14 @@ class StrengthViewController: UIViewController {
         self.view.addSubview(exerciseButton)
         self.view.addSubview(exerciseButton2)
         self.view.addSubview(exerciseButton3)
-
         
         /* exercise buttons constraints */
+        applyExerciseButtonConstraint(button: exerciseButton)
+        applyExerciseButtonConstraint(button: exerciseButton2)
+        applyExerciseButtonConstraint(button: exerciseButton3)
         
-        // exercise button 1
-        NSLayoutConstraint.activate([
-            exerciseButton.widthAnchor.constraint(equalToConstant: 304),
-            exerciseButton.heightAnchor.constraint(equalToConstant: 81),
-            exerciseButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 36),
-            exerciseButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -36),
-            exerciseButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 187)
-        ])
-        
-        // exercise button 2
-        NSLayoutConstraint.activate([
-            exerciseButton2.widthAnchor.constraint(equalToConstant: 304),
-            exerciseButton2.heightAnchor.constraint(equalToConstant: 81),
-            exerciseButton2.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 36),
-            exerciseButton2.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -36),
-            exerciseButton2.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 343)
-        ])
-        
-        // exercise button 3
-        NSLayoutConstraint.activate([
-            exerciseButton3.widthAnchor.constraint(equalToConstant: 304),
-            exerciseButton3.heightAnchor.constraint(equalToConstant: 81),
-            exerciseButton3.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 36),
-            exerciseButton3.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -36),
-            exerciseButton3.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 497)
-        ])
-        
+        self.view.addSubview(stackView)
+        applyStackViewConstraints(SV: stackView)
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
