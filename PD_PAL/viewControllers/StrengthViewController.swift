@@ -51,11 +51,6 @@ class StrengthViewController: UIViewController {
         exerciseButton3.exerciseButtonDesign()
         exerciseButton3.backgroundColor = Global.color_schemes.m_blue1          // background color
         
-        // show buttons
-        self.view.addSubview(exerciseButton)
-        self.view.addSubview(exerciseButton2)
-        self.view.addSubview(exerciseButton3)
-        
         /* exercise buttons constraints */
         applyExerciseButtonConstraint(button: exerciseButton)
         applyExerciseButtonConstraint(button: exerciseButton2)

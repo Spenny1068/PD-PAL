@@ -34,7 +34,7 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         self.dataSource = self
         
                                     /* MAIN PAGE NAVIGATION BAR CODE */
-        
+        self.navigationController?.navigationBar.topItem!.title = "ROUTINES"                     // default title
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
         
         let homeButton = UIBarButtonItem(image: UIImage(named: "logo.png"), style: .plain, target: self, action: #selector(homeButtonTapped))
@@ -107,7 +107,11 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         let pageContentViewController = pageViewController.viewControllers![0]
         self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
         
-        
+        // dynamic title for navigation bar
+        if self.pageControl.currentPage == 0 { self.navigationController?.navigationBar.topItem!.title = "ROUTINES" }
+        else if self.pageControl.currentPage == 1 { self.navigationController?.navigationBar.topItem!.title = "CATEGORIES" }
+        else if self.pageControl.currentPage == 2 { self.navigationController?.navigationBar.topItem!.title = "TRENDS" }
+        else { self.navigationController?.navigationBar.topItem!.title = "SETTINGS" }
     }
     
     override func didReceiveMemoryWarning() {
