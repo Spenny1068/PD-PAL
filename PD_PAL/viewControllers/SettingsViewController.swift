@@ -21,6 +21,6 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
         // message
-        self.present_message(s1: "Change Your Settings", s2: "Settings")
+        self.present_message(s1: "Change Your Settings!", s2: "Settings")
     }
 }

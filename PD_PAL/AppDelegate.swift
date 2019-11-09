@@ -99,6 +99,38 @@ extension UIViewController {
         ])
     }
     
+    func show_description_duration_label() {
+        
+        // description label
+        let DescriptionLabel = UILabel()
+        DescriptionLabel.textAlignment = .left                                             // text alignment
+        DescriptionLabel.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
+        DescriptionLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
+        DescriptionLabel.text = "Description"
+        self.view.addSubview(DescriptionLabel)
+
+        NSLayoutConstraint.activate([
+            DescriptionLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            DescriptionLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
+            DescriptionLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 400)
+        ])
+        
+        // duration label
+        let DurationLabel = UILabel()
+        DurationLabel.textAlignment = .left                                             // text alignment
+        DurationLabel.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
+        DurationLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
+        DurationLabel.text = "Duration"
+        self.view.addSubview(DurationLabel)
+
+        NSLayoutConstraint.activate([
+            DurationLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            DurationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
+            DurationLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 510)
+        ])
+        
+    }
+    
     // applies constraints for a single exercise button
     func applyExerciseButtonConstraint(button: UIButton) {
         NSLayoutConstraint.activate([
@@ -119,17 +151,20 @@ extension UIViewController {
         ])
     }
     
+    // applies constraints for a single routine button
+    func applyViewButtonConstraints(button: UIButton) {
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 213),
+            button.heightAnchor.constraint(equalToConstant: 78),
+            button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 81),
+            button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
+            button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300)
+        ])
+    }
 }
 
 /* UILabel methods */
 extension UILabel {
-    
-    // applies position, constraint, and design properties to page name labels
-    func applyPageNameDesign() {
-        self.textAlignment = .left                                             // text alignment
-        self.translatesAutoresizingMaskIntoConstraints = false               // turn off rectangle coordinates
-        self.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)              // text font and size
-    }
     
     // applies position, constraint, and design properties to page message labels
     func applyPageMsgDesign() {
@@ -137,7 +172,7 @@ extension UILabel {
         self.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
         self.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
     }
-
+    
     // applies questions on Questionnaire storyboard
     func applyQuestionDesign(){
         self.frame = CGRect(x: 36, y: 120, width: 300, height: 150)            // rectangle coordinates
@@ -233,6 +268,25 @@ extension UIButton {
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
+    }
+    
+    func viewButtonDesign() {
+        self.translatesAutoresizingMaskIntoConstraints = false               // turn on constraints
+
+        // design
+        self.backgroundColor = Global.color_schemes.m_lightGreen
+        self.layer.cornerRadius = 45                                         // rounded edges
+        self.layer.borderWidth = 3                                           // border width in points
+        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
+               
+        // text
+        self.setTitle("View", for: .normal)
+        self.setTitleColor(UIColor.black, for: .normal)                      // button text color
+        self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
+        self.contentVerticalAlignment = .center                              // button text aligned bottom of self
+        self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
+        
     }
     
     func applyDesign() {

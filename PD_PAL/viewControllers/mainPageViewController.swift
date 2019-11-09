@@ -78,10 +78,6 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {return nil}
-        
-        
-        
-
         let prevIndex = viewControllerIndex - 1
         guard prevIndex >= 0 else {
             return orderedViewControllers.last

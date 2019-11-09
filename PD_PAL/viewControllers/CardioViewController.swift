@@ -39,7 +39,7 @@ class CardioViewController: UIViewController {
         /* exercise buttons */
         
         // button 1
-        exerciseButton.setTitle("QUAD STRETCH",for: .normal)                        // button text
+        exerciseButton.setTitle("WALKING",for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
         exerciseButton.backgroundColor = Global.color_schemes.m_blue3          // background color
 

@@ -11,42 +11,32 @@ import UIKit
 class WalkingViewController: UIViewController {
 
     // IBOutlet buttons and labels
-    @IBOutlet var DescriptionLabel: UILabel!
-    @IBOutlet var DurationLabel: UILabel!
-    @IBOutlet var SelectButton: UIButton!
-    @IBOutlet var DurationText: UITextView!
-    @IBOutlet var DescriptionText: UITextView!
     @IBOutlet var image: UIImageView!
+    @IBOutlet weak var viewButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
+        self.present_message(s1: "WALKING", s2: "WALKING")
         image.image = UIImage(named: "Walking.png")
 
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALKING")
-        DescriptionText.text = readResult.Description
-        DurationText.text = readResult.Duration
+        //DescriptionText.text = readResult.Description
+        //DurationText.text = readResult.Duration
         
-        // apply standard button and label designs
-        DescriptionLabel.DescriptionDurationDesign()
-        DurationLabel.DescriptionDurationDesign()
-        SelectButton.DesignSelect()
+        // exercise description and duration labels
+        self.show_description_duration_label()
+        
+        // view button
+        viewButton.viewButtonDesign()
+        applyViewButtonConstraints(button: viewButton)
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
-        
-        // select button
-        SelectButton.addTarget(self, action: #selector(selectButtonTapped), for: .touchUpInside)
-        SelectButton.contentHorizontalAlignment = .center
-        NSLayoutConstraint.activate([
-            SelectButton.widthAnchor.constraint(equalToConstant: 240),
-            SelectButton.heightAnchor.constraint(equalToConstant: 50),
-            SelectButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            SelectButton.topAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 75)
-        ])
     }
     
     // called when home button on navigation bar is tapped

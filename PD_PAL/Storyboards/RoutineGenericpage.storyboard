@@ -17,10 +17,10 @@
             </objects>
             <point key="canvasLocation" x="76" y="-221"/>
         </scene>
-        <!--Routine 1-->
+        <!--HAPPY DAY WORKOUT-->
         <scene sceneID="3CG-5g-luM">
             <objects>
-                <viewController storyboardIdentifier="RoutineGenericVC" title="Routine 1" id="Kxx-sF-VzX" customClass="RoutineGenericViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RoutineGenericVC" title="HAPPY DAY WORKOUT" id="Kxx-sF-VzX" customClass="RoutineGenericViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wnE-c7-HE4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

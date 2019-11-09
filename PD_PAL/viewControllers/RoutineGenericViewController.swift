@@ -28,18 +28,6 @@ class RoutineGenericViewController: UIViewController {
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
         
-        // page name
-        let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = "HAPPY DAY WORKOUT"
-        pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)
-        NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 350),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
-        ])
-        
         Exercise1.applyDesign()
         Exercise2.applyDesign()
         Exercise3.applyDesign()

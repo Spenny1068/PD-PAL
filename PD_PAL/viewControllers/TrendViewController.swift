@@ -32,7 +32,7 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         
         
         /// message
-        self.present_message(s1: "Doing Great!", s2: "Great")
+        self.present_message(s1: "You're Doing Great!", s2: "Great")
     }
     
     // table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y

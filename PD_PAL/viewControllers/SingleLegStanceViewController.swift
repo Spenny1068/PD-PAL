@@ -10,12 +10,10 @@ import UIKit
 
 class SingleLegStanceViewController: UIViewController {
 
-    // IBOutlet labels and 
-    @IBOutlet var DescriptionLabel: UILabel!
-    @IBOutlet var DurationLabel: UILabel!
-    @IBOutlet var SelectButton: UIButton!
-    @IBOutlet var DescriptionText: UITextView!
-    @IBOutlet var DurationText: UITextView!
+    // IBOutlet labels and buttons
+    @IBOutlet weak var viewButton: UIButton!
+    
+    
     @IBOutlet weak var image: UIImageView!
     
     override func viewDidLoad() {
@@ -23,39 +21,20 @@ class SingleLegStanceViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
+        self.present_message(s1: "SINGLE LEG STANCE", s2: "SINGLE LEG STANCE")
         image.image = UIImage(named: "Leg_Stance.png")
-
 
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "SINGLE LEG STANCE")
-        DescriptionText.text = readResult.Description
-        DurationText.text = readResult.Duration
+        //DescriptionText.text = readResult.Description
+        //DurationText.text = readResult.Duration
         
-        // page name
-        let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = "SINGLE LEG STANCE"
-        pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)
-        NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 350),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
-        ])
+        // exercise description and duration labels
+        self.show_description_duration_label()
         
-        // select button
-        SelectButton.addTarget(self, action: #selector(selectButtonTapped), for: .touchUpInside)
-        SelectButton.contentHorizontalAlignment = .center
-        NSLayoutConstraint.activate([
-            SelectButton.widthAnchor.constraint(equalToConstant: 240),
-            SelectButton.heightAnchor.constraint(equalToConstant: 50),
-            SelectButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            SelectButton.topAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 75)
-        ])
-        
-        DescriptionLabel.DescriptionDurationDesign()
-        DurationLabel.DescriptionDurationDesign()
-        SelectButton.DesignSelect()
+        // view button
+        viewButton.viewButtonDesign()
+        applyViewButtonConstraints(button: viewButton)
                 
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))

@@ -11,51 +11,29 @@ import UIKit
 class WallPushUpViewController: UIViewController {
 
     // IBOutlet Labels
-    @IBOutlet var DescriptionLabel: UILabel!
-    @IBOutlet var DurationLabel: UILabel!
-    @IBOutlet weak var SelectButton: UIButton!
-    @IBOutlet var DescriptionText: UITextView!
-    @IBOutlet var DurationText: UITextView!
+
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var image2: UIImageView!
-    
+    @IBOutlet weak var viewButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
+        self.present_message(s1: "WALL PUSH-UP", s2: "WALL PUSH-UP")
+        
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALL PUSH-UP")
-        DescriptionText.text = readResult.Description
-        DurationText.text = readResult.Duration
+        //DescriptionText.text = readResult.Description
+        //DurationText.text = readResult.Duration
         
-        // apply standard label and buttons designs
-        DescriptionLabel.DescriptionDurationDesign()
-        DurationLabel.DescriptionDurationDesign()
-        SelectButton.DesignSelect()
+        // exercise description and duration labels
+        self.show_description_duration_label()
         
-        // page name
-        let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = "WALL PUSH-UP"
-        pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)
-        NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 350),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
-        ])
-        
-        // select button
-        SelectButton.addTarget(self, action: #selector(selectButtonTapped), for: .touchUpInside)
-        SelectButton.contentHorizontalAlignment = .center
-        NSLayoutConstraint.activate([
-            SelectButton.widthAnchor.constraint(equalToConstant: 240),
-            SelectButton.heightAnchor.constraint(equalToConstant: 50),
-            SelectButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            SelectButton.topAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 75)
-        ])
+        // view button
+        viewButton.viewButtonDesign()
+        applyViewButtonConstraints(button: viewButton)
 
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
@@ -63,7 +41,6 @@ class WallPushUpViewController: UIViewController {
         
         image.image = UIImage(named: "pushup_step1.png")
         image2.image = UIImage(named: "pushup_step2.png")
-
     }
     
     // called when home button on navigation bar is tapped

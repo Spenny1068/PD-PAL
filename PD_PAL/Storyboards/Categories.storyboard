@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Strength-->
+        <!--STRENGTH-->
         <scene sceneID="ByK-Zq-2oQ">
             <objects>
-                <viewController storyboardIdentifier="StrengthVC" title="Strength" id="6sL-ZT-lhB" customClass="StrengthViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StrengthVC" title="STRENGTH" id="6sL-ZT-lhB" customClass="StrengthViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BCL-uD-boI" customClass="Stre">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="1364" y="990"/>
         </scene>
-        <!--Flexibility-->
+        <!--FLEXIBILITY-->
         <scene sceneID="BBK-5x-cjT">
             <objects>
-                <viewController storyboardIdentifier="FlexibilityVC" title="Flexibility" id="fbM-pe-3fU" customClass="FlexibilityViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FlexibilityVC" title="FLEXIBILITY" id="fbM-pe-3fU" customClass="FlexibilityViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N0r-mi-ctA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -140,10 +140,10 @@
             </objects>
             <point key="canvasLocation" x="676" y="559.07046476761627"/>
         </scene>
-        <!--Balance-->
+        <!--BALANCE-->
         <scene sceneID="Fao-Fm-2e4">
             <objects>
-                <viewController storyboardIdentifier="BalanceVC" title="Balance" id="WdW-e4-cAt" customClass="BalanceViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BalanceVC" title="BALANCE" id="WdW-e4-cAt" customClass="BalanceViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7RX-SJ-x4a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -196,10 +196,10 @@
             </objects>
             <point key="canvasLocation" x="2076" y="989"/>
         </scene>
-        <!--Cardio-->
+        <!--CARDIO-->
         <scene sceneID="Tvs-OT-pZy">
             <objects>
-                <viewController storyboardIdentifier="CardioVC" title="Cardio" id="UZV-KL-2bR" customClass="CardioViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CardioVC" title="CARDIO" id="UZV-KL-2bR" customClass="CardioViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZqK-78-uq5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
