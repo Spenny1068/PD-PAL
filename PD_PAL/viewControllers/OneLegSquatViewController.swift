@@ -25,7 +25,7 @@ class OneLegSquatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Setup.m_bgColor   // background color
+        view.backgroundColor = Global.color_schemes.m_bgColor   // background color
         image.image = UIImage(named: "leg_stretch.png")
         
         // read exercise info into labels

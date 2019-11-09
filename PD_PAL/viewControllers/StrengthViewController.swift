@@ -11,34 +11,72 @@
 import UIKit
 
 class StrengthViewController: UIViewController {
-
+    @IBOutlet weak var exerciseButton: UIButton!
+    @IBOutlet weak var exerciseButton2: UIButton!
+    @IBOutlet weak var exerciseButton3: UIButton!
+    
     @IBOutlet weak var WallPushUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Setup.m_bgColor  // background color
+        view.backgroundColor = Global.color_schemes.m_bgColor  // background color
 
-        // page name
-        let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = "STRENGTH"
-        pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)
+        // message
+        self.present_message(s1: "Select An Exercise!", s2: "Exercise")
+        
+        /* exercise buttons */
+        
+        // button 1
+        exerciseButton.setTitle("WALL PUSHUP",for: .normal)                        // button text
+        exerciseButton.exerciseButtonDesign()
+        exerciseButton.backgroundColor = Global.color_schemes.m_blue3          // background color
+
+        // button 2
+        exerciseButton2.setTitle("EXERCISE 2",for: .normal)                        // button text
+        exerciseButton2.exerciseButtonDesign()
+        exerciseButton2.backgroundColor = Global.color_schemes.m_blue2          // background color
+
+        // button 3
+        exerciseButton3.setTitle("EXERCISE 3",for: .normal)                        // button text
+        exerciseButton3.exerciseButtonDesign()
+        exerciseButton3.backgroundColor = Global.color_schemes.m_blue1          // background color
+        
+        // show buttons
+        self.view.addSubview(exerciseButton)
+        self.view.addSubview(exerciseButton2)
+        self.view.addSubview(exerciseButton3)
+
+        
+        /* exercise buttons constraints */
+        
+        // exercise button 1
         NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 350),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+            exerciseButton.widthAnchor.constraint(equalToConstant: 304),
+            exerciseButton.heightAnchor.constraint(equalToConstant: 81),
+            exerciseButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 36),
+            exerciseButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -36),
+            exerciseButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 187)
         ])
         
-        // message
-        let msg = UILabel()
-        msg.text = "Choose a body part!"
-        msg.applyPageMsgDesign()
-        self.view.addSubview(msg)
+        // exercise button 2
+        NSLayoutConstraint.activate([
+            exerciseButton2.widthAnchor.constraint(equalToConstant: 304),
+            exerciseButton2.heightAnchor.constraint(equalToConstant: 81),
+            exerciseButton2.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 36),
+            exerciseButton2.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -36),
+            exerciseButton2.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 343)
+        ])
         
+        // exercise button 3
+        NSLayoutConstraint.activate([
+            exerciseButton3.widthAnchor.constraint(equalToConstant: 304),
+            exerciseButton3.heightAnchor.constraint(equalToConstant: 81),
+            exerciseButton3.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 36),
+            exerciseButton3.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -36),
+            exerciseButton3.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 497)
+        ])
         
-        WallPushUpButton.applyDesign()
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))

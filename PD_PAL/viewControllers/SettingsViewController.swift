@@ -18,24 +18,9 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        view.backgroundColor = Setup.m_bgColor  // background color
-
-        // page name
-        let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = "SETTINGS"
-        pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)
-        NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 350),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
-        ])
+        view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
         // message
-        let msg = UILabel()
-        msg.text = "Change your settings!"
-        msg.applyPageMsgDesign()
-        self.view.addSubview(msg)
+        self.present_message(s1: "Change Your Settings", s2: "Settings")
     }
 }

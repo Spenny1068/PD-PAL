@@ -16,15 +16,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syn-6d-c8x">
-                                <rect key="frame" x="102" y="181" width="178" height="49"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mz7-3A-tla">
+                                <rect key="frame" x="144" y="120" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" title="Wall Push-up">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" id="G5s-jM-gmi"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" id="xUJ-BQ-B5a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt1-ZA-AI9">
+                                <rect key="frame" x="144" y="239" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="7ea-g1-tEb" kind="push" id="VCw-2T-7La"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-uf-uGy">
+                                <rect key="frame" x="129" y="379" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="7ea-g1-tEb" kind="push" id="mbn-Mn-UZv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -33,7 +46,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="DbN-ja-eNa"/>
                     <connections>
-                        <outlet property="WallPushUpButton" destination="syn-6d-c8x" id="FbY-uo-Xsw"/>
+                        <outlet property="exerciseButton" destination="mz7-3A-tla" id="kXs-dV-3My"/>
+                        <outlet property="exerciseButton2" destination="Bt1-ZA-AI9" id="BFX-kh-mb6"/>
+                        <outlet property="exerciseButton3" destination="dYt-uf-uGy" id="U47-9v-69N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y02-Dp-nw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -78,21 +93,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leZ-3F-RaX">
-                                <rect key="frame" x="61" y="151" width="252" height="95"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gl-iI-Vgt">
+                                <rect key="frame" x="178" y="140" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" title="Single Leg Stance">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="QKt-nn-xdI" kind="push" id="h0F-oV-kzg"/>
+                                    <segue destination="QKt-nn-xdI" kind="push" id="y6B-rL-7JE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x89-LX-OJD">
+                                <rect key="frame" x="152" y="318" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="QKt-nn-xdI" kind="push" id="pny-zl-Trs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nod-Xp-V4T">
+                                <rect key="frame" x="178" y="427" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="QKt-nn-xdI" kind="push" id="txs-Dd-Wen"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aIP-1o-aD2"/>
                     </view>
+                    <connections>
+                        <outlet property="exerciseButton" destination="3gl-iI-Vgt" id="CN4-z9-aLd"/>
+                        <outlet property="exerciseButton2" destination="x89-LX-OJD" id="Pvo-p5-PMh"/>
+                        <outlet property="exerciseButton3" destination="nod-Xp-V4T" id="OYg-KQ-Un5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HCi-Xk-4Nn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,22 +139,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r5f-ET-Dt8">
-                                <rect key="frame" x="100" y="177" width="176" height="49"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAg-UN-dl8">
+                                <rect key="frame" x="132" y="125" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" title="Quad Stretch">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="eND-9L-UOu" kind="push" id="Lq5-Nw-Ijs"/>
+                                    <segue destination="eND-9L-UOu" kind="push" id="PGs-o7-Qrh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsF-jO-Yrx">
+                                <rect key="frame" x="77" y="295" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="eND-9L-UOu" kind="push" id="0m8-tM-1dE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLs-uj-Wt4">
+                                <rect key="frame" x="90" y="417" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="eND-9L-UOu" kind="push" id="MA0-do-HBp"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xa1-vf-FGr"/>
                     </view>
+                    <connections>
+                        <outlet property="exerciseButton" destination="XAg-UN-dl8" id="JSY-IQ-KU9"/>
+                        <outlet property="exerciseButton2" destination="NsF-jO-Yrx" id="N8V-bW-xha"/>
+                        <outlet property="exerciseButton3" destination="TLs-uj-Wt4" id="ptn-LV-KA4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYd-z2-KvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -135,7 +185,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ThA-T0-nKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2633" y="464"/>
+            <point key="canvasLocation" x="2076" y="989"/>
         </scene>
         <!--Cardio-->
         <scene sceneID="Tvs-OT-pZy">
@@ -145,15 +195,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7T-TQ-oqE">
-                                <rect key="frame" x="119" y="144" width="136" height="105"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1N-uc-MvS">
+                                <rect key="frame" x="156" y="168" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <state key="normal" title="Walking">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="ZXd-fz-gRp" kind="push" id="hbU-6Q-gZC"/>
+                                    <segue destination="ZXd-fz-gRp" kind="push" id="rYN-uE-q6K"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cek-Lr-2B2">
+                                <rect key="frame" x="189" y="249" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="ZXd-fz-gRp" kind="push" id="bCG-5q-zw3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co7-bL-i89">
+                                <rect key="frame" x="172" y="344" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="ZXd-fz-gRp" kind="push" id="cNP-Gn-a60"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -161,7 +224,9 @@
                         <viewLayoutGuide key="safeArea" id="Kcg-Qn-kDI"/>
                     </view>
                     <connections>
-                        <outlet property="walking" destination="g7T-TQ-oqE" id="VL4-aw-8aF"/>
+                        <outlet property="exerciseButton" destination="m1N-uc-MvS" id="Gkd-Cw-dbl"/>
+                        <outlet property="exerciseButton2" destination="cek-Lr-2B2" id="Vu2-mO-ld3"/>
+                        <outlet property="exerciseButton3" destination="Co7-bL-i89" id="24V-p2-0wv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CH5-6F-XKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -169,4 +234,10 @@
             <point key="canvasLocation" x="2076" y="557.27136431784118"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="cNP-Gn-a60"/>
+        <segue reference="MA0-do-HBp"/>
+        <segue reference="y6B-rL-7JE"/>
+        <segue reference="mbn-Mn-UZv"/>
+    </inferredMetricsTieBreakers>
 </document>

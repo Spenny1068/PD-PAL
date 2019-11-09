@@ -22,7 +22,7 @@ class RoutineGenericViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Setup.m_bgColor
+        view.backgroundColor = Global.color_schemes.m_bgColor
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))

@@ -15,10 +15,75 @@
 
 import UIKit
 
-/* put global variables in this struct */
-struct Setup {
+/* put global constants in this struct */
+struct Global {
+    
     // color schemes
-    static var m_bgColor = UIColor(red: 170/255.0, green: 200/255.0, blue: 226/255.0, alpha: 1.0)   // view controller background color
+    struct color_schemes {
+        static var m_bgColor = UIColor(rgb: 0xECECEC).withAlphaComponent(1.0)        // background color
+       
+        // blue gradients from dark to light
+        static var m_blue1 = UIColor(rgb: 0x30A3FA).withAlphaComponent(1.0)          // Balance
+        static var m_blue2 = UIColor(rgb: 0x83C8FD).withAlphaComponent(1.0)          // Strength
+        static var m_blue3 = UIColor(rgb: 0x9EC8E6).withAlphaComponent(1.0)          // Launch
+        static var m_blue4 = UIColor(rgb: 0xD2E7F7).withAlphaComponent(1.0)          // Ques selected/Cardio
+        
+        static var m_flexButton = UIColor(rgb: 0xF8FBFD).withAlphaComponent(1.0)      // Flexibility
+        static var m_lightGrey = UIColor(rgb: 0xBEBEBE).withAlphaComponent(1.0)      // Prev unselected
+        static var m_lightGreen = UIColor(rgb: 0x95F98E).withAlphaComponent(1.0)     // Next unselected
+        static var m_grey = UIColor(rgb: 0xBFBFBF).withAlphaComponent(1.0)           // Button border
+    }
+    
+    // system fonts
+    struct text_fonts {
+        static var m_font1 = UIFont(name:"HelveticaNeue-Bold", size: 30.0)
+        static var m_font2 = UIFont(name:"HelveticaNeue-Italic", size: 15.0)
+        static var m_font3 = UIFont(name:"HelveticaNeue", size: 35.0)
+
+    }
+}
+
+/* So we can use hex valued colors */
+extension UIColor {
+   convenience init(red: Int, green: Int, blue: Int) {
+       assert(red >= 0 && red <= 255, "Invalid red component")
+       assert(green >= 0 && green <= 255, "Invalid green component")
+       assert(blue >= 0 && blue <= 255, "Invalid blue component")
+
+       self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+   }
+
+   convenience init(rgb: Int) {
+       self.init(
+           red: (rgb >> 16) & 0xFF,
+           green: (rgb >> 8) & 0xFF,
+           blue: rgb & 0xFF
+       )
+   }
+}
+
+/* UIViewController methods */
+extension UIViewController {
+    
+    // page message
+    func present_message(s1: String, s2: String) {
+        let msg = UILabel()
+        let message = s1
+        let highlightedWord = s2
+        let range = (message as NSString).range(of: highlightedWord)
+        let attributedText = NSMutableAttributedString.init(string: message)
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red , range: range)
+        msg.attributedText = attributedText
+        msg.applyPageMsgDesign()
+        self.view.addSubview(msg)
+                
+        NSLayoutConstraint.activate([
+            msg.widthAnchor.constraint(equalToConstant: 350),
+            msg.heightAnchor.constraint(equalToConstant: 50),
+            msg.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            msg.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+        ])
+    }
 }
 
 /* UILabel methods */
@@ -26,7 +91,6 @@ extension UILabel {
     
     // applies position, constraint, and design properties to page name labels
     func applyPageNameDesign() {
-        //self.frame = CGRect(x: -40, y: 40, width: 300, height: 100)            // rectangle coordinates
         self.textAlignment = .left                                             // text alignment
         self.translatesAutoresizingMaskIntoConstraints = false               // turn off rectangle coordinates
         self.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)              // text font and size
@@ -34,11 +98,9 @@ extension UILabel {
     
     // applies position, constraint, and design properties to page message labels
     func applyPageMsgDesign() {
-        self.frame = CGRect(x: -30, y: 80, width: 300, height: 100)            // rectangle coordinates
-        self.textAlignment = .center                                           // text alignment
-        //msg.translatesAutoresizingMaskIntoConstraints = false                // turn off rectangle coordinates
-        self.font = UIFont(name:"HelveticaNeue-Bold", size: 15.0)              // text font and size
-        self.textColor = UIColor(red: 154/255.0, green: 141/255.0, blue: 141/255.0, alpha: 1.0)     // text color
+        self.textAlignment = .left                                             // text alignment
+        self.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
+        self.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
     }
 
     // applies questions on Questionnaire storyboard
@@ -76,11 +138,52 @@ extension UILabel {
         self.backgroundColor = UIColor.black                   // background color
         self.textColor = UIColor.white                          // text color
     }
-    
 }
 
 /* UIButton methods */
 extension UIButton {
+    
+    /* design for buttons on categories page */
+    func categoryButtonDesign() {
+        self.translatesAutoresizingMaskIntoConstraints = false               // turn on constraints
+
+        // design
+        self.layer.cornerRadius = 25                                         // rounded edges
+        self.layer.borderWidth = 3                                           // border width in points
+        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
+        
+        // text
+        self.setTitleColor(UIColor.black, for: .normal)                      // button text color
+        self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
+        self.contentVerticalAlignment = .bottom                              // button text aligned bottom of self
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 15.0, right: 0.0)
+        
+        // image - when I add image it moves the text...
+        // flexibilityButton.imageEdgeInsets = UIEdgeInsets(top: 40, left: 40, bottom: 70.0, right: 40.0)
+    }
+    
+    func exerciseButtonDesign() {
+        self.translatesAutoresizingMaskIntoConstraints = false               // turn on constraints
+
+        // design
+        self.layer.cornerRadius = 40                                         // rounded edges
+        self.layer.borderWidth = 3                                           // border width in points
+        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
+        
+        // text
+        self.setTitleColor(UIColor.black, for: .normal)                      // button text color
+        self.contentHorizontalAlignment = .left                            // button text aligned center of horizontal
+        self.contentVerticalAlignment = .center                              // button text aligned bottom of self
+        self.titleLabel?.font =  UIFont(name: "HelveticaNeue-Bold", size: 20.0)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
+        
+        // play button image
+        let exerciseImage = UIImage(named: "ppp.png")
+        self.setImage(exerciseImage , for: UIControl.State.normal)
+        self.tintColor = UIColor.black
+        self.imageEdgeInsets = UIEdgeInsets(top: 15.0, left: 250, bottom: 15.0, right: 20)
+    }
+    
     func applyDesign() {
         self.backgroundColor = UIColor.black                                    // background color
         self.layer.cornerRadius = self.frame.height / 2                         // make button round

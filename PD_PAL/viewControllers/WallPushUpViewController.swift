@@ -23,7 +23,7 @@ class WallPushUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Setup.m_bgColor  // background color
+        view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALL PUSH-UP")
