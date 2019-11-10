@@ -28,11 +28,14 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         trendTableView.dataSource = self
         
         let userData = global_UserData.Get_User_Data()
-        let username = userData.UserName.uppercased()
-        
-        
-        /// message
-        self.present_message(s1: "You're Doing Great!", s2: "Great")
+        let username = userData.UserName
+                
+        // message
+        self.show_page_message(s1: username + " Trends!", s2: "Trends")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
     
     // table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y

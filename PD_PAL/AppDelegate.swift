@@ -37,12 +37,8 @@ struct Global {
     // preset fonts and sizes
     struct text_fonts {
         static var m_exerciseButtonFont = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
-
-        static var m_font2 = "HelveticaNeue-Italic"
-        static var m_font3 = "HelveticaNeue"
+        static var m_exerciseDescriptionDurationFont = UIFont(name: "HelveticaNeue", size: 15.0)
     }
-    
-    
 }
 
 /* So we can use hex valued colors */
@@ -80,7 +76,7 @@ extension UIViewController {
     }
     
     // page message
-    func present_message(s1: String, s2: String) {
+    func show_page_message(s1: String, s2: String) {
         let msg = UILabel()
         let message = s1
         let highlightedWord = s2
@@ -99,7 +95,8 @@ extension UIViewController {
         ])
     }
     
-    func show_description_duration_label() {
+    // displays exercise description as written in exerciseDB
+    func show_exercise_description(string:String) {
         
         // description label
         let DescriptionLabel = UILabel()
@@ -109,11 +106,33 @@ extension UIViewController {
         DescriptionLabel.text = "Description"
         self.view.addSubview(DescriptionLabel)
 
+        // description label constraints
         NSLayoutConstraint.activate([
             DescriptionLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
             DescriptionLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
-            DescriptionLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 400)
+            DescriptionLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 430)
         ])
+        
+        // description text
+        let DescriptionText = UILabel()
+        DescriptionText.textAlignment = .left                                             // text alignment
+        DescriptionText.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
+        DescriptionText.font = Global.text_fonts.m_exerciseDescriptionDurationFont        // text font and size
+        DescriptionText.lineBreakMode = .byWordWrapping                                   // Word wrapping
+        DescriptionText.numberOfLines = 5                                                 // theres space for a maximum of 5 lines
+        DescriptionText.text = string
+        self.view.addSubview(DescriptionText)
+
+        // description text constraints
+        NSLayoutConstraint.activate([
+            DescriptionText.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
+            DescriptionText.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12),
+            DescriptionText.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 465)
+        ])
+    }
+    
+    // displays exercise duration as written in exerciseDB
+    func show_exercise_duration(string:String) {
         
         // duration label
         let DurationLabel = UILabel()
@@ -123,12 +142,29 @@ extension UIViewController {
         DurationLabel.text = "Duration"
         self.view.addSubview(DurationLabel)
 
+        // duration label constraints
         NSLayoutConstraint.activate([
             DurationLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
             DurationLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
-            DurationLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 510)
+            DurationLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 570)
         ])
         
+        // duration text
+        let DurationText = UILabel()
+        DurationText.textAlignment = .left                                             // text alignment
+        DurationText.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
+        DurationText.font = Global.text_fonts.m_exerciseDescriptionDurationFont     // text font and size
+        DurationText.lineBreakMode = .byWordWrapping                                   // Word wrapping
+        DurationText.numberOfLines = 2                                                 // theres space for a maximum of 2 lines
+        DurationText.text = string
+        self.view.addSubview(DurationText)
+
+        // duration text constraints
+        NSLayoutConstraint.activate([
+            DurationText.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
+            DurationText.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
+            DurationText.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 605)
+        ])
     }
     
     // applies constraints for a single exercise button
@@ -158,7 +194,7 @@ extension UIViewController {
             button.heightAnchor.constraint(equalToConstant: 78),
             button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 81),
             button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
-            button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300)
+            button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 330)
         ])
     }
 }
@@ -242,7 +278,7 @@ extension UIButton {
         
         // text
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
-        self.contentHorizontalAlignment = .left                            // button text aligned center of horizontal
+        self.contentHorizontalAlignment = .left                              // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
@@ -275,7 +311,7 @@ extension UIButton {
 
         // design
         self.backgroundColor = Global.color_schemes.m_lightGreen
-        self.layer.cornerRadius = 45                                         // rounded edges
+        self.layer.cornerRadius = 30                                        // rounded edges
         self.layer.borderWidth = 3                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
                
@@ -286,7 +322,6 @@ extension UIButton {
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
-        
     }
     
     func applyDesign() {

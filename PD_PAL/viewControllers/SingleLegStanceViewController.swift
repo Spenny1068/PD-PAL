@@ -21,16 +21,15 @@ class SingleLegStanceViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
-        self.present_message(s1: "SINGLE LEG STANCE", s2: "SINGLE LEG STANCE")
+        self.show_page_message(s1: "SINGLE LEG STANCE", s2: "SINGLE LEG STANCE")
         image.image = UIImage(named: "Leg_Stance.png")
 
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "SINGLE LEG STANCE")
-        //DescriptionText.text = readResult.Description
-        //DurationText.text = readResult.Duration
         
-        // exercise description and duration labels
-        self.show_description_duration_label()
+        // exercise description and duration text
+        self.show_exercise_description(string: readResult.Description)
+        self.show_exercise_duration(string: readResult.Duration)
         
         // view button
         viewButton.viewButtonDesign()

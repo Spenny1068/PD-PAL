@@ -23,16 +23,15 @@ class OneLegSquatViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = Global.color_schemes.m_bgColor   // background color
-        self.present_message(s1: "QUAD STRETCH", s2: "QUAD STRETCH")
+        self.show_page_message(s1: "QUAD STRETCH", s2: "QUAD STRETCH")
         image.image = UIImage(named: "leg_stretch.png")
         
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "QUAD STRETCH")
-        //DescriptionText.text = readResult.Description
-        //DurationText.text = readResult.Duration
-        
-        // exercise description and duration labels
-        self.show_description_duration_label()
+       
+        // exercise description and duration text
+        self.show_exercise_description(string: readResult.Description)
+        self.show_exercise_duration(string: readResult.Duration)
         
         // view button
         viewButton.viewButtonDesign()

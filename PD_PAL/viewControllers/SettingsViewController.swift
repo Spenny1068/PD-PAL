@@ -21,6 +21,10 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
         // message
-        self.present_message(s1: "Change Your Settings!", s2: "Settings")
+        self.show_page_message(s1: "Change Your Settings!", s2: "Settings")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
 }

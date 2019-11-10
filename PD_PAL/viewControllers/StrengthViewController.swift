@@ -30,16 +30,18 @@ class StrengthViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue2     // nav bar color
+
 
         // message
-        self.present_message(s1: "Select An Exercise!", s2: "Exercise")
+        self.show_page_message(s1: "Select An Exercise!", s2: "Exercise")
         
         /* exercise buttons */
         
         // button 1
         exerciseButton.setTitle("WALL PUSHUP",for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
-        exerciseButton.backgroundColor = Global.color_schemes.m_blue3          // background color
+        exerciseButton.backgroundColor = Global.color_schemes.m_blue2          // background color
 
         // button 2
         exerciseButton2.setTitle("EXERCISE 2",for: .normal)                        // button text
@@ -49,7 +51,7 @@ class StrengthViewController: UIViewController {
         // button 3
         exerciseButton3.setTitle("EXERCISE 3",for: .normal)                        // button text
         exerciseButton3.exerciseButtonDesign()
-        exerciseButton3.backgroundColor = Global.color_schemes.m_blue1          // background color
+        exerciseButton3.backgroundColor = Global.color_schemes.m_blue2          // background color
         
         /* exercise buttons constraints */
         applyExerciseButtonConstraint(button: exerciseButton)
@@ -58,6 +60,8 @@ class StrengthViewController: UIViewController {
         
         self.view.addSubview(stackView)
         applyStackViewConstraints(SV: stackView)
+        
+        
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))

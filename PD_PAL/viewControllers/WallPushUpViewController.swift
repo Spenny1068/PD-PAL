@@ -21,15 +21,15 @@ class WallPushUpViewController: UIViewController {
 
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
-        self.present_message(s1: "WALL PUSH-UP", s2: "WALL PUSH-UP")
+        self.show_page_message(s1: "WALL PUSH-UP", s2: "WALL PUSH-UP")
         
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALL PUSH-UP")
-        //DescriptionText.text = readResult.Description
-        //DurationText.text = readResult.Duration
         
-        // exercise description and duration labels
-        self.show_description_duration_label()
+        
+        // exercise description and duration text
+        self.show_exercise_description(string: readResult.Description)
+        self.show_exercise_duration(string: readResult.Duration)
         
         // view button
         viewButton.viewButtonDesign()

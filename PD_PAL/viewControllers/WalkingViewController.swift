@@ -19,16 +19,15 @@ class WalkingViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
-        self.present_message(s1: "WALKING", s2: "WALKING")
+        self.show_page_message(s1: "WALKING", s2: "WALKING")
         image.image = UIImage(named: "Walking.png")
 
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALKING")
-        //DescriptionText.text = readResult.Description
-        //DurationText.text = readResult.Duration
         
-        // exercise description and duration labels
-        self.show_description_duration_label()
+        // exercise description and duration text
+        self.show_exercise_description(string: readResult.Description)
+        self.show_exercise_duration(string: readResult.Duration)
         
         // view button
         viewButton.viewButtonDesign()
