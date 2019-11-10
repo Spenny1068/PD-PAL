@@ -33,14 +33,15 @@ class RoutinesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = Global.color_schemes.m_bgColor
         
-        //home button on navigation bar
+        // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
         
         // message
-        self.present_message(s1: "Select A Routine To Try!", s2: "Routine")
+        self.show_page_message(s1: "Select A Routine To Try!", s2: "Routine")
 
         // apply designs to routine buttons
         routineButton1.setTitle("Happy Day Workout", for: .normal)
@@ -59,6 +60,10 @@ class RoutinesViewController: UIViewController {
         
         self.view.addSubview(stackView)
         applyStackViewConstraints(SV: stackView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
     
    // called when home button on navigation bar is tapped

@@ -26,6 +26,7 @@ class CategoriesViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = Global.color_schemes.m_bgColor // background color
+
         
         /* category buttons */
         
@@ -106,7 +107,11 @@ class CategoriesViewController: UIViewController {
         ])
         
         // message
-        self.present_message(s1: "Select A Category To Work!", s2: "Category")
+        self.show_page_message(s1: "Select A Category To Work!", s2: "Category")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
     
     @objc func buttonAction(sender: UIButton!) {

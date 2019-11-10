@@ -30,21 +30,23 @@ class BalanceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1     // nav bar color
+
 
         // message
-        self.present_message(s1: "Select An Exercise!", s2: "Exercise")
+        self.show_page_message(s1: "Select An Exercise!", s2: "Exercise")
         
         /* exercise buttons */
         
         // button 1
         exerciseButton.setTitle("QUAD STRETCH",for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
-        exerciseButton.backgroundColor = Global.color_schemes.m_blue3          // background color
+        exerciseButton.backgroundColor = Global.color_schemes.m_blue1          // background color
 
         // button 2
         exerciseButton2.setTitle("EXERCISE 2",for: .normal)                        // button text
         exerciseButton2.exerciseButtonDesign()
-        exerciseButton2.backgroundColor = Global.color_schemes.m_blue2          // background color
+        exerciseButton2.backgroundColor = Global.color_schemes.m_blue1          // background color
 
         // button 3
         exerciseButton3.setTitle("EXERCISE 3",for: .normal)                        // button text
