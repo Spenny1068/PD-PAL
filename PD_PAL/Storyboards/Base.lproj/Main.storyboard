@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZTo-ww-JRx">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZTo-ww-JRx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +18,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtY-dY-F2O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6261" y="258"/>
+            <point key="canvasLocation" x="6260" y="371"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="nN8-PU-VdJ">
@@ -137,45 +139,68 @@
             <objects>
                 <viewController storyboardIdentifier="TrendsPage" id="eOn-hd-4pY" customClass="TrendViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dst-kA-BfX" customClass="Trend" customModule="PD_PAL" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zdh-bc-bmA">
-                                <rect key="frame" x="16" y="211" width="343" height="313"/>
+                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0R-Vv-2Qh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" id="4K1-hI-FIh">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4K1-hI-FIh" id="Ssf-dw-JSx">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMF-hp-Tgb">
-                                <rect key="frame" x="162" y="532" width="51" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Update"/>
-                                <connections>
-                                    <action selector="Update:" destination="eOn-hd-4pY" eventType="touchUpInside" id="84i-Oa-kY4"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2u-yI-GLO">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zdh-bc-bmA">
+                                                <rect key="frame" x="22" y="493" width="330" height="254"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" id="4K1-hI-FIh">
+                                                        <rect key="frame" x="0.0" y="28" width="330" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4K1-hI-FIh" id="Ssf-dw-JSx">
+                                                            <rect key="frame" x="0.0" y="0.0" width="330" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2T-ic-h5l" customClass="RadarChartView" customModule="RadarChart">
+                                                <rect key="frame" x="22" y="113" width="330" height="310"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" updatesFrequently="YES"/>
+                                                </accessibility>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMF-hp-Tgb">
+                                                <rect key="frame" x="162" y="788" width="51" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Update"/>
+                                                <connections>
+                                                    <action selector="Update:" destination="eOn-hd-4pY" eventType="touchUpInside" id="84i-Oa-kY4"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qeJ-Cn-5Zn"/>
                     </view>
+                    <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="TrendTableView" destination="Zdh-bc-bmA" id="eVk-5d-TSY"/>
                         <outlet property="UpdateButton" destination="gMF-hp-Tgb" id="iMJ-kZ-bp0"/>
+                        <outlet property="rChartView" destination="E2T-ic-h5l" id="Haa-5I-ZYj"/>
                         <outlet property="trendTableView" destination="Zdh-bc-bmA" id="NqM-da-M4L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ayO-5W-k77" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6260" y="-488.90554722638683"/>
+            <point key="canvasLocation" x="6260" y="-489.3553223388306"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="do0-3e-ocv">
@@ -219,13 +244,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wyB-G4-ZH1">
-                                <rect key="frame" x="25" y="100" width="348" height="1106"/>
+                                <rect key="frame" x="25" y="120" width="325" height="512"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iVk-VF-hfh">
-                                        <rect key="frame" x="0.0" y="0.0" width="348" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="150"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgg-dw-E27">
-                                                <rect key="frame" x="54" y="0.0" width="240" height="50"/>
+                                                <rect key="frame" x="42.5" y="0.0" width="240" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="6SP-3w-jtD"/>
                                                     <constraint firstAttribute="width" constant="240" id="9XJ-ps-qsw"/>
@@ -236,7 +261,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Weights_image" translatesAutoresizingMaskIntoConstraints="NO" id="WYL-Qh-4V9">
-                                                <rect key="frame" x="54" y="50" width="240" height="100"/>
+                                                <rect key="frame" x="42.5" y="50" width="240" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="0UJ-nG-xc5"/>
                                                     <constraint firstAttribute="width" constant="240" id="u3E-HS-ID6"/>
@@ -251,10 +276,10 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SOZ-A7-iiw">
-                                        <rect key="frame" x="0.0" y="170" width="348" height="146"/>
+                                        <rect key="frame" x="0.0" y="170" width="325" height="146"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEp-VY-rXF">
-                                                <rect key="frame" x="0.0" y="0.0" width="348" height="46"/>
+                                                <rect key="frame" x="139.5" y="0.0" width="46" height="46"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="348" id="Bx8-WV-GvA" userLabel="width = 240"/>
                                                     <constraint firstAttribute="height" constant="46" id="DEq-jP-pAc" userLabel="height = 50"/>
@@ -265,7 +290,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kettle Bell image" translatesAutoresizingMaskIntoConstraints="NO" id="q4i-F6-wjw">
-                                                <rect key="frame" x="54" y="46" width="240" height="100"/>
+                                                <rect key="frame" x="42.5" y="46" width="240" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="240" id="Pjg-fI-Noh"/>
                                                     <constraint firstAttribute="height" constant="100" id="dkv-yZ-3hy"/>
@@ -274,10 +299,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0zn-Q8-Zvs">
-                                        <rect key="frame" x="0.0" y="336" width="348" height="770"/>
+                                        <rect key="frame" x="0.0" y="336" width="325" height="176"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot5-6v-G5e">
-                                                <rect key="frame" x="54" y="0.0" width="240" height="50"/>
+                                                <rect key="frame" x="42.5" y="0.0" width="240" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="RF5-7I-j5d"/>
                                                     <constraint firstAttribute="width" constant="240" id="j33-Rq-uM6"/>
@@ -288,7 +313,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Track" translatesAutoresizingMaskIntoConstraints="NO" id="zvE-WI-Gsg">
-                                                <rect key="frame" x="54" y="50" width="240" height="720"/>
+                                                <rect key="frame" x="42.5" y="50" width="240" height="126"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="Hme-i9-sUZ" userLabel="height = 100"/>
                                                     <constraint firstAttribute="width" constant="240" id="oiB-0N-bgl"/>
@@ -341,7 +366,7 @@
                 <navigationController storyboardIdentifier="mainNavVC" automaticallyAdjustsScrollViewInsets="NO" id="ZTo-ww-JRx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Du-ce-XFQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
