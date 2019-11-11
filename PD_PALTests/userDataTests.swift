@@ -25,6 +25,8 @@ Revision History
     Changed test_UserData_UserInfo() for slightly better coverage
  - 02/11/2019 : William Huong
     Udated test_UserData_UserExerciseData() for Get_Exercise_All()
+ - 11/11/2019 : William Huong
+    Updated test_UserData_UserInfo() for UUID column
  */
 
 
@@ -68,6 +70,12 @@ UserData Class Tests
         //Check that the default values before inserting.
         var userData = userDB.Get_User_Data()
         
+        //Grab the UUID, it should never change.
+        let originalUUID = userData.UserUUID
+        
+        print("\(originalUUID)")
+        
+        XCTAssert( userData.UserUUID != "NULL" )
         XCTAssert( userData.UserName == "DEFAULT_NAME" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -87,6 +95,7 @@ UserData Class Tests
         //Get the user info
         userData = userDB.Get_User_Data()
         
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -103,6 +112,7 @@ UserData Class Tests
         userData = userDB.Get_User_Data()
         
         //Check values.
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == true )
         XCTAssert( userData.WalkingDuration == 30 )
@@ -118,6 +128,7 @@ UserData Class Tests
         
         userData = userDB.Get_User_Data()
         
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 30 )
@@ -133,6 +144,7 @@ UserData Class Tests
         
         userData = userDB.Get_User_Data()
         
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -151,6 +163,8 @@ UserData Class Tests
         
         userData = userDB.Get_User_Data()
         
+        //Clear_UserInfo_Database() is not meant to be used normally, so it will generate a new UUID on next read.
+        XCTAssert( userData.UserUUID != "NULL" )
         XCTAssert( userData.UserName == "DEFAULT_NAME" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )

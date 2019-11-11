@@ -38,6 +38,8 @@
     Fixed bug where Increment_Steps_Taken() sometimes just replaced the value instead of incrementing
  - 02/11/2019 : William Xue
     Added method to get all exercises in UserExerciseData database
+ - 11/11/2019 : William Huong
+    Added UUID column to UserInfo database
  */
 
 /*
@@ -107,6 +109,7 @@ class UserData {
     private let UserInfoDatabaseName = "UserInfo"
     private var UserInfo: Connection!
     private let UserInfoTable = Table("UserInfo")
+    private let UserUUID = Expression<String>("UUID")
     private let UserName = Expression<String>("Name")
     private let QuestionsAnswered = Expression<Bool>("QuestionsAnswered")
     private let WalkingDuration = Expression<Int>("WalkingDuration")
@@ -155,7 +158,6 @@ class UserData {
     //If the databse file does not exist, it will create the file, then write the table to the file.
     init()
     {
-
         //Declare some variables we will use to keep track of the state of our databases on initialization
         var userInfoDatabaseExists = false
         var userInfoDatabaseReady = false
@@ -305,6 +307,9 @@ class UserData {
         
         //Connect to each database.
         do {
+            print("UserInfo database located at:")
+            print("\(userInfoURL!)")
+            
             let database = try Connection((userInfoURL!).path)
             self.UserInfo = database
             
@@ -312,7 +317,8 @@ class UserData {
             if !userInfoDatabaseReady {
                 //Create the table
                 let createTable = UserInfoTable.create{ (table) in
-                    table.column(UserName, primaryKey: true)
+                    table.column(UserUUID, primaryKey: true)
+                    table.column(UserName)
                     table.column(QuestionsAnswered)
                     table.column(WalkingDuration)
                     table.column(ChairAccessible)
@@ -331,13 +337,26 @@ class UserData {
                 }
                 
                 //User Info is special. We need it to always have a single row.
-                self.Update_User_Data(nameGiven: "DEFAULT_NAME", questionsAnswered: false, walkingDuration: 0, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, poolAvailable: false, intensityDesired: "Light", pushNotificationsDesired: false)
+                
+                //Generate a UUID.
+                let uuid = NSUUID().uuidString
+                
+                print("Inserting new user into empty UserInfo database, UUID: \(uuid)")
+                
+                do {
+                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false))
+                } catch {
+                    print("Error inserting default user row into UserInfo database")
+                }
             }
         } catch {
             print("Error connecting to the UserInfo database")
         }
         
         do {
+            print("Routines database located at:")
+            print("\(routinesURL!)")
+            
             let database = try Connection((routinesURL!).path)
             self.Routines = database
             
@@ -361,6 +380,9 @@ class UserData {
         }
         
         do {
+            print("UserExerciseData database located at:")
+            print("\(exerciseURL!)")
+            
             let database = try Connection((exerciseURL!).path)
             self.UserExerciseData = database
             
@@ -387,6 +409,9 @@ class UserData {
         }
         
         do {
+            print("StepCount database located at:")
+            print("\(stepURL!)")
+            
             let database = try Connection((stepURL!).path)
             self.StepCount = database
             
@@ -428,20 +453,30 @@ Methods that get data from class
     
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
-    func Get_User_Data() -> (UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool) {
+    func Get_User_Data() -> (UserUUID: String, UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool) {
         do {
             let userInfo = try UserInfo.pluck(UserInfoTable)
             
             if userInfo == nil {
-                return (UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
+                let uuid = NSUUID().uuidString
+                
+                print("UserInfo database was empty. Inserting default values with randomly generated UUID: \(uuid)")
+                
+                do {
+                    try UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false))
+                } catch {
+                    print("Error inserting default user row during read")
+                }
+                
+                return (UserUUID: uuid, UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
             }
             
-            return (UserName: userInfo![UserName], QuestionsAnswered: userInfo![QuestionsAnswered], WalkingDuration: userInfo![WalkingDuration], ChairAccessible: userInfo![ChairAccessible], WeightsAccessible: userInfo![WeightsAccessible], ResistBandAccessible: userInfo![ResistBandAccessible], PoolAccessible: userInfo![PoolAccessible], Intensity: userInfo![Intensity], PushNotifications: userInfo![PushNotifications])
+            return (UserUUID: userInfo![UserUUID], UserName: userInfo![UserName], QuestionsAnswered: userInfo![QuestionsAnswered], WalkingDuration: userInfo![WalkingDuration], ChairAccessible: userInfo![ChairAccessible], WeightsAccessible: userInfo![WeightsAccessible], ResistBandAccessible: userInfo![ResistBandAccessible], PoolAccessible: userInfo![PoolAccessible], Intensity: userInfo![Intensity], PushNotifications: userInfo![PushNotifications])
         } catch {
             print("Failed to get User Info")
         }
-        
-        return (UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
+        //Should never come here.
+        return (UserUUID: "NULL", UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
     }
     
     //Gets all the routines available.
@@ -493,8 +528,6 @@ Methods that get data from class
         return returnArr
     }
     
-    
-    
     //Gets all exercises done in all hours
     //Returns an array of Tuples
     func Get_Exercises_all() ->([(nameOfExercise: String, Year: Int, Month: Int, Day: Int, Hour: Int)]) {
@@ -512,9 +545,6 @@ Methods that get data from class
         
         return returnArr
     }
-    
-    
-    
     
     //Gets the steps taken in a specific hour.
     //Returns an Int64.
@@ -558,7 +588,8 @@ Methods that insert or update data.
             try UserInfo.run(UserInfoTable.delete())
             
             //Re-insert user
-            try UserInfo.run(UserInfoTable.insert(UserName <- (nameGiven ?? currentUserInfo.UserName),
+            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUserInfo.UserUUID,
+                                                  UserName <- (nameGiven ?? currentUserInfo.UserName),
                                                   QuestionsAnswered <- (questionsAnswered ?? currentUserInfo.QuestionsAnswered),
                                                   WalkingDuration <- (walkingDuration ?? currentUserInfo.WalkingDuration),
                                                   ChairAccessible <- (chairAvailable ?? currentUserInfo.ChairAccessible),
@@ -629,17 +660,18 @@ Deletion Methods
      These methods will delete data from a database. The exact action is deleting rows, so Delete_Exercise_Done() works slightly differently.
 */
     
-    //Delete the user info. Preserves user name.
+    //Delete the user info. Preserves user name and UUID.
     func Delete_userInfo() {
         //Grab the current user name.
         let currentUserName = self.Get_User_Data().UserName
+        let currentUUID = self.Get_User_Data().UserUUID
         
         //Kill the data in the database.
         do {
             try UserInfo.run(UserInfoTable.delete())
             
             //Re-insert user name plus default values for everything else.
-            try UserInfo.run(UserInfoTable.insert(UserName <- currentUserName, QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false))
+            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUUID, UserName <- currentUserName, QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false))
         } catch {
             print("Failed to delete user info")
         }
