@@ -12,8 +12,6 @@ class SingleLegStanceViewController: UIViewController {
 
     // IBOutlet labels and buttons
     @IBOutlet weak var viewButton: UIButton!
-    
-    
     @IBOutlet weak var image: UIImageView!
     
     override func viewDidLoad() {

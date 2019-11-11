@@ -26,6 +26,11 @@ class StrengthViewController: UIViewController {
     
     @IBOutlet weak var WallPushUpButton: UIButton!
     
+    /* If this page was instantiated through categories */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vcc = segue.destination as? WallPushUpViewController { Global.flag = 2 }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -70,6 +75,7 @@ class StrengthViewController: UIViewController {
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
     }
+    
     
     // called when home button on navigation bar is tapped
     @objc func homeButtonTapped(sender: UIButton!) {

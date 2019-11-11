@@ -111,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="102" y="618"/>
         </scene>
-        <!--OneLegSquatVC-->
+        <!--PushupVC-->
         <scene sceneID="7O3-oF-LQj">
             <objects>
-                <viewControllerPlaceholder storyboardName="OneLegSquat" referencedIdentifier="OneLegSquatVC" id="Xo7-JS-VUv" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Chest" referencedIdentifier="PushupVC" id="Xo7-JS-VUv" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="WE0-u4-6oQ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8gt-23-mO8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

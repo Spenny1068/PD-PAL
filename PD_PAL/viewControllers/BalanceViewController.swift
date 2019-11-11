@@ -40,7 +40,7 @@ class BalanceViewController: UIViewController {
         self.show_page_message(s1: "Balance Exercises!", s2: "Balance")
         
         /* exercise buttons */
-        
+            
         // button 1
         exerciseButton.setTitle("QUAD STRETCH",for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()

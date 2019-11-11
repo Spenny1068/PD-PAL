@@ -18,6 +18,8 @@ import UIKit
 /* put global constants in this struct */
 struct Global {
     
+    static var flag = 0 // 1 is routines, 2 is categories, 0 is nil
+    
     // color schemes
     struct color_schemes {
         static var m_bgColor = UIColor(rgb: 0xECECEC).withAlphaComponent(1.0)        // background color

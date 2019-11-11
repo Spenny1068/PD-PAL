@@ -9,12 +9,20 @@
 import UIKit
 
 class WallPushUpViewController: UIViewController {
-
+    
     // IBOutlet Labels
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var image2: UIImageView!
     @IBOutlet weak var viewButton: UIButton!
+    
+    /* code in here will execute based Global.flag value */
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if Global.flag == 1 { self.title = "bye" }
+        else if Global.flag == 2 { self.title = "hello" }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +32,11 @@ class WallPushUpViewController: UIViewController {
         /* navigation bar stuff */
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
         //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
-        self.title = nil                                                                                            // no page title in navigation bar
         
         self.show_page_message(s1: "WALL PUSH-UP", s2: "WALL PUSH-UP")
         
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALL PUSH-UP")
-        
         
         // exercise description and duration text
         self.show_exercise_description(string: readResult.Description)
