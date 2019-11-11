@@ -103,27 +103,27 @@ class PD_PALUITests: XCTestCase {
             /* Categories main page */
             // -> Flexibility
             app.buttons["Flexibility"].tap()
-            app.buttons["Single Leg Stance"].tap()
+            app.buttons["SINGLE LEG STANCE"].tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
 
             // -> Cardio
             app.buttons["Cardio"].tap()
-            app.buttons["Walking"].tap()
+            app.buttons["WALKING"].tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
 
             // -> Balance
             app.buttons["Balance"].tap()
-            app.buttons["Quad Stretch"].tap()
+            app.buttons["QUAD STRETCH"].tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
 
             // -> Strength
-//            app.buttons["Strength"].tap()
-//            app.buttons["Wall Push-up"].tap()
-//            app.navigationBars.buttons.element(boundBy: 0).tap()
-//            app.navigationBars.buttons.element(boundBy: 0).tap()
+            app.buttons["Strength"].tap()
+            app.buttons["WALL PUSHUP"].tap()
+            app.navigationBars.buttons.element(boundBy: 0).tap()
+            app.navigationBars.buttons.element(boundBy: 0).tap()
 
             app.swipeLeft()
             app.swipeLeft()

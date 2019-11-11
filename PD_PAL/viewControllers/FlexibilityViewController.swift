@@ -31,10 +31,14 @@ class FlexibilityViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
-        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_flexButton     // nav bar color
+        
+        /* navigation bar stuff */
+        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_flexButton     // nav bar color
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.title = nil    // no page title in navigation bar
 
         // message
-        self.show_page_message(s1: "Select An Exercise!", s2: "Exercise")
+        self.show_page_message(s1: "Flexiblity Exercises!", s2: "Flexiblity")
         
         /* exercise buttons */
         

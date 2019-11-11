@@ -26,7 +26,6 @@ class CategoriesViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = Global.color_schemes.m_bgColor // background color
-
         
         /* category buttons */
         
@@ -75,7 +74,7 @@ class CategoriesViewController: UIViewController {
             flexibilityButton.heightAnchor.constraint(equalToConstant: 208),
             flexibilityButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 23),
             flexibilityButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -200),
-            flexibilityButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 155)
+            flexibilityButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 135)
         ])
         
         // cardio button constraints
@@ -84,7 +83,7 @@ class CategoriesViewController: UIViewController {
             cardioButton.heightAnchor.constraint(equalToConstant: 208),
             cardioButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 200),
             cardioButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -23),
-            cardioButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 155)
+            cardioButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 135)
         ])
 
         // strength button constraints
@@ -93,7 +92,7 @@ class CategoriesViewController: UIViewController {
             strengthButton.heightAnchor.constraint(equalToConstant: 208),
             strengthButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 23),
             strengthButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -200),
-            strengthButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 401)
+            strengthButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 391)
         ])
         
         
@@ -103,7 +102,7 @@ class CategoriesViewController: UIViewController {
             balanceButton.heightAnchor.constraint(equalToConstant: 208),
             balanceButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 200),
             balanceButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -23),
-            balanceButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 401)
+            balanceButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 391)
         ])
         
         // message

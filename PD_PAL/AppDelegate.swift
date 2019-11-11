@@ -70,7 +70,7 @@ extension UIViewController {
             SV.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             SV.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 25),
             SV.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -25),
-            SV.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150),
+            SV.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 120),
             SV.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50)
         ])
     }
@@ -91,7 +91,7 @@ extension UIViewController {
             msg.widthAnchor.constraint(equalToConstant: 350),
             msg.heightAnchor.constraint(equalToConstant: 50),
             msg.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            msg.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+            msg.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 55)
         ])
     }
     
@@ -206,7 +206,7 @@ extension UILabel {
     func applyPageMsgDesign() {
         self.textAlignment = .left                                             // text alignment
         self.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
-        self.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
+        self.font = UIFont(name:"HelveticaNeue-Bold", size: 26.0)              // text font and size
     }
     
     // applies questions on Questionnaire storyboard
