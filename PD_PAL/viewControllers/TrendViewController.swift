@@ -23,6 +23,9 @@ class TrendViewController: UIViewController, UITableViewDataSource {
   
     @IBOutlet weak var rChartView: RadarChartView!
     
+    
+    @IBOutlet weak var scroller: UIScrollView!
+    
     var strengthCounter = 0
     var flexCounter = 0
     var cardioCounter = 0
@@ -32,7 +35,13 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //to get the scroll working
+        //stackoverflow.com/questions/28144739/swift-uiscrollview-not-scrolling
+        scroller?.isScrollEnabled = true
+        scroller?.contentSize = CGSize(width: 375, height: 1500) //content size must be greater than scroll view constraint
+        self.view.addSubview(scroller)
+        
         view.backgroundColor = Setup.m_bgColor  // background color
         trendTableView.dataSource = self
         
@@ -61,10 +70,12 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         rChartView?.prepareForDrawChart()
         rChartView?.setNeedsLayout()
         rChartView?.setNeedsDisplay()
     }
+  
     
     // table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,8 +111,10 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         exerciseData = global_UserData.Get_Exercises_all()
         self.trendTableView.reloadData()
     }
+    
 
     func generateRadarChart(){
+        /*Using the library from github.com/nkmrh/RadarChart*/
         let color = UIColor(red:0.282, green:0.541, blue:0.867, alpha:0.50)
         let backgroundColor = UIColor(red:0.851, green:0.851, blue:0.941, alpha:1.00)
         let xAxisColor = UIColor(red:0.396, green:0.769, blue:0.914, alpha:1.00)
@@ -156,8 +169,8 @@ class TrendViewController: UIViewController, UITableViewDataSource {
             if categoryMatch.1 as String == "Flexibility"
             {
                 flexCounter += 1
-                print(categoryMatch.1)
-                print(flexCounter)
+                //print(categoryMatch.1)
+                //sprint(flexCounter)
                 catCount[0] = flexCounter
             }
             else if categoryMatch.1 as String == "Cardio"
