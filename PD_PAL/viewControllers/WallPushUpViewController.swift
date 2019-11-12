@@ -22,20 +22,22 @@ class WallPushUpViewController: UIViewController {
 
         // we came from routines
         if Global.flag == 1 {
-            let skipButton = UIButton(frame: CGRect.zero)
-            skipButton.startButtonDesign()
+            let skipButton = UIButton()
+            skipButton.setTitle("Skip",for: .normal)
+            skipButton.setTitleColor(.red , for: .normal) //change colour later
+            skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+            skipButton.frame = CGRect(x: 25, y: 550, width: 50, height: 100)
             self.view.addSubview(skipButton)
+
         }
             
         // we came from categories
         else if Global.flag == 2 {
-                        
+            let startButton = UIButton(frame: CGRect.zero)
+            startButton.startButtonDesign()
+            self.view.addSubview(startButton)
             
         }
-    }
-    
-    @objc func skipButtonTapped() {
-        print("skip button tapped")
     }
     
     override func viewDidLoad() {
@@ -85,6 +87,15 @@ class WallPushUpViewController: UIViewController {
         
         // insert excercise as done
         global_UserData.Add_Exercise_Done(ExerciseName: "WALL PUSH-UP", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+    }
+    
+    
+    @objc func skipButtonTapped()
+    {
+        //let nextExercise = Name of viewController for exercise
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+        self.present(newViewController, animated: true, completion: nil)
     }
 
     /*
