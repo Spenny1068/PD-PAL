@@ -10,9 +10,18 @@
 // <October 27, 2019, Spencer Lall, applied default page design>
 // <November 2, 2019, William Xue , Added table displaying exercise history and step count>
 // <November 8, 2019, Julia Kim, Getting counts for each category>
+// <November 11, 2019, Julia Kim, Adding scrolling to the page, generate radar graph, implemented date pickers>
+
+/*Known Bugs
+ November 11, 2019: Julia Kim
+ -The graph generated does not update after loading initially as that feature has not been fully implemented yet.
+ -Date Picker not integrated yet.
+ 
+ */
 
 import UIKit
 import RadarChart //import to allow creating radar graph
+
 
 class TrendViewController: UIViewController, UITableViewDataSource {
 
@@ -20,12 +29,16 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var Title_label: UILabel!
     @IBOutlet weak var trendTableView: UITableView!
     @IBOutlet weak var UpdateButton: UIButton!
-  
     @IBOutlet weak var rChartView: RadarChartView!
-    
-    
     @IBOutlet weak var scroller: UIScrollView!
     
+    @IBOutlet weak var startDate: UITextField!
+    @IBOutlet weak var endDate: UITextField!
+    
+    private var sDatePicker: UIDatePicker?
+    private var eDatePicker: UIDatePicker?
+    
+    //counter for radar graphs
     var strengthCounter = 0
     var flexCounter = 0
     var cardioCounter = 0
@@ -35,11 +48,15 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDatePicker()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TrendViewController.viewTapped(gestureRecognizer:)))
+        
+        self.view.addGestureRecognizer(tapGesture)
         
         //to get the scroll working
         //stackoverflow.com/questions/28144739/swift-uiscrollview-not-scrolling
         scroller?.isScrollEnabled = true
-        scroller?.contentSize = CGSize(width: 375, height: 1500) //content size must be greater than scroll view constraint
+        scroller?.contentSize = CGSize(width: 375, height: 2500) //content size must be greater than scroll view constraint
         self.view.addSubview(scroller)
         
         view.backgroundColor = Setup.m_bgColor  // background color
@@ -70,10 +87,10 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     }
     
     override func viewDidLayoutSubviews() {
+        //this is for graph subviews
         super.viewDidLayoutSubviews()
         rChartView?.prepareForDrawChart()
         rChartView?.setNeedsLayout()
-        rChartView?.setNeedsDisplay()
     }
   
     
@@ -110,9 +127,50 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     @IBAction func Update(_ sender: UIButton) {
         exerciseData = global_UserData.Get_Exercises_all()
         self.trendTableView.reloadData()
+        self.rChartView?.reloadInputViews()
     }
     
-
+    func generateLineChart(){
+        //this is for step counter data
+      
+    }
+    
+    func getDatePicker(){
+        //let user select the date for step counter
+        sDatePicker = UIDatePicker()
+        eDatePicker = UIDatePicker()
+        sDatePicker?.datePickerMode = .date
+        sDatePicker?.addTarget(self, action: #selector(TrendViewController.sDateChanged(datePicker:)), for: .valueChanged)
+        eDatePicker?.datePickerMode = .date
+        eDatePicker?.addTarget(self, action: #selector(TrendViewController.eDateChanged(datePicker:)), for: .valueChanged)
+        
+        startDate.inputView = sDatePicker
+        endDate.inputView = eDatePicker
+        
+    }
+    
+    @objc func sDateChanged(datePicker: UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        startDate.text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+        
+    }
+    
+    @objc func eDateChanged(datePicker: UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        endDate.text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+        
+    }
+    
+    @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer){
+        self.view.endEditing(true)
+    }
+    
     func generateRadarChart(){
         /*Using the library from github.com/nkmrh/RadarChart*/
         let color = UIColor(red:0.282, green:0.541, blue:0.867, alpha:0.50)
@@ -121,38 +179,11 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         let yAxisColor = UIColor(red:0.596, green:0.863, blue:0.945, alpha:1.50)
         let fontColor = UIColor(red:0.259, green:0.365, blue:0.565, alpha:1.00)
         
-        rChartView?.data = self.exerciseCategoryCount()
+        rChartView?.data = self.exerciseCategoryCount() //get the user exercise data
         rChartView?.labelTexts = ["Flexibility", "Cardio", "Balance", "Strength"]
         rChartView?.numberOfVertexes = 4
         rChartView?.numberTicks = 30
-        rChartView?.style = RadarChartStyle(color: color,
-                                        
-                                        backgroundColor: backgroundColor,
-                                        
-                                        xAxis: RadarChartStyle.Axis(
-                                            
-                                            colors: [xAxisColor],
-                                            
-                                            widths: [0.5, 0.5, 0.5, 0.5, 2.0]),
-                                        
-                                        yAxis: RadarChartStyle.Axis(
-                                            
-                                            colors: [yAxisColor],
-                                            
-                                            widths: [0.5]),
-                                        
-                                        label: RadarChartStyle.Label(fontName: "Helvetica",
-                                                                     
-                                                                     fontColor: fontColor,
-                                                                     
-                                                                     fontSize: 11,
-                                                                     
-                                                                     lineSpacing: 0,
-                                                                     
-                                                                     letterSpacing: 0,
-                                                                     
-                                                                     margin: 10))
-        
+        rChartView?.style = RadarChartStyle(color: color,backgroundColor: backgroundColor, xAxis: RadarChartStyle.Axis(colors: [xAxisColor], widths: [0.5, 0.5, 0.5, 0.5, 2.0]),yAxis: RadarChartStyle.Axis(colors: [yAxisColor], widths: [0.5]), label: RadarChartStyle.Label(fontName: "Helvetica", fontColor: fontColor, fontSize: 11, lineSpacing: 0, letterSpacing: 0, margin: 10))
         rChartView?.option = RadarChartOption()
     }
     
@@ -201,6 +232,7 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         
         return catCount
     }
+    
     
     /*
     // MARK: - Navigation
