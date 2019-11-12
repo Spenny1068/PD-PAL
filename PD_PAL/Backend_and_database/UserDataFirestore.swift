@@ -44,16 +44,16 @@ import Firebase
  
  - Collection: Users
     - Document: User1
-        - Value : UUID-String
-        - Value : Username-String
-        - Value : QuestionsAnswered-Boolean
-        - Value : WalkingDuration-Number
-        - Value : ChairAccessible-Boolean
-        - Value : WeightsAccessible-Boolean
-        - Value : ResistBandAccessible-Boolean
-        - Value : PoolAccessible-Boolean
-        - Value : Intensity-String
-        - Value : PushNotifications
+        - Value : UUID - String
+        - Value : Username - String
+        - Value : QuestionsAnswered - Boolean
+        - Value : WalkingDuration - Number
+        - Value : ChairAccessible - Boolean
+        - Value : WeightsAccessible - Boolean
+        - Value : ResistBandAccessible - Boolean
+        - Value : PoolAccessible - Boolean
+        - Value : Intensity - String
+        - Value : PushNotifications - Boolean
         - Collection : Routines
             - Document : Routine1
                 - Value : Exercise1
@@ -70,16 +70,27 @@ import Firebase
         - Collection : Year
             - Document : 2019
                 - Collection : Month
-                    - Document
+                    - Document : 11
+                        - Collection : Day
+                            - Document : 12
+                                - Collection : Hour
+                                    - Document : 13
+                                        - Value : ExercisesDone - [String]
+                                        - Value : StepsTaken - Number
+                                        :
+                            :
+                    :
+            :
     - Document : User2
+        :
     - Document : User3
+        :
  
 */
 class UserDataFirestore {
     
     //Instance of Firestore we will use
     private let FirestoreDB = Firestore.firestore()
-    private var RemoteUserData = (UserUUID: "DEFAULT_UUID", UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
     
     //Constructor
     init() {
@@ -91,6 +102,7 @@ class UserDataFirestore {
      
      global_UserDataFirestore.Get_UserInfo(targetUser: <User>) { ReturnedData in
         //Execute any code dependent on the return value of the function here, or assign it to a global variable.
+     }
      
     Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
     */
