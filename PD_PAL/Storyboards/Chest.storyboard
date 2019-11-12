@@ -24,11 +24,6 @@
                                 <rect key="frame" x="186" y="145" width="173" height="169"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axu-tu-Kq8">
-                                <rect key="frame" x="124" y="410" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nJD-7O-RLd"/>
@@ -36,7 +31,6 @@
                     <connections>
                         <outlet property="image" destination="4S2-sq-X3v" id="Wj6-YS-Bpv"/>
                         <outlet property="image2" destination="pgA-um-jVJ" id="nAZ-Ra-Abk"/>
-                        <outlet property="viewButton" destination="Axu-tu-Kq8" id="1sg-39-tok"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bx7-Ee-Atr" userLabel="First Responder" sceneMemberID="firstResponder"/>

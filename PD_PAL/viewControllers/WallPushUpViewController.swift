@@ -14,14 +14,28 @@ class WallPushUpViewController: UIViewController {
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var image2: UIImageView!
-    @IBOutlet weak var viewButton: UIButton!
+    //@IBOutlet weak var viewButton: UIButton!
     
     /* code in here will execute based Global.flag value */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if Global.flag == 1 { self.title = "bye" }
-        else if Global.flag == 2 { self.title = "hello" }
+        // we came from routines
+        if Global.flag == 1 {
+            let skipButton = UIButton(frame: CGRect.zero)
+            skipButton.startButtonDesign()
+            self.view.addSubview(skipButton)
+        }
+            
+        // we came from categories
+        else if Global.flag == 2 {
+                        
+            
+        }
+    }
+    
+    @objc func skipButtonTapped() {
+        print("skip button tapped")
     }
     
     override func viewDidLoad() {
@@ -32,7 +46,9 @@ class WallPushUpViewController: UIViewController {
         /* navigation bar stuff */
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
         //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
-        
+        self.title = nil                                                                                            // no page title
+
+        // page message
         self.show_page_message(s1: "WALL PUSH-UP", s2: "WALL PUSH-UP")
         
         // read exercise info into labels
@@ -40,11 +56,11 @@ class WallPushUpViewController: UIViewController {
         
         // exercise description and duration text
         self.show_exercise_description(string: readResult.Description)
-        self.show_exercise_duration(string: readResult.Duration)
+        //self.show_exercise_duration(string: readResult.Duration)
         
         // view button
-        viewButton.viewButtonDesign()
-        applyViewButtonConstraints(button: viewButton)
+        //viewButton.viewButtonDesign()
+        //applyViewButtonConstraints(button: viewButton)
 
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
