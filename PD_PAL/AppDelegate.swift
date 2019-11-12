@@ -381,24 +381,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Initialize Firebase
         FirebaseApp.configure()
         
-        let db = Firestore.firestore()
-        let targetUser = "tester"
-        
-        let userDocRef = db.document("Users/\(targetUser)")
-        
-        print("\(userDocRef)")
-        
-            userDocRef.getDocument { (document, error) in
-            print("success")
-            guard let document = document, document.exists else { return }
-            let gatheredData = document.data()
-            for field in gatheredData! {
-                print("\(field)")
-            }
-        }
-        
-        print("Finished reading Firestore")
-        
         //On cold start, if user does not exist, enter Questionnaire storyboard
         if(!global_UserData.User_Exists()){
             print("USERNMAE: " + global_UserData.Get_User_Data().UserName)

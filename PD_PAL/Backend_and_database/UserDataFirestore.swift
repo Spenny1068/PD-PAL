@@ -86,33 +86,88 @@ class UserDataFirestore {
     //Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
     func Get_UserInfo(targetUser: String?) -> (UserUUID: String, UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool) {
         
+        //If the user does not provide a UUID to use, get the current user's UUID
         let targetUUID = targetUser ?? global_UserData.Get_User_Data().UserUUID
         
-        var returnVal = (UserUUID: targetUUID, UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
+        var returnVal = (UserUUID: "DEFAULT_UUID", UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
         
         let userDocRef = self.firestoreDB.document("Users/\(targetUUID)")
         
-        userDocRef.getDocument { (docSnapshot, error) in
-            guard let docSnapshot = docSnapshot, docSnapshot.exists else {
-                returnVal.UserName = "NO_SNAPSHOT"
+        //Get the document from Firebase
+        userDocRef.getDocument { (document, error) in
+            print("Beginning document read")
+            //Check the document existed
+            guard let document = document, document.exists else {
+                returnVal.UserUUID = "NO_DOCUMENT"
                 print("Did not get a document snapshot: \(String(describing: error))")
                 return
             }
             print("User exists, reading data")
             
-            let dataReturned = docSnapshot.data()
+            //Get the data in the document
+            let dataReturned = document.data()
             
+            //Check the data exists
             guard dataReturned != nil else {
-                returnVal.UserName = "NO_DATA"
+                returnVal.UserUUID = "NO_DATA"
                 print("Error, document snapshot data was empty. Check Connection")
                 return
             }
+            print("Data is not nil, parsing")
             
-            returnVal = (UserUUID: dataReturned!["UUID"] as! String, UserName: dataReturned!["UserName"] as! String, QuestionsAnswered: dataReturned!["QuestionsAnswered"] as! Bool, WalkingDuration: dataReturned!["WalkingDuration"] as! Int, ChairAccesible: dataReturned!["ChairAccessible"] as! Bool, WeightsAccessible: dataReturned!["WeightsAccessible"] as! Bool, ResistBandAccessible: dataReturned!["ResistBandAccessible"] as! Bool, PoolAccessible: dataReturned!["PoolAccessible"] as! Bool, Intensity: dataReturned!["Intensity"] as! String, PushNotifications: dataReturned!["PushNotifications"] as! Bool) as! (UserUUID: String, UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool)
+            //Start parsing the data, since it is returned as type any optionals
+            let returnedUUID = dataReturned?["UUID"] as? String ?? "USER_NIL"
+            print("\(returnedUUID)")
+            let returnedUserName = dataReturned?["UserName"] as? String ?? "USERNAME_NIL"
+            print("\(returnedUserName)")
+            let returnedQuestionsAnswered = dataReturned?["QuestionsAnswered"] as? Bool ?? false
+            print("\(returnedQuestionsAnswered)")
+            let returnedWalkingDuration = dataReturned?["WalkingDuration"] as? Int ?? -1
+            print("\(returnedWalkingDuration)")
+            let returnedChairAccessible = dataReturned?["ChairAccessible"] as? Bool ?? false
+            print("\(returnedChairAccessible)")
+            let returnedWeightsAccessible = dataReturned?["WeightsAccessible"] as? Bool ?? false
+            print("\(returnedWeightsAccessible)")
+            let returnedResistBandAccessible = dataReturned?["ResistBandAccessible"] as? Bool ?? false
+            print("\(returnedResistBandAccessible)")
+            let returnedPoolAccessible = dataReturned?["PoolAccessible"] as? Bool ?? false
+            print("\(returnedPoolAccessible)")
+            let returnedIntensity = dataReturned?["Intensity"] as? String ?? "INTENSITY_NIL"
+            print("\(returnedIntensity)")
+            let returnedPushNotifications = dataReturned?["PushNotifications"] as? Bool ?? false
+            print("\(returnedPushNotifications)")
+            
+            print("Finished parsing, assigning returnVal")
+            
+            returnVal = (UserUUID: returnedUUID, UserName: returnedUserName, QuestionsAnswered: returnedQuestionsAnswered, WalkingDuration: returnedWalkingDuration, ChairAccessible: returnedChairAccessible, WeightsAccessible: returnedWeightsAccessible, ResistBandAccessible: returnedResistBandAccessible, PoolAccessible: returnedPoolAccessible, Intensity: returnedIntensity, PushNotifications: returnedPushNotifications)
+            
+            return
         }
         
+        print("Finished function, returning returnVal")
         return returnVal
-        
     }
     
 }
+
+/*
+
+let db = Firestore.firestore()
+let targetUser = "tester"
+
+let userDocRef = db.document("Users/\(targetUser)")
+
+print("\(userDocRef)")
+
+userDocRef.getDocument { (document, error) in
+    print("success")
+    guard let document = document, document.exists else { return }
+    let gatheredData = document.data()
+    for field in gatheredData! {
+        print("\(field)")
+    }
+}
+
+print("Finished reading Firestore")
+ 
+ */
