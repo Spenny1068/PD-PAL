@@ -9,9 +9,6 @@ target 'PD_PAL' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
 
-  # Swift extensions
-  pod 'FirebaseFirestoreSwift'
-
   target 'PD_PALTests' do
     inherit! :search_paths
     # Pods for testing
