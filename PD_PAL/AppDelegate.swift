@@ -18,7 +18,7 @@ import UIKit
 /* put global constants in this struct */
 struct Global {
     
-    static var flag = 0 // 1 is routines, 2 is categories, 0 is nil
+    static var IsRoutineExercise = -1                                                // 0 is categories, 1 is routines, -1 is nil
     
     // color schemes
     struct color_schemes {

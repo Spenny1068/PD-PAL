@@ -112,8 +112,4 @@ class CategoriesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
-    
-    @objc func buttonAction(sender: UIButton!) {
-        print("button tapped")
-    }
 }

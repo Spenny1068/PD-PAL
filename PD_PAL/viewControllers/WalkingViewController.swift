@@ -22,8 +22,8 @@ class WalkingViewController: UIViewController {
         
         /* navigation bar stuff */
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
-        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
-        self.title = nil                                                                                            // no page title in navigation bar
+        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // background color
+        self.title = nil                                                                                            // remove page title
 
         self.show_page_message(s1: "WALKING", s2: "WALKING")
         image.image = UIImage(named: "Walking.png")
@@ -56,16 +56,4 @@ class WalkingViewController: UIViewController {
         // insert excercise as done
         global_UserData.Add_Exercise_Done(ExerciseName: "WALKING", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -69,30 +69,15 @@ class WallPushUpViewController: UIViewController {
         let hour = Calendar.current.component(.hour, from: Date())
         
         // insert excercise as done
-        global_UserData.Add_Exercise_Done(ExerciseName: "WALL PUSH-UP", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)    }
-    
-    func runTimer() {
-         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+        global_UserData.Add_Exercise_Done(ExerciseName: "WALL PUSH-UP", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
     }
     
-    @objc func updateTimer() {
-        seconds -= 1     //This will decrement(count down)the seconds.
-        timerLabel.text = "\(seconds)" //This will update the label.
-        
-        if seconds <= 0 {
-            // hide the stop button and show completed button
-            stopButton.isHidden = true
-            completedButton.isHidden = false
-        }
-    }
-    
-    
-    /* code in here will execute based Global.flag value */
+    /* code in here will execute based Global.IsRoutineExercise value */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         // we came from routines
-        if Global.flag == 1 {
+        if Global.IsRoutineExercise == 1 {
             let skipButton = UIButton()
             skipButton.setTitle("Skip",for: .normal)
             skipButton.setTitleColor(.red , for: .normal) //change colour later
@@ -102,7 +87,7 @@ class WallPushUpViewController: UIViewController {
         }
             
         // we came from categories
-        else if Global.flag == 2 {
+        else if Global.IsRoutineExercise == 0 {
             
             // start button
             startButton.timerButtonDesign()
@@ -136,8 +121,8 @@ class WallPushUpViewController: UIViewController {
         
         /* navigation bar stuff */
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
-        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
-        self.title = nil                                                                                            // no page title
+        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // background color
+        self.title = nil                                                                                            // remove page title
 
         // page message
         self.show_page_message(s1: "WALL PUSH-UP", s2: "WALL PUSH-UP")
@@ -168,24 +153,30 @@ class WallPushUpViewController: UIViewController {
         self.present(newViewController, animated: true, completion: nil)
     }
     
-    @objc func skipButtonTapped()
-    {
+    // called when skip button is tapped
+    @objc func skipButtonTapped() {
         //let nextExercise = Name of viewController for exercise
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    // starts timer
+    func runTimer() {
+         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
     }
-    */
-
+    
+    // decrements timer
+    @objc func updateTimer() {
+        seconds -= 1     //This will decrement(count down)the seconds.
+        timerLabel.text = "\(seconds)" //This will update the label.
+        
+        if seconds <= 0 {
+            // hide the stop button and show completed button
+            stopButton.isHidden = true
+            completedButton.isHidden = false
+        }
+    }
 }
 
 
