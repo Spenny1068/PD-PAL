@@ -13,6 +13,8 @@ Revision History
  
  - 11/11/2019 : William Huong
     Created file
+ - 12/11/2019 : William Huong
+    Implemented read function for UserInfo
 */
 
 /*
@@ -76,22 +78,30 @@ import Firebase
 class UserDataFirestore {
     
     //Instance of Firestore we will use
-    private let firestoreDB = Firestore.firestore()
+    private let FirestoreDB = Firestore.firestore()
+    private var RemoteUserData = (UserUUID: "DEFAULT_UUID", UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
     
     //Constructor
     init() {
     }
     
-    //This function gets the UserInfo located in Firebase.
-    //Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
-    func Get_UserInfo(targetUser: String?) -> (UserUUID: String, UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool) {
+    /*
+    This function gets the UserInfo located in Firebase.
+     Because of the asynchronous nature of Firebase, call using:
+     
+     global_UserDataFirestore.Get_UserInfo(targetUser: <User>) { ReturnedData in
+        //Execute any code dependent on the return value of the function here, or assign it to a global variable.
+     
+    Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
+    */
+    func Get_UserInfo(targetUser: String?, completion: @escaping ((UserUUID: String, UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool))->()) {
         
         //If the user does not provide a UUID to use, get the current user's UUID
         let targetUUID = targetUser ?? global_UserData.Get_User_Data().UserUUID
         
         var returnVal = (UserUUID: "DEFAULT_UUID", UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
         
-        let userDocRef = self.firestoreDB.document("Users/\(targetUUID)")
+        let userDocRef = self.FirestoreDB.document("Users/\(targetUUID)")
         
         //Get the document from Firebase
         userDocRef.getDocument { (document, error) in
@@ -141,33 +151,9 @@ class UserDataFirestore {
             
             returnVal = (UserUUID: returnedUUID, UserName: returnedUserName, QuestionsAnswered: returnedQuestionsAnswered, WalkingDuration: returnedWalkingDuration, ChairAccessible: returnedChairAccessible, WeightsAccessible: returnedWeightsAccessible, ResistBandAccessible: returnedResistBandAccessible, PoolAccessible: returnedPoolAccessible, Intensity: returnedIntensity, PushNotifications: returnedPushNotifications)
             
-            return
+            completion(returnVal)
+            
         }
-        
-        print("Finished function, returning returnVal")
-        return returnVal
     }
     
 }
-
-/*
-
-let db = Firestore.firestore()
-let targetUser = "tester"
-
-let userDocRef = db.document("Users/\(targetUser)")
-
-print("\(userDocRef)")
-
-userDocRef.getDocument { (document, error) in
-    print("success")
-    guard let document = document, document.exists else { return }
-    let gatheredData = document.data()
-    for field in gatheredData! {
-        print("\(field)")
-    }
-}
-
-print("Finished reading Firestore")
- 
- */
