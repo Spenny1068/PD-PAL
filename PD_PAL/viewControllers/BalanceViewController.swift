@@ -67,20 +67,6 @@ class BalanceViewController: UIViewController {
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
     
     // called when home button on navigation bar is tapped

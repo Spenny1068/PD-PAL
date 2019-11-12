@@ -31,7 +31,7 @@ class SingleLegStanceViewController: UIViewController {
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "SINGLE LEG STANCE")
         
         // exercise description and duration text
-        self.show_exercise_description(string: readResult.Description)
+        //self.show_exercise_description(string: readResult.Description)
         //self.show_exercise_duration(string: readResult.Duration)
         
         // view button

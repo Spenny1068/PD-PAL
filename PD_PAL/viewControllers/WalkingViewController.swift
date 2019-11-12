@@ -32,12 +32,8 @@ class WalkingViewController: UIViewController {
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALKING")
         
         // exercise description and duration text
-        self.show_exercise_description(string: readResult.Description)
+        //self.show_exercise_description(string: readResult.Description)
         //self.show_exercise_duration(string: readResult.Duration)
-        
-        // view button
-        //viewButton.viewButtonDesign()
-        //applyViewButtonConstraints(button: viewButton)
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
