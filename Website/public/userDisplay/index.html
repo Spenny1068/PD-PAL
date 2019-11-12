@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PD PAL Login Page</title>
+    <title>Your Exercise History</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/7.3.0/firebase-app.js"></script>
@@ -15,32 +15,19 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 
-		<!-- Script to ensure login name is not empty -->
-		<script>	
-			function validateForm() {
-			 var x = document.forms["loginForm"]["username"].value;
-				if (x == "") {
-					alert("Name must be filled out");
-				 return false;
-			 }
-			}
-		</script>
-
-		<link href="css/login_style.css" type="text/css" rel="stylesheet" />
+		<link href="../css/main_style.css" type="text/css" rel="stylesheet" />
 
   </head>
-
-
   <body>
-    <div id="message">
-			<img src="images/pd_pal_logo.png" alt="PD PAL LOGO" title="PD PAL LOGO" width="145" height="123" align="center" />
-      <h2>Welcome to PD PAL by  <img src="images/Ware_one_logo.png" alt="Wareone Logo" width="100" height="37"/></p></h2>
-      <h1>Login with your username</h1>
-			<form name="loginForm" action="userDisplay/index.html" onsubmit="return validateForm()" method="post">
-				<input id="login_box" type="text" name="username" placeholder="Enter Username" />
-				<input id="login_button" type="Submit" name="Login" value="Login">
-			</form>
+    <div id="Header">
+			  
+			<h1> <img src="../images/pd_pal_logo.png" alt="PD PAL LOGO"
+			 title="PD PAL LOGO" width="73" height="61.5" align="bottom"  /> 	PD PAL</h1>
+			<h2>Your Exercise History</h2>
     </div>
+		<div id="Graphs">
+
+		</div>
 
 
 
@@ -75,5 +62,3 @@
 
   </body>
 </html>
-
-
