@@ -75,6 +75,7 @@
 		AE4D724D236BCB5A003A8BE3 /* WallPushUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */; };
 		AE4D724F236BD963003A8BE3 /* SingleLegStanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */; };
 		AE4D7251236BDD42003A8BE3 /* WalkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */; };
+		DA90C660237B771F00F3B963 /* heel_stand.gif in Resources */ = {isa = PBXBuildFile; fileRef = DA90C658237B771F00F3B963 /* heel_stand.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +232,7 @@
 		AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPushUpViewController.swift; sourceTree = "<group>"; };
 		AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLegStanceViewController.swift; sourceTree = "<group>"; };
 		AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingViewController.swift; sourceTree = "<group>"; };
+		DA90C658237B771F00F3B963 /* heel_stand.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = heel_stand.gif; path = ../../heel_stand.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				4510852923639DB800338F82 /* routine4.jpg */,
+				DA90C658237B771F00F3B963 /* heel_stand.gif */,
 				456EE885237654E400842EB6 /* ppp.png */,
 				4510852A23639DB800338F82 /* routine1.jpg */,
 				4510852C23639DB800338F82 /* routine2.jpg */,
@@ -612,6 +615,7 @@
 				455E1BF1236E9B0B00309A1D /* pushup_step2.png in Resources */,
 				457C0F6A2366B54500A918B2 /* Chest.storyboard in Resources */,
 				45EA1DE0236595BD00E6D070 /* Walking.storyboard in Resources */,
+				DA90C660237B771F00F3B963 /* heel_stand.gif in Resources */,
 				4510855123639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png in Resources */,
 				4517F9C72351587700E5ED83 /* Main.storyboard in Resources */,
 				4510854C23639DB800338F82 /* strength.png in Resources */,
