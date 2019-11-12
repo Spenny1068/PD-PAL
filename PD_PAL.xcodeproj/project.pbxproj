@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		2EF4E822236D029A00CCECBB /* testExerciseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4E81D236D027E00CCECBB /* testExerciseDB.swift */; };
 		2EF4E823236D081A00CCECBB /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF4E80E236D00FB00CCECBB /* SQLite.framework */; };
 		2EF4E824236D081A00CCECBB /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF4E80E236D00FB00CCECBB /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3D2A7679237A3C8F0006489D /* UserDataFirestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A7678237A3C8F0006489D /* UserDataFirestore.swift */; };
 		3D7A63CF237A27BB00456935 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D7A63CE237A275500456935 /* GoogleService-Info.plist */; };
 		3D7A63D0237A27BC00456935 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D7A63CE237A275500456935 /* GoogleService-Info.plist */; };
 		3D7A63D1237A27BC00456935 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D7A63CE237A275500456935 /* GoogleService-Info.plist */; };
@@ -174,6 +175,7 @@
 		2EF4E803236D00FB00CCECBB /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		2EF4E81D236D027E00CCECBB /* testExerciseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testExerciseDB.swift; sourceTree = "<group>"; };
 		2EF4E81F236D028800CCECBB /* userDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userDataTests.swift; sourceTree = "<group>"; };
+		3D2A7678237A3C8F0006489D /* UserDataFirestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataFirestore.swift; sourceTree = "<group>"; };
 		3D7A63CE237A275500456935 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4510852823639DB800338F82 /* flexibility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flexibility.png; sourceTree = "<group>"; };
 		4510852923639DB800338F82 /* routine4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = routine4.jpg; sourceTree = "<group>"; };
@@ -288,7 +290,6 @@
 				68691088A68C63CE1697E3EA /* Pods-PD_PALTests.debug.xcconfig */,
 				92B56B46A7A861E6CEC82ED9 /* Pods-PD_PALTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -298,6 +299,7 @@
 				2EF4E800236D000B00CCECBB /* UserData.swift */,
 				2EF4E7FE236CFFFA00CCECBB /* StepCount.swift */,
 				2EF4E7FC236CFFEB00CCECBB /* ExerciseDatabase.swift */,
+				3D2A7678237A3C8F0006489D /* UserDataFirestore.swift */,
 			);
 			path = Backend_and_database;
 			sourceTree = "<group>";
@@ -810,6 +812,7 @@
 				45EB461B2367C0AA009BA044 /* CardioViewController.swift in Sources */,
 				45EB46192367C0AA009BA044 /* IntenseQuestionViewController.swift in Sources */,
 				45EB461C2367C0AA009BA044 /* CategoriesViewController.swift in Sources */,
+				3D2A7679237A3C8F0006489D /* UserDataFirestore.swift in Sources */,
 				45EB461D2367C0AA009BA044 /* QuestionnaireNavController.swift in Sources */,
 				45EB461F2367C0AA009BA044 /* mainPageViewController.swift in Sources */,
 				45EB46202367C0AA009BA044 /* EquipmentQuestionnaireViewController.swift in Sources */,
