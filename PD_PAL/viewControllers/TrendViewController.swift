@@ -37,6 +37,7 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     
     private var sDatePicker: UIDatePicker?
     private var eDatePicker: UIDatePicker?
+    var startDateSelected = false
     
     //counter for radar graphs
     var strengthCounter = 0
@@ -139,29 +140,28 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         //let user select the date for step counter
         sDatePicker = UIDatePicker()
         eDatePicker = UIDatePicker()
-        sDatePicker?.datePickerMode = .date
+        sDatePicker?.datePickerMode = .dateAndTime
         sDatePicker?.addTarget(self, action: #selector(TrendViewController.sDateChanged(datePicker:)), for: .valueChanged)
-        eDatePicker?.datePickerMode = .date
-        eDatePicker?.addTarget(self, action: #selector(TrendViewController.eDateChanged(datePicker:)), for: .valueChanged)
-        
         startDate.inputView = sDatePicker
-        endDate.inputView = eDatePicker
         
+        eDatePicker?.datePickerMode = .dateAndTime
+        eDatePicker?.addTarget(self, action: #selector(TrendViewController.eDateChanged(datePicker:)), for: .valueChanged)
+        eDatePicker?.minimumDate = sDatePicker?.date //forbids user from selecting end date that falls before the start date
+        endDate.inputView = eDatePicker
     }
     
     @objc func sDateChanged(datePicker: UIDatePicker){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
         startDate.text = dateFormatter.string(from: datePicker.date)
+        
         self.view.endEditing(true)
         
     }
     
     @objc func eDateChanged(datePicker: UIDatePicker){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
         endDate.text = dateFormatter.string(from: datePicker.date)
         self.view.endEditing(true)
         
