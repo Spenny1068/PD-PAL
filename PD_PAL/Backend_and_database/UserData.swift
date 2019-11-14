@@ -40,8 +40,10 @@
     Added method to get all exercises in UserExerciseData database
  - 11/11/2019 : William Huong
     Added UUID column to UserInfo database
- - 03/11/2019 : William Huong
+ - 14/11/2019 : William Huong
     init() now loads a routine when creating the table or file.
+ - 14/11/2019 : William Huong
+    Added FirestoreOK column to UserInfo database
  */
 
 /*
@@ -72,6 +74,7 @@ import SQLite
  The four databases are:
  - UserInfo: This database stores the name the user gives us, along with their answers to our questionnaire on first launch
     Columns:
+        - UUID = <String> A unique identifier for Firebase
         - UserName = <String> The name the user provides
         - QuestionsAnswered = <Bool> Whether or not the user answered the questionnaire
         - WalkingDuration = <Int> The duration for a walking exercise provided by the user
@@ -81,6 +84,8 @@ import SQLite
         - PoolAccessible = <Bool> Whether or not the user has access to a pool
         - Intensity = <String> The desired workout intensity. Can be "Light", "Moderate", "Intense"
         - PushNotifications = <Bool> Whether or not the user would like to receive push notifications
+        - FirestoreOK = <Bool> Whether or not the user wants to have their data backed up to Firebase
+        - LastBackup = <> The last time the user data was successfully pushed to Firebase
  
  - Routines: This database stores the routines that are created.
     Columns:
@@ -122,6 +127,7 @@ class UserData {
     //Can take the values 'Light', 'Moderate', 'Intense'
     private let Intensity = Expression<String>("Intensity")
     private let PushNotifications = Expression<Bool>("PushNotifications")
+    private let FirestoreOK = Expression<Bool>("FirestoreOK")
     
     //Routines database
     private let RoutinesDatabaseName = "Routines"
@@ -329,6 +335,7 @@ class UserData {
                     table.column(PoolAccessible)
                     table.column(Intensity)
                     table.column(PushNotifications)
+                    table.column(FirestoreOK)
                 }
                 
                 //Write the table to the database file
@@ -346,7 +353,7 @@ class UserData {
                 print("Inserting new user into empty UserInfo database, UUID: \(uuid)")
                 
                 do {
-                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false))
+                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false))
                 } catch {
                     print("Error inserting default user row into UserInfo database")
                 }
@@ -458,7 +465,7 @@ Methods that get data from class
     
     //Gets all the non-database user data.
     //Returns the tuple (UserName, WalkingOK, ChairAccess, WeightsAccess, ResistBandAccess, Intensity, PushNotifications)
-    func Get_User_Data() -> (UserUUID: String, UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool) {
+    func Get_User_Data() -> (UserUUID: String, UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool, FirestoreOK: Bool) {
         do {
             let userInfo = try UserInfo.pluck(UserInfoTable)
             
@@ -468,20 +475,20 @@ Methods that get data from class
                 print("UserInfo database was empty. Inserting default values with randomly generated UUID: \(uuid)")
                 
                 do {
-                    try UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false))
+                    try UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false))
                 } catch {
                     print("Error inserting default user row during read")
                 }
                 
-                return (UserUUID: uuid, UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
+                return (UserUUID: uuid, UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false, FirestoreOK: false)
             }
             
-            return (UserUUID: userInfo![UserUUID], UserName: userInfo![UserName], QuestionsAnswered: userInfo![QuestionsAnswered], WalkingDuration: userInfo![WalkingDuration], ChairAccessible: userInfo![ChairAccessible], WeightsAccessible: userInfo![WeightsAccessible], ResistBandAccessible: userInfo![ResistBandAccessible], PoolAccessible: userInfo![PoolAccessible], Intensity: userInfo![Intensity], PushNotifications: userInfo![PushNotifications])
+            return (UserUUID: userInfo![UserUUID], UserName: userInfo![UserName], QuestionsAnswered: userInfo![QuestionsAnswered], WalkingDuration: userInfo![WalkingDuration], ChairAccessible: userInfo![ChairAccessible], WeightsAccessible: userInfo![WeightsAccessible], ResistBandAccessible: userInfo![ResistBandAccessible], PoolAccessible: userInfo![PoolAccessible], Intensity: userInfo![Intensity], PushNotifications: userInfo![PushNotifications], FirestoreOK: userInfo![FirestoreOK])
         } catch {
             print("Failed to get User Info")
         }
         //Should never come here.
-        return (UserUUID: "NULL", UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
+        return (UserUUID: "NULL", UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false, FirestoreOK: false)
     }
     
     //Gets all the routines available.
@@ -582,7 +589,8 @@ Methods that insert or update data.
         resistBandAvailable: Bool?,
         poolAvailable: Bool?,
         intensityDesired: String?,
-        pushNotificationsDesired: Bool?)
+        pushNotificationsDesired: Bool?,
+        firestoreOK: Bool?)
     {
 
         //Store the old values
@@ -602,7 +610,8 @@ Methods that insert or update data.
                                                   ResistBandAccessible <- (resistBandAvailable ?? currentUserInfo.ResistBandAccessible),
                                                   PoolAccessible <- (poolAvailable ?? currentUserInfo.PoolAccessible),
                                                   Intensity <- (intensityDesired ?? currentUserInfo.Intensity),
-                                                  PushNotifications <- (pushNotificationsDesired ?? currentUserInfo.PushNotifications)
+                                                  PushNotifications <- (pushNotificationsDesired ?? currentUserInfo.PushNotifications),
+                                                  FirestoreOK <- (firestoreOK ?? currentUserInfo.FirestoreOK)
                                                   ))
         } catch {
             print("Failed to update user info")
@@ -676,7 +685,7 @@ Deletion Methods
             try UserInfo.run(UserInfoTable.delete())
             
             //Re-insert user name plus default values for everything else.
-            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUUID, UserName <- currentUserName, QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false))
+            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUUID, UserName <- currentUserName, QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false))
         } catch {
             print("Failed to delete user info")
         }

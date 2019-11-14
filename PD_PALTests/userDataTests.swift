@@ -27,6 +27,10 @@ Revision History
     Udated test_UserData_UserExerciseData() for Get_Exercise_All()
  - 11/11/2019 : William Huong
     Updated test_UserData_UserInfo() for UUID column
+ - 14/11/2019 : William Huong
+    Removed example performance test
+ - 14/11/2019 : William Huong
+    Updated test_UserData_UserInfo() for FirestoreOK column
  */
 
 
@@ -85,9 +89,10 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Provide just the user name.
-        userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         
         //Check that User_Exists() returns true right now.
         XCTAssert( userDB.User_Exists() == true )
@@ -105,9 +110,10 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Change some of the values to check we only update the values given.
-        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: 30, chairAvailable: nil, weightsAvailable: true, resistBandAvailable: nil, poolAvailable: true, intensityDesired: nil, pushNotificationsDesired: true)
+        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: 30, chairAvailable: nil, weightsAvailable: true, resistBandAvailable: nil, poolAvailable: true, intensityDesired: nil, pushNotificationsDesired: true, firestoreOK: nil)
         
         userData = userDB.Get_User_Data()
         
@@ -122,9 +128,10 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == true )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == true )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Change the rest of the values.
-        userDB.Update_User_Data(nameGiven: "Ebenezer Scrooge", questionsAnswered: false, walkingDuration: nil, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Intense", pushNotificationsDesired: false)
+        userDB.Update_User_Data(nameGiven: "Ebenezer Scrooge", questionsAnswered: false, walkingDuration: nil, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Intense", pushNotificationsDesired: false, firestoreOK: true)
         
         userData = userDB.Get_User_Data()
         
@@ -138,6 +145,7 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Intense" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == true )
         
         //Check Get_User_Data() returns the default values after deleting the user data. Important because of the way I have implemented this database.
         userDB.Delete_userInfo()
@@ -154,6 +162,7 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Check that User_Exists() returns false right now.
         XCTAssert( userDB.User_Exists() == true )
@@ -174,6 +183,7 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Check that User_Exists() returns false right now.
         XCTAssert( userDB.User_Exists() == false )
@@ -508,13 +518,6 @@ UserData Class Tests
         XCTAssert( secondCleared == 0 )
         XCTAssert( nullCleared == 0 )
         
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 
 }

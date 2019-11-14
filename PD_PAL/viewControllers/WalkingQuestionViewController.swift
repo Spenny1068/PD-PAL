@@ -56,7 +56,7 @@ class WalkingQuestionViewController: UIViewController {
     
     @IBAction func completeTapped(_ sender: UIButton) {
         //Update user's preferred walking duration
-        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         print(global_UserData.Get_User_Data())
     }
     
