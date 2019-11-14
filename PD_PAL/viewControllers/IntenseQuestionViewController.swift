@@ -27,6 +27,7 @@ class IntenseQuestionViewController: UIViewController {
         QuestionLabel.applyQuestionDesign()
         self.view.addSubview(QuestionLabel)
         
+        //Button styling
         lightIntensity.applyQButton()
         modIntensity.applyQButton()
         intenseIntensity.applyQButton()

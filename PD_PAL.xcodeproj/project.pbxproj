@@ -23,18 +23,11 @@
 		4510854223639DB800338F82 /* radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510852D23639DB800338F82 /* radar.png */; };
 		4510854323639DB800338F82 /* cardio.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510852E23639DB800338F82 /* cardio.png */; };
 		4510854423639DB800338F82 /* Cardio.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4510852F23639DB800338F82 /* Cardio.jpg */; };
-		4510854523639DB800338F82 /* Screen Shot 2019-10-11 at 10.13.56 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853023639DB800338F82 /* Screen Shot 2019-10-11 at 10.13.56 AM.png */; };
-		4510854623639DB800338F82 /* Screen Shot 2019-10-11 at 9.15.49 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853123639DB800338F82 /* Screen Shot 2019-10-11 at 9.15.49 AM.png */; };
 		4510854723639DB800338F82 /* resistance.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853223639DB800338F82 /* resistance.png */; };
 		4510854823639DB800338F82 /* balance.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853323639DB800338F82 /* balance.png */; };
-		4510854A23639DB800338F82 /* Screen Shot 2019-10-15 at 9.52.19 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853523639DB800338F82 /* Screen Shot 2019-10-15 at 9.52.19 AM.png */; };
-		4510854B23639DB800338F82 /* Screen Shot 2019-10-11 at 9.07.38 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853623639DB800338F82 /* Screen Shot 2019-10-11 at 9.07.38 AM.png */; };
 		4510854C23639DB800338F82 /* strength.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853723639DB800338F82 /* strength.png */; };
-		4510854D23639DB800338F82 /* 512px-Man_Doing_Warm_Up_Exercise_Cartoon.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853823639DB800338F82 /* 512px-Man_Doing_Warm_Up_Exercise_Cartoon.svg.png */; };
-		4510854E23639DB800338F82 /* Screen Shot 2019-10-07 at 3.23.50 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853923639DB800338F82 /* Screen Shot 2019-10-07 at 3.23.50 PM.png */; };
 		4510854F23639DB800338F82 /* play.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4510853A23639DB800338F82 /* play.jpg */; };
 		4510855023639DB800338F82 /* playbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853B23639DB800338F82 /* playbutton.png */; };
-		4510855123639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510853C23639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png */; };
 		4517F9C72351587700E5ED83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9C52351587700E5ED83 /* Main.storyboard */; };
 		4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9C82351587800E5ED83 /* Assets.xcassets */; };
 		4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4517F9CA2351587800E5ED83 /* LaunchScreen.storyboard */; };
@@ -173,18 +166,11 @@
 		4510852D23639DB800338F82 /* radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radar.png; sourceTree = "<group>"; };
 		4510852E23639DB800338F82 /* cardio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cardio.png; sourceTree = "<group>"; };
 		4510852F23639DB800338F82 /* Cardio.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Cardio.jpg; sourceTree = "<group>"; };
-		4510853023639DB800338F82 /* Screen Shot 2019-10-11 at 10.13.56 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2019-10-11 at 10.13.56 AM.png"; sourceTree = "<group>"; };
-		4510853123639DB800338F82 /* Screen Shot 2019-10-11 at 9.15.49 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2019-10-11 at 9.15.49 AM.png"; sourceTree = "<group>"; };
 		4510853223639DB800338F82 /* resistance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resistance.png; sourceTree = "<group>"; };
 		4510853323639DB800338F82 /* balance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balance.png; sourceTree = "<group>"; };
-		4510853523639DB800338F82 /* Screen Shot 2019-10-15 at 9.52.19 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2019-10-15 at 9.52.19 AM.png"; sourceTree = "<group>"; };
-		4510853623639DB800338F82 /* Screen Shot 2019-10-11 at 9.07.38 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2019-10-11 at 9.07.38 AM.png"; sourceTree = "<group>"; };
 		4510853723639DB800338F82 /* strength.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = strength.png; sourceTree = "<group>"; };
-		4510853823639DB800338F82 /* 512px-Man_Doing_Warm_Up_Exercise_Cartoon.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "512px-Man_Doing_Warm_Up_Exercise_Cartoon.svg.png"; sourceTree = "<group>"; };
-		4510853923639DB800338F82 /* Screen Shot 2019-10-07 at 3.23.50 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2019-10-07 at 3.23.50 PM.png"; sourceTree = "<group>"; };
 		4510853A23639DB800338F82 /* play.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = play.jpg; sourceTree = "<group>"; };
 		4510853B23639DB800338F82 /* playbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playbutton.png; sourceTree = "<group>"; };
-		4510853C23639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Wall_Sit_squat_F_WorkoutLabs.png; sourceTree = "<group>"; };
 		4517F9BA2351587700E5ED83 /* PD_PAL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PD_PAL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4517F9BD2351587700E5ED83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4517F9C62351587700E5ED83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -308,16 +294,9 @@
 				4510852B23639DB800338F82 /* Steps.png */,
 				4510852D23639DB800338F82 /* radar.png */,
 				4510852F23639DB800338F82 /* Cardio.jpg */,
-				4510853023639DB800338F82 /* Screen Shot 2019-10-11 at 10.13.56 AM.png */,
-				4510853123639DB800338F82 /* Screen Shot 2019-10-11 at 9.15.49 AM.png */,
 				4510853223639DB800338F82 /* resistance.png */,
-				4510853523639DB800338F82 /* Screen Shot 2019-10-15 at 9.52.19 AM.png */,
-				4510853623639DB800338F82 /* Screen Shot 2019-10-11 at 9.07.38 AM.png */,
-				4510853823639DB800338F82 /* 512px-Man_Doing_Warm_Up_Exercise_Cartoon.svg.png */,
-				4510853923639DB800338F82 /* Screen Shot 2019-10-07 at 3.23.50 PM.png */,
 				4510853A23639DB800338F82 /* play.jpg */,
 				4510853B23639DB800338F82 /* playbutton.png */,
-				4510853C23639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -587,8 +566,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4510854B23639DB800338F82 /* Screen Shot 2019-10-11 at 9.07.38 AM.png in Resources */,
-				4510854623639DB800338F82 /* Screen Shot 2019-10-11 at 9.15.49 AM.png in Resources */,
 				4510854223639DB800338F82 /* radar.png in Resources */,
 				455E1BF2236E9B0B00309A1D /* Leg_Stance.png in Resources */,
 				4510854723639DB800338F82 /* resistance.png in Resources */,
@@ -596,23 +573,18 @@
 				4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */,
 				4510854123639DB800338F82 /* routine2.jpg in Resources */,
 				4510855023639DB800338F82 /* playbutton.png in Resources */,
-				4510854A23639DB800338F82 /* Screen Shot 2019-10-15 at 9.52.19 AM.png in Resources */,
 				4510853E23639DB800338F82 /* routine4.jpg in Resources */,
 				4510853F23639DB800338F82 /* routine1.jpg in Resources */,
-				4510854D23639DB800338F82 /* 512px-Man_Doing_Warm_Up_Exercise_Cartoon.svg.png in Resources */,
 				45EB46262367C4CF009BA044 /* Chairstretch.storyboard in Resources */,
 				7DF12D04236E197300FC94D6 /* logoLaunch.png in Resources */,
-				4510854E23639DB800338F82 /* Screen Shot 2019-10-07 at 3.23.50 PM.png in Resources */,
 				455E1BF0236E9B0B00309A1D /* pushup_step1.png in Resources */,
 				4510853D23639DB800338F82 /* flexibility.png in Resources */,
 				4510854F23639DB800338F82 /* play.jpg in Resources */,
-				4510854523639DB800338F82 /* Screen Shot 2019-10-11 at 10.13.56 AM.png in Resources */,
 				457C0F6C2366B6C700A918B2 /* logo.png in Resources */,
 				4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */,
 				455E1BF1236E9B0B00309A1D /* pushup_step2.png in Resources */,
 				457C0F6A2366B54500A918B2 /* Chest.storyboard in Resources */,
 				45EA1DE0236595BD00E6D070 /* Walking.storyboard in Resources */,
-				4510855123639DB800338F82 /* Wall_Sit_squat_F_WorkoutLabs.png in Resources */,
 				4517F9C72351587700E5ED83 /* Main.storyboard in Resources */,
 				4510854C23639DB800338F82 /* strength.png in Resources */,
 				4510854023639DB800338F82 /* Steps.png in Resources */,

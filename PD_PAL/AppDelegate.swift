@@ -215,7 +215,7 @@ extension UILabel {
     func applyQuestionDesign(){
         self.frame = CGRect(x: 36, y: 120, width: 300, height: 150)            // rectangle coordinates
         self.lineBreakMode = .byWordWrapping                                   // Word wrapping
-        self.numberOfLines = 2
+        self.numberOfLines = 3
         self.textAlignment = .center                                           // text alignment
         self.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
         self.textColor = UIColor.black
@@ -353,11 +353,11 @@ extension UIButton {
     
     // applies to Questionnaire buttons
     func applyQButton() {
-        self.backgroundColor = UIColor.gray                                     // background color
+        self.backgroundColor = Global.color_schemes.m_grey                      // background color
         self.layer.cornerRadius = self.frame.height / 2                         // make button round
         self.setTitleColor(UIColor.white, for: .normal)                         // normal text colour
-        self.setTitleColor(UIColor.gray, for: .highlighted)                         // selected text color
-        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
+        self.setTitleColor(UIColor.gray, for: .selected)                        // selected text color
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 25)
     }
     
     // applied to Enter button on Registration page
@@ -369,26 +369,37 @@ extension UIButton {
     
     // applied to navigation to next Q in Questionnaire
     func applyNextQButton(){
-        self.backgroundColor = UIColor(red: 172/255, green: 237/255, blue: 175/255, alpha: 1.0)                //background color
+        self.backgroundColor = Global.color_schemes.m_blue4                     //background color
         self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
         self.setTitleColor(UIColor.white, for: .normal)                         // enabled text colour
-        self.setTitleColor(UIColor.gray, for: .disabled)                         // disabled text color
-        self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)         // text font and size
+        self.setTitleColor(UIColor.gray, for: .disabled)                        // disabled text color
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 25)    // text font and size
+        self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 40, bottom: 0.0, right: 40)     // text allignment
 
     }
     
     // applied to navigation to previous Q in Questionnaire
     func applyPrevQButton(){
-        self.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1.0)              //background color
-        self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
-        self.setTitleColor(UIColor.white, for: .normal)                         // enable text colour
-        self.setTitleColor(UIColor.gray, for: .disabled)                         // disabled text color
-        self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)         // text font and size
+        self.backgroundColor = Global.color_schemes.m_grey         //background color
+        self.layer.cornerRadius = self.frame.height / 4             // make button rounded
+        self.setTitleColor(UIColor.white, for: .normal)             // enable text colour
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 25)                // text font and size
+        self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 40, bottom: 0.0, right: 40)     // text allignment
     }
     
     func DesignSelect() {
         self.backgroundColor = UIColor.init(red: 54/255, green: 141/255, blue: 241/255, alpha: 1)
         self.setTitleColor(UIColor.white, for: .normal)                        // text color
+    }
+}
+
+/* UISlider methods */
+extension UISlider {
+    
+    //Questionnaire slider styling
+    func questionnaireSlider(){
+        self.minimumTrackTintColor = Global.color_schemes.m_blue2
+        self.setThumbImage(UIImage(named: "Slider"), for: .normal)
     }
 }
 
