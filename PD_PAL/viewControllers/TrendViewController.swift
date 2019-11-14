@@ -11,6 +11,7 @@
 // <November 2, 2019, William Xue , Added table displaying exercise history and step count>
 // <November 8, 2019, Julia Kim, Getting counts for each category>
 // <November 11, 2019, Julia Kim, Adding scrolling to the page, generate radar graph, implemented date pickers>
+// <November 13, 2019, Julia Kim, Added hours to the date picker>
 
 /*Known Bugs
  November 11, 2019: Julia Kim
@@ -22,13 +23,16 @@
 import UIKit
 import RadarChart //import to allow creating radar graph
 
+import CoreGraphics
 
-class TrendViewController: UIViewController, UITableViewDataSource {
+class TrendViewController: UIViewController, UITableViewDataSource{
 
     // IBOutlet labels
     @IBOutlet weak var Title_label: UILabel!
     @IBOutlet weak var trendTableView: UITableView!
     @IBOutlet weak var UpdateButton: UIButton!
+    
+    @IBOutlet weak var ClearDates: UIButton!
     @IBOutlet weak var rChartView: RadarChartView!
     @IBOutlet weak var scroller: UIScrollView!
     
@@ -37,13 +41,24 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     
     private var sDatePicker: UIDatePicker?
     private var eDatePicker: UIDatePicker?
-    var startDateSelected = false
     
-    //counter for radar graphs
-    var strengthCounter = 0
-    var flexCounter = 0
-    var cardioCounter = 0
-    var balanceCounter = 0
+    private var eDateYear = 0
+    private var eDateMonth = 0
+    private var eDateDay = 0
+    private var eDateHour = 0
+    private var eDateMinute = 0
+    
+    private var sDateYear = 0
+    private var sDateMonth = 0
+    private var sDateDay = 0
+    private var sDateHour = 0
+    private var sDateMinute = 0
+    
+    private var strengthCounter = 0
+    private var flexCounter = 0
+    private var cardioCounter = 0
+    private var balanceCounter = 0
+    
     
     var exerciseData = global_UserData.Get_Exercises_all()
     
@@ -51,7 +66,6 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         getDatePicker()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TrendViewController.viewTapped(gestureRecognizer:)))
-        
         self.view.addGestureRecognizer(tapGesture)
         
         //to get the scroll working
@@ -129,8 +143,17 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         exerciseData = global_UserData.Get_Exercises_all()
         self.trendTableView.reloadData()
         self.rChartView?.reloadInputViews()
+        
     }
-    
+
+    @IBAction func clearDates(_ sender: UIButton){
+        //clear date picker fields
+        startDate.text = nil
+        endDate.text = nil
+        startDate.placeholder = "Pick a start date"
+        endDate.placeholder = "Pick an end date"
+    }
+
     func generateLineChart(){
         //this is for step counter data
       
@@ -146,27 +169,111 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         
         eDatePicker?.datePickerMode = .dateAndTime
         eDatePicker?.addTarget(self, action: #selector(TrendViewController.eDateChanged(datePicker:)), for: .valueChanged)
-        eDatePicker?.minimumDate = sDatePicker?.date //forbids user from selecting end date that falls before the start date
         endDate.inputView = eDatePicker
     }
     
     @objc func sDateChanged(datePicker: UIDatePicker){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
+        dateFormatter.dateFormat = "MM/dd/yyyy HH"
         startDate.text = dateFormatter.string(from: datePicker.date)
-        
         self.view.endEditing(true)
+        
+        sDateYear = Calendar.current.component(.year, from: datePicker.date)
+        sDateMonth = Calendar.current.component(.month, from: datePicker.date)
+        sDateDay = Calendar.current.component(.day, from: datePicker.date)
+        sDateHour = Calendar.current.component(.hour, from: datePicker.date)
+        sDateMinute = Calendar.current.component(.minute, from: datePicker.date)
         
     }
     
     @objc func eDateChanged(datePicker: UIDatePicker){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss"
+        dateFormatter.dateFormat = "MM/dd/yyyy HH"
         endDate.text = dateFormatter.string(from: datePicker.date)
-        self.view.endEditing(true)
         
+        eDateYear = Calendar.current.component(.year, from: datePicker.date)
+        eDateMonth = Calendar.current.component(.month, from: datePicker.date)
+        eDateDay = Calendar.current.component(.day, from: datePicker.date)
+        eDateHour = Calendar.current.component(.hour, from: datePicker.date)
+        eDateMinute = Calendar.current.component(.minute, from: datePicker.date)
+        
+        if sDateYear > eDateYear
+        {
+            self.clearEndDate()
+        }
+        else
+        {
+            if sDateYear == eDateYear
+            {
+                if sDateMonth > eDateMonth
+                {
+                    self.clearEndDate()
+                }
+                else
+                {
+                    if sDateMonth == eDateMonth
+                    {
+                        if sDateDay > eDateDay
+                        {
+                            self.clearEndDate()
+                        }
+                        else
+                        {
+                            if sDateDay ==  eDateDay
+                            {
+                                if sDateHour > eDateHour
+                                {
+                                    self.clearEndDate()
+                                }
+                                else
+                                {
+                                    if sDateHour == eDateHour
+                                    {
+                                        if sDateMinute > eDateMinute
+                                        {
+                                            self.clearEndDate()
+                                        }
+                                        else
+                                        {
+                                            //equal min or smaller
+                                            self.view.endEditing(true)
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //smaller start hour
+                                        self.view.endEditing(true)
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                //smaller start day
+                                self.view.endEditing(true)
+                            }
+                        }
+                    }
+                else
+                {
+                    //smaller start month
+                    self.view.endEditing(true)
+                }
+            }
+        }
+        else
+        {
+            //smaller start year
+            self.view.endEditing(true)
+        }
+            
     }
-    
+}
+    func clearEndDate(){
+        endDate.text = nil
+        endDate.placeholder = "End date must be greater than start date"
+        self.getDatePicker()
+    }
+        
     @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer){
         self.view.endEditing(true)
     }
@@ -190,46 +297,56 @@ class TrendViewController: UIViewController, UITableViewDataSource {
     //This function fetches exercises done by the user, identifies the category to count how many exercises are done in each category
     func exerciseCategoryCount() -> [Int]{
         let exerciseData = global_UserData.Get_Exercises_all()
+    
         var categoryMatch = (" ", " ", " ", " ", " ")
         var catCount = [0, 0, 0, 0]
         for entry in exerciseData{
-            //get the category of the exercise done fetched from the DB
-            categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry.nameOfExercise)
-            
-            //figure out which counter to increment
-            if categoryMatch.1 as String == "Flexibility"
+            //get the category of the exercise done fetched from the DB for the selected date
+            if (entry.Year >= sDateYear && entry.Year <= eDateYear)
             {
-                flexCounter += 1
-                //print(categoryMatch.1)
-                //sprint(flexCounter)
-                catCount[0] = flexCounter
+                if (entry.Month >= sDateMonth && entry.Month <= eDateMonth)
+                {
+                    if (entry.Day >= sDateDay && entry.Day <= eDateDay)
+                    {
+                        if (entry.Hour >= sDateHour && entry.Hour <= eDateHour)
+                        {
+                            categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry.nameOfExercise)
+                            
+                            //figure out which counter to increment
+                            if categoryMatch.1 as String == "Flexibility"
+                            {
+                                flexCounter += 1
+                                print(categoryMatch.1)
+                                print(flexCounter)
+                                catCount[0] = flexCounter
+                            }
+                            else if categoryMatch.1 as String == "Cardio"
+                            {
+                                cardioCounter += 1
+                                //print(categoryMatch.1)
+                                //print(cardioCounter)
+                                catCount[1] = cardioCounter
+                            }
+                            else if categoryMatch.1 as String == "Balance"
+                            {
+                                balanceCounter += 1
+                                catCount[2] = balanceCounter
+                            }
+                            else if categoryMatch.1 as String == "Strength"
+                            {
+                                strengthCounter += 1
+                                catCount[3] = strengthCounter
+                            }
+                            else
+                            {
+                                print("Not a valid category")
+                            }
+                            
+                        }
+                    }
+                }
             }
-            else if categoryMatch.1 as String == "Cardio"
-            {
-                cardioCounter += 1
-                //print(categoryMatch.1)
-                //print(cardioCounter)
-                catCount[1] = cardioCounter
-            }
-            else if categoryMatch.1 as String == "Balance"
-            {
-                balanceCounter += 1
-                catCount[2] = balanceCounter
-            }
-            else if categoryMatch.1 as String == "Strength"
-            {
-                strengthCounter += 1
-                catCount[3] = strengthCounter
-            }
-            else
-            {
-                print("Not a valid category")
-            }
-            
-            
-            
         }
-        
         return catCount
     }
     
