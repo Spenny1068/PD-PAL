@@ -11,13 +11,12 @@
 // <November 2, 2019, William Xue , Added table displaying exercise history and step count>
 // <November 8, 2019, Julia Kim, Getting counts for each category>
 // <November 11, 2019, Julia Kim, Adding scrolling to the page, generate radar graph, implemented date pickers>
-// <November 13, 2019, Julia Kim, Added hours to the date picker>
+// <November 13, 2019, Julia Kim, Added hours to the date picker, input validation for date picker range, updating radar graph utilizing the same update button for the table>
 
 /*Known Bugs
  November 11, 2019: Julia Kim
- -The graph generated does not update after loading initially as that feature has not been fully implemented yet.
- -Date Picker not integrated yet.
- 
+ -The graph generated does not update after loading initially as that feature has not been fully implemented yet. -> fixed with an update button Nov 13, 2019
+ -Date Picker not integrated yet. -> done Nov 13, 2019
  */
 
 import UIKit
