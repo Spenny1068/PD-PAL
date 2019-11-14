@@ -18,19 +18,21 @@ Revision History
  - 01/11/2019 : William Huong
     Updated test for greater coverage
  - 01/11/2019 : William Huong
-    Updated test_UserData_UserInfo()
+    Updated test_UserInfo()
  - 02/11/2019 : William Huong
     test_UserData_UserInfo() now checks state after calling Delete_userInfo()
  - 02/11/2019 : William Huong
-    Changed test_UserData_UserInfo() for slightly better coverage
+    Changed test_UserInfo() for slightly better coverage
  - 02/11/2019 : William Huong
-    Udated test_UserData_UserExerciseData() for Get_Exercise_All()
+    Udated test_UserExerciseData() for Get_Exercise_All()
  - 11/11/2019 : William Huong
-    Updated test_UserData_UserInfo() for UUID column
+    Updated test_UserInfo() for UUID column
  - 14/11/2019 : William Huong
     Removed example performance test
  - 14/11/2019 : William Huong
-    Updated test_UserData_UserInfo() for FirestoreOK column
+    Updated test_UserInfo() for FirestoreOK column
+ - 14/11/2019 : William Huong
+    Added test_LastBackup()
  */
 
 
@@ -63,7 +65,7 @@ class UserDataTests: XCTestCase {
 UserData Class Tests
 */
     
-    func test_userData_UserInfo() {
+    func test_UserInfo() {
         
         //Create the object.
         let userDB = UserData()
@@ -190,7 +192,33 @@ UserData Class Tests
         
     }
     
-    func test_UserData_Routines() {
+    func test_LastBackup() {
+        
+        //Use string comparison because the Date object is too precise.
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar.current
+        dateFormatter.dateFormat = "MMM d, yyyy, hh:mm:ss a"
+        let defaultDateString = "Jan 1, 1000, 12:00:00 AM"
+        
+        let userData = UserData()
+        
+        //Check the default value is there
+        var currentBackup = dateFormatter.string(from: userData.Get_LastBackup())
+        print("\(currentBackup)")
+        XCTAssert( currentBackup == defaultDateString )
+        
+        let currentDate = Date()
+        print("\(currentDate)")
+        
+        //Update the date and check it was properly updated
+        userData.Update_LastBackup(backupDate: currentDate)
+        currentBackup = dateFormatter.string(from: userData.Get_LastBackup())
+        print("\(currentBackup)")
+        XCTAssert( currentBackup == dateFormatter.string(from: currentDate) )
+        
+    }
+    
+    func test_Routines() {
         
         //Define some variables to test with
         let defaultRoutineName = "Happy Day Workout"
@@ -281,7 +309,7 @@ UserData Class Tests
         
     }
     
-    func test_UserData_UserExerciseData() {
+    func test_UserExerciseData() {
         
         //Define some variables to test with. Defined so that we can have an exercise done twice in the same hour, multiple difference exercise the same hour, same exercise on two different days
         let targetYear1 = 2019
@@ -427,7 +455,7 @@ UserData Class Tests
         
     }
     
-    func test_UserData_StepCount() {
+    func test_StepCount() {
         
         //Declare some vaiables to use
         let firstSteps1 = Int64(1337)

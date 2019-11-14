@@ -169,3 +169,36 @@ class UserDataFirestore {
     }
     
 }
+
+/*
+ let dateFormatter = DateFormatter()
+ 
+ dateFormatter.calendar = Calendar.current
+ dateFormatter.dateFormat = "MMM d, yyyy, hh:mm a"
+ let generatedDate = dateFormatter.date(from: "Nov 13, 2019, 11:00 AM")!
+ 
+ let currentDate = Date()
+ let dayAdded = Calendar.current.date(byAdding: .day, value: 1, to: generatedDate)
+ 
+ print("\(generatedDate)")
+ print("\(currentDate)")
+ print("\(String(describing: dayAdded))")
+ 
+ let dayHasPassed = currentDate >= dayAdded!
+ 
+ print("\(dayHasPassed)")
+ 
+ let generatedString = dateFormatter.string(from: generatedDate)
+ 
+ print("\(generatedString)")
+ 
+ let regeneratedDate = dateFormatter.date(from: generatedString)
+ 
+ print("\(regeneratedDate)")
+ 
+ let regeneratedDayAdded = Calendar.current.date(byAdding: .day, value: 1, to: regeneratedDate!)
+ 
+ let regeneratedDayHasPassed = currentDate >= regeneratedDayAdded!
+ 
+ print("\(regeneratedDayHasPassed)")
+ */
