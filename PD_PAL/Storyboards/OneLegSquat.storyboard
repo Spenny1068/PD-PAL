@@ -20,25 +20,15 @@
                                 <rect key="frame" x="66" y="118" width="241" height="197"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOG-eh-0HF">
-                                <rect key="frame" x="141" y="318" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="f:" destination="hrI-IS-1IV" eventType="touchUpInside" id="ZVE-Ob-eS1"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bRB-ej-NEC"/>
                     </view>
                     <connections>
                         <outlet property="image" destination="Utp-sD-8z1" id="dyd-ak-IYm"/>
-                        <outlet property="viewButton" destination="QOG-eh-0HF" id="pta-eb-B17"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKK-FT-Kyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="hrI-IS-1IV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="58.399999999999999" y="105.69715142428787"/>
         </scene>

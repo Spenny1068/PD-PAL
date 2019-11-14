@@ -32,11 +32,14 @@ class CardioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor
-        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue4     // nav bar color
-
         
+        /* navigation bar stuff */
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue4     // nav bar color
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.title = nil    // no page title in navigation bar
+
         // message
-        self.show_page_message(s1: "Select An Exercise!", s2: "Exercise")
+        self.show_page_message(s1: "Cardio Exercises!", s2: "Cardio")
         
         /* exercise buttons */
         

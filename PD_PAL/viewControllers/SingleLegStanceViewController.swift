@@ -11,9 +11,7 @@ import UIKit
 class SingleLegStanceViewController: UIViewController {
 
     // IBOutlet labels and buttons
-    @IBOutlet weak var viewButton: UIButton!
-    
-    
+    //@IBOutlet weak var viewButton: UIButton!
     @IBOutlet weak var image: UIImageView!
     
     override func viewDidLoad() {
@@ -23,17 +21,22 @@ class SingleLegStanceViewController: UIViewController {
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         self.show_page_message(s1: "SINGLE LEG STANCE", s2: "SINGLE LEG STANCE")
         image.image = UIImage(named: "Leg_Stance.png")
+        
+        /* navigation bar stuff */
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
+        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
+        self.title = nil                                                                                            // no page title in navigation bar
 
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "SINGLE LEG STANCE")
         
         // exercise description and duration text
         self.show_exercise_description(string: readResult.Description)
-        self.show_exercise_duration(string: readResult.Duration)
+        //self.show_exercise_duration(string: readResult.Duration)
         
         // view button
-        viewButton.viewButtonDesign()
-        applyViewButtonConstraints(button: viewButton)
+        //viewButton.viewButtonDesign()
+        //applyViewButtonConstraints(button: viewButton)
                 
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))

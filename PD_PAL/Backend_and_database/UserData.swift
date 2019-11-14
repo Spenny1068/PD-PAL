@@ -40,6 +40,8 @@
     Added method to get all exercises in UserExerciseData database
  - 11/11/2019 : William Huong
     Added UUID column to UserInfo database
+ - 03/11/2019 : William Huong
+    init() now loads a routine when creating the table or file.
  */
 
 /*
@@ -374,6 +376,9 @@ class UserData {
                 } catch {
                     print("Error creating Routines table")
                 }
+                
+                //Add a routine so the routines page has at least one for the user.
+                self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["Walking", "Wall Push-Up", "Single Leg Stance"])
             }
         } catch {
             print("Error connecting to Routines database")

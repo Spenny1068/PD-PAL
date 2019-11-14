@@ -30,14 +30,17 @@ class BalanceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
-        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1     // nav bar color
-
+        
+        /* navigation bar stuff */
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
+        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
+        self.title = nil                                                                                            // no page title in navigation bar
 
         // message
-        self.show_page_message(s1: "Select An Exercise!", s2: "Exercise")
+        self.show_page_message(s1: "Balance Exercises!", s2: "Balance")
         
         /* exercise buttons */
-        
+            
         // button 1
         exerciseButton.setTitle("QUAD STRETCH",for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
@@ -64,6 +67,20 @@ class BalanceViewController: UIViewController {
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     // called when home button on navigation bar is tapped
@@ -73,3 +90,5 @@ class BalanceViewController: UIViewController {
         self.present(newViewController, animated: true, completion: nil)
     }
 }
+
+

@@ -26,15 +26,24 @@ class StrengthViewController: UIViewController {
     
     @IBOutlet weak var WallPushUpButton: UIButton!
     
+    /* If this page was instantiated through categories */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vcc = segue.destination as? WallPushUpViewController { Global.flag = 2 }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
-        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue2     // nav bar color
+        
+        /* navigation bar stuff */
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
+        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
+        self.title = nil                                                                                            // no page title in navigation bar
 
 
         // message
-        self.show_page_message(s1: "Select An Exercise!", s2: "Exercise")
+        self.show_page_message(s1: "Strength Exercises!", s2: "Strength")
         
         /* exercise buttons */
         
@@ -60,13 +69,13 @@ class StrengthViewController: UIViewController {
         
         self.view.addSubview(stackView)
         applyStackViewConstraints(SV: stackView)
-        
-        
+
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
     }
+    
     
     // called when home button on navigation bar is tapped
     @objc func homeButtonTapped(sender: UIButton!) {

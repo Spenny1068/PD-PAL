@@ -26,16 +26,21 @@ class OneLegSquatViewController: UIViewController {
         self.show_page_message(s1: "QUAD STRETCH", s2: "QUAD STRETCH")
         image.image = UIImage(named: "leg_stretch.png")
         
+        /* navigation bar stuff */
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
+        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
+        self.title = nil                                                                                            // no page title in navigation bar
+        
         // read exercise info into labels
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: "QUAD STRETCH")
        
         // exercise description and duration text
         self.show_exercise_description(string: readResult.Description)
-        self.show_exercise_duration(string: readResult.Duration)
+        //self.show_exercise_duration(string: readResult.Duration)
         
         // view button
-        viewButton.viewButtonDesign()
-        applyViewButtonConstraints(button: viewButton)
+        //viewButton.viewButtonDesign()
+        //applyViewButtonConstraints(button: viewButton)
     
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))

@@ -14,15 +14,24 @@ import UIKit
 
 class RoutineGenericViewController: UIViewController {
     
-    
-    
     @IBOutlet var Exercise1: UIButton!
     @IBOutlet var Exercise2: UIButton!
     @IBOutlet var Exercise3: UIButton!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        /* if this page was instantiated through routines */
+        if let vcc = segue.destination as? WallPushUpViewController { Global.flag = 1 }
+    }
+       
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor
+        
+        /* navigation bar stuff */
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
+        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
+        self.title = nil                                                                                            // no page title in navigation bar
         
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
@@ -32,6 +41,7 @@ class RoutineGenericViewController: UIViewController {
         Exercise2.applyDesign()
         Exercise3.applyDesign()
     }
+    
     
     // called when home button on navigation bar is tapped
     @objc func homeButtonTapped(sender: UIButton!) {

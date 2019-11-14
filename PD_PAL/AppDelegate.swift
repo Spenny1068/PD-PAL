@@ -19,6 +19,8 @@ import Firebase
 /* put global constants in this struct */
 struct Global {
     
+    static var flag = 0 // 1 is routines, 2 is categories, 0 is nil
+    
     // color schemes
     struct color_schemes {
         static var m_bgColor = UIColor(rgb: 0xECECEC).withAlphaComponent(1.0)        // background color
@@ -71,7 +73,7 @@ extension UIViewController {
             SV.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             SV.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 25),
             SV.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -25),
-            SV.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150),
+            SV.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 120),
             SV.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50)
         ])
     }
@@ -92,7 +94,7 @@ extension UIViewController {
             msg.widthAnchor.constraint(equalToConstant: 350),
             msg.heightAnchor.constraint(equalToConstant: 50),
             msg.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            msg.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+            msg.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 55)
         ])
     }
     
@@ -111,7 +113,7 @@ extension UIViewController {
         NSLayoutConstraint.activate([
             DescriptionLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
             DescriptionLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
-            DescriptionLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 430)
+            DescriptionLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 375)
         ])
         
         // description text
@@ -128,7 +130,7 @@ extension UIViewController {
         NSLayoutConstraint.activate([
             DescriptionText.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
             DescriptionText.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12),
-            DescriptionText.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 465)
+            DescriptionText.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 410)
         ])
     }
     
@@ -207,7 +209,7 @@ extension UILabel {
     func applyPageMsgDesign() {
         self.textAlignment = .left                                             // text alignment
         self.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
-        self.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
+        self.font = UIFont(name:"HelveticaNeue-Bold", size: 26.0)              // text font and size
     }
     
     // applies questions on Questionnaire storyboard
@@ -307,23 +309,42 @@ extension UIButton {
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
     }
     
-    func viewButtonDesign() {
-        self.translatesAutoresizingMaskIntoConstraints = false               // turn on constraints
+    func startButtonDesign() {
+        
+        self.frame = CGRect(x: 35, y: 575, width: 300, height: 75)          // rectangle coordinates
+        self.setTitle("START", for: .normal)                                  // button text
 
         // design
-        self.backgroundColor = Global.color_schemes.m_lightGreen
-        self.layer.cornerRadius = 30                                        // rounded edges
+        self.layer.cornerRadius = 30                                         // rounded edges
         self.layer.borderWidth = 3                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
-               
+        
         // text
-        self.setTitle("View", for: .normal)
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
         self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
+        self.backgroundColor = Global.color_schemes.m_blue2
     }
+    
+//    func viewButtonDesign() {
+//        self.translatesAutoresizingMaskIntoConstraints = false               // turn on constraints
+//
+//        // design
+//        self.backgroundColor = Global.color_schemes.m_lightGreen
+//        self.layer.cornerRadius = 30                                        // rounded edges
+//        self.layer.borderWidth = 3                                           // border width in points
+//        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
+//
+//        // text
+//        self.setTitle("View", for: .normal)
+//        self.setTitleColor(UIColor.black, for: .normal)                      // button text color
+//        self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
+//        self.contentVerticalAlignment = .center                              // button text aligned bottom of self
+//        self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
+//        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
+//    }
     
     func applyDesign() {
         self.backgroundColor = UIColor.black                                    // background color
