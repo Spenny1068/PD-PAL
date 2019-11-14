@@ -169,19 +169,26 @@ UserData Class Tests
     func test_UserData_Routines() {
         
         //Define some variables to test with
+        let defaultRoutineName = "Happy Day Workout"
         let routine1name = "Happy Days Workout"
         let routine2name = "Happier Days Workout"
         let nullRoutine = "Immaginary Workout"
         
+        let defaultRoutineExercises = ["Walking", "Wall Push-Up", "Single Leg Stance"]
         let routine1exercises = ["Bicep Curls", "5 minute walk", "one legged stand"]
         let routine2exercises = ["squats", "sit ups", "bulgarian hamstring stretch", "whatever involved the chair"]
         
         let userData = UserData()
         
-        //Confirm the database is empty and Get_Routines() and Get_Routine() behave properly.
+        //Confirm the database has the default routine, and that Get_Routine() and Get_Routines() work correctly.
         let initialRoutines = userData.Get_Routines()
         let initialRoutine = userData.Get_Routine(NameOfRoutine: nullRoutine)
-        XCTAssert( initialRoutines.isEmpty == true )
+        let defaultRoutine = userData.Get_Routine(NameOfRoutine: defaultRoutineName)
+        
+        XCTAssert( initialRoutines.count == 1 )
+        XCTAssert( initialRoutines[0].RoutineName == defaultRoutineName )
+        XCTAssert( initialRoutines[0].Exercises == defaultRoutineExercises )
+        XCTAssert( defaultRoutine == defaultRoutineExercises )
         XCTAssert( initialRoutine.isEmpty == true )
         
         //Insert our 2 routines
@@ -190,15 +197,19 @@ UserData Class Tests
         
         //Confirm they were successfully added.
         let filledRoutines = userData.Get_Routines()
+        let defaultRoutine2 = userData.Get_Routine(NameOfRoutine: defaultRoutineName)
         let filledRoutine1 = userData.Get_Routine(NameOfRoutine: routine1name)
         let filledRoutine2 = userData.Get_Routine(NameOfRoutine: routine2name)
         
-        XCTAssert( filledRoutines.count == 2 )
-        XCTAssert( filledRoutines[0].RoutineName == routine1name )
-        XCTAssert( filledRoutines[0].Exercises == routine1exercises )
-        XCTAssert( filledRoutines[1].RoutineName == routine2name )
-        XCTAssert( filledRoutines[1].Exercises == routine2exercises )
+        XCTAssert( filledRoutines.count == 3 )
+        XCTAssert( filledRoutines[0].RoutineName == defaultRoutineName )
+        XCTAssert( filledRoutines[0].Exercises == defaultRoutineExercises )
+        XCTAssert( filledRoutines[1].RoutineName == routine1name )
+        XCTAssert( filledRoutines[1].Exercises == routine1exercises )
+        XCTAssert( filledRoutines[2].RoutineName == routine2name )
+        XCTAssert( filledRoutines[2].Exercises == routine2exercises )
         
+        XCTAssert( defaultRoutine2 == defaultRoutineExercises )
         XCTAssert( filledRoutine1 == routine1exercises )
         XCTAssert( filledRoutine2 == routine2exercises )
         
@@ -211,14 +222,17 @@ UserData Class Tests
         
         //Confirm they were successfully added.
         let deletionRoutines = userData.Get_Routines()
+        let defaultDeletion = userData.Get_Routine(NameOfRoutine: defaultRoutineName)
         let deletionRoutine1 = userData.Get_Routine(NameOfRoutine: routine1name)
         let deletionRoutine2 = userData.Get_Routine(NameOfRoutine: routine2name)
         
-        XCTAssert( deletionRoutines.count == 1 )
-        XCTAssert( deletionRoutines[0].RoutineName == routine1name )
-        XCTAssert( deletionRoutines[0].Exercises == routine1exercises )
-        XCTAssert( filledRoutines[1].RoutineName == routine2name )
+        XCTAssert( deletionRoutines.count == 2 )
+        XCTAssert( deletionRoutines[0].RoutineName == defaultRoutineName )
+        XCTAssert( deletionRoutines[0].Exercises == defaultRoutineExercises )
+        XCTAssert( deletionRoutines[1].RoutineName == routine1name )
+        XCTAssert( deletionRoutines[1].Exercises == routine1exercises )
         
+        XCTAssert( defaultDeletion == defaultRoutineExercises )
         XCTAssert( deletionRoutine1 == routine1exercises )
         XCTAssert( deletionRoutine2.isEmpty == true )
         
@@ -230,11 +244,13 @@ UserData Class Tests
         userData.Clear_Routines_Database()
         
         let clearedRoutines = userData.Get_Routines()
+        let defaultCleared = userData.Get_Routine(NameOfRoutine: defaultRoutineName)
         let clearedRoutine1 = userData.Get_Routine(NameOfRoutine: routine1name)
         let clearedRoutine2 = userData.Get_Routine(NameOfRoutine: routine2name)
         let clearedRoutineNull = userData.Get_Routine(NameOfRoutine: nullRoutine)
         
         XCTAssert( clearedRoutines.isEmpty == true )
+        XCTAssert( defaultCleared.isEmpty == true )
         XCTAssert( clearedRoutine1.isEmpty == true )
         XCTAssert( clearedRoutine2.isEmpty == true )
         XCTAssert( clearedRoutineNull.isEmpty == true )
