@@ -38,6 +38,8 @@
     Fixed bug where Increment_Steps_Taken() sometimes just replaced the value instead of incrementing
  - 02/11/2019 : William Xue
     Added method to get all exercises in UserExerciseData database
+ - 03/11/2019 : William Huong
+    init() now loads a routine when creating the table or file.
  */
 
 /*
@@ -355,6 +357,9 @@ class UserData {
                 } catch {
                     print("Error creating Routines table")
                 }
+                
+                //Add a routine so the routines page has at least one for the user.
+                self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["Walking", "Wall Push-Up", "Single Leg Stance"])
             }
         } catch {
             print("Error connecting to Routines database")
