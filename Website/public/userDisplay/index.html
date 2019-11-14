@@ -15,6 +15,9 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 
+		<!-- Path to chart javascript... Sourced from https://www.chartjs.org  -->
+		<script src="../node_modules/chart.js/dist/Chart.js"></script>
+
 		<link href="../css/main_style.css" type="text/css" rel="stylesheet" />
 
   </head>
@@ -25,10 +28,32 @@
 			 title="PD PAL LOGO" width="73" height="61.5" align="bottom"  /> 	PD PAL</h1>
 			<h2>Your Exercise History</h2>
     </div>
-		<div id="Graphs">
 
+
+
+		<!-- Code for Veritcal Tabs from https://www.w3schools.com/howto/howto_js_vertical_tabs.asp -->
+
+		<div class="tab">
+			<button class="tablinks" onclick="openCity(event, 'History')" id="defaultOpen">History</button>
+			<button class="tablinks" onclick="openCity(event, 'Trends')">Trends</button>
+			<button class="tablinks" onclick="openCity(event, 'Steps')">Steps</button>
 		</div>
 
+		<div id="History" class="tabcontent">
+			<h3>History</h3>
+			<p> This is where exercise history is displayed.</p>
+		</div>
+
+		<div id="Trends" class="tabcontent">
+			<h3>Trends</h3>
+			<p>This is where exercise trends are displayed.</p> 
+		</div>
+
+		<div id="Steps" class="tabcontent">
+			<h3>Steps</h3>
+			<p>This is where step counters are displayed</p>
+			<canvas id="myChart" width="400" height="400"></canvas>
+		</div>
 
 
 
@@ -57,8 +82,67 @@
       });
     </script>
 		-->
+		
+		<!-- Script to change tabs -->
+		<script>
+		function openCity(evt, cityName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+			document.getElementById(cityName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+		</script>
 
 
+		<script>
+		var ctx = document.getElementById('myChart');
+		var myChart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+						labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+						datasets: [{
+								label: '# of Votes',
+								data: [12, 19, 3, 5, 2, 3],
+								backgroundColor: [
+										'rgba(255, 99, 132, 0.2)',
+										'rgba(54, 162, 235, 0.2)',
+										'rgba(255, 206, 86, 0.2)',
+										'rgba(75, 192, 192, 0.2)',
+										'rgba(153, 102, 255, 0.2)',
+										'rgba(255, 159, 64, 0.2)'
+								],
+								borderColor: [
+										'rgba(255, 99, 132, 1)',
+										'rgba(54, 162, 235, 1)',
+										'rgba(255, 206, 86, 1)',
+										'rgba(75, 192, 192, 1)',
+										'rgba(153, 102, 255, 1)',
+										'rgba(255, 159, 64, 1)'
+								],
+								borderWidth: 1
+						}]
+				},
+				options: {
+						scales: {
+								yAxes: [{
+										ticks: {
+												beginAtZero: true
+										}
+								}]
+						}
+				}
+		});
+		</script>
 
   </body>
 </html>
