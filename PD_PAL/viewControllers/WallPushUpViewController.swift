@@ -112,7 +112,7 @@ class WallPushUpViewController: UIViewController {
             self.view.addSubview(timerLabel)
             
             // gif
-            guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: "heel_stand") else { return }
+            guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: "neck_side_stretch") else { return }
             view.addSubview(gif)
             gif.startAnimating()
 
