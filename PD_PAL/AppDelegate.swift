@@ -18,7 +18,7 @@ import UIKit
 /* put global constants in this struct */
 struct Global {
     
-    static var flag = 0 // 1 is routines, 2 is categories, 0 is nil
+    static var IsRoutineExercise = -1                                                // 0 is categories, 1 is routines, -1 is nil
     
     // color schemes
     struct color_schemes {
@@ -29,6 +29,7 @@ struct Global {
         static var m_blue2 = UIColor(rgb: 0x83C8FD).withAlphaComponent(1.0)          // Strength
         static var m_blue3 = UIColor(rgb: 0x9EC8E6).withAlphaComponent(1.0)          // Launch
         static var m_blue4 = UIColor(rgb: 0xD2E7F7).withAlphaComponent(1.0)          // Ques selected/Cardio
+        static var m_lightRed = UIColor(rgb: 0xffcccb).withAlphaComponent(1.0)
         
         static var m_flexButton = UIColor(rgb: 0xF8FBFD).withAlphaComponent(1.0)     // Flexibility
         static var m_lightGrey = UIColor(rgb: 0xBEBEBE).withAlphaComponent(1.0)      // Prev unselected
@@ -98,38 +99,36 @@ extension UIViewController {
     }
     
     // displays exercise description as written in exerciseDB
-    func show_exercise_description(string:String) {
+    func show_exercise_description(string:String, DLabel: UILabel, DText: UILabel) {
         
         // description label
-        let DescriptionLabel = UILabel()
-        DescriptionLabel.textAlignment = .left                                             // text alignment
-        DescriptionLabel.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
-        DescriptionLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
-        DescriptionLabel.text = "Description"
-        self.view.addSubview(DescriptionLabel)
+        DLabel.textAlignment = .left                                             // text alignment
+        DLabel.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
+        DLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
+        DLabel.text = "Description"
+        self.view.addSubview(DLabel)
 
         // description label constraints
         NSLayoutConstraint.activate([
-            DescriptionLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            DescriptionLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
-            DescriptionLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 375)
+            DLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            DLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
+            DLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 415)
         ])
         
         // description text
-        let DescriptionText = UILabel()
-        DescriptionText.textAlignment = .left                                             // text alignment
-        DescriptionText.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
-        DescriptionText.font = Global.text_fonts.m_exerciseDescriptionDurationFont        // text font and size
-        DescriptionText.lineBreakMode = .byWordWrapping                                   // Word wrapping
-        DescriptionText.numberOfLines = 5                                                 // theres space for a maximum of 5 lines
-        DescriptionText.text = string
-        self.view.addSubview(DescriptionText)
+        DText.textAlignment = .left                                             // text alignment
+        DText.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
+        DText.font = Global.text_fonts.m_exerciseDescriptionDurationFont        // text font and size
+        DText.lineBreakMode = .byWordWrapping                                   // Word wrapping
+        DText.numberOfLines = 5                                                 // theres space for a maximum of 5 lines
+        DText.text = string
+        self.view.addSubview(DText)
 
         // description text constraints
         NSLayoutConstraint.activate([
-            DescriptionText.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
-            DescriptionText.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12),
-            DescriptionText.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 410)
+            DText.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
+            DText.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12),
+            DText.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 450)
         ])
     }
     
@@ -188,17 +187,6 @@ extension UIViewController {
             button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
         ])
     }
-    
-    // applies constraints for a single routine button
-    func applyViewButtonConstraints(button: UIButton) {
-        NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalToConstant: 213),
-            button.heightAnchor.constraint(equalToConstant: 78),
-            button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 81),
-            button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
-            button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 330)
-        ])
-    }
 }
 
 /* UILabel methods */
@@ -245,6 +233,12 @@ extension UILabel {
     func DescriptionDurationDesign() {
         self.backgroundColor = UIColor.black                   // background color
         self.textColor = UIColor.white                          // text color
+    }
+    
+    func timerDesign() {
+        self.frame = CGRect(x: 36, y: 450, width: 300, height: 75)            // rectangle coordinates
+        self.textAlignment = .center                                             // text alignment
+        self.font = UIFont(name:"HelveticaNeue-Bold", size: 65.0)
     }
 }
 
@@ -308,42 +302,21 @@ extension UIButton {
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
     }
     
-    func startButtonDesign() {
-        
-        self.frame = CGRect(x: 35, y: 575, width: 300, height: 75)          // rectangle coordinates
-        self.setTitle("START", for: .normal)                                  // button text
+    func timerButtonDesign() {
+        self.frame = CGRect(x: 36, y: 575, width: 300, height: 75)            // rectangle coordinates
 
         // design
         self.layer.cornerRadius = 30                                         // rounded edges
         self.layer.borderWidth = 3                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
-        
+
         // text
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
         self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
-        self.backgroundColor = Global.color_schemes.m_blue2
     }
-    
-//    func viewButtonDesign() {
-//        self.translatesAutoresizingMaskIntoConstraints = false               // turn on constraints
-//
-//        // design
-//        self.backgroundColor = Global.color_schemes.m_lightGreen
-//        self.layer.cornerRadius = 30                                        // rounded edges
-//        self.layer.borderWidth = 3                                           // border width in points
-//        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
-//
-//        // text
-//        self.setTitle("View", for: .normal)
-//        self.setTitleColor(UIColor.black, for: .normal)                      // button text color
-//        self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
-//        self.contentVerticalAlignment = .center                              // button text aligned bottom of self
-//        self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
-//        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
-//    }
     
     func applyDesign() {
         self.backgroundColor = UIColor.black                                    // background color

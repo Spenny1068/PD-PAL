@@ -28,7 +28,7 @@ class StrengthViewController: UIViewController {
     
     /* If this page was instantiated through categories */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vcc = segue.destination as? WallPushUpViewController { Global.flag = 2 }
+        if let vcc = segue.destination as? WallPushUpViewController { Global.IsRoutineExercise = 0 }
     }
     
     override func viewDidLoad() {
@@ -83,16 +83,4 @@ class StrengthViewController: UIViewController {
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

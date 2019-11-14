@@ -68,7 +68,7 @@ class EquipmentQuestionnaireViewController: UIViewController {
         if(counter1 == 2){counter1 = 0}
         if(counter1 == 1){
              global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: true, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
-        }else if(counter1 == 0){
+        } else if(counter1 == 0){
              global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: false, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
         }
         print("RB")
@@ -80,7 +80,7 @@ class EquipmentQuestionnaireViewController: UIViewController {
         if(counter2 == 2){counter2 = 0}
         if(counter2 == 1){
             global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: true, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
-        }else if(counter2 == 0){
+        } else if(counter2 == 0){
             global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: false, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
         }
     }
@@ -90,7 +90,7 @@ class EquipmentQuestionnaireViewController: UIViewController {
         if(counter3 == 2){counter3 = 0}
         if(counter3 == 1){
             global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: true, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
-        }else if(counter3 == 0){
+        } else if(counter3 == 0){
             global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: false, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
         }
     }
@@ -100,7 +100,7 @@ class EquipmentQuestionnaireViewController: UIViewController {
         if(counter4 == 2){counter4 = 0}
         if(counter4 == 1){
             global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: true, intensityDesired: nil, pushNotificationsDesired: nil)
-        }else if(counter4 == 0){
+        } else if(counter4 == 0){
             global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: false, intensityDesired: nil, pushNotificationsDesired: nil)
         }
     }
