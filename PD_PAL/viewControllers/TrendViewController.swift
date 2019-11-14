@@ -33,6 +33,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     @IBOutlet weak var UpdateButton: UIButton!
     
     @IBOutlet weak var ClearDates: UIButton!
+    
     @IBOutlet weak var rChartView: RadarChartView!
     @IBOutlet weak var scroller: UIScrollView!
     
@@ -41,6 +42,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
     private var sDatePicker: UIDatePicker?
     private var eDatePicker: UIDatePicker?
+    private var dateSelected = false
     
     private var eDateYear = 0
     private var eDateMonth = 0
@@ -59,7 +61,6 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     private var cardioCounter = 0
     private var balanceCounter = 0
     
-    
     var exerciseData = global_UserData.Get_Exercises_all()
     
     override func viewDidLoad() {
@@ -71,7 +72,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         //to get the scroll working
         //stackoverflow.com/questions/28144739/swift-uiscrollview-not-scrolling
         scroller?.isScrollEnabled = true
-        scroller?.contentSize = CGSize(width: 375, height: 2500) //content size must be greater than scroll view constraint
+        scroller?.contentSize = CGSize(width: 375, height: 3500) //content size must be greater than scroll view constraint
         self.view.addSubview(scroller)
         
         view.backgroundColor = Setup.m_bgColor  // background color
@@ -98,7 +99,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         msg.applyPageMsgDesign()
         self.view.addSubview(msg)
         
-        generateRadarChart() //generate radar chart on load
+        self.generateRadarChart()
     }
     
     override func viewDidLayoutSubviews() {
@@ -142,18 +143,20 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     @IBAction func Update(_ sender: UIButton) {
         exerciseData = global_UserData.Get_Exercises_all()
         self.trendTableView.reloadData()
-        self.rChartView?.reloadInputViews()
-        
+        self.generateRadarChart()
+        self.viewDidLayoutSubviews()
+       
     }
 
     @IBAction func clearDates(_ sender: UIButton){
         //clear date picker fields
         startDate.text = nil
         endDate.text = nil
-        startDate.placeholder = "Pick a start date"
-        endDate.placeholder = "Pick an end date"
+        startDate.placeholder = "Pick a Start Date"
+        endDate.placeholder = "Pick an End Date"
+        dateSelected = false
     }
-
+   
     func generateLineChart(){
         //this is for step counter data
       
@@ -183,6 +186,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         sDateDay = Calendar.current.component(.day, from: datePicker.date)
         sDateHour = Calendar.current.component(.hour, from: datePicker.date)
         sDateMinute = Calendar.current.component(.minute, from: datePicker.date)
+        dateSelected = true
         
     }
     
@@ -266,8 +270,10 @@ class TrendViewController: UIViewController, UITableViewDataSource{
             self.view.endEditing(true)
         }
             
+        }
     }
-}
+    
+    
     func clearEndDate(){
         endDate.text = nil
         endDate.placeholder = "End date must be greater than start date"
@@ -280,16 +286,24 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
     func generateRadarChart(){
         /*Using the library from github.com/nkmrh/RadarChart*/
-        let color = UIColor(red:0.282, green:0.541, blue:0.867, alpha:0.50)
+        let color = UIColor(red:0.580, green:0.541, blue:0.867, alpha:0.50)
         let backgroundColor = UIColor(red:0.851, green:0.851, blue:0.941, alpha:1.00)
         let xAxisColor = UIColor(red:0.396, green:0.769, blue:0.914, alpha:1.00)
         let yAxisColor = UIColor(red:0.596, green:0.863, blue:0.945, alpha:1.50)
         let fontColor = UIColor(red:0.259, green:0.365, blue:0.565, alpha:1.00)
         
-        rChartView?.data = self.exerciseCategoryCount() //get the user exercise data
+        if !dateSelected
+        {
+            rChartView?.data = [0, 0, 0, 0] //no query made, empty graph
+        }
+        else
+        {
+            rChartView?.data = self.exerciseCategoryCount() //get the user exercise data
+        }
+        
         rChartView?.labelTexts = ["Flexibility", "Cardio", "Balance", "Strength"]
         rChartView?.numberOfVertexes = 4
-        rChartView?.numberTicks = 30
+        rChartView?.numberTicks = 20
         rChartView?.style = RadarChartStyle(color: color,backgroundColor: backgroundColor, xAxis: RadarChartStyle.Axis(colors: [xAxisColor], widths: [0.5, 0.5, 0.5, 0.5, 2.0]),yAxis: RadarChartStyle.Axis(colors: [yAxisColor], widths: [0.5]), label: RadarChartStyle.Label(fontName: "Helvetica", fontColor: fontColor, fontSize: 11, lineSpacing: 0, letterSpacing: 0, margin: 10))
         rChartView?.option = RadarChartOption()
     }
@@ -316,8 +330,8 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                             if categoryMatch.1 as String == "Flexibility"
                             {
                                 flexCounter += 1
-                                print(categoryMatch.1)
-                                print(flexCounter)
+                                //print(categoryMatch.1)
+                                //print(flexCounter)
                                 catCount[0] = flexCounter
                             }
                             else if categoryMatch.1 as String == "Cardio"
@@ -347,6 +361,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                 }
             }
         }
+        
         return catCount
     }
     

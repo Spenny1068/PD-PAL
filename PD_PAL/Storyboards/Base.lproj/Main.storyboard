@@ -18,7 +18,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtY-dY-F2O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6260" y="584"/>
+            <point key="canvasLocation" x="6297" y="790"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="nN8-PU-VdJ">
@@ -139,15 +139,15 @@
             <objects>
                 <viewController storyboardIdentifier="TrendsPage" id="eOn-hd-4pY" customClass="TrendViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dst-kA-BfX" customClass="Trend" customModule="PD_PAL" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" indicatorStyle="black" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0R-Vv-2Qh">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" contentInsetAdjustmentBehavior="scrollableAxes" indicatorStyle="black" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0R-Vv-2Qh">
+                                <rect key="frame" x="-1.8189894035458565e-12" y="0.33333333333212067" width="375" height="2000"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zdh-bc-bmA">
-                                        <rect key="frame" x="22" y="1195" width="330" height="235"/>
+                                        <rect key="frame" x="26" y="1696" width="330" height="239"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
@@ -161,40 +161,48 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMF-hp-Tgb">
-                                        <rect key="frame" x="284" y="92" width="51" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Update"/>
-                                        <connections>
-                                            <action selector="Update:" destination="eOn-hd-4pY" eventType="touchUpInside" id="84i-Oa-kY4"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2T-ic-h5l" customClass="RadarChartView" customModule="RadarChart">
-                                        <rect key="frame" x="21" y="378" width="330" height="310"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" updatesFrequently="YES"/>
-                                        </accessibility>
-                                    </view>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick a Start Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fOZ-qr-Xpv">
-                                        <rect key="frame" x="14" y="166" width="345" height="30"/>
+                                        <rect key="frame" x="15" y="208" width="345" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick an End Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZy-mb-0yE">
-                                        <rect key="frame" x="15" y="237" width="345" height="30"/>
+                                        <rect key="frame" x="15" y="293" width="345" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PK4-Qk-EFZ">
-                                        <rect key="frame" x="21" y="739" width="330" height="292"/>
+                                        <rect key="frame" x="26" y="1190" width="330" height="292"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM1-5t-nag">
+                                        <rect key="frame" x="273" y="157" width="83" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Reset Dates"/>
+                                        <connections>
+                                            <action selector="clearDates:" destination="eOn-hd-4pY" eventType="touchUpInside" id="IEe-9U-CBo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMF-hp-Tgb">
+                                        <rect key="frame" x="150" y="1953" width="72" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Update All"/>
+                                        <connections>
+                                            <action selector="Update:" destination="eOn-hd-4pY" eventType="touchUpInside" id="84i-Oa-kY4"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2T-ic-h5l" customClass="RadarChartView" customModule="RadarChart">
+                                        <rect key="frame" x="23" y="349" width="330" height="310"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" updatesFrequently="YES"/>
+                                        </accessibility>
                                     </view>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="8pG-BG-nua"/>
@@ -203,8 +211,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qeJ-Cn-5Zn"/>
                     </view>
-                    <size key="freeformSize" width="375" height="1500"/>
+                    <size key="freeformSize" width="375" height="2000"/>
                     <connections>
+                        <outlet property="ClearDates" destination="eM1-5t-nag" id="1A4-aG-eMu"/>
                         <outlet property="TrendTableView" destination="Zdh-bc-bmA" id="eVk-5d-TSY"/>
                         <outlet property="UpdateButton" destination="gMF-hp-Tgb" id="iMJ-kZ-bp0"/>
                         <outlet property="endDate" destination="AZy-mb-0yE" id="jg0-6a-j9d"/>
@@ -216,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ayO-5W-k77" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6260" y="-490.25487256371815"/>
+            <point key="canvasLocation" x="6296.8000000000002" y="-740.32983508245877"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="do0-3e-ocv">
