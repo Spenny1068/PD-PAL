@@ -155,11 +155,6 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         endDate.placeholder = "Pick an End Date"
         dateSelected = false
     }
-   
-    func generateLineChart(){
-        //this is for step counter data
-      
-    }
     
     func getDatePicker(){
         //let user select the date for step counter
@@ -302,7 +297,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         
         rChartView?.labelTexts = ["Flexibility", "Cardio", "Balance", "Strength"]
         rChartView?.numberOfVertexes = 4
-        rChartView?.numberTicks = 20
+        rChartView?.numberTicks = 20 //any more ticks would look very condensed. Leaving the full data for the web component
         rChartView?.style = RadarChartStyle(color: color,backgroundColor: backgroundColor, xAxis: RadarChartStyle.Axis(colors: [xAxisColor], widths: [0.5, 0.5, 0.5, 0.5, 2.0]),yAxis: RadarChartStyle.Axis(colors: [yAxisColor], widths: [0.5]), label: RadarChartStyle.Label(fontName: "Helvetica", fontColor: fontColor, fontSize: 11, lineSpacing: 0, letterSpacing: 0, margin: 10))
         rChartView?.option = RadarChartOption()
     }
@@ -364,7 +359,26 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         return catCount
     }
     
+    func generateLineChart(){
+        //this is for step counter
+    }
     
+    func prepareStepData(){
+        //get step data for the selected range of dates
+        var stepDataStart = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour)
+        var stepData: [Int64] = []
+        stepData[0] = stepDataStart
+        
+        if sDateYear == eDateYear-1 //one year interval
+        {
+            for i in 1...abs(eDateMonth - sDateMonth)
+            {
+                //do something here...work in progress
+            }
+        }
+       
+        var stepDataEnd = global_UserData.Get_Steps_Taken(TargetYear: eDateYear, TargetMonth: eDateMonth, TargetDay: eDateDay, TargetHour: eDateHour)
+    }
     /*
     // MARK: - Navigation
 
