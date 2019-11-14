@@ -21,8 +21,7 @@
 
 import UIKit
 import RadarChart //import to allow creating radar graph
-
-import CoreGraphics
+import SwiftCharts //import to allow creating line or bar graphs
 
 class TrendViewController: UIViewController, UITableViewDataSource{
 
@@ -359,25 +358,60 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         return catCount
     }
     
-    func generateLineChart(){
+    func generateStepChart(){
         //this is for step counter
     }
     
     func prepareStepData(){
         //get step data for the selected range of dates
+        //limit querying step data to be within the same week
+        //any more data would just look very condensed on the mobile device.
+        //leave the full dataset for the web?
         var stepDataStart = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour)
-        var stepData: [Int64] = []
-        stepData[0] = stepDataStart
+        var stepDataWeekly: [Int64] = [] //gets all hours for each day as one set
+        var stepDataHourly: [Int64] = [] //gets hourly data for the start date selected (one day)
         
-        if sDateYear == eDateYear-1 //one year interval
+        
+        if sDateYear == eDateYear
         {
-            for i in 1...abs(eDateMonth - sDateMonth)
+            if sDateMonth == eDateMonth
             {
-                //do something here...work in progress
+                //for weekly data [unit: day]
+                if (eDateDay - sDateDay) <= 7 && eDateDay != sDateDay
+                {
+                    //within the same week
+                    for i in 0...(eDateDay-sDateDay) //eDateDay will always be greater than sDateHour if same year, same month due to the input validation
+                    {
+                        for j in 0...24
+                        {
+                            if sDateHour + j > 24
+                            {
+                                //next day
+                                stepDataWeekly[i+1] = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay+i+1, TargetHour: sDateHour+j-24)
+                            }
+                            else
+                            {
+                                stepDataWeekly[i] = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay+i, TargetHour: sDateHour+j)
+                            }
+                        }
+                        
+                    }
+                }
+                else if eDateDay == sDateDay && eDateHour != sDateHour //same day. Get hourly data
+                {
+                    for i in 0...(eDateHour-sDateHour) //eDateHour will always be greater than sDateHour if same year, month and day due to the input validation
+                    {
+                        stepDataHourly[i] = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour+i)
+                    }
+                }
+                else
+                {
+                    //max step data that can be queried is one week
+                    print("No graph for step counter is generated. To generate a step counter graph, please set the duration to be within one week.")
+                }
             }
         }
        
-        var stepDataEnd = global_UserData.Get_Steps_Taken(TargetYear: eDateYear, TargetMonth: eDateMonth, TargetDay: eDateDay, TargetHour: eDateHour)
     }
     /*
     // MARK: - Navigation
