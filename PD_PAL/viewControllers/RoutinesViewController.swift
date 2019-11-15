@@ -31,9 +31,17 @@ class RoutinesViewController: UIViewController {
         return sv
     }()
     
+    // override seque to send button title to destination view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "RoutineSegue" {
+            let vc = segue.destination as! RoutineGenericViewController
+            vc.buttonTitle = (sender as! UIButton).titleLabel!.text!
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let routineNames = global_UserData.Get_Routines()
         view.backgroundColor = Global.color_schemes.m_bgColor
         
         // home button on navigation bar
@@ -42,11 +50,9 @@ class RoutinesViewController: UIViewController {
         
         // message
         self.show_page_message(s1: "Select A Routine To Try!", s2: "Routine")
-        
-        var routineNames = global_UserData.Get_Routines()
 
-        // apply designs to routine buttons
-        routineButton1.setTitle(routineNames[0].0, for: .normal)    // access routine name in tuple
+        // apply titles and designs to routine buttons
+        routineButton1.setTitle(routineNames[0].0, for: .normal)
         routineButton1.routineButtonDesign()
         
         routineButton2.setTitle(routineNames[1].0, for: .normal)

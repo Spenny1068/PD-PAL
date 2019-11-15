@@ -14,9 +14,13 @@ import UIKit
 
 class RoutineGenericViewController: UIViewController {
     
+    // IBOutlet buttons and labels
     @IBOutlet var Exercise1: UIButton!
     @IBOutlet var Exercise2: UIButton!
     @IBOutlet var Exercise3: UIButton!
+    
+    // global variables
+    var buttonTitle: String!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -27,6 +31,7 @@ class RoutineGenericViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor
+        let routineData = global_UserData.Get_Routine(NameOfRoutine: "Happy Day Workout")
         
         /* navigation bar stuff */
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
@@ -37,10 +42,7 @@ class RoutineGenericViewController: UIViewController {
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
         
-        var routineData = global_UserData.Get_Routine(NameOfRoutine: "Happy Day Workout")
-    
-        
-        
+        // apply titles and designs to exercise buttons
         Exercise1.applyDesign()
         Exercise1.setTitle(routineData[0], for: .normal)
         Exercise2.applyDesign()
@@ -48,7 +50,6 @@ class RoutineGenericViewController: UIViewController {
         Exercise3.applyDesign()
         Exercise3.setTitle(routineData[2], for: .normal)
     }
-    
     
     // called when home button on navigation bar is tapped
     @objc func homeButtonTapped(sender: UIButton!) {

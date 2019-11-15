@@ -214,7 +214,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="VMk-fN-Ww1" kind="push" id="Yt1-aj-va8"/>
+                                    <segue destination="VMk-fN-Ww1" kind="push" identifier="RoutineSegue" id="Yt1-aj-va8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ags-NY-9nM">
@@ -222,7 +222,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="VMk-fN-Ww1" kind="push" id="z5u-Lj-CFj"/>
+                                    <segue destination="VMk-fN-Ww1" kind="push" identifier="RoutineSegue" id="z5u-Lj-CFj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAt-ft-wvv">
@@ -230,7 +230,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="VMk-fN-Ww1" kind="push" id="5bg-9e-8Nq"/>
+                                    <segue destination="VMk-fN-Ww1" kind="push" identifier="RoutineSegue" id="5bg-9e-8Nq"/>
                                 </connections>
                             </button>
                         </subviews>
