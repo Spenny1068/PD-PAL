@@ -1,12 +1,14 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const express = require('express')
+
 
 //path to private_key file:
-var serviceAccount = require("/Users/zjxue/Desktop/pd-pal-firebase-adminsdk-ifk38-8a13678c7e.json");
+//var serviceAccount = require("/Users/zjxue/Desktop/pd-pal-firebase-adminsdk-ifk38-8a13678c7e.json");
 
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.applicationDefault(),
   databaseURL: "https://pd-pal.firebaseio.com"
 });
 
@@ -24,17 +26,21 @@ let db = admin.firestore();
 
 
  exports.login = functions.https.onRequest((request, response) => {
-
+		//array to store users
+		var users = [];
 		let usersRef = db.collection('Users');
 		let allUsers = usersRef.get()
 			.then(snapshot => {
 				snapshot.forEach(doc => {
-					console.log(doc.id, '=>', doc.data());
+					console.log(doc.id);
+					users.push(doc.id);
 				});
+				return null;
 		})
 		.catch(err => {
 			console.log('Error getting documents',err);
 		})
+		console.log("Request.body->", request.body)
 
   response.send("Login function");
  });
