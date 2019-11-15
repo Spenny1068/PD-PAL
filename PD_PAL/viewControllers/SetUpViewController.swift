@@ -27,10 +27,8 @@ class SetUpViewController: UIViewController {
         
         //Navigation Buttons
         SetUpButton.applyNextQButton()
-        self.view.addSubview(SetUpButton)
         SkipSetUpButton.applyPrevQButton()
-        self.view.addSubview(SkipSetUpButton)
-        
+        SkipSetUpButton.setTitle("Later", for: .normal)
     }
     
     @IBAction func SetUpTapped(_ sender: Any) {
