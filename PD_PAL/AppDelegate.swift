@@ -294,12 +294,17 @@ extension UIButton {
         self.layer.borderWidth = 3                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
         
+//        button.widthAnchor.constraint(equalToConstant: 304),
+//        button.heightAnchor.constraint(equalToConstant: 81),
+        //self.frame = CGRect(
+        
         // text
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
         self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
+        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
     func timerButtonDesign() {

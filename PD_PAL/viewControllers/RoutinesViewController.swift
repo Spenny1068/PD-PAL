@@ -48,12 +48,15 @@ class RoutinesViewController: UIViewController {
         // apply designs to routine buttons
         routineButton1.setTitle(routineNames[0].0, for: .normal)    // access routine name in tuple
         routineButton1.routineButtonDesign()
+        routineButton1.setBackgroundImage(UIImage(named: "routine1"), for: .normal)
         
         routineButton2.setTitle(routineNames[1].0, for: .normal)
         routineButton2.routineButtonDesign()
+        routineButton2.setBackgroundImage(UIImage(named: "routine2"), for: .normal)
         
         routineButton3.setTitle(routineNames[2].0, for: .normal)
         routineButton3.routineButtonDesign()
+        routineButton3.setBackgroundImage(UIImage(named: "routine3"), for: .normal)
         
         /* routine button constraints */
         applyExerciseButtonConstraint(button: routineButton1)
