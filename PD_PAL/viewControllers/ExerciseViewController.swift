@@ -8,13 +8,11 @@
 
 import UIKit
 
-class WallPushUpViewController: UIViewController {
+class ExerciseViewController: UIViewController {
     
     // IBOutlet Labels
     @IBOutlet weak var DescriptionText: UILabel!
     @IBOutlet weak var DescriptionLabel: UILabel!
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var image2: UIImageView!
     @IBOutlet weak var timerLabel: UILabel!
     
     // IBOutlet buttons
@@ -23,10 +21,14 @@ class WallPushUpViewController: UIViewController {
     @IBOutlet weak var completedButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
     
+    // global variables
+    var buttonTitle: String!
+
     // global timer variables
     var seconds = 5            // get this value from db
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
+
     
     
     // called when start button is tapped
@@ -151,6 +153,7 @@ class WallPushUpViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
+        let exercise_name = buttonTitle                        // exercise name from button title on previous VC
         
         /* navigation bar stuff */
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
@@ -158,7 +161,7 @@ class WallPushUpViewController: UIViewController {
         self.title = nil                                                                                            // remove page title
 
         // page message
-        self.show_page_message(s1: "WALL PUSH-UP", s2: "WALL PUSH-UP")
+        self.show_page_message(s1: exercise_name ?? "Failed to get exercise name", s2: exercise_name ?? "nil")
         
         // hide the stop button, completed button, and timer
         stopButton.isHidden = true
@@ -166,7 +169,7 @@ class WallPushUpViewController: UIViewController {
         completedButton.isHidden = true
         
         // read exercise info into labels
-        let readResult = global_ExerciseData.read_exercise(NameOfExercise: "WALL PUSH-UP")
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
         
         // exercise description
         self.show_exercise_description(string: readResult.Description, DLabel: DescriptionLabel, DText: DescriptionText)
@@ -174,9 +177,6 @@ class WallPushUpViewController: UIViewController {
         // home button on navigation bar
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
-        
-        image.image = UIImage(named: "pushup_step1.png")
-        image2.image = UIImage(named: "pushup_step2.png")
     }
     
     // called when home button on navigation bar is tapped

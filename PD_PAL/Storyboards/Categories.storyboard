@@ -21,7 +21,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" id="xUJ-BQ-B5a"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="xUJ-BQ-B5a"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt1-ZA-AI9">
@@ -29,7 +29,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" id="VCw-2T-7La"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="VCw-2T-7La"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-uf-uGy">
@@ -37,7 +37,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" id="mbn-Mn-UZv"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="mbn-Mn-UZv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -55,35 +55,15 @@
             </objects>
             <point key="canvasLocation" x="-18.399999999999999" y="559.07046476761627"/>
         </scene>
-        <!--PushupVC-->
+        <!--ExerciseVC-->
         <scene sceneID="5xK-OO-a7i">
             <objects>
-                <viewControllerPlaceholder storyboardName="Chest" referencedIdentifier="PushupVC" id="7ea-g1-tEb" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Exercise" referencedIdentifier="ExerciseVC" id="7ea-g1-tEb" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="8f4-QV-frC"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QP4-Vu-F2F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-51" y="989"/>
-        </scene>
-        <!--ChairStretchVC-->
-        <scene sceneID="XJo-EA-Phf">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Chairstretch" referencedIdentifier="ChairStretchVC" id="QKt-nn-xdI" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="7Cp-wP-uFx"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CBM-7j-zQ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="654" y="990"/>
-        </scene>
-        <!--OneLegSquatVC-->
-        <scene sceneID="bpG-DN-Zha">
-            <objects>
-                <viewControllerPlaceholder storyboardName="OneLegSquat" referencedIdentifier="OneLegSquatVC" id="eND-9L-UOu" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="FaW-t6-wNL"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0kN-Bd-iaS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1364" y="990"/>
+            <point key="canvasLocation" x="984" y="1204"/>
         </scene>
         <!--FLEXIBILITY-->
         <scene sceneID="BBK-5x-cjT">
@@ -98,7 +78,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="QKt-nn-xdI" kind="push" id="y6B-rL-7JE"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="jAG-kq-jTX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x89-LX-OJD">
@@ -106,7 +86,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="QKt-nn-xdI" kind="push" id="pny-zl-Trs"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="7qy-uA-Fzp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nod-Xp-V4T">
@@ -114,7 +94,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="QKt-nn-xdI" kind="push" id="txs-Dd-Wen"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="3cE-Mu-9Td"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW1-bb-i21">
@@ -122,7 +102,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="QKt-nn-xdI" kind="push" id="gsb-6r-0B2"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="qDp-Ze-3dV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -153,7 +133,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="eND-9L-UOu" kind="push" id="PGs-o7-Qrh"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="BalanceSegue" id="vmG-Ij-Nbo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsF-jO-Yrx">
@@ -161,7 +141,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="eND-9L-UOu" kind="push" id="0m8-tM-1dE"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="BalanceSegue" id="ef0-eK-ShK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLs-uj-Wt4">
@@ -169,7 +149,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="eND-9L-UOu" kind="push" id="MA0-do-HBp"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="BalanceSegue" id="CYs-rR-9YF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -186,16 +166,6 @@
             </objects>
             <point key="canvasLocation" x="1364" y="559.97001499250382"/>
         </scene>
-        <!--WalkingVC-->
-        <scene sceneID="ilD-XG-1QV">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Walking" referencedIdentifier="WalkingVC" id="ZXd-fz-gRp" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="4ly-JU-gWc"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ThA-T0-nKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2076" y="989"/>
-        </scene>
         <!--CARDIO-->
         <scene sceneID="Tvs-OT-pZy">
             <objects>
@@ -209,7 +179,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="ZXd-fz-gRp" kind="push" id="rYN-uE-q6K"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="CardioSegue" id="OgW-1h-rRp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cek-Lr-2B2">
@@ -217,7 +187,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="ZXd-fz-gRp" kind="push" id="bCG-5q-zw3"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="CardioSegue" id="G1M-r5-N44"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co7-bL-i89">
@@ -225,7 +195,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="ZXd-fz-gRp" kind="push" id="cNP-Gn-a60"/>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="CardioSegue" id="ujc-4P-nfg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -244,9 +214,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cNP-Gn-a60"/>
-        <segue reference="MA0-do-HBp"/>
-        <segue reference="y6B-rL-7JE"/>
-        <segue reference="mbn-Mn-UZv"/>
+        <segue reference="ujc-4P-nfg"/>
     </inferredMetricsTieBreakers>
 </document>

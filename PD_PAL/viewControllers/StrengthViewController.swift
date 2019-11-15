@@ -23,12 +23,16 @@ class StrengthViewController: UIViewController {
         sv.distribution = .fillEqually
         return sv
     }()
-    
-    @IBOutlet weak var WallPushUpButton: UIButton!
-    
-    /* If this page was instantiated through categories */
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vcc = segue.destination as? WallPushUpViewController { Global.IsRoutineExercise = 0 }
+        
+        // set IsRoutineExercise flag to 0 to signify we came from categories page
+        if let vcc = segue.destination as? ExerciseViewController { Global.IsRoutineExercise = 0 }
+        
+        if segue.identifier == "StrengthSegue" {
+            let vc = segue.destination as! ExerciseViewController
+            vc.buttonTitle = (sender as! UIButton).titleLabel!.text!
+        }
     }
     
     override func viewDidLoad() {
@@ -48,7 +52,7 @@ class StrengthViewController: UIViewController {
         /* exercise buttons */
         
         // button 1
-        exerciseButton.setTitle("WALL PUSHUP",for: .normal)                        // button text
+        exerciseButton.setTitle("WALL PUSH-UP",for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
         exerciseButton.backgroundColor = Global.color_schemes.m_blue2          // background color
 

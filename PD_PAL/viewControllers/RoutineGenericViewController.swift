@@ -25,7 +25,7 @@ class RoutineGenericViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         /* if this page was instantiated through routines */
-        if let vcc = segue.destination as? WallPushUpViewController { Global.IsRoutineExercise = 1 }
+        if let vcc = segue.destination as? ExerciseViewController { Global.IsRoutineExercise = 1 }
     }
        
     override func viewDidLoad() {

@@ -39,11 +39,10 @@
 		455E1BF4236E9B0B00309A1D /* Walking.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1BEF236E9B0B00309A1D /* Walking.png */; };
 		455E1BF6236EA1BB00309A1D /* leg_stance2.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1BF5236EA1BB00309A1D /* leg_stance2.png */; };
 		456EE886237654E500842EB6 /* ppp.png in Resources */ = {isa = PBXBuildFile; fileRef = 456EE885237654E400842EB6 /* ppp.png */; };
-		457C0F6A2366B54500A918B2 /* Chest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457C0F692366B54500A918B2 /* Chest.storyboard */; };
+		457C0F6A2366B54500A918B2 /* Exercise.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457C0F692366B54500A918B2 /* Exercise.storyboard */; };
 		457C0F6C2366B6C700A918B2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 457C0F6B2366B6C700A918B2 /* logo.png */; };
 		45987B0B237E0B12000E68AA /* neck_side_stretch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 45987B03237E0B12000E68AA /* neck_side_stretch.gif */; };
 		45BE9269236660920076E729 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45BE9268236660920076E729 /* Categories.storyboard */; };
-		45EA1DE0236595BD00E6D070 /* Walking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EA1DDE236595BD00E6D070 /* Walking.storyboard */; };
 		45EA1DEE236597B800E6D070 /* RoutineGenericpage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */; };
 		45EB46152367C0AA009BA044 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB46052367C0AA009BA044 /* RoutinesViewController.swift */; };
 		45EB46162367C0AA009BA044 /* FlexibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB46062367C0AA009BA044 /* FlexibilityViewController.swift */; };
@@ -61,12 +60,10 @@
 		45EB46222367C0AA009BA044 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB46122367C0AA009BA044 /* LoginViewController.swift */; };
 		45EB46232367C0AA009BA044 /* WalkingQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB46132367C0AA009BA044 /* WalkingQuestionViewController.swift */; };
 		45EB46242367C0AA009BA044 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB46142367C0AA009BA044 /* SettingsViewController.swift */; };
-		45EB46262367C4CF009BA044 /* Chairstretch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EB46252367C4CF009BA044 /* Chairstretch.storyboard */; };
-		45EB46282367C5BE009BA044 /* OneLegSquat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EB46272367C5BE009BA044 /* OneLegSquat.storyboard */; };
 		7D7B90E5236D2E54005247CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9BD2351587700E5ED83 /* AppDelegate.swift */; };
 		7DF12D04236E197300FC94D6 /* logoLaunch.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF12CFC236E197200FC94D6 /* logoLaunch.png */; };
 		AE4D724B236BAF10003A8BE3 /* OneLegSquatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */; };
-		AE4D724D236BCB5A003A8BE3 /* WallPushUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */; };
+		AE4D724D236BCB5A003A8BE3 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */; };
 		AE4D724F236BD963003A8BE3 /* SingleLegStanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */; };
 		AE4D7251236BDD42003A8BE3 /* WalkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */; };
 /* End PBXBuildFile section */
@@ -190,11 +187,10 @@
 		455E1BEF236E9B0B00309A1D /* Walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walking.png; sourceTree = "<group>"; };
 		455E1BF5236EA1BB00309A1D /* leg_stance2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_stance2.png; sourceTree = "<group>"; };
 		456EE885237654E400842EB6 /* ppp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppp.png; sourceTree = "<group>"; };
-		457C0F692366B54500A918B2 /* Chest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chest.storyboard; sourceTree = "<group>"; };
+		457C0F692366B54500A918B2 /* Exercise.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Exercise.storyboard; sourceTree = "<group>"; };
 		457C0F6B2366B6C700A918B2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		45987B03237E0B12000E68AA /* neck_side_stretch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = neck_side_stretch.gif; sourceTree = "<group>"; };
 		45BE9268236660920076E729 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
-		45EA1DDE236595BD00E6D070 /* Walking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walking.storyboard; sourceTree = "<group>"; };
 		45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RoutineGenericpage.storyboard; sourceTree = "<group>"; };
 		45EB46052367C0AA009BA044 /* RoutinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutinesViewController.swift; sourceTree = "<group>"; };
 		45EB46062367C0AA009BA044 /* FlexibilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexibilityViewController.swift; sourceTree = "<group>"; };
@@ -212,11 +208,9 @@
 		45EB46122367C0AA009BA044 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		45EB46132367C0AA009BA044 /* WalkingQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkingQuestionViewController.swift; sourceTree = "<group>"; };
 		45EB46142367C0AA009BA044 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		45EB46252367C4CF009BA044 /* Chairstretch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chairstretch.storyboard; sourceTree = "<group>"; };
-		45EB46272367C5BE009BA044 /* OneLegSquat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OneLegSquat.storyboard; sourceTree = "<group>"; };
 		7DF12CFC236E197200FC94D6 /* logoLaunch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoLaunch.png; sourceTree = "<group>"; };
 		AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLegSquatViewController.swift; sourceTree = "<group>"; };
-		AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPushUpViewController.swift; sourceTree = "<group>"; };
+		AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLegStanceViewController.swift; sourceTree = "<group>"; };
 		AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -371,10 +365,7 @@
 				4517F9C52351587700E5ED83 /* Main.storyboard */,
 				26DC60EF2364C51C0064B314 /* Questionnare.storyboard */,
 				45BE9268236660920076E729 /* Categories.storyboard */,
-				45EA1DDE236595BD00E6D070 /* Walking.storyboard */,
-				45EB46272367C5BE009BA044 /* OneLegSquat.storyboard */,
-				45EB46252367C4CF009BA044 /* Chairstretch.storyboard */,
-				457C0F692366B54500A918B2 /* Chest.storyboard */,
+				457C0F692366B54500A918B2 /* Exercise.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -401,7 +392,7 @@
 				45EB460A2367C0AA009BA044 /* TrendViewController.swift */,
 				45EB46132367C0AA009BA044 /* WalkingQuestionViewController.swift */,
 				AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */,
-				AE4D724C236BCB5A003A8BE3 /* WallPushUpViewController.swift */,
+				AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -570,8 +561,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45987B0B237E0B12000E68AA /* neck_side_stretch.gif in Resources */,
-				4510854B23639DB800338F82 /* Screen Shot 2019-10-11 at 9.07.38 AM.png in Resources */,
-				4510854623639DB800338F82 /* Screen Shot 2019-10-11 at 9.15.49 AM.png in Resources */,
 				4510854223639DB800338F82 /* radar.png in Resources */,
 				455E1BF2236E9B0B00309A1D /* Leg_Stance.png in Resources */,
 				4510854723639DB800338F82 /* resistance.png in Resources */,
@@ -581,7 +570,6 @@
 				4510855023639DB800338F82 /* playbutton.png in Resources */,
 				4510853E23639DB800338F82 /* routine4.jpg in Resources */,
 				4510853F23639DB800338F82 /* routine1.jpg in Resources */,
-				45EB46262367C4CF009BA044 /* Chairstretch.storyboard in Resources */,
 				7DF12D04236E197300FC94D6 /* logoLaunch.png in Resources */,
 				455E1BF0236E9B0B00309A1D /* pushup_step1.png in Resources */,
 				4510853D23639DB800338F82 /* flexibility.png in Resources */,
@@ -589,8 +577,7 @@
 				457C0F6C2366B6C700A918B2 /* logo.png in Resources */,
 				4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */,
 				455E1BF1236E9B0B00309A1D /* pushup_step2.png in Resources */,
-				457C0F6A2366B54500A918B2 /* Chest.storyboard in Resources */,
-				45EA1DE0236595BD00E6D070 /* Walking.storyboard in Resources */,
+				457C0F6A2366B54500A918B2 /* Exercise.storyboard in Resources */,
 				4517F9C72351587700E5ED83 /* Main.storyboard in Resources */,
 				4510854C23639DB800338F82 /* strength.png in Resources */,
 				4510854023639DB800338F82 /* Steps.png in Resources */,
@@ -601,7 +588,6 @@
 				4510854423639DB800338F82 /* Cardio.jpg in Resources */,
 				455E1BF6236EA1BB00309A1D /* leg_stance2.png in Resources */,
 				4510854323639DB800338F82 /* cardio.png in Resources */,
-				45EB46282367C5BE009BA044 /* OneLegSquat.storyboard in Resources */,
 				45EA1DEE236597B800E6D070 /* RoutineGenericpage.storyboard in Resources */,
 				455E1BF4236E9B0B00309A1D /* Walking.png in Resources */,
 			);
@@ -634,7 +620,7 @@
 				2EF4E7FD236CFFEB00CCECBB /* ExerciseDatabase.swift in Sources */,
 				AE4D724F236BD963003A8BE3 /* SingleLegStanceViewController.swift in Sources */,
 				45EB461A2367C0AA009BA044 /* TrendViewController.swift in Sources */,
-				AE4D724D236BCB5A003A8BE3 /* WallPushUpViewController.swift in Sources */,
+				AE4D724D236BCB5A003A8BE3 /* ExerciseViewController.swift in Sources */,
 				AE4D724B236BAF10003A8BE3 /* OneLegSquatViewController.swift in Sources */,
 				45EB461B2367C0AA009BA044 /* CardioViewController.swift in Sources */,
 				45EB46192367C0AA009BA044 /* IntenseQuestionViewController.swift in Sources */,

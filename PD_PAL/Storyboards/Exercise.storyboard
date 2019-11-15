@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--WALL PUSH-UP-->
+        <!--GENERIC EXERCISE PAGE-->
         <scene sceneID="nQB-Gp-qfv">
             <objects>
-                <viewController storyboardIdentifier="PushupVC" title="WALL PUSH-UP" id="WTe-r5-avd" customClass="WallPushUpViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExerciseVC" title="GENERIC EXERCISE PAGE" id="WTe-r5-avd" customClass="ExerciseViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cvE-fb-Ubc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4S2-sq-X3v">
-                                <rect key="frame" x="16" y="145" width="162" height="169"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pgA-um-jVJ">
-                                <rect key="frame" x="186" y="145" width="173" height="169"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msL-aA-58e">
                                 <rect key="frame" x="147" y="419" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -80,8 +70,6 @@
                         <outlet property="DescriptionLabel" destination="rQv-15-rnv" id="qzp-6v-oEw"/>
                         <outlet property="DescriptionText" destination="qoa-L0-1xV" id="hlq-5g-pyG"/>
                         <outlet property="completedButton" destination="fAu-rf-mkF" id="KoP-55-b6L"/>
-                        <outlet property="image" destination="4S2-sq-X3v" id="Wj6-YS-Bpv"/>
-                        <outlet property="image2" destination="pgA-um-jVJ" id="nAZ-Ra-Abk"/>
                         <outlet property="skipButton" destination="wlN-5K-FXj" id="Rab-P4-hBk"/>
                         <outlet property="startButton" destination="msL-aA-58e" id="c7n-CJ-ls4"/>
                         <outlet property="stopButton" destination="xhU-bP-4Os" id="B7w-7e-s3k"/>

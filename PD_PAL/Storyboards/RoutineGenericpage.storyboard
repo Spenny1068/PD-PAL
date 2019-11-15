@@ -37,7 +37,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Exercise 1"/>
                                         <connections>
-                                            <segue destination="ce6-Rm-Evr" kind="push" id="rcc-4F-m3Q"/>
+                                            <segue destination="Xo7-JS-VUv" kind="push" id="Zn0-3x-Oav"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3U-Dh-tBy">
@@ -61,7 +61,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Exercise 3"/>
                                         <connections>
-                                            <segue destination="VLj-US-a5d" kind="push" id="TWa-sY-Xpk"/>
+                                            <segue destination="Xo7-JS-VUv" kind="push" id="ctS-Uc-gXO"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -91,35 +91,18 @@
             </objects>
             <point key="canvasLocation" x="144.92753623188406" y="147.99107142857142"/>
         </scene>
-        <!--WalkingVC-->
-        <scene sceneID="NRc-GH-Fjf">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Walking" referencedIdentifier="WalkingVC" id="ce6-Rm-Evr" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="9df-50-lAh"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jwp-Sg-bDL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-190" y="543"/>
-        </scene>
-        <!--ChairStretchVC-->
-        <scene sceneID="9Np-SD-Mfy">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Chairstretch" referencedIdentifier="ChairStretchVC" id="VLj-US-a5d" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="YMV-w2-6xe"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DeM-xG-szD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="102" y="618"/>
-        </scene>
-        <!--PushupVC-->
+        <!--ExerciseVC-->
         <scene sceneID="7O3-oF-LQj">
             <objects>
-                <viewControllerPlaceholder storyboardName="Chest" referencedIdentifier="PushupVC" id="Xo7-JS-VUv" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Exercise" referencedIdentifier="ExerciseVC" id="Xo7-JS-VUv" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="WE0-u4-6oQ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8gt-23-mO8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="503" y="543"/>
+            <point key="canvasLocation" x="144" y="599"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hce-XR-IaZ"/>
+    </inferredMetricsTieBreakers>
 </document>

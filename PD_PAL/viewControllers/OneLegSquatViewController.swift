@@ -12,7 +12,7 @@
 
 import UIKit
 
-class OneLegSquatViewController: UIViewController {
+class QuadStViewController: UIViewController {
 
     // IBOutlet labels and buttons
    
