@@ -103,6 +103,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         self.view.addSubview(msg)
         
         self.generateRadarChart()
+       
     }
     
     override func viewDidLayoutSubviews() {
@@ -149,6 +150,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         self.trendTableView.reloadData()
         self.generateRadarChart()
         self.viewDidLayoutSubviews()
+        self.prepareStepData()
        
     }
 
@@ -324,6 +326,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
             //figure out which counter to increment
             if dateSelected
             {
+                //if entry in DB is greater than start date and smaller than end date, fetch and add to count
                 if convertedRaw?.compare(converted_sDate!) == .orderedDescending && convertedRaw?.compare(converted_eDate!) == .orderedAscending
                 {
                     if categoryMatch.1 as String == "Flexibility"
@@ -372,7 +375,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         //any more data would just look very condensed on the mobile device.
         //leave the full dataset for the web?
         var stepDataStart = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour)
-        var stepDataWeekly: [Int64] = [] //gets all hours for each day as one set
+        var stepDataWeekly: [Int64] = [0, 0, 0, 0, 0, 0, 0] //gets all hours for each day as one set
         var stepDataHourly: [Int64] = [] //gets hourly data for the start date selected (one day)
         
         
@@ -384,9 +387,10 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                 if (eDateDay - sDateDay) <= 7 && eDateDay != sDateDay
                 {
                     //within the same week
-                    for i in 0...(eDateDay-sDateDay) //eDateDay will always be greater than sDateHour if same year, same month due to the input validation
+                    //print(eDateDay-sDateDay)
+                    for i in 0..<(eDateDay-sDateDay) //eDateDay will always be greater than sDateHour if same year, same month due to the input validation
                     {
-                        for j in 0...24
+                        for j in 0..<24
                         {
                             if sDateHour + j > 24
                             {
@@ -403,7 +407,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                 }
                 else if eDateDay == sDateDay && eDateHour != sDateHour //same day. Get hourly data
                 {
-                    for i in 0...(eDateHour-sDateHour) //eDateHour will always be greater than sDateHour if same year, month and day due to the input validation
+                    for i in 0..<(eDateHour-sDateHour) //eDateHour will always be greater than sDateHour if same year, month and day due to the input validation
                     {
                         stepDataHourly[i] = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour+i)
                     }
