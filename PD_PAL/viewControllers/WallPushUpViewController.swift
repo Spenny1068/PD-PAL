@@ -21,6 +21,7 @@ class WallPushUpViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var completedButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
     
     // global timer variables
     var seconds = 5            // get this value from db
@@ -34,6 +35,7 @@ class WallPushUpViewController: UIViewController {
         DescriptionLabel.isHidden = true
         DescriptionText.isHidden = true
         startButton.isHidden = true
+        skipButton.isHidden = true
         
         // show stop button and timer
         stopButton.isHidden = false
@@ -55,6 +57,7 @@ class WallPushUpViewController: UIViewController {
         DescriptionLabel.isHidden = false
         DescriptionText.isHidden = false
         startButton.isHidden = false
+        skipButton.isHidden = false
         
         // hide stop button and timer
         stopButton.isHidden = true
@@ -76,17 +79,41 @@ class WallPushUpViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        // we came from routines
+        // we came from routines (FLAG)
         if Global.IsRoutineExercise == 1 {
-            let skipButton = UIButton()
-            skipButton.setTitle("Skip",for: .normal)
-            skipButton.setTitleColor(.red , for: .normal) //change colour later
+            //Skip button
+            skipButton.setTitle("SKIP",for: .normal)
+            skipButton.backgroundColor = Global.color_schemes.m_lightGreen              //Background color
             skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
-            skipButton.frame = CGRect(x: 25, y: 550, width: 50, height: 100)
+            skipButton.skipButtonDesign()
             self.view.addSubview(skipButton)
+            
+            // start button
+            startButton.timerButtonDesign2()
+            startButton.setTitle("START", for: .normal)
+            startButton.backgroundColor = Global.color_schemes.m_lightGreen
+            self.view.addSubview(startButton)
+            
+            // stop button
+            stopButton.timerButtonDesign()
+            stopButton.setTitle("STOP", for: .normal)
+            stopButton.backgroundColor = Global.color_schemes.m_lightRed
+            self.view.addSubview(stopButton)
+            
+            // completed Button
+            completedButton.timerButtonDesign()
+            completedButton.setTitle("COMPLETED", for: .normal)
+            completedButton.backgroundColor = Global.color_schemes.m_blue2
+            self.view.addSubview(completedButton)
+            
+            // timer label
+            timerLabel.timerDesign()
+            self.view.addSubview(timerLabel)
+            
+            
         }
             
-        // we came from categories
+        // we came from categories (FLAG)
         else if Global.IsRoutineExercise == 0 {
             
             // start button

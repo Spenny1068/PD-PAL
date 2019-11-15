@@ -37,9 +37,16 @@ class RoutineGenericViewController: UIViewController {
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
         
+        var routineData = global_UserData.Get_Routine(NameOfRoutine: "Happy Day Workout")
+    
+        
+        
         Exercise1.applyDesign()
+        Exercise1.setTitle(routineData[0], for: .normal)
         Exercise2.applyDesign()
+        Exercise2.setTitle(routineData[1], for: .normal)
         Exercise3.applyDesign()
+        Exercise3.setTitle(routineData[2], for: .normal)
     }
     
     

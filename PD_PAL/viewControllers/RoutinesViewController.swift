@@ -42,15 +42,17 @@ class RoutinesViewController: UIViewController {
         
         // message
         self.show_page_message(s1: "Select A Routine To Try!", s2: "Routine")
+        
+        var routineNames = global_UserData.Get_Routines()
 
         // apply designs to routine buttons
-        routineButton1.setTitle("Happy Day Workout", for: .normal)
+        routineButton1.setTitle(routineNames[0].0, for: .normal)    // access routine name in tuple
         routineButton1.routineButtonDesign()
         
-        routineButton2.setTitle("Friday Night Chill", for: .normal)
+        routineButton2.setTitle(routineNames[1].0, for: .normal)
         routineButton2.routineButtonDesign()
         
-        routineButton3.setTitle("Monday Morning Mood", for: .normal)
+        routineButton3.setTitle(routineNames[2].0, for: .normal)
         routineButton3.routineButtonDesign()
         
         /* routine button constraints */

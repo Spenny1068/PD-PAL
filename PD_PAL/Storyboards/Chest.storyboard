@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,6 +68,10 @@
                                     <action selector="completedButton:" destination="WTe-r5-avd" eventType="touchUpInside" id="lKc-rn-XEn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlN-5K-FXj">
+                                <rect key="frame" x="269" y="576" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nJD-7O-RLd"/>
@@ -76,6 +82,7 @@
                         <outlet property="completedButton" destination="fAu-rf-mkF" id="KoP-55-b6L"/>
                         <outlet property="image" destination="4S2-sq-X3v" id="Wj6-YS-Bpv"/>
                         <outlet property="image2" destination="pgA-um-jVJ" id="nAZ-Ra-Abk"/>
+                        <outlet property="skipButton" destination="wlN-5K-FXj" id="Rab-P4-hBk"/>
                         <outlet property="startButton" destination="msL-aA-58e" id="c7n-CJ-ls4"/>
                         <outlet property="stopButton" destination="xhU-bP-4Os" id="B7w-7e-s3k"/>
                         <outlet property="timerLabel" destination="28Q-k3-ftN" id="c4p-b3-DM6"/>
