@@ -12,6 +12,7 @@
 // <November 8, 2019, Julia Kim, Getting counts for each category>
 // <November 11, 2019, Julia Kim, Adding scrolling to the page, generate radar graph, implemented date pickers>
 // <November 13, 2019, Julia Kim, Added hours to the date picker, input validation for date picker range, updating radar graph utilizing the same update button for the table>
+// <November 14, 2019, Julia Kim, Refactored date querying to exercises completed database, >
 
 /*Known Bugs
  November 11, 2019: Julia Kim
@@ -21,7 +22,7 @@
 
 import UIKit
 import RadarChart //import to allow creating radar graph
-import SwiftCharts //import to allow creating line or bar graphs
+
 
 class TrendViewController: UIViewController, UITableViewDataSource{
 
@@ -307,53 +308,56 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
         var categoryMatch = (" ", " ", " ", " ", " ")
         var catCount = [0, 0, 0, 0]
+        var rawDate = "00/00/0000 HH"
+        let convertRaw = DateFormatter()
+        convertRaw.dateFormat = "MM/dd/yyyy HH"
+        let sDateRaw = "\(sDateMonth)/" + "\(sDateDay)/" + "\(sDateYear)/" + "\(sDateHour)/"
+        let eDateRaw = "\(eDateMonth)/" + "\(eDateDay)/" + "\(eDateYear)/" + "\(eDateHour)/"
+        let converted_sDate = convertRaw.date(from: sDateRaw) as Date?
+        let converted_eDate = convertRaw.date(from: eDateRaw) as Date?
+        
         for entry in exerciseData{
             //get the category of the exercise done fetched from the DB for the selected date
-            if (entry.Year >= sDateYear && entry.Year <= eDateYear)
+
+            categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry.nameOfExercise)
+            rawDate = "\(entry.Month)/" + "\(entry.Day)/" + "\(entry.Year)/" + "\(entry.Hour)"
+            print(rawDate)
+            let convertedRaw = convertRaw.date(from: rawDate) as Date?
+            
+            //figure out which counter to increment
+            if convertedRaw?.compare(converted_sDate!) == .orderedDescending && convertedRaw?.compare(converted_eDate!) == .orderedAscending
             {
-                if (entry.Month >= sDateMonth && entry.Month <= eDateMonth)
+                if categoryMatch.1 as String == "Flexibility"
                 {
-                    if (entry.Day >= sDateDay && entry.Day <= eDateDay)
-                    {
-                        if (entry.Hour >= sDateHour && entry.Hour <= eDateHour)
-                        {
-                            categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry.nameOfExercise)
-                            
-                            //figure out which counter to increment
-                            if categoryMatch.1 as String == "Flexibility"
-                            {
-                                flexCounter += 1
-                                //print(categoryMatch.1)
-                                //print(flexCounter)
-                                catCount[0] = flexCounter
-                            }
-                            else if categoryMatch.1 as String == "Cardio"
-                            {
-                                cardioCounter += 1
-                                //print(categoryMatch.1)
-                                //print(cardioCounter)
-                                catCount[1] = cardioCounter
-                            }
-                            else if categoryMatch.1 as String == "Balance"
-                            {
-                                balanceCounter += 1
-                                catCount[2] = balanceCounter
-                            }
-                            else if categoryMatch.1 as String == "Strength"
-                            {
-                                strengthCounter += 1
-                                catCount[3] = strengthCounter
-                            }
-                            else
-                            {
-                                print("Not a valid category")
-                            }
-                            
-                        }
-                    }
+                    flexCounter += 1
+                    //print(categoryMatch.1)
+                    //print(flexCounter)
+                    catCount[0] = flexCounter
+                }
+                else if categoryMatch.1 as String == "Cardio"
+                {
+                    cardioCounter += 1
+                    //print(categoryMatch.1)
+                    //print(cardioCounter)
+                    catCount[1] = cardioCounter
+                }
+                else if categoryMatch.1 as String == "Balance"
+                {
+                    balanceCounter += 1
+                    catCount[2] = balanceCounter
+                }
+                else if categoryMatch.1 as String == "Strength"
+                {
+                    strengthCounter += 1
+                    catCount[3] = strengthCounter
+                }
+                else
+                {
+                    print("Not a valid category")
                 }
             }
         }
+        
         
         return catCount
     }
