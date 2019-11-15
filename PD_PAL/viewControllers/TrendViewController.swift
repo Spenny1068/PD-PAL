@@ -13,6 +13,7 @@
 // <November 11, 2019, Julia Kim, Adding scrolling to the page, generate radar graph, implemented date pickers>
 // <November 13, 2019, Julia Kim, Added hours to the date picker, input validation for date picker range, updating radar graph utilizing the same update button for the table>
 // <November 14, 2019, Julia Kim, Refactored date querying to exercises completed database, fixed update button for radar>
+// <November 15, 2019, Julia Kim, Added Line Chart for step data>
 
 /*
  Known Bugs
@@ -26,7 +27,7 @@
 
 import UIKit
 import RadarChart //import to allow creating radar graph
-
+import Charts //import to allow bar or line chart
 
 class TrendViewController: UIViewController, UITableViewDataSource{
 
@@ -37,8 +38,9 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
     @IBOutlet weak var ClearDates: UIButton!
     
-    @IBOutlet weak var rChartView: RadarChartView!
+    @IBOutlet weak var rChartView: RadarChart.RadarChartView! //to avoid namespace clash
     @IBOutlet weak var scroller: UIScrollView!
+    @IBOutlet weak var lineChartView: LineChartView!
     
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
@@ -75,7 +77,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         //to get the scroll working
         //stackoverflow.com/questions/28144739/swift-uiscrollview-not-scrolling
         scroller?.isScrollEnabled = true
-        scroller?.contentSize = CGSize(width: 375, height: 3500) //content size must be greater than scroll view constraint
+        scroller?.contentSize = CGSize(width: 375, height: 3200) //content size must be greater than scroll view constraint
         self.view.addSubview(scroller)
         
         view.backgroundColor = Setup.m_bgColor  // background color
@@ -102,9 +104,11 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         msg.applyPageMsgDesign()
         self.view.addSubview(msg)
         
-        self.generateRadarChart()
+        self.generateRadarChart() //load blank radar chart on load
+        self.prepareStepData() //load blank line chart on load
        
     }
+    
     
     override func viewDidLayoutSubviews() {
         //this is for graph subviews
@@ -150,7 +154,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         self.trendTableView.reloadData()
         self.generateRadarChart()
         self.viewDidLayoutSubviews()
-        self.prepareStepData()
+        self.prepareStepData() //this will call generateStepChart
        
     }
 
@@ -365,8 +369,24 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         return catCount
     }
     
-    func generateStepChart(){
+    func generateStepChart(dataPoints: [String], values: [Double]){
         //this is for step counter
+        /* www.appcoda.com/ios-charts-api-tutorial/ */
+        
+        var dataEntries: [ChartDataEntry] = []
+                
+      
+        for i in 0..<dataPoints.count{
+            let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
+            dataEntries.append(dataEntry)
+            
+        }
+        
+        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Number of Steps")
+        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        lineChartView.data = lineChartData
+        
+        
     }
     
     func prepareStepData(){
@@ -374,10 +394,10 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         //limit querying step data to be within the same week
         //any more data would just look very condensed on the mobile device.
         //leave the full dataset for the web?
-        var stepDataStart = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour)
-        var stepDataWeekly: [Int64] = [0, 0, 0, 0, 0, 0, 0] //gets all hours for each day as one set
-        var stepDataHourly: [Int64] = [] //gets hourly data for the start date selected (one day)
-        
+        var stepDataWeekly: [Double] = [0, 0, 0, 0, 0, 0, 0] //gets all hours for each day as one set
+        var stepDataHourly: [Double] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] //gets hourly data for the start date selected (one day)
+        let daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+        let hoursOfDay = ["8am", "12pm", "4pm", "8pm", "12am"]
         
         if sDateYear == eDateYear
         {
@@ -395,31 +415,43 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                             if sDateHour + j > 24
                             {
                                 //next day
-                                stepDataWeekly[i+1] = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay+i+1, TargetHour: sDateHour+j-24)
+                                stepDataWeekly[i+1] = Double(global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay+i+1, TargetHour: sDateHour+j-24))
                             }
                             else
                             {
-                                stepDataWeekly[i] = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay+i, TargetHour: sDateHour+j)
+                                stepDataWeekly[i] = Double(global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay+i, TargetHour: sDateHour+j))
                             }
                         }
                         
                     }
+                    
+                    //generateStepChart(dataPoints: daysOfWeek, values: stepDataWeekly)
+                    //test
+                    stepDataWeekly = [10.0, 9.0, 8.0, 7.0, 6.0] //dummy values
+                    generateStepChart(dataPoints: daysOfWeek, values: stepDataWeekly)
                 }
                 else if eDateDay == sDateDay && eDateHour != sDateHour //same day. Get hourly data
                 {
                     for i in 0..<(eDateHour-sDateHour) //eDateHour will always be greater than sDateHour if same year, month and day due to the input validation
                     {
-                        stepDataHourly[i] = global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour+i)
+                        stepDataHourly[i] = Double(global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour+i))
                     }
+                    
+                     //generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
+                     //test
+                     stepDataHourly = [1.0, 2.0, 3.0, 4.0, 5.0] //dummy values
+                     generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
                 }
                 else
                 {
                     //max step data that can be queried is one week
+                    stepDataWeekly = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] //default values
+                    generateStepChart(dataPoints: daysOfWeek, values: stepDataWeekly)
                     print("No graph for step counter is generated. To generate a step counter graph, please set the duration to be within one week.")
                 }
             }
         }
-       
+        
     }
     /*
     // MARK: - Navigation
