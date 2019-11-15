@@ -13,7 +13,7 @@
 // <November 11, 2019, Julia Kim, Adding scrolling to the page, generate radar graph, implemented date pickers>
 // <November 13, 2019, Julia Kim, Added hours to the date picker, input validation for date picker range, updating radar graph utilizing the same update button for the table>
 // <November 14, 2019, Julia Kim, Refactored date querying to exercises completed database, fixed update button for radar>
-// <November 15, 2019, Julia Kim, Added Line Chart for step data>
+// <November 15, 2019, Julia Kim, Added Line Chart for step data, fixed scrollable view>
 
 /*
  Known Bugs
@@ -22,7 +22,7 @@
  -Date Picker not integrated yet. -> done Nov 13, 2019
  November 14, 2019: Julia Kim
  -Comparing dates component wise will not handle edge cases -> Fixed to compare dates properly Nov 14, 2019
- 
+ s
  */
 
 import UIKit
