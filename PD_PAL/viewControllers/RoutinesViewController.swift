@@ -48,6 +48,8 @@ class RoutinesViewController: UIViewController {
         // apply designs to routine buttons
         routineButton1.setTitle(routineNames[0].0, for: .normal)    // access routine name in tuple
         routineButton1.routineButtonDesign()
+        //let routine1Img = UIImageView()
+        //routine1Img.roundImages()
         routineButton1.setBackgroundImage(UIImage(named: "routine1"), for: .normal)
         
         routineButton2.setTitle(routineNames[1].0, for: .normal)

@@ -41,6 +41,7 @@ struct Global {
     struct text_fonts {
         static var m_exerciseButtonFont = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
         static var m_exerciseDescriptionDurationFont = UIFont(name: "HelveticaNeue", size: 15.0)
+        static var m_routineButtonFont = UIFont(name: "HelveticaNeue-Bold", size: 25.0)
     }
 }
 
@@ -291,20 +292,18 @@ extension UIButton {
 
         // design
         self.layer.cornerRadius = 45                                         // rounded edges
-        self.layer.borderWidth = 3                                           // border width in points
+        self.layer.borderWidth = 2                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
-        
-//        button.widthAnchor.constraint(equalToConstant: 304),
-//        button.heightAnchor.constraint(equalToConstant: 81),
-        //self.frame = CGRect(
+        self.clipsToBounds = true
         
         // text
-        self.setTitleColor(UIColor.black, for: .normal)                      // button text color
-        self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
+        self.setTitleColor(UIColor.white, for: .normal)                      // button text color
+        self.setTitleColor(UIColor.gray, for: .selected)
+        self.contentHorizontalAlignment = .right                            // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
-        self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
-        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        self.titleLabel?.font = Global.text_fonts.m_routineButtonFont       // button text font
+        self.titleLabel?.numberOfLines = 2                                  // button text number of lines
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 100.0, bottom: 0, right: 15.0)
     }
     
     func timerButtonDesign() {
@@ -411,6 +410,15 @@ extension UISlider {
     func questionnaireSlider(){
         self.minimumTrackTintColor = Global.color_schemes.m_blue2
         self.setThumbImage(UIImage(named: "Slider"), for: .normal)
+    }
+}
+
+/* UIImageVIew methods */
+extension UIImageView{
+    func roundImages(){
+        self.contentMode = .scaleAspectFit
+        self.layer.cornerRadius = self.frame.width / 0.25
+        self.clipsToBounds = true
     }
 }
 
