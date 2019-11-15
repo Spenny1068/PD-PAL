@@ -15,6 +15,7 @@ import UIKit
 
 class CardioViewController: UIViewController {
 
+    /* IBOutlet Buttons */
     @IBOutlet weak var exerciseButton: UIButton!
     @IBOutlet weak var exerciseButton2: UIButton!
     @IBOutlet weak var exerciseButton3: UIButton!
@@ -47,11 +48,12 @@ class CardioViewController: UIViewController {
         view.backgroundColor = Global.color_schemes.m_bgColor
         
         /* navigation bar stuff */
-        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue4     // nav bar color
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.title = nil    // no page title in navigation bar
+        self.title = nil
+        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
+        self.navigationItem.rightBarButtonItem  = homeButton
 
-        // message
+        /* page message */
         self.show_page_message(s1: "Cardio Exercises!", s2: "Cardio")
         
         /* exercise buttons */
@@ -78,10 +80,6 @@ class CardioViewController: UIViewController {
         
         self.view.addSubview(stackView)
         applyStackViewConstraints(SV: stackView)
-        
-        // home button on navigation bar
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-        self.navigationItem.rightBarButtonItem  = homeButton
     }
     
     // called when home button on navigation bar is tapped

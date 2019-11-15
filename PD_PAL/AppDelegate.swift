@@ -352,12 +352,6 @@ extension UIButton {
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
     }
     
-    func applyDesign() {
-        self.backgroundColor = UIColor.black                                    // background color
-        self.layer.cornerRadius = self.frame.height / 2                         // make button round
-        self.setTitleColor(UIColor.white, for: .normal)                         // text color
-    }
-    
     // applies to Questionnaire buttons
     func applyQButton() {
         self.backgroundColor = Global.color_schemes.m_grey                      // background color
@@ -392,11 +386,6 @@ extension UIButton {
         self.setTitleColor(UIColor.white, for: .normal)             // enable text colour
         self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 25)                // text font and size
         self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 40, bottom: 0.0, right: 40)     // text allignment
-    }
-    
-    func DesignSelect() {
-        self.backgroundColor = UIColor.init(red: 54/255, green: 141/255, blue: 241/255, alpha: 1)
-        self.setTitleColor(UIColor.white, for: .normal)                        // text color
     }
 }
 

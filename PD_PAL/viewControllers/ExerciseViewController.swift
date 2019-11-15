@@ -102,6 +102,27 @@ class ExerciseViewController: UIViewController {
         /* page message */
         self.show_page_message(s1: exercise_name ?? "Unable to retrieve exercise name", s2: exercise_name ?? "nil")
         
+        /* stop button */
+        stopButton.timerButtonDesign()
+        stopButton.setTitle("STOP", for: .normal)
+        stopButton.backgroundColor = Global.color_schemes.m_lightRed
+        self.view.addSubview(stopButton)
+        
+        /* completed Button */
+        completedButton.timerButtonDesign()
+        completedButton.setTitle("COMPLETED", for: .normal)
+        completedButton.backgroundColor = Global.color_schemes.m_blue2
+        self.view.addSubview(completedButton)
+        
+        /* timer label */
+        timerLabel.timerDesign()
+        self.view.addSubview(timerLabel)
+        
+        /* gif */
+        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: "neck_side_stretch") else { return }
+        view.addSubview(gif)
+        gif.startAnimating()
+        
         /* when entering this page, hide these elements */
         stopButton.isHidden = true
         timerLabel.isHidden = true
@@ -122,22 +143,6 @@ class ExerciseViewController: UIViewController {
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             self.view.addSubview(startButton)
-            
-            /* stop button */
-            stopButton.timerButtonDesign()
-            stopButton.setTitle("STOP", for: .normal)
-            stopButton.backgroundColor = Global.color_schemes.m_lightRed
-            self.view.addSubview(stopButton)
-            
-            /* completed Button */
-            completedButton.timerButtonDesign()
-            completedButton.setTitle("COMPLETED", for: .normal)
-            completedButton.backgroundColor = Global.color_schemes.m_blue2
-            self.view.addSubview(completedButton)
-            
-            /* timer label */
-            timerLabel.timerDesign()
-            self.view.addSubview(timerLabel)
         }
             
         /* we came from categories page */
@@ -148,27 +153,6 @@ class ExerciseViewController: UIViewController {
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             self.view.addSubview(startButton)
-            
-            /* stop button */
-            stopButton.timerButtonDesign()
-            stopButton.setTitle("STOP", for: .normal)
-            stopButton.backgroundColor = Global.color_schemes.m_lightRed
-            self.view.addSubview(stopButton)
-            
-            /* completed Button */
-            completedButton.timerButtonDesign()
-            completedButton.setTitle("COMPLETED", for: .normal)
-            completedButton.backgroundColor = Global.color_schemes.m_blue2
-            self.view.addSubview(completedButton)
-            
-            /* timer label */
-            timerLabel.timerDesign()
-            self.view.addSubview(timerLabel)
-            
-            /* gif */
-            guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: "neck_side_stretch") else { return }
-            view.addSubview(gif)
-            gif.startAnimating()
         }
     }
     

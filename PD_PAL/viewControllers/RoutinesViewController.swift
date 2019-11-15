@@ -44,14 +44,11 @@ class RoutinesViewController: UIViewController {
         let routineNames = global_UserData.Get_Routines()
         view.backgroundColor = Global.color_schemes.m_bgColor
         
-        // home button on navigation bar
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-        self.navigationItem.rightBarButtonItem  = homeButton
         
-        // message
+        /* page message */
         self.show_page_message(s1: "Select A Routine To Try!", s2: "Routine")
 
-        // apply titles and designs to routine buttons
+        /* apply titles and designs to routine buttons */
         routineButton1.setTitle(routineNames[0].0, for: .normal)
         routineButton1.routineButtonDesign()
         
@@ -74,7 +71,7 @@ class RoutinesViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
     
-   // called when home button on navigation bar is tapped
+   /* when home button on navigation bar is tapped */
    @objc func homeButtonTapped(sender: UIButton!) {
        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")

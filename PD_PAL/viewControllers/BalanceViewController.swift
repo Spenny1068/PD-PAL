@@ -13,6 +13,8 @@
 import UIKit
 
 class BalanceViewController: UIViewController {
+    
+    /* IBOutlet Buttons */
     @IBOutlet weak var exerciseButton: UIButton!
     @IBOutlet weak var exerciseButton2: UIButton!
     @IBOutlet weak var exerciseButton3: UIButton!
@@ -45,11 +47,12 @@ class BalanceViewController: UIViewController {
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
         /* navigation bar stuff */
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
-        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
-        self.title = nil                                                                                            // no page title in navigation bar
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.title = nil
+        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
+        self.navigationItem.rightBarButtonItem  = homeButton
 
-        // message
+        /* page message */
         self.show_page_message(s1: "Balance Exercises!", s2: "Balance")
         
         /* exercise buttons */
@@ -76,10 +79,6 @@ class BalanceViewController: UIViewController {
         
         self.view.addSubview(stackView)
         applyStackViewConstraints(SV: stackView)
-        
-        // home button on navigation bar
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-        self.navigationItem.rightBarButtonItem  = homeButton
     }
     
     // called when home button on navigation bar is tapped

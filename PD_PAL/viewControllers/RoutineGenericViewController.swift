@@ -14,7 +14,7 @@ import UIKit
 
 class RoutineGenericViewController: UIViewController {
     
-    // IBOutlet buttons and labels
+    /* IBOutlet Buttons */
     @IBOutlet weak var RoutineExercise1: UIButton!
     @IBOutlet weak var RoutineExercise2: UIButton!
     @IBOutlet weak var RoutineExercise3: UIButton!
@@ -52,28 +52,27 @@ class RoutineGenericViewController: UIViewController {
         let routineData = global_UserData.Get_Routine(NameOfRoutine: routine_name)
         
         /* navigation bar stuff */
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
-        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // nav bar color
-        self.title = nil                                                                                            // no page title in navigation bar
-        
-        // home button on navigation bar
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.title = nil
         let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
         self.navigationItem.rightBarButtonItem  = homeButton
         
-        // message
+        /* page message */
         self.show_page_message(s1: routine_name, s2: routine_name)
         
-        // button 1
+        /* routine exercise buttons */
+        
+        //-> button 1
         RoutineExercise1.setTitle(routineData[0],for: .normal)                        // button text
         RoutineExercise1.exerciseButtonDesign()
         RoutineExercise1.backgroundColor = Global.color_schemes.m_blue1          // background color
 
-        // button 2
+        //-> button 2
         RoutineExercise2.setTitle(routineData[1],for: .normal)                        // button text
         RoutineExercise2.exerciseButtonDesign()
         RoutineExercise2.backgroundColor = Global.color_schemes.m_blue1          // background color
 
-        // button 3
+        //-> button 3
         RoutineExercise3.setTitle(routineData[2],for: .normal)                        // button text
         RoutineExercise3.exerciseButtonDesign()
         RoutineExercise3.backgroundColor = Global.color_schemes.m_blue1          // background color

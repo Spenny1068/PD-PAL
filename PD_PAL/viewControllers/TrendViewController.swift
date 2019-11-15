@@ -30,7 +30,7 @@ class TrendViewController: UIViewController, UITableViewDataSource {
         let userData = global_UserData.Get_User_Data()
         let username = userData.UserName
                 
-        // message
+        /* page message */
         self.show_page_message(s1: username + " Trends!", s2: "Trends")
     }
     
