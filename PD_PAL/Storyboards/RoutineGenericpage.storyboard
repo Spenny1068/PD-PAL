@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kxx-sF-VzX">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kxx-sF-VzX">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3qq-P1-biq">
-                                <rect key="frame" x="2" y="176" width="371" height="420"/>
+                                <rect key="frame" x="2" y="196" width="371" height="400"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvP-dt-mly">
                                         <rect key="frame" x="0.0" y="0.0" width="371" height="61"/>
@@ -41,7 +43,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3U-Dh-tBy">
-                                        <rect key="frame" x="0.0" y="179.5" width="371" height="61"/>
+                                        <rect key="frame" x="0.0" y="169.5" width="371" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="371" id="7SN-OM-bfw"/>
                                             <constraint firstAttribute="height" constant="61" id="hom-qw-q3m"/>
@@ -53,7 +55,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBc-6D-fh7">
-                                        <rect key="frame" x="0.0" y="359" width="371" height="61"/>
+                                        <rect key="frame" x="0.0" y="339" width="371" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="371" id="6To-YN-LEB"/>
                                             <constraint firstAttribute="height" constant="61" id="PHT-CL-EZP"/>
@@ -73,6 +75,13 @@
                                     <constraint firstAttribute="trailing" secondItem="q3U-Dh-tBy" secondAttribute="trailing" id="qxq-Ua-ANJ"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iof-gJ-qlp">
+                                <rect key="frame" x="16" y="35" width="343" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -85,11 +94,12 @@
                         <outlet property="Exercise1" destination="SvP-dt-mly" id="Zwi-ym-P7v"/>
                         <outlet property="Exercise2" destination="q3U-Dh-tBy" id="0JQ-1g-OKD"/>
                         <outlet property="Exercise3" destination="bBc-6D-fh7" id="LOy-bO-KQJ"/>
+                        <outlet property="testVariable" destination="Iof-gJ-qlp" id="9ak-PR-dS9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agr-z5-pV9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="144.92753623188406" y="147.99107142857142"/>
+            <point key="canvasLocation" x="144.80000000000001" y="147.97601199400302"/>
         </scene>
         <!--WalkingVC-->
         <scene sceneID="NRc-GH-Fjf">

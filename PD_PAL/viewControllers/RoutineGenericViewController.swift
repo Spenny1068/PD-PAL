@@ -17,6 +17,9 @@ class RoutineGenericViewController: UIViewController {
     @IBOutlet var Exercise1: UIButton!
     @IBOutlet var Exercise2: UIButton!
     @IBOutlet var Exercise3: UIButton!
+    @IBOutlet var testVariable: UILabel!
+    
+    var routineNameFinal = ""
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -47,6 +50,8 @@ class RoutineGenericViewController: UIViewController {
         Exercise2.setTitle(routineData[1], for: .normal)
         Exercise3.applyDesign()
         Exercise3.setTitle(routineData[2], for: .normal)
+        
+        testVariable.text = "Hi " + routineNameFinal
     }
     
     

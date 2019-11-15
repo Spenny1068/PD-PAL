@@ -20,6 +20,7 @@ class RoutinesViewController: UIViewController {
     @IBOutlet weak var routineButton2: UIButton!
     @IBOutlet weak var routineButton3: UIButton!
     
+    var routineName = ""
     
     /* stack view containing exercise buttons */
     lazy var stackView: UIStackView = {
@@ -30,6 +31,8 @@ class RoutinesViewController: UIViewController {
         sv.distribution = .fillEqually
         return sv
     }()
+    
+    var routineNames = global_UserData.Get_Routines()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +46,7 @@ class RoutinesViewController: UIViewController {
         // message
         self.show_page_message(s1: "Select A Routine To Try!", s2: "Routine")
         
-        var routineNames = global_UserData.Get_Routines()
+        //var routineNames = global_UserData.Get_Routines()
 
         // apply designs to routine buttons
         routineButton1.setTitle(routineNames[0].0, for: .normal)    // access routine name in tuple
@@ -67,6 +70,26 @@ class RoutinesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
+    //Action for the Routine buttons
+        @IBAction func routineButtonAction1(_ sender: Any) {
+            self.routineName = routineNames[0].0 
+            performSegue(withIdentifier: "routine1", sender: self)
+        }
+    
+        @IBAction func routineButtonAction2(_ sender: Any) {
+            self.routineName = routineNames[1].0 
+            performSegue(withIdentifier: "routine2", sender: self)
+        }
+    
+        @IBAction func routineButtonAction3(_ sender: Any) {
+            self.routineName = routineNames[2].0
+            performSegue(withIdentifier: "routine3", sender: self)
+        }
+    
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+            var vc = segue.destination as! RoutineGenericViewController
+            vc.routineNameFinal = self.routineName
+        }
     
    // called when home button on navigation bar is tapped
    @objc func homeButtonTapped(sender: UIButton!) {
