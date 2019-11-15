@@ -185,6 +185,7 @@ UserData Class Tests
         let initialRoutine = userData.Get_Routine(NameOfRoutine: nullRoutine)
         let defaultRoutine = userData.Get_Routine(NameOfRoutine: defaultRoutineName)
         
+        /* This fails because Spencer hard coded the 4 default routines in Init() */
         XCTAssert( initialRoutines.count == 1 )
         XCTAssert( initialRoutines[0].RoutineName == defaultRoutineName )
         XCTAssert( initialRoutines[0].Exercises == defaultRoutineExercises )

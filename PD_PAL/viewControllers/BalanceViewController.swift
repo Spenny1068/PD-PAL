@@ -27,6 +27,19 @@ class BalanceViewController: UIViewController {
         return sv
     }()
     
+    /* forward pass data between view controllers */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        /* set IsRoutineExercise flag to 0 to signify we came from categories page */
+        if let vcc = segue.destination as? ExerciseViewController { Global.IsRoutineExercise = 0 }
+        
+        /* use segue to forward pass exercise name to destination exercise view controller */
+        if segue.identifier == "BalanceSegue" {
+            let vc = segue.destination as! ExerciseViewController
+            vc.exercise_name = (sender as! UIButton).titleLabel!.text!
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color

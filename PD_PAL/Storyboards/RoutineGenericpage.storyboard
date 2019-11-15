@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,66 +24,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3qq-P1-biq">
-                                <rect key="frame" x="2" y="176" width="371" height="420"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvP-dt-mly">
-                                        <rect key="frame" x="0.0" y="0.0" width="371" height="61"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="61" id="QCQ-al-HUT"/>
-                                            <constraint firstAttribute="width" constant="371" id="SV6-Eh-3fo"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Exercise 1"/>
-                                        <connections>
-                                            <segue destination="Xo7-JS-VUv" kind="push" id="Zn0-3x-Oav"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3U-Dh-tBy">
-                                        <rect key="frame" x="0.0" y="179.5" width="371" height="61"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="371" id="7SN-OM-bfw"/>
-                                            <constraint firstAttribute="height" constant="61" id="hom-qw-q3m"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Exercise 2"/>
-                                        <connections>
-                                            <segue destination="Xo7-JS-VUv" kind="push" id="hce-XR-IaZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBc-6D-fh7">
-                                        <rect key="frame" x="0.0" y="359" width="371" height="61"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="371" id="6To-YN-LEB"/>
-                                            <constraint firstAttribute="height" constant="61" id="PHT-CL-EZP"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Exercise 3"/>
-                                        <connections>
-                                            <segue destination="Xo7-JS-VUv" kind="push" id="ctS-Uc-gXO"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="2PQ-Sy-X78"/>
-                                    <constraint firstItem="bBc-6D-fh7" firstAttribute="leading" secondItem="3qq-P1-biq" secondAttribute="leading" id="BF4-0r-IVy"/>
-                                    <constraint firstItem="q3U-Dh-tBy" firstAttribute="leading" secondItem="3qq-P1-biq" secondAttribute="leading" id="CtC-Od-Q9t"/>
-                                    <constraint firstAttribute="trailing" secondItem="bBc-6D-fh7" secondAttribute="trailing" id="FKg-1V-Wbq"/>
-                                    <constraint firstAttribute="trailing" secondItem="q3U-Dh-tBy" secondAttribute="trailing" id="qxq-Ua-ANJ"/>
-                                </constraints>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JbP-cx-V30">
+                                <rect key="frame" x="141" y="143" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="Xo7-JS-VUv" kind="push" identifier="RoutineSegue" id="F8w-cc-Tra"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1v-Iy-HNH">
+                                <rect key="frame" x="120" y="211" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="Xo7-JS-VUv" kind="push" identifier="RoutineSegue" id="89p-7x-xfn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8y-Gu-5eX">
+                                <rect key="frame" x="141" y="306" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="Xo7-JS-VUv" kind="push" identifier="RoutineSegue" id="PjA-kY-gea"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="6Sj-dg-Qd4" firstAttribute="bottom" secondItem="3qq-P1-biq" secondAttribute="bottom" constant="71" id="1wO-Mg-fqL"/>
-                            <constraint firstItem="3qq-P1-biq" firstAttribute="top" secondItem="6Sj-dg-Qd4" secondAttribute="top" constant="176" id="2mM-5k-Jaj"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Sj-dg-Qd4"/>
                     </view>
                     <connections>
-                        <outlet property="Exercise1" destination="SvP-dt-mly" id="Zwi-ym-P7v"/>
-                        <outlet property="Exercise2" destination="q3U-Dh-tBy" id="0JQ-1g-OKD"/>
-                        <outlet property="Exercise3" destination="bBc-6D-fh7" id="LOy-bO-KQJ"/>
+                        <outlet property="RoutineExercise1" destination="JbP-cx-V30" id="lhg-Hf-oW3"/>
+                        <outlet property="RoutineExercise2" destination="h1v-Iy-HNH" id="7Hz-L8-Cl8"/>
+                        <outlet property="RoutineExercise3" destination="c8y-Gu-5eX" id="eRK-SV-qzH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agr-z5-pV9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -103,6 +74,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hce-XR-IaZ"/>
+        <segue reference="PjA-kY-gea"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -31,11 +31,11 @@ class RoutinesViewController: UIViewController {
         return sv
     }()
     
-    // override seque to send button title to destination view controller
+    // override seque to send exercise name to destination view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "RoutineSegue" {
             let vc = segue.destination as! RoutineGenericViewController
-            vc.buttonTitle = (sender as! UIButton).titleLabel!.text!
+            vc.routine_name = (sender as! UIButton).titleLabel!.text!
         }
     }
     

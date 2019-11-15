@@ -10,202 +10,209 @@ import UIKit
 
 class ExerciseViewController: UIViewController {
     
-    // IBOutlet Labels
+    /* IBOutlet Labels */
     @IBOutlet weak var DescriptionText: UILabel!
     @IBOutlet weak var DescriptionLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     
-    // IBOutlet buttons
+    /* IBOutlet buttons */
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var completedButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
     
-    // global variables
-    var buttonTitle: String!
+    /* global variables */
+    var routine_data: [String]!
+    var exercise_name: String!
+    var exercise_number = 1
 
-    // global timer variables
+    // -> timer variables
     var seconds = 5            // get this value from db
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
-
     
     
-    // called when start button is tapped
+    /* when start button is tapped */
     @IBAction func startButton(_ sender: Any) {
-        // hide exercise description and start button
+        
+        /* hide these elements */
         DescriptionLabel.isHidden = true
         DescriptionText.isHidden = true
         startButton.isHidden = true
         skipButton.isHidden = true
         
-        // show stop button and timer
+        /* show these elements */
         stopButton.isHidden = false
         timerLabel.isHidden = false
         
-        // start timer
+        /* start timer */
         runTimer()
     }
     
-    // called when stop button is tapped
+    /* when stop button is tapped */
     @IBAction func stopButton(_ sender: Any) {
         
-        // reset timer value
+        /* reset timer value */
         timer.invalidate()
-        seconds = 5    // reset value
+        seconds = 5                         // reset value
         timerLabel.text = "\(seconds)"
         
-        // show description and start button
+        /* show these elements */
         DescriptionLabel.isHidden = false
         DescriptionText.isHidden = false
         startButton.isHidden = false
         skipButton.isHidden = false
         
-        // hide stop button and timer
+        /* hide these elements */
         stopButton.isHidden = true
         timerLabel.isHidden = true
     }
     
-    // called when completed button is tapped
+    /* when completed button is tapped */
     @IBAction func completedButton(_ sender: Any) {
+        
+        /* parse Date() function into year, month, day, and hour */
         let year = Calendar.current.component(.year, from: Date())
         let month = Calendar.current.component(.month, from: Date())
         let day = Calendar.current.component(.day, from: Date())
         let hour = Calendar.current.component(.hour, from: Date())
         
-        // insert excercise as done
-        global_UserData.Add_Exercise_Done(ExerciseName: "WALL PUSH-UP", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+        /* insert excercise as done */
+        global_UserData.Add_Exercise_Done(ExerciseName: exercise_name ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
     }
     
-    /* code in here will execute based Global.IsRoutineExercise value */
+    /* put code that depends on IsRoutineExercise flag in here */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        // we came from routines (FLAG)
+        
+        if Global.next_routine_exercise != "" { self.exercise_name = Global.next_routine_exercise }
+        Global.next_routine_exercise = ""
+        
+        /* navigation bar stuff */
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1
+        self.title = nil
+        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
+        self.navigationItem.rightBarButtonItem  = homeButton
+        
+        /* populate exercise description */
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
+        self.show_exercise_description(string: readResult.Description, DLabel: DescriptionLabel, DText: DescriptionText)
+        
+        /* page message */
+        self.show_page_message(s1: exercise_name ?? "Unable to retrieve exercise name", s2: exercise_name ?? "nil")
+        
+        /* when entering this page, hide these elements */
+        stopButton.isHidden = true
+        timerLabel.isHidden = true
+        completedButton.isHidden = true
+        
+        /* we came from routines page */
         if Global.IsRoutineExercise == 1 {
-            //Skip button
-            skipButton.setTitle("SKIP",for: .normal)
-            skipButton.backgroundColor = Global.color_schemes.m_lightGreen              //Background color
-            skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+            
+            /* Skip button */
             skipButton.skipButtonDesign()
+            skipButton.setTitle("SKIP",for: .normal)
+            skipButton.backgroundColor = Global.color_schemes.m_lightGreen
+            skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
             self.view.addSubview(skipButton)
             
-            // start button
+            /* start button */
             startButton.timerButtonDesign2()
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             self.view.addSubview(startButton)
             
-            // stop button
+            /* stop button */
             stopButton.timerButtonDesign()
             stopButton.setTitle("STOP", for: .normal)
             stopButton.backgroundColor = Global.color_schemes.m_lightRed
             self.view.addSubview(stopButton)
             
-            // completed Button
+            /* completed Button */
             completedButton.timerButtonDesign()
             completedButton.setTitle("COMPLETED", for: .normal)
             completedButton.backgroundColor = Global.color_schemes.m_blue2
             self.view.addSubview(completedButton)
             
-            // timer label
+            /* timer label */
             timerLabel.timerDesign()
             self.view.addSubview(timerLabel)
-            
-            
         }
             
-        // we came from categories (FLAG)
+        /* we came from categories page */
         else if Global.IsRoutineExercise == 0 {
             
-            // start button
+            /* start button */
             startButton.timerButtonDesign()
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             self.view.addSubview(startButton)
             
-            // stop button
+            /* stop button */
             stopButton.timerButtonDesign()
             stopButton.setTitle("STOP", for: .normal)
             stopButton.backgroundColor = Global.color_schemes.m_lightRed
             self.view.addSubview(stopButton)
             
-            // completed Button
+            /* completed Button */
             completedButton.timerButtonDesign()
             completedButton.setTitle("COMPLETED", for: .normal)
             completedButton.backgroundColor = Global.color_schemes.m_blue2
             self.view.addSubview(completedButton)
             
-            // timer label
+            /* timer label */
             timerLabel.timerDesign()
             self.view.addSubview(timerLabel)
             
-            // gif
+            /* gif */
             guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: "neck_side_stretch") else { return }
             view.addSubview(gif)
             gif.startAnimating()
-
         }
     }
     
-    
+    /* put code that does not depends on IsRoutineExercise flag in here */
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
-        let exercise_name = buttonTitle                        // exercise name from button title on previous VC
-        
-        /* navigation bar stuff */
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) // remove back button
-        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1                      // background color
-        self.title = nil                                                                                            // remove page title
-
-        // page message
-        self.show_page_message(s1: exercise_name ?? "Failed to get exercise name", s2: exercise_name ?? "nil")
-        
-        // hide the stop button, completed button, and timer
-        stopButton.isHidden = true
-        timerLabel.isHidden = true
-        completedButton.isHidden = true
-        
-        // read exercise info into labels
-        let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
-        
-        // exercise description
-        self.show_exercise_description(string: readResult.Description, DLabel: DescriptionLabel, DText: DescriptionText)
-        
-        // home button on navigation bar
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-        self.navigationItem.rightBarButtonItem  = homeButton
     }
     
-    // called when home button on navigation bar is tapped
+    /* when home button on navigation bar is tapped */
     @objc func homeButtonTapped(sender: UIButton!) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
     }
     
-    // called when skip button is tapped
+    /* when skip button is tapped */
     @objc func skipButtonTapped() {
-        //let nextExercise = Name of viewController for exercise
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Exercise", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ExerciseVC")
         self.present(newViewController, animated: true, completion: nil)
+        print ("log exercise numer: ", exercise_number)
+        print ("log routine_data: ", routine_data)
+        //print ("log current exercise: ", self.routine_data[2])
+        
+        Global.next_routine_exercise = "WALKING"
+        //self.exercise_number += 1
+        
+        // wrap skip button
+        //if self.exercise_number < 2 { self.exercise_number = 1}
     }
     
-    // starts timer
+    /* starts timer */
     func runTimer() {
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
     }
     
-    // decrements timer
+    /* decrements timer */
     @objc func updateTimer() {
         seconds -= 1     //This will decrement(count down)the seconds.
         timerLabel.text = "\(seconds)" //This will update the label.
         
+        /* when countdown is done, hide and show these elements */
         if seconds <= 0 {
-            // hide the stop button and show completed button
             stopButton.isHidden = true
             completedButton.isHidden = false
         }

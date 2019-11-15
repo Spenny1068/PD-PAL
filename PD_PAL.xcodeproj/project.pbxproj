@@ -62,10 +62,7 @@
 		45EB46242367C0AA009BA044 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB46142367C0AA009BA044 /* SettingsViewController.swift */; };
 		7D7B90E5236D2E54005247CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9BD2351587700E5ED83 /* AppDelegate.swift */; };
 		7DF12D04236E197300FC94D6 /* logoLaunch.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF12CFC236E197200FC94D6 /* logoLaunch.png */; };
-		AE4D724B236BAF10003A8BE3 /* OneLegSquatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */; };
 		AE4D724D236BCB5A003A8BE3 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */; };
-		AE4D724F236BD963003A8BE3 /* SingleLegStanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */; };
-		AE4D7251236BDD42003A8BE3 /* WalkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,10 +206,7 @@
 		45EB46132367C0AA009BA044 /* WalkingQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkingQuestionViewController.swift; sourceTree = "<group>"; };
 		45EB46142367C0AA009BA044 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7DF12CFC236E197200FC94D6 /* logoLaunch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoLaunch.png; sourceTree = "<group>"; };
-		AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLegSquatViewController.swift; sourceTree = "<group>"; };
 		AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
-		AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLegStanceViewController.swift; sourceTree = "<group>"; };
-		AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,17 +375,14 @@
 				45EB46092367C0AA009BA044 /* IntenseQuestionViewController.swift */,
 				45EB46122367C0AA009BA044 /* LoginViewController.swift */,
 				45EB460F2367C0AA009BA044 /* mainPageViewController.swift */,
-				AE4D724A236BAF10003A8BE3 /* OneLegSquatViewController.swift */,
 				45EB460D2367C0AA009BA044 /* QuestionnaireNavController.swift */,
 				45EB460E2367C0AA009BA044 /* RoutineGenericViewController.swift */,
 				45EB46052367C0AA009BA044 /* RoutinesViewController.swift */,
 				45EB46142367C0AA009BA044 /* SettingsViewController.swift */,
 				45EB46112367C0AA009BA044 /* SetUpViewController.swift */,
-				AE4D724E236BD963003A8BE3 /* SingleLegStanceViewController.swift */,
 				45EB46082367C0AA009BA044 /* StrengthViewController.swift */,
 				45EB460A2367C0AA009BA044 /* TrendViewController.swift */,
 				45EB46132367C0AA009BA044 /* WalkingQuestionViewController.swift */,
-				AE4D7250236BDD42003A8BE3 /* WalkingViewController.swift */,
 				AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */,
 			);
 			path = viewControllers;
@@ -618,10 +609,8 @@
 				2EF4E801236D000B00CCECBB /* UserData.swift in Sources */,
 				2EF4E7FF236CFFFA00CCECBB /* StepCount.swift in Sources */,
 				2EF4E7FD236CFFEB00CCECBB /* ExerciseDatabase.swift in Sources */,
-				AE4D724F236BD963003A8BE3 /* SingleLegStanceViewController.swift in Sources */,
 				45EB461A2367C0AA009BA044 /* TrendViewController.swift in Sources */,
 				AE4D724D236BCB5A003A8BE3 /* ExerciseViewController.swift in Sources */,
-				AE4D724B236BAF10003A8BE3 /* OneLegSquatViewController.swift in Sources */,
 				45EB461B2367C0AA009BA044 /* CardioViewController.swift in Sources */,
 				45EB46192367C0AA009BA044 /* IntenseQuestionViewController.swift in Sources */,
 				45EB461C2367C0AA009BA044 /* CategoriesViewController.swift in Sources */,
@@ -633,7 +622,6 @@
 				45EB46212367C0AA009BA044 /* SetUpViewController.swift in Sources */,
 				45EB46152367C0AA009BA044 /* RoutinesViewController.swift in Sources */,
 				45EB46172367C0AA009BA044 /* BalanceViewController.swift in Sources */,
-				AE4D7251236BDD42003A8BE3 /* WalkingViewController.swift in Sources */,
 				45EB46222367C0AA009BA044 /* LoginViewController.swift in Sources */,
 				45EB46162367C0AA009BA044 /* FlexibilityViewController.swift in Sources */,
 				45EB461E2367C0AA009BA044 /* RoutineGenericViewController.swift in Sources */,

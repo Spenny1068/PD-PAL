@@ -26,6 +26,19 @@ class FlexibilityViewController: UIViewController {
         sv.distribution = .fillEqually
         return sv
     }()
+    
+    /* forward pass data between view controllers */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        /* set IsRoutineExercise flag to 0 to signify we came from categories page */
+        if let vcc = segue.destination as? ExerciseViewController { Global.IsRoutineExercise = 0 }
+        
+        /* use segue to forward pass exercise name to destination exercise view controller */
+        if segue.identifier == "FlexiblitySegue" {
+            let vc = segue.destination as! ExerciseViewController
+            vc.exercise_name = (sender as! UIButton).titleLabel!.text!
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
