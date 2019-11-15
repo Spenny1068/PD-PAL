@@ -8,9 +8,10 @@ chart.js ->package for displaying charts on a website
 
 first need to install firebase CLI
 commands:
-	firebase init //initialize the firebase repository
-	firebase serve //run a local version of the website on your computer
-	firebase deploy // deploy the website in the /public directory on firebase
+	firebase init				 			//initialize the firebase repository
+	firebase init functions 	//initialize dynamic functions folder
+	firebase serve 						//run a local version of the website on your computer
+	firebase deploy 					// deploy the website in the /public directory on firebase
 
 
 Before installing chart.js ...

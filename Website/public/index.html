@@ -12,21 +12,23 @@
     <script defer src="/__/firebase/7.3.0/firebase-database.js"></script>
     <script defer src="/__/firebase/7.3.0/firebase-messaging.js"></script>
     <script defer src="/__/firebase/7.3.0/firebase-storage.js"></script>
+    <script defer src="/__/firebase/7.4.0/firebase-firestore.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 
-		<!-- Script to ensure login name is not empty -->
-		<script>	
-			function validateForm() {
-			 var x = document.forms["loginForm"]["username"].value;
-				if (x == "") {
-					alert("Name must be filled out");
-				 return false;
-			 }
-			}
-		</script>
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+				 https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+
 
 		<link href="css/login_style.css" type="text/css" rel="stylesheet" />
+
+		<!-- Local Script -->
+		<script src="js/func.js"></script>
+
 
   </head>
 
