@@ -106,6 +106,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         super.viewDidLayoutSubviews()
         rChartView?.prepareForDrawChart()
         rChartView?.setNeedsLayout()
+        rChartView?.setNeedsDisplay()
     }
   
     
@@ -286,15 +287,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         let yAxisColor = UIColor(red:0.596, green:0.863, blue:0.945, alpha:1.50)
         let fontColor = UIColor(red:0.259, green:0.365, blue:0.565, alpha:1.00)
         
-        if !dateSelected
-        {
-            rChartView?.data = [0, 0, 0, 0] //no query made, empty graph
-        }
-        else
-        {
-            rChartView?.data = self.exerciseCategoryCount() //get the user exercise data
-        }
-        
+        rChartView?.data = self.exerciseCategoryCount() //get the user exercise data
         rChartView?.labelTexts = ["Flexibility", "Cardio", "Balance", "Strength"]
         rChartView?.numberOfVertexes = 4
         rChartView?.numberTicks = 20 //any more ticks would look very condensed. Leaving the full data for the web component
@@ -311,8 +304,8 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         var rawDate = "00/00/0000 HH"
         let convertRaw = DateFormatter()
         convertRaw.dateFormat = "MM/dd/yyyy HH"
-        let sDateRaw = "\(sDateMonth)/" + "\(sDateDay)/" + "\(sDateYear)/" + "\(sDateHour)/"
-        let eDateRaw = "\(eDateMonth)/" + "\(eDateDay)/" + "\(eDateYear)/" + "\(eDateHour)/"
+        let sDateRaw = "\(sDateMonth)/" + "\(sDateDay)/" + "\(sDateYear) " + "\(sDateHour)"
+        let eDateRaw = "\(eDateMonth)/" + "\(eDateDay)/" + "\(eDateYear) " + "\(eDateHour)"
         let converted_sDate = convertRaw.date(from: sDateRaw) as Date?
         let converted_eDate = convertRaw.date(from: eDateRaw) as Date?
         
@@ -320,40 +313,43 @@ class TrendViewController: UIViewController, UITableViewDataSource{
             //get the category of the exercise done fetched from the DB for the selected date
 
             categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry.nameOfExercise)
-            rawDate = "\(entry.Month)/" + "\(entry.Day)/" + "\(entry.Year)/" + "\(entry.Hour)"
-            print(rawDate)
+            rawDate = "\(entry.Month)/" + "\(entry.Day)/" + "\(entry.Year) " + "\(entry.Hour)"
+            //print(rawDate)
             let convertedRaw = convertRaw.date(from: rawDate) as Date?
             
             //figure out which counter to increment
-            if convertedRaw?.compare(converted_sDate!) == .orderedDescending && convertedRaw?.compare(converted_eDate!) == .orderedAscending
+            if dateSelected
             {
-                if categoryMatch.1 as String == "Flexibility"
+                if convertedRaw?.compare(converted_sDate!) == .orderedDescending && convertedRaw?.compare(converted_eDate!) == .orderedAscending
                 {
-                    flexCounter += 1
-                    //print(categoryMatch.1)
-                    //print(flexCounter)
-                    catCount[0] = flexCounter
-                }
-                else if categoryMatch.1 as String == "Cardio"
-                {
-                    cardioCounter += 1
-                    //print(categoryMatch.1)
-                    //print(cardioCounter)
-                    catCount[1] = cardioCounter
-                }
-                else if categoryMatch.1 as String == "Balance"
-                {
-                    balanceCounter += 1
-                    catCount[2] = balanceCounter
-                }
-                else if categoryMatch.1 as String == "Strength"
-                {
-                    strengthCounter += 1
-                    catCount[3] = strengthCounter
-                }
-                else
-                {
-                    print("Not a valid category")
+                    if categoryMatch.1 as String == "Flexibility"
+                    {
+                        flexCounter += 1
+                        //print(categoryMatch.1)
+                        //print(flexCounter)
+                        catCount[0] = flexCounter
+                    }
+                    else if categoryMatch.1 as String == "Cardio"
+                    {
+                        cardioCounter += 1
+                        //print(categoryMatch.1)
+                        //print(cardioCounter)
+                        catCount[1] = cardioCounter
+                    }
+                    else if categoryMatch.1 as String == "Balance"
+                    {
+                        balanceCounter += 1
+                        catCount[2] = balanceCounter
+                    }
+                    else if categoryMatch.1 as String == "Strength"
+                    {
+                        strengthCounter += 1
+                        catCount[3] = strengthCounter
+                    }
+                    else
+                    {
+                        print("Not a valid category")
+                    }
                 }
             }
         }
