@@ -132,6 +132,10 @@ class tempViewController: UIViewController {
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             self.view.addSubview(startButton)
             
+            print ("exercise_name: ", exercise_name2)
+            let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2)
+            print ("link: ", exercise_data.Link)
+            
             /* gif */
             guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: "neck_side_stretch") else { return }
             view.addSubview(gif)

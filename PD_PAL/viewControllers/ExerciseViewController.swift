@@ -130,8 +130,12 @@ class ExerciseViewController: UIViewController {
         timerLabel.timerDesign()
         self.view.addSubview(timerLabel)
         
+        print ("exercise_name: ", exercise_name)
+        let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name)
+        print ("link: ", exercise_data.Link)
+        
         /* gif */
-        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: "neck_side_stretch") else { return }
+        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName:         exercise_data.Link) else { return }
         view.addSubview(gif)
         gif.startAnimating()
         
