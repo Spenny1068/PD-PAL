@@ -13,7 +13,7 @@
 // <November 11, 2019, Julia Kim, Adding scrolling to the page, generate radar graph, implemented date pickers>
 // <November 13, 2019, Julia Kim, Added hours to the date picker, input validation for date picker range, updating radar graph utilizing the same update button for the table>
 // <November 14, 2019, Julia Kim, Refactored date querying to exercises completed database, fixed update button for radar>
-// <November 15, 2019, Julia Kim, Added Line Chart for step data, fixed scrollable view>
+// <November 15, 2019, Julia Kim, Added Line Chart for step data, fixed scrollable view, refactored date input validation>
 
 /*
  Known Bugs
@@ -194,76 +194,24 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         eDateHour = Calendar.current.component(.hour, from: datePicker.date)
         eDateMinute = Calendar.current.component(.minute, from: datePicker.date)
         
-        if sDateYear > eDateYear
+        //input validation
+        let convertRaw = DateFormatter()
+        convertRaw.dateFormat = "MM/dd/yyyy HH:mm"
+        let sDateRaw = "\(sDateMonth)/" + "\(sDateDay)/" + "\(sDateYear) " + "\(sDateHour):" + "\(sDateMinute)"
+        let eDateRaw = "\(eDateMonth)/" + "\(eDateDay)/" + "\(eDateYear) " + "\(eDateHour):" + "\(eDateMinute)"
+        let converted_sDate = convertRaw.date(from: sDateRaw) as Date?
+        let converted_eDate = convertRaw.date(from: eDateRaw) as Date?
+        
+        if converted_sDate?.compare(converted_eDate!) == .orderedAscending
+        {
+            //start date is smaller than end date
+            self.view.endEditing(true)
+        }
+        else
         {
             self.clearEndDate()
         }
-        else
-        {
-            if sDateYear == eDateYear
-            {
-                if sDateMonth > eDateMonth
-                {
-                    self.clearEndDate()
-                }
-                else
-                {
-                    if sDateMonth == eDateMonth
-                    {
-                        if sDateDay > eDateDay
-                        {
-                            self.clearEndDate()
-                        }
-                        else
-                        {
-                            if sDateDay ==  eDateDay
-                            {
-                                if sDateHour > eDateHour
-                                {
-                                    self.clearEndDate()
-                                }
-                                else
-                                {
-                                    if sDateHour == eDateHour
-                                    {
-                                        if sDateMinute > eDateMinute
-                                        {
-                                            self.clearEndDate()
-                                        }
-                                        else
-                                        {
-                                            //equal min or smaller
-                                            self.view.endEditing(true)
-                                        }
-                                    }
-                                    else
-                                    {
-                                        //smaller start hour
-                                        self.view.endEditing(true)
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                //smaller start day
-                                self.view.endEditing(true)
-                            }
-                        }
-                    }
-                else
-                {
-                    //smaller start month
-                    self.view.endEditing(true)
-                }
-            }
-        }
-        else
-        {
-            //smaller start year
-            self.view.endEditing(true)
-        }
-            
-        }
+
     }
     
     
