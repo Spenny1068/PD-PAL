@@ -36,6 +36,9 @@ class RoutinesViewController: UIViewController {
         if segue.identifier == "RoutineSegue" {
             let vc = segue.destination as! RoutineGenericViewController
             vc.routine_name = (sender as! UIButton).titleLabel!.text!
+            
+            /* reset routine index */
+            Global.routine_index = 0
         }
     }
     

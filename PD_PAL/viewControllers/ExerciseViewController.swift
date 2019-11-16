@@ -146,6 +146,7 @@ class ExerciseViewController: UIViewController {
         skipButton.isHidden = false
     }
     
+    /* put slow code in here to run on a different thread */
     override func viewDidAppear(_ animated: Bool) {
         let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name)
         
@@ -163,6 +164,7 @@ class ExerciseViewController: UIViewController {
         DescriptionText.isHidden = true
         startButton.isHidden = true
         skipButton.isHidden = true
+        exitRoutineButton.isHidden = true
         
         /* show these elements */
         stopButton.isHidden = false
@@ -212,12 +214,26 @@ class ExerciseViewController: UIViewController {
         /* insert excercise as done */
         global_UserData.Add_Exercise_Done(ExerciseName: exercise_name ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
         
+        /* if we came from categories */
+        if Global.IsRoutineExercise == 0 {
+            print ("log: completed button tapped on last excercise")
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Categories", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "StrengthVC")
+            self.present(newViewController, animated: true, completion: nil)
+            
+        }
+        
         /* last excercise */
         if Global.routine_index == 2 {
+            
+            /* navigate to home page */
             print ("log: completed button tapped on last excercise")
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
             self.present(newViewController, animated: true, completion: nil)
+            
+            /* reset routine index */
+            Global.routine_index = 0
         }
     }
     
@@ -268,5 +284,3 @@ extension UIImageView {
         return gifImageView
     }
 }
-
-

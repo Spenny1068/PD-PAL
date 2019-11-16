@@ -42,6 +42,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="completedButton:" destination="Sfd-H5-TxZ" eventType="touchUpInside" id="P8V-9J-nyJ"/>
+                                    <segue destination="WTe-r5-avd" kind="push" identifier="SkipSegue" id="2su-eI-7wx"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaS-pt-Khj">
@@ -86,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ndy-Ot-key" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-758" y="91"/>
+            <point key="canvasLocation" x="-1018" y="90"/>
         </scene>
         <!--GENERIC EXERCISE PAGE-->
         <scene sceneID="nQB-Gp-qfv">
@@ -136,6 +137,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="completedButton:" destination="WTe-r5-avd" eventType="touchUpInside" id="lKc-rn-XEn"/>
+                                    <segue destination="Sfd-H5-TxZ" kind="push" identifier="SkipSegue" id="itc-vt-1rn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlN-5K-FXj">
@@ -174,6 +176,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="2su-eI-7wx"/>
         <segue reference="LNr-3C-wE8"/>
     </inferredMetricsTieBreakers>
 </document>

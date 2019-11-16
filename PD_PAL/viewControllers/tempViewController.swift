@@ -89,7 +89,6 @@ class tempViewController: UIViewController {
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             
             
-            
             /* when entering this page, hide these elements */
             stopButton.isHidden = true
             timerLabel.isHidden = true
@@ -127,6 +126,7 @@ class tempViewController: UIViewController {
             skipButton.isHidden = false
         }
     
+    /* put slow code in here to run on a different thread */
     override func viewDidAppear(_ animated: Bool) {
         let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2)
         
@@ -183,10 +183,15 @@ class tempViewController: UIViewController {
         
         /* last excercise */
         if Global.routine_index == 2 {
+            
+            /* navigate to home page */
             print ("log: completed button tapped on last excercise")
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
             self.present(newViewController, animated: true, completion: nil)
+            
+            /* reset routine index */
+            Global.routine_index = 0
         }
     }
         
@@ -215,7 +220,3 @@ class tempViewController: UIViewController {
         }
     }
 }
-
-
-
-    
