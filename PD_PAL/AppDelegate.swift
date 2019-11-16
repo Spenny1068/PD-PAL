@@ -14,6 +14,7 @@
 // <Nov. 1, 2019, William Huong, Added global variables for UserData, ExerciseDatabase>
 
 import UIKit
+import Firebase
 
 /* put global constants in this struct */
 struct Global {
@@ -427,6 +428,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        
         //On cold start, if user does not exist, enter Questionnaire storyboard
         if(!global_UserData.User_Exists()){
             print("USERNMAE: " + global_UserData.Get_User_Data().UserName)
