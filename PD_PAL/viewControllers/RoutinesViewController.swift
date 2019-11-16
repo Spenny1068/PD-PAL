@@ -31,27 +31,37 @@ class RoutinesViewController: UIViewController {
         return sv
     }()
     
+    // override seque to send exercise name to destination view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "RoutineSegue" {
+            let vc = segue.destination as! RoutineGenericViewController
+            vc.routine_name = (sender as! UIButton).titleLabel!.text!
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let routineNames = global_UserData.Get_Routines()
         view.backgroundColor = Global.color_schemes.m_bgColor
         
-        // home button on navigation bar
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-        self.navigationItem.rightBarButtonItem  = homeButton
         
-        // message
+        /* page message */
         self.show_page_message(s1: "Select A Routine To Try!", s2: "Routine")
 
-        // apply designs to routine buttons
-        routineButton1.setTitle("Happy Day Workout", for: .normal)
+        /* apply titles and designs to routine buttons */
+        routineButton1.setTitle(routineNames[0].0, for: .normal)
         routineButton1.routineButtonDesign()
+        //let routine1Img = UIImageView()
+        //routine1Img.roundImages()
+        routineButton1.setBackgroundImage(UIImage(named: "routine1"), for: .normal)
         
-        routineButton2.setTitle("Friday Night Chill", for: .normal)
+        routineButton2.setTitle(routineNames[1].0, for: .normal)
         routineButton2.routineButtonDesign()
+        routineButton2.setBackgroundImage(UIImage(named: "routine2"), for: .normal)
         
-        routineButton3.setTitle("Monday Morning Mood", for: .normal)
+        routineButton3.setTitle(routineNames[2].0, for: .normal)
         routineButton3.routineButtonDesign()
+        routineButton3.setBackgroundImage(UIImage(named: "routine3"), for: .normal)
         
         /* routine button constraints */
         applyExerciseButtonConstraint(button: routineButton1)
@@ -66,27 +76,12 @@ class RoutinesViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
     
-   // called when home button on navigation bar is tapped
+   /* when home button on navigation bar is tapped */
    @objc func homeButtonTapped(sender: UIButton!) {
        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
        self.present(newViewController, animated: true, completion: nil)
    }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    @objc func buttonAction(sender: UIButton!) {
-        print("button tapped")
-    }
 }
 
 

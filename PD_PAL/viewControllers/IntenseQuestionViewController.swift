@@ -27,14 +27,17 @@ class IntenseQuestionViewController: UIViewController {
         QuestionLabel.applyQuestionDesign()
         self.view.addSubview(QuestionLabel)
         
+        //Button styling
         lightIntensity.applyQButton()
         modIntensity.applyQButton()
         intenseIntensity.applyQButton()
         nextButton.applyNextQButton()
         nextButton.isEnabled = false
+        nextButton.backgroundColor = Global.color_schemes.m_blue1
         
         if(button_clicked.count != 0){
-            global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil, firestoreOK: nil)
+            global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil)
+            nextButton.applyNextQButton()
             print("Update Intensity")
             print(global_UserData.Get_User_Data())
         }
@@ -43,19 +46,19 @@ class IntenseQuestionViewController: UIViewController {
     @IBAction func lightSelected(_ sender: UIButton) {
         button_clicked = "Light"
         nextButton.isEnabled = true
-        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil,       resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil, firestoreOK: nil)
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil,       resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil)
     }
     
     @IBAction func moderateSelected(_ sender: UIButton) {
         button_clicked = "Moderate"
         nextButton.isEnabled = true
-        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil, firestoreOK: nil)
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil)
     }
     
     @IBAction func intenseSelected(_ sender: UIButton) {
         button_clicked = "Intense"
         nextButton.isEnabled = true
-        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil, firestoreOK: nil)
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil)
     }
     
     @IBAction func nextTapped(_ sender: Any) {

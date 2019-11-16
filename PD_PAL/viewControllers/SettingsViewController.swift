@@ -17,10 +17,9 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
-        // message
+        /* page message */
         self.show_page_message(s1: "Change Your Settings!", s2: "Settings")
     }
     

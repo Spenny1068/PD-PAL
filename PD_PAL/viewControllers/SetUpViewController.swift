@@ -27,10 +27,8 @@ class SetUpViewController: UIViewController {
         
         //Navigation Buttons
         SetUpButton.applyNextQButton()
-        self.view.addSubview(SetUpButton)
         SkipSetUpButton.applyPrevQButton()
-        self.view.addSubview(SkipSetUpButton)
-        
+        SkipSetUpButton.setTitle("Later", for: .normal)
     }
     
     @IBAction func SetUpTapped(_ sender: Any) {
@@ -44,15 +42,4 @@ class SetUpViewController: UIViewController {
       
         present(destinationViewController, animated: true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -1,0 +1,9 @@
+1. Write a function to make skip button dynamic
+2. Fix the main routine page so that each button isn't linked to the same routine
+3. Background color for each of the routine buttons
+4. Pictures for category buttons
+5. Home button on navigation bar needs to be logo picture
+6. All exercise pages need to be created
+7. All gifs need to be added
+8. Move all exercise view controllers need to be put in single storyboard
+9. Fix timer so it doesn't go negative
