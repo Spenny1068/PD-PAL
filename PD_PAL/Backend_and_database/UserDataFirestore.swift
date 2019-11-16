@@ -46,7 +46,6 @@ import Firebase
  
  - Collection: Users
     - Document: User1
-        - Value : UUID - String
         - Value : Username - String
         - Value : QuestionsAnswered - Boolean
         - Value : WalkingDuration - Number

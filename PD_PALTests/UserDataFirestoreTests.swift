@@ -69,7 +69,6 @@ class UserDataFirestoreTests: XCTestCase {
         
         //Confirm the the user was uploaded to Firestore
         global_UserDataFirestore.Get_UserInfo(targetUser: nil) { remoteUserData in
-            XCTAssert( remoteUserData.UserUUID == global_UserData.Get_User_Data().UserUUID )
             XCTAssert( remoteUserData.UserName == global_UserData.Get_User_Data().UserName )
             XCTAssert( remoteUserData.QuestionsAnswered == global_UserData.Get_User_Data().QuestionsAnswered )
             XCTAssert( remoteUserData.WalkingDuration == global_UserData.Get_User_Data().WalkingDuration )
@@ -91,7 +90,6 @@ class UserDataFirestoreTests: XCTestCase {
         
         //Confirm the update went through
         global_UserDataFirestore.Get_UserInfo(targetUser: nil) { remoteUserData in
-            XCTAssert( remoteUserData.UserUUID == global_UserData.Get_User_Data().UserUUID )
             XCTAssert( remoteUserData.UserName == global_UserData.Get_User_Data().UserName )
             XCTAssert( remoteUserData.QuestionsAnswered == global_UserData.Get_User_Data().QuestionsAnswered )
             XCTAssert( remoteUserData.WalkingDuration == global_UserData.Get_User_Data().WalkingDuration )
@@ -109,7 +107,6 @@ class UserDataFirestoreTests: XCTestCase {
         //Example call for Get_UserInfo(). Looks like this due to the asynchronous nature of Firestore.firestore().getDocument()
         global_UserDataFirestore.Get_UserInfo(targetUser: "tester") { remoteUserData in
             //These values are pre-defined in the Firestore.
-            XCTAssert( remoteUserData.UserUUID == "tester" )
             XCTAssert( remoteUserData.UserName == "Tester" )
             XCTAssert( remoteUserData.QuestionsAnswered == true )
             XCTAssert( remoteUserData.WalkingDuration == 15 )
