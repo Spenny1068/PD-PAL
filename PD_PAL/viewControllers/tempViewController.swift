@@ -77,7 +77,7 @@ class tempViewController: UIViewController {
             let vc = segue.destination as! ExerciseViewController
             Global.next_routine_exercise = Global.routine_data[Global.routine_index + 1]
             Global.routine_index += 1
-            if Global.routine_index > 2 { Global.routine_index = 0 }
+            if Global.routine_index >= 2 { Global.routine_index = -1 }
         }
     }
     
