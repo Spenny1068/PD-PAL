@@ -17,6 +17,8 @@ Revision History
     Implemented read function for UserInfo
  - 15/11/2019 : William Huong
     Implement UserInfo update function
+ - 16/11/2019 : William Huong
+    Implemented Get_Routines() and Get_ExerciseData()
 */
 
 /*
@@ -298,10 +300,32 @@ class UserDataFirestore {
      
      Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
      */
-    func Get_Routines(targetUser: String?, completion: @escaping ([(RoutineName: String, Exercises: [String])])->()) {
+    func Get_Routines(targetUser: String?, completion: @escaping ([(RoutineName: String, RoutineContents: [String])])->()) {
         
         //If the user does not provide a UUID to use, get the current user's UUID
         let targetUUID = targetUser ?? global_UserData.Get_User_Data().UserUUID
+        
+        let userRoutinesRef = self.FirestoreDB.collection("Users/\(targetUUID)/Routines")
+        
+        var returnVal: [(RoutineName: String, RoutineContents: [String])] = []
+        
+        userRoutinesRef.getDocuments() { (snapshot, error) in
+            if let error = error {
+                print("An error occured while retrieving the Routines : \(error)")
+            }
+            
+            guard let snapshot = snapshot, !snapshot.isEmpty else {
+                print("The Routines subcollection was empty : \(String(describing: error))")
+                return
+            }
+            
+            for document in snapshot.documents {
+                let documentData = document.data()
+                returnVal.append((RoutineName: documentData["RoutineName"] as? String ?? "ERROR", RoutineContents: documentData["RoutineContents"] as? [String] ?? ["ERROR"]))
+            }
+            
+            completion(returnVal)
+        }
         
     }
     
@@ -315,10 +339,32 @@ class UserDataFirestore {
      
      Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
      */
-    func Get_ExerciseData(targetUser: String?, completion: @escaping ()->()) {
+    func Get_ExerciseData(targetUser: String?, completion: @escaping ([(Year: Int, Month: Int, Day: Int, Hour: Int, ExercisesDone: [String], StepsTaken: Int)])->()) {
         
         //If the user does not provide a UUID to use, get the current user's UUID
         let targetUUID = targetUser ?? global_UserData.Get_User_Data().UserUUID
+        
+        let userExerciseDataRef = self.FirestoreDB.collection("Users/\(targetUUID)/ExercisesDone")
+        
+        var returnVal: [(Year: Int, Month: Int, Day: Int, Hour: Int, ExercisesDone: [String], StepsTaken: Int)] = []
+        
+        userExerciseDataRef.getDocuments() { (snapshot, error) in
+            if let error = error {
+                print("An error occured while retrieving the Exercises Done : \(error)")
+            }
+            
+            guard let snapshot = snapshot, !snapshot.isEmpty else {
+                print("The ExercisesDone subcollection was empty : \(String(describing: error))")
+                return
+            }
+            
+            for document in snapshot.documents {
+                let documentData = document.data()
+                returnVal.append((Year: documentData["Year"] as? Int ?? 0, Month: documentData["Month"] as? Int ?? 0, Day: documentData["Day"] as? Int ?? 0, Hour: documentData["Hour"] as? Int ?? 0, ExercisesDone: documentData["ExercisesDone"] as? [String] ?? ["ERROR"], StepsTaken: documentData["StepsTaken"] as? Int ?? 0))
+            }
+            
+            completion(returnVal)
+        }
         
     }
     

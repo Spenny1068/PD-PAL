@@ -52,6 +52,50 @@ class UserDataFirestoreTests: XCTestCase {
         
     }
     
+    func test_UserInfoReader() {
+        //Example call for Get_UserInfo(). Looks like this due to the asynchronous nature of Firestore.firestore().getDocument()
+        global_UserDataFirestore.Get_UserInfo(targetUser: "tester") { remoteUserData in
+            //These values are pre-defined in the Firestore.
+            XCTAssert( remoteUserData.UserName == "Tester" )
+            XCTAssert( remoteUserData.QuestionsAnswered == true )
+            XCTAssert( remoteUserData.WalkingDuration == 15 )
+            XCTAssert( remoteUserData.ChairAccessible == true )
+            XCTAssert( remoteUserData.WeightsAccessible == true )
+            XCTAssert( remoteUserData.ResistBandAccessible == true )
+            XCTAssert( remoteUserData.PoolAccessible == true )
+            XCTAssert( remoteUserData.Intensity == "Moderate" )
+            XCTAssert( remoteUserData.PushNotifications == true )
+        }
+    }
+    
+    func test_Get_Routines() {
+        global_UserDataFirestore.Get_Routines(targetUser: "tester") { remoteRoutineData in
+            XCTAssert( remoteRoutineData.count == 2 )
+            XCTAssert( remoteRoutineData[0].RoutineName == "Happy Day Workout" )
+            XCTAssert( remoteRoutineData[0].RoutineContents == ["Walking", "Wall Push-up", "Single Leg Stance"] )
+            XCTAssert( remoteRoutineData[1].RoutineName == "Friday Night Chill" )
+            XCTAssert( remoteRoutineData[1].RoutineContents == ["Quad Stretch", "Single Leg Stance", "Walking"] )
+        }
+    }
+    
+    func test_Get_ExercisesData() {
+        global_UserDataFirestore.Get_ExerciseData(targetUser: "target") { remoteExerciseData in
+            XCTAssert( remoteExerciseData.count == 2 )
+            XCTAssert( remoteExerciseData[0].Year == 2018 )
+            XCTAssert( remoteExerciseData[0].Month == 10 )
+            XCTAssert( remoteExerciseData[0].Day == 31 )
+            XCTAssert( remoteExerciseData[0].Hour == 13 )
+            XCTAssert( remoteExerciseData[0].ExercisesDone == ["Bicep Curls", "One Legged Stand", "Bicep Curls"] )
+            XCTAssert( remoteExerciseData[0].StepsTaken == 123 )
+            XCTAssert( remoteExerciseData[1].Year == 2019 )
+            XCTAssert( remoteExerciseData[1].Month == 11 )
+            XCTAssert( remoteExerciseData[1].Day == 12 )
+            XCTAssert( remoteExerciseData[1].Hour == 15 )
+            XCTAssert( remoteExerciseData[1].ExercisesDone == ["Squats", "Sit Ups", "Whatever Involves a Chair"] )
+            XCTAssert( remoteExerciseData[1].StepsTaken == 456 )
+        }
+    }
+    
     func test_UserInfo() {
         
         //Set some values for our user.
@@ -101,22 +145,6 @@ class UserDataFirestoreTests: XCTestCase {
             XCTAssert( remoteUserData.PushNotifications == global_UserData.Get_User_Data().PushNotifications )
         }
         
-    }
-    
-    func test_UserInfoReader() {
-        //Example call for Get_UserInfo(). Looks like this due to the asynchronous nature of Firestore.firestore().getDocument()
-        global_UserDataFirestore.Get_UserInfo(targetUser: "tester") { remoteUserData in
-            //These values are pre-defined in the Firestore.
-            XCTAssert( remoteUserData.UserName == "Tester" )
-            XCTAssert( remoteUserData.QuestionsAnswered == true )
-            XCTAssert( remoteUserData.WalkingDuration == 15 )
-            XCTAssert( remoteUserData.ChairAccessible == true )
-            XCTAssert( remoteUserData.WeightsAccessible == true )
-            XCTAssert( remoteUserData.ResistBandAccessible == true )
-            XCTAssert( remoteUserData.PoolAccessible == true )
-            XCTAssert( remoteUserData.Intensity == "Moderate" )
-            XCTAssert( remoteUserData.PushNotifications == true )
-        }
     }
     
 }
