@@ -1,6 +1,0 @@
-framework module Pods_PD_PAL {
-  umbrella header "Pods-PD_PAL-umbrella.h"
-
-  export *
-  module * { export * }
-}

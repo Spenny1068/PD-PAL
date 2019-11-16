@@ -1,6 +1,0 @@
-framework module Pods_PD_PALTests {
-  umbrella header "Pods-PD_PALTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

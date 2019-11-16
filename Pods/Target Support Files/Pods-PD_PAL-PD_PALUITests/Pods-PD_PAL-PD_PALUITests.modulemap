@@ -1,6 +1,0 @@
-framework module Pods_PD_PAL_PD_PALUITests {
-  umbrella header "Pods-PD_PAL-PD_PALUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
