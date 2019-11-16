@@ -144,9 +144,9 @@ class ExerciseDatabase {
                
         }
         
-        // hardcoding 4 default exercises for version 1
+        // hardcoding all default exercises for version 1
         insert_exercise(Name: "WALL PUSH-UP",
-                        Desc: "A Wall Push-up is done to strengthen the upper body with a focus on the arms and chest. To perform a Wall Push-up, face the wall and extend your hands towards the wall. Now bend your elbows and lean towards the wall" ,
+                        Desc: "Face the wall and extend your hands towards the wall. Now bend your elbows and lean towards the wall" ,
                         Category: "Strength",
                         Body: "None",
                         Link: "WALL_PUSH-UP",
@@ -160,35 +160,35 @@ class ExerciseDatabase {
                         Duration: "Walk for 15-30 minutes")
         
         insert_exercise(Name: "SINGLE LEG STANCE",
-                        Desc: "The One Leg Stance is done to impove balance. To perform a One leg Stance, bend your knee and raise your leg. Hold the chair with the other hand for support.",
+                        Desc: "Bend your knee and raise your leg beside a chair. Hold the chair with your hand that opposite to the side of your raised leg for support.",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "SINGLE_LEG_STANCE",
                         Duration: "Complete 3 sets of 10 repetitions")
         
         insert_exercise(Name: "QUAD STRETCH",
-                        Desc: "A Quad Stretch is done to stretch the thigh and improve leg flexibility. To perform a Quad stretch, stand on one leg and and hold you your leg with your hand. ",
+                        Desc: "To perform a Quad stretch, stand on one leg and and hold you your leg with your hand. ",
                         Category: "Balance",
                         Body: "None",
                         Link: "QUAD_STRETCH",
                         Duration: "Stand on each leg for one minute. Repeat 3 times")
         
         insert_exercise(Name: "TRICEP KICKBACKS",
-                        Desc: "Lean over your knees if sitting or over a chair if standing. Hold the weight in your hand. Straighten your elbow behind you as far as comfortable and slowly return to the starting position. ",
+                        Desc: "Hold the weight, and lean over a chair. Straighten your elbow behind you as far as comfortable and slowly return to the starting position. ",
                         Category: "Strength",
                         Body: "None",
                         Link: "TRICEP_KICKBACKS",
                         Duration: "")
         
         insert_exercise(Name: "SIDE LEG LIFT",
-                        Desc: "The side leg lift will improve your balance as well as strengthening both legs by working your hips, glutes and other muscles to keep your body stable. To perform a side leg stance, stand behind a chair with feet slightly apart. Slowly lift one leg out to one side. Slightly bend the leg you are standing on. ",
+                        Desc: "Stand behind a chair with feet slightly apart. Slowly lift one leg out to one side. Slightly bend the leg you are standing on.",
                         Category: "Balance",
                         Body: "None",
                         Link: "SIDE_LEG_LIFT",
                         Duration: "")
         
         insert_exercise(Name: "SHOULDER RAISES",
-                        Desc: "Shoulder rolls will improve the range of motion in your shoulder and upper back region. Begin by sitting in a chair. Slowly raise your shoulders up to your ears and then relax. ",
+                        Desc: " Begin by sitting in a chair. Slowly raise your shoulders up to your ears and then relax. ",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "SHOULDER_RAISES",
@@ -202,56 +202,56 @@ class ExerciseDatabase {
                         Duration: "Stand on each leg for 30 seconds. Repeat twice. ")
         
         insert_exercise(Name: "NECK SIDE STRETCH",
-                        Desc: "The neck side stretch will improve your range of motion in your neck. Begin by sitting in a chair. Look to the right as far as comfortable and hold. Then look to the left as far as comfortable and hold. ",
+                        Desc: "Begin by sitting in a chair. Look to the right as far as comfortable and hold. Then look to the left as far as comfortable and hold.",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "NECK_SIDE_STRETCH",
                         Duration: "Repeat 10 times")
         
         insert_exercise(Name: "LATERAL RAISES",
-                        Desc: "Lateral arm raises will strengthen your shoulders and increase your shoulder mobility. Begin with arms at your side and your palms facing inwards. Hips, knees and toes should all be facing forward. Slowly raise your arms to a comfortable level. ",
+                        Desc: "Begin with arms at your side and your palms facing inwards. Slowly raise your arms to a comfortable level. ",
                         Category: "Strength",
                         Body: "None",
                         Link: "LATERAL_RAISES",
                         Duration: "Repeat 10 times")
         
         insert_exercise(Name: "KNEE MARCHING",
-                        Desc: "Knee marching will strengthen ankles and hips that will help overall balance. To knee march, begin with arms at your side and feet shoulder width apart. Raise one knee up as high as comfortable. Lower that knee and raise the other.  ",
+                        Desc: "Begin with arms at your side and feet shoulder width apart. Raise one knee up as high as comfortable. Lower that knee and raise the other.",
                         Category: "Balance",
                         Body: "None",
                         Link: "KNEE_MARCHING",
                         Duration: "")
         
         insert_exercise(Name: "KNEE EXTENSION",
-                        Desc: "The knee extension will strengthen your knees to better your balance and flexibility. Sit in a chair with your feet flat against the floor. Slowly straighten your knee out, hold and slowly bend your knee back into the starting position. ",
+                        Desc: "Sit with your feet flat against the floor. Slowly straighten your knee out, hold and slowly bend your knee back into the starting position.",
                         Category: "Strength",
                         Body: "None",
                         Link: "KNEE_EXTENSION",
                         Duration: "Repeat 10 times on each leg")
         
         insert_exercise(Name: "HEEL TO TOE",
-                        Desc: "The heel to toe will improve your balance and coordination. To perform a heal to toe, look forward, relax your shoulders and begin walking forward by pacing one foot in front of the other. ",
+                        Desc: "To perform a heal to toe, look forward, relax your shoulders and begin walking forward by pacing one foot in front of the other.",
                         Category: "Balance",
                         Body: "None",
                         Link: "HEEL_TO_TOE",
                         Duration: "")
         
         insert_exercise(Name: "HEEL STAND",
-                        Desc: "Stand behind a chair with your knees shoulder-width apart. Using the chair as support, slowly raise up on your heels as high as comfortable. Slowly return to the starting position. ",
+                        Desc: "Keep your knees shoulder-width apart. Raise up on your heels as high as possible. Slowly return to the starting position.",
                         Category: "Strength",
                         Body: "None",
                         Link: "HEEL_STAND",
                         Duration: "")
         
         insert_exercise(Name: "CHEST STRETCH",
-                        Desc: "The chest stretch will improve the mobility and flexibility in your upper chest and shoulders. Begin by sitting in a chair. Raise your arms and place hands behind your head. Breathe in while bringing your neck and shoulder back. Hold and release. ",
+                        Desc: "Raise your arms and place hands behind your head. Breathe in while bringing your neck and shoulder back. Hold and release.",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "CHEST_STRETCH",
                         Duration: "Repeat 3 times")
         
         insert_exercise(Name: "ARM RAISES",
-                        Desc: "Overhead arm raises will stretch your arms and upper back. Begin with your arms at your sides. Inhale and slowly you lift both arms over your head. Slowly bring your arms back to your sides. ",
+                        Desc: "Begin with your arms at your sides. Inhale and slowly you lift both arms over your head. Slowly bring your arms back to your sides.",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "ARM_RAISES",
