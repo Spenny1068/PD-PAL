@@ -69,20 +69,13 @@ import Firebase
                 - Value : Exercise5
                 :
             :
-        - Collection : Year
-            - Document : 2019
-                - Collection : Month
-                    - Document : 11
-                        - Collection : Day
-                            - Document : 12
-                                - Collection : Hour
-                                    - Document : 13
-                                        - Value : ExercisesDone - [String]
-                                        - Value : StepsTaken - Number
-                                        :
-                            :
-                    :
-            :
+        - Collection : ExercisesData
+            - Value : Year - Number
+            - Value : Month - Number
+            - Value : Day - Number
+            - Value : Hour - Number
+            - Value : ExercisesDone - [String]
+        :
     - Document : User2
         :
     - Document : User3
