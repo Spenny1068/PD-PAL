@@ -135,7 +135,32 @@ class PD_PALUITests: XCTestCase {
         
     }
     
-    func stepCounter(){
+    func testDatePicker(){
+        let app = XCUIApplication()
+        //let app2 = app
+        let datePickers = XCUIApplication().datePickers
+        
+        app.swipeLeft()
+        app.swipeLeft()
+        
+        app.swipeUp() //test scrolling up the page
+        app.swipeDown() //test scrolling down the page
+        app.textFields["Pick a Start Date"].tap()
+        
+        app.datePickers.pickerWheels["Today"].swipeDown()
+        
+        app.textFields["Pick an End Date"].tap()
+     
+        app.datePickers.pickerWheels["Today"].swipeUp()
+        app.buttons["Update All"].tap()
+        
+        app.swipeUp() //test scrolling up the page
+        app.swipeDown() //test scrolling down the page
+        
+        app.buttons["Reset Dates"].tap()
+        
+        
+        
         
     }
     

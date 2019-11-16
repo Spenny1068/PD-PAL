@@ -497,37 +497,6 @@ UserData Class Tests
         
     }
 
-    func testStepGraph() {
-        //create dummy values and insert to DB
-        let userData = UserData()
-        let testStep1: Int64 = 15
-        let year1: Int = 2019
-        let month1: Int = 07
-        let day1: Int = 15
-        let hour1: Int = 13
-        
-        let testStep2: Int64 = 30
-        let year2: Int = 2019
-        let month2: Int = 07
-        let day2: Int = 16
-        let hour2: Int = 14
-        
-        let testStep3: Int64 = 60
-        let year3: Int = 2019
-        let month3: Int = 07
-        let day3: Int = 18
-        let hour3: Int = 17
-        
-        userData.Update_Steps_Taken(Steps: testStep1, YearDone: year1, MonthDone: month1, DayDone: day1, HourDone: hour1)
-        userData.Update_Steps_Taken(Steps: testStep2, YearDone: year2, MonthDone: month2, DayDone: day2, HourDone: hour2)
-        userData.Update_Steps_Taken(Steps: testStep3, YearDone: year3, MonthDone: month3, DayDone: day3, HourDone: hour3)
-        
-        //call generateStepChart func, see if graph is generated
-        
-        
-        //pull number of steps taken from DB, compare with dummy values
-        
-    }
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
