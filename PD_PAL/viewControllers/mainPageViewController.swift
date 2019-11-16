@@ -19,7 +19,8 @@ import UIKit
 class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     var pageControl = UIPageControl()
-
+    var refreshTrendGraph = TrendViewController()
+    
     // view controllers in PageViewController
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.newVc(viewController: "RoutinesPage"),
@@ -84,6 +85,7 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         guard orderedViewControllers.count > prevIndex else{
             return nil
         }
+        
         
         return orderedViewControllers[prevIndex]
     }
