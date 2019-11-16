@@ -18,8 +18,10 @@ import UIKit
 /* put global constants in this struct */
 struct Global {
     
-    static var IsRoutineExercise = -1                                                // 0 is categories, 1 is routines, -1 is nil
+    static var IsRoutineExercise = -1   // 0 is categories, 1 is routines, -1 is nil
     static var next_routine_exercise = ""
+    static var routine_data: [String] = ["", "", ""]
+    static var routine_index = 0
     
     // color schemes
     struct color_schemes {

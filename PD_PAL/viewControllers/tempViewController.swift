@@ -9,7 +9,6 @@
 import UIKit
 
 class tempViewController: UIViewController {
-    var exercise_name: String!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
@@ -19,7 +18,6 @@ class tempViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     
     /* global variables */
-    var routine_data: [String]!
     var exercise_name2: String!
     var exercise_number = 1
 
@@ -68,7 +66,7 @@ class tempViewController: UIViewController {
         let hour = Calendar.current.component(.hour, from: Date())
         
         /* insert excercise as done */
-        global_UserData.Add_Exercise_Done(ExerciseName: exercise_name ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+        global_UserData.Add_Exercise_Done(ExerciseName: exercise_name2 ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
     }
     
     /* forward pass data between view controllers */
@@ -77,13 +75,19 @@ class tempViewController: UIViewController {
         /* use segue to forward pass exercise name to destination exercise view controller */
         if segue.identifier == "SkipSegue" {
             let vc = segue.destination as! ExerciseViewController
-            vc.exercise_name = (sender as! UIButton).titleLabel!.text!
+            Global.next_routine_exercise = Global.routine_data[Global.routine_index + 1]
+            Global.routine_index += 1
+            if Global.routine_index > 2 { Global.routine_index = 0 }
         }
     }
     
     /* put code that depends on IsRoutineExercise flag in here */
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
+            
+            print ("next_routine_exercise", Global.next_routine_exercise)
+            if Global.next_routine_exercise != "" { self.exercise_name2 = Global.next_routine_exercise }
+            Global.next_routine_exercise = ""
             
             /* navigation bar stuff */
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -93,11 +97,11 @@ class tempViewController: UIViewController {
             self.navigationItem.rightBarButtonItem  = homeButton
             
             /* populate exercise description */
-            let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
+            let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
             self.show_exercise_description(string: readResult.Description, DLabel: DescriptionLabel, DText: DescriptionText)
             
             /* page message */
-            self.show_page_message(s1: exercise_name ?? "Unable to retrieve exercise name", s2: exercise_name ?? "nil")
+            self.show_page_message(s1: exercise_name2 ?? "Unable to retrieve exercise name", s2: exercise_name2 ?? "nil")
             
             /* stop button */
             stopButton.timerButtonDesign()
@@ -153,8 +157,6 @@ class tempViewController: UIViewController {
                    let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
                    self.navigationItem.rightBarButtonItem  = homeButton
         }
-    
-    
         
         /* when home button on navigation bar is tapped */
         @objc func homeButtonTapped(sender: UIButton!) {

@@ -42,7 +42,7 @@ class RoutineGenericViewController: UIViewController {
         if segue.identifier == "RoutineSegue" {
             let vc = segue.destination as! ExerciseViewController
             vc.exercise_name = (sender as! UIButton).titleLabel!.text!
-            vc.routine_data = global_UserData.Get_Routine(NameOfRoutine: routine_name)
+            Global.routine_data = global_UserData.Get_Routine(NameOfRoutine: routine_name)
         }
     }
        

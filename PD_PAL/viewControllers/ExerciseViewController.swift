@@ -22,7 +22,6 @@ class ExerciseViewController: UIViewController {
     @IBOutlet weak var skipButton: UIButton!
     
     /* global variables */
-    var routine_data: [String]!
     var exercise_name: String!
     var exercise_number = 1
 
@@ -87,7 +86,9 @@ class ExerciseViewController: UIViewController {
         /* use segue to forward pass exercise name to destination exercise view controller */
         if segue.identifier == "SkipSegue" {
             let vc = segue.destination as! tempViewController
-            vc.exercise_name2 = (sender as! UIButton).titleLabel!.text!
+            Global.next_routine_exercise = Global.routine_data[Global.routine_index + 1]
+            Global.routine_index += 1
+            if Global.routine_index > 2 { Global.routine_index = 0 }
         }
     }
     
@@ -95,6 +96,7 @@ class ExerciseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        print ("next_routine_exercise", Global.next_routine_exercise)
         if Global.next_routine_exercise != "" { self.exercise_name = Global.next_routine_exercise }
         Global.next_routine_exercise = ""
         
