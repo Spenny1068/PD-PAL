@@ -269,25 +269,15 @@ class UserDataFirestore {
             
             //Start parsing the data, since it is returned as type any optionals
             let returnedUUID = dataReturned?["UUID"] as? String ?? "USER_NIL"
-            print("\(returnedUUID)")
             let returnedUserName = dataReturned?["UserName"] as? String ?? "USERNAME_NIL"
-            print("\(returnedUserName)")
             let returnedQuestionsAnswered = dataReturned?["QuestionsAnswered"] as? Bool ?? false
-            print("\(returnedQuestionsAnswered)")
             let returnedWalkingDuration = dataReturned?["WalkingDuration"] as? Int ?? -1
-            print("\(returnedWalkingDuration)")
             let returnedChairAccessible = dataReturned?["ChairAccessible"] as? Bool ?? false
-            print("\(returnedChairAccessible)")
             let returnedWeightsAccessible = dataReturned?["WeightsAccessible"] as? Bool ?? false
-            print("\(returnedWeightsAccessible)")
             let returnedResistBandAccessible = dataReturned?["ResistBandAccessible"] as? Bool ?? false
-            print("\(returnedResistBandAccessible)")
             let returnedPoolAccessible = dataReturned?["PoolAccessible"] as? Bool ?? false
-            print("\(returnedPoolAccessible)")
             let returnedIntensity = dataReturned?["Intensity"] as? String ?? "INTENSITY_NIL"
-            print("\(returnedIntensity)")
             let returnedPushNotifications = dataReturned?["PushNotifications"] as? Bool ?? false
-            print("\(returnedPushNotifications)")
             
             print("Finished parsing, assigning returnVal")
             
