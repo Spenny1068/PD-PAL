@@ -113,6 +113,7 @@ class ExerciseViewController: UIViewController {
         else if Global.IsRoutineExercise == 0 {
             
             /* start button */
+            startButton.applyDefaultTimerButtonFrame()
             startButton.timerButtonDesign()
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
@@ -224,8 +225,8 @@ class ExerciseViewController: UIViewController {
         /* if we came from categories */
         if Global.IsRoutineExercise == 0 {
             print ("log: completed button tapped on last excercise")
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Categories", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "StrengthVC")
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
             self.present(newViewController, animated: true, completion: nil)
         }
         
