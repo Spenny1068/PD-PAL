@@ -14,12 +14,15 @@
 // <Nov. 1, 2019, William Huong, Added global variables for UserData, ExerciseDatabase>
 
 import UIKit
+import Firebase
 
 /* put global constants in this struct */
 struct Global {
     
-    static var IsRoutineExercise = -1                                                // 0 is categories, 1 is routines, -1 is nil
+    static var IsRoutineExercise = -1   // 0 is categories, 1 is routines, -1 is nil
     static var next_routine_exercise = ""
+    static var routine_data: [String] = ["", "", ""]
+    static var routine_index = 0
     
     // color schemes
     struct color_schemes {
@@ -41,7 +44,7 @@ struct Global {
     // preset fonts and sizes
     struct text_fonts {
         static var m_exerciseButtonFont = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
-        static var m_exerciseDescriptionDurationFont = UIFont(name: "HelveticaNeue", size: 15.0)
+        static var m_exerciseDescriptionDurationFont = UIFont(name: "HelveticaNeue", size: 20.0)
         static var m_routineButtonFont = UIFont(name: "HelveticaNeue-Bold", size: 25.0)
     }
 }
@@ -87,7 +90,7 @@ extension UIViewController {
         let highlightedWord = s2
         let range = (message as NSString).range(of: highlightedWord)
         let attributedText = NSMutableAttributedString.init(string: message)
-        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red , range: range)
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: Global.color_schemes.m_blue1, range: range)
         msg.attributedText = attributedText
         msg.applyPageMsgDesign()
         self.view.addSubview(msg)
@@ -207,7 +210,7 @@ extension UILabel {
         self.lineBreakMode = .byWordWrapping                                   // Word wrapping
         self.numberOfLines = 3
         self.textAlignment = .center                                           // text alignment
-        self.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
+        self.font = Global.text_fonts.m_routineButtonFont                      // text font and size
         self.textColor = UIColor.black
     }
     
@@ -253,17 +256,17 @@ extension UIButton {
 
         // design
         self.layer.cornerRadius = 25                                         // rounded edges
-        self.layer.borderWidth = 3                                           // border width in points
+        self.layer.borderWidth = 2                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
+        self.clipsToBounds = true                                            // confines bounds of view
         
         // text
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
         self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
         self.contentVerticalAlignment = .bottom                              // button text aligned bottom of self
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 15.0, right: 0.0)
         
-        // image - when I add image it moves the text...
-        // flexibilityButton.imageEdgeInsets = UIEdgeInsets(top: 40, left: 40, bottom: 70.0, right: 40.0)
+        self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 20, bottom: 10.0, right: 20.0)
     }
     
     func exerciseButtonDesign() {
@@ -295,7 +298,7 @@ extension UIButton {
         self.layer.cornerRadius = 45                                         // rounded edges
         self.layer.borderWidth = 2                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
-        self.clipsToBounds = true
+        self.clipsToBounds = true                                            // confines bounds of view
         
         // text
         self.setTitleColor(UIColor.white, for: .normal)                      // button text color
@@ -362,7 +365,7 @@ extension UIButton {
         self.layer.cornerRadius = self.frame.height / 2                         // make button round
         self.setTitleColor(UIColor.white, for: .normal)                         // normal text colour
         self.setTitleColor(UIColor.gray, for: .selected)                        // selected text color
-        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 25)
+        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 25.0)
     }
     
     // applied to Enter button on Registration page
@@ -380,7 +383,7 @@ extension UIButton {
         self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
         self.setTitleColor(UIColor.white, for: .normal)                         // enabled text colour
         self.setTitleColor(UIColor.gray, for: .disabled)                        // disabled text color
-        self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 25)    // text font and size
+        self.titleLabel?.font = Global.text_fonts.m_routineButtonFont   // text font and size
         self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 40, bottom: 0.0, right: 40)     // text allignment
 
     }
@@ -390,8 +393,13 @@ extension UIButton {
         self.backgroundColor = Global.color_schemes.m_grey         //background color
         self.layer.cornerRadius = self.frame.height / 4             // make button rounded
         self.setTitleColor(UIColor.white, for: .normal)             // enable text colour
-        self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 25)                // text font and size
+        self.titleLabel?.font = Global.text_fonts.m_routineButtonFont               // text font and size
         self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 40, bottom: 0.0, right: 40)     // text allignment
+    }
+    
+    func applyHomeButton(){
+        self.setImage(UIImage(named: "logo"), for: .normal)
+        self.frame = CGRect(x: 0, y:0, width: 10, height: 5)
     }
 }
 
@@ -400,8 +408,8 @@ extension UISlider {
     
     //Questionnaire slider styling
     func questionnaireSlider(){
-        self.minimumTrackTintColor = Global.color_schemes.m_blue2
-        self.setThumbImage(UIImage(named: "Slider"), for: .normal)
+        self.minimumTrackTintColor = Global.color_schemes.m_blue2               // custom track colour tint
+        self.setThumbImage(UIImage(named: "Slider"), for: .normal)              // custom thumb slider image
     }
 }
 
@@ -420,6 +428,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        
         //On cold start, if user does not exist, enter Questionnaire storyboard
         if(!global_UserData.User_Exists()){
             print("USERNMAE: " + global_UserData.Get_User_Data().UserName)

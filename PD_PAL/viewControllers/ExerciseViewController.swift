@@ -22,7 +22,6 @@ class ExerciseViewController: UIViewController {
     @IBOutlet weak var skipButton: UIButton!
     
     /* global variables */
-    var routine_data: [String]!
     var exercise_name: String!
     var exercise_number = 1
 
@@ -81,10 +80,23 @@ class ExerciseViewController: UIViewController {
         global_UserData.Add_Exercise_Done(ExerciseName: exercise_name ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
     }
     
+    /* forward pass data between view controllers */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        /* use segue to forward pass exercise name to destination exercise view controller */
+        if segue.identifier == "SkipSegue" {
+            let vc = segue.destination as! tempViewController
+            Global.next_routine_exercise = Global.routine_data[Global.routine_index + 1]
+            Global.routine_index += 1
+            if Global.routine_index >= 2 { Global.routine_index = -1 }
+        }
+    }
+    
     /* put code that depends on IsRoutineExercise flag in here */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        print ("next_routine_exercise", Global.next_routine_exercise)
         if Global.next_routine_exercise != "" { self.exercise_name = Global.next_routine_exercise }
         Global.next_routine_exercise = ""
         
@@ -118,8 +130,12 @@ class ExerciseViewController: UIViewController {
         timerLabel.timerDesign()
         self.view.addSubview(timerLabel)
         
+        print ("exercise_name: ", exercise_name)
+        let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name)
+        print ("link: ", exercise_data.Link)
+        
         /* gif */
-        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: "neck_side_stretch") else { return }
+        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName:         exercise_data.Link) else { return }
         view.addSubview(gif)
         gif.startAnimating()
         
@@ -160,6 +176,15 @@ class ExerciseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
+        
+        let homeButton = UIButton(type: .custom)
+        homeButton.applyHomeButton()
+        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+        let barButton = UIBarButtonItem(customView: homeButton)
+        
+        // home button on navigation bar
+        self.navigationItem.rightBarButtonItem  = barButton
+        self.title = nil
     }
     
     /* when home button on navigation bar is tapped */
@@ -171,14 +196,14 @@ class ExerciseViewController: UIViewController {
     
     /* when skip button is tapped */
     @objc func skipButtonTapped() {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Exercise", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ExerciseVC")
-        self.present(newViewController, animated: true, completion: nil)
-        print ("log exercise numer: ", exercise_number)
-        print ("log routine_data: ", routine_data)
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Exercise", bundle: nil)
+//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ExerciseVC2")
+//        self.present(newViewController, animated: true, completion: nil)
+        //print ("log exercise numer: ", exercise_number)
+        //print ("log routine_data: ", routine_data)
         //print ("log current exercise: ", self.routine_data[2])
         
-        Global.next_routine_exercise = "WALKING"
+        //Global.next_routine_exercise = "WALKING"
         //self.exercise_number += 1
         
         // wrap skip button

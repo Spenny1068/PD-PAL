@@ -10,6 +10,7 @@
 // <Date, Name, Changes made>
 // <Oct. 26, 2019, Spencer Lall, added categories buttons>
 // <October 27, 2019, Spencer Lall, applied default page design>
+// <November 15, 2019, Izyl Canonicato, Category buttons >
 
 
 import UIKit
@@ -33,29 +34,25 @@ class CategoriesViewController: UIViewController {
         flexibilityButton.setTitle("Flexibility",for: .normal)                            // button text
         flexibilityButton.categoryButtonDesign()
         flexibilityButton.backgroundColor = Global.color_schemes.m_flexButton             // background color
-        //let flexibilityImage = UIImage(named: "flexibility.png")
-        //flexibilityButton.setImage(flexibilityImage , for: UIControl.State.normal)
+        flexibilityButton.setBackgroundImage(UIImage(named: "FlexibilityBtnImg"), for: .normal)
         
         //-> strength
         strengthButton.setTitle("Strength",for: .normal)                            // button text
         strengthButton.categoryButtonDesign()
         strengthButton.backgroundColor = Global.color_schemes.m_blue2             // background color
-        //let strengthImage = UIImage(named: "strength.png")
-        //strengthButton.setImage(strengthImage , for: UIControl.State.normal)
+        strengthButton.setBackgroundImage(UIImage(named: "StrengthBtnImg"), for: .normal)
         
         //-> cardio
         cardioButton.setTitle("Cardio",for: .normal)                            // button text
         cardioButton.categoryButtonDesign()
         cardioButton.backgroundColor = Global.color_schemes.m_blue4             // background color
-        //let cardioImage = UIImage(named: "cardio.png")
-        //cardioButton.setImage(cardioImage , for: UIControl.State.normal)
+        cardioButton.setBackgroundImage(UIImage(named: "CardioBtnImg"), for: .normal)
         
         //-> balance
         balanceButton.setTitle("Balance",for: .normal)                            // button text
         balanceButton.categoryButtonDesign()
         balanceButton.backgroundColor = Global.color_schemes.m_blue1             // background color
-        //let balanceImage = UIImage(named: "balance.png")
-        //balanceButton.setImage(balanceImage , for: UIControl.State.normal)
+        balanceButton.setBackgroundImage(UIImage(named: "BalanceBtnImg"), for: .normal)
         
         /* show buttons */
         self.view.addSubview(flexibilityButton)
