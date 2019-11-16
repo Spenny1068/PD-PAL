@@ -35,12 +35,15 @@ let db = admin.firestore();
 					console.log(doc.id);
 					users.push(doc.id);
 				});
+
+				//wait until the promise is fufilled then send response
+				response.send(JSON.stringify(users));
 				return null;
 		})
 		.catch(err => {
 			console.log('Error getting documents',err);
+			response.send(JSON.stringify(users));
 		})
 		console.log("Request.body->", request.body)
-
-  response.send("Login function");
- });
+		
+  });
