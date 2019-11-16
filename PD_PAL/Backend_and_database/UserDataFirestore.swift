@@ -107,6 +107,8 @@ class UserDataFirestore {
         
     }
     
+    //This function will update the data in Firebase. It will check both if the user has allowed us to store data in Firebase, as well as if it is time for another update.
+    //This should be the only function called. All other functions are either internal functions or only for the sake of testing.
     func Update_Firebase(DayFrequency: Int?, HourFrequency: Int?, MinuteFrequency: Int?, SecondFrequency: Int?) -> String {
         
         print(" --- Beginning Firestore update process --- ")
@@ -162,6 +164,8 @@ class UserDataFirestore {
 
     }
     
+    //Updates the user info on Firebase.
+    //This function will be called as a part of Update_Firebase() and should not be called on its own.
     func Update_UserInfo(completion: @escaping (Int) -> ()) {
         
         print("Beginning update of UserInfo")
@@ -218,10 +222,14 @@ class UserDataFirestore {
         
     }
     
+    //Updates the routines on Firebase.
+    //This function will be called as a part of Update_Firebase() and should not be called on its own.
     func Update_Routines() {
         
     }
     
+    //Updates the exercise data on Firebase.
+    //This function will be called as a part of Update_Firebase() and should not be called on its own.
     func Update_ExerciseData() {
         
     }
@@ -286,6 +294,40 @@ class UserDataFirestore {
             completion(returnVal)
             
         }
+    }
+    
+    /*
+     This function gets the routines located in Firebase.
+     Because of the asynchronous nature of Firebase, call using:
+     
+     global_UserDataFirestore.Get_Routines(targetUser: <User>) { ReturnedData in
+     //Execute any code dependent on the return value of the function here, or assign it to a global variable.
+     }
+     
+     Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
+     */
+    func Get_Routines(targetUser: String?, completion: @escaping ([(RoutineName: String, Exercises: [String])])->()) {
+        
+        //If the user does not provide a UUID to use, get the current user's UUID
+        let targetUUID = targetUser ?? global_UserData.Get_User_Data().UserUUID
+        
+    }
+    
+    /*
+     This function gets the routines located in Firebase.
+     Because of the asynchronous nature of Firebase, call using:
+     
+     global_UserDataFirestore.Get_ExerciseData(targetUser: <User>) { ReturnedData in
+     //Execute any code dependent on the return value of the function here, or assign it to a global variable.
+     }
+     
+     Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
+     */
+    func Get_ExerciseData(targetUser: String?, completion: @escaping ()->()) {
+        
+        //If the user does not provide a UUID to use, get the current user's UUID
+        let targetUUID = targetUser ?? global_UserData.Get_User_Data().UserUUID
+        
     }
     
 }
