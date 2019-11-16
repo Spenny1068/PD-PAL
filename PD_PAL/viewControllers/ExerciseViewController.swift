@@ -176,6 +176,15 @@ class ExerciseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
+        
+        let homeButton = UIButton(type: .custom)
+        homeButton.applyHomeButton()
+        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+        let barButton = UIBarButtonItem(customView: homeButton)
+        
+        // home button on navigation bar
+        self.navigationItem.rightBarButtonItem  = barButton
+        self.title = nil
     }
     
     /* when home button on navigation bar is tapped */

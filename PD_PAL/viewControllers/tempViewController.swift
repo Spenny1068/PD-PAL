@@ -90,11 +90,19 @@ class tempViewController: UIViewController {
             Global.next_routine_exercise = ""
             
             /* navigation bar stuff */
-            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-            //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1
+//            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+//            //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue1
+//            self.title = nil
+//            let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
+//            self.navigationItem.rightBarButtonItem  = homeButton
+            let homeButton = UIButton(type: .custom)
+            homeButton.applyHomeButton()
+            homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+            let barButton = UIBarButtonItem(customView: homeButton)
+            
+            // home button on navigation bar
+            self.navigationItem.rightBarButtonItem  = barButton
             self.title = nil
-            let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-            self.navigationItem.rightBarButtonItem  = homeButton
             
             /* populate exercise description */
             let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
