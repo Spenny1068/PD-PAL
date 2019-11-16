@@ -36,13 +36,25 @@ let db = admin.firestore();
 					users.push(doc.id);
 				});
 
+				//check if the name is in the realtime database
+				if(users.includes(request.body.name))
+				{
+					response.send("true");
+				}
+				else 
+				{
+					response.send("false");
+				}
+
 				//wait until the promise is fufilled then send response
-				response.send(JSON.stringify(users));
+				//response.send(JSON.stringify(users));
+				//response.send(JSON.stringify(request.body.name));
 				return null;
 		})
 		.catch(err => {
 			console.log('Error getting documents',err);
-			response.send(JSON.stringify(users));
+			response.send(/*JSON.stringify(users)*/"error");
+		  //response.send(JSON.stringify(request.body.name));
 		})
 		console.log("Request.body->", request.body)
 		
