@@ -67,12 +67,14 @@ class ExerciseViewController: UIViewController {
         /* Dynamic elements */
         
         //-> stop button
+        stopButton.applyDefaultTimerButtonFrame()
         stopButton.timerButtonDesign()
         stopButton.setTitle("STOP", for: .normal)
         stopButton.backgroundColor = Global.color_schemes.m_lightRed
         self.view.addSubview(stopButton)
         
         //-> completed Button
+        completedButton.applyDefaultTimerButtonFrame()
         completedButton.timerButtonDesign()
         completedButton.setTitle("COMPLETED", for: .normal)
         completedButton.backgroundColor = Global.color_schemes.m_blue2
@@ -93,13 +95,15 @@ class ExerciseViewController: UIViewController {
         if Global.IsRoutineExercise == 1 {
             
             /* Skip button */
-            skipButton.skipButtonDesign()
+            skipButton.applyLeftTimerButtonFrame()
+            skipButton.timerButtonDesign()
             skipButton.setTitle("SKIP",for: .normal)
             skipButton.backgroundColor = Global.color_schemes.m_lightGreen
             self.view.addSubview(skipButton)
             
             /* start button */
-            startButton.timerButtonDesign2()
+            startButton.applyRightTimerButtonFrame()
+            startButton.timerButtonDesign()
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             self.view.addSubview(startButton)
@@ -118,7 +122,10 @@ class ExerciseViewController: UIViewController {
         /* last exercise */
         if Global.routine_index == 2 {
             skipButton.isHidden = true
-            exitRoutineButton.skipButtonDesign()
+            exitRoutineButton.applyLeftTimerButtonFrame()
+            exitRoutineButton.setTitle("EXIT ROUTINE", for: .normal)
+            exitRoutineButton.backgroundColor = Global.color_schemes.m_lightRed
+            exitRoutineButton.timerButtonDesign()
             exitRoutineButton.isHidden = false
         }
         
@@ -220,7 +227,6 @@ class ExerciseViewController: UIViewController {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Categories", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "StrengthVC")
             self.present(newViewController, animated: true, completion: nil)
-            
         }
         
         /* last excercise */

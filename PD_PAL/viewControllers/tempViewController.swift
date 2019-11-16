@@ -64,12 +64,14 @@ class tempViewController: UIViewController {
             /* dynamic elements */
             
             //-> stop button
+            stopButton.applyDefaultTimerButtonFrame()
             stopButton.timerButtonDesign()
             stopButton.setTitle("STOP", for: .normal)
             stopButton.backgroundColor = Global.color_schemes.m_lightRed
             //self.view.addSubview(stopButton)
             
             //-> completed Button
+            completedButton.applyDefaultTimerButtonFrame()
             completedButton.timerButtonDesign()
             completedButton.setTitle("COMPLETED", for: .normal)
             completedButton.backgroundColor = Global.color_schemes.m_blue2
@@ -79,12 +81,14 @@ class tempViewController: UIViewController {
             timerLabel.timerDesign()
             
             //-> Skip button
-            skipButton.skipButtonDesign()
+            skipButton.applyLeftTimerButtonFrame()
+            skipButton.timerButtonDesign()
             skipButton.setTitle("SKIP",for: .normal)
             skipButton.backgroundColor = Global.color_schemes.m_lightGreen
             
             //-> start button
-            startButton.timerButtonDesign2()
+            startButton.applyRightTimerButtonFrame()
+            startButton.timerButtonDesign()
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             

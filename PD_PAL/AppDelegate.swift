@@ -328,46 +328,12 @@ extension UIButton {
     }
     
     func timerButtonDesign() {
-        self.frame = CGRect(x: 36, y: 575, width: 300, height: 75)            // rectangle coordinates
 
         // design
         self.layer.cornerRadius = 30                                         // rounded edges
         self.layer.borderWidth = 3                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
 
-        // text
-        self.setTitleColor(UIColor.black, for: .normal)                      // button text color
-        self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
-        self.contentVerticalAlignment = .center                              // button text aligned bottom of self
-        self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
-    }
-    
-    func timerButtonDesign2() {                                               // This start button is for the Routines page
-        self.frame = CGRect(x: 190, y: 550, width: 175, height: 100)          // rectangle coordinates
-        
-        // design
-        self.layer.cornerRadius = 30                                         // rounded edges
-        self.layer.borderWidth = 3                                           // border width in points
-        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
-        
-        // text
-        self.setTitleColor(UIColor.black, for: .normal)                      // button text color
-        self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
-        self.contentVerticalAlignment = .center                              // button text aligned bottom of self
-        self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
-    }
-    
-    func skipButtonDesign() {
-        
-        self.frame = CGRect(x: 10, y: 550, width: 175, height: 100)        // rectangle coordinates
-        
-        // design
-        self.layer.cornerRadius = 30                                         // rounded edges
-        self.layer.borderWidth = 3                                           // border width in points
-        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
-        
         // text
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
         self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
@@ -402,7 +368,6 @@ extension UIButton {
         self.setTitleColor(UIColor.gray, for: .disabled)                        // disabled text color
         self.titleLabel?.font = Global.text_fonts.m_routineButtonFont   // text font and size
         self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 40, bottom: 0.0, right: 40)     // text allignment
-
     }
     
     // applied to navigation to previous Q in Questionnaire
@@ -418,6 +383,11 @@ extension UIButton {
         self.setImage(UIImage(named: "logo"), for: .normal)
         self.frame = CGRect(x: 0, y:0, width: 10, height: 5)
     }
+    
+    /* frames for the three different timer buttons */
+    func applyDefaultTimerButtonFrame() { self.frame = CGRect(x: 36, y: 575, width: 300, height: 75) }
+    func applyLeftTimerButtonFrame() { self.frame = CGRect(x: 10, y: 550, width: 175, height: 100) }
+    func applyRightTimerButtonFrame() { self.frame = CGRect(x: 190, y: 550, width: 175, height: 100) }
 }
 
 /* UISlider methods */
