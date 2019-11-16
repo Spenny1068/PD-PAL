@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController {
             
             //let firebase know that user agreed
             userDB.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: true)
-            print(userDB.Get_User_Data())
+            //print(userDB.Get_User_Data())
         }
         else
         {
@@ -47,7 +47,7 @@ class SettingsViewController: UIViewController {
             //let firebase know that user did not allow
             userDB.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: false)
             
-            print(userDB.Get_User_Data())
+            //print(userDB.Get_User_Data())
         }
     }
 }
