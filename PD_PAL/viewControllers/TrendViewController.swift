@@ -104,7 +104,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         super.viewDidLayoutSubviews()
         rChartView?.prepareForDrawChart()
         rChartView?.setNeedsLayout()
-        rChartView?.setNeedsDisplay()
+        rChartView?.setNeedsDisplay()   
     }
   
     // table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y
