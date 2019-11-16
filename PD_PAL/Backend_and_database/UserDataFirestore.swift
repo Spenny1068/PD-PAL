@@ -15,6 +15,8 @@ Revision History
     Created file
  - 12/11/2019 : William Huong
     Implemented read function for UserInfo
+ - 15/11/2019 : William Huong
+    Implement UserInfo update function
 */
 
 /*
@@ -92,8 +94,136 @@ class UserDataFirestore {
     //Instance of Firestore we will use
     private let FirestoreDB = Firestore.firestore()
     
+    //To make the rest of the code easier
+    private let dateFormatter = DateFormatter()
+    private let dateFormat = "MMM d, yyyy, hh:mm:ss a"
+    
     //Constructor
     init() {
+        
+        //Set up the date formatter
+        self.dateFormatter.calendar = Calendar.current
+        self.dateFormatter.dateFormat = self.dateFormat
+        
+    }
+    
+    func Update_Firebase(DayFrequency: Int?, HourFrequency: Int?, MinuteFrequency: Int?, SecondFrequency: Int?) -> String {
+        
+        print(" --- Beginning Firestore update process --- ")
+        
+        
+        /*
+        Check for permission to upload to Firestore
+        */
+        
+        if( !global_UserData.Get_User_Data().FirestoreOK ) {
+            print("User has not permitted storing data in Firestore")
+            print(" --- Firestore was not updated --- ")
+            return "NO_AUTH"
+        }
+        print("User has permitted storing data in Firestore")
+        
+        
+        /*
+        Check if we need to update
+        */
+        
+        
+        //Create a Date object representing what time we need to update Firestore
+        var dateComponents = DateComponents()
+        dateComponents.day = DayFrequency
+        dateComponents.hour = HourFrequency
+        dateComponents.minute = MinuteFrequency
+        dateComponents.second = SecondFrequency
+
+        let nextUpdateTime = Calendar.current.date(byAdding: dateComponents, to: global_UserData.Get_LastBackup())
+        
+        print("The time is currently \(self.dateFormatter.string(from: Date()))")
+        print("The next update is scheduled to be done at \(self.dateFormatter.string(from: nextUpdateTime!))")
+        
+        if( Date() <= nextUpdateTime! )
+        {
+            //Not time to update yet
+            print("Current time has not passed the next scheduled update time")
+            print(" --- Firestore was not updated --- ")
+            return "NO_SCHEDULE"
+        }
+        print("Current time has passed the next scheduled update time")
+        
+        
+        /*
+        Begin the update process
+        */
+        
+        
+        //Update the UserInfo
+        
+        return "SUCCESS"
+
+    }
+    
+    func Update_UserInfo(completion: @escaping (Int) -> ()) {
+        
+        print("Beginning update of UserInfo")
+        
+        //Grab the UserInfo we are going to write to Firestore
+        let currentUserInfo = global_UserData.Get_User_Data()
+        
+        let docData: [String: Any] = [
+            "UserName" : currentUserInfo.UserName,
+            "QuestionsAnswered" : currentUserInfo.QuestionsAnswered,
+            "WalkingDuration" : currentUserInfo.WalkingDuration,
+            "ChairAccessible" : currentUserInfo.ChairAccessible,
+            "WeightsAccessible" : currentUserInfo.WeightsAccessible,
+            "ResistBandAccessible" : currentUserInfo.ResistBandAccessible,
+            "PoolAccessible" : currentUserInfo.PoolAccessible,
+            "Intensity" : currentUserInfo.Intensity,
+            "PushNotifications" : currentUserInfo.PushNotifications
+        ]
+        
+        //Create the document reference
+        let userDocRef = self.FirestoreDB.collection("Users").document(currentUserInfo.UserUUID)
+        
+        userDocRef.getDocument { (document, error) in
+            print("Beginning document read")
+            guard let document = document, document.exists else {
+                print("The user does not current have any data in Firestore. Creating the user document")
+                
+                //Add a document for the user
+                userDocRef.setData(docData) { err in
+                    if let err = err {
+                        print("Failed to add user document : \(err)")
+                        completion(1)
+                    } else {
+                        print("Successfully added user document")
+                        completion(0)
+                    }
+                }
+                
+                return
+            }
+            
+            //The user document does exist. Update instead of overwriting
+            userDocRef.updateData(docData) { err in
+                if let err = err {
+                    print("Failed to update user document : \(err)")
+                    completion(1)
+                } else {
+                    print("Successfully updated user document")
+                    completion(0)
+                }
+            }
+            
+        }
+        
+    }
+    
+    func Update_Routines() {
+        
+    }
+    
+    func Update_ExerciseData() {
+        
     }
     
     /*
