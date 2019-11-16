@@ -21,6 +21,8 @@
 		2EF4E823236D081A00CCECBB /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF4E80E236D00FB00CCECBB /* SQLite.framework */; };
 		2EF4E824236D081A00CCECBB /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF4E80E236D00FB00CCECBB /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EF5A738237FC322000AF9AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EF5A72E237FC322000AF9AD /* GoogleService-Info.plist */; };
+		3D0471062380761300CA0A6A /* UserDataFirestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0470FC2380761300CA0A6A /* UserDataFirestore.swift */; };
+		3D0471082380762700CA0A6A /* UserDataFirestoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0471072380762700CA0A6A /* UserDataFirestoreTests.swift */; };
 		4510853D23639DB800338F82 /* flexibility.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510852823639DB800338F82 /* flexibility.png */; };
 		4510853E23639DB800338F82 /* routine4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4510852923639DB800338F82 /* routine4.jpg */; };
 		4510853F23639DB800338F82 /* routine1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4510852A23639DB800338F82 /* routine1.jpg */; };
@@ -209,6 +211,8 @@
 		2EF4E81D236D027E00CCECBB /* testExerciseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testExerciseDB.swift; sourceTree = "<group>"; };
 		2EF4E81F236D028800CCECBB /* userDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userDataTests.swift; sourceTree = "<group>"; };
 		2EF5A72E237FC322000AF9AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "PD_PAL/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3D0470FC2380761300CA0A6A /* UserDataFirestore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataFirestore.swift; sourceTree = "<group>"; };
+		3D0471072380762700CA0A6A /* UserDataFirestoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataFirestoreTests.swift; sourceTree = "<group>"; };
 		4510852823639DB800338F82 /* flexibility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flexibility.png; sourceTree = "<group>"; };
 		4510852923639DB800338F82 /* routine4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = routine4.jpg; sourceTree = "<group>"; };
 		4510852A23639DB800338F82 /* routine1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = routine1.jpg; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 		2EF4E802236D002100CCECBB /* Backend_and_database */ = {
 			isa = PBXGroup;
 			children = (
+				3D0470FC2380761300CA0A6A /* UserDataFirestore.swift */,
 				2EF4E800236D000B00CCECBB /* UserData.swift */,
 				2EF4E7FE236CFFFA00CCECBB /* StepCount.swift */,
 				2EF4E7FC236CFFEB00CCECBB /* ExerciseDatabase.swift */,
@@ -431,6 +436,7 @@
 		4517F9D52351587800E5ED83 /* PD_PALTests */ = {
 			isa = PBXGroup;
 			children = (
+				3D0471072380762700CA0A6A /* UserDataFirestoreTests.swift */,
 				2EF4E81F236D028800CCECBB /* userDataTests.swift */,
 				2EF4E81D236D027E00CCECBB /* testExerciseDB.swift */,
 				4517F9D82351587800E5ED83 /* Info.plist */,
@@ -878,6 +884,7 @@
 				45EB46182367C0AA009BA044 /* StrengthViewController.swift in Sources */,
 				45EB46232367C0AA009BA044 /* WalkingQuestionViewController.swift in Sources */,
 				45EB46212367C0AA009BA044 /* SetUpViewController.swift in Sources */,
+				3D0471062380761300CA0A6A /* UserDataFirestore.swift in Sources */,
 				45EB46152367C0AA009BA044 /* RoutinesViewController.swift in Sources */,
 				45EB46172367C0AA009BA044 /* BalanceViewController.swift in Sources */,
 				45EB46222367C0AA009BA044 /* LoginViewController.swift in Sources */,
@@ -892,6 +899,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EF4E821236D029A00CCECBB /* userDataTests.swift in Sources */,
+				3D0471082380762700CA0A6A /* UserDataFirestoreTests.swift in Sources */,
 				2EF4E822236D029A00CCECBB /* testExerciseDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

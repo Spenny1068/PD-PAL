@@ -423,6 +423,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        //Initialize Firebase components
         FirebaseApp.configure()
         
         //On cold start, if user does not exist, enter Questionnaire storyboard
@@ -462,3 +463,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 let global_UserData = UserData()
 let global_ExerciseData = ExerciseDatabase()
 let global_StepTracker = StepCount()
+let global_UserDataFirestore = UserDataFirestore()
