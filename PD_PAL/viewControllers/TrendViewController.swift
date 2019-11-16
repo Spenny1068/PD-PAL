@@ -237,7 +237,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         rChartView?.labelTexts = ["Flexibility", "Cardio", "Balance", "Strength"]
         rChartView?.numberOfVertexes = 4
         rChartView?.numberTicks = 20 //any more ticks would look very condensed. Leaving the full data for the web component
-        rChartView?.style = RadarChartStyle(color: color,backgroundColor: backgroundColor, xAxis: RadarChartStyle.Axis(colors: [xAxisColor], widths: [0.5, 0.5, 0.5, 0.5, 2.0]),yAxis: RadarChartStyle.Axis(colors: [yAxisColor], widths: [0.5]), label: RadarChartStyle.Label(fontName: "Helvetica", fontColor: fontColor, fontSize: 11, lineSpacing: 0, letterSpacing: 0, margin: 10))
+        rChartView?.style = RadarChartStyle(color: color,backgroundColor: backgroundColor, xAxis: RadarChartStyle.Axis(colors: [xAxisColor], widths: [0.5, 0.5, 0.5, 0.5, 2.0]),yAxis: RadarChartStyle.Axis(colors: [yAxisColor], widths: [0.5]), label: RadarChartStyle.Label(fontName: "Helvetica", fontColor: fontColor, fontSize: 15, lineSpacing: 0, letterSpacing: 0, margin: 10))
         rChartView?.option = RadarChartOption()
     }
     
@@ -361,10 +361,12 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                         
                     }
                     
-                    //generateStepChart(dataPoints: daysOfWeek, values: stepDataWeekly)
+                    generateStepChart(dataPoints: daysOfWeek, values: stepDataWeekly)
+                    /*
                     //test
                     stepDataWeekly = [10.0, 9.0, 8.0, 7.0, 6.0] //dummy values
                     generateStepChart(dataPoints: daysOfWeek, values: stepDataWeekly)
+                     */
                 }
                 else if eDateDay == sDateDay && eDateHour != sDateHour //same day. Get hourly data
                 {
@@ -373,10 +375,13 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                         stepDataHourly[i] = Double(global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour+i))
                     }
                     
-                     //generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
+                     generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
+                    
+                     /*
                      //test
                      stepDataHourly = [1.0, 2.0, 3.0, 4.0, 5.0] //dummy values
                      generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
+                     */
                 }
                 else
                 {
