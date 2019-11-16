@@ -43,6 +43,7 @@
 		455E1BF4236E9B0B00309A1D /* Walking.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1BEF236E9B0B00309A1D /* Walking.png */; };
 		455E1BF6236EA1BB00309A1D /* leg_stance2.png in Resources */ = {isa = PBXBuildFile; fileRef = 455E1BF5236EA1BB00309A1D /* leg_stance2.png */; };
 		456EE886237654E500842EB6 /* ppp.png in Resources */ = {isa = PBXBuildFile; fileRef = 456EE885237654E400842EB6 /* ppp.png */; };
+		457757BD237F941900DAE97B /* tempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457757BC237F941900DAE97B /* tempViewController.swift */; };
 		457C0F6A2366B54500A918B2 /* Exercise.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457C0F692366B54500A918B2 /* Exercise.storyboard */; };
 		457C0F6C2366B6C700A918B2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 457C0F6B2366B6C700A918B2 /* logo.png */; };
 		45987B0B237E0B12000E68AA /* neck_side_stretch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 45987B03237E0B12000E68AA /* neck_side_stretch.gif */; };
@@ -234,6 +235,7 @@
 		455E1BEF236E9B0B00309A1D /* Walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walking.png; sourceTree = "<group>"; };
 		455E1BF5236EA1BB00309A1D /* leg_stance2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_stance2.png; sourceTree = "<group>"; };
 		456EE885237654E400842EB6 /* ppp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppp.png; sourceTree = "<group>"; };
+		457757BC237F941900DAE97B /* tempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempViewController.swift; sourceTree = "<group>"; };
 		457C0F692366B54500A918B2 /* Exercise.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Exercise.storyboard; sourceTree = "<group>"; };
 		457C0F6B2366B6C700A918B2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		45987B03237E0B12000E68AA /* neck_side_stretch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = neck_side_stretch.gif; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 		45EB46042367C0AA009BA044 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				457757BC237F941900DAE97B /* tempViewController.swift */,
 				45EB46072367C0AA009BA044 /* BalanceViewController.swift */,
 				45EB460B2367C0AA009BA044 /* CardioViewController.swift */,
 				45EB460C2367C0AA009BA044 /* CategoriesViewController.swift */,
@@ -727,6 +730,7 @@
 				45EB461D2367C0AA009BA044 /* QuestionnaireNavController.swift in Sources */,
 				45EB461F2367C0AA009BA044 /* mainPageViewController.swift in Sources */,
 				45EB46202367C0AA009BA044 /* EquipmentQuestionnaireViewController.swift in Sources */,
+				457757BD237F941900DAE97B /* tempViewController.swift in Sources */,
 				45EB46182367C0AA009BA044 /* StrengthViewController.swift in Sources */,
 				45EB46232367C0AA009BA044 /* WalkingQuestionViewController.swift in Sources */,
 				45EB46212367C0AA009BA044 /* SetUpViewController.swift in Sources */,

@@ -13,7 +13,7 @@
 // <November 11, 2019, Julia Kim, Adding scrolling to the page, generate radar graph, implemented date pickers>
 // <November 13, 2019, Julia Kim, Added hours to the date picker, input validation for date picker range, updating radar graph utilizing the same update button for the table>
 // <November 14, 2019, Julia Kim, Refactored date querying to exercises completed database, fixed update button for radar>
-// <November 15, 2019, Julia Kim, Added Line Chart for step data, fixed scrollable view>
+// <November 15, 2019, Julia Kim, Added Line Chart for step data, fixed scrollable view, refactored date input validation>
 
 /*
  Known Bugs
@@ -48,6 +48,8 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     private var sDatePicker: UIDatePicker?
     private var eDatePicker: UIDatePicker?
     private var dateSelected = false
+    
+    let dateFormatter = DateFormatter()
     
     private var eDateYear = 0
     private var eDateMonth = 0
@@ -164,12 +166,17 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         startDate.inputView = sDatePicker
         
         eDatePicker?.datePickerMode = .dateAndTime
+        
+        //default end date
+        eDatePicker?.date = Date() //default value of end date to be today's date
+        dateFormatter.dateFormat = "MM/dd/yyyy HH"
+        endDate.text = dateFormatter.string(from: eDatePicker!.date)
+        
         eDatePicker?.addTarget(self, action: #selector(TrendViewController.eDateChanged(datePicker:)), for: .valueChanged)
         endDate.inputView = eDatePicker
     }
     
     @objc func sDateChanged(datePicker: UIDatePicker){
-        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy HH"
         startDate.text = dateFormatter.string(from: datePicker.date)
         self.view.endEditing(true)
@@ -184,7 +191,6 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     }
     
     @objc func eDateChanged(datePicker: UIDatePicker){
-        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy HH"
         endDate.text = dateFormatter.string(from: datePicker.date)
         
@@ -194,76 +200,24 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         eDateHour = Calendar.current.component(.hour, from: datePicker.date)
         eDateMinute = Calendar.current.component(.minute, from: datePicker.date)
         
-        if sDateYear > eDateYear
+        //input validation
+        let convertRaw = DateFormatter()
+        convertRaw.dateFormat = "MM/dd/yyyy HH:mm"
+        let sDateRaw = "\(sDateMonth)/" + "\(sDateDay)/" + "\(sDateYear) " + "\(sDateHour):" + "\(sDateMinute)"
+        let eDateRaw = "\(eDateMonth)/" + "\(eDateDay)/" + "\(eDateYear) " + "\(eDateHour):" + "\(eDateMinute)"
+        let converted_sDate = convertRaw.date(from: sDateRaw) as Date?
+        let converted_eDate = convertRaw.date(from: eDateRaw) as Date?
+        
+        if converted_sDate?.compare(converted_eDate!) == .orderedAscending
+        {
+            //start date is smaller than end date
+            self.view.endEditing(true)
+        }
+        else
         {
             self.clearEndDate()
         }
-        else
-        {
-            if sDateYear == eDateYear
-            {
-                if sDateMonth > eDateMonth
-                {
-                    self.clearEndDate()
-                }
-                else
-                {
-                    if sDateMonth == eDateMonth
-                    {
-                        if sDateDay > eDateDay
-                        {
-                            self.clearEndDate()
-                        }
-                        else
-                        {
-                            if sDateDay ==  eDateDay
-                            {
-                                if sDateHour > eDateHour
-                                {
-                                    self.clearEndDate()
-                                }
-                                else
-                                {
-                                    if sDateHour == eDateHour
-                                    {
-                                        if sDateMinute > eDateMinute
-                                        {
-                                            self.clearEndDate()
-                                        }
-                                        else
-                                        {
-                                            //equal min or smaller
-                                            self.view.endEditing(true)
-                                        }
-                                    }
-                                    else
-                                    {
-                                        //smaller start hour
-                                        self.view.endEditing(true)
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                //smaller start day
-                                self.view.endEditing(true)
-                            }
-                        }
-                    }
-                else
-                {
-                    //smaller start month
-                    self.view.endEditing(true)
-                }
-            }
-        }
-        else
-        {
-            //smaller start year
-            self.view.endEditing(true)
-        }
-            
-        }
+
     }
     
     
@@ -289,7 +243,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         rChartView?.labelTexts = ["Flexibility", "Cardio", "Balance", "Strength"]
         rChartView?.numberOfVertexes = 4
         rChartView?.numberTicks = 20 //any more ticks would look very condensed. Leaving the full data for the web component
-        rChartView?.style = RadarChartStyle(color: color,backgroundColor: backgroundColor, xAxis: RadarChartStyle.Axis(colors: [xAxisColor], widths: [0.5, 0.5, 0.5, 0.5, 2.0]),yAxis: RadarChartStyle.Axis(colors: [yAxisColor], widths: [0.5]), label: RadarChartStyle.Label(fontName: "Helvetica", fontColor: fontColor, fontSize: 11, lineSpacing: 0, letterSpacing: 0, margin: 10))
+        rChartView?.style = RadarChartStyle(color: color,backgroundColor: backgroundColor, xAxis: RadarChartStyle.Axis(colors: [xAxisColor], widths: [0.5, 0.5, 0.5, 0.5, 2.0]),yAxis: RadarChartStyle.Axis(colors: [yAxisColor], widths: [0.5]), label: RadarChartStyle.Label(fontName: "Helvetica", fontColor: fontColor, fontSize: 15, lineSpacing: 0, letterSpacing: 0, margin: 10))
         rChartView?.option = RadarChartOption()
     }
     
@@ -300,12 +254,11 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         var categoryMatch = (" ", " ", " ", " ", " ")
         var catCount = [0, 0, 0, 0]
         var rawDate = "00/00/0000 HH"
-        let convertRaw = DateFormatter()
-        convertRaw.dateFormat = "MM/dd/yyyy HH"
+        dateFormatter.dateFormat = "MM/dd/yyyy HH"
         let sDateRaw = "\(sDateMonth)/" + "\(sDateDay)/" + "\(sDateYear) " + "\(sDateHour)"
         let eDateRaw = "\(eDateMonth)/" + "\(eDateDay)/" + "\(eDateYear) " + "\(eDateHour)"
-        let converted_sDate = convertRaw.date(from: sDateRaw) as Date?
-        let converted_eDate = convertRaw.date(from: eDateRaw) as Date?
+        let converted_sDate = dateFormatter.date(from: sDateRaw) as Date?
+        let converted_eDate = dateFormatter.date(from: eDateRaw) as Date?
         
         for entry in exerciseData{
             //get the category of the exercise done fetched from the DB for the selected date
@@ -313,7 +266,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
             categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry.nameOfExercise)
             rawDate = "\(entry.Month)/" + "\(entry.Day)/" + "\(entry.Year) " + "\(entry.Hour)"
             //print(rawDate)
-            let convertedRaw = convertRaw.date(from: rawDate) as Date?
+            let convertedRaw = dateFormatter.date(from: rawDate) as Date?
             
             //figure out which counter to increment
             if dateSelected
@@ -413,10 +366,12 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                         
                     }
                     
-                    //generateStepChart(dataPoints: daysOfWeek, values: stepDataWeekly)
+                    generateStepChart(dataPoints: daysOfWeek, values: stepDataWeekly)
+                    /*
                     //test
                     stepDataWeekly = [10.0, 9.0, 8.0, 7.0, 6.0] //dummy values
                     generateStepChart(dataPoints: daysOfWeek, values: stepDataWeekly)
+                     */
                 }
                 else if eDateDay == sDateDay && eDateHour != sDateHour //same day. Get hourly data
                 {
@@ -425,10 +380,13 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                         stepDataHourly[i] = Double(global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour+i))
                     }
                     
-                     //generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
+                     generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
+                    
+                     /*
                      //test
                      stepDataHourly = [1.0, 2.0, 3.0, 4.0, 5.0] //dummy values
                      generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
+                     */
                 }
                 else
                 {
