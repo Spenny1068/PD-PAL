@@ -80,44 +80,33 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         scroller?.contentSize = CGSize(width: 375, height: 3200) //content size must be greater than scroll view constraint
         self.view.addSubview(scroller)
         
-        view.backgroundColor = Setup.m_bgColor  // background color
+        //view.backgroundColor = Setup.m_bgColor  // background color
         trendTableView.dataSource = self
         
         let userData = global_UserData.Get_User_Data()
-        let username = userData.UserName.uppercased()
-        
-        // page name
-        let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = username + "'S TRENDS"
-        pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)
-        NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 350),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
-        ])
-        
+        let username = userData.UserName
+                
         // message
-        let msg = UILabel()
-        msg.text = "You're Doing Great!"
-        msg.applyPageMsgDesign()
-        self.view.addSubview(msg)
-        
-        self.generateRadarChart() //load blank radar chart on load
-        self.prepareStepData() //load blank line chart on load
+        self.show_page_message(s1: username + " Trends!", s2: "Trends")
+        self.generateRadarChart()
+        self.prepareStepData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
+        self.generateRadarChart() //load blank radar chart on load
+        self.prepareStepData() //load blank line chart on load
+       
+    }
     
     override func viewDidLayoutSubviews() {
         //this is for graph subviews
         super.viewDidLayoutSubviews()
         rChartView?.prepareForDrawChart()
         rChartView?.setNeedsLayout()
-        rChartView?.setNeedsDisplay()
+        rChartView?.setNeedsDisplay()   
     }
   
-    
     // table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y
     func numberOfSections(in tableView: UITableView) -> Int {
         //one section for exercise history and one section for step count
@@ -156,8 +145,6 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         self.prepareStepData() //this will call generateStepChart
        
     }
-<<<<<<< HEAD
-=======
 
     @IBAction func clearDates(_ sender: UIButton){
         //clear date picker fields
@@ -464,5 +451,4 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     }
     */
 
->>>>>>> trendsGraphs
 }
