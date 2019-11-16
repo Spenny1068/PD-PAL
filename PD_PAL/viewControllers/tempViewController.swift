@@ -94,13 +94,13 @@ class tempViewController: UIViewController {
             stopButton.isHidden = true
             timerLabel.isHidden = true
             completedButton.isHidden = true
-            
+
             startButton.isHidden = false
             skipButton.isHidden = false
             
             /* last exercise */
             if Global.routine_index == 2 {
-                // we should instantiate a new button here so it doesn't conlflict with skipsegue
+                skipButton.isHidden = true
                 //exitRoutineButton.skipButtonDesign()
                 //exitRoutineButton.isHidden = false
             }

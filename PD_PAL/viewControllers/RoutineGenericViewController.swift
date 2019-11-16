@@ -58,8 +58,11 @@ class RoutineGenericViewController: UIViewController {
         /* navigation bar stuff */
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.title = nil
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-        self.navigationItem.rightBarButtonItem  = homeButton
+        let homeButton = UIButton(type: .custom)
+        homeButton.applyHomeButton()
+        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+        let barButton = UIBarButtonItem(customView: homeButton)
+        self.navigationItem.rightBarButtonItem  = barButton
         
         /* page message */
         self.show_page_message(s1: routine_name, s2: routine_name)

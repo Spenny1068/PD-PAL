@@ -83,11 +83,11 @@ class ExerciseViewController: UIViewController {
         self.view.addSubview(timerLabel)
         
         
-        
         /* when entering this page, hide these elements */
         stopButton.isHidden = true
         timerLabel.isHidden = true
         completedButton.isHidden = true
+        exitRoutineButton.isHidden = true
         
         /* we came from routines page */
         if Global.IsRoutineExercise == 1 {
@@ -117,7 +117,6 @@ class ExerciseViewController: UIViewController {
         
         /* last exercise */
         if Global.routine_index == 2 {
-            // we should instantiate a new button here so it doesn't conlflict with skipsegue
             skipButton.isHidden = true
             exitRoutineButton.skipButtonDesign()
             exitRoutineButton.isHidden = false
@@ -125,8 +124,8 @@ class ExerciseViewController: UIViewController {
         
         /* testing */
         print ("log: routine_index: ", Global.routine_index)
-        //print ("log: exercise_name: ", exercise_name)
-        print ("log: link: ", exercise_data.Link)
+        print ("log: exercise_name: ", exercise_name)
+        //print ("log: link: ", exercise_data.Link)
         print ("log: ExerciseViewController")
         print ("log: next_routine_exercise", Global.next_routine_exercise)
     }
@@ -145,14 +144,6 @@ class ExerciseViewController: UIViewController {
         /* when entering this page, show these elements */
         startButton.isHidden = false
         skipButton.isHidden = false
-        
-        // home button on navigation bar
-        let homeButton = UIButton(type: .custom)
-        homeButton.applyHomeButton()
-        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
-        let barButton = UIBarButtonItem(customView: homeButton)
-        self.navigationItem.rightBarButtonItem  = barButton
-        self.title = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {
