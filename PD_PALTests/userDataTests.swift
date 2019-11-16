@@ -18,13 +18,21 @@ Revision History
  - 01/11/2019 : William Huong
     Updated test for greater coverage
  - 01/11/2019 : William Huong
-    Updated test_UserData_UserInfo()
+    Updated test_UserInfo()
  - 02/11/2019 : William Huong
     test_UserData_UserInfo() now checks state after calling Delete_userInfo()
  - 02/11/2019 : William Huong
-    Changed test_UserData_UserInfo() for slightly better coverage
+    Changed test_UserInfo() for slightly better coverage
  - 02/11/2019 : William Huong
-    Udated test_UserData_UserExerciseData() for Get_Exercise_All()
+    Udated test_UserExerciseData() for Get_Exercise_All()
+ - 11/11/2019 : William Huong
+    Updated test_UserInfo() for UUID column
+ - 14/11/2019 : William Huong
+    Removed example performance test
+ - 14/11/2019 : William Huong
+    Updated test_UserInfo() for FirestoreOK column
+ - 14/11/2019 : William Huong
+    Added test_LastBackup()
  */
 
 
@@ -57,7 +65,7 @@ class UserDataTests: XCTestCase {
 UserData Class Tests
 */
     
-    func test_userData_UserInfo() {
+    func test_UserInfo() {
         
         //Create the object.
         let userDB = UserData()
@@ -68,6 +76,12 @@ UserData Class Tests
         //Check that the default values before inserting.
         var userData = userDB.Get_User_Data()
         
+        //Grab the UUID, it should never change.
+        let originalUUID = userData.UserUUID
+        
+        print("\(originalUUID)")
+        
+        XCTAssert( userData.UserUUID != "NULL" )
         XCTAssert( userData.UserName == "DEFAULT_NAME" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -77,9 +91,10 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Provide just the user name.
-        userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         
         //Check that User_Exists() returns true right now.
         XCTAssert( userDB.User_Exists() == true )
@@ -87,6 +102,7 @@ UserData Class Tests
         //Get the user info
         userData = userDB.Get_User_Data()
         
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -96,13 +112,15 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Change some of the values to check we only update the values given.
-        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: 30, chairAvailable: nil, weightsAvailable: true, resistBandAvailable: nil, poolAvailable: true, intensityDesired: nil, pushNotificationsDesired: true)
+        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: 30, chairAvailable: nil, weightsAvailable: true, resistBandAvailable: nil, poolAvailable: true, intensityDesired: nil, pushNotificationsDesired: true, firestoreOK: nil)
         
         userData = userDB.Get_User_Data()
         
         //Check values.
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == true )
         XCTAssert( userData.WalkingDuration == 30 )
@@ -112,12 +130,14 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == true )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == true )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Change the rest of the values.
-        userDB.Update_User_Data(nameGiven: "Ebenezer Scrooge", questionsAnswered: false, walkingDuration: nil, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Intense", pushNotificationsDesired: false)
+        userDB.Update_User_Data(nameGiven: "Ebenezer Scrooge", questionsAnswered: false, walkingDuration: nil, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Intense", pushNotificationsDesired: false, firestoreOK: true)
         
         userData = userDB.Get_User_Data()
         
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 30 )
@@ -127,12 +147,14 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Intense" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == true )
         
         //Check Get_User_Data() returns the default values after deleting the user data. Important because of the way I have implemented this database.
         userDB.Delete_userInfo()
         
         userData = userDB.Get_User_Data()
         
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -142,6 +164,7 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Check that User_Exists() returns false right now.
         XCTAssert( userDB.User_Exists() == true )
@@ -151,6 +174,8 @@ UserData Class Tests
         
         userData = userDB.Get_User_Data()
         
+        //Clear_UserInfo_Database() is not meant to be used normally, so it will generate a new UUID on next read.
+        XCTAssert( userData.UserUUID != "NULL" )
         XCTAssert( userData.UserName == "DEFAULT_NAME" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -160,13 +185,40 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Check that User_Exists() returns false right now.
         XCTAssert( userDB.User_Exists() == false )
         
     }
     
-    func test_UserData_Routines() {
+    func test_LastBackup() {
+        
+        //Use string comparison because the Date object is too precise.
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar.current
+        dateFormatter.dateFormat = "MMM d, yyyy, hh:mm:ss a"
+        let defaultDateString = "Jan 1, 1000, 12:00:00 AM"
+        
+        let userData = UserData()
+        
+        //Check the default value is there
+        var currentBackup = dateFormatter.string(from: userData.Get_LastBackup())
+        print("\(currentBackup)")
+        XCTAssert( currentBackup == defaultDateString )
+        
+        let currentDate = Date()
+        print("\(currentDate)")
+        
+        //Update the date and check it was properly updated
+        userData.Update_LastBackup(backupDate: currentDate)
+        currentBackup = dateFormatter.string(from: userData.Get_LastBackup())
+        print("\(currentBackup)")
+        XCTAssert( currentBackup == dateFormatter.string(from: currentDate) )
+        
+    }
+    
+    func test_Routines() {
         
         //Define some variables to test with
         let defaultRoutineName = "Happy Day Workout"
@@ -258,7 +310,7 @@ UserData Class Tests
         
     }
     
-    func test_UserData_UserExerciseData() {
+    func test_UserExerciseData() {
         
         //Define some variables to test with. Defined so that we can have an exercise done twice in the same hour, multiple difference exercise the same hour, same exercise on two different days
         let targetYear1 = 2019
@@ -404,7 +456,7 @@ UserData Class Tests
         
     }
     
-    func test_UserData_StepCount() {
+    func test_StepCount() {
         
         //Declare some vaiables to use
         let firstSteps1 = Int64(1337)
