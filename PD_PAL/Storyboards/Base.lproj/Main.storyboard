@@ -236,6 +236,7 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zeS-rm-SUl">
                                 <rect key="frame" x="295" y="140" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="CloudSW"/>
                                 <connections>
                                     <action selector="buttonClicked:" destination="McI-Zk-BC7" eventType="valueChanged" id="sxs-Ol-njP"/>
                                 </connections>

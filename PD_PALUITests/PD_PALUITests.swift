@@ -160,7 +160,19 @@ class PD_PALUITests: XCTestCase {
         app.buttons["Reset Dates"].tap()
         
         
+    }
+    
+    func testCloudPermSW()
+    {
         
+        
+        let app = XCUIApplication()
+        let element = app.otherElements.containing(.navigationBar, identifier:"PD_PAL.mainPageView").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element.swipeLeft()
+        element.swipeLeft()
+        element.swipeLeft()
+        element.switches["CloudSW"].tap()
+        element.switches["CloudSW"].tap()
         
     }
     
