@@ -65,6 +65,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ0-cd-1qc">
+                                <rect key="frame" x="132" y="398" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="QQu-Ks-3fN"/>
@@ -141,6 +145,13 @@
                                     <segue destination="Sfd-H5-TxZ" kind="push" identifier="SkipSegue" id="LNr-3C-wE8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knt-aM-X8T">
+                                <rect key="frame" x="63" y="129" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="exitRoutine:" destination="WTe-r5-avd" eventType="touchUpInside" id="tq9-mV-wJI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nJD-7O-RLd"/>
@@ -150,6 +161,7 @@
                         <outlet property="DescriptionLabel" destination="rQv-15-rnv" id="qzp-6v-oEw"/>
                         <outlet property="DescriptionText" destination="qoa-L0-1xV" id="hlq-5g-pyG"/>
                         <outlet property="completedButton" destination="fAu-rf-mkF" id="KoP-55-b6L"/>
+                        <outlet property="exitRoutineButton" destination="Knt-aM-X8T" id="GXl-oL-kcB"/>
                         <outlet property="skipButton" destination="wlN-5K-FXj" id="Rab-P4-hBk"/>
                         <outlet property="startButton" destination="msL-aA-58e" id="c7n-CJ-ls4"/>
                         <outlet property="stopButton" destination="xhU-bP-4Os" id="B7w-7e-s3k"/>
@@ -162,6 +174,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KdV-LJ-OLA"/>
+        <segue reference="LNr-3C-wE8"/>
     </inferredMetricsTieBreakers>
 </document>

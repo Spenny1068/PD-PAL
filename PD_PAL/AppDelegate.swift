@@ -125,7 +125,7 @@ extension UIViewController {
         DText.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
         DText.font = Global.text_fonts.m_exerciseDescriptionDurationFont        // text font and size
         DText.lineBreakMode = .byWordWrapping                                   // Word wrapping
-        DText.numberOfLines = 5                                                 // theres space for a maximum of 5 lines
+        DText.numberOfLines = 4                                                 // theres space for a maximum of 5 lines
         DText.text = string
         self.view.addSubview(DText)
 
@@ -192,6 +192,16 @@ extension UIViewController {
             button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
         ])
     }
+    
+    func applyExerciseLabelConstraint(label: UILabel) {
+        NSLayoutConstraint.activate([
+            label.widthAnchor.constraint(equalToConstant: 300),
+            label.heightAnchor.constraint(equalToConstant: 150),
+            label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 38),
+            label.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
+        ])
+    }
+    
 }
 
 /* UILabel methods */
@@ -209,6 +219,13 @@ extension UILabel {
         self.frame = CGRect(x: 36, y: 120, width: 300, height: 150)            // rectangle coordinates
         self.lineBreakMode = .byWordWrapping                                   // Word wrapping
         self.numberOfLines = 3
+        self.textAlignment = .center                                           // text alignment
+        self.font = Global.text_fonts.m_routineButtonFont                      // text font and size
+        self.textColor = UIColor.black
+    }
+    
+    func applyExerciseLabelDesign() {
+        self.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
         self.textAlignment = .center                                           // text alignment
         self.font = Global.text_fonts.m_routineButtonFont                      // text font and size
         self.textColor = UIColor.black
@@ -326,8 +343,8 @@ extension UIButton {
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
     }
     
-    func timerButtonDesign2() {                                               //This start button is for the Routines page
-        self.frame = CGRect(x: 200, y: 550, width: 150, height: 100)            // rectangle coordinates
+    func timerButtonDesign2() {                                               // This start button is for the Routines page
+        self.frame = CGRect(x: 190, y: 550, width: 175, height: 100)          // rectangle coordinates
         
         // design
         self.layer.cornerRadius = 30                                         // rounded edges
@@ -344,7 +361,7 @@ extension UIButton {
     
     func skipButtonDesign() {
         
-        self.frame = CGRect(x: 25, y: 550, width: 150, height: 100)        // rectangle coordinates
+        self.frame = CGRect(x: 10, y: 550, width: 175, height: 100)        // rectangle coordinates
         
         // design
         self.layer.cornerRadius = 30                                         // rounded edges
