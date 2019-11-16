@@ -199,6 +199,7 @@ class ExerciseViewController: UIViewController {
         if seconds <= 0 {
             stopButton.isHidden = true
             completedButton.isHidden = false
+            timer.invalidate()
         }
     }
 }

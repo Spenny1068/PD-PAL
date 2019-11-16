@@ -374,7 +374,9 @@ extension UIButton {
     
     // applied to navigation to next Q in Questionnaire
     func applyNextQButton(){
-        self.backgroundColor = Global.color_schemes.m_blue4                     //background color
+        self.backgroundColor = Global.color_schemes.m_blue1                     //background color
+        self.layer.borderWidth = 2                                           // border width in points
+        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
         self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
         self.setTitleColor(UIColor.white, for: .normal)                         // enabled text colour
         self.setTitleColor(UIColor.gray, for: .disabled)                        // disabled text color
