@@ -20,6 +20,7 @@
 		2EF4E822236D029A00CCECBB /* testExerciseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4E81D236D027E00CCECBB /* testExerciseDB.swift */; };
 		2EF4E823236D081A00CCECBB /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF4E80E236D00FB00CCECBB /* SQLite.framework */; };
 		2EF4E824236D081A00CCECBB /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF4E80E236D00FB00CCECBB /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2EF5A738237FC322000AF9AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EF5A72E237FC322000AF9AD /* GoogleService-Info.plist */; };
 		4510853D23639DB800338F82 /* flexibility.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510852823639DB800338F82 /* flexibility.png */; };
 		4510853E23639DB800338F82 /* routine4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4510852923639DB800338F82 /* routine4.jpg */; };
 		4510853F23639DB800338F82 /* routine1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4510852A23639DB800338F82 /* routine1.jpg */; };
@@ -206,6 +207,7 @@
 		2EF4E803236D00FB00CCECBB /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		2EF4E81D236D027E00CCECBB /* testExerciseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testExerciseDB.swift; sourceTree = "<group>"; };
 		2EF4E81F236D028800CCECBB /* userDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userDataTests.swift; sourceTree = "<group>"; };
+		2EF5A72E237FC322000AF9AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "PD_PAL/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4510852823639DB800338F82 /* flexibility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flexibility.png; sourceTree = "<group>"; };
 		4510852923639DB800338F82 /* routine4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = routine4.jpg; sourceTree = "<group>"; };
 		4510852A23639DB800338F82 /* routine1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = routine1.jpg; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 		4517F9B12351587700E5ED83 = {
 			isa = PBXGroup;
 			children = (
+				2EF5A72E237FC322000AF9AD /* GoogleService-Info.plist */,
 				4517F9BC2351587700E5ED83 /* PD_PAL */,
 				4517F9D52351587800E5ED83 /* PD_PALTests */,
 				4517F9E02351587800E5ED83 /* PD_PALUITests */,
@@ -489,7 +492,6 @@
 				766D385B20558057D5AB2ABF /* Pods-PD_PALTests.debug.xcconfig */,
 				DAFC4D2D3C51BD6824891B98 /* Pods-PD_PALTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -714,6 +716,7 @@
 				4510853D23639DB800338F82 /* flexibility.png in Resources */,
 				4510854F23639DB800338F82 /* play.jpg in Resources */,
 				457C0F6C2366B6C700A918B2 /* logo.png in Resources */,
+				2EF5A738237FC322000AF9AD /* GoogleService-Info.plist in Resources */,
 				4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */,
 				455E1BF1236E9B0B00309A1D /* pushup_step2.png in Resources */,
 				457C0F6A2366B54500A918B2 /* Exercise.storyboard in Resources */,
