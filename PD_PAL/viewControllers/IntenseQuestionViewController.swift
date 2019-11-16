@@ -33,9 +33,11 @@ class IntenseQuestionViewController: UIViewController {
         intenseIntensity.applyQButton()
         nextButton.applyNextQButton()
         nextButton.isEnabled = false
+        nextButton.backgroundColor = Global.color_schemes.m_blue1
         
         if(button_clicked.count != 0){
             global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil)
+            nextButton.applyNextQButton()
             print("Update Intensity")
             print(global_UserData.Get_User_Data())
         }
