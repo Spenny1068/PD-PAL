@@ -468,10 +468,9 @@ class UserData {
             print("Error connecting to StepCount database")
         }
         // hardcode 3 default routines
-        self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["SHOULDER RAISES", "HEEL TO TOE", "LATERAL RAISES"])
-        //self.Add_Routine(NameOfRoutine: "Friday Night Chill", ExercisesIncluded: ["CHEST STRETCH", "SIDE LEG LIFT", "WALL PUSH-UP"])
-        self.Add_Routine(NameOfRoutine: "Monday Morning Mood", ExercisesIncluded: ["ARM RAISES", "TRICEP KICKBACKS", "KNEE MARCHING"])
-        self.Add_Routine(NameOfRoutine: "Friday Night Chill", ExercisesIncluded: ["CHEST STRETCH", "WALL PUSH-UP", "SIDE LEG LIFT"])
+        self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["WALL PUSH-UP", "WALKING", "SINGLE LEG STANCE"])
+        self.Add_Routine(NameOfRoutine: "Friday Night Chill", ExercisesIncluded: ["WALKING", "WALKING", "WALKING"])
+        self.Add_Routine(NameOfRoutine: "Monday Morning Mood", ExercisesIncluded: ["WALL PUSH-UP", "WALL PUSH-UP", "WALL PUSH-UP"])
     }
     
     

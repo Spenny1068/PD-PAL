@@ -19,8 +19,6 @@ Revision History
      Fixed File Initialization sequence, added read_exercise func and remove_database func
  - 01/11/2019 : William Xue
      Added function to return all of the exercise names
- - 16/11/2019 : Arian Vafadar
-    Added the description for all the exercises
  */
 
 /*
