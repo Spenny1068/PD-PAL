@@ -12,7 +12,7 @@ function validateName(name)
 			if("true"  == this.responseText)
 			{				
 				document.getElementById("loader").style.display = "none";
-				alert("true");
+				//alert("true");
 				location.href = "/userDisplay";
 				return true;
 			}
