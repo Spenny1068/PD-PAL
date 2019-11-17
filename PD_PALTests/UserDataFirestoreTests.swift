@@ -31,6 +31,8 @@ Known Bugs
     When an XTCAssert() throws after the function it is inside of has already returned, we get a hard SIGABRT error which crashes the app.
  - 17/11/2019 : William Huong
     The test methods all start at the same time, but also all use the global_UserData instance of the UserData class. This causes an issue where some functions will not do anything because a different test method cleared the database.
+ - 17/11/2019 : William Huong
+    Get_Routines(), Get_ExerciseData(), Routines() all throw an error : API violation - multiple calls made to -[XCTestExpectation fulfill]
 */
 
 import XCTest
@@ -374,36 +376,35 @@ class UserDataFirestoreTests: XCTestCase {
         //Set some values for our user and then insert into Firestore
         RoutinesDB.Clear_UserInfo_Database()
         RoutinesDB.Clear_Routines_Database()
-        RoutinesDB.Update_User_Data(nameGiven: "RoutineTester", questionsAnswered: true, walkingDuration: 15, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Moderate", pushNotificationsDesired: false, firestoreOK: true)
+        RoutinesDB.Update_User_Data(nameGiven: "RoutinesTester", questionsAnswered: true, walkingDuration: 15, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Light", pushNotificationsDesired: false, firestoreOK: true)
         
         let userInsertAsyncExpectation = expectation(description: "User insert for Routine testing async block started")
         DispatchQueue.main.async {
             
             global_UserDataFirestore.Update_UserInfo() { returnVal in
                 XCTAssert( returnVal == 0 )
+                
+                userInsertAsyncExpectation.fulfill()
             }
             
-            userInsertAsyncExpectation.fulfill()
-            
         }
-        waitForExpectations(timeout: 10, handler: nil)
+        wait(for: [userInsertAsyncExpectation], timeout: 10)
         
-        //Insert the first 3 routines to confirm they insert properly
+        //Insert the first 2 routines to confirm they insert properly
         RoutinesDB.Add_Routine(NameOfRoutine: firstName, ExercisesIncluded: firstContents)
         RoutinesDB.Add_Routine(NameOfRoutine: secondName, ExercisesIncluded: secondContents)
-        RoutinesDB.Add_Routine(NameOfRoutine: thirdName, ExercisesIncluded: thirdContents)
-        
+       
         let initialInsertAsyncExpectation = expectation(description: "Initial insert async block started")
         DispatchQueue.main.async {
             
             RoutinesFirestore.Update_Routines() { returnVal in
                 XCTAssert( returnVal == 0 )
+                
+                initialInsertAsyncExpectation.fulfill()
             }
             
-            initialInsertAsyncExpectation.fulfill()
-            
         }
-        waitForExpectations(timeout: 10, handler: nil)
+        wait(for: [initialInsertAsyncExpectation], timeout: 10)
         
         let initialReadAsyncExpectation = expectation(description: "Initial read async block started")
         DispatchQueue.main.async {
@@ -414,14 +415,14 @@ class UserDataFirestoreTests: XCTestCase {
                 XCTAssert( returnedData[0].RoutineContents == firstContents )
                 XCTAssert( returnedData[1].RoutineName == secondName )
                 XCTAssert( returnedData[1].RoutineContents == secondContents )
+                
+                initialReadAsyncExpectation.fulfill()
             }
             
-            initialReadAsyncExpectation.fulfill()
-            
         }
-        waitForExpectations(timeout: 10, handler: nil)
+        wait(for: [initialReadAsyncExpectation], timeout: 10)
         
-        //Clear out the routine database and set to insert all four, plus modifying two
+        //Clear out the routine database and set to insert all 3, plus modifying one
         RoutinesDB.Clear_Routines_Database()
         RoutinesDB.Add_Routine(NameOfRoutine: firstName, ExercisesIncluded: firstContents)
         RoutinesDB.Add_Routine(NameOfRoutine: secondName, ExercisesIncluded: modifiedContents)
@@ -433,12 +434,12 @@ class UserDataFirestoreTests: XCTestCase {
             
             RoutinesFirestore.Update_Routines() { returnVal in
                 XCTAssert( returnVal == 0 )
+                
+                secondInsertAsyncExpectation.fulfill()
             }
             
-            secondInsertAsyncExpectation.fulfill()
-            
         }
-        waitForExpectations(timeout: 10, handler: nil)
+        wait(for: [secondInsertAsyncExpectation], timeout: 10)
         
         //Confirm the push went through
         let secondReadAsyncExpectation = expectation(description: "Second read async block started")
@@ -452,12 +453,12 @@ class UserDataFirestoreTests: XCTestCase {
                 XCTAssert( returnedData[1].RoutineContents == modifiedContents )
                 XCTAssert( returnedData[2].RoutineName == thirdName )
                 XCTAssert( returnedData[2].RoutineContents == thirdContents )
+                
+                secondReadAsyncExpectation.fulfill()
             }
             
-            secondReadAsyncExpectation.fulfill()
-            
         }
-        waitForExpectations(timeout: 10, handler: nil)
+        wait(for: [secondReadAsyncExpectation], timeout: 10)
         
     }
     

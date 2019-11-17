@@ -19,6 +19,8 @@ Revision History
     Implement UserInfo update function
  - 16/11/2019 : William Huong
     Implemented Get_Routines() and Get_ExerciseData()
+ - 17/11/2019 : William Huong
+    Update_UserInfo() now works
 */
 
 /*
@@ -236,13 +238,23 @@ class UserDataFirestore {
     //This function will be called as a part of Update_Firebase() and should not be called on its own.
     func Update_Routines(completion: @escaping (Int) -> ()) {
         
+        print(" --- Beginning updating of Routines --- ")
+        
+        print("Gathering data")
+        
         //define some values we need
         let currentRoutines = self.UserDataSource.Get_Routines()
         let targetUUID = self.UserDataSource.Get_User_Data().UserUUID
         let routineColRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("Routines")
         
+        print("\(currentRoutines)")
+        
+        print("Iterating through each routine to push")
+        
         //Iterate through each routine
         for routine in currentRoutines {
+            
+            print("Starting routine: \(routine.RoutineName)")
             
             let docRef = routineColRef.document(routine.RoutineName)
         
