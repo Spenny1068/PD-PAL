@@ -156,7 +156,7 @@ class ExerciseViewController: UIViewController {
     
     /* put slow code in here to run on a different thread */
     override func viewDidAppear(_ animated: Bool) {
-        let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name)
+        let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
         
         /* gif */
         guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: exercise_data.Link) else { return }
