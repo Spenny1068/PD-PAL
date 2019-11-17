@@ -239,7 +239,7 @@ extension UILabel {
     func applyExerciseLabelDesign() {
         self.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
         self.textAlignment = .center                                           // text alignment
-        self.font = Global.text_fonts.m_routineButtonFont                      // text font and size
+        self.font = UIFont(name:"HelveticaNeue", size: 25.0)                    // text font and size
         self.textColor = UIColor.black
     }
     

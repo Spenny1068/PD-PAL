@@ -91,7 +91,8 @@ class RoutineGenericViewController: UIViewController {
                 
         /* button to start routine */
         StartRoutineButton.exerciseButtonDesign()
-        StartRoutineButton.setTitle("Start " + self.routine_name , for: .normal)
+        StartRoutineButton.backgroundColor = Global.color_schemes.m_blue4
+        StartRoutineButton.setTitle("Start Routine", for: .normal)
         self.view.addSubview(StartRoutineButton)
         NSLayoutConstraint.activate([
             StartRoutineButton.widthAnchor.constraint(equalToConstant: 304),

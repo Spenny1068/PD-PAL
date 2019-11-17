@@ -16,6 +16,7 @@ class tempViewController: UIViewController {
     @IBOutlet weak var DescriptionLabel: UILabel!
     @IBOutlet weak var DescriptionText: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var LoadingLabel: UILabel!
     
     /* global variables */
     var exercise_name2: String!
@@ -29,6 +30,10 @@ class tempViewController: UIViewController {
         
         /* skip segue updates global variables to reload page with next excercise */
         if segue.identifier == "SkipSegue" {
+            if Global.routine_index < 0
+               {
+                   Global.routine_index = 0
+               }
             let vc = segue.destination as! ExerciseViewController
             Global.next_routine_exercise = Global.routine_data[Global.routine_index + 1]
             Global.routine_index += 1
@@ -99,8 +104,11 @@ class tempViewController: UIViewController {
             timerLabel.isHidden = true
             completedButton.isHidden = true
 
+            DescriptionText.isHidden = false
+            DescriptionLabel.isHidden = false
             startButton.isHidden = false
             skipButton.isHidden = false
+            LoadingLabel.isHidden = false
             
             /* last exercise */
             if Global.routine_index == 2 {
@@ -139,8 +147,19 @@ class tempViewController: UIViewController {
         guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: exercise_data.Link) else { return }
         view.addSubview(gif)
         gif.startAnimating()
-        print ("fuck off: ", exercise_data)
+        LoadingLabel.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
 
+        if self.isMovingFromParent {
+            print (" back button pressed")
+            if Global.routine_index > 0
+            {
+                Global.routine_index = Global.routine_index - 1
+            }
+        }
     }
     
     /* when start button is tapped */
