@@ -270,7 +270,7 @@ class UserDataFirestore {
             print("Data is not nil, parsing")
             
             //Start parsing the data, since it is returned as type any optionals
-            let returnedUUID = dataReturned?["UUID"] as? String ?? "USER_NIL"
+            let returnedUUID = dataReturned?["UUID"] as? String ?? targetUUID
             let returnedUserName = dataReturned?["UserName"] as? String ?? "USERNAME_NIL"
             let returnedQuestionsAnswered = dataReturned?["QuestionsAnswered"] as? Bool ?? false
             let returnedWalkingDuration = dataReturned?["WalkingDuration"] as? Int ?? -1
