@@ -72,6 +72,8 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Global.color_schemes.m_bgColor // background color
+
         getDatePicker()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TrendViewController.viewTapped(gestureRecognizer:)))
         self.view.addGestureRecognizer(tapGesture)
