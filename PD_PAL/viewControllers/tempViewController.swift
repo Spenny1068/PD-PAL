@@ -79,6 +79,7 @@ class tempViewController: UIViewController {
             
             //-> timer label
             timerLabel.timerDesign()
+            applyTimerLabelConstraint(label: timerLabel)
             
             //-> Skip button
             skipButton.applyLeftTimerButtonFrame()
