@@ -42,18 +42,21 @@
 
 		<div id="History" class="tabcontent">
 			<h3>History</h3>
-			<p> This is where exercise history is displayed.</p>
+			<h4> Your Exercise History depending on each category.</h4>
+			<p>Select categories in the legend to remove them from the graph.</p>
+			<canvas id="exHis"> </canvas>
 		</div>
 
 		<div id="Trends" class="tabcontent">
 			<h3>Trends</h3>
-			<p>This is where exercise trends are displayed.</p> 
+			<p>Your Trends for the past 7 days!</p>
+			<canvas id="trendsChart" width="800" height="450"></canvas> 
 		</div>
 
 		<div id="Steps" class="tabcontent">
 			<h3>Steps</h3>
 			<p>These are the steps that you have taken over the past week!</p>
-			<canvas id="myChart" width="400" height="400"></canvas>
+			<canvas id="stepCountChart" height=200 width=200></canvas>
 		</div>
 		<script>
 			// Get the element with id="defaultOpen" and click on it
