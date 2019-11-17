@@ -318,13 +318,13 @@ extension UIButton {
         self.clipsToBounds = true                                            // confines bounds of view
         
         // text
-        self.setTitleColor(UIColor.white, for: .normal)                      // button text color
+        self.setTitleColor(UIColor.black, for: .normal)                      // button text color
         self.setTitleColor(UIColor.gray, for: .selected)
-        self.contentHorizontalAlignment = .right                            // button text aligned center of horizontal
+        self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_routineButtonFont       // button text font
         self.titleLabel?.numberOfLines = 2                                  // button text number of lines
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 100.0, bottom: 0, right: 15.0)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0.0, bottom: 0, right: 0.0)
     }
     
     func timerButtonDesign() {
@@ -380,7 +380,7 @@ extension UIButton {
     }
     
     func applyHomeButton(){
-        self.setImage(UIImage(named: "logo"), for: .normal)
+        self.setImage(UIImage(named: "SmallLogo"), for: .normal)
         self.frame = CGRect(x: 0, y:0, width: 10, height: 5)
     }
     
