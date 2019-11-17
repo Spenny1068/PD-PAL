@@ -547,5 +547,34 @@ UserData Class Tests
         XCTAssert( nullCleared == 0 )
         
     }
+    
+    func test_UserName_Check() {
+        //Confirm a name in use returns false
+        let firstExp = expectation(description: "Name taken")
+        DispatchQueue.main.async {
+            
+            global_UserData.Name_Available(desiredName: "tester") { returnVal in
+                XCTAssert( returnVal == false )
+            }
+            
+            firstExp.fulfill()
+            
+        }
+        waitForExpectations(timeout: 10, handler: nil)
+        
+        //Confurm a name that is not in use returns true
+        let secondExp = expectation(description: "Name available")
+        DispatchQueue.main.async {
+            
+            global_UserData.Name_Available(desiredName: "non existant user") { returnVal in
+                XCTAssert( returnVal == true )
+            }
+            
+            secondExp.fulfill()
+            
+        }
+        waitForExpectations(timeout: 10, handler: nil)
+        
+    }
 
 }

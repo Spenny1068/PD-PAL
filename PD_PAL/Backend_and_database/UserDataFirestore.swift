@@ -87,6 +87,8 @@ class UserDataFirestore {
     
     //Instance of Firestore we will use
     private let FirestoreDB = Firestore.firestore()
+    //Dispatch Group to force threads to wait
+    private let TaskQ = DispatchGroup()
     
     //To make the rest of the code easier
     private let dateFormatter = DateFormatter()
@@ -218,7 +220,50 @@ class UserDataFirestore {
     
     //Updates the routines on Firebase.
     //This function will be called as a part of Update_Firebase() and should not be called on its own.
-    func Update_Routines() {
+    func Update_Routines(completion: @escaping (Int) -> ()) {
+        
+        //define some values we need
+        let currentRoutines = global_UserData.Get_Routines()
+        let targetUUID = global_UserData.Get_User_Data().UserUUID
+        let routineColRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("Routines")
+        
+        //Iterate through each routine
+        for routine in currentRoutines {
+            
+            let docRef = routineColRef.document(routine.RoutineName)
+        
+            //Check if the routine is already in Firestore
+            docRef.getDocument() { (document ,error) in
+                guard let document = document, document.exists else {
+                    print("The document for \(routine.RoutineName) does not exist. Creating document")
+                    
+                    //Add a document for the routine
+                    routineColRef.document(routine.RoutineName).setData(["RoutineName": routine.RoutineName, "RoutineContents": routine.Exercises]) { err in
+                        if let err = err {
+                            print("Failed to create routine document for \(routine.RoutineName) : \(err)")
+                            completion(1)
+                        } else {
+                            print("Successfully created routine document fo \(routine.RoutineName)")
+                            completion(0)
+                        }
+                    }
+                    
+                    return
+                }
+                
+                //The routine already exists in Firestore. Update it
+                docRef.updateData(["RoutineName": routine.RoutineName, "RoutineContents": routine.Exercises]) { err in
+                    if let err = err {
+                        print("Failed to update routine document for \(routine.RoutineName) : \(err)")
+                        completion(1)
+                    } else {
+                        print("Successfully updated routine document fo \(routine.RoutineName)")
+                        completion(0)
+                    }
+                }
+            }
+            
+        }
         
     }
     

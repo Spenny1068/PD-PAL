@@ -45,7 +45,9 @@
  - 14/11/2019 : William Huong
     Added FirestoreOK column to UserInfo database
  - 14/11/2019 : William Huong
-    Aded LastBackup column to UserInfo datebase
+    Added LastBackup column to UserInfo datebase
+ - 16/11/2019 : William Huong
+    Added Name_Available() function
  */
 
 /*
@@ -68,6 +70,7 @@
 
 import Foundation
 import SQLite
+import Firebase
 
 /*
  
@@ -841,6 +844,24 @@ Auxiliary Methods
     //Returns whether or not the user exists. Condition for existance is whether or not we have a name from them.
     func User_Exists() ->(Bool){
         return !( (self.Get_User_Data()).UserName == "DEFAULT_NAME" )
+    }
+    
+    //Checks if the name has already been taken
+    func Name_Available(desiredName: String, completion: @escaping (Bool) -> ()) {
+        
+        let userRef = Firestore.firestore().collection("Users").document(desiredName)
+        
+        userRef.getDocument() { (document, error) in
+            guard let document = document, document.exists else {
+                //The name has been taken if the document exists
+                completion(false)
+                return
+            }
+            
+            //If the document doesn't exist then the name is available
+           completion(true)
+        }
+        
     }
     
 /*
