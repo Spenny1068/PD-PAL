@@ -16,10 +16,12 @@ class StrengthViewController: UIViewController {
     @IBOutlet weak var exerciseButton: UIButton!
     @IBOutlet weak var exerciseButton2: UIButton!
     @IBOutlet weak var exerciseButton3: UIButton!
+    @IBOutlet weak var exerciseButton4: UIButton!
+    @IBOutlet weak var exerciseButton5: UIButton!
     
     /* stack view containing exercise buttons */
     lazy var stackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [exerciseButton, exerciseButton2, exerciseButton3])    // elements in stackview
+        let sv = UIStackView(arrangedSubviews: [exerciseButton, exerciseButton2, exerciseButton3, exerciseButton4, exerciseButton5])    // elements in stackview
         sv.translatesAutoresizingMaskIntoConstraints = false    // use constraints
         sv.axis = .vertical                                     // stackview orientation
         sv.spacing = 25                                        // spacing between elements
@@ -57,27 +59,43 @@ class StrengthViewController: UIViewController {
         /* page message */
         self.show_page_message(s1: "Strength Exercises!", s2: "Strength")
         
+        let exercise_list = global_ExerciseData.exercise_names()
+        
         /* exercise buttons */
         
+        
         //-> button 1
-        exerciseButton.setTitle("WALL PUSH-UP",for: .normal)                        // button text
+        exerciseButton.setTitle(exercise_list[0],for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
         exerciseButton.backgroundColor = Global.color_schemes.m_blue2          // background color
 
         //-> button 2
-        exerciseButton2.setTitle("EXERCISE 2",for: .normal)                        // button text
+        exerciseButton2.setTitle(exercise_list[4],for: .normal)                        // button text
         exerciseButton2.exerciseButtonDesign()
         exerciseButton2.backgroundColor = Global.color_schemes.m_blue2          // background color
 
         //-> button 3
-        exerciseButton3.setTitle("EXERCISE 3",for: .normal)                        // button text
+        exerciseButton3.setTitle(exercise_list[8],for: .normal)                        // button text
         exerciseButton3.exerciseButtonDesign()
         exerciseButton3.backgroundColor = Global.color_schemes.m_blue2          // background color
+        
+        //-> button 4
+        exerciseButton4.setTitle(exercise_list[10],for: .normal)                        // button text
+        exerciseButton4.exerciseButtonDesign()
+        exerciseButton4.backgroundColor = Global.color_schemes.m_blue2          // background color
+        
+        //-> button 5
+        exerciseButton5.setTitle(exercise_list[12],for: .normal)                        // button text
+        exerciseButton5.exerciseButtonDesign()
+        exerciseButton5.backgroundColor = Global.color_schemes.m_blue2          // background color
         
         /* exercise buttons constraints */
         applyExerciseButtonConstraint(button: exerciseButton)
         applyExerciseButtonConstraint(button: exerciseButton2)
         applyExerciseButtonConstraint(button: exerciseButton3)
+        applyExerciseButtonConstraint(button: exerciseButton4)
+        applyExerciseButtonConstraint(button: exerciseButton5)
+
         
         self.view.addSubview(stackView)
         applyStackViewConstraints(SV: stackView)

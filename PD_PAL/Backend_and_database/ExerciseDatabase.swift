@@ -168,7 +168,7 @@ class ExerciseDatabase {
         
         insert_exercise(Name: "QUAD STRETCH",
                         Desc: "To perform a Quad stretch, stand on one leg and and hold you your leg with your hand. ",
-                        Category: "Balance",
+                        Category: "Flexibility",
                         Body: "None",
                         Link: "QUAD_STRETCH",
                         Duration: "Stand on each leg for one minute. Repeat 3 times")
@@ -188,18 +188,11 @@ class ExerciseDatabase {
                         Duration: "")
         
         insert_exercise(Name: "SHOULDER RAISES",
-                        Desc: " Begin by sitting in a chair. Slowly raise your shoulders up to your ears and then relax. ",
+                        Desc: "Begin by sitting in a chair. Slowly raise your shoulders up to your ears and then relax. ",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "SHOULDER_RAISES",
                         Duration: "Repeat 10 times ")
-        
-        insert_exercise(Name: "QUAD STRETCH",
-                        Desc: "The quad stretch will stretch your thighs and improve your flexibility. ",
-                        Category: "Flexibility",
-                        Body: "None",
-                        Link: "QUAD_STRETCH",
-                        Duration: "Stand on each leg for 30 seconds. Repeat twice. ")
         
         insert_exercise(Name: "NECK SIDE STRETCH",
                         Desc: "Begin by sitting in a chair. Look to the right as far as comfortable and hold. Then look to the left as far as comfortable and hold.",

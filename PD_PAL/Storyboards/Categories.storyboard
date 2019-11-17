@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,6 +42,22 @@
                                     <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="mbn-Mn-UZv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzE-dX-EHl">
+                                <rect key="frame" x="164" y="502" width="46" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="gc4-qc-Swy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhZ-8Z-ZVN">
+                                <rect key="frame" x="189" y="569" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="Gdd-AU-Kfp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="4Wz-gh-YcD"/>
@@ -49,6 +67,8 @@
                         <outlet property="exerciseButton" destination="mz7-3A-tla" id="kXs-dV-3My"/>
                         <outlet property="exerciseButton2" destination="Bt1-ZA-AI9" id="BFX-kh-mb6"/>
                         <outlet property="exerciseButton3" destination="dYt-uf-uGy" id="U47-9v-69N"/>
+                        <outlet property="exerciseButton4" destination="lzE-dX-EHl" id="2Jp-Rn-4X7"/>
+                        <outlet property="exerciseButton5" destination="GhZ-8Z-ZVN" id="fem-6a-lbu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y02-Dp-nw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -105,6 +125,14 @@
                                     <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="qDp-Ze-3dV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mcn-pz-Zjy">
+                                <rect key="frame" x="218" y="231" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="PpK-zd-Nwk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aIP-1o-aD2"/>
@@ -114,6 +142,7 @@
                         <outlet property="exerciseButton2" destination="x89-LX-OJD" id="Pvo-p5-PMh"/>
                         <outlet property="exerciseButton3" destination="nod-Xp-V4T" id="OYg-KQ-Un5"/>
                         <outlet property="exerciseButton4" destination="pW1-bb-i21" id="dwg-4e-9no"/>
+                        <outlet property="exerciseButton5" destination="Mcn-pz-Zjy" id="WSy-cS-8r9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HCi-Xk-4Nn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -152,6 +181,14 @@
                                     <segue destination="7ea-g1-tEb" kind="push" identifier="BalanceSegue" id="CYs-rR-9YF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyf-xB-3ZI">
+                                <rect key="frame" x="114" y="498" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="7ea-g1-tEb" kind="push" identifier="BalanceSegue" id="a1L-GP-f2q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xa1-vf-FGr"/>
@@ -160,6 +197,7 @@
                         <outlet property="exerciseButton" destination="XAg-UN-dl8" id="JSY-IQ-KU9"/>
                         <outlet property="exerciseButton2" destination="NsF-jO-Yrx" id="N8V-bW-xha"/>
                         <outlet property="exerciseButton3" destination="TLs-uj-Wt4" id="ptn-LV-KA4"/>
+                        <outlet property="exerciseButton4" destination="Hyf-xB-3ZI" id="zvh-Ia-D0f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYd-z2-KvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -214,6 +252,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ujc-4P-nfg"/>
+        <segue reference="PpK-zd-Nwk"/>
     </inferredMetricsTieBreakers>
 </document>
