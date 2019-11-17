@@ -48,6 +48,8 @@
     Added LastBackup column to UserInfo datebase
  - 16/11/2019 : William Huong
     Added Name_Available() function
+ - 17/11/2019 : William huong
+    Added init(DatabaseIdentifier: String) for Firestore testing
  */
 
 /*
@@ -118,7 +120,7 @@ import Firebase
 class UserData {
     
     //User Info
-    private let UserInfoDatabaseName = "UserInfo"
+    private var UserInfoDatabaseName = "UserInfo"
     private var UserInfo: Connection!
     private let UserInfoTable = Table("UserInfo")
     private let UserUUID = Expression<String>("UUID")
@@ -136,7 +138,7 @@ class UserData {
     private let LastBackup = Expression<String>("LastBackup")
     
     //Routines database
-    private let RoutinesDatabaseName = "Routines"
+    private var RoutinesDatabaseName = "Routines"
     private var Routines: Connection!
     private let RoutinesTable = Table("Routines")
     private let RoutineName = Expression<String>("Name")
@@ -145,7 +147,7 @@ class UserData {
     private let RoutineContent = Expression<String>("Content")
     
     //Exercise data database
-    private let UserExerciseDataDatabaseName = "UserExerciseData"
+    private var UserExerciseDataDatabaseName = "UserExerciseData"
     private var UserExerciseData: Connection!
     private let UserExerciseDataTable = Table("ExerciseData")
     private let TrendYear = Expression<Int>("Year")
@@ -155,7 +157,7 @@ class UserData {
     private let TrendExercise = Expression<String>("ExerciseName")
     
     //Step count database
-    private let StepCountDatabaseName = "StepCount"
+    private var StepCountDatabaseName = "StepCount"
     private var StepCount: Connection!
     private let StepCountTable = Table("StepCount")
     private let StepYear = Expression<Int>("Year")
@@ -173,9 +175,13 @@ class UserData {
     private let yeOldDateString = "Jan 1, 1000, 12:00:00 AM"
     private let yeOldDate: Date
     
-    //Constructor. This constructor will look for the database files and connect to them.
-    //If the database is empty, it will write the table to the file.
-    //If the databse file does not exist, it will create the file, then write the table to the file.
+    /*
+    Constructor. This constructor will look for the database files and connect to them.
+    If the database is empty, it will write the table to the file.
+    If the databse file does not exist, it will create the file, then write the table to the file.
+     
+     This should be the constructor used.
+    */
     init()
     {
         //Set up the date formatter
@@ -405,8 +411,10 @@ class UserData {
                     print("Error creating Routines table")
                 }
                 
-                //Add a routine so the routines page has at least one for the user.
-                self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["Walking", "Wall Push-Up", "Single Leg Stance"])
+                // hardcode 3 default routines
+                self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["WALL PUSH-UP", "WALKING", "SINGLE LEG STANCE"])
+                self.Add_Routine(NameOfRoutine: "Friday Night Chill", ExercisesIncluded: ["WALKING", "WALKING", "WALKING"])
+                self.Add_Routine(NameOfRoutine: "Monday Morning Mood", ExercisesIncluded: ["WALL PUSH-UP", "WALL PUSH-UP", "WALL PUSH-UP"])
             }
         } catch {
             print("Error connecting to Routines database")
@@ -470,10 +478,319 @@ class UserData {
         } catch {
             print("Error connecting to StepCount database")
         }
-        // hardcode 3 default routines
-        self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["WALL PUSH-UP", "WALKING", "SINGLE LEG STANCE"])
-        self.Add_Routine(NameOfRoutine: "Friday Night Chill", ExercisesIncluded: ["WALKING", "WALKING", "WALKING"])
-        self.Add_Routine(NameOfRoutine: "Monday Morning Mood", ExercisesIncluded: ["WALL PUSH-UP", "WALL PUSH-UP", "WALL PUSH-UP"])
+
+    }
+    
+    /*
+    Constructor. This constructor will look for the database files and connect to them.
+    If the database is empty, it will write the table to the file.
+    If the databse file does not exist, it will create the file, then write the table to the file.
+    
+     This constructor should only be used when you need separate database files. Really only for the Firebase components, since they all run asynchronously and in parallel.
+    */
+    init(DatabaseIdentifier: String)
+    {
+        //Modify the database names
+        self.UserInfoDatabaseName = self.UserInfoDatabaseName + "_" + DatabaseIdentifier
+        self.RoutinesDatabaseName = self.RoutinesDatabaseName + "_" + DatabaseIdentifier
+        self.UserExerciseDataDatabaseName = self.UserExerciseDataDatabaseName + "_" + DatabaseIdentifier
+        self.StepCountDatabaseName = self.StepCountDatabaseName + "_" + DatabaseIdentifier
+        
+        //Set up the date formatter
+        self.dateFormatter.calendar = Calendar.current
+        self.dateFormatter.dateFormat = self.dateFormat
+        self.yeOldDate = dateFormatter.date(from: self.yeOldDateString)!
+        
+        //Declare some variables we will use to keep track of the state of our databases on initialization
+        var userInfoDatabaseExists = false
+        var userInfoDatabaseReady = false
+        var routinesDatabaseExists = false
+        var routinesDatabaseReady = false
+        var exerciseDatabaseExists = false
+        var exerciseDatabaseReady = false
+        var stepCountDatabaseExists = false
+        var stepCountDatabaseReady = false
+        
+        //Define the filenames for the databases
+        let userInfoFileName = UserInfoDatabaseName + "." + fileExtension
+        let routinesFileName = RoutinesDatabaseName + "." + fileExtension
+        let exerciseFileName = UserExerciseDataDatabaseName + "." + fileExtension
+        let stepFileName = StepCountDatabaseName + "." + fileExtension
+        
+        //Define a variable to hold the location of each database file
+        var userInfoURL: URL?
+        var routinesURL: URL?
+        var exerciseURL: URL?
+        var stepURL: URL?
+        
+        //Start a FileManager object.
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        //Start searching for the database files
+        do {
+            
+            //Get all the files in the Documents directory.
+            let documentFiles = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            
+            //Temp variable to hold filenames of interest during search
+            var fileName: String
+            
+            //Look at each file to see if it is a file we want.
+            for file in documentFiles {
+                fileName = file.lastPathComponent
+                
+                
+                if fileName == userInfoFileName {
+                    
+                    //Found the UserInfo database file
+                    userInfoDatabaseExists = true
+                    userInfoURL = file.absoluteURL
+                    
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
+                    do {
+                       let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
+                        var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
+                        let dict = fileAttributes as NSDictionary
+                        fileSize = dict.fileSize()
+                        
+                        if fileSize != 0 {
+                            userInfoDatabaseReady = true
+                        }
+                    } catch {
+                        print("Error checking UserInfo.sqlite3")
+                    }
+                    
+                } else if fileName == routinesFileName {
+                    
+                    //Found the Routines database file
+                    routinesDatabaseExists = true
+                    routinesURL = file.absoluteURL
+                    
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
+                    do {
+                        let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
+                        var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
+                        let dict = fileAttributes as NSDictionary
+                        fileSize = dict.fileSize()
+                        
+                        if fileSize != 0 {
+                            routinesDatabaseReady = true
+                        }
+                    } catch {
+                        print("Error checking Routines.sqlite3")
+                    }
+                    
+                } else if fileName == exerciseFileName {
+                    
+                    //Found the UserExerciseData database file
+                    exerciseDatabaseExists = true
+                    exerciseURL = file.absoluteURL
+                    
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
+                    do {
+                        let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
+                        var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
+                        let dict = fileAttributes as NSDictionary
+                        fileSize = dict.fileSize()
+                        
+                        if fileSize != 0 {
+                            exerciseDatabaseReady = true
+                        }
+                    } catch {
+                        print("Error checking UserExerciseData.sqlite3")
+                    }
+                    
+                } else if fileName == stepFileName {
+                    
+                    //Found the StepCount database file
+                    stepCountDatabaseExists = true
+                    stepURL = file.absoluteURL
+                    
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
+                    do {
+                        let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
+                        var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
+                        let dict = fileAttributes as NSDictionary
+                        fileSize = dict.fileSize()
+                        
+                        if fileSize != 0 {
+                            stepCountDatabaseReady = true
+                        }
+                    } catch {
+                        print("Error checking StepCount.sqlite3")
+                    }
+                    
+                }
+                
+            }
+        } catch {
+            print("Error searching Documents Directory")
+        }
+        
+        //The UserInfo database file does not exist. Create it at the root of the documents directory
+        if !userInfoDatabaseExists {
+            userInfoURL = documentsURL.appendingPathComponent(UserInfoDatabaseName).appendingPathExtension(fileExtension)
+        }
+        
+        //The Routines database file does not exist. Create it at the root of the documents directory
+        if !routinesDatabaseExists {
+            routinesURL = documentsURL.appendingPathComponent(RoutinesDatabaseName).appendingPathExtension(fileExtension)
+        }
+        
+        //The UserExerciseData database file does not exist. Create it at the root of the documents directory
+        if !exerciseDatabaseExists {
+            exerciseURL = documentsURL.appendingPathComponent(UserExerciseDataDatabaseName).appendingPathExtension(fileExtension)
+        }
+        
+        //The StepCount database file does not exist. Create it at the root of the documents directory
+        if !stepCountDatabaseExists {
+            stepURL = documentsURL.appendingPathComponent(StepCountDatabaseName).appendingPathExtension(fileExtension)
+        }
+        
+        //Connect to each database.
+        do {
+            print("UserInfo database located at:")
+            print("\(userInfoURL!)")
+            
+            let database = try Connection((userInfoURL!).path)
+            self.UserInfo = database
+            
+            //Create the table if the file did not exist or was empty.
+            if !userInfoDatabaseReady {
+                //Create the table
+                let createTable = UserInfoTable.create{ (table) in
+                    table.column(UserUUID, primaryKey: true)
+                    table.column(UserName)
+                    table.column(QuestionsAnswered)
+                    table.column(WalkingDuration)
+                    table.column(ChairAccessible)
+                    table.column(WeightsAccessible)
+                    table.column(ResistBandAccessible)
+                    table.column(PoolAccessible)
+                    table.column(Intensity)
+                    table.column(PushNotifications)
+                    table.column(FirestoreOK)
+                    table.column(LastBackup)
+                }
+                
+                //Write the table to the database file
+                do {
+                    try self.UserInfo.run(createTable)
+                } catch {
+                    print("Error creating UserInfo table")
+                }
+                
+                //User Info is special. We need it to always have a single row.
+                
+                //Generate a UUID.
+                let uuid = NSUUID().uuidString
+                
+                print("Inserting new user into empty UserInfo database, UUID: \(uuid)")
+                
+                //Set the last backup value to a far enough date such that a backup will trigger as soon as possible.
+                print("Setting last backup date to \(self.yeOldDateString)")
+                
+                do {
+                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastBackup <- self.yeOldDateString))
+                } catch {
+                    print("Error inserting default user row into UserInfo database")
+                }
+            }
+        } catch {
+            print("Error connecting to the UserInfo database")
+        }
+        
+        do {
+            print("Routines database located at:")
+            print("\(routinesURL!)")
+            
+            let database = try Connection((routinesURL!).path)
+            self.Routines = database
+            
+            //Create the table if the file did not exist or was empty.
+            if !routinesDatabaseReady {
+                //Create the table
+                let createTable = RoutinesTable.create{ (table) in
+                    table.column(RoutineName, primaryKey: true)
+                    table.column(RoutineContent)
+                }
+                
+                //Write the table to the database file
+                do {
+                    try self.Routines.run(createTable)
+                } catch {
+                    print("Error creating Routines table")
+                }
+                
+                // hardcode 3 default routines
+                self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["WALL PUSH-UP", "WALKING", "SINGLE LEG STANCE"])
+                self.Add_Routine(NameOfRoutine: "Friday Night Chill", ExercisesIncluded: ["WALKING", "WALKING", "WALKING"])
+                self.Add_Routine(NameOfRoutine: "Monday Morning Mood", ExercisesIncluded: ["WALL PUSH-UP", "WALL PUSH-UP", "WALL PUSH-UP"])
+            }
+        } catch {
+            print("Error connecting to Routines database")
+        }
+        
+        do {
+            print("UserExerciseData database located at:")
+            print("\(exerciseURL!)")
+            
+            let database = try Connection((exerciseURL!).path)
+            self.UserExerciseData = database
+            
+            //Create the table if the file did not exist or was empty.
+            if !exerciseDatabaseReady {
+                //Create the table
+                let createTable = UserExerciseDataTable.create{ (table) in
+                    table.column(TrendYear)
+                    table.column(TrendMonth)
+                    table.column(TrendDay)
+                    table.column(TrendHour)
+                    table.column(TrendExercise)
+                }
+                
+                //Write the table to the database file
+                do {
+                    try self.UserExerciseData.run(createTable)
+                } catch {
+                    print("Error creating UserExerciseData table")
+                }
+            }
+        } catch {
+            print("Error connecting to UserExerciseData database")
+        }
+        
+        do {
+            print("StepCount database located at:")
+            print("\(stepURL!)")
+            
+            let database = try Connection((stepURL!).path)
+            self.StepCount = database
+            
+            //Create the table if the file did not exist or was empty.
+            if !stepCountDatabaseReady {
+                //Create the table
+                let createTable = StepCountTable.create{ (table) in
+                    table.column(StepYear)
+                    table.column(StepMonth)
+                    table.column(StepDay)
+                    table.column(StepHour)
+                    table.column(StepsTaken)
+                }
+                
+                //Write the table to the database file
+                do {
+                    try self.StepCount.run(createTable)
+                } catch {
+                    print("Error creating StepCount table")
+                }
+                
+            }
+        } catch {
+            print("Error connecting to StepCount database")
+        }
+        
     }
     
     
@@ -846,7 +1163,7 @@ Auxiliary Methods
         return !( (self.Get_User_Data()).UserName == "DEFAULT_NAME" )
     }
     
-    //Checks if the name has already been taken
+    //Checks if the name has already been taken. Returns true if the is available and false if the name has been taken
     func Name_Available(desiredName: String, completion: @escaping (Bool) -> ()) {
         
         let userRef = Firestore.firestore().collection("Users").document(desiredName)
