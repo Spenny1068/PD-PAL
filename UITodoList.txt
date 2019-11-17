@@ -7,3 +7,16 @@
 7. All gifs need to be added
 8. Move all exercise view controllers need to be put in single storyboard
 9. Fix timer so it doesn't go negative
+
+ROUTINE LOGIC
+- decrement routine_index when back button is tapped
+- indicate loading... while gif has not yet appeared
+- Refresh Routine_index when we enter a new routine after finishing a different one
+
+OTHER
+- why does the button text not show up
+- make routine generic page pretty
+- light greyscale background pictures for routine buttons and black text color and centered
+- Description for wall pushup or any long exercise needs to be shortened to less than 4 lines
+- get william to make duration an integer and arian to think of these numbers
+- make timer label pretty

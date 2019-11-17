@@ -24,43 +24,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JbP-cx-V30">
-                                <rect key="frame" x="141" y="143" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JbP-cx-V30" userLabel="StartRoutineButton">
+                                <rect key="frame" x="141" y="124" width="46" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="Xo7-JS-VUv" kind="push" identifier="RoutineSegue" id="F8w-cc-Tra"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1v-Iy-HNH">
-                                <rect key="frame" x="120" y="211" width="46" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0KX-6d-r4n">
+                                <rect key="frame" x="71" y="260" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="Xo7-JS-VUv" kind="push" identifier="RoutineSegue" id="89p-7x-xfn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8y-Gu-5eX">
-                                <rect key="frame" x="141" y="306" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYA-1R-Dcp">
+                                <rect key="frame" x="141" y="376" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="Xo7-JS-VUv" kind="push" identifier="RoutineSegue" id="PjA-kY-gea"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aX-7g-PdX">
+                                <rect key="frame" x="128" y="486" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Sj-dg-Qd4"/>
                     </view>
                     <connections>
-                        <outlet property="RoutineExercise1" destination="JbP-cx-V30" id="lhg-Hf-oW3"/>
-                        <outlet property="RoutineExercise2" destination="h1v-Iy-HNH" id="7Hz-L8-Cl8"/>
-                        <outlet property="RoutineExercise3" destination="c8y-Gu-5eX" id="eRK-SV-qzH"/>
+                        <outlet property="RoutineExercise1" destination="0KX-6d-r4n" id="pB7-4o-6Az"/>
+                        <outlet property="RoutineExercise2" destination="VYA-1R-Dcp" id="FDC-t3-f78"/>
+                        <outlet property="RoutineExercise3" destination="3aX-7g-PdX" id="17Q-xF-u38"/>
+                        <outlet property="StartRoutineButton" destination="JbP-cx-V30" id="jX7-o5-epE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agr-z5-pV9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="144.92753623188406" y="147.99107142857142"/>
+            <point key="canvasLocation" x="144.80000000000001" y="147.97601199400302"/>
         </scene>
         <!--ExerciseVC-->
         <scene sceneID="7O3-oF-LQj">
@@ -73,7 +79,4 @@
             <point key="canvasLocation" x="144" y="599"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="PjA-kY-gea"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -47,14 +47,13 @@ class FlexibilityViewController: UIViewController {
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
         /* navigation bar stuff */
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-//        self.title = nil
-//        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-//        self.navigationItem.rightBarButtonItem  = homeButton
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.title = nil
         let homeButton = UIButton(type: .custom)
         homeButton.applyHomeButton()
         homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
         let barButton = UIBarButtonItem(customView: homeButton)
+        self.navigationItem.rightBarButtonItem  = barButton
         
         // home button on navigation bar
         self.navigationItem.rightBarButtonItem  = barButton
