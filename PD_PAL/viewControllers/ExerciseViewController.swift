@@ -82,6 +82,7 @@ class ExerciseViewController: UIViewController {
         
         //-> timer label
         timerLabel.timerDesign()
+        applyTimerLabelConstraint(label: timerLabel)
         self.view.addSubview(timerLabel)
         
         
@@ -162,7 +163,6 @@ class ExerciseViewController: UIViewController {
         guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: exercise_data.Link) else { return }
         view.addSubview(gif)
         gif.startAnimating()
-        print ("fuck off: ", exercise_data)
     }
     
     /* when start button is tapped */

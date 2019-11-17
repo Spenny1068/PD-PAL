@@ -46,6 +46,7 @@ struct Global {
         static var m_exerciseButtonFont = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
         static var m_exerciseDescriptionDurationFont = UIFont(name: "HelveticaNeue", size: 20.0)
         static var m_routineButtonFont = UIFont(name: "HelveticaNeue-Bold", size: 25.0)
+        static var m_timerLabelFont = UIFont(name:"HelveticaNeue-Bold", size: 65.0)
     }
 }
 
@@ -193,6 +194,7 @@ extension UIViewController {
         ])
     }
     
+    // applies constraints for a single exercise button
     func applyExerciseLabelConstraint(label: UILabel) {
         NSLayoutConstraint.activate([
             label.widthAnchor.constraint(equalToConstant: 300),
@@ -200,6 +202,16 @@ extension UIViewController {
             label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 38),
             label.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
         ])
+    }
+    
+    // applies constraints for timer label
+    func applyTimerLabelConstraint(label: UILabel) {
+        NSLayoutConstraint.activate([
+            label.widthAnchor.constraint(equalToConstant: 300),
+            label.heightAnchor.constraint(equalToConstant: 150),
+            label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 38),
+            label.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
+            ])
     }
     
 }
@@ -258,9 +270,11 @@ extension UILabel {
     }
     
     func timerDesign() {
-        self.frame = CGRect(x: 36, y: 450, width: 300, height: 75)            // rectangle coordinates
+        self.frame = CGRect(x: 138, y: 452, width: 100, height: 100)                 // rectangle coordinates
         self.textAlignment = .center                                             // text alignment
-        self.font = UIFont(name:"HelveticaNeue-Bold", size: 65.0)
+        self.font = Global.text_fonts.m_timerLabelFont
+        self.layer.backgroundColor = UIColor.white.cgColor
+        self.layer.cornerRadius = self.frame.width/2
     }
 }
 
@@ -361,8 +375,8 @@ extension UIButton {
     // applied to navigation to next Q in Questionnaire
     func applyNextQButton(){
         self.backgroundColor = Global.color_schemes.m_blue1                     //background color
-        self.layer.borderWidth = 2                                           // border width in points
-        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
+        self.layer.borderWidth = 2                                              // border width in points
+        self.layer.borderColor = Global.color_schemes.m_grey.cgColor            // border color
         self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
         self.setTitleColor(UIColor.white, for: .normal)                         // enabled text colour
         self.setTitleColor(UIColor.gray, for: .disabled)                        // disabled text color
@@ -372,10 +386,10 @@ extension UIButton {
     
     // applied to navigation to previous Q in Questionnaire
     func applyPrevQButton(){
-        self.backgroundColor = Global.color_schemes.m_grey         //background color
-        self.layer.cornerRadius = self.frame.height / 4             // make button rounded
-        self.setTitleColor(UIColor.white, for: .normal)             // enable text colour
-        self.titleLabel?.font = Global.text_fonts.m_routineButtonFont               // text font and size
+        self.backgroundColor = Global.color_schemes.m_grey                      //background color
+        self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
+        self.setTitleColor(UIColor.white, for: .normal)                         // enable text colour
+        self.titleLabel?.font = Global.text_fonts.m_routineButtonFont           // text font and size
         self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 40, bottom: 0.0, right: 40)     // text allignment
     }
     
