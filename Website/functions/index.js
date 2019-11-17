@@ -32,12 +32,22 @@ let db = admin.firestore();
 		let allUsers = usersRef.get()
 			.then(snapshot => {
 				snapshot.forEach(doc => {
-					console.log(doc.id);
 					users.push(doc.id);
 				});
-
+				var req_name = "";
+				if(request.method === "POST")
+				{
+					console.log("POST");
+					console.log("request.body.name -> ",request.body.name);
+					req_name = request.body.name;
+				}
+				else if(request.method === "GET") {
+					console.log("GET");
+					console.log(request.query.name)
+					req_name = request.query.name;
+				}
 				//check if the name is in the realtime database
-				if(users.includes(request.body.name))
+				if(users.includes(req_name))
 				{
 					response.send("true");
 				}
@@ -56,6 +66,6 @@ let db = admin.firestore();
 			response.send(/*JSON.stringify(users)*/"error");
 		  //response.send(JSON.stringify(request.body.name));
 		})
-		console.log("Request.body->", request.body)
+		//console.log("Request.body->", request.body)
 		
   });
