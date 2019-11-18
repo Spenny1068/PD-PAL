@@ -83,6 +83,7 @@
 		7C7A43E1D25FE74F26282E5F /* Pods_PD_PAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7A43FCF847554461E3A17E /* Pods_PD_PAL.framework */; };
 		7D7B90E5236D2E54005247CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9BD2351587700E5ED83 /* AppDelegate.swift */; };
 		7DF12D04236E197300FC94D6 /* logoLaunch.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DF12CFC236E197200FC94D6 /* logoLaunch.png */; };
+		AE47282D23833C3F00733C28 /* Exercise_GIFS in Resources */ = {isa = PBXBuildFile; fileRef = AE47282323833C3E00733C28 /* Exercise_GIFS */; };
 		AE4D724D236BCB5A003A8BE3 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */; };
 		BC79E0D22AE48100B7F9C782 /* Pods_PD_PAL_PD_PALUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEB881E1F4E6D95068DCF1B /* Pods_PD_PAL_PD_PALUITests.framework */; };
 /* End PBXBuildFile section */
@@ -292,6 +293,7 @@
 		797007B8C601A40F7D0EEBF3 /* Pods-PD_PAL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PD_PAL.release.xcconfig"; path = "Target Support Files/Pods-PD_PAL/Pods-PD_PAL.release.xcconfig"; sourceTree = "<group>"; };
 		7DF12CFC236E197200FC94D6 /* logoLaunch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoLaunch.png; sourceTree = "<group>"; };
 		8BEB881E1F4E6D95068DCF1B /* Pods_PD_PAL_PD_PALUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PD_PAL_PD_PALUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE47282323833C3E00733C28 /* Exercise_GIFS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Exercise_GIFS; sourceTree = "<group>"; };
 		AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		B68D58E0B6F2C382EF010E78 /* Pods-PD_PAL-PD_PALUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PD_PAL-PD_PALUITests.release.xcconfig"; path = "Target Support Files/Pods-PD_PAL-PD_PALUITests/Pods-PD_PAL-PD_PALUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BD2C3CF9750A2C83B18456BD /* Pods-PD_PAL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PD_PAL.debug.xcconfig"; path = "Target Support Files/Pods-PD_PAL/Pods-PD_PAL.debug.xcconfig"; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				2E4D8C3E23832DAB0027A09B /* Exercise_GIFS */,
+				AE47282323833C3E00733C28 /* Exercise_GIFS */,
 				45853ACB238017C400202F28 /* ppp.png */,
 				2E2108D5237F0F4C00D724E6 /* Charts.xcodeproj */,
 				2E81A594237A0BB3001D99F6 /* RadarChart.xcodeproj */,
@@ -763,6 +766,7 @@
 				4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */,
 				4510855023639DB800338F82 /* playbutton.png in Resources */,
 				7DF12D04236E197300FC94D6 /* logoLaunch.png in Resources */,
+				AE47282D23833C3F00733C28 /* Exercise_GIFS in Resources */,
 				455E1BF0236E9B0B00309A1D /* pushup_step1.png in Resources */,
 				4510853D23639DB800338F82 /* flexibility.png in Resources */,
 				2E4D8C5B23832DAB0027A09B /* ARM_RAISES.gif in Resources */,
