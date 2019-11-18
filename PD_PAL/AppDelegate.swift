@@ -310,16 +310,16 @@ extension UIButton {
         
         // text
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
-        self.contentHorizontalAlignment = .left                              // button text aligned center of horizontal
+        self.contentHorizontalAlignment = .center                              // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
         
         // play button image
-        let exerciseImage = UIImage(named: "ppp.png")
-        self.setImage(exerciseImage , for: UIControl.State.normal)
-        self.tintColor = UIColor.black
-        self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 260, bottom: 20.0, right: 20)
+        //let exerciseImage = UIImage(named: "ppp.png")
+        //self.setImage(exerciseImage , for: UIControl.State.normal)
+        //self.tintColor = UIColor.black
+        //self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 260, bottom: 20.0, right: 20)
     }
     
     func routineButtonDesign() {
