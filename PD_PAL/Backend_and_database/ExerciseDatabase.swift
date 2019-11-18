@@ -64,7 +64,7 @@ class ExerciseDatabase {
     //if the File exercises.sqlite3 exists, will read and check that it's not empty, then open with SQLite Library
     //if the file does not exist, will open and create the SQLite Database and insert Table
     init() {
-    
+        remove_database();
         var database_already_exists = false
         var fileURL : URL
         
