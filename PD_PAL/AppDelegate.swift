@@ -46,7 +46,7 @@ struct Global {
         static var m_exerciseButtonFont = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
         static var m_exerciseDescriptionDurationFont = UIFont(name: "HelveticaNeue", size: 20.0)
         static var m_routineButtonFont = UIFont(name: "HelveticaNeue-Bold", size: 25.0)
-        static var m_timerLabelFont = UIFont(name:"HelveticaNeue-Bold", size: 65.0)
+        static var m_timerLabelFont = UIFont(name:"HelveticaNeue-Bold", size: 25.0)
     }
 }
 

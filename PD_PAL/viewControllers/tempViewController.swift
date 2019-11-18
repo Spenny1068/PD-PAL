@@ -20,7 +20,7 @@ class tempViewController: UIViewController {
     
     /* global variables */
     var exercise_name2: String!
-    var seconds = 5            // get this value from db
+    var seconds: Int = 0
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
     
@@ -144,7 +144,8 @@ class tempViewController: UIViewController {
         let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
         
         /* gif */
-        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: exercise_data.Link) else { return }
+        let temp = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
+        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: temp.Link) else { return }
         view.addSubview(gif)
         gif.startAnimating()
         LoadingLabel.isHidden = true
@@ -182,7 +183,8 @@ class tempViewController: UIViewController {
     @IBAction func stopButton(_ sender: Any) {
         /* reset timer value */
         timer.invalidate()
-        seconds = 5                         // reset value
+        let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
+        seconds = data.Duration                       // reset value
         timerLabel.text = "\(seconds)"
         
         /* show these elements */
@@ -231,12 +233,14 @@ class tempViewController: UIViewController {
     /* starts timer */
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+        let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
+        seconds = data.Duration
     }
     
     /* decrements timer */
     @objc func updateTimer() {
         seconds -= 1     //This will decrement(count down)the seconds.
-        timerLabel.text = "\(seconds)" //This will update the label.
+        timerLabel.text = "\(seconds)" + "s" //This will update the label.
             
         /* when countdown is done, hide and show these elements */
         if seconds <= 0 {

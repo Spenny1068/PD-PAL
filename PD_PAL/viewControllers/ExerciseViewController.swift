@@ -293,7 +293,7 @@ class ExerciseViewController: UIViewController {
     /* decrements timer */
     @objc func updateTimer() {
         seconds -= 1     //This will decrement(count down)the seconds.
-        timerLabel.text = "\(seconds)" //This will update the label.
+        timerLabel.text = "\(seconds)" + "s" //This will update the label.
         
         /* when countdown is done, hide and show these elements */
         if seconds <= 0 {
