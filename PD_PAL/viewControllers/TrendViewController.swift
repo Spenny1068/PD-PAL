@@ -14,6 +14,7 @@
 // <November 13, 2019, Julia Kim, Added hours to the date picker, input validation for date picker range, updating radar graph utilizing the same update button for the table>
 // <November 14, 2019, Julia Kim, Refactored date querying to exercises completed database, fixed update button for radar>
 // <November 15, 2019, Julia Kim, Added Line Chart for step data, fixed scrollable view, refactored date input validation>
+// <November 18, 2019, Julia Kim, Fixed date querying input validation and radar chart>
 
 /*
  Known Bugs
@@ -22,7 +23,8 @@
  -Date Picker not integrated yet. -> done Nov 13, 2019
  November 14, 2019: Julia Kim
  -Comparing dates component wise will not handle edge cases -> Fixed to compare dates properly Nov 14, 2019
- s
+ November 18, 2019: Julia Kim
+ -Having the default end date will introduce a bug with the input validation -> commented out this part since this was something extra
  */
 
 import UIKit
@@ -47,7 +49,8 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
     private var sDatePicker: UIDatePicker?
     private var eDatePicker: UIDatePicker?
-    private var dateSelected = false
+    private var sdateSelected = false
+    private var edateSelected = false
     
     let dateFormatter = DateFormatter()
     
@@ -156,7 +159,8 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         endDate.text = nil
         startDate.placeholder = "Pick a Start Date"
         endDate.placeholder = "Pick an End Date"
-        dateSelected = false
+        sdateSelected = false
+        edateSelected = false
     }
     
     func getDatePicker(){
@@ -169,34 +173,52 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         
         eDatePicker?.datePickerMode = .dateAndTime
         
-        /* WillX trial, set start date default as 7 days before
-        //default start data
-        let currentDate = Date();
-        let SevenDaysAgo = Calendar.current.date(byAdding: .day, value: (-7), to: currentDate);
-        sDatePicker?.date = SevenDaysAgo!;
-        */
-        
+        /*
         //default end date
         eDatePicker?.date = Date() //default value of end date to be today's date
         dateFormatter.dateFormat = "MM/dd/yyyy HH"
         endDate.text = dateFormatter.string(from: eDatePicker!.date)
+         */
         
         eDatePicker?.addTarget(self, action: #selector(TrendViewController.eDateChanged(datePicker:)), for: .valueChanged)
         endDate.inputView = eDatePicker
+        
+     
     }
     
     @objc func sDateChanged(datePicker: UIDatePicker){
         dateFormatter.dateFormat = "MM/dd/yyyy HH"
         startDate.text = dateFormatter.string(from: datePicker.date)
-        self.view.endEditing(true)
         
         sDateYear = Calendar.current.component(.year, from: datePicker.date)
         sDateMonth = Calendar.current.component(.month, from: datePicker.date)
         sDateDay = Calendar.current.component(.day, from: datePicker.date)
         sDateHour = Calendar.current.component(.hour, from: datePicker.date)
         sDateMinute = Calendar.current.component(.minute, from: datePicker.date)
-        dateSelected = true
         
+        sdateSelected = true
+        
+        //input validation
+        if edateSelected
+        {
+            let convertRaw = DateFormatter()
+            convertRaw.dateFormat = "MM/dd/yyyy HH:mm"
+            let sDateRaw = "\(sDateMonth)/" + "\(sDateDay)/" + "\(sDateYear) " + "\(sDateHour):" + "\(sDateMinute)"
+            let eDateRaw = "\(eDateMonth)/" + "\(eDateDay)/" + "\(eDateYear) " + "\(eDateHour):" + "\(eDateMinute)"
+            let converted_sDate = convertRaw.date(from: sDateRaw) as Date?
+            let converted_eDate = convertRaw.date(from: eDateRaw) as Date?
+            
+            if converted_sDate?.compare(converted_eDate!) == .orderedAscending
+            {
+                //start date is smaller than end date
+                self.view.endEditing(true)
+            }
+            else
+            {
+                self.clearStartDate()
+            }
+        }
+    
     }
     
     @objc func eDateChanged(datePicker: UIDatePicker){
@@ -208,6 +230,8 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         eDateDay = Calendar.current.component(.day, from: datePicker.date)
         eDateHour = Calendar.current.component(.hour, from: datePicker.date)
         eDateMinute = Calendar.current.component(.minute, from: datePicker.date)
+        
+        edateSelected = true
         
         //input validation
         let convertRaw = DateFormatter()
@@ -226,13 +250,21 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         {
             self.clearEndDate()
         }
-
+   
+   
     }
     
+    func clearStartDate(){
+        startDate.text = nil
+        startDate.placeholder = "Start date must be smaller than end date"
+        sdateSelected = false
+        self.getDatePicker()
+    }
     
     func clearEndDate(){
         endDate.text = nil
         endDate.placeholder = "End date must be greater than start date"
+        edateSelected = false
         self.getDatePicker()
     }
         
@@ -266,8 +298,8 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         dateFormatter.dateFormat = "MM/dd/yyyy HH"
         let sDateRaw = "\(sDateMonth)/" + "\(sDateDay)/" + "\(sDateYear) " + "\(sDateHour)"
         let eDateRaw = "\(eDateMonth)/" + "\(eDateDay)/" + "\(eDateYear) " + "\(eDateHour)"
-        let converted_sDate = dateFormatter.date(from: sDateRaw) as Date?
-        let converted_eDate = dateFormatter.date(from: eDateRaw) as Date?
+        let converted_sDate = dateFormatter.date(from: sDateRaw) as Date? ?? Date()
+        let converted_eDate = dateFormatter.date(from: eDateRaw) as Date? ?? Date()
         
         for entry in exerciseData{
             //get the category of the exercise done fetched from the DB for the selected date
@@ -275,13 +307,13 @@ class TrendViewController: UIViewController, UITableViewDataSource{
             categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry.nameOfExercise)
             rawDate = "\(entry.Month)/" + "\(entry.Day)/" + "\(entry.Year) " + "\(entry.Hour)"
             //print(rawDate)
-            let convertedRaw = dateFormatter.date(from: rawDate) as Date?
+            let convertedRaw = dateFormatter.date(from: rawDate) as Date? ?? Date()
             
             //figure out which counter to increment
-            if dateSelected
+            if sdateSelected
             {
                 //if entry in DB is greater than start date and smaller than end date, fetch and add to count
-                if convertedRaw?.compare(converted_sDate!) == .orderedDescending && convertedRaw?.compare(converted_eDate!) == .orderedAscending
+	                if convertedRaw.compare(converted_sDate) == .orderedDescending && convertedRaw.compare(converted_eDate) == .orderedAscending
                 {
                     if categoryMatch.1 as String == "Flexibility"
                     {
