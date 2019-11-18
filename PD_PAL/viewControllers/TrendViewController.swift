@@ -169,6 +169,13 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         
         eDatePicker?.datePickerMode = .dateAndTime
         
+        /* WillX trial, set start date default as 7 days before
+        //default start data
+        let currentDate = Date();
+        let SevenDaysAgo = Calendar.current.date(byAdding: .day, value: (-7), to: currentDate);
+        sDatePicker?.date = SevenDaysAgo!;
+        */
+        
         //default end date
         eDatePicker?.date = Date() //default value of end date to be today's date
         dateFormatter.dateFormat = "MM/dd/yyyy HH"
@@ -253,7 +260,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     func exerciseCategoryCount() -> [Int]{
         let exerciseData = global_UserData.Get_Exercises_all()
     
-        var categoryMatch = (" ", " ", " ", " ", " ")
+        var categoryMatch = (" ", " ", " ", " ", 0)
         var catCount = [0, 0, 0, 0]
         var rawDate = "00/00/0000 HH"
         dateFormatter.dateFormat = "MM/dd/yyyy HH"

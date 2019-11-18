@@ -52,7 +52,7 @@ class ExerciseDatabase {
     let body = Expression<String>("Body")
     //create link "Identifier to actual media"
     let link = Expression<String>("Link")
-    let duration = Expression<String>("Duration")
+    let duration = Expression<Int>("Duration")
     
     
     let fileName = "exercises"
@@ -150,105 +150,105 @@ class ExerciseDatabase {
                         Category: "Strength",
                         Body: "None",
                         Link: "WALL_PUSH-UP",
-                        Duration: "Complete 3 sets of 10 repetitions")
+                        Duration: 10)
         
         insert_exercise(Name: "WALKING",
                         Desc: "For optimal results perform this exercise on a track.",
                         Category: "Cardio",
                         Body: "None",
                         Link: "WALKING",
-                        Duration: "Walk for 15-30 minutes")
+                        Duration: 20)
         
         insert_exercise(Name: "SINGLE LEG STANCE",
                         Desc: "Bend your knee and raise your leg beside a chair. Hold the chair with your hand that opposite to the side of your raised leg for support.",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "SINGLE_LEG_STANCE",
-                        Duration: "Complete 3 sets of 10 repetitions")
+                        Duration: 15)
         
         insert_exercise(Name: "QUAD STRETCH",
                         Desc: "To perform a Quad stretch, stand on one leg and and hold you your leg with your hand. ",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "QUAD_STRETCH",
-                        Duration: "Stand on each leg for one minute. Repeat 3 times")
+                        Duration: 14)
         
         insert_exercise(Name: "TRICEP KICKBACKS",
                         Desc: "Hold the weight, and lean over a chair. Straighten your elbow behind you as far as comfortable and slowly return to the starting position. ",
                         Category: "Strength",
                         Body: "None",
                         Link: "TRICEP_KICKBACKS",
-                        Duration: "")
+                        Duration: 16)
         
         insert_exercise(Name: "SIDE LEG LIFT",
                         Desc: "Stand behind a chair with feet slightly apart. Slowly lift one leg out to one side. Slightly bend the leg you are standing on.",
                         Category: "Balance",
                         Body: "None",
                         Link: "SIDE_LEG_LIFT",
-                        Duration: "")
+                        Duration: 16)
         
         insert_exercise(Name: "SHOULDER RAISES",
                         Desc: "Begin by sitting in a chair. Slowly raise your shoulders up to your ears and then relax. ",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "SHOULDER_RAISES",
-                        Duration: "Repeat 10 times ")
+                        Duration: 14)
         
         insert_exercise(Name: "NECK SIDE STRETCH",
                         Desc: "Begin by sitting in a chair. Look to the right as far as comfortable and hold. Then look to the left as far as comfortable and hold.",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "NECK_SIDE_STRETCH",
-                        Duration: "Repeat 10 times")
+                        Duration: 15)
         
         insert_exercise(Name: "LATERAL RAISES",
                         Desc: "Begin with arms at your side and your palms facing inwards. Slowly raise your arms to a comfortable level. ",
                         Category: "Strength",
                         Body: "None",
                         Link: "LATERAL_RAISES",
-                        Duration: "Repeat 10 times")
+                        Duration: 13)
         
         insert_exercise(Name: "KNEE MARCHING",
                         Desc: "Begin with arms at your side and feet shoulder width apart. Raise one knee up as high as comfortable. Lower that knee and raise the other.",
                         Category: "Balance",
                         Body: "None",
                         Link: "KNEE_MARCHING",
-                        Duration: "")
+                        Duration: 13)
         
         insert_exercise(Name: "KNEE EXTENSION",
                         Desc: "Sit with your feet flat against the floor. Slowly straighten your knee out, hold and slowly bend your knee back into the starting position.",
                         Category: "Strength",
                         Body: "None",
                         Link: "KNEE_EXTENSION",
-                        Duration: "Repeat 10 times on each leg")
+                        Duration: 14)
         
         insert_exercise(Name: "HEEL TO TOE",
                         Desc: "To perform a heal to toe, look forward, relax your shoulders and begin walking forward by pacing one foot in front of the other.",
                         Category: "Balance",
                         Body: "None",
                         Link: "HEEL_TO_TOE",
-                        Duration: "")
+                        Duration: 11)
         
         insert_exercise(Name: "HEEL STAND",
                         Desc: "Keep your knees shoulder-width apart. Raise up on your heels as high as possible. Slowly return to the starting position.",
                         Category: "Strength",
                         Body: "None",
                         Link: "HEEL_STAND",
-                        Duration: "")
+                        Duration: 14)
         
         insert_exercise(Name: "CHEST STRETCH",
                         Desc: "Raise your arms and place hands behind your head. Breathe in while bringing your neck and shoulder back. Hold and release.",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "CHEST_STRETCH",
-                        Duration: "Repeat 3 times")
+                        Duration: 17)
         
         insert_exercise(Name: "ARM RAISES",
                         Desc: "Begin with your arms at your sides. Inhale and slowly you lift both arms over your head. Slowly bring your arms back to your sides.",
                         Category: "Flexibility",
                         Body: "None",
                         Link: "ARM_RAISES",
-                        Duration: "Repeat 10 times")
+                        Duration: 17)
         
     }
 
@@ -276,7 +276,7 @@ class ExerciseDatabase {
     
     
     //Insert an individual exercise.
-    func insert_exercise(Name: String , Desc: String, Category: String, Body: String, Link: String, Duration: String) {
+    func insert_exercise(Name: String , Desc: String, Category: String, Body: String, Link: String, Duration: Int) {
         let insert = exerciseList.insert(name <- Name, descriptions <- Desc, category <- Category,
                                          body <- Body, link <- Link, duration <- Duration)
         do {
@@ -315,7 +315,7 @@ class ExerciseDatabase {
     //Read an individual exercise
     //Will X, func tested in Unit Test testDatabase_insertion
     //Make sure to give it a NameOfExercise that exists in the database, otherwise will return empty string
-    func read_exercise(NameOfExercise: String) ->(Description: String,Category: String, Body: String, Link: String, Duration: String)
+    func read_exercise(NameOfExercise: String) ->(Description: String,Category: String, Body: String, Link: String, Duration: Int)
     {
         do{
             let query = exerciseList.filter(name == NameOfExercise)
@@ -331,7 +331,7 @@ class ExerciseDatabase {
         }
         
         //could not find so return empty
-        return ("","","","","")
+        return ("","","","",0)
     }
     
     
