@@ -25,11 +25,9 @@ class ExerciseViewController: UIViewController {
     
     /* global variables */
     var exercise_name: String!
-    var gif: UIImageView?
-    var seconds = 5            // get this value from db
+    var seconds: Int = 0
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
-    
     
     /* forward pass data between view controllers */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -165,10 +163,9 @@ class ExerciseViewController: UIViewController {
     
     /* put slow code in here to run on a different thread */
     override func viewDidAppear(_ animated: Bool) {
-        let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
-        print ("log exercise data: ", exercise_data)
         /* gif */
-        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: exercise_data.Link) else { return }
+        let temp = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
+        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: temp.Link) else { return }
         view.addSubview(gif)
         gif.startAnimating()
        
@@ -219,7 +216,8 @@ class ExerciseViewController: UIViewController {
     @IBAction func stopButton(_ sender: Any) {
         /* reset timer value */
         timer.invalidate()
-        seconds = 5                         // reset value
+        let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
+        seconds = data.Duration
         timerLabel.text = "\(seconds)"
         
         /* show these elements */
@@ -288,6 +286,8 @@ class ExerciseViewController: UIViewController {
     /* starts timer */
     func runTimer() {
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+        let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
+        seconds = data.Duration
     }
     
     /* decrements timer */
