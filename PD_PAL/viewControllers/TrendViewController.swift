@@ -274,16 +274,16 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
     func generateRadarChart(){
         /*Using the library from github.com/nkmrh/RadarChart*/
-        let color = UIColor(red:0.580, green:0.541, blue:0.867, alpha:0.50)
-        let backgroundColor = UIColor(red:0.851, green:0.851, blue:0.941, alpha:1.00)
-        let xAxisColor = UIColor(red:0.396, green:0.769, blue:0.914, alpha:1.00)
-        let yAxisColor = UIColor(red:0.596, green:0.863, blue:0.945, alpha:1.50)
+        let color = UIColor(red:1.0, green:0.541, blue:0.867, alpha:1.0)
+        let backgroundColor = UIColor(red:1.0, green:1.0, blue:1.0, alpha:0.5)
+        let xAxisColor = UIColor(red:0.396, green:0.769, blue:0.914, alpha:0.5)
+        let yAxisColor = UIColor(red:0.596, green:0.863, blue:0.945, alpha:0.5)
         let fontColor = UIColor(red:0.259, green:0.365, blue:0.565, alpha:1.00)
         
         rChartView?.data = self.exerciseCategoryCount() //get the user exercise data
         rChartView?.labelTexts = ["Flexibility", "Cardio", "Balance", "Strength"]
         rChartView?.numberOfVertexes = 4
-        rChartView?.numberTicks = 20 //any more ticks would look very condensed. Leaving the full data for the web component
+        rChartView?.numberTicks = 5 //any more ticks would look very condensed. Leaving the full data for the web component
         rChartView?.style = RadarChartStyle(color: color,backgroundColor: backgroundColor, xAxis: RadarChartStyle.Axis(colors: [xAxisColor], widths: [0.5, 0.5, 0.5, 0.5, 2.0]),yAxis: RadarChartStyle.Axis(colors: [yAxisColor], widths: [0.5]), label: RadarChartStyle.Label(fontName: "Helvetica", fontColor: fontColor, fontSize: 15, lineSpacing: 0, letterSpacing: 0, margin: 10))
         rChartView?.option = RadarChartOption()
     }
