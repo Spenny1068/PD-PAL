@@ -25,6 +25,7 @@ class ExerciseViewController: UIViewController {
     
     /* global variables */
     var exercise_name: String!
+    var gif: UIImageView?
     var seconds = 5            // get this value from db
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
@@ -35,10 +36,7 @@ class ExerciseViewController: UIViewController {
         
         /* skip segue updates global variables to reload page with next excercise */
         if segue.identifier == "SkipSegue" {
-            if Global.routine_index < 0
-            {
-                Global.routine_index = 0
-            }
+            if Global.routine_index < 0 { Global.routine_index = 0 }
             let vc = segue.destination as! tempViewController
             Global.next_routine_exercise = Global.routine_data[Global.routine_index + 1]
             Global.routine_index += 1
@@ -109,6 +107,7 @@ class ExerciseViewController: UIViewController {
             skipButton.timerButtonDesign()
             skipButton.setTitle("SKIP",for: .normal)
             skipButton.backgroundColor = Global.color_schemes.m_lightGreen
+            skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
             self.view.addSubview(skipButton)
             
             /* start button */
@@ -169,21 +168,20 @@ class ExerciseViewController: UIViewController {
         let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
         
         /* gif */
-        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: exercise_data.Link) else { return }
-        view.addSubview(gif)
-        gif.startAnimating()
+        gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: exercise_data.Link)
+        view.addSubview(gif!)
+        gif!.startAnimating()
+        
+        /* hide loading label when gif has loaded */
         LoadingLabel.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
+        /* if back button is pressed */
         if self.isMovingFromParent {
-            print (" back button pressed")
-            if Global.routine_index > 0
-            {
-                Global.routine_index = Global.routine_index - 1
-            }
+            if Global.routine_index > 0 { Global.routine_index = Global.routine_index - 1 }
         }
     }
     
@@ -213,11 +211,12 @@ class ExerciseViewController: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
+        
+        exitRoutineButton.isHidden = true
     }
     
     /* when stop button is tapped */
     @IBAction func stopButton(_ sender: Any) {
-        
         /* reset timer value */
         timer.invalidate()
         seconds = 5                         // reset value
@@ -265,6 +264,9 @@ class ExerciseViewController: UIViewController {
             
             /* reset routine index */
             Global.routine_index = 0
+            
+            /* stop running gif from previous page */
+            gif!.stopAnimating()
         }
         
         /* if we came from routines */
@@ -272,6 +274,13 @@ class ExerciseViewController: UIViewController {
             startButton.isHidden = false
             skipButton.isHidden = false
         }
+    }
+    
+    /* skip button is tapped */
+    @objc func skipButtonTapped() {
+        /* stop running gif from previous page */
+        gif!.stopAnimating()
+        print ("skip buttons tapped")
     }
     
     /* when home button on navigation bar is tapped */
