@@ -36,7 +36,7 @@ class testExerciseDB: XCTestCase {
         let body = "Arms"
         let name = "Bicep Curls"
         let link = "bicep_curl.mp4"
-        let duration = "20 minutes"
+        let duration = 20
         exDB.insert_exercise(Name: name , Desc: desc, Category: cat, Body: body, Link: link, Duration: duration)
         
         let readResult = exDB.read_exercise(NameOfExercise: name)
@@ -49,7 +49,8 @@ class testExerciseDB: XCTestCase {
         XCTAssert( readResult.Duration == duration);
         
         //check that the return all names function works
-        XCTAssert( exDB.exercise_names().count == 5)
+        print(exDB.exercise_names().count)
+        XCTAssert( exDB.exercise_names().count == 16)
         XCTAssert( exDB.exercise_names()[0] == "WALL PUSH-UP")
         
         //delete the database when we are done with it
