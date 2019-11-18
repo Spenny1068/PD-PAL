@@ -54,6 +54,8 @@
     Split LastBackup column into three separate ones
  - 17/11/2019 : William Huong
     UserUUID is now just UserName until user authentication is implemented.
+ - 17/11/2019 : William Huong
+    The insert methods now also call the relevant method from UserData_Firestore
  */
 
 /*
@@ -988,10 +990,21 @@ Methods that insert or update data.
                                                   FirestoreOK <- (firestoreOK ?? currentUserInfo.FirestoreOK),
                                                   LastUserInfoBackup <- userInfoDate,
                                                   LastRoutinesBackup <- routinesDate,
-                                                  LastExerciseBackup <- exerciseDate
+                                                  LastExerciseBackup     <- exerciseDate
                                                   ))
         } catch {
             print("Failed to update user info")
+        }
+        
+        //Update Firestore
+        let nextBackup = Calendar.current.date(byAdding: .second, value: 10, to: lastBackups.UserInfo)
+        
+        if( Date() >= nextBackup! ) {
+            global_UserDataFirestore.Update_UserInfo() { returnedVal in
+                if( returnedVal == 0 ) {
+                    self.Update_LastBackup(UserInfo: Date(), Routines: nil, Exercise: nil)
+                }
+            }
         }
         
     }
@@ -1014,6 +1027,18 @@ Methods that insert or update data.
         } catch {
             print("Failed to insert \(NameOfRoutine) routine into Routines database")
         }
+        
+        //Update Firestore
+        let nextBackup = Calendar.current.date(byAdding: .second, value: 10, to: self.Get_LastBackup().Routines)
+        
+        if( Date() >= nextBackup! ) {
+            global_UserDataFirestore.Update_UserInfo() { returnedVal in
+                if( returnedVal == 0 ) {
+                    self.Update_LastBackup(UserInfo: nil, Routines: Date(), Exercise: nil)
+                }
+            }
+        }
+        
     }
     
     //Add an exercise to the UserExerciseData database.
@@ -1024,6 +1049,18 @@ Methods that insert or update data.
         } catch {
             print("Failed to to exercise \(ExerciseName) completed on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into UserExerciseData database")
         }
+        
+        //Update Firestore
+        let nextBackup = Calendar.current.date(byAdding: .second, value: 10, to: self.Get_LastBackup().Exercise)
+        
+        if( Date() >= nextBackup! ) {
+            global_UserDataFirestore.Update_ExerciseData() { returnedVal in
+                if( returnedVal == 0 ) {
+                    self.Update_LastBackup(UserInfo: nil, Routines: nil, Exercise: Date())
+                }
+            }
+        }
+        
     }
     
     //Set the steps taken for that hour in the StepCount database.
@@ -1036,6 +1073,18 @@ Methods that insert or update data.
         } catch {
             print("Failed to insert \(Steps) taken on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into StepCount database")
         }
+        
+        //Update Firestore
+        let nextBackup = Calendar.current.date(byAdding: .second, value: 10, to: self.Get_LastBackup().Exercise)
+        
+        if( Date() >= nextBackup! ) {
+            global_UserDataFirestore.Update_ExerciseData() { returnedVal in
+                if( returnedVal == 0 ) {
+                    self.Update_LastBackup(UserInfo: nil, Routines: nil, Exercise: Date())
+                }
+            }
+        }
+        
     }
     
     //Increments the number of steps taken for a specific hour.

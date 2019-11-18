@@ -115,6 +115,8 @@ class UserDataFirestore {
         
         print(" --- Beginning update of UserInfo --- ")
         
+        print("Gathering User Info")
+        
         //Grab the UserInfo we are going to write to Firestore
         let currentUserInfo = self.UserDataSource.Get_User_Data()
         
@@ -183,7 +185,7 @@ class UserDataFirestore {
         
         print(" --- Beginning updating of Routines --- ")
         
-        print("Gathering data")
+        print("Gathering Routines")
         
         //define some values we need
         let currentRoutines = self.UserDataSource.Get_Routines()
@@ -213,7 +215,6 @@ class UserDataFirestore {
                             completion(1)
                         } else {
                             print("Successfully created routine document fo \(routine.RoutineName)")
-                            completion(0)
                         }
                     }
                     
@@ -227,19 +228,142 @@ class UserDataFirestore {
                         completion(1)
                     } else {
                         print("Successfully updated routine document fo \(routine.RoutineName)")
-                        completion(0)
                     }
                 }
             }
             
         }
         
+        //Only gets here if everything was successful
+        completion(0)
     }
     
     //Updates the exercise data on Firebase.
     //This function will be called as a part of Update_Firebase() and should not be called on its own.
-    func Update_ExerciseData() {
+    func Update_ExerciseData(completion: @escaping (Int) -> ()) {
         
+        print(" --- Beginning updating of Exercise Data --- ")
+        
+        print("Gathering Exercise Data")
+        
+        let currentExerciseData = self.UserDataSource.Get_Exercises_all()
+        let targetUUID = self.UserDataSource.Get_User_Data().UserUUID
+        let exerciseColRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("ExerciseData")
+        
+        print("\(currentExerciseData)")
+        
+        print("Generating the list of years needed")
+        
+        //Exercise data is special, need to get the years available to us
+        var yearsNeeded: [Int] = []
+        
+        for row in currentExerciseData {
+            if !yearsNeeded.contains(row.Year) {
+                yearsNeeded.append(row.Year)
+            }
+        }
+        
+        print("\(yearsNeeded)")
+        
+        print("Iterating through the data")
+        
+        //Iterate through all the years
+        for year in yearsNeeded {
+            
+            print("Iterating through year: \(year)")
+            
+            //Iterate through the months
+            for month in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] {
+                
+                print("Iterating through month : \(month)")
+                
+                //Iterate through the days
+                for day in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] {
+                    
+                    print("Iterating through day : \(day)")
+                    
+                    //Iterate through the hours
+                    for hour in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] {
+                        
+                        print("Iterating through hour : \(hour)")
+                        
+                        //Get the relevant exercises we have done
+                        var relevantExercises: [String] = []
+                        
+                        for item in currentExerciseData {
+                            if ( (item.Year == year) && (item.Month == month) && (item.Day == day) && (item.Hour == hour) ) {
+                                relevantExercises.append(item.nameOfExercise)
+                            }
+                        }
+                        
+                        print("RelevantExercises : \(relevantExercises)")
+                        
+                        //Get the number of steps taken
+                        let relevantStepCount = self.UserDataSource.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour)
+                        
+                        print("RelevantStepCount : \(relevantStepCount)")
+                        
+                        //If both are mpty/zero then we don't have any data to push
+                        if( (relevantExercises.isEmpty == true) && (relevantStepCount == 0) ) {
+                            print("All data was null, skipping to next hour")
+                            continue
+                        }
+                        print("Some of the data was not null, proceeding to upload to Firestore")
+                        
+                        let documentName = "\(year)\(month)\(day)\(hour)"
+                        let exerciseDocRef = exerciseColRef.document(documentName)
+                        
+                        let docData: [String: Any] = [
+                            "Year" : year,
+                            "Month" : month,
+                            "Day" : day,
+                            "Hour" : hour,
+                            "ExercisesDone" : relevantExercises,
+                            "StepsTaken" : relevantStepCount
+                        ]
+                        
+                        exerciseDocRef.getDocument() { (document, error) in
+                            guard let document = document, document.exists else {
+                                
+                                //Document does not exist. Create it
+                                print("The document for \(documentName) does not exist. Creating document")
+                                
+                                exerciseDocRef.setData(docData) { err in
+                                    if let err = err {
+                                        print("Failed to set ExerciseData document for hour : \(documentName) : \(err)")
+                                        completion(1)
+                                        return
+                                    } else {
+                                        print("Successfully set ExerciseData document for hour : \(documentName)")
+                                        return
+                                    }
+                                }
+                                
+                                return
+                            }
+                            
+                            //The document does exist, just update the values
+                            exerciseDocRef.updateData(docData) { err in
+                                if let err = err {
+                                    print("Failed to update ExerciseData document for hour : \(documentName) : \(err)")
+                                    completion(1)
+                                } else {
+                                    print("Successfully updated ExerciseData document for hour : \(documentName)")
+                                }
+                            }
+                        }
+                        
+                        
+                    } //End hour loop
+                    
+                } //End day loop
+                
+            } //End month loop
+            
+        } //End year loop
+        
+        //Only gets here if everything was successful
+        completion(0)
     }
     
     /*
@@ -333,6 +457,7 @@ class UserDataFirestore {
             if let error = error {
                 print("An error occured while retrieving the Routines : \(error)")
                 completion([(RoutineName: "NO_COLLECTION", RoutineContents: ["\(error)"])])
+                return
             }
             
             guard let snapshot = snapshot, !snapshot.isEmpty else {
@@ -374,6 +499,7 @@ class UserDataFirestore {
             if let error = error {
                 print("An error occured while retrieving the Exercises Done : \(error)")
                 completion([(Year: 0, Month: 0, Day: 0, Hour: 0, ExercisesDone: ["NO_COLLECTION"], StepsTaken: 0)])
+                return
             }
             
             guard let snapshot = snapshot, snapshot.isEmpty else {
