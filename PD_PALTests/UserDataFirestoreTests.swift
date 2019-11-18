@@ -49,33 +49,6 @@ class UserDataFirestoreTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func test_FullUpdate() {
-        
-        //Initialize a new UserData class that only this method will interact with, along with a UserDataFirestore class using that Database
-        let FullUpdateDB = UserData(DatabaseIdentifier: "FullUpdate")
-        let FullUpdateFirestore = UserDataFirestore(sourceGiven: FullUpdateDB)
-        
-        //Set some values for our user.
-        FullUpdateDB.Update_User_Data(nameGiven: "tester", questionsAnswered: true, walkingDuration: 15, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Light", pushNotificationsDesired: true, firestoreOK: false)
-        
-        //Confirm the update does not go through when FirestoreOK == false
-        let noAuth = FullUpdateFirestore.Update_Firebase(DayFrequency: 0, HourFrequency: 0, MinuteFrequency: 0, SecondFrequency: 0)
-        
-        XCTAssert( noAuth == "NO_AUTH" )
-        
-        //Allow Firestore uploads
-        FullUpdateDB.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: true)
-        
-        //Set the last updated time to right now to confirm that the update does not go through if we have not passed enough time
-        
-        FullUpdateDB.Update_LastBackup(backupDate: Date())
-        
-        let noSchedule = FullUpdateFirestore.Update_Firebase(DayFrequency: 1, HourFrequency: 0, MinuteFrequency: 0, SecondFrequency: 0)
-        
-        XCTAssert( noSchedule == "NO_SCHEDULE" )
-        
-    }
-    
     func test_Get_UserInfo() {
         
         //Initialize a new UserData class that only this method will interact with, along with a UserDataFirestore class using that Database

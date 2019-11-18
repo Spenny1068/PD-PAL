@@ -50,6 +50,8 @@
     Added Name_Available() function
  - 17/11/2019 : William huong
     Added init(DatabaseIdentifier: String) for Firestore testing
+ - 17/11/2019 : William Huong
+    Split LastBackup column into three separate ones
  */
 
 /*
@@ -135,7 +137,9 @@ class UserData {
     private let Intensity = Expression<String>("Intensity")
     private let PushNotifications = Expression<Bool>("PushNotifications")
     private let FirestoreOK = Expression<Bool>("FirestoreOK")
-    private let LastBackup = Expression<String>("LastBackup")
+    private let LastUserInfoBackup = Expression<String>("LastUserInfoBackup")
+    private let LastRoutinesBackup = Expression<String>("LastRoutinesBackup")
+    private let LastExerciseBackup = Expression<String>("LastExerciseBackup")
     
     //Routines database
     private var RoutinesDatabaseName = "Routines"
@@ -359,7 +363,9 @@ class UserData {
                     table.column(Intensity)
                     table.column(PushNotifications)
                     table.column(FirestoreOK)
-                    table.column(LastBackup)
+                    table.column(LastUserInfoBackup)
+                    table.column(LastRoutinesBackup)
+                    table.column(LastExerciseBackup)
                 }
                 
                 //Write the table to the database file
@@ -380,7 +386,7 @@ class UserData {
                 print("Setting last backup date to \(self.yeOldDateString)")
                 
                 do {
-                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastBackup <- self.yeOldDateString))
+                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastUserInfoBackup <- self.yeOldDateString, LastRoutinesBackup <- self.yeOldDateString, LastExerciseBackup <- self.yeOldDateString))
                 } catch {
                     print("Error inserting default user row into UserInfo database")
                 }
@@ -671,7 +677,9 @@ class UserData {
                     table.column(Intensity)
                     table.column(PushNotifications)
                     table.column(FirestoreOK)
-                    table.column(LastBackup)
+                    table.column(LastUserInfoBackup)
+                    table.column(LastRoutinesBackup)
+                    table.column(LastExerciseBackup)
                 }
                 
                 //Write the table to the database file
@@ -692,7 +700,7 @@ class UserData {
                 print("Setting last backup date to \(self.yeOldDateString)")
                 
                 do {
-                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastBackup <- self.yeOldDateString))
+                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastUserInfoBackup <- self.yeOldDateString, LastRoutinesBackup <- self.yeOldDateString, LastExerciseBackup <- self.yeOldDateString))
                 } catch {
                     print("Error inserting default user row into UserInfo database")
                 }
@@ -816,7 +824,7 @@ Methods that get data from class
                 print("UserInfo database was empty. Inserting default values with randomly generated UUID: \(uuid)")
                 
                 do {
-                    try UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastBackup <- self.yeOldDateString))
+                    try UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastUserInfoBackup <- self.yeOldDateString, LastRoutinesBackup <- self.yeOldDateString, LastExerciseBackup <- self.yeOldDateString))
                 } catch {
                     print("Error inserting default user row during read")
                 }
@@ -915,13 +923,16 @@ Methods that get data from class
     }
     
     //Get the last time the user data was backed up.
-    func Get_LastBackup() -> Date {
-        var returnVal = self.yeOldDate
+    func Get_LastBackup() -> (UserInfo: Date, Routines: Date, Exercise: Date) {
+        var returnVal = (UserInfo: self.yeOldDate, Routines: self.yeOldDate, Exercise: self.yeOldDate)
         
         do {
-            let lastBackup = try UserInfo.pluck(UserInfoTable)![LastBackup]
+            let userRow = try UserInfo.pluck(UserInfoTable)
+            let userInfoDate = userRow![LastUserInfoBackup]
+            let routinesDate = userRow![LastRoutinesBackup]
+            let exerciseDate = userRow![LastExerciseBackup]
             
-            returnVal = dateFormatter.date(from: lastBackup) ?? self.yeOldDate
+            returnVal = (UserInfo: dateFormatter.date(from: userInfoDate) ?? self.yeOldDate, Routines: dateFormatter.date(from: routinesDate) ?? self.yeOldDate, Exercise: dateFormatter.date(from: exerciseDate) ?? self.yeOldDate)
         } catch {
             print("Error retrieving last backup date")
         }
@@ -952,7 +963,10 @@ Methods that insert or update data.
 
         //Store the old values
         let currentUserInfo = self.Get_User_Data()
-        let lastBackup = dateFormatter.string(from: self.Get_LastBackup())
+        let lastBackups = self.Get_LastBackup()
+        let userInfoDate = self.dateFormatter.string(from: lastBackups.UserInfo)
+        let routinesDate = self.dateFormatter.string(from: lastBackups.Routines)
+        let exerciseDate = self.dateFormatter.string(from: lastBackups.Exercise)
         
         do {
             //Delete what is currently there, since we only have a single user locally
@@ -970,7 +984,9 @@ Methods that insert or update data.
                                                   Intensity <- (intensityDesired ?? currentUserInfo.Intensity),
                                                   PushNotifications <- (pushNotificationsDesired ?? currentUserInfo.PushNotifications),
                                                   FirestoreOK <- (firestoreOK ?? currentUserInfo.FirestoreOK),
-                                                  LastBackup <- lastBackup
+                                                  LastUserInfoBackup <- userInfoDate,
+                                                  LastRoutinesBackup <- routinesDate,
+                                                  LastExerciseBackup <- exerciseDate
                                                   ))
         } catch {
             print("Failed to update user info")
@@ -1029,19 +1045,29 @@ Methods that insert or update data.
     }
     
     //Sets LastBackup value.
-    func Update_LastBackup(backupDate: Date) {
+    func Update_LastBackup(UserInfo: Date?, Routines: Date?, Exercise: Date?) {
+        
+        //Get the current dates in the database
+        let currentDates = self.Get_LastBackup()
+        
+        //Set date objects to covnert to strings
+        let userInfoDate = UserInfo ?? currentDates.UserInfo
+        let routinesDate = Routines ?? currentDates.Routines
+        let exerciseDate = Exercise ?? currentDates.Exercise
         
         //Convert the date to a string
-        let backupDateString = self.dateFormatter.string(from: backupDate)
+        let userInfoString = self.dateFormatter.string(from: userInfoDate)
+        let routinesString = self.dateFormatter.string(from: routinesDate)
+        let exerciseString = self.dateFormatter.string(from: exerciseDate)
         //Get the current user info
         let currentUserInfo = self.Get_User_Data()
         
         do {
             //Delete what is currently there, since we only have a single user locally
-            try UserInfo.run(UserInfoTable.delete())
+            try self.UserInfo.run(UserInfoTable.delete())
             
             //Re-insert user
-            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUserInfo.UserUUID,
+            try self.UserInfo.run(UserInfoTable.insert(UserUUID <- currentUserInfo.UserUUID,
                                                   UserName <- currentUserInfo.UserName,
                                                   QuestionsAnswered <- currentUserInfo.QuestionsAnswered,
                                                   WalkingDuration <- currentUserInfo.WalkingDuration,
@@ -1052,7 +1078,9 @@ Methods that insert or update data.
                                                   Intensity <- currentUserInfo.Intensity,
                                                   PushNotifications <- currentUserInfo.PushNotifications,
                                                   FirestoreOK <- currentUserInfo.FirestoreOK,
-                                                  LastBackup <- backupDateString
+                                                  LastUserInfoBackup <- userInfoString,
+                                                  LastRoutinesBackup <- routinesString,
+                                                  LastExerciseBackup <- exerciseString
                                                   ))
         } catch {
             print("Error updating last backup date")
@@ -1075,7 +1103,7 @@ Deletion Methods
             try UserInfo.run(UserInfoTable.delete())
             
             //Re-insert user name plus default values for everything else.
-            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUUID, UserName <- currentUserName, QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastBackup <- self.yeOldDateString))
+            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUUID, UserName <- currentUserName, QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastUserInfoBackup <- self.yeOldDateString, LastRoutinesBackup <- self.yeOldDateString, LastExerciseBackup <- self.yeOldDateString))
         } catch {
             print("Failed to delete user info")
         }

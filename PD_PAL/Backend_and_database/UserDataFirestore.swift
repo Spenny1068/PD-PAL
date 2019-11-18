@@ -109,63 +109,6 @@ class UserDataFirestore {
         
     }
     
-    //This function will update the data in Firebase. It will check both if the user has allowed us to store data in Firebase, as well as if it is time for another update.
-    //This should be the only function called. All other functions are either internal functions or only for the sake of testing.
-    func Update_Firebase(DayFrequency: Int?, HourFrequency: Int?, MinuteFrequency: Int?, SecondFrequency: Int?) -> String {
-        
-        print(" --- Beginning Firestore update process --- ")
-        
-        
-        /*
-        Check for permission to upload to Firestore
-        */
-        
-        if( !self.UserDataSource.Get_User_Data().FirestoreOK ) {
-            print("User has not permitted storing data in Firestore")
-            print(" --- Firestore was not updated --- ")
-            return "NO_AUTH"
-        }
-        print("User has permitted storing data in Firestore")
-        
-        
-        /*
-        Check if we need to update
-        */
-        
-        
-        //Create a Date object representing what time we need to update Firestore
-        var dateComponents = DateComponents()
-        dateComponents.day = DayFrequency
-        dateComponents.hour = HourFrequency
-        dateComponents.minute = MinuteFrequency
-        dateComponents.second = SecondFrequency
-
-        let nextUpdateTime = Calendar.current.date(byAdding: dateComponents, to: self.UserDataSource.Get_LastBackup())
-        
-        print("The time is currently \(self.dateFormatter.string(from: Date()))")
-        print("The next update is scheduled to be done at \(self.dateFormatter.string(from: nextUpdateTime!))")
-        
-        if( Date() <= nextUpdateTime! )
-        {
-            //Not time to update yet
-            print("Current time has not passed the next scheduled update time")
-            print(" --- Firestore was not updated --- ")
-            return "NO_SCHEDULE"
-        }
-        print("Current time has passed the next scheduled update time")
-        
-        
-        /*
-        Begin the update process
-        */
-        
-        
-        //Update the UserInfo
-        
-        return "SUCCESS"
-
-    }
-    
     //Updates the user info on Firebase.
     //This function will be called as a part of Update_Firebase() and should not be called on its own.
     func Update_UserInfo(completion: @escaping (Int) -> ()) {

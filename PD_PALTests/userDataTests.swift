@@ -33,6 +33,8 @@ Revision History
     Updated test_UserInfo() for FirestoreOK column
  - 14/11/2019 : William Huong
     Added test_LastBackup()
+ - 16/11/2019 : William Huong
+    Updated test for LastBackup
  */
 
 
@@ -330,18 +332,49 @@ UserData Class Tests
         let userData = UserData()
         
         //Check the default value is there
-        var currentBackup = dateFormatter.string(from: userData.Get_LastBackup())
+        var currentBackup = userData.Get_LastBackup()
+        var userInfoBackup = dateFormatter.string(from: currentBackup.UserInfo)
+        var routinesBackup = dateFormatter.string(from: currentBackup.Routines)
+        var exerciseBackup = dateFormatter.string(from: currentBackup.Exercise)
         print("\(currentBackup)")
-        XCTAssert( currentBackup == defaultDateString )
+        XCTAssert( userInfoBackup == defaultDateString )
+        XCTAssert( routinesBackup == defaultDateString )
+        XCTAssert( exerciseBackup == defaultDateString )
         
         let currentDate = Date()
+        let currentDateString = dateFormatter.string(from: currentDate)
         print("\(currentDate)")
         
-        //Update the date and check it was properly updated
-        userData.Update_LastBackup(backupDate: currentDate)
-        currentBackup = dateFormatter.string(from: userData.Get_LastBackup())
+        //Update the dates one by one and confirm it worked
+        userData.Update_LastBackup(UserInfo: currentDate, Routines: nil, Exercise: nil)
+        currentBackup = userData.Get_LastBackup()
+        userInfoBackup = dateFormatter.string(from: currentBackup.UserInfo)
+        routinesBackup = dateFormatter.string(from: currentBackup.Routines)
+        exerciseBackup = dateFormatter.string(from: currentBackup.Exercise)
         print("\(currentBackup)")
-        XCTAssert( currentBackup == dateFormatter.string(from: currentDate) )
+        XCTAssert( userInfoBackup == currentDateString )
+        XCTAssert( routinesBackup == defaultDateString )
+        XCTAssert( exerciseBackup == defaultDateString )
+        
+        userData.Update_LastBackup(UserInfo: nil, Routines: currentDate, Exercise: nil)
+        currentBackup = userData.Get_LastBackup()
+        userInfoBackup = dateFormatter.string(from: currentBackup.UserInfo)
+        routinesBackup = dateFormatter.string(from: currentBackup.Routines)
+        exerciseBackup = dateFormatter.string(from: currentBackup.Exercise)
+        print("\(currentBackup)")
+        XCTAssert( userInfoBackup == currentDateString )
+        XCTAssert( routinesBackup == currentDateString )
+        XCTAssert( exerciseBackup == defaultDateString )
+        
+        userData.Update_LastBackup(UserInfo: nil, Routines: nil, Exercise: currentDate)
+        currentBackup = userData.Get_LastBackup()
+        userInfoBackup = dateFormatter.string(from: currentBackup.UserInfo)
+        routinesBackup = dateFormatter.string(from: currentBackup.Routines)
+        exerciseBackup = dateFormatter.string(from: currentBackup.Exercise)
+        print("\(currentBackup)")
+        XCTAssert( userInfoBackup == currentDateString )
+        XCTAssert( routinesBackup == currentDateString )
+        XCTAssert( exerciseBackup == currentDateString )
         
     }
     
