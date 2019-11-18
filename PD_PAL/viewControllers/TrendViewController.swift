@@ -313,7 +313,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
             if sdateSelected
             {
                 //if entry in DB is greater than start date and smaller than end date, fetch and add to count
-	                if convertedRaw.compare(converted_sDate) == .orderedDescending && convertedRaw.compare(converted_eDate) == .orderedAscending
+	                if ((convertedRaw.compare(converted_sDate) == .orderedDescending || convertedRaw == converted_sDate) && (convertedRaw.compare(converted_eDate) == .orderedAscending || convertedRaw == converted_eDate))
                 {
                     if categoryMatch.1 as String == "Flexibility"
                     {
@@ -345,7 +345,15 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                     }
                 }
             }
+            
         }
+        
+        
+        //reset
+        flexCounter = 0
+        cardioCounter = 0
+        balanceCounter = 0
+        strengthCounter = 0
         
         
         return catCount
