@@ -166,12 +166,12 @@ class ExerciseViewController: UIViewController {
     /* put slow code in here to run on a different thread */
     override func viewDidAppear(_ animated: Bool) {
         let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
-        
+        print ("log exercise data: ", exercise_data)
         /* gif */
-        gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: exercise_data.Link)
-        view.addSubview(gif!)
-        gif!.startAnimating()
-        
+        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: exercise_data.Link) else { return }
+        view.addSubview(gif)
+        gif.startAnimating()
+       
         /* hide loading label when gif has loaded */
         LoadingLabel.isHidden = true
     }
@@ -264,9 +264,6 @@ class ExerciseViewController: UIViewController {
             
             /* reset routine index */
             Global.routine_index = 0
-            
-            /* stop running gif from previous page */
-            gif!.stopAnimating()
         }
         
         /* if we came from routines */
@@ -278,8 +275,6 @@ class ExerciseViewController: UIViewController {
     
     /* skip button is tapped */
     @objc func skipButtonTapped() {
-        /* stop running gif from previous page */
-        gif!.stopAnimating()
         print ("skip buttons tapped")
     }
     
@@ -315,6 +310,7 @@ extension UIImageView {
             print("Gif does not exist at that path")
             return nil
         }
+        print ("path: ", path)
         let url = URL(fileURLWithPath: path)
         guard let gifData = try? Data(contentsOf: url),
             let source =  CGImageSourceCreateWithData(gifData as CFData, nil) else { return nil }
