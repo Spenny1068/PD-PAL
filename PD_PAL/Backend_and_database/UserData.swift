@@ -52,6 +52,8 @@
     Added init(DatabaseIdentifier: String) for Firestore testing
  - 17/11/2019 : William Huong
     Split LastBackup column into three separate ones
+ - 17/11/2019 : William Huong
+    UserUUID is now just UserName until user authentication is implemented.
  */
 
 /*
@@ -973,7 +975,7 @@ Methods that insert or update data.
             try UserInfo.run(UserInfoTable.delete())
             
             //Re-insert user
-            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUserInfo.UserUUID,
+            try UserInfo.run(UserInfoTable.insert(UserUUID <- (nameGiven ?? currentUserInfo.UserName),
                                                   UserName <- (nameGiven ?? currentUserInfo.UserName),
                                                   QuestionsAnswered <- (questionsAnswered ?? currentUserInfo.QuestionsAnswered),
                                                   WalkingDuration <- (walkingDuration ?? currentUserInfo.WalkingDuration),

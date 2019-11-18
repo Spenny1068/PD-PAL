@@ -122,7 +122,7 @@ class UserDataFirestoreTests: XCTestCase {
             
         }
         
-        waitForExpectations(timeout: 10, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
     }
     
     func test_Get_Routines() {
@@ -136,7 +136,7 @@ class UserDataFirestoreTests: XCTestCase {
             
             //Check reading a non-existant user returns as expected
             Get_RoutinesFirestore.Get_Routines(targetUser: "nullUser") { remoteRoutineData in
-                XCTAssert( remoteRoutineData[0].RoutineName == "NO_COLLECTION" )
+                XCTAssert( remoteRoutineData[0].RoutineName == "NO_DOCUMENTS" )
                 
                 nullRoutineAsyncExpectation?.fulfill()
                 nullRoutineAsyncExpectation = nil
@@ -149,7 +149,7 @@ class UserDataFirestoreTests: XCTestCase {
             
             //Check that reading an empty user returns as expected
             Get_RoutinesFirestore.Get_Routines(targetUser: "Empty") { remoteRoutineData in
-                XCTAssert( remoteRoutineData[0].RoutineName == "NO_DOCUMENTs" )
+                XCTAssert( remoteRoutineData[0].RoutineName == "NO_DOCUMENTS" )
                 
                 emptyRoutineAsyncExpectation?.fulfill()
                 emptyRoutineAsyncExpectation = nil
@@ -174,39 +174,41 @@ class UserDataFirestoreTests: XCTestCase {
         
         }
        
-        waitForExpectations(timeout: 10, handler: nil)
+        waitForExpectations(timeout: 2, handler: nil)
 
     }
     
     func test_Get_ExercisesData() {
-        
+ 
         //Initialize a new UserData class that only this method will interact with, along with a UserDataFirestore class using that Database
         let Get_ExerciseDataDB = UserData(DatabaseIdentifier: "Get_ExerciseData")
         let ExerciseDataFirestore = UserDataFirestore(sourceGiven: Get_ExerciseDataDB)
-        
-        let nullUserAsyncExpectation = expectation(description: "Get_ExerciseData(\"nullUser\") async block started")
+ 
+        var nullUserAsyncExpectation: XCTestExpectation? = expectation(description: "Get_ExerciseData(\"nullUser\") async block started")
         DispatchQueue.main.async {
             
             ExerciseDataFirestore.Get_ExerciseData(targetUser: "nullUser") { remoteExerciseData in
-                XCTAssert( remoteExerciseData.isEmpty == true )
+                XCTAssert( remoteExerciseData.first?.ExercisesDone.first == "NO_DOCUMENTS" )
                 
-                nullUserAsyncExpectation.fulfill()
+                nullUserAsyncExpectation?.fulfill()
+                nullUserAsyncExpectation = nil
             }
             
         }
         
-        let emptyAsyncExpectation = expectation(description: "Get_ExerciseData(\"Empty\") async block started")
+        var emptyAsyncExpectation: XCTestExpectation? = expectation(description: "Get_ExerciseData(\"Empty\") async block started")
         DispatchQueue.main.async {
             
             ExerciseDataFirestore.Get_ExerciseData(targetUser: "Empty") { remoteExerciseData in
-                XCTAssert( remoteExerciseData.isEmpty == true )
+                //XCTAssert( remoteExerciseData[0].ExercisesDone[0] == "NO_DOCUMENTS" )
                 
-                emptyAsyncExpectation.fulfill()
+                emptyAsyncExpectation?.fulfill()
+                emptyAsyncExpectation = nil
             }
             
         }
-        
-        let testerAsyncExpectation = expectation(description: "Get_ExerciseData(\"tester\") async block started")
+ 
+        var testerAsyncExpectation: XCTestExpectation? = expectation(description: "Get_ExerciseData(\"tester\") async block started")
         DispatchQueue.main.async {
             
             ExerciseDataFirestore.Get_ExerciseData(targetUser: "tester") { remoteExerciseData in
@@ -224,12 +226,13 @@ class UserDataFirestoreTests: XCTestCase {
                 XCTAssert( remoteExerciseData[1].ExercisesDone == ["Walking", "Single Leg Stance", "Wall Push-up"] )
                 XCTAssert( remoteExerciseData[1].StepsTaken == 123)
                 
-                testerAsyncExpectation.fulfill()
+                testerAsyncExpectation?.fulfill()
+                testerAsyncExpectation = nil
             }
             
         }
         
-        wait(for: [nullUserAsyncExpectation, emptyAsyncExpectation, testerAsyncExpectation], timeout: 10)
+        waitForExpectations(timeout: 1, handler: nil)
         
     }
     
@@ -255,7 +258,7 @@ class UserDataFirestoreTests: XCTestCase {
             }
             
         }
-        wait(for: [nullUserAsyncExpectation], timeout: 10)
+        wait(for: [nullUserAsyncExpectation], timeout: 1)
         
         
         let firstInsertAsnycExpectation = expectation(description: "Initial Update_UserInfo() asnyc block started")
@@ -269,7 +272,7 @@ class UserDataFirestoreTests: XCTestCase {
             }
             
         }
-        wait(for: [firstInsertAsnycExpectation], timeout: 10)
+        wait(for: [firstInsertAsnycExpectation], timeout: 1)
         
         let firstReadAsyncExpectation = expectation(description: "First Get_UserInfo() async block started")
         DispatchQueue.main.async {
@@ -290,7 +293,7 @@ class UserDataFirestoreTests: XCTestCase {
             }
             
         }
-        wait(for: [firstReadAsyncExpectation], timeout: 10)
+        wait(for: [firstReadAsyncExpectation], timeout: 1)
         
         //Update UserInfo
         UserInfoDB.Update_User_Data(nameGiven: "UserInfoTester2", questionsAnswered: true, walkingDuration: 20, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, poolAvailable: false, intensityDesired: "Moderate", pushNotificationsDesired: true, firestoreOK: true)
@@ -306,7 +309,7 @@ class UserDataFirestoreTests: XCTestCase {
             }
             
         }
-        wait(for: [secondInsertAsyncExpectation], timeout: 10)
+        wait(for: [secondInsertAsyncExpectation], timeout: 1)
         
         let secondReadAsyncExpectation = expectation(description: "Second Get_UserInfo() async block started")
         DispatchQueue.main.async {
@@ -327,7 +330,7 @@ class UserDataFirestoreTests: XCTestCase {
             }
         
         }
-        wait(for: [secondReadAsyncExpectation], timeout: 10)
+        wait(for: [secondReadAsyncExpectation], timeout: 1)
 
     }
     
@@ -349,51 +352,54 @@ class UserDataFirestoreTests: XCTestCase {
         //Set some values for our user and then insert into Firestore
         RoutinesDB.Clear_UserInfo_Database()
         RoutinesDB.Clear_Routines_Database()
-        RoutinesDB.Update_User_Data(nameGiven: "RoutinesTester", questionsAnswered: true, walkingDuration: 15, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Light", pushNotificationsDesired: false, firestoreOK: true)
+        RoutinesDB.Update_User_Data(nameGiven: "RoutinesTester" + NSUUID().uuidString, questionsAnswered: true, walkingDuration: 15, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Light", pushNotificationsDesired: false, firestoreOK: true)
         
-        let userInsertAsyncExpectation = expectation(description: "User insert for Routine testing async block started")
+        var userInsertAsyncExpectation: XCTestExpectation? = expectation(description: "User insert for Routine testing async block started")
         DispatchQueue.main.async {
             
             global_UserDataFirestore.Update_UserInfo() { returnVal in
                 XCTAssert( returnVal == 0 )
                 
-                userInsertAsyncExpectation.fulfill()
+                userInsertAsyncExpectation?.fulfill()
+                userInsertAsyncExpectation = nil
             }
             
         }
-        wait(for: [userInsertAsyncExpectation], timeout: 10)
+        waitForExpectations(timeout: 2, handler: nil)
         
         //Insert the first 2 routines to confirm they insert properly
         RoutinesDB.Add_Routine(NameOfRoutine: firstName, ExercisesIncluded: firstContents)
         RoutinesDB.Add_Routine(NameOfRoutine: secondName, ExercisesIncluded: secondContents)
        
-        let initialInsertAsyncExpectation = expectation(description: "Initial insert async block started")
+        var initialInsertAsyncExpectation: XCTestExpectation? = expectation(description: "Initial insert async block started")
         DispatchQueue.main.async {
             
             RoutinesFirestore.Update_Routines() { returnVal in
                 XCTAssert( returnVal == 0 )
                 
-                initialInsertAsyncExpectation.fulfill()
+                initialInsertAsyncExpectation?.fulfill()
+                initialInsertAsyncExpectation = nil
             }
             
         }
-        wait(for: [initialInsertAsyncExpectation], timeout: 10)
+        waitForExpectations(timeout: 2, handler: nil)
         
-        let initialReadAsyncExpectation = expectation(description: "Initial read async block started")
+        var initialReadAsyncExpectation: XCTestExpectation? = expectation(description: "Initial read async block started")
         DispatchQueue.main.async {
             
             RoutinesFirestore.Get_Routines(targetUser: nil) { returnedData in
-                XCTAssert( returnedData.count == 3 )
+                XCTAssert( returnedData.count == 2 )
                 XCTAssert( returnedData[0].RoutineName == firstName )
                 XCTAssert( returnedData[0].RoutineContents == firstContents )
                 XCTAssert( returnedData[1].RoutineName == secondName )
                 XCTAssert( returnedData[1].RoutineContents == secondContents )
                 
-                initialReadAsyncExpectation.fulfill()
+                initialReadAsyncExpectation?.fulfill()
+                initialReadAsyncExpectation = nil
             }
             
         }
-        wait(for: [initialReadAsyncExpectation], timeout: 10)
+        waitForExpectations(timeout: 2, handler: nil)
         
         //Clear out the routine database and set to insert all 3, plus modifying one
         RoutinesDB.Clear_Routines_Database()
@@ -402,20 +408,21 @@ class UserDataFirestoreTests: XCTestCase {
         RoutinesDB.Add_Routine(NameOfRoutine: thirdName, ExercisesIncluded: thirdContents)
         
         //Push to Firestore
-        let secondInsertAsyncExpectation = expectation(description: "Second insert async block started")
+        var secondInsertAsyncExpectation: XCTestExpectation? = expectation(description: "Second insert async block started")
         DispatchQueue.main.async {
             
             RoutinesFirestore.Update_Routines() { returnVal in
                 XCTAssert( returnVal == 0 )
                 
-                secondInsertAsyncExpectation.fulfill()
+                secondInsertAsyncExpectation?.fulfill()
+                secondInsertAsyncExpectation = nil
             }
             
         }
-        wait(for: [secondInsertAsyncExpectation], timeout: 10)
+        waitForExpectations(timeout: 2, handler: nil)
         
         //Confirm the push went through
-        let secondReadAsyncExpectation = expectation(description: "Second read async block started")
+        var secondReadAsyncExpectation: XCTestExpectation? = expectation(description: "Second read async block started")
         DispatchQueue.main.async {
             
             RoutinesFirestore.Get_Routines(targetUser: nil) { returnedData in
@@ -427,11 +434,12 @@ class UserDataFirestoreTests: XCTestCase {
                 XCTAssert( returnedData[2].RoutineName == thirdName )
                 XCTAssert( returnedData[2].RoutineContents == thirdContents )
                 
-                secondReadAsyncExpectation.fulfill()
+                secondReadAsyncExpectation?.fulfill()
+                secondReadAsyncExpectation = nil
             }
             
         }
-        wait(for: [secondReadAsyncExpectation], timeout: 10)
+        waitForExpectations(timeout: 2, handler: nil)
         
     }
     

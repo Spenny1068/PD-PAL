@@ -373,15 +373,16 @@ class UserDataFirestore {
         userExerciseDataRef.getDocuments() { (snapshot, error) in
             if let error = error {
                 print("An error occured while retrieving the Exercises Done : \(error)")
-                completion([(Year: 0, Month: 0, Day: 0, Hour: 0, ExercisesDone: ["NO_COLLECTION : \(error)"], StepsTaken: 0)])
+                completion([(Year: 0, Month: 0, Day: 0, Hour: 0, ExercisesDone: ["NO_COLLECTION"], StepsTaken: 0)])
             }
             
-            if let snapshot = snapshot, snapshot.isEmpty {
+            guard let snapshot = snapshot, snapshot.isEmpty else {
                 print("The ExercisesDone subcollection was empty : \(String(describing: error))")
-                completion([(Year: 0, Month: 0, Day: 0, Hour: 0, ExercisesDone: ["NO_DOCUMENT : \(String(describing: error))"], StepsTaken: 0)])
+                completion([(Year: 0, Month: 0, Day: 0, Hour: 0, ExercisesDone: ["NO_DOCUMENTS"], StepsTaken: 0)])
+                return
             }
             
-            for document in snapshot!.documents {
+            for document in snapshot.documents {
                 let documentData = document.data()
                 returnVal.append((Year: documentData["Year"] as? Int ?? 0, Month: documentData["Month"] as? Int ?? 0, Day: documentData["Day"] as? Int ?? 0, Hour: documentData["Hour"] as? Int ?? 0, ExercisesDone: documentData["ExercisesDone"] as? [String] ?? ["ERROR"], StepsTaken: documentData["StepsTaken"] as? Int ?? 0))
             }
