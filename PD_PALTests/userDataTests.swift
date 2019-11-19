@@ -18,13 +18,21 @@ Revision History
  - 01/11/2019 : William Huong
     Updated test for greater coverage
  - 01/11/2019 : William Huong
-    Updated test_UserData_UserInfo()
+    Updated test_UserInfo()
  - 02/11/2019 : William Huong
     test_UserData_UserInfo() now checks state after calling Delete_userInfo()
  - 02/11/2019 : William Huong
-    Changed test_UserData_UserInfo() for slightly better coverage
+    Changed test_UserInfo() for slightly better coverage
  - 02/11/2019 : William Huong
-    Udated test_UserData_UserExerciseData() for Get_Exercise_All()
+    Udated test_UserExerciseData() for Get_Exercise_All()
+ - 11/11/2019 : William Huong
+    Updated test_UserInfo() for UUID column
+ - 14/11/2019 : William Huong
+    Removed example performance test
+ - 14/11/2019 : William Huong
+    Updated test_UserInfo() for FirestoreOK column
+ - 14/11/2019 : William Huong
+    Added test_LastBackup()
  */
 
 
@@ -57,7 +65,7 @@ class UserDataTests: XCTestCase {
 UserData Class Tests
 */
     
-    func test_userData_UserInfo() {
+    func test_UserInfo() {
         
         //Create the object.
         let userDB = UserData()
@@ -68,6 +76,12 @@ UserData Class Tests
         //Check that the default values before inserting.
         var userData = userDB.Get_User_Data()
         
+        //Grab the UUID, it should never change.
+        let originalUUID = userData.UserUUID
+        
+        print("\(originalUUID)")
+        
+        XCTAssert( userData.UserUUID != "NULL" )
         XCTAssert( userData.UserName == "DEFAULT_NAME" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -77,9 +91,10 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Provide just the user name.
-        userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        userDB.Update_User_Data(nameGiven: "Margaret", questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         
         //Check that User_Exists() returns true right now.
         XCTAssert( userDB.User_Exists() == true )
@@ -87,6 +102,7 @@ UserData Class Tests
         //Get the user info
         userData = userDB.Get_User_Data()
         
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -96,13 +112,15 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Change some of the values to check we only update the values given.
-        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: 30, chairAvailable: nil, weightsAvailable: true, resistBandAvailable: nil, poolAvailable: true, intensityDesired: nil, pushNotificationsDesired: true)
+        userDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: 30, chairAvailable: nil, weightsAvailable: true, resistBandAvailable: nil, poolAvailable: true, intensityDesired: nil, pushNotificationsDesired: true, firestoreOK: nil)
         
         userData = userDB.Get_User_Data()
         
         //Check values.
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == true )
         XCTAssert( userData.WalkingDuration == 30 )
@@ -112,12 +130,14 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == true )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == true )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Change the rest of the values.
-        userDB.Update_User_Data(nameGiven: "Ebenezer Scrooge", questionsAnswered: false, walkingDuration: nil, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Intense", pushNotificationsDesired: false)
+        userDB.Update_User_Data(nameGiven: "Ebenezer Scrooge", questionsAnswered: false, walkingDuration: nil, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Intense", pushNotificationsDesired: false, firestoreOK: true)
         
         userData = userDB.Get_User_Data()
         
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 30 )
@@ -127,12 +147,14 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Intense" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == true )
         
         //Check Get_User_Data() returns the default values after deleting the user data. Important because of the way I have implemented this database.
         userDB.Delete_userInfo()
         
         userData = userDB.Get_User_Data()
         
+        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -142,6 +164,7 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Check that User_Exists() returns false right now.
         XCTAssert( userDB.User_Exists() == true )
@@ -151,6 +174,8 @@ UserData Class Tests
         
         userData = userDB.Get_User_Data()
         
+        //Clear_UserInfo_Database() is not meant to be used normally, so it will generate a new UUID on next read.
+        XCTAssert( userData.UserUUID != "NULL" )
         XCTAssert( userData.UserName == "DEFAULT_NAME" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -160,28 +185,63 @@ UserData Class Tests
         XCTAssert( userData.PoolAccessible == false )
         XCTAssert( userData.Intensity == "Light" )
         XCTAssert( userData.PushNotifications == false )
+        XCTAssert( userData.FirestoreOK == false )
         
         //Check that User_Exists() returns false right now.
         XCTAssert( userDB.User_Exists() == false )
         
     }
     
-    func test_UserData_Routines() {
+    func test_LastBackup() {
+        
+        //Use string comparison because the Date object is too precise.
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar.current
+        dateFormatter.dateFormat = "MMM d, yyyy, hh:mm:ss a"
+        let defaultDateString = "Jan 1, 1000, 12:00:00 AM"
+        
+        let userData = UserData()
+        
+        //Check the default value is there
+        var currentBackup = dateFormatter.string(from: userData.Get_LastBackup())
+        print("\(currentBackup)")
+        XCTAssert( currentBackup == defaultDateString )
+        
+        let currentDate = Date()
+        print("\(currentDate)")
+        
+        //Update the date and check it was properly updated
+        userData.Update_LastBackup(backupDate: currentDate)
+        currentBackup = dateFormatter.string(from: userData.Get_LastBackup())
+        print("\(currentBackup)")
+        XCTAssert( currentBackup == dateFormatter.string(from: currentDate) )
+        
+    }
+    
+    func test_Routines() {
         
         //Define some variables to test with
+        let defaultRoutineName = "Happy Day Workout"
         let routine1name = "Happy Days Workout"
         let routine2name = "Happier Days Workout"
         let nullRoutine = "Immaginary Workout"
         
+        let defaultRoutineExercises = ["Walking", "Wall Push-Up", "Single Leg Stance"]
         let routine1exercises = ["Bicep Curls", "5 minute walk", "one legged stand"]
         let routine2exercises = ["squats", "sit ups", "bulgarian hamstring stretch", "whatever involved the chair"]
         
         let userData = UserData()
         
-        //Confirm the database is empty and Get_Routines() and Get_Routine() behave properly.
+        //Confirm the database has the default routine, and that Get_Routine() and Get_Routines() work correctly.
         let initialRoutines = userData.Get_Routines()
         let initialRoutine = userData.Get_Routine(NameOfRoutine: nullRoutine)
-        XCTAssert( initialRoutines.isEmpty == true )
+        let defaultRoutine = userData.Get_Routine(NameOfRoutine: defaultRoutineName)
+        
+        /* This fails because Spencer hard coded the 4 default routines in Init() */
+        XCTAssert( initialRoutines.count == 1 )
+        XCTAssert( initialRoutines[0].RoutineName == defaultRoutineName )
+        XCTAssert( initialRoutines[0].Exercises == defaultRoutineExercises )
+        XCTAssert( defaultRoutine == defaultRoutineExercises )
         XCTAssert( initialRoutine.isEmpty == true )
         
         //Insert our 2 routines
@@ -190,15 +250,19 @@ UserData Class Tests
         
         //Confirm they were successfully added.
         let filledRoutines = userData.Get_Routines()
+        let defaultRoutine2 = userData.Get_Routine(NameOfRoutine: defaultRoutineName)
         let filledRoutine1 = userData.Get_Routine(NameOfRoutine: routine1name)
         let filledRoutine2 = userData.Get_Routine(NameOfRoutine: routine2name)
         
-        XCTAssert( filledRoutines.count == 2 )
-        XCTAssert( filledRoutines[0].RoutineName == routine1name )
-        XCTAssert( filledRoutines[0].Exercises == routine1exercises )
-        XCTAssert( filledRoutines[1].RoutineName == routine2name )
-        XCTAssert( filledRoutines[1].Exercises == routine2exercises )
+        XCTAssert( filledRoutines.count == 3 )
+        XCTAssert( filledRoutines[0].RoutineName == defaultRoutineName )
+        XCTAssert( filledRoutines[0].Exercises == defaultRoutineExercises )
+        XCTAssert( filledRoutines[1].RoutineName == routine1name )
+        XCTAssert( filledRoutines[1].Exercises == routine1exercises )
+        XCTAssert( filledRoutines[2].RoutineName == routine2name )
+        XCTAssert( filledRoutines[2].Exercises == routine2exercises )
         
+        XCTAssert( defaultRoutine2 == defaultRoutineExercises )
         XCTAssert( filledRoutine1 == routine1exercises )
         XCTAssert( filledRoutine2 == routine2exercises )
         
@@ -211,14 +275,17 @@ UserData Class Tests
         
         //Confirm they were successfully added.
         let deletionRoutines = userData.Get_Routines()
+        let defaultDeletion = userData.Get_Routine(NameOfRoutine: defaultRoutineName)
         let deletionRoutine1 = userData.Get_Routine(NameOfRoutine: routine1name)
         let deletionRoutine2 = userData.Get_Routine(NameOfRoutine: routine2name)
         
-        XCTAssert( deletionRoutines.count == 1 )
-        XCTAssert( deletionRoutines[0].RoutineName == routine1name )
-        XCTAssert( deletionRoutines[0].Exercises == routine1exercises )
-        XCTAssert( filledRoutines[1].RoutineName == routine2name )
+        XCTAssert( deletionRoutines.count == 2 )
+        XCTAssert( deletionRoutines[0].RoutineName == defaultRoutineName )
+        XCTAssert( deletionRoutines[0].Exercises == defaultRoutineExercises )
+        XCTAssert( deletionRoutines[1].RoutineName == routine1name )
+        XCTAssert( deletionRoutines[1].Exercises == routine1exercises )
         
+        XCTAssert( defaultDeletion == defaultRoutineExercises )
         XCTAssert( deletionRoutine1 == routine1exercises )
         XCTAssert( deletionRoutine2.isEmpty == true )
         
@@ -230,18 +297,20 @@ UserData Class Tests
         userData.Clear_Routines_Database()
         
         let clearedRoutines = userData.Get_Routines()
+        let defaultCleared = userData.Get_Routine(NameOfRoutine: defaultRoutineName)
         let clearedRoutine1 = userData.Get_Routine(NameOfRoutine: routine1name)
         let clearedRoutine2 = userData.Get_Routine(NameOfRoutine: routine2name)
         let clearedRoutineNull = userData.Get_Routine(NameOfRoutine: nullRoutine)
         
         XCTAssert( clearedRoutines.isEmpty == true )
+        XCTAssert( defaultCleared.isEmpty == true )
         XCTAssert( clearedRoutine1.isEmpty == true )
         XCTAssert( clearedRoutine2.isEmpty == true )
         XCTAssert( clearedRoutineNull.isEmpty == true )
         
     }
     
-    func test_UserData_UserExerciseData() {
+    func test_UserExerciseData() {
         
         //Define some variables to test with. Defined so that we can have an exercise done twice in the same hour, multiple difference exercise the same hour, same exercise on two different days
         let targetYear1 = 2019
@@ -387,7 +456,7 @@ UserData Class Tests
         
     }
     
-    func test_UserData_StepCount() {
+    func test_StepCount() {
         
         //Declare some vaiables to use
         let firstSteps1 = Int64(1337)

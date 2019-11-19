@@ -40,7 +40,7 @@ class LoginViewController: UIViewController{
         
         //Store username to DB
         if(userNameTextField.text?.count != 0){
-            global_UserData.Update_User_Data(nameGiven: userName, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+            global_UserData.Update_User_Data(nameGiven: userName, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
             print("Update Username")
             print(global_UserData.Get_User_Data())
         }

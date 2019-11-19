@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Exercise History</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.3.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.3.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.3.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.3.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.3.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+		<!-- Path to chart javascript... Sourced from https://www.chartjs.org  
+		<script src="/node_modules/chart.js/dist/Chart.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+		<link href="../css/main_style.css" type="text/css" rel="stylesheet" />
+		<script src="../js/tabs.js"></script>
+
+  </head>
+  <body>
+    <div id="Header">
+			  
+			<h1> <img src="../images/pd_pal_logo.png" alt="PD PAL LOGO"
+			 title="PD PAL LOGO" width="73" height="61.5" align="bottom"  /> 	PD PAL</h1>
+			<h2>Your Exercise History</h2>
+    </div>
+
+
+
+		<!-- Code for Veritcal Tabs from https://www.w3schools.com/howto/howto_js_vertical_tabs.asp -->
+
+		<div class="tab">
+			<button class="tablinks" onclick="openCity(event, 'History')" id="defaultOpen">History</button>
+			<button class="tablinks" onclick="openCity(event, 'Trends')">Trends</button>
+			<button class="tablinks" onclick="openCity(event, 'Steps')">Steps</button>
+		</div>
+
+		<div id="History" class="tabcontent">
+			<h3>History</h3>
+			<h4> Your Exercise History depending on each category.</h4>
+			<p>Select categories in the legend to remove them from the graph.</p>
+			<canvas id="exHis"> </canvas>
+		</div>
+
+		<div id="Trends" class="tabcontent">
+			<h3>Trends</h3>
+			<p>Your Trends for the past 7 days!</p>
+			<canvas id="trendsChart" width="800" height="450"></canvas> 
+		</div>
+
+		<div id="Steps" class="tabcontent">
+			<h3>Steps</h3>
+			<p>These are the steps that you have taken over the past week!</p>
+			<canvas id="stepCountChart" height=200 width=200></canvas>
+		</div>
+		<script>
+			// Get the element with id="defaultOpen" and click on it
+			document.getElementById("defaultOpen").click();
+
+		</script>
+
+		<script src="../js/chart_config.js"></script>
+
+    <!-- <p id="load">Firebase SDK Loading&hellip;</p> -->
+		<!--
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+         document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+		-->
+
+		
+	
+  </body>
+</html>

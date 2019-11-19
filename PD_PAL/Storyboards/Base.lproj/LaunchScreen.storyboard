@@ -12,16 +12,21 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logoLaunch.png" translatesAutoresizingMaskIntoConstraints="NO" id="7gT-xU-n8P">
-                                <rect key="frame" x="91" y="217" width="211" height="181"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="7gT-xU-n8P">
+                                <rect key="frame" x="106" y="249" width="163" height="168"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.82456272840499878" green="0.90582793951034546" blue="0.97093397378921509" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7gT-xU-n8P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="106" id="R0a-qa-0z7"/>
+                            <constraint firstItem="7gT-xU-n8P" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="249" id="TDJ-Z6-r3G"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7gT-xU-n8P" secondAttribute="bottom" constant="250" id="db6-wg-QgW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7gT-xU-n8P" secondAttribute="trailing" constant="106" id="kJd-kw-1pg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -31,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logoLaunch.png" width="274.55999755859375" height="258.72000122070312"/>
+        <image name="logo" width="57.5" height="54"/>
     </resources>
 </document>

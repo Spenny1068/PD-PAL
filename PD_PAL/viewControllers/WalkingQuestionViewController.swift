@@ -17,16 +17,24 @@ class WalkingQuestionViewController: UIViewController {
     //Buttons
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var slider: UISlider!
     
     //Labels
     @IBOutlet weak var QuestionLabel: UILabel!
     @IBOutlet weak var walkingVal: UILabel!
+    @IBOutlet weak var Instruction: UILabel!
     var walkingDurationVal = 0
     
-    //Slider
+    //Slider input
     @IBAction func sliderChanged(_ sender: UISlider) {
-        walkingVal.text = String(Int(sender.value)) + " mins"
-        walkingDurationVal = Int(sender.value)
+        var newValue = roundf(slider.value)
+        slider.value = newValue
+        walkingDurationVal = Int((sender.value)*5)
+        if(newValue == 6){
+            walkingVal.text = String(walkingDurationVal) + " mins +"
+        } else{
+            walkingVal.text = String(walkingDurationVal) + " mins"
+        }
     }
     
     override func viewDidLoad() {
@@ -34,12 +42,19 @@ class WalkingQuestionViewController: UIViewController {
         //Question
         QuestionLabel.text = "How long would you like your walking exercises to be?"
         QuestionLabel.applyQuestionDesign()
-        self.view.addSubview(QuestionLabel)
+        
+        //Instruction
+        Instruction.text = "(Hold and drag to select a time)"
+        Instruction.textAlignment = .center
+        Instruction.numberOfLines = 2
+        Instruction.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
         
         //Slider
         walkingVal.text = "0 mins"
         walkingVal.textAlignment = .center
         walkingVal.applyQlabels()
+        walkingVal.textColor = Global.color_schemes.m_blue1
+        slider.questionnaireSlider()
         
         //Navigation Buttons
         completeButton.applyNextQButton()
@@ -56,18 +71,7 @@ class WalkingQuestionViewController: UIViewController {
     
     @IBAction func completeTapped(_ sender: UIButton) {
         //Update user's preferred walking duration
-        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil)
+        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         print(global_UserData.Get_User_Data())
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

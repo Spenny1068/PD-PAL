@@ -1,0 +1,124 @@
+/*
+Colours
+RED #DC143C
+BLUE #039be5
+*/
+
+
+/* https://www.w3schools.com/howto/howto_css_loader.asp */
+#loader {
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #3498db;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+	position: relative;
+	right: 10px;
+	bottom: 5px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+body 
+{ 
+	background: #ECEFF1;
+  color: rgba(0,0,0,0.87);
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#message 
+{ 
+	background: white;
+  max-width: 360px;
+  margin: 100px auto 16px;
+  padding: 32px 24px;
+  border-radius: 3px;
+	border-width: 2px; 
+}
+#message h2 
+{ 
+	color: #DC143C;
+	font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 8px;
+ }
+#message h1 
+{ 
+	font-size:22px;
+  font-weight: 300;
+  color: rgba(0,0,0,0.6);
+  margin: 0 0 16px;
+}
+#message p 
+{ 
+	line-height: 140%;
+  margin: 16px 0 24px;
+  font-size: 14px;
+}
+#message a 
+{ 
+	display: block;
+	text-align: center;
+  background: #039be5;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  padding: 16px;
+  border-radius: 4px;
+}
+#message, #message a 
+{ 
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+#load 
+{ 
+	color: rgba(0,0,0,0.4);
+  text-align: center;
+  font-size: 13px;
+}
+#login_box
+{ 
+	display: block;
+	text-align: left;
+	font-size: 20px;
+	width: 80%;
+	padding: 5px 5px;
+	margin: 8px 0;
+	box-sizing: border-box;
+}
+#login_button
+{
+	width: 45%;
+	height: 30px;
+	background: #DC143C;
+	color: white;
+}
+body, #message 
+{ 
+	margin-top: 30;
+	background: white;
+  box-shadow: black; 
+}
+body 
+{ 
+	border-top: 16px solid #DC143C; 
+}
+
+
+
+
+

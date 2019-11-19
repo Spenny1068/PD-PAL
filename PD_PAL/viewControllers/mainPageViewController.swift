@@ -19,7 +19,8 @@ import UIKit
 class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     var pageControl = UIPageControl()
-
+    var refreshTrendGraph = TrendViewController()
+    
     // view controllers in PageViewController
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.newVc(viewController: "RoutinesPage"),
@@ -33,13 +34,18 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         global_StepTracker.track_steps() //call step counter
         self.dataSource = self
         
-                                    /* MAIN PAGE NAVIGATION BAR CODE */
+                                    /* NAVIGATION BAR CODE */
+        //self.navigationController?.navigationBar.topItem!.title = "ROUTINES"                     // default title
+        //self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
+
+        // make navigation bar transparent
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
         
-        self.navigationController?.navigationBar.topItem!.title = "Main"           // nav bar text
-        self.navigationController?.navigationBar.barTintColor = Setup.m_bgColor     // nav bar color
-        
-        let homeButton = UIBarButtonItem(image: UIImage(named: "logo.png"), style: .plain, target: self, action: #selector(homeButtonTapped))
-        //self.navigationItem.rightBarButtonItem  = homeButton
+        // just show back arrow
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         
                                     /* PAGE VIEW CONTROLLER CODE */
@@ -50,18 +56,11 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
                                animated: true,
                                completion: nil)
         }
+        
         self.delegate = self
         configurePageControl()
     }
-    
                                     /* MAIN PAGE VIEW CONTROLLER FUNCTIONS */
-    
-    // when home button on nav bar is tapped
-    @objc func homeButtonTapped(sender: UIButton!) {
-        let homeView = self.storyboard?.instantiateViewController(withIdentifier: "mainPage")
-        present(homeView!, animated: true, completion: nil)
-        
-    }
     
     func configurePageControl() {
         pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height:50))
@@ -87,6 +86,7 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
             return nil
         }
         
+        
         return orderedViewControllers[prevIndex]
     }
     
@@ -103,6 +103,12 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let pageContentViewController = pageViewController.viewControllers![0]
         self.pageControl.currentPage = orderedViewControllers.index(of: pageContentViewController)!
+        
+        // dynamic title for navigation bar
+//        if self.pageControl.currentPage == 0 { self.navigationController?.navigationBar.topItem!.title = "ROUTINES" }
+//        else if self.pageControl.currentPage == 1 { self.navigationController?.navigationBar.topItem!.title = "CATEGORIES" }
+//        else if self.pageControl.currentPage == 2 { self.navigationController?.navigationBar.topItem!.title = "TRENDS" }
+//        else { self.navigationController?.navigationBar.topItem!.title = "SETTINGS" }
     }
     
     override func didReceiveMemoryWarning() {

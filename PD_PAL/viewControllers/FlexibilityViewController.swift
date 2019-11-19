@@ -12,43 +12,102 @@
 import UIKit
 
 class FlexibilityViewController: UIViewController {
+    
+    /* IBOutlet Buttons */
+    @IBOutlet weak var exerciseButton: UIButton!
+    @IBOutlet weak var exerciseButton2: UIButton!
+    @IBOutlet weak var exerciseButton3: UIButton!
+    @IBOutlet weak var exerciseButton4: UIButton!
+    @IBOutlet weak var exerciseButton5: UIButton!
+    
+    /* stack view containing exercise buttons */
+    lazy var stackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [exerciseButton, exerciseButton2, exerciseButton3, exerciseButton4, exerciseButton5])    // elements in stackview
+        sv.translatesAutoresizingMaskIntoConstraints = false    // use constraints
+        sv.axis = .vertical                                     // stackview orientation
+        sv.spacing = 25                                        // spacing between elements
+        sv.distribution = .fillEqually
+        return sv
+    }()
+    
+    /* forward pass data between view controllers */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        /* set IsRoutineExercise flag to 0 to signify we came from categories page */
+        if let vcc = segue.destination as? ExerciseViewController { Global.IsRoutineExercise = 0 }
+        
+        /* use segue to forward pass exercise name to destination exercise view controller */
+        if segue.identifier == "FlexibilitySegue" {
+            let vc = segue.destination as! ExerciseViewController
+            vc.exercise_name = (sender as! UIButton).titleLabel!.text!
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = Setup.m_bgColor  // ackground color
-
-        // page name
-        let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = "FLEXIBILITY"
-        pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)
-        NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 350),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
-        ])
+        view.backgroundColor = Global.color_schemes.m_bgColor  // background color
+        
+        /* navigation bar stuff */
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.title = nil
+        let homeButton = UIButton(type: .custom)
+        homeButton.applyHomeButton()
+        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+        let barButton = UIBarButtonItem(customView: homeButton)
+        self.navigationItem.rightBarButtonItem  = barButton
         
         // home button on navigation bar
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-        self.navigationItem.rightBarButtonItem  = homeButton
+        self.navigationItem.rightBarButtonItem  = barButton
+        self.title = nil
+        
+        /* page message */
+        self.show_page_message(s1: "Flexiblity Exercises!", s2: "Flexiblity")
+        
+        let exercise_list = global_ExerciseData.exercise_names()
+        
+        /* exercise buttons */
+        
+        //-> button 1
+        exerciseButton.setTitle(exercise_list[3],for: .normal)                        // button text
+        exerciseButton.exerciseButtonDesign()
+        exerciseButton.backgroundColor = Global.color_schemes.m_flexButton          // background color
+
+        //-> button 2
+        exerciseButton2.setTitle(exercise_list[6],for: .normal)                        // button text
+        exerciseButton2.exerciseButtonDesign()
+        exerciseButton2.backgroundColor = Global.color_schemes.m_flexButton          // background color
+
+        //-> button 3
+        exerciseButton3.setTitle(exercise_list[7],for: .normal)                        // button text
+        exerciseButton3.exerciseButtonDesign()
+        exerciseButton3.backgroundColor = Global.color_schemes.m_flexButton          // background color
+        
+        //-> button 4
+        exerciseButton4.setTitle(exercise_list[13],for: .normal)                        // button text
+        exerciseButton4.exerciseButtonDesign()
+        exerciseButton4.backgroundColor = Global.color_schemes.m_flexButton          // background color
+        
+        //-> button 5
+        exerciseButton5.setTitle(exercise_list[14],for: .normal)                        // button text
+        exerciseButton5.exerciseButtonDesign()
+        exerciseButton5.backgroundColor = Global.color_schemes.m_flexButton          // background color
+        
+
+        /* exercise buttons constraints */
+        applyExerciseButtonConstraint(button: exerciseButton)
+        applyExerciseButtonConstraint(button: exerciseButton2)
+        applyExerciseButtonConstraint(button: exerciseButton3)
+        applyExerciseButtonConstraint(button: exerciseButton4)
+        applyExerciseButtonConstraint(button: exerciseButton5)
+
+        self.view.addSubview(stackView)
+        applyStackViewConstraints(SV: stackView)
     }
     
-    // called when home button on navigation bar is tapped
+    /* when home button on navigation bar is tapped */
     @objc func homeButtonTapped(sender: UIButton!) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

@@ -10,114 +10,99 @@
 // <Date, Name, Changes made>
 // <Oct. 26, 2019, Spencer Lall, added categories buttons>
 // <October 27, 2019, Spencer Lall, applied default page design>
+// <November 15, 2019, Izyl Canonicato, Category buttons >
 
 
 import UIKit
 
 class CategoriesViewController: UIViewController {
 
-    // category button
-    @IBOutlet weak var flexibility: UIButton!
-    @IBOutlet weak var cardio: UIButton!
-    @IBOutlet weak var strength: UIButton!
-    @IBOutlet weak var balance: UIButton!
+    /* IBOutlet Buttons */
+    @IBOutlet weak var flexibilityButton: UIButton!
+    @IBOutlet weak var strengthButton: UIButton!
+    @IBOutlet weak var cardioButton: UIButton!
+    @IBOutlet weak var balanceButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Setup.m_bgColor  // background color
+        view.backgroundColor = Global.color_schemes.m_bgColor // background color
         
-        // get screen dimensions
-        let screenRect = UIScreen.main.bounds
-        let screenWidth = screenRect.size.width     // width of view controller
-        let screenHeight = screenRect.size.height   // height of view controller
+        /* category buttons */
         
-        // Page Name
-        let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = "CATEGORIES"
-        pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)
+        //-> flexibility
+        flexibilityButton.setTitle("Flexibility",for: .normal)                            // button text
+        flexibilityButton.categoryButtonDesign()
+        flexibilityButton.backgroundColor = Global.color_schemes.m_flexButton             // background color
+        flexibilityButton.setBackgroundImage(UIImage(named: "FlexibilityBtnImg"), for: .normal)
+        
+        //-> strength
+        strengthButton.setTitle("Strength",for: .normal)                            // button text
+        strengthButton.categoryButtonDesign()
+        strengthButton.backgroundColor = Global.color_schemes.m_blue2             // background color
+        strengthButton.setBackgroundImage(UIImage(named: "StrengthBtnImg"), for: .normal)
+        
+        //-> cardio
+        cardioButton.setTitle("Cardio",for: .normal)                            // button text
+        cardioButton.categoryButtonDesign()
+        cardioButton.backgroundColor = Global.color_schemes.m_blue4             // background color
+        cardioButton.setBackgroundImage(UIImage(named: "CardioBtnImg"), for: .normal)
+        
+        //-> balance
+        balanceButton.setTitle("Balance",for: .normal)                            // button text
+        balanceButton.categoryButtonDesign()
+        balanceButton.backgroundColor = Global.color_schemes.m_blue1             // background color
+        balanceButton.setBackgroundImage(UIImage(named: "BalanceBtnImg"), for: .normal)
+        
+        /* show buttons */
+        self.view.addSubview(flexibilityButton)
+        self.view.addSubview(strengthButton)
+        self.view.addSubview(cardioButton)
+        self.view.addSubview(balanceButton)
+
+
+        /* flexiblity button constraints */
         NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 350),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
+            flexibilityButton.widthAnchor.constraint(equalToConstant: 152),
+            flexibilityButton.heightAnchor.constraint(equalToConstant: 208),
+            flexibilityButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 23),
+            flexibilityButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -200),
+            flexibilityButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 135)
+        ])
+        
+        /* cardio button constraints */
+        NSLayoutConstraint.activate([
+            cardioButton.widthAnchor.constraint(equalToConstant: 152),
+            cardioButton.heightAnchor.constraint(equalToConstant: 208),
+            cardioButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 200),
+            cardioButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -23),
+            cardioButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 135)
         ])
 
+        /* strength button constraints */
+        NSLayoutConstraint.activate([
+            strengthButton.widthAnchor.constraint(equalToConstant: 152),
+            strengthButton.heightAnchor.constraint(equalToConstant: 208),
+            strengthButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 23),
+            strengthButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -200),
+            strengthButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 391)
+        ])
         
-        // message
-        let msg = UILabel()
-        msg.text = "Choose a category to work!"
-        msg.applyPageMsgDesign()
-        self.view.addSubview(msg)
         
-        //NSLayoutConstraint.activate([
-        //   msg.widthAnchor.constraint(equalToConstant: 300),
-        //    msg.heightAnchor.constraint(equalToConstant: 50),
-        //   msg.centerXAnchor.constraint(equalTo: view.leftAnchor, constant: 115),
-        //   msg.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
-        //   ])
+        /* balance button constraints */
+        NSLayoutConstraint.activate([
+            balanceButton.widthAnchor.constraint(equalToConstant: 152),
+            balanceButton.heightAnchor.constraint(equalToConstant: 208),
+            balanceButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 200),
+            balanceButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -23),
+            balanceButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 391)
+        ])
         
-        // flexiblity button
-        flexibility.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 - 150, width: 100, height: 150)
-        let flexibilityImage = UIImage(named: "flexibility.png")
-        flexibility.setImage(flexibilityImage , for: UIControl.State.normal)
-        flexibility.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        self.view.addSubview(flexibility)
-
-        // flexibility text
-        let flexibilityText = UILabel(frame: CGRect(x: screenWidth/2 - 150, y: screenHeight/2, width: 100, height: 30))
-        flexibilityText.text = "Flexiblity"
-        flexibilityText.textAlignment = .center                                           // text alignment
-        //flexibilityText.backgroundColor = .red
-        self.view.addSubview(flexibilityText)
-        
-        // strength button
-        strength.frame = CGRect(x: screenWidth/2 - 150, y: screenHeight/2 + 100, width: 100, height: 150)
-        let strengthImage = UIImage(named: "strength.png")
-        strength.setImage(strengthImage , for: UIControl.State.normal)
-        strength.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        self.view.addSubview(strength)
-        
-        // strength text
-        let strengthText = UILabel(frame: CGRect(x: screenWidth/2 - 150, y: screenHeight - 80, width: 100, height: 30))
-        strengthText.text = "Strength"
-        strengthText.textAlignment = .center                                           // text alignment
-        //strengthText.backgroundColor = .blue
-        self.view.addSubview(strengthText)
-
-        
-        // balance button
-        balance.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 + 100, width: 100, height: 150)
-        let balanceImage = UIImage(named: "balance.png")
-        balance.setImage(balanceImage , for: UIControl.State.normal)
-        balance.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        self.view.addSubview(balance)
-        
-        // balance text
-        let balanceText = UILabel(frame: CGRect(x: screenWidth/2 + 50, y: screenHeight - 80, width: 100, height: 30))
-        balanceText.text = "Balance"
-        balanceText.textAlignment = .center                                           // text alignment
-        //balanceText.backgroundColor = .yellow
-        self.view.addSubview(balanceText)
-
-        // cardio button
-        cardio.frame = CGRect(x: screenWidth/2 + 50, y: screenHeight/2 - 150, width: 100, height: 150)
-        let cardioImage = UIImage(named: "cardio.png")
-        cardio.setImage(cardioImage , for: UIControl.State.normal)
-        cardio.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        self.view.addSubview(cardio)
-        
-        // cardio text
-        let cardioText = UILabel(frame: CGRect(x: screenWidth/2 + 50, y: screenHeight/2, width: 100, height: 30))
-        cardioText.text = "Cardio"
-        cardioText.textAlignment = .center                                           // text alignment
-        //balanceText.backgroundColor = .yellow
-        self.view.addSubview(cardioText)
-    
+        /* page message */
+        self.show_page_message(s1: "Select A Category To Work!", s2: "Category")
     }
     
-    @objc func buttonAction(sender: UIButton!) {
-        print("button tapped")
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
 }

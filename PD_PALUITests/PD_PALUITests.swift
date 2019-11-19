@@ -4,7 +4,7 @@
 //
 //  Created by SpenC on 2019-10-11.
 //  Copyright © 2019 WareOne. All rights reserved.
-//
+// <November 16, 2019, Julia Kim, Added UI testing for switch to push to cloud and button to delete user data>
 
 import XCTest
 
@@ -103,27 +103,27 @@ class PD_PALUITests: XCTestCase {
             /* Categories main page */
             // -> Flexibility
             app.buttons["Flexibility"].tap()
-            app.buttons["Single Leg Stance"].tap()
+            app.buttons["SINGLE LEG STANCE"].tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
 
             // -> Cardio
             app.buttons["Cardio"].tap()
-            app.buttons["Walking"].tap()
+            app.buttons["WALKING"].tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
 
             // -> Balance
             app.buttons["Balance"].tap()
-            app.buttons["Quad Stretch"].tap()
+            app.buttons["QUAD STRETCH"].tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
             app.navigationBars.buttons.element(boundBy: 0).tap()
 
             // -> Strength
-//            app.buttons["Strength"].tap()
-//            app.buttons["Wall Push-up"].tap()
-//            app.navigationBars.buttons.element(boundBy: 0).tap()
-//            app.navigationBars.buttons.element(boundBy: 0).tap()
+            app.buttons["Strength"].tap()
+            app.buttons["WALL PUSHUP"].tap()
+            app.navigationBars.buttons.element(boundBy: 0).tap()
+            app.navigationBars.buttons.element(boundBy: 0).tap()
 
             app.swipeLeft()
             app.swipeLeft()
@@ -135,8 +135,97 @@ class PD_PALUITests: XCTestCase {
         
     }
     
-    func stepCounter(){
+    func testDatePicker(){
+        let app = XCUIApplication()
+        //let app2 = app
+        let datePickers = XCUIApplication().datePickers
         
+        app.swipeLeft()
+        app.swipeLeft()
+        
+        app.swipeUp() //test scrolling up the page
+        app.swipeDown() //test scrolling down the page
+        app.textFields["Pick a Start Date"].tap()
+        
+        app.datePickers.pickerWheels["Today"].swipeDown()
+        
+        app.textFields["Pick an End Date"].tap()
+     
+        app.datePickers.pickerWheels["Today"].swipeUp()
+        app.buttons["Update All"].tap()
+        
+        app.swipeUp() //test scrolling up the page
+        app.swipeDown() //test scrolling down the page
+        
+        app.buttons["Reset Dates"].tap()
+        
+        
+    }
+    
+    func testCloudPermSW()
+    {
+        
+        
+        let app = XCUIApplication()
+        let element = app.otherElements.containing(.navigationBar, identifier:"PD_PAL.mainPageView").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element.swipeLeft()
+        element.swipeLeft()
+        element.swipeLeft()
+        element.switches["CloudSW"].tap()
+        element.switches["CloudSW"].tap()
+        
+    }
+    
+    
+    func testDeleteUserDataButton(){
+        
+        let app = XCUIApplication()
+        app.textFields["Enter your name"].tap()
+        app.keys["s"].tap()
+        app.buttons["Enter"].tap()
+        app.buttons["Later"].tap()
+        
+        let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element.swipeLeft()
+        app.buttons["Happy Day Workout"].tap()
+        app.buttons["WALL PUSH-UP"].tap()
+        
+        let completedButton = app.buttons["COMPLETED"]
+        completedButton.tap()
+        completedButton.tap()
+        completedButton.tap()
+        completedButton.tap()
+        completedButton.tap()
+        completedButton.tap()
+        completedButton.tap()
+        completedButton.tap()
+        app.navigationBars["PD_PAL.ExerciseView"].buttons["Back"].tap()
+        app.navigationBars["PD_PAL.RoutineGenericView"].buttons["Back"].tap()
+        element.swipeLeft()
+        element.swipeLeft()
+        
+        let updateAllButton = app/*@START_MENU_TOKEN@*/.buttons["Update All"]/*[[".scrollViews.buttons[\"Update All\"]",".buttons[\"Update All\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        updateAllButton.tap()
+        
+        let flexibilityElement = app.scrollViews.otherElements.containing(.staticText, identifier:"Flexibility").element
+        flexibilityElement.swipeUp()
+        flexibilityElement.swipeUp()
+        flexibilityElement.swipeUp()
+        app.staticTexts["W Trends!"].swipeDown()
+        
+        let updateAllScrollView = app/*@START_MENU_TOKEN@*/.scrollViews.containing(.button, identifier:"Update All").element/*[[".scrollViews.containing(.staticText, identifier:\"Please select the same day for hourly graph.\").element",".scrollViews.containing(.textField, identifier:\"Pick an End Date\").element",".scrollViews.containing(.textField, identifier:\"Pick a Start Date\").element",".scrollViews.containing(.button, identifier:\"Reset Dates\").element",".scrollViews.containing(.button, identifier:\"Update All\").element"],[[[-1,4],[-1,3],[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        updateAllScrollView.swipeLeft()
+        app.staticTexts["Select A Routine To Try!"].swipeLeft()
+        element.swipeLeft()
+        updateAllScrollView.swipeLeft()
+        app.buttons["Delete All My Data"].tap()
+        app.alerts["Confirm Deletion"].buttons["Agree"].tap()
+        element.swipeRight()
+        element.swipeLeft()
+        updateAllButton.tap()
+        updateAllButton.tap()
+        updateAllButton.tap()
+        flexibilityElement.swipeUp()
     }
     
     //test to show to trends table in the trends pages 

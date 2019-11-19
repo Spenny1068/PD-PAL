@@ -16,68 +16,73 @@ import UIKit
 class RoutinesViewController: UIViewController {
     
     // IBOutlet buttons
-    @IBOutlet weak var E1: UIButton!
-    @IBOutlet weak var E2: UIButton!
-    @IBOutlet weak var E3: UIButton!
+    @IBOutlet weak var routineButton1: UIButton!
+    @IBOutlet weak var routineButton2: UIButton!
+    @IBOutlet weak var routineButton3: UIButton!
+    
+    
+    /* stack view containing exercise buttons */
+    lazy var stackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [routineButton1, routineButton2, routineButton3])    // elements in stackview
+        sv.translatesAutoresizingMaskIntoConstraints = false    // use constraints
+        sv.axis = .vertical                                     // stackview orientation
+        sv.spacing = 25                                        // spacing between elements
+        sv.distribution = .fillEqually
+        return sv
+    }()
+    
+    // override seque to send exercise name to destination view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "RoutineSegue" {
+            let vc = segue.destination as! RoutineGenericViewController
+            vc.routine_name = (sender as! UIButton).titleLabel!.text!
+            
+            /* reset routine index */
+            Global.routine_index = 0
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Setup.m_bgColor
+        let routineNames = global_UserData.Get_Routines()
+        view.backgroundColor = Global.color_schemes.m_bgColor
         
-        //home button on navigation bar
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-        self.navigationItem.rightBarButtonItem  = homeButton
         
-        // page name
-        let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = "ROUTINES"
-        pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)
-        NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 350),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
-        ])
-        
-        // message
-        let msg = UILabel()
-        msg.text = "Choose a routine to try!"
-        msg.applyPageMsgDesign()
-        self.view.addSubview(msg)
+        /* page message */
+        self.show_page_message(s1: "Select A Routine To Try!", s2: "Routine")
 
-        // routine buttons
-        E1.setTitle("Happy Day Workout", for: .normal)
-        E1.applyDesign()
+        /* apply titles and designs to routine buttons */
+        routineButton1.setTitle(routineNames[0].0, for: .normal)
+        routineButton1.routineButtonDesign()
+        routineButton1.setBackgroundImage(UIImage(named: "routine1"), for: .normal)
         
-        E2.setTitle("Friday Night Chill", for: .normal)
-        E2.applyDesign()
+        routineButton2.setTitle(routineNames[1].0, for: .normal)
+        routineButton2.routineButtonDesign()
+        routineButton2.setBackgroundImage(UIImage(named: "routine2"), for: .normal)
         
-        E3.setTitle("Monday Morning Mood", for: .normal)
-        E3.applyDesign()
+        routineButton3.setTitle(routineNames[2].0, for: .normal)
+        routineButton3.routineButtonDesign()
+        routineButton3.setBackgroundImage(UIImage(named: "routine3"), for: .normal)
+        
+        /* routine button constraints */
+        applyExerciseButtonConstraint(button: routineButton1)
+        applyExerciseButtonConstraint(button: routineButton2)
+        applyExerciseButtonConstraint(button: routineButton3)
+        
+        self.view.addSubview(stackView)
+        applyStackViewConstraints(SV: stackView)
     }
     
-   // called when home button on navigation bar is tapped
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
+    }
+    
+   /* when home button on navigation bar is tapped */
    @objc func homeButtonTapped(sender: UIButton!) {
        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
        self.present(newViewController, animated: true, completion: nil)
    }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    @objc func buttonAction(sender: UIButton!) {
-        print("button tapped")
-    }
 }
 
 

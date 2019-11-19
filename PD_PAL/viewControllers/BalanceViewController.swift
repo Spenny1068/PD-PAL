@@ -13,26 +13,85 @@
 import UIKit
 
 class BalanceViewController: UIViewController {
-
+    
+    /* IBOutlet Buttons */
+    @IBOutlet weak var exerciseButton: UIButton!
+    @IBOutlet weak var exerciseButton2: UIButton!
+    @IBOutlet weak var exerciseButton3: UIButton!
+    @IBOutlet weak var exerciseButton4: UIButton!
+    
+    /* stack view containing exercise buttons */
+    lazy var stackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [exerciseButton, exerciseButton2, exerciseButton3, exerciseButton4])    // elements in stackview
+        sv.translatesAutoresizingMaskIntoConstraints = false    // use constraints
+        sv.axis = .vertical                                     // stackview orientation
+        sv.spacing = 25                                        // spacing between elements
+        sv.distribution = .fillEqually
+        return sv
+    }()
+    
+    /* forward pass data between view controllers */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        /* set IsRoutineExercise flag to 0 to signify we came from categories page */
+        if let vcc = segue.destination as? ExerciseViewController { Global.IsRoutineExercise = 0 }
+        
+        /* use segue to forward pass exercise name to destination exercise view controller */
+        if segue.identifier == "BalanceSegue" {
+            let vc = segue.destination as! ExerciseViewController
+            vc.exercise_name = (sender as! UIButton).titleLabel!.text!
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Setup.m_bgColor  // background color
-
-        // page name
-        let pageName = UILabel(frame: CGRect.zero)
-        pageName.text = "BALANCE"
-        pageName.applyPageNameDesign()
-        self.view.addSubview(pageName)
-        NSLayoutConstraint.activate([
-            pageName.widthAnchor.constraint(equalToConstant: 350),
-            pageName.heightAnchor.constraint(equalToConstant: 50),
-            pageName.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            pageName.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
-        ])
+        view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
-        // home button on navigation bar
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homeButtonTapped))
-        self.navigationItem.rightBarButtonItem  = homeButton
+        /* navigation bar stuff */
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.title = nil
+        let homeButton = UIButton(type: .custom)
+        homeButton.applyHomeButton()
+        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+        let barButton = UIBarButtonItem(customView: homeButton)
+        self.navigationItem.rightBarButtonItem  = barButton
+
+        /* page message */
+        self.show_page_message(s1: "Balance Exercises!", s2: "Balance")
+        
+        let exercise_list = global_ExerciseData.exercise_names()
+        
+        /* exercise buttons */
+            
+        // button 1
+        exerciseButton.setTitle(exercise_list[2],for: .normal)                        // button text
+        exerciseButton.exerciseButtonDesign()
+        exerciseButton.backgroundColor = Global.color_schemes.m_blue1          // background color
+
+        // button 2
+        exerciseButton2.setTitle(exercise_list[5],for: .normal)                        // button text
+        exerciseButton2.exerciseButtonDesign()
+        exerciseButton2.backgroundColor = Global.color_schemes.m_blue1          // background color
+
+        // button 3
+        exerciseButton3.setTitle(exercise_list[9],for: .normal)                        // button text
+        exerciseButton3.exerciseButtonDesign()
+        exerciseButton3.backgroundColor = Global.color_schemes.m_blue1          // background color
+        
+        // button 4
+        exerciseButton4.setTitle(exercise_list[11],for: .normal)                        // button text
+        exerciseButton4.exerciseButtonDesign()
+        exerciseButton4.backgroundColor = Global.color_schemes.m_blue1          // background color
+        
+        /* exercise buttons constraints */
+        applyExerciseButtonConstraint(button: exerciseButton)
+        applyExerciseButtonConstraint(button: exerciseButton2)
+        applyExerciseButtonConstraint(button: exerciseButton3)
+        applyExerciseButtonConstraint(button: exerciseButton4)
+        
+        
+        self.view.addSubview(stackView)
+        applyStackViewConstraints(SV: stackView)
     }
     
     // called when home button on navigation bar is tapped
@@ -42,3 +101,5 @@ class BalanceViewController: UIViewController {
         self.present(newViewController, animated: true, completion: nil)
     }
 }
+
+
