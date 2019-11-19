@@ -21,6 +21,8 @@ Revision History
     Implemented Get_Routines() and Get_ExerciseData()
  - 17/11/2019 : William Huong
     Update_UserInfo() now works
+ - 19/11/2019 : William Huong
+    Update functions now check for user permission.
 */
 
 /*
@@ -115,6 +117,14 @@ class UserDataFirestore {
         
         print(" --- Beginning update of UserInfo --- ")
         
+        print("Checking for permission to push to Firestore")
+        if( !self.UserDataSource.Get_User_Data().FirestoreOK ) {
+            print("We do not have permission to push to Firestore")
+            completion(1)
+            return
+        }
+        print("We have permission to push to Firestore")
+        
         print("Gathering User Info")
         
         //Grab the UserInfo we are going to write to Firestore
@@ -185,6 +195,14 @@ class UserDataFirestore {
         
         print(" --- Beginning updating of Routines --- ")
         
+        print("Checking for permission to push to Firestore")
+        if( !self.UserDataSource.Get_User_Data().FirestoreOK ) {
+            print("We do not have permission to push to Firestore")
+            completion(1)
+            return
+        }
+        print("We have permission to push to Firestore")
+        
         print("Gathering Routines")
         
         //define some values we need
@@ -243,6 +261,14 @@ class UserDataFirestore {
     func Update_ExerciseData(completion: @escaping (Int) -> ()) {
         
         print(" --- Beginning updating of Exercise Data --- ")
+        
+        print("Checking for permission to push to Firestore")
+        if( !self.UserDataSource.Get_User_Data().FirestoreOK ) {
+            print("We do not have permission to push to Firestore")
+            completion(1)
+            return
+        }
+        print("We have permission to push to Firestore")
         
         print("Gathering Exercise Data")
         
