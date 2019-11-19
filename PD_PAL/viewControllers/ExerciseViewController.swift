@@ -138,15 +138,17 @@ class ExerciseViewController: UIViewController {
         }
         
         /* testing */
-        print ("log: routine_index: ", Global.routine_index)
-        print ("log: exercise_name: ", exercise_name)
-        //print ("log: link: ", exercise_data.Link)
-        print ("log: ExerciseViewController")
-        print ("log: next_routine_exercise", Global.next_routine_exercise)
+        //print ("log: routine_index: ", Global.routine_index)
+//        print ("log: exercise_name: ", exercise_name)
+//        //print ("log: link: ", exercise_data.Link)
+//        print ("log: ExerciseViewController")
+//        print ("log: next_routine_exercise", Global.next_routine_exercise)
     }
     
     /* put code that does not depends on IsRoutineExercise flag in here */
     override func viewDidLoad() {
+        logNavigationStack()
+        
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         

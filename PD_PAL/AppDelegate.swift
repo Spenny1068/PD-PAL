@@ -72,6 +72,14 @@ extension UIColor {
 /* UIViewController methods */
 extension UIViewController {
     
+    /* prints out the view controllers in the navigation stack */
+    func logNavigationStack() {
+        if let viewControllers = self.navigationController?.viewControllers {
+            print ("log navigation stack: ", viewControllers)
+            //if viewControllers.contains(where: { return $0 is ExerciseViewController }) {}
+        }
+    }
+    
     // applies constraints for the stack view containing exercise buttons
     func applyStackViewConstraints(SV: UIStackView) {
         NSLayoutConstraint.activate([
@@ -316,7 +324,7 @@ extension UIButton {
         self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
         
         // play button image
-        //let exerciseImage = UIImage(named: "ppp.png")
+        //let exerciseImage = UIImage(named: "ppp.png")/
         //self.setImage(exerciseImage , for: UIControl.State.normal)
         //self.tintColor = UIColor.black
         //self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 260, bottom: 20.0, right: 20)
@@ -393,6 +401,7 @@ extension UIButton {
         self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 40, bottom: 0.0, right: 40)     // text allignment
     }
     
+    /* home button on navigation bar */
     func applyHomeButton(){
         self.setImage(UIImage(named: "SmallLogo"), for: .normal)
         self.frame = CGRect(x: 0, y:0, width: 10, height: 5)

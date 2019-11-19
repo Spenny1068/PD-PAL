@@ -33,6 +33,7 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         super.viewDidLoad()
         global_StepTracker.track_steps() //call step counter
         self.dataSource = self
+        logNavigationStack()
         
                                     /* NAVIGATION BAR CODE */
         //self.navigationController?.navigationBar.topItem!.title = "ROUTINES"                     // default title

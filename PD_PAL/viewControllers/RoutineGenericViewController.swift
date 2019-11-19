@@ -52,6 +52,8 @@ class RoutineGenericViewController: UIViewController {
        
     override func viewDidLoad() {
         super.viewDidLoad()
+        logNavigationStack()
+        
         view.backgroundColor = Global.color_schemes.m_bgColor
         let routineData = global_UserData.Get_Routine(NameOfRoutine: routine_name)
         

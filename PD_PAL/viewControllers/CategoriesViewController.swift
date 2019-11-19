@@ -25,9 +25,8 @@ class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = Global.color_schemes.m_bgColor // background color
-        
+
         /* category buttons */
         
         //-> flexibility

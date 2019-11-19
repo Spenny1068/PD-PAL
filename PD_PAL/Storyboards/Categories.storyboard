@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +21,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="xUJ-BQ-B5a"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="StrengthSegue" id="xUJ-BQ-B5a"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt1-ZA-AI9">
@@ -31,7 +29,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="VCw-2T-7La"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="StrengthSegue" id="VCw-2T-7La"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-uf-uGy">
@@ -39,7 +37,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="mbn-Mn-UZv"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="StrengthSegue" id="mbn-Mn-UZv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzE-dX-EHl">
@@ -47,7 +45,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="gc4-qc-Swy"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="StrengthSegue" id="gc4-qc-Swy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhZ-8Z-ZVN">
@@ -55,7 +53,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="StrengthSegue" id="Gdd-AU-Kfp"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="StrengthSegue" id="Gdd-AU-Kfp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -98,7 +96,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="jAG-kq-jTX"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="FlexibilitySegue" id="jAG-kq-jTX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x89-LX-OJD">
@@ -106,7 +104,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="7qy-uA-Fzp"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="FlexibilitySegue" id="7qy-uA-Fzp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nod-Xp-V4T">
@@ -114,7 +112,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="3cE-Mu-9Td"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="FlexibilitySegue" id="3cE-Mu-9Td"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW1-bb-i21">
@@ -122,7 +120,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="qDp-Ze-3dV"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="FlexibilitySegue" id="qDp-Ze-3dV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mcn-pz-Zjy">
@@ -130,7 +128,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="FlexibilitySegue" id="PpK-zd-Nwk"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="FlexibilitySegue" id="PpK-zd-Nwk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -162,7 +160,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="BalanceSegue" id="vmG-Ij-Nbo"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="BalanceSegue" id="vmG-Ij-Nbo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsF-jO-Yrx">
@@ -170,7 +168,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="BalanceSegue" id="ef0-eK-ShK"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="BalanceSegue" id="ef0-eK-ShK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLs-uj-Wt4">
@@ -178,7 +176,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="BalanceSegue" id="CYs-rR-9YF"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="BalanceSegue" id="CYs-rR-9YF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyf-xB-3ZI">
@@ -186,7 +184,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="BalanceSegue" id="a1L-GP-f2q"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="BalanceSegue" id="a1L-GP-f2q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -217,7 +215,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="CardioSegue" id="OgW-1h-rRp"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="CardioSegue" id="OgW-1h-rRp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cek-Lr-2B2">
@@ -225,7 +223,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="CardioSegue" id="G1M-r5-N44"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="CardioSegue" id="G1M-r5-N44"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co7-bL-i89">
@@ -233,7 +231,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="7ea-g1-tEb" kind="push" identifier="CardioSegue" id="ujc-4P-nfg"/>
+                                    <segue destination="7ea-g1-tEb" kind="show" identifier="CardioSegue" id="ujc-4P-nfg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -252,6 +250,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PpK-zd-Nwk"/>
+        <segue reference="ujc-4P-nfg"/>
     </inferredMetricsTieBreakers>
 </document>
