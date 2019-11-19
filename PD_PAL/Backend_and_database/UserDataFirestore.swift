@@ -17,12 +17,17 @@ Revision History
     Implemented read function for UserInfo
  - 15/11/2019 : William Huong
     Implement UserInfo update function
+ - 16/11/2019 : William Huong
+    Implemented Get_Routines() and Get_ExerciseData()
+ - 17/11/2019 : William Huong
+    Update_UserInfo() now works
 */
 
 /*
 Known Bugs
  
- -
+ - 17/11/2019 : William Huong
+    Nothing works
 */
 
 import Foundation
@@ -46,7 +51,6 @@ import Firebase
  
  - Collection: Users
     - Document: User1
-        - Value : UUID - String
         - Value : Username - String
         - Value : QuestionsAnswered - Boolean
         - Value : WalkingDuration - Number
@@ -84,6 +88,8 @@ import Firebase
 */
 class UserDataFirestore {
     
+    //Instance of the UserData class to use. This is really only needed for Unit Testing because all of the tests fire off at once, causing race condition issues.
+    private let UserDataSource: UserData
     //Instance of Firestore we will use
     private let FirestoreDB = Firestore.firestore()
     
@@ -92,79 +98,29 @@ class UserDataFirestore {
     private let dateFormat = "MMM d, yyyy, hh:mm:ss a"
     
     //Constructor
-    init() {
+    init(sourceGiven: UserData) {
         
         //Set up the date formatter
         self.dateFormatter.calendar = Calendar.current
         self.dateFormatter.dateFormat = self.dateFormat
         
-    }
-    
-    //This function will update the data in Firebase. It will check both if the user has allowed us to store data in Firebase, as well as if it is time for another update.
-    //This should be the only function called. All other functions are either internal functions or only for the sake of testing.
-    func Update_Firebase(DayFrequency: Int?, HourFrequency: Int?, MinuteFrequency: Int?, SecondFrequency: Int?) -> String {
+        //Set the UserData to pull from
+        self.UserDataSource = sourceGiven
         
-        print(" --- Beginning Firestore update process --- ")
-        
-        
-        /*
-        Check for permission to upload to Firestore
-        */
-        
-        if( !global_UserData.Get_User_Data().FirestoreOK ) {
-            print("User has not permitted storing data in Firestore")
-            print(" --- Firestore was not updated --- ")
-            return "NO_AUTH"
-        }
-        print("User has permitted storing data in Firestore")
-        
-        
-        /*
-        Check if we need to update
-        */
-        
-        
-        //Create a Date object representing what time we need to update Firestore
-        var dateComponents = DateComponents()
-        dateComponents.day = DayFrequency
-        dateComponents.hour = HourFrequency
-        dateComponents.minute = MinuteFrequency
-        dateComponents.second = SecondFrequency
-
-        let nextUpdateTime = Calendar.current.date(byAdding: dateComponents, to: global_UserData.Get_LastBackup())
-        
-        print("The time is currently \(self.dateFormatter.string(from: Date()))")
-        print("The next update is scheduled to be done at \(self.dateFormatter.string(from: nextUpdateTime!))")
-        
-        if( Date() <= nextUpdateTime! )
-        {
-            //Not time to update yet
-            print("Current time has not passed the next scheduled update time")
-            print(" --- Firestore was not updated --- ")
-            return "NO_SCHEDULE"
-        }
-        print("Current time has passed the next scheduled update time")
-        
-        
-        /*
-        Begin the update process
-        */
-        
-        
-        //Update the UserInfo
-        
-        return "SUCCESS"
-
     }
     
     //Updates the user info on Firebase.
     //This function will be called as a part of Update_Firebase() and should not be called on its own.
     func Update_UserInfo(completion: @escaping (Int) -> ()) {
         
-        print("Beginning update of UserInfo")
+        print(" --- Beginning update of UserInfo --- ")
+        
+        print("Gathering User Info")
         
         //Grab the UserInfo we are going to write to Firestore
-        let currentUserInfo = global_UserData.Get_User_Data()
+        let currentUserInfo = self.UserDataSource.Get_User_Data()
+        
+        print("Formatting user info for Firestore")
         
         let docData: [String: Any] = [
             "UserName" : currentUserInfo.UserName,
@@ -178,10 +134,16 @@ class UserDataFirestore {
             "PushNotifications" : currentUserInfo.PushNotifications
         ]
         
-        //Create the document reference
-        let userDocRef = self.FirestoreDB.collection("Users").document(currentUserInfo.UserUUID)
+        print("\(docData)")
         
-        userDocRef.getDocument { (document, error) in
+        print("Creating user document reference")
+        
+        //Create the document reference
+        let userDocRef = self.FirestoreDB.document("Users/\(currentUserInfo.UserUUID)")
+        
+        print("Setting user document data")
+        
+        userDocRef.getDocument() { (document, error) in
             print("Beginning document read")
             guard let document = document, document.exists else {
                 print("The user does not current have any data in Firestore. Creating the user document")
@@ -212,37 +174,214 @@ class UserDataFirestore {
             }
             
         }
-        
+
+        print(" --- Finished updating UserInfo --- ")
+ 
     }
     
     //Updates the routines on Firebase.
     //This function will be called as a part of Update_Firebase() and should not be called on its own.
-    func Update_Routines() {
+    func Update_Routines(completion: @escaping (Int) -> ()) {
         
+        print(" --- Beginning updating of Routines --- ")
+        
+        print("Gathering Routines")
+        
+        //define some values we need
+        let currentRoutines = self.UserDataSource.Get_Routines()
+        let targetUUID = self.UserDataSource.Get_User_Data().UserUUID
+        let routineColRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("Routines")
+        
+        print("\(currentRoutines)")
+        
+        print("Iterating through each routine to push")
+        
+        //Iterate through each routine
+        for routine in currentRoutines {
+            
+            print("Starting routine: \(routine.RoutineName)")
+            
+            let docRef = routineColRef.document(routine.RoutineName)
+        
+            //Check if the routine is already in Firestore
+            docRef.getDocument() { (document ,error) in
+                guard let document = document, document.exists else {
+                    print("The document for \(routine.RoutineName) does not exist. Creating document")
+                    
+                    //Add a document for the routine
+                    routineColRef.document(routine.RoutineName).setData(["RoutineName": routine.RoutineName, "RoutineContents": routine.Exercises]) { err in
+                        if let err = err {
+                            print("Failed to create routine document for \(routine.RoutineName) : \(err)")
+                            completion(1)
+                        } else {
+                            print("Successfully created routine document fo \(routine.RoutineName)")
+                        }
+                    }
+                    
+                    return
+                }
+                
+                //The routine already exists in Firestore. Update it
+                docRef.updateData(["RoutineName": routine.RoutineName, "RoutineContents": routine.Exercises]) { err in
+                    if let err = err {
+                        print("Failed to update routine document for \(routine.RoutineName) : \(err)")
+                        completion(1)
+                    } else {
+                        print("Successfully updated routine document fo \(routine.RoutineName)")
+                    }
+                }
+            }
+            
+        }
+        
+        //Only gets here if everything was successful
+        completion(0)
     }
     
     //Updates the exercise data on Firebase.
     //This function will be called as a part of Update_Firebase() and should not be called on its own.
-    func Update_ExerciseData() {
+    func Update_ExerciseData(completion: @escaping (Int) -> ()) {
         
+        print(" --- Beginning updating of Exercise Data --- ")
+        
+        print("Gathering Exercise Data")
+        
+        let currentExerciseData = self.UserDataSource.Get_Exercises_all()
+        let targetUUID = self.UserDataSource.Get_User_Data().UserUUID
+        let exerciseColRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("ExerciseData")
+        
+        print("\(currentExerciseData)")
+        
+        print("Generating the list of years needed")
+        
+        //Exercise data is special, need to get the years available to us
+        var yearsNeeded: [Int] = []
+        
+        for row in currentExerciseData {
+            if !yearsNeeded.contains(row.Year) {
+                yearsNeeded.append(row.Year)
+            }
+        }
+        
+        print("\(yearsNeeded)")
+        
+        print("Iterating through the data")
+        
+        //Iterate through all the years
+        for year in yearsNeeded {
+            
+            print("Iterating through year: \(year)")
+            
+            //Iterate through the months
+            for month in 1...12 {
+                
+                print("Iterating through month : \(month)")
+                
+                //Iterate through the days
+                for day in 1...31 {
+                    
+                    print("Iterating through day : \(day)")
+                    
+                    //Iterate through the hours
+                    for hour in 0...24 {
+                        
+                        print("Iterating through hour : \(hour)")
+                        
+                        //Get the relevant exercises we have done
+                        var relevantExercises: [String] = []
+                        
+                        for item in currentExerciseData {
+                            if ( (item.Year == year) && (item.Month == month) && (item.Day == day) && (item.Hour == hour) ) {
+                                relevantExercises.append(item.nameOfExercise)
+                            }
+                        }
+                        
+                        print("RelevantExercises : \(relevantExercises)")
+                        
+                        //Get the number of steps taken
+                        let relevantStepCount = self.UserDataSource.Get_Steps_Taken(TargetYear: year, TargetMonth: month, TargetDay: day, TargetHour: hour)
+                        
+                        print("RelevantStepCount : \(relevantStepCount)")
+                        
+                        //If both are empty/zero then we don't have any data to push
+                        if( (relevantExercises.isEmpty == true) && (relevantStepCount == 0) ) {
+                            print("All data was null, skipping to next hour")
+                            continue
+                        }
+                        print("Some of the data was not null, proceeding to upload to Firestore")
+                        
+                        let documentName = "\(year)\(month)\(day)\(hour)"
+                        let exerciseDocRef = exerciseColRef.document(documentName)
+                        
+                        let docData: [String: Any] = [
+                            "Year" : year,
+                            "Month" : month,
+                            "Day" : day,
+                            "Hour" : hour,
+                            "ExercisesDone" : relevantExercises,
+                            "StepsTaken" : relevantStepCount
+                        ]
+                        
+                        exerciseDocRef.getDocument() { (document, error) in
+                            guard let document = document, document.exists else {
+                                
+                                //Document does not exist. Create it
+                                print("The document for \(documentName) does not exist. Creating document")
+                                
+                                exerciseDocRef.setData(docData) { err in
+                                    if let err = err {
+                                        print("Failed to set ExerciseData document for hour : \(documentName) : \(err)")
+                                        completion(1)
+                                        return
+                                    } else {
+                                        print("Successfully set ExerciseData document for hour : \(documentName)")
+                                        return
+                                    }
+                                }
+                                
+                                return
+                            }
+                            
+                            //The document does exist, just update the values
+                            exerciseDocRef.updateData(docData) { err in
+                                if let err = err {
+                                    print("Failed to update ExerciseData document for hour : \(documentName) : \(err)")
+                                    completion(1)
+                                } else {
+                                    print("Successfully updated ExerciseData document for hour : \(documentName)")
+                                }
+                            }
+                        }
+                        
+                        
+                    } //End hour loop
+                    
+                } //End day loop
+                
+            } //End month loop
+            
+        } //End year loop
+        
+        //Only gets here if everything was successful
+        completion(0)
     }
     
     /*
     This function gets the UserInfo located in Firebase.
      Because of the asynchronous nature of Firebase, call using:
      
-     global_UserDataFirestore.Get_UserInfo(targetUser: <User>) { ReturnedData in
+     self.UserDataSourceFirestore.Get_UserInfo(targetUser: <User>) { ReturnedData in
         //Execute any code dependent on the return value of the function here, or assign it to a global variable.
      }
      
     Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
     */
-    func Get_UserInfo(targetUser: String?, completion: @escaping ((UserUUID: String, UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool))->()) {
+    func Get_UserInfo(targetUser: String?, completion: @escaping ((Status: String, UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool))->()) {
         
         //If the user does not provide a UUID to use, get the current user's UUID
-        let targetUUID = targetUser ?? global_UserData.Get_User_Data().UserUUID
+        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserUUID
         
-        var returnVal = (UserUUID: "DEFAULT_UUID", UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
+        var returnVal = (Status: "NO_OP", UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
         
         let userDocRef = self.FirestoreDB.document("Users/\(targetUUID)")
         
@@ -251,8 +390,9 @@ class UserDataFirestore {
             print("Beginning document read")
             //Check the document existed
             guard let document = document, document.exists else {
-                returnVal.UserUUID = "NO_DOCUMENT"
+                returnVal.Status = "NO_DOCUMENT"
                 print("Did not get a document snapshot: \(String(describing: error))")
+                completion(returnVal)
                 return
             }
             print("User exists, reading data")
@@ -262,14 +402,15 @@ class UserDataFirestore {
             
             //Check the data exists
             guard dataReturned != nil else {
-                returnVal.UserUUID = "NO_DATA"
+                returnVal.Status = "NO_DATA"
                 print("Error, document snapshot data was empty. Check Connection")
+                completion(returnVal)
                 return
             }
             print("Data is not nil, parsing")
             
             //Start parsing the data, since it is returned as type any optionals
-            let returnedUUID = dataReturned?["UUID"] as? String ?? "USER_NIL"
+            var returnedStatus = "NO_DATA"
             let returnedUserName = dataReturned?["UserName"] as? String ?? "USERNAME_NIL"
             let returnedQuestionsAnswered = dataReturned?["QuestionsAnswered"] as? Bool ?? false
             let returnedWalkingDuration = dataReturned?["WalkingDuration"] as? Int ?? -1
@@ -280,9 +421,13 @@ class UserDataFirestore {
             let returnedIntensity = dataReturned?["Intensity"] as? String ?? "INTENSITY_NIL"
             let returnedPushNotifications = dataReturned?["PushNotifications"] as? Bool ?? false
             
+            if( returnedUserName != "USERNAME_NIL" ) {
+                returnedStatus = "SUCCESS"
+            }
+            
             print("Finished parsing, assigning returnVal")
             
-            returnVal = (UserUUID: returnedUUID, UserName: returnedUserName, QuestionsAnswered: returnedQuestionsAnswered, WalkingDuration: returnedWalkingDuration, ChairAccessible: returnedChairAccessible, WeightsAccessible: returnedWeightsAccessible, ResistBandAccessible: returnedResistBandAccessible, PoolAccessible: returnedPoolAccessible, Intensity: returnedIntensity, PushNotifications: returnedPushNotifications)
+            returnVal = (Status: returnedStatus, UserName: returnedUserName, QuestionsAnswered: returnedQuestionsAnswered, WalkingDuration: returnedWalkingDuration, ChairAccessible: returnedChairAccessible, WeightsAccessible: returnedWeightsAccessible, ResistBandAccessible: returnedResistBandAccessible, PoolAccessible: returnedPoolAccessible, Intensity: returnedIntensity, PushNotifications: returnedPushNotifications)
             
             completion(returnVal)
             
@@ -293,16 +438,41 @@ class UserDataFirestore {
      This function gets the routines located in Firebase.
      Because of the asynchronous nature of Firebase, call using:
      
-     global_UserDataFirestore.Get_Routines(targetUser: <User>) { ReturnedData in
+     self.UserDataSourceFirestore.Get_Routines(targetUser: <User>) { ReturnedData in
      //Execute any code dependent on the return value of the function here, or assign it to a global variable.
      }
      
      Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
      */
-    func Get_Routines(targetUser: String?, completion: @escaping ([(RoutineName: String, Exercises: [String])])->()) {
+    func Get_Routines(targetUser: String?, completion: @escaping ([(RoutineName: String, RoutineContents: [String])])->()) {
         
         //If the user does not provide a UUID to use, get the current user's UUID
-        let targetUUID = targetUser ?? global_UserData.Get_User_Data().UserUUID
+        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserUUID
+        
+        let userRoutinesRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("Routines")
+        
+        var returnVal: [(RoutineName: String, RoutineContents: [String])] = []
+        
+        userRoutinesRef.getDocuments() { (snapshot, error) in
+            if let error = error {
+                print("An error occured while retrieving the Routines : \(error)")
+                completion([(RoutineName: "NO_COLLECTION", RoutineContents: ["\(error)"])])
+                return
+            }
+            
+            guard let snapshot = snapshot, !snapshot.isEmpty else {
+                print("The Routines subcollection was empty : \(String(describing: error))")
+                completion([(RoutineName: "NO_DOCUMENTS", RoutineContents: ["\(String(describing: error))"])])
+                return
+            }
+            
+            for document in snapshot.documents {
+                let documentData = document.data()
+                returnVal.append((RoutineName: documentData["RoutineName"] as? String ?? "ERROR", RoutineContents: documentData["RoutineContents"] as? [String] ?? ["ERROR"]))
+            }
+            
+            completion(returnVal)
+        }
         
     }
     
@@ -310,50 +480,42 @@ class UserDataFirestore {
      This function gets the routines located in Firebase.
      Because of the asynchronous nature of Firebase, call using:
      
-     global_UserDataFirestore.Get_ExerciseData(targetUser: <User>) { ReturnedData in
+     self.UserDataSourceFirestore.Get_ExerciseData(targetUser: <User>) { ReturnedData in
      //Execute any code dependent on the return value of the function here, or assign it to a global variable.
      }
      
      Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
      */
-    func Get_ExerciseData(targetUser: String?, completion: @escaping ()->()) {
+    func Get_ExerciseData(targetUser: String?, completion: @escaping ([(Year: Int, Month: Int, Day: Int, Hour: Int, ExercisesDone: [String], StepsTaken: Int)]) -> ()) {
         
         //If the user does not provide a UUID to use, get the current user's UUID
-        let targetUUID = targetUser ?? global_UserData.Get_User_Data().UserUUID
+        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserUUID
+        
+        let userExerciseDataRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("ExerciseData")
+        
+        var returnVal: [(Year: Int, Month: Int, Day: Int, Hour: Int, ExercisesDone: [String], StepsTaken: Int)] = []
+        
+        userExerciseDataRef.getDocuments() { (snapshot, error) in
+            if let error = error {
+                print("An error occured while retrieving the Exercises Done : \(error)")
+                completion([(Year: 0, Month: 0, Day: 0, Hour: 0, ExercisesDone: ["NO_COLLECTION"], StepsTaken: 0)])
+                return
+            }
+            
+            guard let snapshot = snapshot, snapshot.isEmpty else {
+                print("The ExercisesDone subcollection was empty : \(String(describing: error))")
+                completion([(Year: 0, Month: 0, Day: 0, Hour: 0, ExercisesDone: ["NO_DOCUMENTS"], StepsTaken: 0)])
+                return
+            }
+            
+            for document in snapshot.documents {
+                let documentData = document.data()
+                returnVal.append((Year: documentData["Year"] as? Int ?? 0, Month: documentData["Month"] as? Int ?? 0, Day: documentData["Day"] as? Int ?? 0, Hour: documentData["Hour"] as? Int ?? 0, ExercisesDone: documentData["ExercisesDone"] as? [String] ?? ["ERROR"], StepsTaken: documentData["StepsTaken"] as? Int ?? 0))
+            }
+            
+            completion(returnVal)
+        }
         
     }
     
 }
-
-/*
- let dateFormatter = DateFormatter()
- 
- dateFormatter.calendar = Calendar.current
- dateFormatter.dateFormat = "MMM d, yyyy, hh:mm a"
- let generatedDate = dateFormatter.date(from: "Nov 13, 2019, 11:00 AM")!
- 
- let currentDate = Date()
- let dayAdded = Calendar.current.date(byAdding: .day, value: 1, to: generatedDate)
- 
- print("\(generatedDate)")
- print("\(currentDate)")
- print("\(String(describing: dayAdded))")
- 
- let dayHasPassed = currentDate >= dayAdded!
- 
- print("\(dayHasPassed)")
- 
- let generatedString = dateFormatter.string(from: generatedDate)
- 
- print("\(generatedString)")
- 
- let regeneratedDate = dateFormatter.date(from: generatedString)
- 
- print("\(regeneratedDate)")
- 
- let regeneratedDayAdded = Calendar.current.date(byAdding: .day, value: 1, to: regeneratedDate!)
- 
- let regeneratedDayHasPassed = currentDate >= regeneratedDayAdded!
- 
- print("\(regeneratedDayHasPassed)")
- */

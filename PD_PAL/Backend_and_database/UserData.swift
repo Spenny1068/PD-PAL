@@ -45,7 +45,17 @@
  - 14/11/2019 : William Huong
     Added FirestoreOK column to UserInfo database
  - 14/11/2019 : William Huong
-    Aded LastBackup column to UserInfo datebase
+    Added LastBackup column to UserInfo datebase
+ - 16/11/2019 : William Huong
+    Added Name_Available() function
+ - 17/11/2019 : William huong
+    Added init(DatabaseIdentifier: String) for Firestore testing
+ - 17/11/2019 : William Huong
+    Split LastBackup column into three separate ones
+ - 17/11/2019 : William Huong
+    UserUUID is now just UserName until user authentication is implemented.
+ - 17/11/2019 : William Huong
+    The insert methods now also call the relevant method from UserData_Firestore
  */
 
 /*
@@ -68,6 +78,7 @@
 
 import Foundation
 import SQLite
+import Firebase
 
 /*
  
@@ -115,7 +126,7 @@ import SQLite
 class UserData {
     
     //User Info
-    private let UserInfoDatabaseName = "UserInfo"
+    private var UserInfoDatabaseName = "UserInfo"
     private var UserInfo: Connection!
     private let UserInfoTable = Table("UserInfo")
     private let UserUUID = Expression<String>("UUID")
@@ -130,10 +141,12 @@ class UserData {
     private let Intensity = Expression<String>("Intensity")
     private let PushNotifications = Expression<Bool>("PushNotifications")
     private let FirestoreOK = Expression<Bool>("FirestoreOK")
-    private let LastBackup = Expression<String>("LastBackup")
+    private let LastUserInfoBackup = Expression<String>("LastUserInfoBackup")
+    private let LastRoutinesBackup = Expression<String>("LastRoutinesBackup")
+    private let LastExerciseBackup = Expression<String>("LastExerciseBackup")
     
     //Routines database
-    private let RoutinesDatabaseName = "Routines"
+    private var RoutinesDatabaseName = "Routines"
     private var Routines: Connection!
     private let RoutinesTable = Table("Routines")
     private let RoutineName = Expression<String>("Name")
@@ -142,7 +155,7 @@ class UserData {
     private let RoutineContent = Expression<String>("Content")
     
     //Exercise data database
-    private let UserExerciseDataDatabaseName = "UserExerciseData"
+    private var UserExerciseDataDatabaseName = "UserExerciseData"
     private var UserExerciseData: Connection!
     private let UserExerciseDataTable = Table("ExerciseData")
     private let TrendYear = Expression<Int>("Year")
@@ -152,7 +165,7 @@ class UserData {
     private let TrendExercise = Expression<String>("ExerciseName")
     
     //Step count database
-    private let StepCountDatabaseName = "StepCount"
+    private var StepCountDatabaseName = "StepCount"
     private var StepCount: Connection!
     private let StepCountTable = Table("StepCount")
     private let StepYear = Expression<Int>("Year")
@@ -170,9 +183,13 @@ class UserData {
     private let yeOldDateString = "Jan 1, 1000, 12:00:00 AM"
     private let yeOldDate: Date
     
-    //Constructor. This constructor will look for the database files and connect to them.
-    //If the database is empty, it will write the table to the file.
-    //If the databse file does not exist, it will create the file, then write the table to the file.
+    /*
+    Constructor. This constructor will look for the database files and connect to them.
+    If the database is empty, it will write the table to the file.
+    If the databse file does not exist, it will create the file, then write the table to the file.
+     
+     This should be the constructor used.
+    */
     init()
     {
         //Set up the date formatter
@@ -350,7 +367,9 @@ class UserData {
                     table.column(Intensity)
                     table.column(PushNotifications)
                     table.column(FirestoreOK)
-                    table.column(LastBackup)
+                    table.column(LastUserInfoBackup)
+                    table.column(LastRoutinesBackup)
+                    table.column(LastExerciseBackup)
                 }
                 
                 //Write the table to the database file
@@ -371,7 +390,7 @@ class UserData {
                 print("Setting last backup date to \(self.yeOldDateString)")
                 
                 do {
-                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastBackup <- self.yeOldDateString))
+                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastUserInfoBackup <- self.yeOldDateString, LastRoutinesBackup <- self.yeOldDateString, LastExerciseBackup <- self.yeOldDateString))
                 } catch {
                     print("Error inserting default user row into UserInfo database")
                 }
@@ -401,9 +420,315 @@ class UserData {
                 } catch {
                     print("Error creating Routines table")
                 }
+            }
+        } catch {
+            print("Error connecting to Routines database")
+        }
+        
+        do {
+            print("UserExerciseData database located at:")
+            print("\(exerciseURL!)")
+            
+            let database = try Connection((exerciseURL!).path)
+            self.UserExerciseData = database
+            
+            //Create the table if the file did not exist or was empty.
+            if !exerciseDatabaseReady {
+                //Create the table
+                let createTable = UserExerciseDataTable.create{ (table) in
+                    table.column(TrendYear)
+                    table.column(TrendMonth)
+                    table.column(TrendDay)
+                    table.column(TrendHour)
+                    table.column(TrendExercise)
+                }
                 
-                //Add a routine so the routines page has at least one for the user.
-                self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["Walking", "Wall Push-Up", "Single Leg Stance"])
+                //Write the table to the database file
+                do {
+                    try self.UserExerciseData.run(createTable)
+                } catch {
+                    print("Error creating UserExerciseData table")
+                }
+            }
+        } catch {
+            print("Error connecting to UserExerciseData database")
+        }
+        
+        do {
+            print("StepCount database located at:")
+            print("\(stepURL!)")
+            
+            let database = try Connection((stepURL!).path)
+            self.StepCount = database
+            
+            //Create the table if the file did not exist or was empty.
+            if !stepCountDatabaseReady {
+                //Create the table
+                let createTable = StepCountTable.create{ (table) in
+                    table.column(StepYear)
+                    table.column(StepMonth)
+                    table.column(StepDay)
+                    table.column(StepHour)
+                    table.column(StepsTaken)
+                }
+                
+                //Write the table to the database file
+                do {
+                    try self.StepCount.run(createTable)
+                } catch {
+                    print("Error creating StepCount table")
+                }
+                
+            }
+        } catch {
+            print("Error connecting to StepCount database")
+        }
+
+    }
+    
+    /*
+    Constructor. This constructor will look for the database files and connect to them.
+    If the database is empty, it will write the table to the file.
+    If the databse file does not exist, it will create the file, then write the table to the file.
+    
+     This constructor should only be used when you need separate database files. Really only for the Firebase components, since they all run asynchronously and in parallel.
+    */
+    init(DatabaseIdentifier: String)
+    {
+        //Modify the database names
+        self.UserInfoDatabaseName = self.UserInfoDatabaseName + "_" + DatabaseIdentifier
+        self.RoutinesDatabaseName = self.RoutinesDatabaseName + "_" + DatabaseIdentifier
+        self.UserExerciseDataDatabaseName = self.UserExerciseDataDatabaseName + "_" + DatabaseIdentifier
+        self.StepCountDatabaseName = self.StepCountDatabaseName + "_" + DatabaseIdentifier
+        
+        //Set up the date formatter
+        self.dateFormatter.calendar = Calendar.current
+        self.dateFormatter.dateFormat = self.dateFormat
+        self.yeOldDate = dateFormatter.date(from: self.yeOldDateString)!
+        
+        //Declare some variables we will use to keep track of the state of our databases on initialization
+        var userInfoDatabaseExists = false
+        var userInfoDatabaseReady = false
+        var routinesDatabaseExists = false
+        var routinesDatabaseReady = false
+        var exerciseDatabaseExists = false
+        var exerciseDatabaseReady = false
+        var stepCountDatabaseExists = false
+        var stepCountDatabaseReady = false
+        
+        //Define the filenames for the databases
+        let userInfoFileName = UserInfoDatabaseName + "." + fileExtension
+        let routinesFileName = RoutinesDatabaseName + "." + fileExtension
+        let exerciseFileName = UserExerciseDataDatabaseName + "." + fileExtension
+        let stepFileName = StepCountDatabaseName + "." + fileExtension
+        
+        //Define a variable to hold the location of each database file
+        var userInfoURL: URL?
+        var routinesURL: URL?
+        var exerciseURL: URL?
+        var stepURL: URL?
+        
+        //Start a FileManager object.
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        
+        //Start searching for the database files
+        do {
+            
+            //Get all the files in the Documents directory.
+            let documentFiles = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            
+            //Temp variable to hold filenames of interest during search
+            var fileName: String
+            
+            //Look at each file to see if it is a file we want.
+            for file in documentFiles {
+                fileName = file.lastPathComponent
+                
+                
+                if fileName == userInfoFileName {
+                    
+                    //Found the UserInfo database file
+                    userInfoDatabaseExists = true
+                    userInfoURL = file.absoluteURL
+                    
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
+                    do {
+                       let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
+                        var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
+                        let dict = fileAttributes as NSDictionary
+                        fileSize = dict.fileSize()
+                        
+                        if fileSize != 0 {
+                            userInfoDatabaseReady = true
+                        }
+                    } catch {
+                        print("Error checking UserInfo.sqlite3")
+                    }
+                    
+                } else if fileName == routinesFileName {
+                    
+                    //Found the Routines database file
+                    routinesDatabaseExists = true
+                    routinesURL = file.absoluteURL
+                    
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
+                    do {
+                        let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
+                        var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
+                        let dict = fileAttributes as NSDictionary
+                        fileSize = dict.fileSize()
+                        
+                        if fileSize != 0 {
+                            routinesDatabaseReady = true
+                        }
+                    } catch {
+                        print("Error checking Routines.sqlite3")
+                    }
+                    
+                } else if fileName == exerciseFileName {
+                    
+                    //Found the UserExerciseData database file
+                    exerciseDatabaseExists = true
+                    exerciseURL = file.absoluteURL
+                    
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
+                    do {
+                        let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
+                        var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
+                        let dict = fileAttributes as NSDictionary
+                        fileSize = dict.fileSize()
+                        
+                        if fileSize != 0 {
+                            exerciseDatabaseReady = true
+                        }
+                    } catch {
+                        print("Error checking UserExerciseData.sqlite3")
+                    }
+                    
+                } else if fileName == stepFileName {
+                    
+                    //Found the StepCount database file
+                    stepCountDatabaseExists = true
+                    stepURL = file.absoluteURL
+                    
+                    //Check if the file is empty. If it is, then the table has not been written to the database file
+                    do {
+                        let fileAttributes = try FileManager.default.attributesOfItem(atPath: file.path)
+                        var fileSize = fileAttributes[FileAttributeKey.size] as! UInt64
+                        let dict = fileAttributes as NSDictionary
+                        fileSize = dict.fileSize()
+                        
+                        if fileSize != 0 {
+                            stepCountDatabaseReady = true
+                        }
+                    } catch {
+                        print("Error checking StepCount.sqlite3")
+                    }
+                    
+                }
+                
+            }
+        } catch {
+            print("Error searching Documents Directory")
+        }
+        
+        //The UserInfo database file does not exist. Create it at the root of the documents directory
+        if !userInfoDatabaseExists {
+            userInfoURL = documentsURL.appendingPathComponent(UserInfoDatabaseName).appendingPathExtension(fileExtension)
+        }
+        
+        //The Routines database file does not exist. Create it at the root of the documents directory
+        if !routinesDatabaseExists {
+            routinesURL = documentsURL.appendingPathComponent(RoutinesDatabaseName).appendingPathExtension(fileExtension)
+        }
+        
+        //The UserExerciseData database file does not exist. Create it at the root of the documents directory
+        if !exerciseDatabaseExists {
+            exerciseURL = documentsURL.appendingPathComponent(UserExerciseDataDatabaseName).appendingPathExtension(fileExtension)
+        }
+        
+        //The StepCount database file does not exist. Create it at the root of the documents directory
+        if !stepCountDatabaseExists {
+            stepURL = documentsURL.appendingPathComponent(StepCountDatabaseName).appendingPathExtension(fileExtension)
+        }
+        
+        //Connect to each database.
+        do {
+            print("UserInfo database located at:")
+            print("\(userInfoURL!)")
+            
+            let database = try Connection((userInfoURL!).path)
+            self.UserInfo = database
+            
+            //Create the table if the file did not exist or was empty.
+            if !userInfoDatabaseReady {
+                //Create the table
+                let createTable = UserInfoTable.create{ (table) in
+                    table.column(UserUUID, primaryKey: true)
+                    table.column(UserName)
+                    table.column(QuestionsAnswered)
+                    table.column(WalkingDuration)
+                    table.column(ChairAccessible)
+                    table.column(WeightsAccessible)
+                    table.column(ResistBandAccessible)
+                    table.column(PoolAccessible)
+                    table.column(Intensity)
+                    table.column(PushNotifications)
+                    table.column(FirestoreOK)
+                    table.column(LastUserInfoBackup)
+                    table.column(LastRoutinesBackup)
+                    table.column(LastExerciseBackup)
+                }
+                
+                //Write the table to the database file
+                do {
+                    try self.UserInfo.run(createTable)
+                } catch {
+                    print("Error creating UserInfo table")
+                }
+                
+                //User Info is special. We need it to always have a single row.
+                
+                //Generate a UUID.
+                let uuid = NSUUID().uuidString
+                
+                print("Inserting new user into empty UserInfo database, UUID: \(uuid)")
+                
+                //Set the last backup value to a far enough date such that a backup will trigger as soon as possible.
+                print("Setting last backup date to \(self.yeOldDateString)")
+                
+                do {
+                    try self.UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastUserInfoBackup <- self.yeOldDateString, LastRoutinesBackup <- self.yeOldDateString, LastExerciseBackup <- self.yeOldDateString))
+                } catch {
+                    print("Error inserting default user row into UserInfo database")
+                }
+            }
+        } catch {
+            print("Error connecting to the UserInfo database")
+        }
+        
+        do {
+            print("Routines database located at:")
+            print("\(routinesURL!)")
+            
+            let database = try Connection((routinesURL!).path)
+            self.Routines = database
+            
+            //Create the table if the file did not exist or was empty.
+            if !routinesDatabaseReady {
+                //Create the table
+                let createTable = RoutinesTable.create{ (table) in
+                    table.column(RoutineName, primaryKey: true)
+                    table.column(RoutineContent)
+                }
+                
+                //Write the table to the database file
+                do {
+                    try self.Routines.run(createTable)
+                } catch {
+                    print("Error creating Routines table")
+                }
             }
         } catch {
             print("Error connecting to Routines database")
@@ -468,13 +793,6 @@ class UserData {
             print("Error connecting to StepCount database")
         }
         
-        self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["SHOULDER RAISES", "HEEL TO TOE", "LATERAL RAISES"])
-
-        //self.Add_Routine(NameOfRoutine: "Friday Night Chill", ExercisesIncluded: ["CHEST STRETCH", "SIDE LEG LIFT", "WALL PUSH-UP"])
-
-        self.Add_Routine(NameOfRoutine: "Monday Morning Mood", ExercisesIncluded: ["ARM RAISES", "TRICEP KICKBACKS", "KNEE MARCHING"])
-
-        self.Add_Routine(NameOfRoutine: "Friday Night Chill", ExercisesIncluded: ["CHEST STRETCH", "WALL PUSH-UP", "SIDE LEG LIFT"])
     }
     
     
@@ -500,7 +818,7 @@ Methods that get data from class
                 print("UserInfo database was empty. Inserting default values with randomly generated UUID: \(uuid)")
                 
                 do {
-                    try UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastBackup <- self.yeOldDateString))
+                    try UserInfo.run(UserInfoTable.insert(UserUUID <- uuid, UserName <- "DEFAULT_NAME", QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastUserInfoBackup <- self.yeOldDateString, LastRoutinesBackup <- self.yeOldDateString, LastExerciseBackup <- self.yeOldDateString))
                 } catch {
                     print("Error inserting default user row during read")
                 }
@@ -530,6 +848,17 @@ Methods that get data from class
             }
         } catch {
             print("Failed to collect routines")
+        }
+        
+        //There should always be the 3 default routines in the database. Add them in in they don't exist
+        if( returnArr.isEmpty == true ) {
+            self.Add_Routine(NameOfRoutine: "Happy Day Workout", ExercisesIncluded: ["SHOULDER RAISES", "HEEL TO TOE", "LATERAL RAISES"])
+            self.Add_Routine(NameOfRoutine: "Monday Morning Mood", ExercisesIncluded: ["ARM RAISES", "TRICEP KICKBACKS", "KNEE MARCHING"])
+            self.Add_Routine(NameOfRoutine: "Friday Night Chill", ExercisesIncluded: ["CHEST STRETCH", "WALL PUSH-UP", "SIDE LEG LIFT"])
+            
+            returnArr.append((RoutineName: "Happy Day Workout", Exercises: ["SHOULDER RAISES", "HEEL TO TOE", "LATERAL RAISES"]))
+            returnArr.append((RoutineName: "Monday Morning Mood", Exercises: ["ARM RAISES", "TRICEP KICKBACKS", "KNEE MARCHING"]))
+            returnArr.append((RoutineName: "Friday Night Chill", Exercises: ["CHEST STRETCH", "WALL PUSH-UP", "SIDE LEG LIFT"]))
         }
         
         return returnArr
@@ -599,13 +928,16 @@ Methods that get data from class
     }
     
     //Get the last time the user data was backed up.
-    func Get_LastBackup() -> Date {
-        var returnVal = self.yeOldDate
+    func Get_LastBackup() -> (UserInfo: Date, Routines: Date, Exercise: Date) {
+        var returnVal = (UserInfo: self.yeOldDate, Routines: self.yeOldDate, Exercise: self.yeOldDate)
         
         do {
-            let lastBackup = try UserInfo.pluck(UserInfoTable)![LastBackup]
+            let userRow = try UserInfo.pluck(UserInfoTable)
+            let userInfoDate = userRow![LastUserInfoBackup]
+            let routinesDate = userRow![LastRoutinesBackup]
+            let exerciseDate = userRow![LastExerciseBackup]
             
-            returnVal = dateFormatter.date(from: lastBackup) ?? self.yeOldDate
+            returnVal = (UserInfo: dateFormatter.date(from: userInfoDate) ?? self.yeOldDate, Routines: dateFormatter.date(from: routinesDate) ?? self.yeOldDate, Exercise: dateFormatter.date(from: exerciseDate) ?? self.yeOldDate)
         } catch {
             print("Error retrieving last backup date")
         }
@@ -636,14 +968,17 @@ Methods that insert or update data.
 
         //Store the old values
         let currentUserInfo = self.Get_User_Data()
-        let lastBackup = dateFormatter.string(from: self.Get_LastBackup())
+        let lastBackups = self.Get_LastBackup()
+        let userInfoDate = self.dateFormatter.string(from: lastBackups.UserInfo)
+        let routinesDate = self.dateFormatter.string(from: lastBackups.Routines)
+        let exerciseDate = self.dateFormatter.string(from: lastBackups.Exercise)
         
         do {
             //Delete what is currently there, since we only have a single user locally
             try UserInfo.run(UserInfoTable.delete())
             
             //Re-insert user
-            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUserInfo.UserUUID,
+            try UserInfo.run(UserInfoTable.insert(UserUUID <- (nameGiven ?? currentUserInfo.UserName),
                                                   UserName <- (nameGiven ?? currentUserInfo.UserName),
                                                   QuestionsAnswered <- (questionsAnswered ?? currentUserInfo.QuestionsAnswered),
                                                   WalkingDuration <- (walkingDuration ?? currentUserInfo.WalkingDuration),
@@ -654,10 +989,23 @@ Methods that insert or update data.
                                                   Intensity <- (intensityDesired ?? currentUserInfo.Intensity),
                                                   PushNotifications <- (pushNotificationsDesired ?? currentUserInfo.PushNotifications),
                                                   FirestoreOK <- (firestoreOK ?? currentUserInfo.FirestoreOK),
-                                                  LastBackup <- lastBackup
+                                                  LastUserInfoBackup <- userInfoDate,
+                                                  LastRoutinesBackup <- routinesDate,
+                                                  LastExerciseBackup     <- exerciseDate
                                                   ))
         } catch {
             print("Failed to update user info")
+        }
+        
+        //Update Firestore
+        let nextBackup = Calendar.current.date(byAdding: .second, value: 10, to: lastBackups.UserInfo)
+        
+        if( Date() >= nextBackup! ) {
+            global_UserDataFirestore.Update_UserInfo() { returnedVal in
+                if( returnedVal == 0 ) {
+                    self.Update_LastBackup(UserInfo: Date(), Routines: nil, Exercise: nil)
+                }
+            }
         }
         
     }
@@ -680,6 +1028,18 @@ Methods that insert or update data.
         } catch {
             print("Failed to insert \(NameOfRoutine) routine into Routines database")
         }
+        
+        //Update Firestore
+        let nextBackup = Calendar.current.date(byAdding: .second, value: 10, to: self.Get_LastBackup().Routines)
+        
+        if( Date() >= nextBackup! ) {
+            global_UserDataFirestore.Update_UserInfo() { returnedVal in
+                if( returnedVal == 0 ) {
+                    self.Update_LastBackup(UserInfo: nil, Routines: Date(), Exercise: nil)
+                }
+            }
+        }
+        
     }
     
     //Add an exercise to the UserExerciseData database.
@@ -690,6 +1050,18 @@ Methods that insert or update data.
         } catch {
             print("Failed to to exercise \(ExerciseName) completed on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into UserExerciseData database")
         }
+        
+        //Update Firestore
+        let nextBackup = Calendar.current.date(byAdding: .second, value: 10, to: self.Get_LastBackup().Exercise)
+        
+        if( Date() >= nextBackup! ) {
+            global_UserDataFirestore.Update_ExerciseData() { returnedVal in
+                if( returnedVal == 0 ) {
+                    self.Update_LastBackup(UserInfo: nil, Routines: nil, Exercise: Date())
+                }
+            }
+        }
+        
     }
     
     //Set the steps taken for that hour in the StepCount database.
@@ -702,6 +1074,18 @@ Methods that insert or update data.
         } catch {
             print("Failed to insert \(Steps) taken on \(DayDone)-\(MonthDone)-\(YearDone) at \(HourDone) into StepCount database")
         }
+        
+        //Update Firestore
+        let nextBackup = Calendar.current.date(byAdding: .second, value: 10, to: self.Get_LastBackup().Exercise)
+        
+        if( Date() >= nextBackup! ) {
+            global_UserDataFirestore.Update_ExerciseData() { returnedVal in
+                if( returnedVal == 0 ) {
+                    self.Update_LastBackup(UserInfo: nil, Routines: nil, Exercise: Date())
+                }
+            }
+        }
+        
     }
     
     //Increments the number of steps taken for a specific hour.
@@ -713,19 +1097,29 @@ Methods that insert or update data.
     }
     
     //Sets LastBackup value.
-    func Update_LastBackup(backupDate: Date) {
+    func Update_LastBackup(UserInfo: Date?, Routines: Date?, Exercise: Date?) {
+        
+        //Get the current dates in the database
+        let currentDates = self.Get_LastBackup()
+        
+        //Set date objects to covnert to strings
+        let userInfoDate = UserInfo ?? currentDates.UserInfo
+        let routinesDate = Routines ?? currentDates.Routines
+        let exerciseDate = Exercise ?? currentDates.Exercise
         
         //Convert the date to a string
-        let backupDateString = self.dateFormatter.string(from: backupDate)
+        let userInfoString = self.dateFormatter.string(from: userInfoDate)
+        let routinesString = self.dateFormatter.string(from: routinesDate)
+        let exerciseString = self.dateFormatter.string(from: exerciseDate)
         //Get the current user info
         let currentUserInfo = self.Get_User_Data()
         
         do {
             //Delete what is currently there, since we only have a single user locally
-            try UserInfo.run(UserInfoTable.delete())
+            try self.UserInfo.run(UserInfoTable.delete())
             
             //Re-insert user
-            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUserInfo.UserUUID,
+            try self.UserInfo.run(UserInfoTable.insert(UserUUID <- currentUserInfo.UserUUID,
                                                   UserName <- currentUserInfo.UserName,
                                                   QuestionsAnswered <- currentUserInfo.QuestionsAnswered,
                                                   WalkingDuration <- currentUserInfo.WalkingDuration,
@@ -736,7 +1130,9 @@ Methods that insert or update data.
                                                   Intensity <- currentUserInfo.Intensity,
                                                   PushNotifications <- currentUserInfo.PushNotifications,
                                                   FirestoreOK <- currentUserInfo.FirestoreOK,
-                                                  LastBackup <- backupDateString
+                                                  LastUserInfoBackup <- userInfoString,
+                                                  LastRoutinesBackup <- routinesString,
+                                                  LastExerciseBackup <- exerciseString
                                                   ))
         } catch {
             print("Error updating last backup date")
@@ -759,7 +1155,7 @@ Deletion Methods
             try UserInfo.run(UserInfoTable.delete())
             
             //Re-insert user name plus default values for everything else.
-            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUUID, UserName <- currentUserName, QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastBackup <- self.yeOldDateString))
+            try UserInfo.run(UserInfoTable.insert(UserUUID <- currentUUID, UserName <- currentUserName, QuestionsAnswered <- false, WalkingDuration <- 0, ChairAccessible <- false, WeightsAccessible <- false, ResistBandAccessible <- false, PoolAccessible <- false, Intensity <- "Light", PushNotifications <- false, FirestoreOK <- false, LastUserInfoBackup <- self.yeOldDateString, LastRoutinesBackup <- self.yeOldDateString, LastExerciseBackup <- self.yeOldDateString))
         } catch {
             print("Failed to delete user info")
         }
@@ -845,6 +1241,24 @@ Auxiliary Methods
     //Returns whether or not the user exists. Condition for existance is whether or not we have a name from them.
     func User_Exists() ->(Bool){
         return !( (self.Get_User_Data()).UserName == "DEFAULT_NAME" )
+    }
+    
+    //Checks if the name has already been taken. Returns true if the is available and false if the name has been taken
+    func Name_Available(desiredName: String, completion: @escaping (Bool) -> ()) {
+        
+        let userRef = Firestore.firestore().collection("Users").document(desiredName)
+        
+        userRef.getDocument() { (document, error) in
+            guard let document = document, document.exists else {
+                //The name has been taken if the document exists
+                completion(false)
+                return
+            }
+            
+            //If the document doesn't exist then the name is available
+           completion(true)
+        }
+        
     }
     
 /*
