@@ -165,22 +165,28 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
     func getDatePicker(){
         //let user select the date for step counter
+        dateFormatter.dateFormat = "MM/dd/yyyy HH"
         sDatePicker = UIDatePicker()
         eDatePicker = UIDatePicker()
         sDatePicker?.datePickerMode = .dateAndTime
         sDatePicker?.addTarget(self, action: #selector(TrendViewController.sDateChanged(datePicker:)), for: .valueChanged)
-        startDate.inputView = sDatePicker
         
-        eDatePicker?.datePickerMode = .dateAndTime
-        
+        //default start date
+        sDatePicker?.date = Calendar.current.date(byAdding: .day, value: (-7), to: Date())!
+        startDate.text = dateFormatter.string(from: sDatePicker!.date)
+        //default end date
+        eDatePicker?.date = Date()
+        endDate.text = dateFormatter.string(from: eDatePicker!.date)
         /*
         //default end date
         eDatePicker?.date = Date() //default value of end date to be today's date
         dateFormatter.dateFormat = "MM/dd/yyyy HH"
         endDate.text = dateFormatter.string(from: eDatePicker!.date)
          */
-        
+        eDatePicker?.datePickerMode = .dateAndTime
         eDatePicker?.addTarget(self, action: #selector(TrendViewController.eDateChanged(datePicker:)), for: .valueChanged)
+        
+        startDate.inputView = sDatePicker
         endDate.inputView = eDatePicker
         
      
