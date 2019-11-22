@@ -55,7 +55,9 @@ class LoginViewController: UIViewController{
         }
         
         //modular 
-        present(quesNavigationVC, animated: true ,completion: nil)
+        //present(quesNavigationVC, animated: true ,completion: nil)
+//        present(quesNavigationVC, animated: false ,completion: nil)
+        show(quesNavigationVC, sender: LoginViewController.self)
     }
     
     //Check if name contains only letter and white spaces

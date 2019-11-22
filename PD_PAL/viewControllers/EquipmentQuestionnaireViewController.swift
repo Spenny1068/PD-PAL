@@ -122,7 +122,8 @@ class EquipmentQuestionnaireViewController: UIViewController {
             print("Couldn't find the view controller")
             return
         }
-        present(destinationViewController, animated: true, completion: nil)
+        //present(destinationViewController, animated: true, completion: nil)
+        present(destinationViewController, animated: false, completion: nil)
     }
     
     @IBAction func backTapped(_ sender: Any) {
@@ -130,7 +131,8 @@ class EquipmentQuestionnaireViewController: UIViewController {
             print("Couldn't find the view controller")
             return
         }
-        present(destinationViewController, animated: true, completion: nil)
+        //present(destinationViewController, animated: true, completion: nil)
+        present(destinationViewController, animated: false, completion: nil)
     }
     /*
     // MARK: - Navigation

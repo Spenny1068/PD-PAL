@@ -70,7 +70,8 @@ class IntenseQuestionViewController: UIViewController {
         
         print("intensity")
         print(global_UserData.Get_User_Data())
-        present(destinationViewController, animated: true, completion: nil)
+//        present(destinationViewController, animated: true, completion: nil)
+        present(destinationViewController, animated: false, completion: nil)
     }
     
     /*

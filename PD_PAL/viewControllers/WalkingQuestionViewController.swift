@@ -66,7 +66,7 @@ class WalkingQuestionViewController: UIViewController {
             print("Couldn't find the view controller")
             return
         }
-        present(destinationViewController, animated: true, completion: nil)
+        present(destinationViewController, animated: false, completion: nil)
     }
     
     @IBAction func completeTapped(_ sender: UIButton) {

@@ -19,7 +19,8 @@ class SetUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        let vc = LoginViewController()
+        vc.dismiss(animated: true, completion: nil)
         //Question Label
         QuestionLabel.text = "Would you like to set-up your preferences now?"
         QuestionLabel.applyQuestionDesign()
@@ -40,6 +41,7 @@ class SetUpViewController: UIViewController {
         print("Update: QuestionsAnswered")
         print(global_UserData.Get_User_Data())
       
-        present(destinationViewController, animated: true, completion: nil)
+        //present(destinationViewController, animated: true, completion: nil)
+        present(destinationViewController, animated: false, completion: nil)
     }
 }
