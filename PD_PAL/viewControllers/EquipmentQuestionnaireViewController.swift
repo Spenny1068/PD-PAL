@@ -18,7 +18,6 @@ class EquipmentQuestionnaireViewController: UIViewController {
     @IBOutlet weak var RBandCheckbox:UIButton!
     @IBOutlet weak var chairCheckbox:UIButton!
     @IBOutlet weak var weightsCheckbox:UIButton!
-    @IBOutlet weak var poolCheckbox:UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
@@ -28,36 +27,32 @@ class EquipmentQuestionnaireViewController: UIViewController {
     @IBOutlet weak var resistiveBandLabel: UILabel!
     @IBOutlet weak var chairLabel: UILabel!
     @IBOutlet weak var weightsLabel: UILabel!
-    @IBOutlet weak var poolLabel: UILabel!
     var counter1 = 0
     var counter2 = 0
     var counter3 = 0
-    var counter4 = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Question
-        QuestionLabel.text = "Do you have access to a(n):"
+        // Question
+        QuestionLabel.text = "Do you have access to a:"
         QuestionLabel.applyQuestionDesign()
         self.view.addSubview(QuestionLabel)
         
-        //Instruction msg
+        // Instruction msg
         InstructionLabel.text = "(Check any that you have)"
         InstructionLabel.textAlignment = .center
         InstructionLabel.textColor = UIColor(red: 1/255, green: 1/255, blue: 1/255, alpha: 1.0)
         
-        //Labels
+        // Labels
         resistiveBandLabel.text = "Resistive Band"
         resistiveBandLabel.applyQlabels()
         chairLabel.text = "Chair"
         chairLabel.applyQlabels()
         weightsLabel.text = "Weights"
         weightsLabel.applyQlabels()
-        poolLabel.text = "Pool"
-        poolLabel.applyQlabels()
         
-        //Navigation Buttons
+        // Navigation Buttons
         nextButton.applyNextQButton()
         backButton.applyPrevQButton()
         
@@ -95,16 +90,6 @@ class EquipmentQuestionnaireViewController: UIViewController {
         }
     }
     
-    @IBAction func poolTapped(_ sender: UIButton) {
-        counter4 += 1
-        if(counter4 == 2){counter4 = 0}
-        if(counter4 == 1){
-            global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: true, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
-        } else if(counter4 == 0){
-            global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: false, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
-        }
-    }
-    
     @IBAction func checkMarkTapped(sender: UIButton){
         UIView.animate(withDuration: 0.1, delay: 0.1, options: .curveLinear, animations:{
             sender.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -116,32 +101,8 @@ class EquipmentQuestionnaireViewController: UIViewController {
         }
     }
 
-    // Segues to previous and next VC
-    @IBAction func nextTapped(_ sender: Any) {
-        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "WalkingQuestionPage") as? WalkingQuestionViewController else{
-            print("Couldn't find the view controller")
-            return
-        }
-        //present(destinationViewController, animated: true, completion: nil)
-        present(destinationViewController, animated: false, completion: nil)
-    }
-    
+    // Navigation to previous VC
     @IBAction func backTapped(_ sender: Any) {
-        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "IntenseQuestionPage") as? IntenseQuestionViewController else{
-            print("Couldn't find the view controller")
-            return
-        }
-        //present(destinationViewController, animated: true, completion: nil)
-        present(destinationViewController, animated: false, completion: nil)
+        self.navigationController?.backToViewController(vc: IntenseQuestionViewController.self)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -21,13 +21,11 @@ class IntenseQuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Question
-        //let question = UILabel()
+        // Question Label
         QuestionLabel.text = "How intense would you like your exercise to be?"
         QuestionLabel.applyQuestionDesign()
-        self.view.addSubview(QuestionLabel)
         
-        //Button styling
+        // Button styling
         lightIntensity.applyQButton()
         modIntensity.applyQButton()
         intenseIntensity.applyQButton()
@@ -35,6 +33,7 @@ class IntenseQuestionViewController: UIViewController {
         nextButton.isEnabled = false
         nextButton.backgroundColor = Global.color_schemes.m_blue1
         
+        // Update User intensity parameter in DB
         if(button_clicked.count != 0){
             global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil, firestoreOK: nil)
             nextButton.applyNextQButton()
@@ -60,28 +59,4 @@ class IntenseQuestionViewController: UIViewController {
         nextButton.isEnabled = true
         global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: button_clicked, pushNotificationsDesired: nil, firestoreOK: nil)
     }
-    
-    @IBAction func nextTapped(_ sender: Any) {
-        let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
-        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "EquipmentQuestionPage") as? EquipmentQuestionnaireViewController else{
-            print("Couldn't find the view controller")
-            return
-        }
-        
-        print("intensity")
-        print(global_UserData.Get_User_Data())
-//        present(destinationViewController, animated: true, completion: nil)
-        present(destinationViewController, animated: false, completion: nil)
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

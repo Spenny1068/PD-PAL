@@ -61,17 +61,15 @@ class WalkingQuestionViewController: UIViewController {
         backButton.applyPrevQButton()
     }
     
+    // Navigation to previous VC
     @IBAction func backTapped(_ sender: Any) {
-        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "EquipmentQuestionPage") as? EquipmentQuestionnaireViewController else{
-            print("Couldn't find the view controller")
-            return
-        }
-        present(destinationViewController, animated: false, completion: nil)
+        self.navigationController?.backToViewController(vc: EquipmentQuestionnaireViewController.self)
     }
     
+    // Navigation to main storyboard
     @IBAction func completeTapped(_ sender: UIButton) {
         //Update user's preferred walking duration
-        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
+    global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         print(global_UserData.Get_User_Data())
     }
 }

@@ -43,6 +43,7 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+//        self.navigationController?.transparentNavBar()
         
         // just show back arrow
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

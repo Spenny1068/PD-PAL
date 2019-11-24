@@ -7,6 +7,7 @@
 //<Date, Name, Changes made>
 //<Oct. 27, 2019, Izyl Canonicato, Error handling>
 //<Nov. 2, 2019, Izyl Canonicato, Insert/Update questionsAnswered into UserData>
+//<Nov. 23, 2019, Izyl Canonicato, Updated IB constraints>
 
 import Foundation
 import UIKit
@@ -24,6 +25,7 @@ class LoginViewController: UIViewController{
         ValidationMessage.isHidden = true
         userNameTextField.delegate = self
         TitleLabel.text = "Welcome to PD PAL!"
+        TitleLabel.textColor = Global.color_schemes.m_blue1
         TitleLabel.applyTitle()
         LoginButton.applyInputButton()
         LoginButton.titleLabel!.font = UIFont(name: "HelveticaNeue", size: 20)
@@ -38,7 +40,7 @@ class LoginViewController: UIViewController{
             return
         }
         
-        //Store username to DB
+        // Store username to DB
         if(userNameTextField.text?.count != 0){
             global_UserData.Update_User_Data(nameGiven: userName, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
             print("Update Username")
@@ -47,20 +49,18 @@ class LoginViewController: UIViewController{
         navigateToQuestionnaire()
     }
     
-    //Give access to Questionnaire Storyboard
+    // Give access to Questionnaire Storyboard
     private func navigateToQuestionnaire(){
         let mainStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
         guard let quesNavigationVC = mainStoryboard.instantiateViewController(withIdentifier: "SetUpQuestionPage") as? SetUpViewController else {
             return
         }
         
-        //modular 
-        //present(quesNavigationVC, animated: true ,completion: nil)
-//        present(quesNavigationVC, animated: false ,completion: nil)
+    // Navigation to Set up page
         show(quesNavigationVC, sender: LoginViewController.self)
     }
     
-    //Check if name contains only letter and white spaces
+    // Check if name contains only letter and white spaces
     func isValidName(name:String)->Bool{
         let regex = "[^A-Za-z]+"
         let nameTest = NSPredicate(format: "SELF MATCHES %@", regex)
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController{
     
 }
 
-//closes keyboard
+// Closes keyboard when 'return' is tapped 
 extension LoginViewController : UITextFieldDelegate{
     func textFieldShouldReturn(_ textfield: UITextField) -> Bool {
         textfield.resignFirstResponder()

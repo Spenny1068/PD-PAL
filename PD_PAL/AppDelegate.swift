@@ -69,6 +69,27 @@ extension UIColor {
    }
 }
 
+/* UINagivationController methods */
+extension UINavigationController{
+    
+    // Transparent Navigation Bar design
+    func transparentNavBar(){
+        self.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationBar.shadowImage = UIImage()
+        self.navigationBar.isTranslucent = true
+        self.view.backgroundColor = UIColor.clear
+    }
+    
+    // Pop to a specific view controller
+    func backToViewController(vc: Any){
+        for element in viewControllers as Array{
+            if "\(type(of: element)).Type" == "\(type(of: vc))"{
+                self.popToViewController(element, animated: true)
+                break;
+            }
+        }
+    }
+}
 /* UIViewController methods */
 extension UIViewController {
     
@@ -239,7 +260,7 @@ extension UILabel {
     func applyExerciseLabelDesign() {
         self.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
         self.textAlignment = .center                                           // text alignment
-        self.font = UIFont(name:"HelveticaNeue", size: 25.0)                    // text font and size
+        self.font = Global.text_fonts.m_exerciseDescriptionDurationFont                    // text font and size
         self.textColor = UIColor.black
     }
     
@@ -260,7 +281,7 @@ extension UILabel {
     
     // applies to instructional labels in Questionnaire
     func applyQlabels(){
-        self.font = UIFont(name:"HelveticaNeue", size: 25.0)                   // text font and size
+        self.font = Global.text_fonts.m_exerciseDescriptionDurationFont                    // text font and size
         self.textColor = UIColor.black
     }
     
@@ -362,14 +383,15 @@ extension UIButton {
         self.layer.cornerRadius = self.frame.height / 2                         // make button round
         self.setTitleColor(UIColor.white, for: .normal)                         // normal text colour
         self.setTitleColor(UIColor.gray, for: .selected)                        // selected text color
-        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 25.0)
+        self.titleLabel?.font = Global.text_fonts.m_routineButtonFont
     }
     
     // applied to Enter button on Registration page
     func applyInputButton(){
-        self.backgroundColor = UIColor.black                                    //background color
+        self.backgroundColor = Global.color_schemes.m_blue1                                    //background color
         self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
         self.setTitleColor(UIColor.white, for: .normal)                         // text color
+        self.titleLabel?.font = Global.text_fonts.m_routineButtonFont   // text font and size
     }
     
     // applied to navigation to next Q in Questionnaire
