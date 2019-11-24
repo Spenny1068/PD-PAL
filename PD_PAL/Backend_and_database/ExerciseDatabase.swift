@@ -249,7 +249,7 @@ class ExerciseDatabase {
                         Body: "None",
                         Link: "ARM_RAISES",
                         Duration: 30)
-        
+
     }
 
     //Assuming the database is empty,

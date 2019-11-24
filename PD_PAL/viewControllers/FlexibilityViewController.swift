@@ -73,25 +73,30 @@ class FlexibilityViewController: UIViewController {
         exerciseButton.exerciseButtonDesign()
         exerciseButton.backgroundColor = Global.color_schemes.m_flexButton          // background color
 
+        
         //-> button 2
         exerciseButton2.setTitle(exercise_list[6],for: .normal)                        // button text
         exerciseButton2.exerciseButtonDesign()
         exerciseButton2.backgroundColor = Global.color_schemes.m_flexButton          // background color
-
+        
+    
         //-> button 3
         exerciseButton3.setTitle(exercise_list[7],for: .normal)                        // button text
         exerciseButton3.exerciseButtonDesign()
         exerciseButton3.backgroundColor = Global.color_schemes.m_flexButton          // background color
         
+        
         //-> button 4
         exerciseButton4.setTitle(exercise_list[13],for: .normal)                        // button text
         exerciseButton4.exerciseButtonDesign()
         exerciseButton4.backgroundColor = Global.color_schemes.m_flexButton          // background color
+
         
         //-> button 5
         exerciseButton5.setTitle(exercise_list[14],for: .normal)                        // button text
         exerciseButton5.exerciseButtonDesign()
         exerciseButton5.backgroundColor = Global.color_schemes.m_flexButton          // background color
+
         
 
         /* exercise buttons constraints */

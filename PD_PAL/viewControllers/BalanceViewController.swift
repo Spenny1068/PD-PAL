@@ -68,6 +68,10 @@ class BalanceViewController: UIViewController {
         exerciseButton.setTitle(exercise_list[2],for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
         exerciseButton.backgroundColor = Global.color_schemes.m_blue1          // background color
+        exerciseButton.layer.shadowColor = UIColor.green.cgColor
+        exerciseButton.layer.shadowOpacity = 0.8
+        exerciseButton.layer.shadowRadius = 12
+        exerciseButton.layer.shadowOffset = CGSize(width: 1, height: 1)
 
         // button 2
         exerciseButton2.setTitle(exercise_list[5],for: .normal)                        // button text
