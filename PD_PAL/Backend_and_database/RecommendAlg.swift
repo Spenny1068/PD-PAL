@@ -13,10 +13,10 @@ class RecommendAlg{
     var cardioCount: Int
     var balanceCount: Int
     var strengthCount: Int
-    var leastCat: String
+    var leastCat: [String]
     var leastEx: String
     var leastCombo: [String]
-    
+    var secondLeastCombo: [String]
     let exerciseList = global_ExerciseData.exercise_names()
     var categoryMatch = (" ", " ", " ", " ", " ", 0)
     let userAns = global_UserData.Get_User_Data()
@@ -26,15 +26,16 @@ class RecommendAlg{
         cardioCount = 0
         balanceCount = 0
         strengthCount = 0
-        leastCat = " "
+        leastCat = [" ", " "]
         leastEx = " "
-        leastCombo = [leastCat, leastEx]
+        leastCombo = [leastCat[0], leastEx]
+        secondLeastCombo = [leastCat[1], leastEx]
     }
     
     func checkUserAns() -> [String]{
         leastCat = self.getLeastCat()
         
-        //print("Questions answered: \(userAns.2)")
+        print("Questions answered: \(userAns.2)")
         if userAns.2 == true //QuestionsAnswered
         {
             return getRecommend()
@@ -43,8 +44,8 @@ class RecommendAlg{
         {
             //no answers to the questionnaire
             //to even out the star graph
-            leastEx = getExInCat(LeastCategory: leastCat)
-            leastCombo = [leastCat, leastEx]
+            leastEx = getExInCat(LeastCategory: leastCat[0])
+            leastCombo = [leastCat[0], leastEx]
             return leastCombo
         }
     }
@@ -53,21 +54,34 @@ class RecommendAlg{
         var equipmentType: String = "None"
     
         equipmentType = convertEquipment()
-        
+        print("LEAST CATEGORY: \(leastCat)")
+        print("EQUIPMENT TYPE: \(equipmentType)")
         for entry in exerciseList{
             categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry)
             
             //intensity, equipment match with what the user set and is one of the exercises in least frequently completed category
-            if /*categoryMatch.4 == userAns.8&& */categoryMatch.3 as String == equipmentType && categoryMatch.1 as String == leastCat
+            if categoryMatch.4 == userAns.8 && categoryMatch.3 as String == equipmentType && categoryMatch.1 as String == leastCat[0]
             {
-                leastCombo = [leastCat, entry]
+                leastCombo = [leastCat[0], entry]
                 //return the first on the list of the least frequently completed category, exercise name
                 print("Least Combo with Equipment: \(leastCombo)")
                 return leastCombo
             }
                 
         }
-               
+        
+        for entry in exerciseList{
+            //first least category didn't have any match
+            if categoryMatch.4 == userAns.8 && categoryMatch.3 as String == equipmentType && categoryMatch.1 as String == leastCat[1]
+             {
+                 secondLeastCombo = [leastCat[1], entry]
+                 //return the first on the list of the least frequently completed category, exercise name
+                 print("Second Least Combo with Equipment: \(secondLeastCombo)")
+                 return secondLeastCombo
+             }
+        }
+        
+        print("No recommendations made")
         return [" ", " "] //if no recommendation was found, but this will rarely happen
     }
     
@@ -119,12 +133,12 @@ class RecommendAlg{
          return "Walking" //default exercise
     }
     
-    func getLeastCat() -> String{
+    func getLeastCat() -> [String]{
         
         let exerciseData = global_UserData.Get_Exercises_all()
-        var leastCompleted  = " "
+        var twoLeastCompleted: [String] = [" ", " "]
         var categoryMatch = (" ", " ", " ", " ", " ", 0)
-        var catCount = [0, 0, 0, 0]
+        var catCount = (Flexbility: 0, Cardio: 0, Balance: 0, Strength: 0)
                 
                 
         for entry in exerciseData{
@@ -137,24 +151,24 @@ class RecommendAlg{
                 flexCount += 1
                 //print(categoryMatch.1)
                 //print(flexCount)
-                catCount[0] = flexCount
+                catCount.0 = flexCount
             }
             else if categoryMatch.1 as String == "Cardio"
             {
                 cardioCount += 1
                 //print(categoryMatch.1)
                 //print(cardioCounter)
-                catCount[1] = cardioCount
+                catCount.1 = cardioCount
             }
             else if categoryMatch.1 as String == "Balance"
             {
                 balanceCount += 1
-                catCount[2] = balanceCount
+                catCount.2 = balanceCount
             }
             else if categoryMatch.1 as String == "Strength"
             {
                 strengthCount += 1
-                catCount[3] = strengthCount
+                catCount.3 = strengthCount
             }
             else
             {
@@ -170,32 +184,78 @@ class RecommendAlg{
         strengthCount = 0
         
         //check least frequently completed category
-        if catCount[0] == catCount.min()
+        if catCount.0 <= catCount.1 && catCount.0 <= catCount.2 && catCount.0 <= catCount.3
         {
-            leastCompleted = "Flexbility"
+            twoLeastCompleted[0] = "Flexbility"
+            if catCount.1 <= catCount.2 && catCount.1 <= catCount.3
+            {
+                twoLeastCompleted[1] = "Cardio"
+            }
+            else if catCount.2 <= catCount.1 && catCount.2 <= catCount.3
+            {
+                twoLeastCompleted[1] = "Balance"
+            }
+            else if catCount.3 <= catCount.1 && catCount.3 <= catCount.2
+            {
+                twoLeastCompleted[1] = "Strength"
+            }
         }
-        else if catCount[1] == catCount.min()
+        else if catCount.1 <= catCount.0 && catCount.1 <= catCount.2 && catCount.1 <= catCount.3
         {
-            leastCompleted = "Cardio"
+             twoLeastCompleted[0] = "Cardio"
+              if catCount.0 <= catCount.2 && catCount.0 <= catCount.3
+              {
+                  twoLeastCompleted[1] = "Flexibility"
+              }
+              else if catCount.2 <= catCount.0 && catCount.2 <= catCount.3
+              {
+                  twoLeastCompleted[1] = "Balance"
+              }
+              else if catCount.3 <= catCount.0 && catCount.3 <= catCount.2
+              {
+                  twoLeastCompleted[1] = "Strength"
+              }
         }
-        else if catCount[2] == catCount.min()
+        else if catCount.2 <= catCount.0 && catCount.2 <= catCount.1 && catCount.2 <= catCount.3
         {
-            leastCompleted = "Balance"
+              twoLeastCompleted[0] = "Balance"
+              if catCount.0 <= catCount.1 && catCount.0 <= catCount.3
+              {
+                  twoLeastCompleted[1] = "Flexibility"
+              }
+              else if catCount.1 <= catCount.0 && catCount.1 <= catCount.3
+              {
+                  twoLeastCompleted[1] = "Cardio"
+              }
+              else if catCount.3 <= catCount.0 && catCount.3 <= catCount.1
+              {
+                  twoLeastCompleted[1] = "Strength"
+              }
         }
-        else if catCount[3] == catCount.min()
+        else if catCount.3 <= catCount.0 && catCount.3 <= catCount.1 && catCount.3 <= catCount.2
         {
-            leastCompleted = "Strength"
-        
+            twoLeastCompleted[0] = "Strength"
+            if catCount.0 <= catCount.1 && catCount.0 <= catCount.2
+            {
+                twoLeastCompleted[1] = "Flexibility"
+            }
+            else if catCount.1 <= catCount.0 && catCount.1 <= catCount.2
+            {
+                twoLeastCompleted[1] = "Cardio"
+            }
+            else if catCount.2 <= catCount.0 && catCount.2 <= catCount.1
+            {
+                twoLeastCompleted[1] = "Balance"
+            }
         }
         else
         {
-            print("No min was found")
-            //assign flexbility as default
-            leastCompleted = "Flexbility"
+            //no min
+            return [" ", " "]
         }
         
         
-        return leastCompleted
+        return twoLeastCompleted
     
     }
 }
