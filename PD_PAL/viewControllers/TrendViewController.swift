@@ -292,7 +292,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     func exerciseCategoryCount() -> [Int]{
         let exerciseData = global_UserData.Get_Exercises_all()
     
-        var categoryMatch = (" ", " ", " ", " ", 0)
+        var categoryMatch = (" ", " ", " ", " "," ", 0)
         var catCount = [0, 0, 0, 0]
         var rawDate = "00/00/0000 HH"
         dateFormatter.dateFormat = "MM/dd/yyyy HH"

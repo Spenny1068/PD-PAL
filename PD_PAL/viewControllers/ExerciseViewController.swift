@@ -25,6 +25,7 @@ class ExerciseViewController: UIViewController {
     
     /* global variables */
     var exercise_name: String!
+    var imageView = UIImageView()
     var seconds: Int = 0
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
@@ -44,7 +45,7 @@ class ExerciseViewController: UIViewController {
     /* put code that depends on IsRoutineExercise flag in here */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         if Global.next_routine_exercise != "" { self.exercise_name = Global.next_routine_exercise }
         Global.next_routine_exercise = ""
         
@@ -138,15 +139,17 @@ class ExerciseViewController: UIViewController {
         }
         
         /* testing */
-        print ("log: routine_index: ", Global.routine_index)
-        print ("log: exercise_name: ", exercise_name)
-        //print ("log: link: ", exercise_data.Link)
-        print ("log: ExerciseViewController")
-        print ("log: next_routine_exercise", Global.next_routine_exercise)
+        //print ("log: routine_index: ", Global.routine_index)
+//        print ("log: exercise_name: ", exercise_name)
+//        //print ("log: link: ", exercise_data.Link)
+//        print ("log: ExerciseViewController")
+//        print ("log: next_routine_exercise", Global.next_routine_exercise)
     }
     
     /* put code that does not depends on IsRoutineExercise flag in here */
     override func viewDidLoad() {
+        logNavigationStack()
+        
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
@@ -163,12 +166,13 @@ class ExerciseViewController: UIViewController {
     
     /* put slow code in here to run on a different thread */
     override func viewDidAppear(_ animated: Bool) {
-        /* gif */
+        
         let temp = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
-        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: temp.Link) else { return }
-        view.addSubview(gif)
-        gif.startAnimating()
-       
+        var gif = UIImage.gifImageWithName(temp.Link)
+        imageView = UIImageView(image: gif)
+        imageView.frame = CGRect(x: 0, y: 112, width: 375, height: 300)
+        view.addSubview(imageView)
+        
         /* hide loading label when gif has loaded */
         LoadingLabel.isHidden = true
     }
@@ -271,11 +275,6 @@ class ExerciseViewController: UIViewController {
         }
     }
     
-    /* skip button is tapped */
-    @objc func skipButtonTapped() {
-        print ("skip buttons tapped")
-    }
-    
     /* when home button on navigation bar is tapped */
     @objc func homeButtonTapped(sender: UIButton!) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -290,6 +289,13 @@ class ExerciseViewController: UIViewController {
         seconds = data.Duration
     }
     
+    /* skip button is tapped */
+    @objc func skipButtonTapped() {
+        self.imageView.removeFromSuperview()
+        self.imageView = UIImageView()
+        print ("skip buttons tapped")
+    }
+    
     /* decrements timer */
     @objc func updateTimer() {
         seconds -= 1     //This will decrement(count down)the seconds.
@@ -301,28 +307,5 @@ class ExerciseViewController: UIViewController {
             completedButton.isHidden = false
             timer.invalidate()
         }
-    }
-}
-
-extension UIImageView {
-    static func fromGif(frame: CGRect, resourceName: String) -> UIImageView? {
-        guard let path = Bundle.main.path(forResource: resourceName, ofType: "gif") else {
-            print("Gif does not exist at that path")
-            return nil
-        }
-        print ("path: ", path)
-        let url = URL(fileURLWithPath: path)
-        guard let gifData = try? Data(contentsOf: url),
-            let source =  CGImageSourceCreateWithData(gifData as CFData, nil) else { return nil }
-        var images = [UIImage]()
-        let imageCount = CGImageSourceGetCount(source)
-        for i in 0 ..< imageCount {
-            if let image = CGImageSourceCreateImageAtIndex(source, i, nil) {
-                images.append(UIImage(cgImage: image))
-            }
-        }
-        let gifImageView = UIImageView(frame: frame)
-        gifImageView.animationImages = images
-        return gifImageView
     }
 }
