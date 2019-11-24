@@ -1,80 +1,119 @@
 //SRC: https://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
 //Library: https://www.chartjs.org/samples/latest/
 
+//set the exercise history chart
+//input: la_a, la_b, la_c, la_d, la_e, la_f, la_g //the 7 label strings
+//input: flex_a, flex_b, flex_c, flex_d, flex_e, flex_f // 7 data points for flexibilty
+//input: stre_a, stre_b, stre_c, stre_d, stre_e, stre_f //7 data points for strengh
+//input: bala_a, bala_b, bala_c, bala_d, bala_e, bala_f //7 data points for balance
+//input: card_a, card_b, card_c, card_d, card_e, card_f //7 data points for cardio
+function set_exercise_history
+(
+	la_a, la_b, la_c, la_d, la_e, la_f, la_g,
+	flex_a, flex_b, flex_c, flex_d, flex_e, flex_f,
+	stre_a, stre_b, stre_c, stre_d, stre_e, stre_f,
+	bala_a, bala_b, bala_c, bala_d, bala_e, bala_f,
+	card_a, card_b, card_c, card_d, card_e, card_f
+)
+{
+	var ctx = document.getElementById('exHis').getContext('2d');
+	var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+			datasets: [{
+				label: 'Flexibility',
+				data: [12, 2, 9, 17, 6, 3, 7],
+				backgroundColor: "rgba(153,255,51,0.4)"
+			}, {
+				label: 'Strength',
+				data: [2, 1, 5, 5, 2, 3, 10],
+				backgroundColor: "rgba(255,153,0,0.4)"
+			}, {
+				label: 'Balance',
+				data: [9, 3, 4, 2, 13, 4, 2],
+				backgroundColor: "rgba(45,32,0,0.4)"
+			}, {
+				label: 'Cardio',
+				data: [1, 2, 7, 5, 3, 5, 10],
+				backgroundColor: "rgba(153,255,0,0.4)"
+			}]
+		}
+	});
+}
 
-var ctx = document.getElementById('exHis').getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-    datasets: [{
-      label: 'Flexibility',
-      data: [12, 2, 9, 17, 6, 3, 7],
-      backgroundColor: "rgba(153,255,51,0.4)"
-    }, {
-      label: 'Strength',
-      data: [2, 1, 5, 5, 2, 3, 10],
-      backgroundColor: "rgba(255,153,0,0.4)"
-    }, {
-      label: 'Balance',
-      data: [9, 3, 4, 2, 13, 4, 2],
-      backgroundColor: "rgba(45,32,0,0.4)"
-    }, {
-      label: 'Cardio',
-      data: [1, 2, 7, 5, 3, 5, 10],
-      backgroundColor: "rgba(153,255,0,0.4)"
-    }]
-  }
-});
+set_exercise_history
+(
+	'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
+	12, 2, 9, 17, 6, 3, 7,
+	2, 1, 5, 5, 2, 3, 10,
+	9, 3, 4, 2, 13, 4, 2,
+	1, 2, 7, 5, 3, 5, 10
+);
 
 
-new Chart(document.getElementById("trendsChart"), {
-    type: 'pie',
-    data: {
-      labels: ["Flexibility", "Strength", "Cardio", "Balance"],
-      datasets: [{
-        label: "Number of Exercise",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
-        data: [2478,5267,734,784]
-      }]
-    },
-    options: {
-      title: {
+//set the trendsChart
+//input: la_a, la_b, la_c, la_d //the 4 labels
+//input: da_a, da_b, da_c, da_d //the 4 data values
+function set_trends(la_a, la_b, la_c, la_d, da_a, da_b, da_c, da_d){
+	new Chart(document.getElementById("trendsChart"), {
+			type: 'pie',
+			data: {
+				labels: [la_a, la_b, la_c, la_d],
+				datasets: [{
+					label: "Number of Exercise",
+					backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
+					data: [ da_a, da_b, da_c, da_d]
+				}]
+			},
+			options: {
+				title: {
+					responsive: true,
+					maintainAspectRatio: false,
+					display: true,
+					text: 'Percentage of Exercises Done by Category'
+				}
+			}
+	});
+}
+
+set_trends("Flexibility", "Strength", "Cardio", "Balance" ,  2478, 5267, 734 , 784)
+
+
+//set the stepCount chart
+//input: la_a, la_b, la_c, la_d, la_e, la_f, la_g //the 7 label strings
+//input: da_a, da_b, da_c, da_d, da_e, da_f, da_g //the 7 data values
+function set_stepcount(la_a, la_b, la_c, la_d, la_e, la_f, la_g, da_a, da_b, da_c, da_d, da_e, da_f, da_g){
+
+	var ctx = document.getElementById('stepCountChart');
+	//ctx.canvas.width = 300;
+	//ctx.canvas.height = 300;
+	new Chart((ctx), {
+			type: 'bar',
+			data: {
+				labels: [la_a, la_b, la_c, la_d, la_e, la_f, la_g],
+				datasets: [
+					{
+						label: "Steps taken",
+						backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#B22222","#32CD32"],
+						data: [da_a, da_b, da_c, da_d, da_e, da_f, da_g]
+					}
+				]
+			},
+			options: {
 				responsive: true,
 				maintainAspectRatio: false,
-        display: true,
-        text: 'Percentage of Exercises Done by Category'
-      }
-    }
-});
+				legend: { display: false },
+				title: {
+					display: true,
+					text: 'Step Counter over the past Week!'
+				}
+			}
+	});
+}
 
+set_stepcount("Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday","Sunday",2478,3267,2134,7384,4433,1221,900);
 
-
-var ctx = document.getElementById('stepCountChart');
-//ctx.canvas.width = 300;
-//ctx.canvas.height = 300;
-new Chart((ctx), {
-    type: 'bar',
-    data: {
-      labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday","Sunday"],
-      datasets: [
-        {
-          label: "Steps taken",
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#B22222","#32CD32"],
-          data: [2478,3267,2134,7384,4433,1221,900]
-        }
-      ]
-    },
-    options: {
-			responsive: true,
-			maintainAspectRatio: false,
-      legend: { display: false },
-      title: {
-        display: true,
-        text: 'Step Counter over the past Week!'
-      }
-    }
-});
 /*
 var myChart = new Chart(ctx, {
 	type: 'bar',
