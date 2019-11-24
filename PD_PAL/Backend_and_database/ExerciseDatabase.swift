@@ -278,6 +278,7 @@ class ExerciseDatabase {
             table.column(category)
             table.column(equipment)
             table.column(link)
+            table.column(intensity)
             table.column(duration)
         }
         do{
