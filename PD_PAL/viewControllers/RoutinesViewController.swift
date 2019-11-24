@@ -14,12 +14,11 @@
 import UIKit
 
 class RoutinesViewController: UIViewController {
-    
     // IBOutlet buttons
     @IBOutlet weak var routineButton1: UIButton!
     @IBOutlet weak var routineButton2: UIButton!
     @IBOutlet weak var routineButton3: UIButton!
-    
+    //var window: UIWindow?
     
     /* stack view containing exercise buttons */
     lazy var stackView: UIStackView = {

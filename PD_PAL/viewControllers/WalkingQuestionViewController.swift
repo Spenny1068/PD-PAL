@@ -13,7 +13,6 @@
 import UIKit
 
 class WalkingQuestionViewController: UIViewController {
-    let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
     //Buttons
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
@@ -69,7 +68,16 @@ class WalkingQuestionViewController: UIViewController {
     // Navigation to main storyboard
     @IBAction func completeTapped(_ sender: UIButton) {
         //Update user's preferred walking duration
-    global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
+    global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         print(global_UserData.Get_User_Data())
+        if Global.questionnaire_index == 1 {
+            view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+            //self.present(newViewController, animated: true, completion: nil)
+            print("Log: From Cold start")
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
     }
 }

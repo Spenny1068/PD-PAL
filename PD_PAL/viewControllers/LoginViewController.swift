@@ -20,7 +20,7 @@ class LoginViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //self.fullScreen();
         //Load error and title label
         ValidationMessage.isHidden = true
         userNameTextField.delegate = self
@@ -46,19 +46,19 @@ class LoginViewController: UIViewController{
             print("Update Username")
             print(global_UserData.Get_User_Data())
         }
-        navigateToQuestionnaire()
+        //navigateToQuestionnaire()
     }
     
     // Give access to Questionnaire Storyboard
-    private func navigateToQuestionnaire(){
-        let mainStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
-        guard let quesNavigationVC = mainStoryboard.instantiateViewController(withIdentifier: "SetUpQuestionPage") as? SetUpViewController else {
-            return
-        }
+//    private func navigateToQuestionnaire(){
+//        let mainStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
+//        guard let quesNavigationVC = mainStoryboard.instantiateViewController(withIdentifier: "SetUpQuestionPage") as? SetUpViewController else {
+//            return
+//        }
         
     // Navigation to Set up page
-        show(quesNavigationVC, sender: LoginViewController.self)
-    }
+//        show(quesNavigationVC, sender: LoginViewController.self)
+   // }
     
     // Check if name contains only letter and white spaces
     func isValidName(name:String)->Bool{

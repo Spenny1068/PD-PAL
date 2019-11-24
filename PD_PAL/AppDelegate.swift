@@ -23,6 +23,7 @@ struct Global {
     static var next_routine_exercise = ""
     static var routine_data: [String] = ["", "", ""]
     static var routine_index = 0
+    static var questionnaire_index = 0
     
     // color schemes
     struct color_schemes {
@@ -234,7 +235,6 @@ extension UIViewController {
             label.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
             ])
     }
-    
 }
 
 /* UILabel methods */
@@ -456,11 +456,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //On cold start, if user does not exist, enter Questionnaire storyboard
         if(!global_UserData.User_Exists()){
-            print("USERNMAE: " + global_UserData.Get_User_Data().UserName)
+            print("USERNAME: " + global_UserData.Get_User_Data().UserName)
             //global_UserData.Clear_UserInfo_Database()
             let view = UIStoryboard(name: "Questionnare", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
             window?.rootViewController = view
-        }
+        } 
         return true
     }
 
