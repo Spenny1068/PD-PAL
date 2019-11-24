@@ -1,3 +1,4 @@
+//function to control the tabs in the userDisplay page
 
 function openCity(evt, cityName) {
 	var i, tabcontent, tablinks;

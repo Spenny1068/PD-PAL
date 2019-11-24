@@ -20,7 +20,17 @@
 		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 		<link href="../css/main_style.css" type="text/css" rel="stylesheet" />
 		<script src="../js/tabs.js"></script>
-
+			
+		<script>
+			//if the request does not contain URL param 'name' then return to login
+			var urlParams = new URLSearchParams(window.location.search);
+			var name = urlParams.get('name');
+			//alert(name);
+			if(name == "null")
+			{
+			  location.href = "../index.html";
+			}
+		</script>
   </head>
   <body>
     <div id="Header">

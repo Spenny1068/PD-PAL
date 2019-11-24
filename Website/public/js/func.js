@@ -14,7 +14,7 @@ function validateName(name)
 			{				
 				document.getElementById("loader").style.display = "none";
 				//alert("true");
-				location.href = "/userDisplay";
+				location.href = "/userDisplay?name="+name;
 				return true;
 			}
 			else
