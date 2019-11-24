@@ -38,6 +38,7 @@
 		2EF5A738237FC322000AF9AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EF5A72E237FC322000AF9AD /* GoogleService-Info.plist */; };
 		3D0471062380761300CA0A6A /* UserDataFirestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0470FC2380761300CA0A6A /* UserDataFirestore.swift */; };
 		3D0471082380762700CA0A6A /* UserDataFirestoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0471072380762700CA0A6A /* UserDataFirestoreTests.swift */; };
+		450AC5CB238B0CB3004EE4AE /* gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450AC5CA238B0CB3004EE4AE /* gif.swift */; };
 		4510853D23639DB800338F82 /* flexibility.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510852823639DB800338F82 /* flexibility.png */; };
 		4510854023639DB800338F82 /* Steps.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510852B23639DB800338F82 /* Steps.png */; };
 		4510854223639DB800338F82 /* radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4510852D23639DB800338F82 /* radar.png */; };
@@ -240,6 +241,7 @@
 		2EF5A72E237FC322000AF9AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "PD_PAL/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D0470FC2380761300CA0A6A /* UserDataFirestore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataFirestore.swift; sourceTree = "<group>"; };
 		3D0471072380762700CA0A6A /* UserDataFirestoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataFirestoreTests.swift; sourceTree = "<group>"; };
+		450AC5CA238B0CB3004EE4AE /* gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gif.swift; sourceTree = "<group>"; };
 		4510852823639DB800338F82 /* flexibility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flexibility.png; sourceTree = "<group>"; };
 		4510852B23639DB800338F82 /* Steps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Steps.png; sourceTree = "<group>"; };
 		4510852D23639DB800338F82 /* radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radar.png; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				457757BC237F941900DAE97B /* tempViewController.swift */,
+				450AC5CA238B0CB3004EE4AE /* gif.swift */,
 				45EB46072367C0AA009BA044 /* BalanceViewController.swift */,
 				45EB460B2367C0AA009BA044 /* CardioViewController.swift */,
 				45EB460C2367C0AA009BA044 /* CategoriesViewController.swift */,
@@ -934,6 +937,7 @@
 				45EB46192367C0AA009BA044 /* IntenseQuestionViewController.swift in Sources */,
 				45EB461C2367C0AA009BA044 /* CategoriesViewController.swift in Sources */,
 				45EB461D2367C0AA009BA044 /* QuestionnaireNavController.swift in Sources */,
+				450AC5CB238B0CB3004EE4AE /* gif.swift in Sources */,
 				45EB461F2367C0AA009BA044 /* mainPageViewController.swift in Sources */,
 				45EB46202367C0AA009BA044 /* EquipmentQuestionnaireViewController.swift in Sources */,
 				457757BD237F941900DAE97B /* tempViewController.swift in Sources */,

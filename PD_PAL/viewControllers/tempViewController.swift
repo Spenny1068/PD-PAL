@@ -19,6 +19,7 @@ class tempViewController: UIViewController {
     @IBOutlet weak var LoadingLabel: UILabel!
     
     /* global variables */
+    var imageView = UIImageView()
     var exercise_name2: String!
     var seconds: Int = 0
     var timer = Timer()
@@ -86,6 +87,7 @@ class tempViewController: UIViewController {
             //-> Skip button
             skipButton.applyLeftTimerButtonFrame()
             skipButton.timerButtonDesign()
+            skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
             skipButton.setTitle("SKIP",for: .normal)
             skipButton.backgroundColor = Global.color_schemes.m_lightGreen
             
@@ -139,13 +141,12 @@ class tempViewController: UIViewController {
     
     /* put slow code in here to run on a different thread */
     override func viewDidAppear(_ animated: Bool) {
-        let exercise_data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
-        
-        /* gif */
         let temp = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
-        guard let gif = UIImageView.fromGif(frame: CGRect(x: 0, y: 112, width: 375, height: 300), resourceName: temp.Link) else { return }
-        view.addSubview(gif)
-        gif.startAnimating()
+        var gif = UIImage.gifImageWithName(temp.Link)
+        imageView = UIImageView(image: gif)
+        imageView.frame = CGRect(x: 0, y: 112, width: 375, height: 300)
+        view.addSubview(imageView)
+        
         LoadingLabel.isHidden = true
     }
     
@@ -196,6 +197,13 @@ class tempViewController: UIViewController {
         /* hide these elements */
         stopButton.isHidden = true
         timerLabel.isHidden = true
+    }
+    
+    /* skip button is tapped */
+    @objc func skipButtonTapped() {
+        self.imageView.removeFromSuperview()
+        self.imageView = UIImageView()
+        print ("skip buttons tapped")
     }
     
     /* when completed button is tapped */
