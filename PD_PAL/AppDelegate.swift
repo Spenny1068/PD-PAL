@@ -214,6 +214,17 @@ extension UIViewController {
             ])
     }
     
+    func circularProgressBar(){
+//        let shapelayer = CAShapeLayer()
+//        let circularPath = UIBezierPath(arcCenter: self.view.center, radius: 100, startAngle: 0, endAngle: 2*CGFloat.pi, clockwise: true)
+//        shapelayer.path = circularPath.cgPath
+//
+//        shapelayer.strokeColor = Global.color_schemes.m_blue4.cgColor
+//        shapelayer.lineWidth = 10
+//
+//        view.layer.addSublayer(shapelayer)
+    }
+    
 }
 
 /* UILabel methods */
@@ -436,8 +447,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(!global_UserData.User_Exists()){
             print("USERNMAE: " + global_UserData.Get_User_Data().UserName)
             //global_UserData.Clear_UserInfo_Database()
-            let view = UIStoryboard(name: "Questionnare", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
+//            let view = UIStoryboard(name: "Questionnare", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
+//            window?.rootViewController = view
+            let view = UIStoryboard(name: "Test", bundle: nil).instantiateViewController(withIdentifier: "TestVC")
             window?.rootViewController = view
+            
         }
         return true
     }

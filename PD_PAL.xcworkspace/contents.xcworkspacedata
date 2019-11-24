@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/icanonic/pd_pal/CircularProgressBar.swift">
+   </FileRef>
+   <FileRef
       location = "group:PD_PAL.xcodeproj">
    </FileRef>
    <FileRef
