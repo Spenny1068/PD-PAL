@@ -33,7 +33,7 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         global_StepTracker.track_steps() //call step counter
-        global_UserRecommendation.checkUserAns()
+        print("Recommendation Made:\(global_UserRecommendation.checkUserAns())")
         
         self.dataSource = self
         
