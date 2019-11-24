@@ -22,16 +22,12 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
-
 extension UIImage {
-    
     public class func gifImageWithData(_ data: Data) -> UIImage? {
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
             print("image doesn't exist")
             return nil
         }
-        
         return UIImage.animatedImageWithSource(source)
     }
     
@@ -45,7 +41,6 @@ extension UIImage {
             print("image named \"\(gifUrl)\" into NSData")
             return nil
         }
-        
         return gifImageWithData(imageData)
     }
     
@@ -59,13 +54,11 @@ extension UIImage {
             print("SwiftGif: Cannot turn image named \"\(name)\" into NSData")
             return nil
         }
-        
         return gifImageWithData(imageData)
     }
     
     class func delayForImageAtIndex(_ index: Int, source: CGImageSource!) -> Double {
         var delay = 0.1
-        
         let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
         let gifProperties: CFDictionary = unsafeBitCast(
             CFDictionaryGetValue(cfProperties,
@@ -80,13 +73,9 @@ extension UIImage {
             delayObject = unsafeBitCast(CFDictionaryGetValue(gifProperties,
                 Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
         }
-        
         delay = delayObject as! Double
         
-        if delay < 0.1 {
-            delay = 0.1
-        }
-        
+        if delay < 0.1 { delay = 0.1 }
         return delay
     }
     
@@ -113,9 +102,8 @@ extension UIImage {
         while true {
             rest = a! % b!
             
-            if rest == 0 {
-                return b!
-            } else {
+            if rest == 0 { return b! }
+            else {
                 a = b
                 b = rest
             }
@@ -123,16 +111,10 @@ extension UIImage {
     }
     
     class func gcdForArray(_ array: Array<Int>) -> Int {
-        if array.isEmpty {
-            return 1
-        }
-        
+        if array.isEmpty { return 1 }
         var gcd = array[0]
         
-        for val in array {
-            gcd = UIImage.gcdForPair(val, gcd)
-        }
-        
+        for val in array { gcd = UIImage.gcdForPair(val, gcd) }
         return gcd
     }
     
@@ -153,10 +135,7 @@ extension UIImage {
         
         let duration: Int = {
             var sum = 0
-            
-            for val: Int in delays {
-                sum += val
-            }
+            for val: Int in delays { sum += val }
             
             return sum
         }()
@@ -170,9 +149,7 @@ extension UIImage {
             frame = UIImage(cgImage: images[Int(i)])
             frameCount = Int(delays[Int(i)] / gcd)
             
-            for _ in 0..<frameCount {
-                frames.append(frame)
-            }
+            for _ in 0..<frameCount { frames.append(frame) }
         }
         
         let animation = UIImage.animatedImage(with: frames,
