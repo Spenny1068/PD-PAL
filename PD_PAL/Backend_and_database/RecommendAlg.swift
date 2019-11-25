@@ -138,7 +138,7 @@ class RecommendAlg{
         let exerciseData = global_UserData.Get_Exercises_all()
         var twoLeastCompleted: [String] = [" ", " "]
         var categoryMatch = (" ", " ", " ", " ", " ", 0)
-        var catCount = (Flexbility: 0, Cardio: 0, Balance: 0, Strength: 0)
+        var catCount = [0, 0, 0, 0]
                 
                 
         for entry in exerciseData{
@@ -151,24 +151,26 @@ class RecommendAlg{
                 flexCount += 1
                 //print(categoryMatch.1)
                 //print(flexCount)
-                catCount.0 = flexCount
+                catCount[0] = flexCount
+                
+                print("catCount: \(catCount)")
             }
             else if categoryMatch.1 as String == "Cardio"
             {
                 cardioCount += 1
                 //print(categoryMatch.1)
                 //print(cardioCounter)
-                catCount.1 = cardioCount
+                catCount[1] = cardioCount
             }
             else if categoryMatch.1 as String == "Balance"
             {
                 balanceCount += 1
-                catCount.2 = balanceCount
+                catCount[2] = balanceCount
             }
             else if categoryMatch.1 as String == "Strength"
             {
                 strengthCount += 1
-                catCount.3 = strengthCount
+                catCount[3] = strengthCount
             }
             else
             {
@@ -184,66 +186,66 @@ class RecommendAlg{
         strengthCount = 0
         
         //check least frequently completed category
-        if catCount.0 <= catCount.1 && catCount.0 <= catCount.2 && catCount.0 <= catCount.3
+        if catCount[0] == catCount.min()
         {
             twoLeastCompleted[0] = "Flexbility"
-            if catCount.1 <= catCount.2 && catCount.1 <= catCount.3
+            if catCount[1] <= catCount[2] && catCount[1] <= catCount[3]
             {
                 twoLeastCompleted[1] = "Cardio"
             }
-            else if catCount.2 <= catCount.1 && catCount.2 <= catCount.3
+            else if catCount[2] <= catCount[1] && catCount[2] <= catCount[3]
             {
                 twoLeastCompleted[1] = "Balance"
             }
-            else if catCount.3 <= catCount.1 && catCount.3 <= catCount.2
+            else if catCount[3] <= catCount[1] && catCount[3] <= catCount[2]
             {
                 twoLeastCompleted[1] = "Strength"
             }
         }
-        else if catCount.1 <= catCount.0 && catCount.1 <= catCount.2 && catCount.1 <= catCount.3
+        else if catCount[1] == catCount.min()
         {
              twoLeastCompleted[0] = "Cardio"
-              if catCount.0 <= catCount.2 && catCount.0 <= catCount.3
+              if catCount[0] <= catCount[2] && catCount[0] <= catCount[3]
               {
                   twoLeastCompleted[1] = "Flexibility"
               }
-              else if catCount.2 <= catCount.0 && catCount.2 <= catCount.3
+              else if catCount[2] <= catCount[0] && catCount[2] <= catCount[3]
               {
                   twoLeastCompleted[1] = "Balance"
               }
-              else if catCount.3 <= catCount.0 && catCount.3 <= catCount.2
+              else if catCount[3] <= catCount[0] && catCount[3] <= catCount[2]
               {
                   twoLeastCompleted[1] = "Strength"
               }
         }
-        else if catCount.2 <= catCount.0 && catCount.2 <= catCount.1 && catCount.2 <= catCount.3
+        else if catCount[2] == catCount.min()
         {
               twoLeastCompleted[0] = "Balance"
-              if catCount.0 <= catCount.1 && catCount.0 <= catCount.3
+              if catCount[0] <= catCount[1] && catCount[0] <= catCount[3]
               {
                   twoLeastCompleted[1] = "Flexibility"
               }
-              else if catCount.1 <= catCount.0 && catCount.1 <= catCount.3
+              else if catCount[1] <= catCount[0] && catCount[1] <= catCount[3]
               {
                   twoLeastCompleted[1] = "Cardio"
               }
-              else if catCount.3 <= catCount.0 && catCount.3 <= catCount.1
+              else if catCount[3] <= catCount[0] && catCount[3] <= catCount[1]
               {
                   twoLeastCompleted[1] = "Strength"
               }
         }
-        else if catCount.3 <= catCount.0 && catCount.3 <= catCount.1 && catCount.3 <= catCount.2
+        else if catCount[3] == catCount.min()
         {
             twoLeastCompleted[0] = "Strength"
-            if catCount.0 <= catCount.1 && catCount.0 <= catCount.2
+            if catCount[0] <= catCount[1] && catCount[0] <= catCount[2]
             {
                 twoLeastCompleted[1] = "Flexibility"
             }
-            else if catCount.1 <= catCount.0 && catCount.1 <= catCount.2
+            else if catCount[1] <= catCount[0] && catCount[1] <= catCount[2]
             {
                 twoLeastCompleted[1] = "Cardio"
             }
-            else if catCount.2 <= catCount.0 && catCount.2 <= catCount.1
+            else if catCount[2] <= catCount[0] && catCount[2] <= catCount[1]
             {
                 twoLeastCompleted[1] = "Balance"
             }
