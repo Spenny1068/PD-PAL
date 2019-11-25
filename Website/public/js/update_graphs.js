@@ -69,7 +69,7 @@ function getExData(name,sDate,eDate)
 
 			//the list of names from the http request
 			var res = this.responseText;
-			alert(res);
+			//alert(res);
 			update_graphs(res);
 			return res;
 				//document.getElementById("loader").style.display = "none";
@@ -219,18 +219,18 @@ function update_graphs(res)
 	}
 	//end of code for generating the labels
 
-	alert(JSON.stringify(labels));
+	//alert(JSON.stringify(labels));
 
 
 
 	//code to parse through exercise history data
 	
 	//4 element array for trends section
-	var trendsData[0,0,0,0];
-	//7 by 4 element array for exercise history section
-	var exercise_history_data[][];
+	var trendsData = [0,0,0,0];
+	//7 by 4 element array for exercise history section; first index the day, second index the category
+	var exHisData = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
 	//7 element array for step count section
-	var stepCountData[0,0,0,0,0,0,0];
+	var stepCountData = [0,0,0,0,0,0,0];
 
 	var sCompare = 0;
 	var eCompare = 0;
@@ -265,10 +265,40 @@ function update_graphs(res)
 				//loop represents exData entry i that is to be put in array entry j
 				
 				//add step count
-				stepCountData[j] += data.exData[i].stepsTaken;	
-				
+				stepCountData[j] += data.exData[i].stepsTaken;
+
+				//get exdata
+				var exData = JSON.parse(data.exData[i].exercises_done);
+
+				//iterate through each exercise
+				exData.forEach(item => 
+					{
+						//get the category
+						var cat = sortByCategory(item);
+						//increment the trends array
+						trendsData[cat]++;
+						exHisData[j][cat]++;
+
+					});
 			}
 	}
+
+	//Update the trends graph
+	set_trends("Flexibility", "Strength", "Cardio", "Balance" ,  trendsData[0], trendsData[1], trendsData[2] , trendsData[3]);
+	//update the stepcount graph
+	set_stepcount( labels[0],labels[1] ,labels[2] ,labels[3] ,labels[4] ,labels[5] ,labels[6] ,
+			stepCountData[0],stepCountData[1],stepCountData[2],stepCountData[3],stepCountData[4],stepCountData[5],stepCountData[6]);
+	//Update the exercise history graph
+	set_exercise_history
+	(
+		labels[0],labels[1] ,labels[2] ,labels[3] ,labels[4] ,labels[5] ,labels[6] ,
+		exHisData[0][0], exHisData[1][0], exHisData[2][0], exHisData[3][0], exHisData[4][0], exHisData[5][0], exHisData[6][0],
+		exHisData[0][1], exHisData[1][1], exHisData[2][1], exHisData[3][1], exHisData[4][1], exHisData[5][1], exHisData[6][1],
+		exHisData[0][2], exHisData[1][2], exHisData[2][2], exHisData[3][2], exHisData[4][2], exHisData[5][2], exHisData[6][2],
+		exHisData[0][3], exHisData[1][3], exHisData[2][3], exHisData[3][3], exHisData[4][3], exHisData[5][3], exHisData[6][3]
+	);
+
+
 
 }
 
@@ -281,10 +311,33 @@ function update_graphs(res)
 // 3 : balance
 function sortByCategory(exName)
 {	
+	var FLEXIBILITY = ["SINGLE LEG STANCE","QUAD STRETCH","SHOULDER RAISES","NECK SIDE STRETCH","CHEST STRETCH","ARM RAISES"];
 	var STRENGTH    = ["WALL PUSH-UP","TRICEP KICKBACKS","LATERAL RAISES","KNEE EXTENSION","HEEL STAND"];
 	var CARDIO      = ["WALKING"];
-	var FLEXIBILITY = ["SINGLE LEG STANCE","QUAD STRETCH","SHOULDER RAISES","NECK SIDE STRETCH","CHEST STRETCH","ARM RAISES"];
 	var BALANCE     = ["SIDE LEG LIFT","KNEE MARCHING","HEEL TO TOE"];
+
+	if(FLEXIBILITY.includes(exName))
+	{
+		return 0;
+	}
+	else if(STRENGTH.includes(exName))
+	{
+		return 1;
+	}
+	else if(CARDIO.includes(exName))
+	{
+		return 2;
+	}
+	else if(BALANCE.includes(exName))
+	{
+		return 3;
+	}
+	else //error case
+	{
+		alert("Can't Match: " + exName);
+		return 5;
+	}
+
 
 }
 

@@ -10,46 +10,39 @@
 function set_exercise_history
 (
 	la_a, la_b, la_c, la_d, la_e, la_f, la_g,
-	flex_a, flex_b, flex_c, flex_d, flex_e, flex_f,
-	stre_a, stre_b, stre_c, stre_d, stre_e, stre_f,
-	bala_a, bala_b, bala_c, bala_d, bala_e, bala_f,
-	card_a, card_b, card_c, card_d, card_e, card_f
+	flex_a, flex_b, flex_c, flex_d, flex_e, flex_f, flex_g,
+	stre_a, stre_b, stre_c, stre_d, stre_e, stre_f, stre_g,
+	card_a, card_b, card_c, card_d, card_e, card_f, card_g,
+	bala_a, bala_b, bala_c, bala_d, bala_e, bala_f, bala_g,
 )
 {
 	var ctx = document.getElementById('exHis').getContext('2d');
 	var myChart = new Chart(ctx, {
 		type: 'line',
 		data: {
-			labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+			labels: [la_a, la_b, la_c, la_d, la_e, la_f, la_g],
 			datasets: [{
 				label: 'Flexibility',
-				data: [12, 2, 9, 17, 6, 3, 7],
+				data: [flex_a, flex_b, flex_c, flex_d, flex_e, flex_f, flex_g],
 				backgroundColor: "rgba(153,255,51,0.4)"
 			}, {
 				label: 'Strength',
-				data: [2, 1, 5, 5, 2, 3, 10],
+				data: [stre_a, stre_b, stre_c, stre_d, stre_e, stre_f, stre_g],
 				backgroundColor: "rgba(255,153,0,0.4)"
 			}, {
-				label: 'Balance',
-				data: [9, 3, 4, 2, 13, 4, 2],
+				label: 'Cardio',
+				data: [card_a, card_b, card_c, card_d, card_e, card_f, card_g],
 				backgroundColor: "rgba(45,32,0,0.4)"
 			}, {
-				label: 'Cardio',
-				data: [1, 2, 7, 5, 3, 5, 10],
+				label: 'Balance',
+				data: [bala_a, bala_b, bala_c, bala_d, bala_e, bala_f, bala_g],
 				backgroundColor: "rgba(153,255,0,0.4)"
 			}]
 		}
 	});
 }
 
-set_exercise_history
-(
-	'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
-	12, 2, 9, 17, 6, 3, 7,
-	2, 1, 5, 5, 2, 3, 10,
-	9, 3, 4, 2, 13, 4, 2,
-	1, 2, 7, 5, 3, 5, 10
-);
+
 
 
 //set the trendsChart
@@ -77,7 +70,6 @@ function set_trends(la_a, la_b, la_c, la_d, da_a, da_b, da_c, da_d){
 	});
 }
 
-set_trends("Flexibility", "Strength", "Cardio", "Balance" ,  2478, 5267, 734 , 784)
 
 
 //set the stepCount chart
@@ -112,7 +104,6 @@ function set_stepcount(la_a, la_b, la_c, la_d, la_e, la_f, la_g, da_a, da_b, da_
 	});
 }
 
-set_stepcount("Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday","Sunday",2478,3267,2134,7384,4433,1221,900);
 
 /*
 var myChart = new Chart(ctx, {
