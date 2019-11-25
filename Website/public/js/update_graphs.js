@@ -88,7 +88,7 @@ function getExData(name,sDate,eDate)
 
 	//configure http request
 	var url = "/exercise_data?name="+mod_name+"&sDate="+sDate+"&eDate="+eDate;
-	alert(url);
+	//alert(url);
 
   xhttp.open('GET', url, true/*asynchronous*/);
   //xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

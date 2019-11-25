@@ -16,7 +16,13 @@ function set_exercise_history
 	bala_a, bala_b, bala_c, bala_d, bala_e, bala_f, bala_g,
 )
 {
+	var ctx = document.getElementById('exHis');
+	ctx.remove();
+	$('#History').append('<canvas id="exHis"> </canvas>');
 	var ctx = document.getElementById('exHis').getContext('2d');
+
+
+
 	var myChart = new Chart(ctx, {
 		type: 'line',
 		data: {
@@ -49,7 +55,13 @@ function set_exercise_history
 //input: la_a, la_b, la_c, la_d //the 4 labels
 //input: da_a, da_b, da_c, da_d //the 4 data values
 function set_trends(la_a, la_b, la_c, la_d, da_a, da_b, da_c, da_d){
-	new Chart(document.getElementById("trendsChart"), {
+
+	var ctx = document.getElementById('trendsChart');
+	ctx.remove();
+	$('#Trends').append('<canvas id="trendsChart" width="800" height="450"></canvas>');
+	var ctx = document.getElementById('trendsChart');
+
+	new Chart(ctx, {
 			type: 'pie',
 			data: {
 				labels: [la_a, la_b, la_c, la_d],
@@ -78,6 +90,10 @@ function set_trends(la_a, la_b, la_c, la_d, da_a, da_b, da_c, da_d){
 function set_stepcount(la_a, la_b, la_c, la_d, la_e, la_f, la_g, da_a, da_b, da_c, da_d, da_e, da_f, da_g){
 
 	var ctx = document.getElementById('stepCountChart');
+	ctx.remove();
+	$('#Steps').append('<canvas id="stepCountChart" height=200 width=200></canvas>');
+	var ctx = document.getElementById('stepCountChart');
+
 	//ctx.canvas.width = 300;
 	//ctx.canvas.height = 300;
 	new Chart((ctx), {

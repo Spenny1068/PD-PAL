@@ -22,6 +22,7 @@
 		<script src="../js/tabs.js"></script>
 		<script src="../js/update_graphs.js"></script>
 		<script src="../js/chart_config.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 			
 		<script>
 			//if the request does not contain URL param 'name' then return to login
@@ -98,8 +99,13 @@
 			);
 			set_trends("Flexibility", "Strength", "Cardio", "Balance" ,  2478, 5267, 734 , 784);
 			set_stepcount("Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday","Sunday",2478,3267,2134,7384,4433,1221,900);
-
-
+			
+			//var urlParams = new URLSearchParams(window.location.search);
+			//var name = urlParams.get('name');
+			
+			//get default graphs for 7 days
+			sendHttpDays(true);
+			
 		</script>
 
 
