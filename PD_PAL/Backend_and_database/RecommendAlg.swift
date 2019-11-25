@@ -37,10 +37,10 @@ class RecommendAlg{
     func checkUserAns() -> [String]{
         leastCat = self.getLeastCat()
         
-        print("Questions answered: \(userAns.2)")
-        if userAns.2 == true //QuestionsAnswered
+        //print("Questions answered: \(userAns.2)")
+        if userAns.2  //QuestionsAnswered
         {
-            return getRecommend()
+            return self.getRecommend()
         }
         else
         {
@@ -53,35 +53,57 @@ class RecommendAlg{
     }
     
     func getRecommend() -> [String]{
-        var equipmentType: String = "None"
+        var equipmentType: [String] = ["", "",""]
         var foundLeastCombo = false
         equipmentType = convertEquipment()
-        print("LEAST CATEGORY: \(leastCat)")
-        print("EQUIPMENT TYPE: \(equipmentType)")
-        for entry in exerciseList{
+        
+        /*print("LEAST CATEGORY: \(leastCat)")
+        print("EQUIPMENT TYPE: \(equipmentType)")*/
+        
+        //mix up the order of exercise names
+        //shuffled() is O(n)
+        let shuffledExList = exerciseList.shuffled()
+        
+        //print("SHUFFLED LIST: \(shuffledExList)")
+        
+        for entry in shuffledExList{
             categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry)
             
             //intensity, equipment match with what the user set and is one of the exercises in least frequently completed category
-            if categoryMatch.4 == userAns.8 && categoryMatch.3 as String == equipmentType && categoryMatch.1 as String == leastCat[0]
+            /*
+            print("categoryMatch.4: \(categoryMatch.4)")
+            print("userAns.8: \(userAns.8)")
+            print("categoryMatch.2: \(categoryMatch.2)")
+            print("categoryMatch.1: \(categoryMatch.1)")
+            print("leastCat[0]:\(leastCat[0])")
+            print("equipmentType[0] \(equipmentType[0])")*/
+            
+            if categoryMatch.4 == userAns.8 && (categoryMatch.2 == equipmentType[0] || categoryMatch.2  == equipmentType[1] || categoryMatch.2  == equipmentType[2]) && categoryMatch.1 == leastCat[0]
             {
                 leastCombo = [leastCat[0], entry]
                 //return the first on the list of the least frequently completed category, exercise name
-                print("Least Combo with Equipment: \(leastCombo)")
+                //print("Least Combo with Equipment: \(leastCombo)")
                 foundLeastCombo = true
                 return leastCombo
             }
             
                 
         }
+        
+        
+        //print("foundLeastCombo: \(foundLeastCombo)")
         if !foundLeastCombo
         {
-            for entry in exerciseList{
-               //first least category didn't have any match
-               if categoryMatch.4 == userAns.8 && categoryMatch.3 as String == equipmentType && categoryMatch.1 as String == leastCat[1]
+            for entry in shuffledExList{
+                //print("leastCat[1]:\(leastCat[1])")
+                categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry)
+               
+                //first least category didn't have any match
+               if categoryMatch.4 == userAns.8 && (categoryMatch.2 == equipmentType[0] || categoryMatch.2 == equipmentType[1] || categoryMatch.2 == equipmentType[2]) && categoryMatch.1 == leastCat[1]
                 {
                     secondLeastCombo = [leastCat[1], entry]
                     //return the first on the list of the least frequently completed category, exercise name
-                    print("Second Least Combo with Equipment: \(secondLeastCombo)")
+                    //print("Second Least Combo with Equipment: \(secondLeastCombo)")
                     foundLeastCombo = false //reset before
                     return secondLeastCombo
                 }
@@ -93,34 +115,55 @@ class RecommendAlg{
         return [" ", " "] //if no recommendation was found, but this will rarely happen
     }
     
-    func convertEquipment() -> String{
-        var equipType = " "
-        if userAns.4
+    func convertEquipment() -> [String]{
+        var equipType: [String] = [" ", " " , " "]
+       
+        if userAns.4 && userAns.5 && userAns.6
         {
-            if userAns.6
+             equipType[0] = "Chair"
+             equipType[1] = "Resistive Band"
+             equipType[2] = "Weights"
+        }
+        else if userAns.4
+        {
+            if userAns.5
             {
-                equipType = "Chair, Resistive Band"
+                equipType[0] = "Chair"
+                equipType[1] = "Weights"
+                equipType[2] = "None"
             }
-            else if userAns.5
+            else if userAns.6
             {
-                equipType = "Chair, Weights"
+                equipType[0] = "Chair"
+                equipType[1] = "Resistive Band"
+                equipType[2] = "None"
             }
             else
             {
-                equipType = "Chair"
+                equipType[0] = "Chair"
+                equipType[1] = "None"
+                equipType[2] = "None"
             }
         }
         else if userAns.5
         {
-            equipType = "Weights"
+             equipType[0] = "Weights"
+             equipType[1] = "None"
+             equipType[2] = "None"
+            
         }
         else if userAns.6
         {
-            equipType = "Resistive Band"
+            equipType[0] = "Resistive Band"
+            equipType[1] = "None"
+            equipType[2] = "None"
+            
         }
         else
         {
-            equipType = "None"
+            equipType[0] = "None"
+            equipType[1] = "None"
+            equipType[2] = "None"
         }
     
         return equipType
@@ -129,16 +172,19 @@ class RecommendAlg{
 
     func getExInCat(LeastCategory: String) -> String {
        
-        print("Least Completed Category: \(LeastCategory)")
-        for entry in exerciseList{
+        //print("Least Completed Category: \(LeastCategory)")
+        let shuffledList = exerciseList.shuffled()
+        
+        for entry in shuffledList{
             categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry)
             
             if categoryMatch.1 as String == LeastCategory
             {
+                //print("getExInCat: \(entry)")
                 return entry as String //first exercise name that matched least completed category
             }
         }
-         return "Walking" //default exercise
+         return "None" //no exercise
     }
     
     func getLeastCat() -> [String]{
@@ -161,13 +207,13 @@ class RecommendAlg{
                 //print(flexCount)
                 catCount[0] = flexCount
                 
-                print("catCount: \(catCount)")
+                //print("catCount: \(catCount)")
             }
             else if categoryMatch.1 as String == "Cardio"
             {
                 cardioCount += 1
                 //print(categoryMatch.1)
-                //print(cardioCounter)
+                //print(cardioCount)
                 catCount[1] = cardioCount
             }
             else if categoryMatch.1 as String == "Balance"
@@ -264,7 +310,7 @@ class RecommendAlg{
             return [" ", " "]
         }
         
-        
+        print("twoLeastCompleted: \(twoLeastCompleted)")
         return twoLeastCompleted
     
     }
