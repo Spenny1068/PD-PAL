@@ -47,6 +47,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
     
+   
     private var sDatePicker: UIDatePicker?
     private var eDatePicker: UIDatePicker?
     private var sdateSelected = false
@@ -76,7 +77,6 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor // background color
-
         getDatePicker()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TrendViewController.viewTapped(gestureRecognizer:)))
         self.view.addGestureRecognizer(tapGesture)
@@ -170,7 +170,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         eDatePicker = UIDatePicker()
         sDatePicker?.datePickerMode = .dateAndTime
         sDatePicker?.addTarget(self, action: #selector(TrendViewController.sDateChanged(datePicker:)), for: .valueChanged)
-        
+        /*
         //default start date
         sDatePicker?.date = Calendar.current.date(byAdding: .day, value: (-7), to: Date())!
         startDate.text = dateFormatter.string(from: sDatePicker!.date)
@@ -182,6 +182,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         eDatePicker?.date = Date() //default value of end date to be today's date
         dateFormatter.dateFormat = "MM/dd/yyyy HH"
         endDate.text = dateFormatter.string(from: eDatePicker!.date)
+         */
          */
         eDatePicker?.datePickerMode = .dateAndTime
         eDatePicker?.addTarget(self, action: #selector(TrendViewController.eDateChanged(datePicker:)), for: .valueChanged)
