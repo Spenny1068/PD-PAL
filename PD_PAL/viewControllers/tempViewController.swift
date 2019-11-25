@@ -30,7 +30,7 @@ class tempViewController: UIViewController {
     var seconds: Int = 0
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
-    
+    var setsLeft: Int = 0
     
     /* forward pass data between view controllers */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,6 +66,9 @@ class tempViewController: UIViewController {
             let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
             self.show_exercise_description(string: readResult.Description, DLabel: DescriptionLabel, DText: DescriptionText)
             
+            /* counter for sets */
+            self.setsLeft = readResult.Sets
+            
             /* page message */
             self.show_page_message(s1: exercise_name2 ?? "Unable to retrieve exercise name", s2: exercise_name2 ?? "nil")
             
@@ -93,7 +96,7 @@ class tempViewController: UIViewController {
             //-> sets label
             SetsLabel.timerAndSetsDesign()
             SetsLabel.applySetsLabelFrame()
-            SetsLabel.text = "\(readResult.Sets)"
+            SetsLabel.text = "\(self.setsLeft)" + " SETS LEFT"
             
             //-> Skip button
             skipButton.applyLeftTimerButtonFrame()
@@ -220,6 +223,7 @@ class tempViewController: UIViewController {
         /* hide these elements */
         stopButton.isHidden = true
         timerLabel.isHidden = true
+        SetsLabel.isHidden = true
     }
     
     /* when home button on navigation bar is tapped */
@@ -236,7 +240,25 @@ class tempViewController: UIViewController {
     /* next set button is tapped  */
     @objc func nextSetButtonTapped(sender: UIButton!) {
         print ("next set button tapped")
+        self.setsLeft = self.setsLeft - 1
+        SetsLabel.text = "\(self.setsLeft)" + " SETS LEFT"
         
+        /* last set */
+        if self.setsLeft == 0 {
+            completedButton.applyDefaultTimerButtonFrame()
+        }
+        
+        /* hide these elements */
+        completedButton.isHidden = true
+        nextSetButton.isHidden = true
+        
+        /* show these elements */
+        timerLabel.isHidden = false
+        SetsLabel.isHidden = false
+        stopButton.isHidden = false
+        
+        /* start timer */
+        runTimer()
     }
     
     /* skip button is tapped */
@@ -295,6 +317,9 @@ class tempViewController: UIViewController {
             completedButton.isHidden = false
             nextSetButton.isHidden = false
             timer.invalidate()
+            
+            /* last set */
+            if self.setsLeft == 0 { nextSetButton.isHidden = true }
         }
     }
 }

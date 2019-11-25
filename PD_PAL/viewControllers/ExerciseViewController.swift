@@ -30,8 +30,9 @@ class ExerciseViewController: UIViewController {
     var imageView = UIImageView()
     var seconds: Int = 0
     var timer = Timer()
-    var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
-    
+    var isTimerRunning = false
+    var setsLeft: Int = 0
+
     /* forward pass data between view controllers */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -63,6 +64,9 @@ class ExerciseViewController: UIViewController {
         /* populate exercise description */
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
         self.show_exercise_description(string: readResult.Description, DLabel: DescriptionLabel, DText: DescriptionText)
+        
+        /* counter for sets */
+        self.setsLeft = readResult.Sets
         
         /* page message */
         self.show_page_message(s1: exercise_name ?? "Unable to retrieve exercise name", s2: exercise_name ?? "nil")
@@ -99,7 +103,7 @@ class ExerciseViewController: UIViewController {
         //-> sets label
         SetsLabel.timerAndSetsDesign()
         SetsLabel.applySetsLabelFrame()
-        SetsLabel.text = "\(readResult.Sets)"
+        SetsLabel.text = "\(self.setsLeft)" + " SETS LEFT"
         
         /* when entering this page, hide these elements */
         stopButton.isHidden = true
@@ -251,6 +255,7 @@ class ExerciseViewController: UIViewController {
         /* hide these elements */
         stopButton.isHidden = true
         timerLabel.isHidden = true
+        SetsLabel.isHidden = true
     }
     
     /* when completed button is tapped */
@@ -311,13 +316,22 @@ class ExerciseViewController: UIViewController {
     /* next set button is tapped  */
     @objc func nextSetButtonTapped(sender: UIButton!) {
         print ("next set button tapped")
+        self.setsLeft = self.setsLeft - 1
+        SetsLabel.text = "\(self.setsLeft)" + " SETS LEFT"
+        
+        /* last set */
+        if self.setsLeft == 0 {
+            completedButton.applyDefaultTimerButtonFrame()
+        }
         
         /* hide these elements */
         completedButton.isHidden = true
+        NextSetButton.isHidden = true
         
         /* show these elements */
         timerLabel.isHidden = false
         SetsLabel.isHidden = false
+        stopButton.isHidden = false
         
         /* start timer */
         runTimer()
@@ -350,6 +364,9 @@ class ExerciseViewController: UIViewController {
             completedButton.isHidden = false
             NextSetButton.isHidden = false
             timer.invalidate()
+            
+            /* last set */
+            if self.setsLeft == 0 { NextSetButton.isHidden = true }
         }
     }
 }

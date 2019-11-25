@@ -274,8 +274,8 @@ extension UILabel {
     }
     
     // frames for timer and sets labels
-    func applyTimerLabelFrame() { self.frame = CGRect(x: 250, y: 452, width: 100, height: 100) }
-    func applySetsLabelFrame() { self.frame = CGRect(x: 50, y: 452, width: 100, height: 100) }
+    func applyTimerLabelFrame() { self.frame = CGRect(x: 210, y: 425, width: 150, height: 125) }
+    func applySetsLabelFrame() { self.frame = CGRect(x: 30, y: 425, width: 150, height: 125) }
 }
 
 /* UIButton methods */
