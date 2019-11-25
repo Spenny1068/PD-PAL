@@ -23,6 +23,10 @@ Revision History
     Update_UserInfo() now works
  - 19/11/2019 : William Huong
     Update functions now check for user permission.
+ - 24/11/2019 : William Huong
+    Removed Routines related methods
+ - 24/11/2019 : William Huong
+    Implemented Clear_UserInfo() and Clear_ExerciseData
 */
 
 /*
@@ -432,6 +436,87 @@ class UserDataFirestore {
             
             completion(returnVal)
         }
+        
+    }
+    
+    //Deletes the fields from the user document, but leaves the file intact to preserve possession of username.
+    func Clear_UserInfo(targetUser: String?, completion: @escaping (Int) -> ()) {
+        
+        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserUUID
+        let userInfoDocRef = self.FirestoreDB.collection("Users").document(targetUUID)
+        
+        userInfoDocRef.getDocument() { (document, error) in
+            //Check the document exists
+            guard let document = document, document.exists else {
+                print("The user does not exist in Firebase")
+                return
+            }
+            
+            //The user has data in Firebase, delete the document.
+            userInfoDocRef.updateData([
+                "UserName" : FieldValue.delete(),
+                "QuestionsAnswered" : FieldValue.delete(),
+                "WalkingDuration" : FieldValue.delete(),
+                "ChairAccessible" : FieldValue.delete(),
+                "WeightsAccessible" : FieldValue.delete(),
+                "ResistBandAccessible" : FieldValue.delete(),
+                "PoolAccessible" : FieldValue.delete(),
+                "Intensity" : FieldValue.delete(),
+                "PushNotifications" : FieldValue.delete()
+            ]) { err in
+                if let err = err {
+                    print("Failed to clear User Info in Firebase : \(err)")
+                    completion(1)
+                    return
+                } else {
+                    print("Successfully cleared User Info in Firebase")
+                    return
+                }
+            }
+        }
+        
+        completion(0)
+        
+    }
+    
+    //Deletes the Exercise Data from Firestore.
+    func Clear_ExerciseData(targetUser: String?, completion: @escaping (Int) -> ()) {
+        
+        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserUUID
+        let exerciseCollectionRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("ExerciseData")
+        
+        exerciseCollectionRef.getDocuments() { (snapshot, error) in
+            if let error = error {
+                print("An error occured while retrieving the Exercises Done : \(error)")
+                completion(1)
+                return
+            }
+            
+            guard let snapshot = snapshot, snapshot.documents.count > 0 else {
+                print("The ExerciseData subcollection was empty : \(String(describing: error))")
+                completion(0)
+                return
+            }
+            
+            for document in snapshot.documents {
+                let exerciseDocRef = exerciseCollectionRef.document(document.documentID)
+                
+                print("Attempting to delete the exercise data for \(document.documentID)")
+                
+                exerciseDocRef.delete() { err in
+                    if let err = err {
+                        print("Failed to delete the document : \(err)")
+                        completion(1)
+                        return
+                    } else {
+                        print("Successfully deleted the document")
+                        return
+                    }
+                }
+            }
+        }
+        
+        completion(0)
         
     }
     

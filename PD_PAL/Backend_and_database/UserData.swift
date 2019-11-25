@@ -1029,17 +1029,6 @@ Methods that insert or update data.
             print("Failed to insert \(NameOfRoutine) routine into Routines database")
         }
         
-        //Update Firestore
-        let nextBackup = Calendar.current.date(byAdding: .second, value: 10, to: self.Get_LastBackup().Routines)
-        
-        if( Date() >= nextBackup! ) {
-            global_UserDataFirestore.Update_UserInfo() { returnedVal in
-                if( returnedVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: nil, Routines: Date(), Exercise: nil)
-                }
-            }
-        }
-        
     }
     
     //Add an exercise to the UserExerciseData database.
