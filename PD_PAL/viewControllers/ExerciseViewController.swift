@@ -132,10 +132,15 @@ class ExerciseViewController: UIViewController {
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             self.view.addSubview(startButton)
+            
+            completedButton.setTitle("NEXT EXERCISE", for: .normal)
+
         }
             
         /* we came from categories page */
         else if Global.IsRoutineExercise == 0 {
+            
+            exitRoutineButton.isHidden = true
             
             /* start button */
             startButton.applyDefaultTimerButtonFrame()
@@ -143,25 +148,22 @@ class ExerciseViewController: UIViewController {
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             self.view.addSubview(startButton)
-            exitRoutineButton.isHidden = true
+            
+            completedButton.setTitle("COMPLETED", for: .normal)
         }
         
         /* last exercise */
         if Global.routine_index == 2 {
+            exitRoutineButton.isHidden = false
             skipButton.isHidden = true
+            
             exitRoutineButton.applyLeftTimerButtonFrame()
             exitRoutineButton.setTitle("EXIT ROUTINE", for: .normal)
             exitRoutineButton.backgroundColor = Global.color_schemes.m_lightRed
             exitRoutineButton.timerButtonDesign()
-            exitRoutineButton.isHidden = false
+            
+            completedButton.setTitle("EXIT", for: .normal)
         }
-        
-        /* testing */
-        //print ("log: routine_index: ", Global.routine_index)
-//        print ("log: exercise_name: ", exercise_name)
-//        //print ("log: link: ", exercise_data.Link)
-//        print ("log: ExerciseViewController")
-//        print ("log: next_routine_exercise", Global.next_routine_exercise)
     }
     
     /* put code that does not depends on IsRoutineExercise flag in here */
@@ -187,6 +189,7 @@ class ExerciseViewController: UIViewController {
     /* put slow code in here to run on a different thread */
     override func viewDidAppear(_ animated: Bool) {
         
+        /* gif */
         let temp = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
         var gif = UIImage.gifImageWithName(temp.Link)
         imageView = UIImageView(image: gif)
@@ -288,9 +291,7 @@ class ExerciseViewController: UIViewController {
         
         /* last excercise */
         if Global.routine_index == 2 {
-            
-            completedButton.setTitle("EXIT", for: .normal)
-            
+                        
             /* navigate to home page */
             print ("log: completed button tapped on last excercise")
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

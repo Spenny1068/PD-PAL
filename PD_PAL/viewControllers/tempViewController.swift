@@ -132,15 +132,7 @@ class tempViewController: UIViewController {
             /* last exercise */
             if Global.routine_index == 2 {
                 skipButton.isHidden = true
-                //exitRoutineButton.skipButtonDesign()
-                //exitRoutineButton.isHidden = false
             }
-            
-            //print ("log: routine_index: ", Global.routine_index)
-            //print ("log: link: ", exercise_data.Link)
-            //print ("log: exercise_name: ", exercise_name2)
-            //print ("log: tempViewController")
-            //print ("log: next_routine_exercise", Global.next_routine_exercise)
         }
         
         /* put code that does not depends on IsRoutineExercise flag in here */
@@ -184,6 +176,7 @@ class tempViewController: UIViewController {
     
     /* when start button is tapped */
     @IBAction func startButton(_ sender: Any) {
+        
         /* hide these elements */
         DescriptionLabel.isHidden = true
         DescriptionText.isHidden = true
@@ -195,13 +188,13 @@ class tempViewController: UIViewController {
         timerLabel.isHidden = false
         SetsLabel.isHidden = false
 
-        
         /* start timer */
         runTimer()
     }
     
     /* when stop button is tapped */
     @IBAction func stopButton(_ sender: Any) {
+        
         /* reset timer value */
         timer.invalidate()
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
@@ -233,6 +226,8 @@ class tempViewController: UIViewController {
     
     /* next set button is tapped  */
     @objc func nextSetButtonTapped(sender: UIButton!) {
+        
+        /* update sets variable */
         self.setNumber = self.setNumber + 1
         SetsLabel.text = "SET " + "\(self.setNumber)"
         
