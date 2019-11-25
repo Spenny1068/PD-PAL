@@ -31,7 +31,8 @@ class ExerciseViewController: UIViewController {
     var seconds: Int = 0
     var timer = Timer()
     var isTimerRunning = false
-    var setsLeft: Int = 0
+    var setNumber: Int = 1
+    var restInterval = 0
 
     /* forward pass data between view controllers */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,9 +66,6 @@ class ExerciseViewController: UIViewController {
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
         self.show_exercise_description(string: readResult.Description, DLabel: DescriptionLabel, DText: DescriptionText)
         
-        /* counter for sets */
-        self.setsLeft = readResult.Sets
-        
         /* page message */
         self.show_page_message(s1: exercise_name ?? "Unable to retrieve exercise name", s2: exercise_name ?? "nil")
         
@@ -84,7 +82,7 @@ class ExerciseViewController: UIViewController {
         //-> completed Button
         completedButton.applyRightTimerButtonFrame()
         completedButton.timerButtonDesign()
-        completedButton.setTitle("COMPLETED", for: .normal)
+        completedButton.setTitle("NEXT EXERCISE", for: .normal)
         completedButton.backgroundColor = Global.color_schemes.m_blue2
         self.view.addSubview(completedButton)
         
@@ -103,7 +101,7 @@ class ExerciseViewController: UIViewController {
         //-> sets label
         SetsLabel.timerAndSetsDesign()
         SetsLabel.applySetsLabelFrame()
-        SetsLabel.text = "\(self.setsLeft)" + " SETS LEFT"
+        SetsLabel.text = "SET " + "\(self.setNumber)"
         
         /* when entering this page, hide these elements */
         stopButton.isHidden = true
@@ -240,6 +238,7 @@ class ExerciseViewController: UIViewController {
     
     /* when stop button is tapped */
     @IBAction func stopButton(_ sender: Any) {
+        
         /* reset timer value */
         timer.invalidate()
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
@@ -285,6 +284,8 @@ class ExerciseViewController: UIViewController {
         /* last excercise */
         if Global.routine_index == 2 {
             
+            completedButton.setTitle("EXIT", for: .normal)
+            
             /* navigate to home page */
             print ("log: completed button tapped on last excercise")
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -315,12 +316,14 @@ class ExerciseViewController: UIViewController {
     
     /* next set button is tapped  */
     @objc func nextSetButtonTapped(sender: UIButton!) {
-        print ("next set button tapped")
-        self.setsLeft = self.setsLeft - 1
-        SetsLabel.text = "\(self.setsLeft)" + " SETS LEFT"
+
+        /* update set number variable */
+        self.setNumber = self.setNumber + 1
+        SetsLabel.text = "SET " + "\(self.setNumber)"
         
         /* last set */
-        if self.setsLeft == 0 {
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
+        if self.setNumber == readResult.Sets {
             completedButton.applyDefaultTimerButtonFrame()
         }
         
@@ -333,7 +336,11 @@ class ExerciseViewController: UIViewController {
         SetsLabel.isHidden = false
         stopButton.isHidden = false
         
-        /* start timer */
+        /* reset timer */
+        timer.invalidate()
+        let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
+        seconds = data.Duration
+        self.restInterval = 0
         runTimer()
     }
     
@@ -342,8 +349,6 @@ class ExerciseViewController: UIViewController {
         /* kill running gif */
         self.imageView.removeFromSuperview()
         self.imageView = UIImageView()
-        
-        print ("skip buttons tapped")
     }
     
     /* starts timer */
@@ -355,18 +360,28 @@ class ExerciseViewController: UIViewController {
     
     /* decrements timer */
     @objc func updateTimer() {
-        seconds -= 1     //This will decrement(count down)the seconds.
-        timerLabel.text = "\(seconds)" + "s" //This will update the label.
+        if restInterval == 0 {
+            seconds -= 1
+            timerLabel.text = "\(seconds)" + "s"
+        } else {
+            seconds += 1
+            timerLabel.text = "REST: " + "\(seconds)" + "s"
+        }
         
-        /* when countdown is done, hide and show these elements */
+        /* when countdown is done */
         if seconds <= 0 {
             stopButton.isHidden = true
             completedButton.isHidden = false
             NextSetButton.isHidden = false
-            timer.invalidate()
+            //timer.invalidate()
+            
+            SetsLabel.text = "SET " + "\(self.setNumber)" + " FINISHED!"
+            self.restInterval = 1
             
             /* last set */
-            if self.setsLeft == 0 { NextSetButton.isHidden = true }
+            let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
+            if self.setNumber == readResult.Sets { NextSetButton.isHidden = true }
         }
     }
+
 }

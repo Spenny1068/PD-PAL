@@ -30,7 +30,8 @@ class tempViewController: UIViewController {
     var seconds: Int = 0
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
-    var setsLeft: Int = 0
+    var setNumber: Int = 0
+    var restInterval = 0
     
     /* forward pass data between view controllers */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,9 +67,6 @@ class tempViewController: UIViewController {
             let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
             self.show_exercise_description(string: readResult.Description, DLabel: DescriptionLabel, DText: DescriptionText)
             
-            /* counter for sets */
-            self.setsLeft = readResult.Sets
-            
             /* page message */
             self.show_page_message(s1: exercise_name2 ?? "Unable to retrieve exercise name", s2: exercise_name2 ?? "nil")
             
@@ -85,7 +83,7 @@ class tempViewController: UIViewController {
             //-> completed Button
             completedButton.applyRightTimerButtonFrame()
             completedButton.timerButtonDesign()
-            completedButton.setTitle("COMPLETED", for: .normal)
+            completedButton.setTitle("NEXT EXERCISE", for: .normal)
             completedButton.backgroundColor = Global.color_schemes.m_blue2
             //self.view.addSubview(completedButton)
             
@@ -96,7 +94,7 @@ class tempViewController: UIViewController {
             //-> sets label
             SetsLabel.timerAndSetsDesign()
             SetsLabel.applySetsLabelFrame()
-            SetsLabel.text = "\(self.setsLeft)" + " SETS LEFT"
+            SetsLabel.text = "SET " + "\(self.setNumber)"
             
             //-> Skip button
             skipButton.applyLeftTimerButtonFrame()
@@ -176,10 +174,6 @@ class tempViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if let viewControllers = self.navigationController?.viewControllers {
-            print ("log viewControllers: ", viewControllers)
-            //if viewControllers.contains(where: { return $0 is ExerciseViewController }) {}
-        }
 
         /* back button is pressed */
         if self.isMovingFromParent {
@@ -239,12 +233,12 @@ class tempViewController: UIViewController {
     
     /* next set button is tapped  */
     @objc func nextSetButtonTapped(sender: UIButton!) {
-        print ("next set button tapped")
-        self.setsLeft = self.setsLeft - 1
-        SetsLabel.text = "\(self.setsLeft)" + " SETS LEFT"
+        self.setNumber = self.setNumber + 1
+        SetsLabel.text = "SET " + "\(self.setNumber)"
         
         /* last set */
-        if self.setsLeft == 0 {
+        let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
+        if self.setNumber == readResult.Sets {
             completedButton.applyDefaultTimerButtonFrame()
         }
         
@@ -257,7 +251,11 @@ class tempViewController: UIViewController {
         SetsLabel.isHidden = false
         stopButton.isHidden = false
         
-        /* start timer */
+        /* reset timer */
+        timer.invalidate()
+        let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
+        seconds = data.Duration
+        self.restInterval = 0
         runTimer()
     }
     
@@ -266,8 +264,6 @@ class tempViewController: UIViewController {
         /* kill running gif */
         self.imageView.removeFromSuperview()
         self.imageView = UIImageView()
-        
-        print ("skip buttons tapped")
     }
     
     /* when completed button is tapped */
@@ -288,8 +284,9 @@ class tempViewController: UIViewController {
         /* last excercise */
         if Global.routine_index == 2 {
             
+            completedButton.setTitle("EXIT", for: .normal)
+            
             /* navigate to home page */
-            print ("log: completed button tapped on last excercise")
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
             self.present(newViewController, animated: true, completion: nil)
@@ -308,18 +305,27 @@ class tempViewController: UIViewController {
     
     /* decrements timer */
     @objc func updateTimer() {
-        seconds -= 1     //This will decrement(count down)the seconds.
-        timerLabel.text = "\(seconds)" + "s" //This will update the label.
-            
-        /* when countdown is done, hide and show these elements */
+        if restInterval == 0 {
+            seconds -= 1
+            timerLabel.text = "\(seconds)" + "s"
+        } else {
+            seconds += 1
+            timerLabel.text = "REST: " + "\(seconds)" + "s"
+        }
+        
+        /* when countdown is done */
         if seconds <= 0 {
             stopButton.isHidden = true
             completedButton.isHidden = false
             nextSetButton.isHidden = false
-            timer.invalidate()
+            //timer.invalidate()
+            
+            SetsLabel.text = "SET " + "\(self.setNumber)" + " FINISHED!"
+            self.restInterval = 1
             
             /* last set */
-            if self.setsLeft == 0 { nextSetButton.isHidden = true }
+            let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
+            if self.setNumber == readResult.Sets { nextSetButton.isHidden = true }
         }
     }
 }

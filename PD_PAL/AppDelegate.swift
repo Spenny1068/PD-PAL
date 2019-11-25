@@ -267,10 +267,12 @@ extension UILabel {
     }
     
     func timerAndSetsDesign() {
-        self.textAlignment = .center                                             // text alignment
+        self.textAlignment = .center
+        self.lineBreakMode = .byWordWrapping
+        self.numberOfLines = 0
         self.font = Global.text_fonts.m_timerLabelFont
-        self.layer.backgroundColor = UIColor.white.cgColor
-        self.layer.cornerRadius = self.frame.width/2
+        //self.layer.backgroundColor = UIColor.white.cgColor
+        //self.layer.cornerRadius = self.frame.width/2
     }
     
     // frames for timer and sets labels
@@ -401,8 +403,8 @@ extension UIButton {
     
     /* frames for the three different timer buttons */
     func applyDefaultTimerButtonFrame() { self.frame = CGRect(x: 36, y: 575, width: 300, height: 75) }
-    func applyLeftTimerButtonFrame() { self.frame = CGRect(x: 10, y: 550, width: 175, height: 100) }
-    func applyRightTimerButtonFrame() { self.frame = CGRect(x: 190, y: 550, width: 175, height: 100) }
+    func applyLeftTimerButtonFrame() { self.frame = CGRect(x: 10, y: 575, width: 175, height: 75) }
+    func applyRightTimerButtonFrame() { self.frame = CGRect(x: 190, y: 575, width: 175, height: 75) }
 }
 
 /* UISlider methods */
