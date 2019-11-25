@@ -181,8 +181,9 @@ function convertToString(date)
 //where res is the response from the gcloud function: exercise_data
 function update_graphs(res)
 {
-	var data = JSON.parse(res);
-	
+		
+
+	//code for generating the labels	
 	//to hold the labels for the graphs
 	var labels = [];
 
@@ -216,9 +217,75 @@ function update_graphs(res)
 		}
 
 	}
+	//end of code for generating the labels
 
 	alert(JSON.stringify(labels));
+
+
+
+	//code to parse through exercise history data
 	
+	//4 element array for trends section
+	var trendsData[0,0,0,0];
+	//7 by 4 element array for exercise history section
+	var exercise_history_data[][];
+	//7 element array for step count section
+	var stepCountData[0,0,0,0,0,0,0];
+
+	var sCompare = 0;
+	var eCompare = 0;
+	var sCompareLabel = 0;
+	var eCompareLabel = 0;
+	//define comparison substring start and end index 
+	//for comparing dates // differend for hours and days
+	if(isSevenHours)
+	{
+		sCompare = 8;
+		eCompare = 10;
+		sCompareLabel = 0;
+		eCompareLabel = 2;
+	}
+	else
+	{
+		sCompare = 6;
+		eCompare = 8;
+		sCompareLabel = 3;
+		eCompareLabel = 5;
+	}
+	var data = JSON.parse(res);
+	arrayLength= data.exData.length;
+	labelArrLength = labels.length;
+	for(var i = 0; i < arrayLength; i++)
+	{
+		//iterate through each of the labels
+		for(var j = 0; j < labelArrLength; j++ )
+			if(data.exData[i].date.substring(sCompare,eCompare) == 
+					labels[j].substring(sCompareLabel,eCompareLabel) )
+			{
+				//loop represents exData entry i that is to be put in array entry j
+				
+				//add step count
+				stepCountData[j] += data.exData[i].stepsTaken;	
+				
+			}
+	}
+
+}
+
+//will sort the exercise by category
+//input exName: the name of the exercise
+//output: Flexibility, Strength, Cardio, Balance
+// 0 : flexibility
+// 1 : strength
+// 2 : cardio
+// 3 : balance
+function sortByCategory(exName)
+{	
+	var STRENGTH    = ["WALL PUSH-UP","TRICEP KICKBACKS","LATERAL RAISES","KNEE EXTENSION","HEEL STAND"];
+	var CARDIO      = ["WALKING"];
+	var FLEXIBILITY = ["SINGLE LEG STANCE","QUAD STRETCH","SHOULDER RAISES","NECK SIDE STRETCH","CHEST STRETCH","ARM RAISES"];
+	var BALANCE     = ["SIDE LEG LIFT","KNEE MARCHING","HEEL TO TOE"];
+
 }
 
 
