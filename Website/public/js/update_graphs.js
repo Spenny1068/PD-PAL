@@ -3,17 +3,25 @@
 //This file contains javascript functions that can update the graphs in /userDisplay 
 //depending on the time range that is given
 
+
+//global variables
+//tells update_graphs whether to configure for 7 hours or 7 days
+var isSevenHours = true;
+
+
 function updateHistory()
 {
 	var Hist = document.getElementById("selIntHist");
 	if (Hist.value == "p7hours"){
 		//alert("You clicked p7hours. his");
+		sendHttpDays(true/*is7Hours*/);
 	}
 	else if (Hist.value == "p7days")
 	{
 		//alert("func return" + getExData("William Huong",2019111911,2019111912));
 		//alert("test date" + getCurrentDate() );
 		//alert("You clicked p7days. his")
+		sendHttpDays(false/*is7Hours*/);
 	}
 }
 
@@ -25,10 +33,12 @@ function updateTrends()
 	var trends = document.getElementById("selIntTrends");
 	if (trends.value == "p7hours"){
 		//alert("You clicked p7hours. trends");
+		sendHttpDays(true/*is7Hours*/);
 	}
 	else if (trends.value == "p7days")
 	{
 		//alert("You clicked p7days. trends")
+		sendHttpDays(false/*is7Hours*/);
 	}
 }
 
@@ -38,10 +48,12 @@ function updateSteps()
 	var steps = document.getElementById("selIntSteps");
 	if (steps.value == "p7hours"){
 		//alert("You clicked p7hours. steps");
+		sendHttpDays(true/*is7Hours*/);
 	}
 	else if (steps.value == "p7days")
 	{
 		//alert("You clicked p7days. steps")
+		sendHttpDays(false/*is7Hours*/);
 	}
 
 }
@@ -58,6 +70,7 @@ function getExData(name,sDate,eDate)
 			//the list of names from the http request
 			var res = this.responseText;
 			alert(res);
+			update_graphs(res);
 			return res;
 				//document.getElementById("loader").style.display = "none";
 				//document.getElementById("loader").style.display = "none";	
@@ -93,9 +106,11 @@ function sendHttpDays(is7Hours)
 
 	var prev_date = new Date();
 	if(is7Hours){
-		prev_date.setHours( prev_date.getHours() - 7);
+		isSevenHours = true;
+		prev_date.setHours( prev_date.getHours() - 6); //7 hours, including current hour
 	} else {
-		prev_date.setDate(prev_date.getDate() - 7);
+		isSevenHours = false;
+		prev_date.setDate(prev_date.getDate() - 6); //7 days including current day
 	}	
 	
 	var sDate = convertToString(prev_date);
@@ -108,6 +123,7 @@ function sendHttpDays(is7Hours)
 	getExData(name,sDate,eDate);
 
 }
+
 
 
 
@@ -158,6 +174,51 @@ function convertToString(date)
 
 	//return in format yyyymmddhh
 	return strYear + strMonth + strDate + strHour;
+}
+
+
+//this function will update all the graphs
+//where res is the response from the gcloud function: exercise_data
+function update_graphs(res)
+{
+	var data = JSON.parse(res);
+	
+	//to hold the labels for the graphs
+	var labels = [];
+
+	//generate the labels for the graphs
+	if(isSevenHours)
+	{
+		//if the labels must be generated in hours
+		//hi
+		var i;
+		for(i = 6; i >= 0; i--)
+		{
+			var prev_date = new Date();
+			prev_date.setHours( prev_date.getHours() - i);
+			var full_date = convertToString(prev_date);
+			labels.push( full_date.charAt(8) + full_date.charAt(9) );
+		}
+	}
+	else
+	{
+		//if the labels must be generated in days
+		var i;
+		for(i = 6; i >= 0; i--)
+		{
+			var prev_date = new Date();
+			prev_date.setDate( prev_date.getDate() - i);
+			var full_date = convertToString(prev_date);
+			
+			//char at 4 and 5 is the month, char at 6 and 7 is the date
+			labels.push(full_date.charAt(4) +  full_date.charAt(5) + '/' 
+											+ full_date.charAt(6) + full_date.charAt(7) );
+		}
+
+	}
+
+	alert(JSON.stringify(labels));
+	
 }
 
 
