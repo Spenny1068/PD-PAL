@@ -153,7 +153,7 @@ class UserDataFirestore {
         print("Creating user document reference")
         
         //Create the document reference
-        let userDocRef = self.FirestoreDB.document("Users/\(currentUserInfo.UserUUID)")
+        let userDocRef = self.FirestoreDB.document("Users/\(currentUserInfo.UserName)")
         
         print("Setting user document data")
         
@@ -210,7 +210,7 @@ class UserDataFirestore {
         print("Gathering Exercise Data")
         
         let currentExerciseData = self.UserDataSource.Get_Exercises_all()
-        let targetUUID = self.UserDataSource.Get_User_Data().UserUUID
+        let targetUUID = self.UserDataSource.Get_User_Data().UserName
         let exerciseColRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("ExerciseData")
         
         print("\(currentExerciseData)")
@@ -342,7 +342,7 @@ class UserDataFirestore {
     func Get_UserInfo(targetUser: String?, completion: @escaping ((Status: String, UserName: String, QuestionsAnswered: Bool, WalkingDuration: Int, ChairAccessible: Bool, WeightsAccessible: Bool, ResistBandAccessible: Bool, PoolAccessible: Bool, Intensity: String, PushNotifications: Bool))->()) {
         
         //If the user does not provide a UUID to use, get the current user's UUID
-        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserUUID
+        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserName
         
         var returnVal = (Status: "NO_OP", UserName: "DEFAULT_NAME", QuestionsAnswered: false, WalkingDuration: 0, ChairAccessible: false, WeightsAccessible: false, ResistBandAccessible: false, PoolAccessible: false, Intensity: "Light", PushNotifications: false)
         
@@ -410,7 +410,7 @@ class UserDataFirestore {
     func Get_ExerciseData(targetUser: String?, completion: @escaping ([(Year: Int, Month: Int, Day: Int, Hour: Int, ExercisesDone: [String], StepsTaken: Int)]) -> ()) {
         
         //If the user does not provide a UUID to use, get the current user's UUID
-        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserUUID
+        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserName
         
         let userExerciseDataRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("ExerciseData")
         
@@ -442,7 +442,7 @@ class UserDataFirestore {
     //Deletes the fields from the user document, but leaves the file intact to preserve possession of username.
     func Clear_UserInfo(targetUser: String?, completion: @escaping (Int) -> ()) {
         
-        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserUUID
+        let targetUUID: String = targetUser ?? self.UserDataSource.Get_User_Data().UserName
         let userInfoDocRef = self.FirestoreDB.collection("Users").document(targetUUID)
         
         userInfoDocRef.getDocument() { (document, error) in
@@ -482,7 +482,7 @@ class UserDataFirestore {
     //Deletes the Exercise Data from Firestore.
     func Clear_ExerciseData(targetUser: String?, completion: @escaping (Int) -> ()) {
         
-        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserUUID
+        let targetUUID: String = targetUser ?? self.UserDataSource.Get_User_Data().UserName
         let exerciseCollectionRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("ExerciseData")
         
         exerciseCollectionRef.getDocuments() { (snapshot, error) in

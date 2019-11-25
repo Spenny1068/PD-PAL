@@ -65,7 +65,7 @@ class SettingsViewController: UIViewController {
     
     func requestDelete(){
         //call the DB function that clears user info
-        userDB.Clear_UserInfo_Database()
+        userDB.Delete_userInfo()
         //call the DB function that clears the step data
         userDB.Clear_StepCount_Database()
         //call the DB function that clears the exercises done
