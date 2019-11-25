@@ -5,7 +5,14 @@
 //  Created by Julia Kim on 2019-11-24.
 //  Copyright © 2019 WareOne. All rights reserved.
 // <November 24th, 2019, Julia Kim: Started Recommendation Algorithm>
+// <November 25th, 2019, Julia Kim: Added shuffling the list of exercises such that it's not always the same exercise from the category that is recommended; for redundancy, get two least completed categories in case there was no match with the least completed category with the user answers>
 
+/*
+ Notes:
+ -Need to be tested with the highlighting.
+ -When calling my func, Arian will have to check if there's at least one exercise completed since my funcs will provide recommendation for the least completed category with the default behaviour as flexbility if there's a 4-way tie i.e. no exercises were completed or all categories have the same numbers completed.
+ -I will refactor, time permitting
+ */
 
 
 import Foundation
