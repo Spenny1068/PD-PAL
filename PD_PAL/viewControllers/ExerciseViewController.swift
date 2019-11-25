@@ -143,6 +143,7 @@ class ExerciseViewController: UIViewController {
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             self.view.addSubview(startButton)
+            exitRoutineButton.isHidden = true
         }
         
         /* last exercise */
@@ -232,6 +233,10 @@ class ExerciseViewController: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
+        
+        /* kill running gif */
+        self.imageView.removeFromSuperview()
+        self.imageView = UIImageView()
         
         exitRoutineButton.isHidden = true
     }
