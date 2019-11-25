@@ -52,7 +52,7 @@ class RecommendAlg{
     
     func getRecommend() -> [String]{
         var equipmentType: String = "None"
-    
+        var foundLeastCombo = false
         equipmentType = convertEquipment()
         print("LEAST CATEGORY: \(leastCat)")
         print("EQUIPMENT TYPE: \(equipmentType)")
@@ -65,21 +65,27 @@ class RecommendAlg{
                 leastCombo = [leastCat[0], entry]
                 //return the first on the list of the least frequently completed category, exercise name
                 print("Least Combo with Equipment: \(leastCombo)")
+                foundLeastCombo = true
                 return leastCombo
             }
+            
                 
         }
-        
-        for entry in exerciseList{
-            //first least category didn't have any match
-            if categoryMatch.4 == userAns.8 && categoryMatch.3 as String == equipmentType && categoryMatch.1 as String == leastCat[1]
-             {
-                 secondLeastCombo = [leastCat[1], entry]
-                 //return the first on the list of the least frequently completed category, exercise name
-                 print("Second Least Combo with Equipment: \(secondLeastCombo)")
-                 return secondLeastCombo
-             }
+        if !foundLeastCombo
+        {
+            for entry in exerciseList{
+               //first least category didn't have any match
+               if categoryMatch.4 == userAns.8 && categoryMatch.3 as String == equipmentType && categoryMatch.1 as String == leastCat[1]
+                {
+                    secondLeastCombo = [leastCat[1], entry]
+                    //return the first on the list of the least frequently completed category, exercise name
+                    print("Second Least Combo with Equipment: \(secondLeastCombo)")
+                    foundLeastCombo = false //reset before
+                    return secondLeastCombo
+                }
+           }
         }
+       
         
         print("No recommendations made")
         return [" ", " "] //if no recommendation was found, but this will rarely happen
