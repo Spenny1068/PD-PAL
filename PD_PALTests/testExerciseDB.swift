@@ -33,18 +33,22 @@ class testExerciseDB: XCTestCase {
         
         let desc = "Elevate Weights while keepings arms still"
         let cat = "Strength"
-        let body = "Arms"
         let name = "Bicep Curls"
         let link = "bicep_curl.mp4"
         let duration = 20
-        exDB.insert_exercise(Name: name , Desc: desc, Category: cat, Body: body, Link: link, Duration: duration)
+        let equip = "Dumbell"
+        let intensity = "high"
+        let sets = 5
+        exDB.insert_exercise(Name: name , Desc: desc, Category: cat, Equipment: equip , Link: link, Intensity: intensity, Duration: duration, Sets: sets)
         
         let readResult = exDB.read_exercise(NameOfExercise: name)
         
         //making sure we read what we written
         XCTAssert( readResult.Description == desc ) ;
+        XCTAssert( readResult.Equipment == equip ) ;
+        XCTAssert( readResult.Intensity == intensity ) ;
+        XCTAssert( readResult.Sets == sets ) ;
         XCTAssert( readResult.Category == cat ) ;
-        XCTAssert( readResult.Body == body ) ;
         XCTAssert( readResult.Link == link) ;
         XCTAssert( readResult.Duration == duration);
         

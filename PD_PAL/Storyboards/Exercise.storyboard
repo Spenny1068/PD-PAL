@@ -83,6 +83,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Gt-HJ-V9g">
+                                <rect key="frame" x="188" y="493" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -99,6 +103,7 @@
                         <outlet property="LoadingLabel" destination="ryn-pf-6pL" id="JtB-U5-nWl"/>
                         <outlet property="SetsLabel" destination="Cbf-al-V4b" id="RAD-8g-wCm"/>
                         <outlet property="completedButton" destination="RO4-al-gsP" id="c0W-3h-VZB"/>
+                        <outlet property="nextSetButton" destination="8Gt-HJ-V9g" id="Cvy-Xv-oWU"/>
                         <outlet property="skipButton" destination="l0V-gf-X9E" id="nds-Ev-9FK"/>
                         <outlet property="startButton" destination="dR4-ao-Du5" id="ikl-ss-XZ1"/>
                         <outlet property="stopButton" destination="wIl-aF-9aF" id="ksQ-Us-Rmw"/>
@@ -187,6 +192,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKd-ga-BDJ">
+                                <rect key="frame" x="215" y="484" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -201,6 +210,7 @@
                         <outlet property="DescriptionLabel" destination="rQv-15-rnv" id="qzp-6v-oEw"/>
                         <outlet property="DescriptionText" destination="qoa-L0-1xV" id="hlq-5g-pyG"/>
                         <outlet property="LoadingLabel" destination="afv-HA-Reu" id="tBL-XJ-Z5M"/>
+                        <outlet property="NextSetButton" destination="kKd-ga-BDJ" id="ftK-Hb-gZn"/>
                         <outlet property="SetsLabel" destination="wU0-Ey-4nP" id="KbI-Ek-PIf"/>
                         <outlet property="completedButton" destination="fAu-rf-mkF" id="KoP-55-b6L"/>
                         <outlet property="exitRoutineButton" destination="Knt-aM-X8T" id="GXl-oL-kcB"/>

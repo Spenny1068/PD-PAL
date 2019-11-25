@@ -22,6 +22,7 @@ class tempViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var completedButton: UIButton!
+    @IBOutlet weak var nextSetButton: UIButton!
     
     /* global variables */
     var imageView = UIImageView()
@@ -79,14 +80,20 @@ class tempViewController: UIViewController {
             //self.view.addSubview(stopButton)
             
             //-> completed Button
-            completedButton.applyDefaultTimerButtonFrame()
+            completedButton.applyRightTimerButtonFrame()
             completedButton.timerButtonDesign()
             completedButton.setTitle("COMPLETED", for: .normal)
             completedButton.backgroundColor = Global.color_schemes.m_blue2
             //self.view.addSubview(completedButton)
             
             //-> timer label
-            timerLabel.timerDesign()
+            timerLabel.timerAndSetsDesign()
+            timerLabel.applyTimerLabelFrame()
+            
+            //-> sets label
+            SetsLabel.timerAndSetsDesign()
+            SetsLabel.applySetsLabelFrame()
+            SetsLabel.text = "\(readResult.Sets)"
             
             //-> Skip button
             skipButton.applyLeftTimerButtonFrame()
@@ -101,10 +108,18 @@ class tempViewController: UIViewController {
             startButton.setTitle("START", for: .normal)
             startButton.backgroundColor = Global.color_schemes.m_lightGreen
             
+            //-> next set button
+            nextSetButton.applyLeftTimerButtonFrame()
+            nextSetButton.timerButtonDesign()
+            nextSetButton.addTarget(self, action: #selector(nextSetButtonTapped), for: .touchUpInside)
+            nextSetButton.setTitle("NEXT SET", for: .normal)
+            nextSetButton.backgroundColor = Global.color_schemes.m_lightGreen
+            
             
             /* when entering this page, hide these elements */
             stopButton.isHidden = true
             timerLabel.isHidden = true
+            SetsLabel.isHidden = true
             completedButton.isHidden = true
 
             DescriptionText.isHidden = false
@@ -137,6 +152,8 @@ class tempViewController: UIViewController {
             stopButton.isHidden = true
             timerLabel.isHidden = true
             completedButton.isHidden = true
+            SetsLabel.isHidden = true
+            nextSetButton.isHidden = true
             
             /* when entering this page, show these elements */
             startButton.isHidden = false
@@ -179,6 +196,8 @@ class tempViewController: UIViewController {
         /* show these elements */
         stopButton.isHidden = false
         timerLabel.isHidden = false
+        SetsLabel.isHidden = false
+
         
         /* start timer */
         runTimer()
@@ -203,10 +222,29 @@ class tempViewController: UIViewController {
         timerLabel.isHidden = true
     }
     
-    /* skip button is tapped */
-    @objc func skipButtonTapped() {
+    /* when home button on navigation bar is tapped */
+    @objc func homeButtonTapped(sender: UIButton!) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+        self.present(newViewController, animated: true, completion: nil)
+        
+        /* kill running gif */
         self.imageView.removeFromSuperview()
         self.imageView = UIImageView()
+    }
+    
+    /* next set button is tapped  */
+    @objc func nextSetButtonTapped(sender: UIButton!) {
+        print ("next set button tapped")
+        
+    }
+    
+    /* skip button is tapped */
+    @objc func skipButtonTapped() {
+        /* kill running gif */
+        self.imageView.removeFromSuperview()
+        self.imageView = UIImageView()
+        
         print ("skip buttons tapped")
     }
     
@@ -221,6 +259,10 @@ class tempViewController: UIViewController {
         /* insert excercise as done */
         global_UserData.Add_Exercise_Done(ExerciseName: exercise_name2 ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
         
+        /* kill running gif */
+        self.imageView.removeFromSuperview()
+        self.imageView = UIImageView()
+        
         /* last excercise */
         if Global.routine_index == 2 {
             
@@ -233,13 +275,6 @@ class tempViewController: UIViewController {
             /* reset routine index */
             Global.routine_index = 0
         }
-    }
-        
-    /* when home button on navigation bar is tapped */
-    @objc func homeButtonTapped(sender: UIButton!) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
-        self.present(newViewController, animated: true, completion: nil)
     }
     
     /* starts timer */
@@ -258,6 +293,7 @@ class tempViewController: UIViewController {
         if seconds <= 0 {
             stopButton.isHidden = true
             completedButton.isHidden = false
+            nextSetButton.isHidden = false
             timer.invalidate()
         }
     }

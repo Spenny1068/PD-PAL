@@ -266,13 +266,16 @@ extension UILabel {
         self.textColor = UIColor.white                          // text color
     }
     
-    func timerDesign() {
-        self.frame = CGRect(x: 250, y: 452, width: 100, height: 100)                 // rectangle coordinates
+    func timerAndSetsDesign() {
         self.textAlignment = .center                                             // text alignment
         self.font = Global.text_fonts.m_timerLabelFont
         self.layer.backgroundColor = UIColor.white.cgColor
         self.layer.cornerRadius = self.frame.width/2
     }
+    
+    // frames for timer and sets labels
+    func applyTimerLabelFrame() { self.frame = CGRect(x: 250, y: 452, width: 100, height: 100) }
+    func applySetsLabelFrame() { self.frame = CGRect(x: 50, y: 452, width: 100, height: 100) }
 }
 
 /* UIButton methods */

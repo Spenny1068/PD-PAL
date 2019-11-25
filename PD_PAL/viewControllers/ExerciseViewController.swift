@@ -23,6 +23,7 @@ class ExerciseViewController: UIViewController {
     @IBOutlet weak var completedButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var exitRoutineButton: UIButton!
+    @IBOutlet weak var NextSetButton: UIButton!
     
     /* global variables */
     var exercise_name: String!
@@ -77,22 +78,36 @@ class ExerciseViewController: UIViewController {
         self.view.addSubview(stopButton)
         
         //-> completed Button
-        completedButton.applyDefaultTimerButtonFrame()
+        completedButton.applyRightTimerButtonFrame()
         completedButton.timerButtonDesign()
         completedButton.setTitle("COMPLETED", for: .normal)
         completedButton.backgroundColor = Global.color_schemes.m_blue2
         self.view.addSubview(completedButton)
         
+        //-> next set button
+        NextSetButton.applyLeftTimerButtonFrame()
+        NextSetButton.timerButtonDesign()
+        NextSetButton.addTarget(self, action: #selector(nextSetButtonTapped), for: .touchUpInside)
+        NextSetButton.setTitle("NEXT SET", for: .normal)
+        NextSetButton.backgroundColor = Global.color_schemes.m_lightGreen
+        
         //-> timer label
-        timerLabel.timerDesign()
+        timerLabel.timerAndSetsDesign()
+        timerLabel.applyTimerLabelFrame()
         self.view.addSubview(timerLabel)
         
+        //-> sets label
+        SetsLabel.timerAndSetsDesign()
+        SetsLabel.applySetsLabelFrame()
+        SetsLabel.text = "\(readResult.Sets)"
         
         /* when entering this page, hide these elements */
         stopButton.isHidden = true
         timerLabel.isHidden = true
+        SetsLabel.isHidden = true
         completedButton.isHidden = true
         exitRoutineButton.isHidden = true
+        NextSetButton.isHidden = true
         
         DescriptionText.isHidden = false
         DescriptionLabel.isHidden = false
@@ -156,8 +171,10 @@ class ExerciseViewController: UIViewController {
         /* when entering this page, hide these elements */
         stopButton.isHidden = true
         timerLabel.isHidden = true
+        SetsLabel.isHidden = true
         completedButton.isHidden = true
         exitRoutineButton.isHidden = true
+        NextSetButton.isHidden = true
         
         /* when entering this page, show these elements */
         startButton.isHidden = false
@@ -200,6 +217,7 @@ class ExerciseViewController: UIViewController {
         /* show these elements */
         stopButton.isHidden = false
         timerLabel.isHidden = false
+        SetsLabel.isHidden = false
         
         /* start timer */
         runTimer()
@@ -247,6 +265,10 @@ class ExerciseViewController: UIViewController {
         /* insert excercise as done */
         global_UserData.Add_Exercise_Done(ExerciseName: exercise_name ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
         
+        /* kill running gif */
+        self.imageView.removeFromSuperview()
+        self.imageView = UIImageView()
+        
         /* if we came from categories */
         if Global.IsRoutineExercise == 0 {
             print ("log: completed button tapped on last excercise")
@@ -280,6 +302,34 @@ class ExerciseViewController: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
+        
+        /* kill running gif */
+        self.imageView.removeFromSuperview()
+        self.imageView = UIImageView()
+    }
+    
+    /* next set button is tapped  */
+    @objc func nextSetButtonTapped(sender: UIButton!) {
+        print ("next set button tapped")
+        
+        /* hide these elements */
+        completedButton.isHidden = true
+        
+        /* show these elements */
+        timerLabel.isHidden = false
+        SetsLabel.isHidden = false
+        
+        /* start timer */
+        runTimer()
+    }
+    
+    /* skip button is tapped */
+    @objc func skipButtonTapped() {
+        /* kill running gif */
+        self.imageView.removeFromSuperview()
+        self.imageView = UIImageView()
+        
+        print ("skip buttons tapped")
     }
     
     /* starts timer */
@@ -287,13 +337,6 @@ class ExerciseViewController: UIViewController {
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
         seconds = data.Duration
-    }
-    
-    /* skip button is tapped */
-    @objc func skipButtonTapped() {
-        self.imageView.removeFromSuperview()
-        self.imageView = UIImageView()
-        print ("skip buttons tapped")
     }
     
     /* decrements timer */
@@ -305,6 +348,7 @@ class ExerciseViewController: UIViewController {
         if seconds <= 0 {
             stopButton.isHidden = true
             completedButton.isHidden = false
+            NextSetButton.isHidden = false
             timer.invalidate()
         }
     }
