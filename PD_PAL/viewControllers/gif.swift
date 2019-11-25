@@ -9,17 +9,15 @@
 import Foundation
 import UIKit
 import ImageIO
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+        case let (l?, r?): return l < r
+        case (nil, _?): return true
+        default: return false
+    }
 }
 
 extension UIImage {
@@ -83,13 +81,9 @@ extension UIImage {
         var a = a
         var b = b
         if b == nil || a == nil {
-            if b != nil {
-                return b!
-            } else if a != nil {
-                return a!
-            } else {
-                return 0
-            }
+            if b != nil { return b! }
+            else if a != nil { return a! }
+            else { return 0 }
         }
         
         if a < b {
@@ -113,8 +107,8 @@ extension UIImage {
     class func gcdForArray(_ array: Array<Int>) -> Int {
         if array.isEmpty { return 1 }
         var gcd = array[0]
-        
         for val in array { gcd = UIImage.gcdForPair(val, gcd) }
+        
         return gcd
     }
     
@@ -142,7 +136,6 @@ extension UIImage {
         
         let gcd = gcdForArray(delays)
         var frames = [UIImage]()
-        
         var frame: UIImage
         var frameCount: Int
         for i in 0..<count {
@@ -152,9 +145,7 @@ extension UIImage {
             for _ in 0..<frameCount { frames.append(frame) }
         }
         
-        let animation = UIImage.animatedImage(with: frames,
-            duration: Double(duration) / 1000.0)
-        
+        let animation = UIImage.animatedImage(with: frames, duration: Double(duration) / 2000.0)
         return animation
     }
 }

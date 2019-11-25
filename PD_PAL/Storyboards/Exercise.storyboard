@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -76,6 +76,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbf-al-V4b">
+                                <rect key="frame" x="55" y="358" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -90,6 +97,7 @@
                         <outlet property="DescriptionLabel" destination="aaS-pt-Khj" id="dFN-z2-9bi"/>
                         <outlet property="DescriptionText" destination="u2f-R3-2wb" id="VWN-zB-qGz"/>
                         <outlet property="LoadingLabel" destination="ryn-pf-6pL" id="JtB-U5-nWl"/>
+                        <outlet property="SetsLabel" destination="Cbf-al-V4b" id="RAD-8g-wCm"/>
                         <outlet property="completedButton" destination="RO4-al-gsP" id="c0W-3h-VZB"/>
                         <outlet property="skipButton" destination="l0V-gf-X9E" id="nds-Ev-9FK"/>
                         <outlet property="startButton" destination="dR4-ao-Du5" id="ikl-ss-XZ1"/>
@@ -138,7 +146,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28Q-k3-ftN">
-                                <rect key="frame" x="107" y="366" width="236" height="127"/>
+                                <rect key="frame" x="207" y="366" width="136" height="99"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -172,6 +180,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wU0-Ey-4nP">
+                                <rect key="frame" x="49" y="346" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -186,6 +201,7 @@
                         <outlet property="DescriptionLabel" destination="rQv-15-rnv" id="qzp-6v-oEw"/>
                         <outlet property="DescriptionText" destination="qoa-L0-1xV" id="hlq-5g-pyG"/>
                         <outlet property="LoadingLabel" destination="afv-HA-Reu" id="tBL-XJ-Z5M"/>
+                        <outlet property="SetsLabel" destination="wU0-Ey-4nP" id="KbI-Ek-PIf"/>
                         <outlet property="completedButton" destination="fAu-rf-mkF" id="KoP-55-b6L"/>
                         <outlet property="exitRoutineButton" destination="Knt-aM-X8T" id="GXl-oL-kcB"/>
                         <outlet property="skipButton" destination="wlN-5K-FXj" id="Rab-P4-hBk"/>

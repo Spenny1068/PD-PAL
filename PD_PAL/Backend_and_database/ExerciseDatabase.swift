@@ -54,6 +54,7 @@ class ExerciseDatabase {
     let intensity = Expression<String>("Intensity")
     let link = Expression<String>("Link")
     let duration = Expression<Int>("Duration")
+    let num_sets = Expression<Int>("Sets")
     
     
     let fileName = "exercises"
@@ -152,7 +153,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "WALL_PUSH-UP",
                         Intensity: "Intense",
-                        Duration: 30)
+                        Duration: 3,
+                        Sets: 3 )
         
         insert_exercise(Name: "WALKING",
                         Desc: "For optimal results perform this exercise on a track.",
@@ -160,7 +162,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "WALKING",
                         Intensity: "Light",
-                        Duration: 300)
+                        Duration: 3,
+                        Sets: 1)
         
         insert_exercise(Name: "SINGLE LEG STANCE",
                         Desc: "Bend your knee and raise your leg beside a chair. Hold the chair with your hand that opposite to the side of your raised leg for support.",
@@ -168,7 +171,8 @@ class ExerciseDatabase {
                         Equipment: "Chair",
                         Link: "SINGLE_LEG_STANCE",
                         Intensity: "Light",
-                        Duration: 25)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "QUAD STRETCH",
                         Desc: "To perform a Quad stretch, stand on one leg and and hold you your leg with your hand. ",
@@ -176,7 +180,8 @@ class ExerciseDatabase {
                         Equipment: "Chair",
                         Link: "QUAD_STRETCH",
                         Intensity: "Moderate",
-                        Duration: 25)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "TRICEP KICKBACKS",
                         Desc: "Hold the weight, and lean over a chair. Straighten your elbow behind you as far as comfortable and slowly return to the starting position. ",
@@ -184,7 +189,8 @@ class ExerciseDatabase {
                         Equipment: "Weights",
                         Link: "TRICEP_KICKBACKS",
                         Intensity: "Light",
-                        Duration: 30)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "SIDE LEG LIFT",
                         Desc: "Stand behind a chair with feet slightly apart. Slowly lift one leg out to one side. Slightly bend the leg you are standing on.",
@@ -192,7 +198,8 @@ class ExerciseDatabase {
                         Equipment: "Chair, Resistive Band",
                         Link: "SIDE_LEG_LIFT",
                         Intensity: "Light",
-                        Duration: 30)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "SHOULDER RAISES",
                         Desc: "Begin by sitting in a chair. Slowly raise your shoulders up to your ears and then relax. ",
@@ -200,7 +207,8 @@ class ExerciseDatabase {
                         Equipment: "Weights",
                         Link: "SHOULDER_RAISES",
                         Intensity: "Light",
-                        Duration: 30)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "NECK SIDE STRETCH",
                         Desc: "Begin by sitting in a chair. Look to the right as far as comfortable and hold. Then look to the left as far as comfortable and hold.",
@@ -208,7 +216,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "NECK_SIDE_STRETCH",
                         Intensity: "Light",
-                        Duration: 25)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "LATERAL RAISES",
                         Desc: "Begin with arms at your side and your palms facing inwards. Slowly raise your arms to a comfortable level. ",
@@ -216,7 +225,8 @@ class ExerciseDatabase {
                         Equipment: "Weights",
                         Link: "LATERAL_RAISES",
                         Intensity: "Moderate",
-                        Duration: 30)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "KNEE MARCHING",
                         Desc: "Begin with arms at your side and feet shoulder width apart. Raise one knee up as high as comfortable. Lower that knee and raise the other.",
@@ -224,7 +234,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "KNEE_MARCHING",
                         Intensity: "Intense",
-                        Duration: 60)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "KNEE EXTENSION",
                         Desc: "Sit with your feet flat against the floor. Slowly straighten your knee out, hold and slowly bend your knee back into the starting position.",
@@ -232,7 +243,8 @@ class ExerciseDatabase {
                         Equipment: "Chair",
                         Link: "KNEE_EXTENSION",
                         Intensity: "Moderate",
-                        Duration: 30)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "HEEL TO TOE",
                         Desc: "To perform a heal to toe, look forward, relax your shoulders and begin walking forward by pacing one foot in front of the other.",
@@ -240,7 +252,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "HEEL_TO_TOE",
                         Intensity: "Moderate",
-                        Duration: 60)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "HEEL STAND",
                         Desc: "Keep your knees shoulder-width apart. Raise up on your heels as high as possible. Slowly return to the starting position.",
@@ -248,7 +261,8 @@ class ExerciseDatabase {
                         Equipment: "Chair",
                         Link: "HEEL_STAND",
                         Intensity: "Light",
-                        Duration: 30)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "CHEST STRETCH",
                         Desc: "Raise your arms and place hands behind your head. Breathe in while bringing your neck and shoulder back. Hold and release.",
@@ -256,7 +270,8 @@ class ExerciseDatabase {
                         Equipment: "Weights",
                         Link: "CHEST_STRETCH",
                         Intensity: "Moderate",
-                        Duration: 25)
+                        Duration: 3,
+                        Sets: 3)
         
         insert_exercise(Name: "ARM RAISES",
                         Desc: "Begin with your arms at your sides. Inhale and slowly you lift both arms over your head. Slowly bring your arms back to your sides.",
@@ -264,8 +279,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "ARM_RAISES",
                         Intensity: "Moderate",
-                        Duration: 30)
-        
+                        Duration: 3,
+                        Sets: 3)
     }
 
     //Assuming the database is empty,
@@ -273,18 +288,19 @@ class ExerciseDatabase {
     //create the table and insert all exercises.
     func fill_database() {
         let createTable = exerciseList.create{ (table) in
-            table.column(name, primaryKey: true)
-            table.column(descriptions)
-            table.column(category)
-            table.column(equipment)
-            table.column(link)
-            table.column(intensity)
-            table.column(duration)
+            table.column(name, primaryKey: true)    /* name of exercise */
+            table.column(descriptions)              /* exercise description */
+            table.column(category)                  /* exercise category */
+            table.column(equipment)                 /* exercise equipment */
+            table.column(link)                      /* name of gif file */
+            table.column(intensity)                 /* level of intensity */
+            table.column(duration)                  /* duration in seconds for one set */
+            table.column(num_sets)                  /* number of sets */
         }
-        do{
+        do {
             try self.database.run(createTable)
             print("created table")
-        }catch{
+        } catch {
             print("Failed to create table: \(error)")
         }
         
@@ -293,8 +309,8 @@ class ExerciseDatabase {
     
     
     //Insert an individual exercise.
-    func insert_exercise(Name: String , Desc: String, Category: String, Equipment: String, Link: String, Intensity: String, Duration: Int) {
-        let insert = exerciseList.insert(name <- Name, descriptions <- Desc, category <- Category, equipment <- Equipment, link <- Link, intensity <- Intensity, duration <- Duration)
+    func insert_exercise(Name: String , Desc: String, Category: String, Equipment: String, Link: String, Intensity: String, Duration: Int, Sets: Int) {
+        let insert = exerciseList.insert(name <- Name, descriptions <- Desc, category <- Category, equipment <- Equipment, link <- Link, intensity <- Intensity, duration <- Duration, num_sets <- Sets)
         do {
             try database.run(insert)
         }
@@ -304,7 +320,7 @@ class ExerciseDatabase {
     }
     
     
-    //returns all exercise names in an array
+    // returns all exercise names in an array
     func exercise_names() -> ([String])
     {
         var returnVal = [String]()
@@ -331,13 +347,13 @@ class ExerciseDatabase {
     //Read an individual exercise
     //Will X, func tested in Unit Test testDatabase_insertion
     //Make sure to give it a NameOfExercise that exists in the database, otherwise will return empty string
-    func read_exercise(NameOfExercise: String) ->(Description: String,Category: String, Equipment: String, Link: String, Intensity: String, Duration: Int)
+    func read_exercise(NameOfExercise: String) ->(Description: String, Category: String, Equipment: String, Link: String, Intensity: String, Duration: Int, Sets: Int)
     {
-        do{
+        do {
             let query = exerciseList.filter(name == NameOfExercise)
             for exercise in try database.prepare(query)
             {
-                let returnVal = (exercise[descriptions],exercise[category],exercise[equipment], exercise[link], exercise[intensity], exercise[duration])
+                let returnVal = (exercise[descriptions],exercise[category],exercise[equipment], exercise[link], exercise[intensity], exercise[duration], exercise[num_sets])
                 return returnVal
             }
         }
@@ -347,7 +363,7 @@ class ExerciseDatabase {
         }
         
         //could not find so return empty
-        return ("","","","","",0)
+        return ("","","","","",0, 0)
     }
     
     

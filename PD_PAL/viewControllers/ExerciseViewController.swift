@@ -15,6 +15,7 @@ class ExerciseViewController: UIViewController {
     @IBOutlet weak var DescriptionText: UILabel!
     @IBOutlet weak var DescriptionLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var SetsLabel: UILabel!
     
     /* IBOutlet buttons */
     @IBOutlet weak var startButton: UIButton!
@@ -84,7 +85,6 @@ class ExerciseViewController: UIViewController {
         
         //-> timer label
         timerLabel.timerDesign()
-        applyTimerLabelConstraint(label: timerLabel)
         self.view.addSubview(timerLabel)
         
         

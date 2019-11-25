@@ -9,14 +9,19 @@
 import UIKit
 
 class tempViewController: UIViewController {
+    
+    /* IBOutlet Labels */
+    @IBOutlet weak var DescriptionLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var LoadingLabel: UILabel!
+    @IBOutlet weak var SetsLabel: UILabel!
+    @IBOutlet weak var DescriptionText: UILabel!
+
+    /* IBOutlet Buttons */
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var completedButton: UIButton!
-    @IBOutlet weak var DescriptionLabel: UILabel!
-    @IBOutlet weak var DescriptionText: UILabel!
-    @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var LoadingLabel: UILabel!
     
     /* global variables */
     var imageView = UIImageView()
@@ -82,7 +87,6 @@ class tempViewController: UIViewController {
             
             //-> timer label
             timerLabel.timerDesign()
-            applyTimerLabelConstraint(label: timerLabel)
             
             //-> Skip button
             skipButton.applyLeftTimerButtonFrame()

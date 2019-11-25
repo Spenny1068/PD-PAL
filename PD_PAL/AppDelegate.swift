@@ -211,17 +211,6 @@ extension UIViewController {
             label.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
         ])
     }
-    
-    // applies constraints for timer label
-    func applyTimerLabelConstraint(label: UILabel) {
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalToConstant: 300),
-            label.heightAnchor.constraint(equalToConstant: 150),
-            label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 38),
-            label.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
-            ])
-    }
-    
 }
 
 /* UILabel methods */
@@ -278,7 +267,7 @@ extension UILabel {
     }
     
     func timerDesign() {
-        self.frame = CGRect(x: 138, y: 452, width: 100, height: 100)                 // rectangle coordinates
+        self.frame = CGRect(x: 250, y: 452, width: 100, height: 100)                 // rectangle coordinates
         self.textAlignment = .center                                             // text alignment
         self.font = Global.text_fonts.m_timerLabelFont
         self.layer.backgroundColor = UIColor.white.cgColor
