@@ -265,6 +265,25 @@ class ExerciseDatabase {
                         Link: "ARM_RAISES",
                         Intensity: "Moderate",
                         Duration: 30)
+        /*
+         
+         insert_exercise(Name: "JUMPING JACKS",
+                         Desc: " ",
+                         Category: "Cardio",
+                         Equipment: "None",
+                         Link: "JUMPING_JACKS",
+                         Intensity: "Intense",
+                         Duration: 30)
+         
+         insert_exercise(Name: "Jogging",
+                         Desc: " ",
+                         Category: "Cardio",
+                         Equipment: "None",
+                         Link: "Jogging",
+                         Intensity: "Moderate",
+                         Duration: 30)
+         
+         */
         
     }
 

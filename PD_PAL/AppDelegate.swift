@@ -330,6 +330,15 @@ extension UIButton {
         //self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 260, bottom: 20.0, right: 20)
     }
     
+    //Use this for recommended exercises
+    func shadowButtonDesign()
+    {
+        self.layer.shadowColor = UIColor.green.cgColor
+        self.layer.shadowOpacity = 0.8
+        self.layer.shadowRadius = 12
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
+    }
+    
     func routineButtonDesign() {
         self.translatesAutoresizingMaskIntoConstraints = false               // turn on constraints
 
