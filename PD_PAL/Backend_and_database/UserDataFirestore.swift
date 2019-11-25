@@ -189,73 +189,6 @@ class UserDataFirestore {
  
     }
     
-    //Updates the routines on Firebase.
-    //This function will be called as a part of Update_Firebase() and should not be called on its own.
-    func Update_Routines(completion: @escaping (Int) -> ()) {
-        
-        print(" --- Beginning updating of Routines --- ")
-        
-        print("Checking for permission to push to Firestore")
-        if( !self.UserDataSource.Get_User_Data().FirestoreOK ) {
-            print("We do not have permission to push to Firestore")
-            completion(1)
-            return
-        }
-        print("We have permission to push to Firestore")
-        
-        print("Gathering Routines")
-        
-        //define some values we need
-        let currentRoutines = self.UserDataSource.Get_Routines()
-        let targetUUID = self.UserDataSource.Get_User_Data().UserUUID
-        let routineColRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("Routines")
-        
-        print("\(currentRoutines)")
-        
-        print("Iterating through each routine to push")
-        
-        //Iterate through each routine
-        for routine in currentRoutines {
-            
-            print("Starting routine: \(routine.RoutineName)")
-            
-            let docRef = routineColRef.document(routine.RoutineName)
-        
-            //Check if the routine is already in Firestore
-            docRef.getDocument() { (document ,error) in
-                guard let document = document, document.exists else {
-                    print("The document for \(routine.RoutineName) does not exist. Creating document")
-                    
-                    //Add a document for the routine
-                    routineColRef.document(routine.RoutineName).setData(["RoutineName": routine.RoutineName, "RoutineContents": routine.Exercises]) { err in
-                        if let err = err {
-                            print("Failed to create routine document for \(routine.RoutineName) : \(err)")
-                            completion(1)
-                        } else {
-                            print("Successfully created routine document fo \(routine.RoutineName)")
-                        }
-                    }
-                    
-                    return
-                }
-                
-                //The routine already exists in Firestore. Update it
-                docRef.updateData(["RoutineName": routine.RoutineName, "RoutineContents": routine.Exercises]) { err in
-                    if let err = err {
-                        print("Failed to update routine document for \(routine.RoutineName) : \(err)")
-                        completion(1)
-                    } else {
-                        print("Successfully updated routine document fo \(routine.RoutineName)")
-                    }
-                }
-            }
-            
-        }
-        
-        //Only gets here if everything was successful
-        completion(0)
-    }
-    
     //Updates the exercise data on Firebase.
     //This function will be called as a part of Update_Firebase() and should not be called on its own.
     func Update_ExerciseData(completion: @escaping (Int) -> ()) {
@@ -458,48 +391,6 @@ class UserDataFirestore {
             completion(returnVal)
             
         }
-    }
-    
-    /*
-     This function gets the routines located in Firebase.
-     Because of the asynchronous nature of Firebase, call using:
-     
-     self.UserDataSourceFirestore.Get_Routines(targetUser: <User>) { ReturnedData in
-     //Execute any code dependent on the return value of the function here, or assign it to a global variable.
-     }
-     
-     Call without passing a UUID to get the current user, pass a UUID for a specific user other than current user.
-     */
-    func Get_Routines(targetUser: String?, completion: @escaping ([(RoutineName: String, RoutineContents: [String])])->()) {
-        
-        //If the user does not provide a UUID to use, get the current user's UUID
-        let targetUUID = targetUser ?? self.UserDataSource.Get_User_Data().UserUUID
-        
-        let userRoutinesRef = self.FirestoreDB.collection("Users").document(targetUUID).collection("Routines")
-        
-        var returnVal: [(RoutineName: String, RoutineContents: [String])] = []
-        
-        userRoutinesRef.getDocuments() { (snapshot, error) in
-            if let error = error {
-                print("An error occured while retrieving the Routines : \(error)")
-                completion([(RoutineName: "NO_COLLECTION", RoutineContents: ["\(error)"])])
-                return
-            }
-            
-            guard let snapshot = snapshot, !snapshot.isEmpty else {
-                print("The Routines subcollection was empty : \(String(describing: error))")
-                completion([(RoutineName: "NO_DOCUMENTS", RoutineContents: ["\(String(describing: error))"])])
-                return
-            }
-            
-            for document in snapshot.documents {
-                let documentData = document.data()
-                returnVal.append((RoutineName: documentData["RoutineName"] as? String ?? "ERROR", RoutineContents: documentData["RoutineContents"] as? [String] ?? ["ERROR"]))
-            }
-            
-            completion(returnVal)
-        }
-        
     }
     
     /*
