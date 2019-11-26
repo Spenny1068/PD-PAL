@@ -49,6 +49,7 @@ class ExerciseViewController: UIViewController {
     /* put code that depends on IsRoutineExercise flag in here */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print ("log: exerciseViewController")
 
         if Global.next_routine_exercise != "" { self.exercise_name = Global.next_routine_exercise }
         Global.next_routine_exercise = ""
@@ -209,7 +210,6 @@ class ExerciseViewController: UIViewController {
         }
     }
     
-    
     /* when start button is tapped */
     @IBAction func startButton(_ sender: Any) {
         
@@ -232,14 +232,12 @@ class ExerciseViewController: UIViewController {
     /* when the exit routine button is tapped */
     @IBAction func exitRoutine(_ sender: Any) {
         
+        killGif() /* kill running gif */
+        
         /* navigate to main page */
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
-        
-        /* kill running gif */
-        self.imageView.removeFromSuperview()
-        self.imageView = UIImageView()
         
         exitRoutineButton.isHidden = true
     }
@@ -277,47 +275,42 @@ class ExerciseViewController: UIViewController {
         /* insert excercise as done */
         global_UserData.Add_Exercise_Done(ExerciseName: exercise_name ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
         
-        /* kill running gif */
-        self.imageView.removeFromSuperview()
-        self.imageView = UIImageView()
+        killGif() /* kill running gif */
         
         /* if we came from categories */
         if Global.IsRoutineExercise == 0 {
-            print ("log: completed button tapped on last excercise")
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
             self.present(newViewController, animated: true, completion: nil)
-        }
-        
-        /* last excercise */
-        if Global.routine_index == 2 {
-                        
-            /* navigate to home page */
-            print ("log: completed button tapped on last excercise")
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
-            self.present(newViewController, animated: true, completion: nil)
-            
-            /* reset routine index */
-            Global.routine_index = 0
         }
         
         /* if we came from routines */
-        if Global.IsRoutineExercise == 1 {
+        else if Global.IsRoutineExercise == 1 {
             startButton.isHidden = false
             skipButton.isHidden = false
+            
+            /* last excercise */
+            if Global.routine_index == 2 {
+                            
+                /* navigate to home page */
+                print ("log: completed button tapped on last excercise")
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+                self.present(newViewController, animated: true, completion: nil)
+                
+                /* reset routine index */
+                Global.routine_index = 0
+            }
         }
     }
     
     /* when home button on navigation bar is tapped */
     @objc func homeButtonTapped(sender: UIButton!) {
+        
+        killGif() /* kill running gif */
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
-        
-        /* kill running gif */
-        self.imageView.removeFromSuperview()
-        self.imageView = UIImageView()
     }
     
     /* next set button is tapped  */
@@ -352,9 +345,7 @@ class ExerciseViewController: UIViewController {
     
     /* skip button is tapped */
     @objc func skipButtonTapped() {
-        /* kill running gif */
-        self.imageView.removeFromSuperview()
-        self.imageView = UIImageView()
+        killGif() /* kill running gif */
     }
     
     /* starts timer */
@@ -379,7 +370,6 @@ class ExerciseViewController: UIViewController {
             stopButton.isHidden = true
             completedButton.isHidden = false
             NextSetButton.isHidden = false
-            //timer.invalidate()
             
             SetsLabel.text = "SET " + "\(self.setNumber)" + " FINISHED!"
             self.restInterval = 1
@@ -388,6 +378,11 @@ class ExerciseViewController: UIViewController {
             let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
             if self.setNumber == readResult.Sets { NextSetButton.isHidden = true }
         }
+    }
+    
+    func killGif() {
+        self.imageView.removeFromSuperview()
+        self.imageView = UIImageView()
     }
 
 }

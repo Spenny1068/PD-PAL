@@ -29,8 +29,8 @@ class tempViewController: UIViewController {
     var exercise_name2: String!
     var seconds: Int = 0
     var timer = Timer()
-    var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
-    var setNumber: Int = 0
+    var isTimerRunning = false
+    var setNumber: Int = 1
     var restInterval = 0
     
     /* forward pass data between view controllers */
@@ -48,6 +48,7 @@ class tempViewController: UIViewController {
     /* put code that depends on IsRoutineExercise flag in here */
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
+            print ("log: tempViewController")
             
             if Global.next_routine_exercise != "" { self.exercise_name2 = Global.next_routine_exercise }
             Global.next_routine_exercise = ""
@@ -215,13 +216,10 @@ class tempViewController: UIViewController {
     
     /* when home button on navigation bar is tapped */
     @objc func homeButtonTapped(sender: UIButton!) {
+        killGif() /* kill running gif */
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
-        
-        /* kill running gif */
-        self.imageView.removeFromSuperview()
-        self.imageView = UIImageView()
     }
     
     /* next set button is tapped  */
@@ -256,9 +254,7 @@ class tempViewController: UIViewController {
     
     /* skip button is tapped */
     @objc func skipButtonTapped() {
-        /* kill running gif */
-        self.imageView.removeFromSuperview()
-        self.imageView = UIImageView()
+        killGif() /* kill running gif */
     }
     
     /* when completed button is tapped */
@@ -272,9 +268,7 @@ class tempViewController: UIViewController {
         /* insert excercise as done */
         global_UserData.Add_Exercise_Done(ExerciseName: exercise_name2 ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
         
-        /* kill running gif */
-        self.imageView.removeFromSuperview()
-        self.imageView = UIImageView()
+        killGif() /* kill running gif */
         
         /* last excercise */
         if Global.routine_index == 2 {
@@ -313,7 +307,6 @@ class tempViewController: UIViewController {
             stopButton.isHidden = true
             completedButton.isHidden = false
             nextSetButton.isHidden = false
-            //timer.invalidate()
             
             SetsLabel.text = "SET " + "\(self.setNumber)" + " FINISHED!"
             self.restInterval = 1
@@ -322,5 +315,11 @@ class tempViewController: UIViewController {
             let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
             if self.setNumber == readResult.Sets { nextSetButton.isHidden = true }
         }
+    }
+    
+    /* kills running gifs */
+    func killGif() {
+        self.imageView.removeFromSuperview()
+        self.imageView = UIImageView()
     }
 }
