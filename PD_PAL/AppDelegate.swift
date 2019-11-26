@@ -19,6 +19,7 @@ import Firebase
 /* put global constants in this struct */
 struct Global {
     
+    /* for routines pages */
     static var IsRoutineExercise = -1   // 0 is categories, 1 is routines, -1 is nil
     static var next_routine_exercise = ""
     static var routine_data: [String] = ["", "", ""]

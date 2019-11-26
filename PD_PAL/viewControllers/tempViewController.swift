@@ -53,7 +53,6 @@ class tempViewController: UIViewController {
             if Global.next_routine_exercise != "" { self.exercise_name2 = Global.next_routine_exercise }
             Global.next_routine_exercise = ""
             
-            
             /* navigation bar stuff */
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             self.title = nil
@@ -63,7 +62,6 @@ class tempViewController: UIViewController {
             let barButton = UIBarButtonItem(customView: homeButton)
             self.navigationItem.rightBarButtonItem  = barButton
             
-            
             /* populate exercise description */
             let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
             self.show_exercise_description(string: readResult.Description, DLabel: DescriptionLabel, DText: DescriptionText)
@@ -71,22 +69,18 @@ class tempViewController: UIViewController {
             /* page message */
             self.show_page_message(s1: exercise_name2 ?? "Unable to retrieve exercise name", s2: exercise_name2 ?? "nil")
             
-            
             /* dynamic elements */
-            
             //-> stop button
             stopButton.applyDefaultTimerButtonFrame()
             stopButton.timerButtonDesign()
             stopButton.setTitle("STOP", for: .normal)
             stopButton.backgroundColor = Global.color_schemes.m_lightRed
-            //self.view.addSubview(stopButton)
             
             //-> completed Button
             completedButton.applyRightTimerButtonFrame()
             completedButton.timerButtonDesign()
             completedButton.setTitle("NEXT EXERCISE", for: .normal)
             completedButton.backgroundColor = Global.color_schemes.m_blue2
-            //self.view.addSubview(completedButton)
             
             //-> timer label
             timerLabel.timerAndSetsDesign()
@@ -131,9 +125,7 @@ class tempViewController: UIViewController {
             LoadingLabel.isHidden = false
             
             /* last exercise */
-            if Global.routine_index == 2 {
-                skipButton.isHidden = true
-            }
+            if Global.routine_index == 2 { skipButton.isHidden = true }
         }
         
         /* put code that does not depends on IsRoutineExercise flag in here */
@@ -199,7 +191,7 @@ class tempViewController: UIViewController {
         /* reset timer value */
         timer.invalidate()
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
-        seconds = data.Duration                       // reset value
+        seconds = data.Duration
         timerLabel.text = "\(seconds)"
         
         /* show these elements */

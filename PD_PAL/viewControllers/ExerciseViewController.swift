@@ -70,9 +70,7 @@ class ExerciseViewController: UIViewController {
         /* page message */
         self.show_page_message(s1: exercise_name ?? "Unable to retrieve exercise name", s2: exercise_name ?? "nil")
         
-        
         /* Dynamic elements */
-        
         //-> stop button
         stopButton.applyDefaultTimerButtonFrame()
         stopButton.timerButtonDesign()
@@ -112,6 +110,7 @@ class ExerciseViewController: UIViewController {
         exitRoutineButton.isHidden = true
         NextSetButton.isHidden = true
         
+        /* show these elements */
         DescriptionText.isHidden = false
         DescriptionLabel.isHidden = false
         LoadingLabel.isHidden = false
@@ -135,7 +134,6 @@ class ExerciseViewController: UIViewController {
             self.view.addSubview(startButton)
             
             completedButton.setTitle("NEXT EXERCISE", for: .normal)
-
         }
             
         /* we came from categories page */
