@@ -15,6 +15,7 @@
 // <November 14, 2019, Julia Kim, Refactored date querying to exercises completed database, fixed update button for radar>
 // <November 15, 2019, Julia Kim, Added Line Chart for step data, fixed scrollable view, refactored date input validation>
 // <November 18, 2019, Julia Kim, Fixed date querying input validation and radar chart>
+// <November 26, 2019, Julia Kim, fixed the default dates and input validation>
 
 /*
  Known Bugs
@@ -24,7 +25,7 @@
  November 14, 2019: Julia Kim
  -Comparing dates component wise will not handle edge cases -> Fixed to compare dates properly Nov 14, 2019
  November 18, 2019: Julia Kim
- -Having the default end date will introduce a bug with the input validation -> commented out this part since this was something extra
+ -Having the default end date will introduce a bug with the input validation -> fixed on Nov 26, 2019
  */
 
 import UIKit
