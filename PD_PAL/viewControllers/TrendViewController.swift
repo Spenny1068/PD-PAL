@@ -15,6 +15,7 @@
 // <November 14, 2019, Julia Kim, Refactored date querying to exercises completed database, fixed update button for radar>
 // <November 15, 2019, Julia Kim, Added Line Chart for step data, fixed scrollable view, refactored date input validation>
 // <November 18, 2019, Julia Kim, Fixed date querying input validation and radar chart>
+// <November 26, 2019, Julia Kim, fixed the default dates and input validation>
 
 /*
  Known Bugs
@@ -24,7 +25,7 @@
  November 14, 2019: Julia Kim
  -Comparing dates component wise will not handle edge cases -> Fixed to compare dates properly Nov 14, 2019
  November 18, 2019: Julia Kim
- -Having the default end date will introduce a bug with the input validation -> commented out this part since this was something extra
+ -Having the default end date will introduce a bug with the input validation -> fixed on Nov 26, 2019
  */
 
 import UIKit
@@ -47,25 +48,27 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
     
+   
     private var sDatePicker: UIDatePicker?
     private var eDatePicker: UIDatePicker?
-    private var sdateSelected = false
-    private var edateSelected = false
+    private var sdateSelected = true
+    private var edateSelected = true
     
     let dateFormatter = DateFormatter()
     
-    private var eDateYear = 0
-    private var eDateMonth = 0
-    private var eDateDay = 0
-    private var eDateHour = 0
-    private var eDateMinute = 0
+    private var eDateYear = Calendar.current.component(.year, from: Date())
+    private var eDateMonth = Calendar.current.component(.month, from: Date())
+    private var eDateDay = Calendar.current.component(.day, from: Date())
+    private var eDateHour = Calendar.current.component(.hour, from: Date())
+    private var eDateMinute = Calendar.current.component(.minute, from: Date())
     
-    private var sDateYear = 0
-    private var sDateMonth = 0
-    private var sDateDay = 0
-    private var sDateHour = 0
-    private var sDateMinute = 0
+    private var sDateYear = Calendar.current.component(.year, from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+    private var sDateMonth = Calendar.current.component(.month, from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+    private var sDateDay = Calendar.current.component(.day, from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+    private var sDateHour = Calendar.current.component(.hour, from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+    private var sDateMinute = Calendar.current.component(.minute, from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
     
+
     private var strengthCounter = 0
     private var flexCounter = 0
     private var cardioCounter = 0
@@ -76,7 +79,6 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor // background color
-
         getDatePicker()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TrendViewController.viewTapped(gestureRecognizer:)))
         self.view.addGestureRecognizer(tapGesture)
@@ -95,14 +97,19 @@ class TrendViewController: UIViewController, UITableViewDataSource{
                 
         // message
         self.show_page_message(s1: username + " Trends!", s2: "Trends")
+        dateFormatter.dateFormat = "MM/dd/yyyy HH"
+        startDate.text = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+        endDate.text = dateFormatter.string(from: Date())
         self.generateRadarChart()
         self.prepareStepData()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
-        self.generateRadarChart() //load blank radar chart on load
-        self.prepareStepData() //load blank line chart on load
+        self.generateRadarChart()
+        self.prepareStepData()
+       
        
     }
     
@@ -154,7 +161,12 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     }
 
     @IBAction func clearDates(_ sender: UIButton){
-        //clear date picker fields
+        /*reset to default dates
+        dateFormatter.dateFormat = "MM/dd/yyyy HH"
+        startDate.text = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+        endDate.text = dateFormatter.string(from: Date())
+        */
+        //clear dates
         startDate.text = nil
         endDate.text = nil
         startDate.placeholder = "Pick a Start Date"
@@ -165,22 +177,17 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
     func getDatePicker(){
         //let user select the date for step counter
+        dateFormatter.dateFormat = "MM/dd/yyyy HH"
+  
         sDatePicker = UIDatePicker()
         eDatePicker = UIDatePicker()
         sDatePicker?.datePickerMode = .dateAndTime
         sDatePicker?.addTarget(self, action: #selector(TrendViewController.sDateChanged(datePicker:)), for: .valueChanged)
-        startDate.inputView = sDatePicker
-        
+         
         eDatePicker?.datePickerMode = .dateAndTime
-        
-        /*
-        //default end date
-        eDatePicker?.date = Date() //default value of end date to be today's date
-        dateFormatter.dateFormat = "MM/dd/yyyy HH"
-        endDate.text = dateFormatter.string(from: eDatePicker!.date)
-         */
-        
         eDatePicker?.addTarget(self, action: #selector(TrendViewController.eDateChanged(datePicker:)), for: .valueChanged)
+        
+        startDate.inputView = sDatePicker
         endDate.inputView = eDatePicker
         
      
