@@ -26,6 +26,8 @@ class SettingsViewController: UIViewController {
         
         /* page message */
         self.show_page_message(s1: "Change Your Settings!", s2: "Settings")
+        cloudSW.isOn = false //set initial status of permission to false
+        cloudSW.setOn(false, animated: true) //set initial switch status to false
     }
     
     override func viewDidAppear(_ animated: Bool) {
