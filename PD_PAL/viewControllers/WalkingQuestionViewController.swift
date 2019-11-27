@@ -58,6 +58,13 @@ class WalkingQuestionViewController: UIViewController {
         //Navigation Buttons
         completeButton.applyNextQButton()
         backButton.applyPrevQButton()
+        
+    }
+    
+    // checking navigation stack
+    override func viewDidAppear(_ animated: Bool) {
+        var viewC = self.navigationController?.viewControllers
+        print("Log: VC from Walking", viewC)
     }
     
     // Navigation to previous VC
@@ -75,9 +82,9 @@ class WalkingQuestionViewController: UIViewController {
         } else {
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
-            //self.present(newViewController, animated: true, completion: nil)
+            self.present(newViewController, animated: true, completion: nil)
             print("Log: From Cold start")
-            self.navigationController?.pushViewController(newViewController, animated: true)
+            //self.navigationController?.pushViewController(newViewController, animated: true)
         }
     }
 }

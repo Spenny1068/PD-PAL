@@ -42,6 +42,12 @@ class IntenseQuestionViewController: UIViewController {
         }
     }
     
+    // checking navigation stack
+    override func viewDidAppear(_ animated: Bool) {
+        var viewC = self.navigationController?.viewControllers
+        print("Log: VC from Intense", viewC)
+    }
+    
     @IBAction func lightSelected(_ sender: UIButton) {
         button_clicked = "Light"
         nextButton.isEnabled = true

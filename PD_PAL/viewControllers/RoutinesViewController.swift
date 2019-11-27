@@ -74,6 +74,10 @@ class RoutinesViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
+        
+        //checking navigation stack 
+        var viewC = self.navigationController?.viewControllers
+        print("Log: VC from Routines", viewC)
     }
     
    /* when home button on navigation bar is tapped */

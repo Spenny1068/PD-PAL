@@ -31,6 +31,10 @@ class SettingsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
+        
+        // checking navigation stack
+        var viewC = self.navigationController?.viewControllers
+        print("Log: VC from Settings", viewC)
     }
     
     @IBAction func buttonClicked(_ sender: Any) {

@@ -15,7 +15,6 @@ class SetUpViewController: UIViewController {
     @IBOutlet weak var QuestionLabel: UILabel!
     @IBOutlet weak var SetUpButton: UIButton!
     @IBOutlet weak var SkipSetUpButton: UIButton!
-    let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +31,15 @@ class SetUpViewController: UIViewController {
         SkipSetUpButton.setTitle("Later", for: .normal)
     }
     
+    // checking navigation stack
+    override func viewDidAppear(_ animated: Bool) {
+        var viewC = self.navigationController?.viewControllers
+        print("Log: VC from SetUp", viewC)
+    }
+    
     @IBAction func SetUpTapped(_ sender: Any) {
-//        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "IntenseQuestionPage") as? IntenseQuestionViewController else{
-//            print("Couldn't find the view controller")
-//            return
-//        }
         global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         print("Update: QuestionsAnswered")
         print(global_UserData.Get_User_Data())
-      
-        //present(destinationViewController, animated: true, completion: nil)
-//        present(destinationViewController, animated: false, completion: nil)
     }
 }
