@@ -46,6 +46,27 @@
 		457757BD237F941900DAE97B /* tempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457757BC237F941900DAE97B /* tempViewController.swift */; };
 		457C0F6A2366B54500A918B2 /* Exercise.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457C0F692366B54500A918B2 /* Exercise.storyboard */; };
 		45853AD5238017C400202F28 /* ppp.png in Resources */ = {isa = PBXBuildFile; fileRef = 45853ACB238017C400202F28 /* ppp.png */; };
+		45B5757A238E36CA0008523A /* flexibility.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B5755C238E36CA0008523A /* flexibility.png */; };
+		45B5757B238E36CA0008523A /* Steps.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B5755D238E36CA0008523A /* Steps.png */; };
+		45B5757C238E36CA0008523A /* pushup_step2.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B5755E238E36CA0008523A /* pushup_step2.png */; };
+		45B5757D238E36CA0008523A /* pushup_step1.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B5755F238E36CA0008523A /* pushup_step1.png */; };
+		45B5757E238E36CA0008523A /* logoLaunch.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B57560238E36CA0008523A /* logoLaunch.png */; };
+		45B5757F238E36CA0008523A /* radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B57561238E36CA0008523A /* radar.png */; };
+		45B57580238E36CA0008523A /* cardio.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B57562238E36CA0008523A /* cardio.png */; };
+		45B57581238E36CA0008523A /* Cardio.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45B57563238E36CA0008523A /* Cardio.jpg */; };
+		45B57582238E36CA0008523A /* Screen Shot 2019-10-11 at 10.13.56 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B57564238E36CA0008523A /* Screen Shot 2019-10-11 at 10.13.56 AM.png */; };
+		45B57583238E36CA0008523A /* Walking.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B57565238E36CA0008523A /* Walking.png */; };
+		45B57584238E36CA0008523A /* leg_stretch.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B57566238E36CA0008523A /* leg_stretch.png */; };
+		45B57585238E36CA0008523A /* Screen Shot 2019-10-11 at 9.15.49 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B57567238E36CA0008523A /* Screen Shot 2019-10-11 at 9.15.49 AM.png */; };
+		45B57586238E36CA0008523A /* resistance.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B57568238E36CA0008523A /* resistance.png */; };
+		45B57587238E36CA0008523A /* balance.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B57569238E36CA0008523A /* balance.png */; };
+		45B57588238E36CA0008523A /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B5756A238E36CA0008523A /* logo.png */; };
+		45B57589238E36CA0008523A /* Screen Shot 2019-10-15 at 9.52.19 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B5756B238E36CA0008523A /* Screen Shot 2019-10-15 at 9.52.19 AM.png */; };
+		45B5758A238E36CA0008523A /* leg_stance2.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B5756C238E36CA0008523A /* leg_stance2.png */; };
+		45B5758B238E36CA0008523A /* Leg_Stance.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B5756D238E36CA0008523A /* Leg_Stance.png */; };
+		45B5758C238E36CA0008523A /* strength.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B5756E238E36CA0008523A /* strength.png */; };
+		45B5758D238E36CA0008523A /* play.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45B5756F238E36CA0008523A /* play.jpg */; };
+		45B5758E238E36CA0008523A /* playbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 45B57570238E36CA0008523A /* playbutton.png */; };
 		45BE9269236660920076E729 /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45BE9268236660920076E729 /* Categories.storyboard */; };
 		45EA1DEE236597B800E6D070 /* RoutineGenericpage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */; };
 		45EB46152367C0AA009BA044 /* RoutinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB46052367C0AA009BA044 /* RoutinesViewController.swift */; };
@@ -238,6 +259,27 @@
 		457757BC237F941900DAE97B /* tempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempViewController.swift; sourceTree = "<group>"; };
 		457C0F692366B54500A918B2 /* Exercise.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Exercise.storyboard; sourceTree = "<group>"; };
 		45853ACB238017C400202F28 /* ppp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppp.png; sourceTree = "<group>"; };
+		45B5755C238E36CA0008523A /* flexibility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flexibility.png; sourceTree = "<group>"; };
+		45B5755D238E36CA0008523A /* Steps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Steps.png; sourceTree = "<group>"; };
+		45B5755E238E36CA0008523A /* pushup_step2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushup_step2.png; sourceTree = "<group>"; };
+		45B5755F238E36CA0008523A /* pushup_step1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pushup_step1.png; sourceTree = "<group>"; };
+		45B57560238E36CA0008523A /* logoLaunch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoLaunch.png; sourceTree = "<group>"; };
+		45B57561238E36CA0008523A /* radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radar.png; sourceTree = "<group>"; };
+		45B57562238E36CA0008523A /* cardio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cardio.png; sourceTree = "<group>"; };
+		45B57563238E36CA0008523A /* Cardio.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Cardio.jpg; sourceTree = "<group>"; };
+		45B57564238E36CA0008523A /* Screen Shot 2019-10-11 at 10.13.56 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2019-10-11 at 10.13.56 AM.png"; sourceTree = "<group>"; };
+		45B57565238E36CA0008523A /* Walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walking.png; sourceTree = "<group>"; };
+		45B57566238E36CA0008523A /* leg_stretch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_stretch.png; sourceTree = "<group>"; };
+		45B57567238E36CA0008523A /* Screen Shot 2019-10-11 at 9.15.49 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2019-10-11 at 9.15.49 AM.png"; sourceTree = "<group>"; };
+		45B57568238E36CA0008523A /* resistance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resistance.png; sourceTree = "<group>"; };
+		45B57569238E36CA0008523A /* balance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balance.png; sourceTree = "<group>"; };
+		45B5756A238E36CA0008523A /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		45B5756B238E36CA0008523A /* Screen Shot 2019-10-15 at 9.52.19 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2019-10-15 at 9.52.19 AM.png"; sourceTree = "<group>"; };
+		45B5756C238E36CA0008523A /* leg_stance2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leg_stance2.png; sourceTree = "<group>"; };
+		45B5756D238E36CA0008523A /* Leg_Stance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Leg_Stance.png; sourceTree = "<group>"; };
+		45B5756E238E36CA0008523A /* strength.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = strength.png; sourceTree = "<group>"; };
+		45B5756F238E36CA0008523A /* play.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = play.jpg; sourceTree = "<group>"; };
+		45B57570238E36CA0008523A /* playbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playbutton.png; sourceTree = "<group>"; };
 		45BE9268236660920076E729 /* Categories.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
 		45EA1DED236597B700E6D070 /* RoutineGenericpage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RoutineGenericpage.storyboard; sourceTree = "<group>"; };
 		45EB46052367C0AA009BA044 /* RoutinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutinesViewController.swift; sourceTree = "<group>"; };
@@ -402,6 +444,7 @@
 		4517F9BC2351587700E5ED83 /* PD_PAL */ = {
 			isa = PBXGroup;
 			children = (
+				45B5755B238E36CA0008523A /* images */,
 				2E4D8C3E23832DAB0027A09B /* Exercise_GIFS */,
 				AE47282323833C3E00733C28 /* Exercise_GIFS */,
 				45853ACB238017C400202F28 /* ppp.png */,
@@ -435,6 +478,35 @@
 				4517F9E32351587800E5ED83 /* Info.plist */,
 			);
 			path = PD_PALUITests;
+			sourceTree = "<group>";
+		};
+		45B5755B238E36CA0008523A /* images */ = {
+			isa = PBXGroup;
+			children = (
+				45B5755C238E36CA0008523A /* flexibility.png */,
+				45B5755D238E36CA0008523A /* Steps.png */,
+				45B5755E238E36CA0008523A /* pushup_step2.png */,
+				45B5755F238E36CA0008523A /* pushup_step1.png */,
+				45B57560238E36CA0008523A /* logoLaunch.png */,
+				45B57561238E36CA0008523A /* radar.png */,
+				45B57562238E36CA0008523A /* cardio.png */,
+				45B57563238E36CA0008523A /* Cardio.jpg */,
+				45B57564238E36CA0008523A /* Screen Shot 2019-10-11 at 10.13.56 AM.png */,
+				45B57565238E36CA0008523A /* Walking.png */,
+				45B57566238E36CA0008523A /* leg_stretch.png */,
+				45B57567238E36CA0008523A /* Screen Shot 2019-10-11 at 9.15.49 AM.png */,
+				45B57568238E36CA0008523A /* resistance.png */,
+				45B57569238E36CA0008523A /* balance.png */,
+				45B5756A238E36CA0008523A /* logo.png */,
+				45B5756B238E36CA0008523A /* Screen Shot 2019-10-15 at 9.52.19 AM.png */,
+				45B5756C238E36CA0008523A /* leg_stance2.png */,
+				45B5756D238E36CA0008523A /* Leg_Stance.png */,
+				45B5756E238E36CA0008523A /* strength.png */,
+				45B5756F238E36CA0008523A /* play.jpg */,
+				45B57570238E36CA0008523A /* playbutton.png */,
+			);
+			name = images;
+			path = ../../../images;
 			sourceTree = "<group>";
 		};
 		45BE9267236660920076E729 /* Storyboards */ = {
@@ -695,30 +767,51 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45B57589238E36CA0008523A /* Screen Shot 2019-10-15 at 9.52.19 AM.png in Resources */,
 				2E4D8C5823832DAB0027A09B /* KNEE_MARCHING.gif in Resources */,
 				2E4D8C5A23832DAB0027A09B /* LATERAL_RAISES.gif in Resources */,
 				2E4D8C5423832DAB0027A09B /* HEEL_STAND.gif in Resources */,
 				26DC60F02364C51C0064B314 /* Questionnare.storyboard in Resources */,
 				2E4D8C5523832DAB0027A09B /* WALL_PUSH-UP.gif in Resources */,
 				2E4D8C5023832DAB0027A09B /* CHEST_STRETCH.gif in Resources */,
+				45B57582238E36CA0008523A /* Screen Shot 2019-10-11 at 10.13.56 AM.png in Resources */,
 				4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */,
 				AE47282D23833C3F00733C28 /* Exercise_GIFS in Resources */,
+				45B5757B238E36CA0008523A /* Steps.png in Resources */,
+				45B57587238E36CA0008523A /* balance.png in Resources */,
+				45B57586238E36CA0008523A /* resistance.png in Resources */,
 				2E4D8C5B23832DAB0027A09B /* ARM_RAISES.gif in Resources */,
 				2E4D8C5C23832DAB0027A09B /* SHOULDER_RAISES.gif in Resources */,
+				45B5758A238E36CA0008523A /* leg_stance2.png in Resources */,
 				2EF5A738237FC322000AF9AD /* GoogleService-Info.plist in Resources */,
 				2E4D8C5323832DAB0027A09B /* KNEE_EXTENSION.gif in Resources */,
+				45B5758C238E36CA0008523A /* strength.png in Resources */,
+				45B5757E238E36CA0008523A /* logoLaunch.png in Resources */,
 				2E4D8C5623832DAB0027A09B /* TRICEP_KICKBACKS.gif in Resources */,
+				45B57580238E36CA0008523A /* cardio.png in Resources */,
 				4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */,
+				45B5758B238E36CA0008523A /* Leg_Stance.png in Resources */,
 				457C0F6A2366B54500A918B2 /* Exercise.storyboard in Resources */,
 				2E4D8C5123832DAB0027A09B /* NECK_SIDE_STRETCH.gif in Resources */,
+				45B5757C238E36CA0008523A /* pushup_step2.png in Resources */,
+				45B5758E238E36CA0008523A /* playbutton.png in Resources */,
 				4517F9C72351587700E5ED83 /* Main.storyboard in Resources */,
+				45B57583238E36CA0008523A /* Walking.png in Resources */,
+				45B5757A238E36CA0008523A /* flexibility.png in Resources */,
+				45B57585238E36CA0008523A /* Screen Shot 2019-10-11 at 9.15.49 AM.png in Resources */,
+				45B5758D238E36CA0008523A /* play.jpg in Resources */,
 				2E4D8C4F23832DAB0027A09B /* WALKING.gif in Resources */,
 				45853AD5238017C400202F28 /* ppp.png in Resources */,
 				2E4D8C5723832DAB0027A09B /* QUAD_STRETCH.gif in Resources */,
 				2E4D8C4E23832DAB0027A09B /* SINGLE_LEG_STANCE.gif in Resources */,
 				45BE9269236660920076E729 /* Categories.storyboard in Resources */,
 				2E4D8C5223832DAB0027A09B /* HEEL_TO_TOE.gif in Resources */,
+				45B57584238E36CA0008523A /* leg_stretch.png in Resources */,
+				45B5757F238E36CA0008523A /* radar.png in Resources */,
 				2E4D8C5923832DAB0027A09B /* SIDE_LEG_LIFT.gif in Resources */,
+				45B57588238E36CA0008523A /* logo.png in Resources */,
+				45B5757D238E36CA0008523A /* pushup_step1.png in Resources */,
+				45B57581238E36CA0008523A /* Cardio.jpg in Resources */,
 				45EA1DEE236597B800E6D070 /* RoutineGenericpage.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
