@@ -34,7 +34,7 @@ class SetUpViewController: UIViewController {
     // checking navigation stack
     override func viewDidAppear(_ animated: Bool) {
         var viewC = self.navigationController?.viewControllers
-        print("Log: VC from SetUp", viewC)
+        print("Log: VC from SetUp", viewC ?? nil)
     }
     
     @IBAction func SetUpTapped(_ sender: Any) {

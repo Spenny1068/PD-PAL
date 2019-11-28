@@ -77,7 +77,7 @@ class RoutinesViewController: UIViewController {
         
         //checking navigation stack 
         var viewC = self.navigationController?.viewControllers
-        print("Log: VC from Routines", viewC)
+        print("Log: VC from Routines", viewC!)
     }
     
    /* when home button on navigation bar is tapped */

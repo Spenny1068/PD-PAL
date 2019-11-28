@@ -60,7 +60,7 @@ class EquipmentQuestionnaireViewController: UIViewController {
     // checking navigation stack
     override func viewDidAppear(_ animated: Bool) {
         var viewC = self.navigationController?.viewControllers
-        print("Log: VC from Equipment", viewC)
+        print("Log: VC from Equipment", viewC!)
     }
     
     @IBAction func resistiveBandTapped(_ sender: UIButton) {

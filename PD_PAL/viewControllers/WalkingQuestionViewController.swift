@@ -64,7 +64,7 @@ class WalkingQuestionViewController: UIViewController {
     // checking navigation stack
     override func viewDidAppear(_ animated: Bool) {
         var viewC = self.navigationController?.viewControllers
-        print("Log: VC from Walking", viewC)
+        print("Log: VC from Walking", viewC!)
     }
     
     // Navigation to previous VC
@@ -77,14 +77,24 @@ class WalkingQuestionViewController: UIViewController {
         //Update user's preferred walking duration
     global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         print(global_UserData.Get_User_Data())
+        
         if Global.questionnaire_index == 1 {
             view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            //self.navigationController?.popToRootViewController(animated: true)
+            print("Log: Dismissed NC Stack")
         } else {
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
-            self.present(newViewController, animated: true, completion: nil)
-            print("Log: From Cold start")
-            //self.navigationController?.pushViewController(newViewController, animated: true)
+            //Global.questionnaire_index = 1
+            //print("Log: Pushed onto NC Stack")
+//            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//            let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+//            self.present(newViewController, animated: true, completion: nil)
+            //print("Log: From Cold start")
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let secondViewController = mainStoryboard.instantiateViewController(withIdentifier: "CategoriesPage")
+                let navController = UINavigationController(rootViewController: secondViewController)
+                navController.setViewControllers([secondViewController], animated:true)
+                self.navigationController?.pushViewController(secondViewController, animated: true)
+                print("Log: Pushed onto NC Stack")
         }
     }
 }

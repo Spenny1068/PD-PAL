@@ -24,7 +24,6 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         Global.questionnaire_index = 1
-        
         /* page message */
         self.show_page_message(s1: "Change Your Settings!", s2: "Settings")
     }
@@ -34,7 +33,7 @@ class SettingsViewController: UIViewController {
         
         // checking navigation stack
         var viewC = self.navigationController?.viewControllers
-        print("Log: VC from Settings", viewC)
+        print("Log: VC from Settings", viewC!)
     }
     
     @IBAction func buttonClicked(_ sender: Any) {

@@ -45,7 +45,7 @@ class IntenseQuestionViewController: UIViewController {
     // checking navigation stack
     override func viewDidAppear(_ animated: Bool) {
         var viewC = self.navigationController?.viewControllers
-        print("Log: VC from Intense", viewC)
+        print("Log: VC from Intense", viewC!)
     }
     
     @IBAction func lightSelected(_ sender: UIButton) {
