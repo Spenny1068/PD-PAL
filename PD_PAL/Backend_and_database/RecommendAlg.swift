@@ -6,10 +6,12 @@
 //  Copyright © 2019 WareOne. All rights reserved.
 // <November 24th, 2019, Julia Kim: Started Recommendation Algorithm>
 // <November 25th, 2019, Julia Kim: Added shuffling the list of exercises such that it's not always the same exercise from the category that is recommended; for redundancy, get two least completed categories in case there was no match with the least completed category with the user answers>
+// <November 28th, 2019, Julia Kim: Made minor changes in convertEquipment, got rid of images folder as requested by Spencer>
+
 
 /*
  Notes:
- -Need to be tested with the highlighting.
+ -Need to be tested with the highlighting. -> works
  -When calling my func, Arian will have to check if there's at least one exercise completed since my funcs will provide recommendation for the least completed category with the default behaviour as flexbility if there's a 4-way tie i.e. no exercises were completed or all categories have the same numbers completed.
  -I will refactor, time permitting
  */
@@ -38,7 +40,7 @@ class RecommendAlg{
         leastCat = [" ", " "]
         leastEx = " "
         leastCombo = [leastCat[0], leastEx]
-        secondLeastCombo = [leastCat[1], leastEx]
+        secondLeastCombo = [leastCat[1], leastEx] //if not able to match least completed with questions, try with the second least completed
     }
     
     func checkUserAns() -> [String]{
@@ -77,7 +79,7 @@ class RecommendAlg{
             categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry)
             
             //intensity, equipment match with what the user set and is one of the exercises in least frequently completed category
-            /*
+            /* test
             print("categoryMatch.4: \(categoryMatch.4)")
             print("userAns.8: \(userAns.8)")
             print("categoryMatch.2: \(categoryMatch.2)")
@@ -99,7 +101,7 @@ class RecommendAlg{
         
         
         //print("foundLeastCombo: \(foundLeastCombo)")
-        if !foundLeastCombo
+        if !foundLeastCombo //check for redundancy since if leastCombo was found, the function would have returned
         {
             for entry in shuffledExList{
                 //print("leastCat[1]:\(leastCat[1])")
@@ -125,6 +127,7 @@ class RecommendAlg{
     func convertEquipment() -> [String]{
         var equipType: [String] = [" ", " " , " "]
        
+        //convert bool values to string to give the name of the equipment
         if userAns.4 && userAns.5 && userAns.6
         {
              equipType[0] = "Chair"
@@ -154,10 +157,18 @@ class RecommendAlg{
         }
         else if userAns.5
         {
-             equipType[0] = "Weights"
-             equipType[1] = "None"
-             equipType[2] = "None"
-            
+            if userAns.6
+            {
+                equipType[0] = "Weights"
+                equipType[1] = "Resistive Band"
+                equipType[2] = "None"
+            }
+            else
+            {
+                 equipType[0] = "Weights"
+                 equipType[1] = "None"
+                 equipType[2] = "None"
+            }
         }
         else if userAns.6
         {
@@ -178,7 +189,8 @@ class RecommendAlg{
     }
 
     func getExInCat(LeastCategory: String) -> String {
-       
+        //this function is only for the case where user didn't answer the questions
+        //just find an exercise in the least completed category
         //print("Least Completed Category: \(LeastCategory)")
         let shuffledList = exerciseList.shuffled()
         
@@ -195,7 +207,7 @@ class RecommendAlg{
     }
     
     func getLeastCat() -> [String]{
-        
+        //figure out the least completed category and the second least completed category
         let exerciseData = global_UserData.Get_Exercises_all()
         var twoLeastCompleted: [String] = [" ", " "]
         var categoryMatch = (" ", " ", " ", " ", " ", 0)
@@ -240,7 +252,7 @@ class RecommendAlg{
                   
         }
         
-        //reset
+        //reset counter
         flexCount = 0
         cardioCount = 0
         balanceCount = 0
@@ -317,9 +329,10 @@ class RecommendAlg{
             return [" ", " "]
         }
         
-        print("twoLeastCompleted: \(twoLeastCompleted)")
+        //print("twoLeastCompleted: \(twoLeastCompleted)")
         return twoLeastCompleted
     
     }
 }
+
 
