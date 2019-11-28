@@ -8,6 +8,7 @@
 // Revision History:
 // <Date, Name, Changes made>
 // <October 27, 2019, Spencer Lall, applied default page design>
+// <November 27, 2019, Arian Vafadar, Highlighted the exercises>
 import UIKit
 
 class StrengthViewController: UIViewController {
@@ -71,6 +72,7 @@ class StrengthViewController: UIViewController {
         exerciseButton.setTitle(exercise_list[0],for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
         exerciseButton.backgroundColor = Global.color_schemes.m_blue2          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[0])
         {
             exerciseButton.shadowButtonDesign()
@@ -80,6 +82,7 @@ class StrengthViewController: UIViewController {
         exerciseButton2.setTitle(exercise_list[4],for: .normal)                        // button text
         exerciseButton2.exerciseButtonDesign()
         exerciseButton2.backgroundColor = Global.color_schemes.m_blue2          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[4])
         {
             exerciseButton2.shadowButtonDesign()
@@ -89,6 +92,7 @@ class StrengthViewController: UIViewController {
         exerciseButton3.setTitle(exercise_list[8],for: .normal)                        // button text
         exerciseButton3.exerciseButtonDesign()
         exerciseButton3.backgroundColor = Global.color_schemes.m_blue2          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[8])
         {
             exerciseButton3.shadowButtonDesign()
@@ -98,6 +102,7 @@ class StrengthViewController: UIViewController {
         exerciseButton4.setTitle(exercise_list[10],for: .normal)                        // button text
         exerciseButton4.exerciseButtonDesign()
         exerciseButton4.backgroundColor = Global.color_schemes.m_blue2          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[10])
         {
             exerciseButton4.shadowButtonDesign()
@@ -107,6 +112,7 @@ class StrengthViewController: UIViewController {
         exerciseButton5.setTitle(exercise_list[12],for: .normal)                        // button text
         exerciseButton5.exerciseButtonDesign()
         exerciseButton5.backgroundColor = Global.color_schemes.m_blue2          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[12])
         {
             exerciseButton5.shadowButtonDesign()

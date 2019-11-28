@@ -8,6 +8,7 @@
 // Revision History:
 // <Date, Name, Changes made>
 // <October 27, 2019, Spencer Lall, applied default page design>
+// <November 27, 2019, Arian Vafadar, Highlighted the exercises>
 //
 
 import UIKit
@@ -70,6 +71,7 @@ class BalanceViewController: UIViewController {
         exerciseButton.setTitle(exercise_list[2],for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
         exerciseButton.backgroundColor = Global.color_schemes.m_blue1          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[2])
         {
             exerciseButton.shadowButtonDesign()
@@ -79,6 +81,7 @@ class BalanceViewController: UIViewController {
         exerciseButton2.setTitle(exercise_list[5],for: .normal)                        // button text
         exerciseButton2.exerciseButtonDesign()
         exerciseButton2.backgroundColor = Global.color_schemes.m_blue1          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[5])
         {
             exerciseButton2.shadowButtonDesign()
@@ -88,6 +91,7 @@ class BalanceViewController: UIViewController {
         exerciseButton3.setTitle(exercise_list[9],for: .normal)                        // button text
         exerciseButton3.exerciseButtonDesign()
         exerciseButton3.backgroundColor = Global.color_schemes.m_blue1          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[9])
         {
             exerciseButton3.shadowButtonDesign()
@@ -97,6 +101,7 @@ class BalanceViewController: UIViewController {
         exerciseButton4.setTitle(exercise_list[11],for: .normal)                        // button text
         exerciseButton4.exerciseButtonDesign()
         exerciseButton4.backgroundColor = Global.color_schemes.m_blue1          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[11])
         {
             exerciseButton4.shadowButtonDesign()

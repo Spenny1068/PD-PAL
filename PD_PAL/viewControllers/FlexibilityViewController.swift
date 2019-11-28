@@ -8,6 +8,7 @@
 // Revision History:
 // <Date, Name, Changes made>
 // <October 27, 2019, Spencer Lall, applied default page design>
+// <November 27, 2019, Arian Vafadar, Highlighted the exercises>
 
 import UIKit
 
@@ -74,6 +75,7 @@ class FlexibilityViewController: UIViewController {
         exerciseButton.setTitle(exercise_list[3],for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
         exerciseButton.backgroundColor = Global.color_schemes.m_flexButton          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[3])
         {
             exerciseButton.shadowButtonDesign()
@@ -84,6 +86,7 @@ class FlexibilityViewController: UIViewController {
         exerciseButton2.setTitle(exercise_list[6],for: .normal)                        // button text
         exerciseButton2.exerciseButtonDesign()
         exerciseButton2.backgroundColor = Global.color_schemes.m_flexButton          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[6])
         {
             exerciseButton2.shadowButtonDesign()
@@ -94,6 +97,7 @@ class FlexibilityViewController: UIViewController {
         exerciseButton3.setTitle(exercise_list[7],for: .normal)                        // button text
         exerciseButton3.exerciseButtonDesign()
         exerciseButton3.backgroundColor = Global.color_schemes.m_flexButton          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[7])
         {
             exerciseButton3.shadowButtonDesign()
@@ -104,6 +108,7 @@ class FlexibilityViewController: UIViewController {
         exerciseButton4.setTitle(exercise_list[13],for: .normal)                        // button text
         exerciseButton4.exerciseButtonDesign()
         exerciseButton4.backgroundColor = Global.color_schemes.m_flexButton          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[13])
         {
             exerciseButton4.shadowButtonDesign()
@@ -114,6 +119,7 @@ class FlexibilityViewController: UIViewController {
         exerciseButton5.setTitle(exercise_list[14],for: .normal)                        // button text
         exerciseButton5.exerciseButtonDesign()
         exerciseButton5.backgroundColor = Global.color_schemes.m_flexButton          // background color
+        //Highlights a Exercise if needed
         if (exerciseRecommend[1] == exercise_list[14])
         {
             exerciseButton5.shadowButtonDesign()

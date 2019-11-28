@@ -266,6 +266,22 @@ class ExerciseDatabase {
                         Intensity: "Moderate",
                         Duration: 30)
         
+        insert_exercise(Name: "JOGGING",
+                        Desc: "For optimal results perform this exercise on a track. Try to stand in one place, and jog on the stop",
+                        Category: "Cardio",
+                        Equipment: "None",
+                        Link: "JOGGING",
+                        Intensity: "Moderate",
+                        Duration: 60)
+        
+        insert_exercise(Name: "JUMPING JACKS",
+                        Desc: "Stand in one spot. Keep hands on your side and feet together. Now raise your hands and extend your legs as shown",
+                        Category: "Cardio",
+                        Equipment: "None",
+                        Link: "JUMPING_JACKS",
+                        Intensity: "Intense",
+                        Duration: 60)
+        
     }
 
     //Assuming the database is empty,
