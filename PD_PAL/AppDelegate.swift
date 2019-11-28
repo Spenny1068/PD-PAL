@@ -289,7 +289,7 @@ extension UIButton {
         self.layer.cornerRadius = 25                                         // rounded edges
         self.layer.borderWidth = 2                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
-        self.clipsToBounds = true                                            // confines bounds of view
+        //self.clipsToBounds = true                                            // confines bounds of view
         
         // text
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
@@ -324,6 +324,14 @@ extension UIButton {
     
     //Use this for recommended exercises
     func shadowButtonDesign()
+    {
+        self.layer.shadowColor = UIColor.green.cgColor
+        self.layer.shadowOpacity = 0.8
+        self.layer.shadowRadius = 12
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
+    }
+    
+    func shadowCategoryButtonDesign()
     {
         self.layer.shadowColor = UIColor.green.cgColor
         self.layer.shadowOpacity = 0.8

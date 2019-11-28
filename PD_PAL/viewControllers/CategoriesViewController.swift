@@ -11,6 +11,7 @@
 // <Oct. 26, 2019, Spencer Lall, added categories buttons>
 // <October 27, 2019, Spencer Lall, applied default page design>
 // <November 15, 2019, Izyl Canonicato, Category buttons >
+// <November 27, 2019, Arian Vafadar, Highlighted the Categories>
 
 
 import UIKit
@@ -41,7 +42,7 @@ class CategoriesViewController: UIViewController {
         //Highlights a category if needed
         if (exerciseRecommend[0] == "Flexibility")
         {
-            flexibilityButton.shadowButtonDesign()
+            flexibilityButton.shadowCategoryButtonDesign()
         }
         
         //-> strength
@@ -52,7 +53,7 @@ class CategoriesViewController: UIViewController {
         //Highlights a category if needed
         if (exerciseRecommend[0] == "Strength")
         {
-            strengthButton.shadowButtonDesign()
+            strengthButton.shadowCategoryButtonDesign()
         }
         
         //-> cardio
@@ -63,7 +64,7 @@ class CategoriesViewController: UIViewController {
         //Highlights a category if needed
         if (exerciseRecommend[0] == "Cardio")
         {
-            cardioButton.shadowButtonDesign()
+            cardioButton.shadowCategoryButtonDesign()
         }
         
         //-> balance
@@ -74,7 +75,7 @@ class CategoriesViewController: UIViewController {
         //Highlights a category if needed
         if (exerciseRecommend[0] == "Balance")
         {
-            balanceButton.shadowButtonDesign()
+            balanceButton.shadowCategoryButtonDesign()
         }
         
         /* show buttons */
