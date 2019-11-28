@@ -49,17 +49,6 @@ class LoginViewController: UIViewController{
         //navigateToQuestionnaire()
     }
     
-    // Give access to Questionnaire Storyboard
-//    private func navigateToQuestionnaire(){
-//        let mainStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
-//        guard let quesNavigationVC = mainStoryboard.instantiateViewController(withIdentifier: "SetUpQuestionPage") as? SetUpViewController else {
-//            return
-//        }
-        
-    // Navigation to Set up page
-//        show(quesNavigationVC, sender: LoginViewController.self)
-   // }
-    
     // Check if name contains only letter and white spaces
     func isValidName(name:String)->Bool{
         let regex = "[^A-Za-z]+"

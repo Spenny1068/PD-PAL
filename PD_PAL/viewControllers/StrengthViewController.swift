@@ -51,7 +51,7 @@ class StrengthViewController: UIViewController {
         self.title = nil
         let homeButton = UIButton(type: .custom)
         homeButton.applyHomeButton()
-        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+        homeButton.addTarget(self, action: #selector(homeTapped), for: .touchUpInside)
         let barButton = UIBarButtonItem(customView: homeButton)
         self.navigationItem.rightBarButtonItem  = barButton
 

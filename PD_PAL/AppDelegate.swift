@@ -51,6 +51,8 @@ struct Global {
     }
 }
 
+let appdelegate = UIApplication.shared.delegate as! AppDelegate
+
 /* So we can use hex valued colors */
 extension UIColor {
    convenience init(red: Int, green: Int, blue: Int) {
@@ -234,6 +236,11 @@ extension UIViewController {
             label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 38),
             label.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
             ])
+    }
+    
+    // returns to Routines Main page when home button is tapped
+    @objc func homeTapped(){
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
@@ -457,9 +464,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //On cold start, if user does not exist, enter Questionnaire storyboard
         if(!global_UserData.User_Exists()){
             print("USERNAME: " + global_UserData.Get_User_Data().UserName)
-            //global_UserData.Clear_UserInfo_Database()
-            let view = UIStoryboard(name: "Questionnare", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
-            window?.rootViewController = view
+//            //global_UserData.Clear_UserInfo_Database()
+//            let view = UIStoryboard(name: "Questionnare", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
+//            window?.rootViewController = view
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Questionnare", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "LoginPage")
+            let navController = UINavigationController(rootViewController: newViewController)
+            appdelegate.window?.rootViewController = navController //sets rootViewController to Questionnaire 
         } 
         return true
     }

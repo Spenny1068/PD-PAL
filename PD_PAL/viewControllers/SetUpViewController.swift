@@ -31,12 +31,6 @@ class SetUpViewController: UIViewController {
         SkipSetUpButton.setTitle("Later", for: .normal)
     }
     
-    // checking navigation stack
-    override func viewDidAppear(_ animated: Bool) {
-        var viewC = self.navigationController?.viewControllers
-        print("Log: VC from SetUp", viewC ?? nil)
-    }
-    
     @IBAction func SetUpTapped(_ sender: Any) {
         global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         print("Update: QuestionsAnswered")

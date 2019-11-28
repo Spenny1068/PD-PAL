@@ -57,12 +57,6 @@ class EquipmentQuestionnaireViewController: UIViewController {
         backButton.applyPrevQButton()
     }
     
-    // checking navigation stack
-    override func viewDidAppear(_ animated: Bool) {
-        var viewC = self.navigationController?.viewControllers
-        print("Log: VC from Equipment", viewC!)
-    }
-    
     @IBAction func resistiveBandTapped(_ sender: UIButton) {
         counter1 += 1
         if(counter1 == 2){counter1 = 0}

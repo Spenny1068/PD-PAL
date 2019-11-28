@@ -52,7 +52,7 @@ class CardioViewController: UIViewController {
         self.title = nil
         let homeButton = UIButton(type: .custom)
         homeButton.applyHomeButton()
-        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+        homeButton.addTarget(self, action: #selector(homeTapped), for: .touchUpInside)
         let barButton = UIBarButtonItem(customView: homeButton)
         self.navigationItem.rightBarButtonItem  = barButton
 
@@ -87,8 +87,10 @@ class CardioViewController: UIViewController {
     
     // called when home button on navigation bar is tapped
     @objc func homeButtonTapped(sender: UIButton!) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
-        self.present(newViewController, animated: true, completion: nil)
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+//        self.present(newViewController, animated: true, completion: nil)
+        //view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }

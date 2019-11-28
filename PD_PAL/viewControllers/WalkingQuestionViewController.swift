@@ -9,6 +9,7 @@
 //<Oct. 28, 2019, Izyl Canonicato, Navigation to Routines (Home page)>
 //<Nov. 1, 2019, Izyl Canonicato, Slider functionality)>
 //<Nov. 2, 2019, Izyl Canonicato, Update/Insert WalkingDuration in UserData>
+//<Nov. 27, 2019, Izyl Canonicato, Navigation to Routines (Home page)>
 
 import UIKit
 
@@ -26,7 +27,7 @@ class WalkingQuestionViewController: UIViewController {
     
     //Slider input
     @IBAction func sliderChanged(_ sender: UISlider) {
-        var newValue = roundf(slider.value)
+        let newValue = roundf(slider.value)
         slider.value = newValue
         walkingDurationVal = Int((sender.value)*5)
         if(newValue == 6){
@@ -61,12 +62,6 @@ class WalkingQuestionViewController: UIViewController {
         
     }
     
-    // checking navigation stack
-    override func viewDidAppear(_ animated: Bool) {
-        var viewC = self.navigationController?.viewControllers
-        print("Log: VC from Walking", viewC!)
-    }
-    
     // Navigation to previous VC
     @IBAction func backTapped(_ sender: Any) {
         self.navigationController?.backToViewController(vc: EquipmentQuestionnaireViewController.self)
@@ -78,23 +73,13 @@ class WalkingQuestionViewController: UIViewController {
     global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         print(global_UserData.Get_User_Data())
         
+        // Dismisses Questionnaire NC if coming from Routines Page or redefines root controller to Routines Main page if from cold start
         if Global.questionnaire_index == 1 {
             view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-            //self.navigationController?.popToRootViewController(animated: true)
-            print("Log: Dismissed NC Stack")
         } else {
-            //Global.questionnaire_index = 1
-            //print("Log: Pushed onto NC Stack")
-//            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//            let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
-//            self.present(newViewController, animated: true, completion: nil)
-            //print("Log: From Cold start")
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let secondViewController = mainStoryboard.instantiateViewController(withIdentifier: "CategoriesPage")
-                let navController = UINavigationController(rootViewController: secondViewController)
-                navController.setViewControllers([secondViewController], animated:true)
-                self.navigationController?.pushViewController(secondViewController, animated: true)
-                print("Log: Pushed onto NC Stack")
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+            appdelegate.window?.rootViewController = newViewController //sets rootViewController to Routines main page
         }
     }
 }
