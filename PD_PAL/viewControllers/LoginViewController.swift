@@ -17,6 +17,7 @@ class LoginViewController: UIViewController{
     @IBOutlet weak var LoginButton: UIButton!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var ValidationMessage: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,15 +29,19 @@ class LoginViewController: UIViewController{
         TitleLabel.textColor = Global.color_schemes.m_blue1
         TitleLabel.applyTitle()
         LoginButton.applyInputButton()
-        LoginButton.titleLabel!.font = UIFont(name: "HelveticaNeue", size: 20)
+        userNameLabel.applyQuestionDesign()
+        userNameLabel.text = "Username"
+        userNameLabel.textAlignment = .left
+      
     }
     
     @IBAction func LoginTapped(_ sender: Any) {
         ValidationMessage.isHidden = true
-        guard let userName = userNameTextField.text, (userNameTextField.text?.count != 0), !(isValidName(name: userNameTextField.text!)) else {
-            ValidationMessage.text = "Please enter a valid name"
-            ValidationMessage.applyErrorDesign()
-            ValidationMessage.isHidden = false
+        var validName = isValidName(name: userNameTextField.text!)
+        guard let userName = userNameTextField.text, (userNameTextField.text?.count != 0), !(validName) else {
+            self.ValidationMessage.text = "Username is taken. Please try again."
+            self.ValidationMessage.applyErrorDesign()
+            self.ValidationMessage.isHidden = false
             return
         }
         
@@ -46,7 +51,14 @@ class LoginViewController: UIViewController{
             print("Update Username")
             print(global_UserData.Get_User_Data())
         }
-        //navigateToQuestionnaire()
+        
+        // Segue to Set up Question page
+        if !validName {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Questionnare", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "SetUpQuestionPage")
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
+        
     }
     
     // Check if name contains only letter and white spaces

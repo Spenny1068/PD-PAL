@@ -274,7 +274,7 @@ extension UILabel {
     // applies to any input Error message 
     func applyErrorDesign(){
         self.font = UIFont(name:"HelveticaNeue-Italic", size: 15.0)
-        self.textColor = UIColor.red
+        self.textColor = UIColor.black
     }
     
     // applies to title on Questionnaire storyboard
@@ -283,7 +283,7 @@ extension UILabel {
         self.numberOfLines = 2
         self.textAlignment = .center                                           // text alignment
         self.font = UIFont(name:"HelveticaNeue", size: 35.0)                   // text font and size
-        self.textColor = UIColor.black
+        self.textColor = Global.color_schemes.m_blue1
     }
     
     // applies to instructional labels in Questionnaire
