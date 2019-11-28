@@ -28,6 +28,9 @@ class CategoriesViewController: UIViewController {
 
         view.backgroundColor = Global.color_schemes.m_bgColor // background color
         
+        //used to highlight a category
+        let exerciseRecommend = global_UserRecommendation.checkUserAns()
+        
         /* category buttons */
         
         //-> flexibility
@@ -35,24 +38,44 @@ class CategoriesViewController: UIViewController {
         flexibilityButton.categoryButtonDesign()
         flexibilityButton.backgroundColor = Global.color_schemes.m_flexButton             // background color
         flexibilityButton.setBackgroundImage(UIImage(named: "FlexibilityBtnImg"), for: .normal)
+        //Highlights a category if needed
+        if (exerciseRecommend[0] == "Flexibility")
+        {
+            flexibilityButton.shadowButtonDesign()
+        }
         
         //-> strength
         strengthButton.setTitle("Strength",for: .normal)                            // button text
         strengthButton.categoryButtonDesign()
         strengthButton.backgroundColor = Global.color_schemes.m_blue2             // background color
         strengthButton.setBackgroundImage(UIImage(named: "StrengthBtnImg"), for: .normal)
+        //Highlights a category if needed
+        if (exerciseRecommend[0] == "Strength")
+        {
+            strengthButton.shadowButtonDesign()
+        }
         
         //-> cardio
         cardioButton.setTitle("Cardio",for: .normal)                            // button text
         cardioButton.categoryButtonDesign()
         cardioButton.backgroundColor = Global.color_schemes.m_blue4             // background color
         cardioButton.setBackgroundImage(UIImage(named: "CardioBtnImg"), for: .normal)
+        //Highlights a category if needed
+        if (exerciseRecommend[0] == "Cardio")
+        {
+            cardioButton.shadowButtonDesign()
+        }
         
         //-> balance
         balanceButton.setTitle("Balance",for: .normal)                            // button text
         balanceButton.categoryButtonDesign()
         balanceButton.backgroundColor = Global.color_schemes.m_blue1             // background color
         balanceButton.setBackgroundImage(UIImage(named: "BalanceBtnImg"), for: .normal)
+        //Highlights a category if needed
+        if (exerciseRecommend[0] == "Balance")
+        {
+            balanceButton.shadowButtonDesign()
+        }
         
         /* show buttons */
         self.view.addSubview(flexibilityButton)
