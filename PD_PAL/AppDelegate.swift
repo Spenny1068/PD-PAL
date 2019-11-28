@@ -287,7 +287,7 @@ extension UIButton {
 
         // design
         self.layer.cornerRadius = 25                                         // rounded edges
-        self.layer.borderWidth = 2                                           // border width in points
+        self.layer.borderWidth = 6                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
         //self.clipsToBounds = true                                            // confines bounds of view
         
@@ -297,7 +297,7 @@ extension UIButton {
         self.contentVerticalAlignment = .bottom                              // button text aligned bottom of self
         
         self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
-        self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 20, bottom: 10.0, right: 20.0)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 20, bottom: 6.0, right: 20.0)
     }
     
     func exerciseButtonDesign() {

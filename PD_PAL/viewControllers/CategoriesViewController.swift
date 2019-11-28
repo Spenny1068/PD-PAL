@@ -38,7 +38,8 @@ class CategoriesViewController: UIViewController {
         flexibilityButton.setTitle("Flexibility",for: .normal)                            // button text
         flexibilityButton.categoryButtonDesign()
         flexibilityButton.backgroundColor = Global.color_schemes.m_flexButton             // background color
-        flexibilityButton.setBackgroundImage(UIImage(named: "FlexibilityBtnImg"), for: .normal)
+        //flexibilityButton.setBackgroundImage(UIImage(named: "FlexibilityBtnImg"), for: .normal)
+        flexibilityButton.setBackgroundImage(UIImage(named: "FlexibilityIcon"), for: .normal)
         //Highlights a category if needed
         if (exerciseRecommend[0] == "Flexibility")
         {
@@ -49,7 +50,7 @@ class CategoriesViewController: UIViewController {
         strengthButton.setTitle("Strength",for: .normal)                            // button text
         strengthButton.categoryButtonDesign()
         strengthButton.backgroundColor = Global.color_schemes.m_blue2             // background color
-        strengthButton.setBackgroundImage(UIImage(named: "StrengthBtnImg"), for: .normal)
+        strengthButton.setBackgroundImage(UIImage(named: "StrengthIcon"), for: .normal)
         //Highlights a category if needed
         if (exerciseRecommend[0] == "Strength")
         {
@@ -60,7 +61,8 @@ class CategoriesViewController: UIViewController {
         cardioButton.setTitle("Cardio",for: .normal)                            // button text
         cardioButton.categoryButtonDesign()
         cardioButton.backgroundColor = Global.color_schemes.m_blue4             // background color
-        cardioButton.setBackgroundImage(UIImage(named: "CardioBtnImg"), for: .normal)
+//        cardioButton.setBackgroundImage(UIImage(named: "CardioBtnImg"), for: .normal)
+        cardioButton.setBackgroundImage(UIImage(named: "CardioIcon"), for: .normal)
         //Highlights a category if needed
         if (exerciseRecommend[0] == "Cardio")
         {
@@ -71,7 +73,7 @@ class CategoriesViewController: UIViewController {
         balanceButton.setTitle("Balance",for: .normal)                            // button text
         balanceButton.categoryButtonDesign()
         balanceButton.backgroundColor = Global.color_schemes.m_blue1             // background color
-        balanceButton.setBackgroundImage(UIImage(named: "BalanceBtnImg"), for: .normal)
+        balanceButton.setBackgroundImage(UIImage(named: "BalanceIcon"), for: .normal)
         //Highlights a category if needed
         if (exerciseRecommend[0] == "Balance")
         {
