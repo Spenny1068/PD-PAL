@@ -51,6 +51,7 @@ class TestVC: UIViewController{
     
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
+        isTimerRunning = true
 //        maxTime = CFTimeInterval(seconds)
 //        realtime = CFTimeInterval(seconds)
 //        maxTime = Float(seconds)
@@ -88,23 +89,26 @@ class TestVC: UIViewController{
         
         // Animate circular progress
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimation.fromValue = progress
+        basicAnimation.fromValue = progress //start animation at this value
         //        progress = maxTime - seconds
-        let interval = Float((2*(CGFloat.pi))/CGFloat(5))
+        let interval = Float((2*(CGFloat.pi))/CGFloat(5)) //portion of circle that should be animated in 1 sec
 //        realtime -= 1
 //        maxTime = seconds - realtime
         maxTime += 1
-        progress += (interval*Float(maxTime))
-        basicAnimation.toValue = progress
-        //basicAnimation.duration = CFTimeInterval(maxTime)
-        basicAnimation.duration = 1
+        progress = (interval*Float(maxTime)) // update progress value
+        print("Log: seconds ", seconds)
+        print("Log: progress ", progress)
+        basicAnimation.toValue = progress //animate to finish value
+        basicAnimation.duration = CFTimeInterval(1)
+        //basicAnimation.duration = 1
         
         shapelayer.add(basicAnimation, forKey: "Update")
         
         /* when countdown is done, hide and show these elements */
-        if realtime < 0 {
+        if seconds <= 0 {
             timerLabel.text = "Complete!"
             timer.invalidate()
+            isTimerRunning = false
             
             // Keeps animation after completion
             //            basicAnimation.fillMode = CAMediaTimingFillMode.forwards
