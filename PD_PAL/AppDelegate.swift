@@ -290,9 +290,9 @@ extension UIButton {
 
         // design
         self.layer.cornerRadius = 25                                         // rounded edges
-        self.layer.borderWidth = 2                                           // border width in points
+        self.layer.borderWidth = 6                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
-        self.clipsToBounds = true                                            // confines bounds of view
+        //self.clipsToBounds = true                                            // confines bounds of view
         
         // text
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
@@ -300,7 +300,7 @@ extension UIButton {
         self.contentVerticalAlignment = .bottom                              // button text aligned bottom of self
         
         self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
-        self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 20, bottom: 10.0, right: 20.0)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 20, bottom: 6.0, right: 20.0)
     }
     
     func exerciseButtonDesign() {
@@ -323,6 +323,23 @@ extension UIButton {
         //self.setImage(exerciseImage , for: UIControl.State.normal)
         //self.tintColor = UIColor.black
         //self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 260, bottom: 20.0, right: 20)
+    }
+    
+    //Use this for recommended exercises
+    func shadowButtonDesign()
+    {
+        self.layer.shadowColor = UIColor.green.cgColor
+        self.layer.shadowOpacity = 0.8
+        self.layer.shadowRadius = 12
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
+    }
+    
+    func shadowCategoryButtonDesign()
+    {
+        self.layer.shadowColor = UIColor.green.cgColor
+        self.layer.shadowOpacity = 0.8
+        self.layer.shadowRadius = 12
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
     }
     
     func routineButtonDesign() {
@@ -474,3 +491,4 @@ let global_UserData = UserData()
 let global_ExerciseData = ExerciseDatabase()
 let global_StepTracker = StepCount()
 let global_UserDataFirestore = UserDataFirestore()
+let global_UserRecommendation = RecommendAlg()

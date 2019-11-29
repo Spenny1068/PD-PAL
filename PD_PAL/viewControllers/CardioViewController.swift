@@ -9,6 +9,7 @@
 // REVISION HISTORY:
 // <Date, Name, Changes made>
 // <Oct. 26, 2019, Spencer Lall, added exercise buttons
+// <November 27, 2019, Arian Vafadar, Highlighted the exercises>
 
 
 import UIKit
@@ -60,22 +61,43 @@ class CardioViewController: UIViewController {
         /* page message */
         self.show_page_message(s1: "Cardio Exercises!", s2: "Cardio")
         
+        let exercise_list = global_ExerciseData.exercise_names()
+        
+        //Use this to hightlight an exercise
+        let exerciseRecommend = global_UserRecommendation.checkUserAns()
+        
         /* exercise buttons */
         
         // button 1
-        exerciseButton.setTitle("WALKING",for: .normal)                        // button text
+        exerciseButton.setTitle(exercise_list[1],for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
         exerciseButton.backgroundColor = Global.color_schemes.m_blue4          // background color
+       //Highlights a Exercise if needed
+        if (exerciseRecommend[1] == exercise_list[1])
+        {
+            exerciseButton.shadowButtonDesign()
+        }
 
         // button 2
-        exerciseButton2.setTitle("EXERCISE 2",for: .normal)                        // button text
+        //exerciseButton2.setTitle("EXERCISE 2",for: .normal)                        // button text
+        exerciseButton2.setTitle(exercise_list[15],for: .normal)                        
         exerciseButton2.exerciseButtonDesign()
         exerciseButton2.backgroundColor = Global.color_schemes.m_blue4          // background color
+        //Highlights a Exercise if needed
+        if (exerciseRecommend[1] == exercise_list[15])
+        {
+            exerciseButton2.shadowButtonDesign()
+        }
 
         // button 3
-        exerciseButton3.setTitle("EXERCISE 3",for: .normal)                        // button text
+        exerciseButton3.setTitle(exercise_list[16],for: .normal)                        // button text
         exerciseButton3.exerciseButtonDesign()
         exerciseButton3.backgroundColor = Global.color_schemes.m_blue4          // background color
+        //Highlights a Exercise if needed
+        if (exerciseRecommend[1] == exercise_list[16])
+        {
+            exerciseButton3.shadowButtonDesign()
+        }
 
         /* exercise buttons constraints */
         applyExerciseButtonConstraint(button: exerciseButton)

@@ -21,6 +21,7 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     var pageControl = UIPageControl()
     //var refreshTrendGraph = TrendViewController()
    
+    
     // view controllers in PageViewController
     lazy var orderedViewControllers: [UIViewController] = {
         return [self.newVc(viewController: "RoutinesPage"),
@@ -32,8 +33,9 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         global_StepTracker.track_steps() //call step counter
+        print("Recommendation Made:\(global_UserRecommendation.checkUserAns())")
+        
         self.dataSource = self
-        logNavigationStack()
         
                                     /* NAVIGATION BAR CODE */
         //self.navigationController?.navigationBar.topItem!.title = "ROUTINES"                     // default title
