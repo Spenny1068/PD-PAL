@@ -21,7 +21,10 @@ class LoginViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.fullScreen();
+
+        // navigation bar styling
+        self.navigationController?.transparentNavBar()
+        
         //Load error and title label
         ValidationMessage.isHidden = true
         userNameTextField.delegate = self

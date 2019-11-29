@@ -8,6 +8,7 @@
 //<Oct. 27, 2019, Izyl Canonicato, programmatic labels and buttons>
 //<Oct. 28, 2019, Izyl Canonicato, navigation to Routines (Home page)>
 //<Nov. 2, 2019, Izyl Canonicato, Insert/Update UserName into UserData>
+//<Nov. 27, 2019, Izyl Canonicato, Navigation bar styling>
 
 import UIKit
 
@@ -18,8 +19,13 @@ class SetUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Hides back button of navigation bar
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        
         let vc = LoginViewController()
         vc.dismiss(animated: true, completion: nil)
+        
         //Question Label
         QuestionLabel.text = "Would you like to set-up your preferences now?"
         QuestionLabel.applyQuestionDesign()
