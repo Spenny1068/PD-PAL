@@ -146,6 +146,41 @@ extension UIViewController {
         ])
     }
     
+    // displays exercise description as written in exerciseDB
+    func show_routine_description(string:String, DLabel: UILabel, DText: UILabel) {
+        
+        // description label
+        DLabel.textAlignment = .left                                             // text alignment
+        DLabel.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
+        DLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)              // text font and size
+        DLabel.text = "Description"
+        self.view.addSubview(DLabel)
+
+        // description label constraints
+        NSLayoutConstraint.activate([
+            DLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            DLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -81),
+            DLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 120)
+        ])
+        
+        // description text
+        DText.textAlignment = .left                                             // text alignment
+        DText.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
+        DText.font = Global.text_fonts.m_exerciseDescriptionDurationFont        // text font and size
+        DText.lineBreakMode = .byWordWrapping                                   // Word wrapping
+        DText.numberOfLines = 4                                                 // theres space for a maximum of 5 lines
+        DText.text = string
+        DText.textColor = Global.color_schemes.m_blue1
+        self.view.addSubview(DText)
+
+        // description text constraints
+        NSLayoutConstraint.activate([
+            DText.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
+            DText.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12),
+            DText.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 155)
+        ])
+    }
+    
     // displays exercise duration as written in exerciseDB
     func show_exercise_duration(string:String) {
         
@@ -246,7 +281,7 @@ extension UILabel {
     
     func applyExerciseLabelDesign() {
         self.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
-        self.textAlignment = .center                                           // text alignment
+        self.textAlignment = .left                                           // text alignment
         self.font = UIFont(name:"HelveticaNeue", size: 25.0)                    // text font and size
         self.textColor = UIColor.black
     }
