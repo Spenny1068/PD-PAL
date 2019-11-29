@@ -58,9 +58,12 @@ class SettingsViewController: UIViewController {
     @IBAction func doubleCheckDeleteRequest(_ sender: UIButton)
     {
         /* adapted source from: stackoverflow.com/questions/31101958/swift-ios-how-to-use-uibutton-to-trigger-uialertcontroller?rq=1*/
-        let alert = UIAlertController(title: "Confirm Deletion", message: "Are you sure that you want to delete your data?", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Confirm Data Deletion", message: "Are you sure that you want to delete your data?", preferredStyle: UIAlertController.Style.alert)
         
-        alert.addAction(UIAlertAction(title: "Agree", style: UIAlertAction.Style.default, handler: {action in self.requestDelete()}))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: {action in self.requestDelete()}))
+        
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: {action in alert.dismiss(animated: true, completion: nil)}))
+        
         self.present(alert, animated: true, completion: nil)
     }
     
