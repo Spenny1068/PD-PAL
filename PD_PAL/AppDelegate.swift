@@ -316,15 +316,15 @@ extension UIButton {
         self.contentHorizontalAlignment = .center                              // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 80)
         
         // play button image
         //let exerciseImage = UIImage(named: "ppp.png")/
-        //self.setImage(exerciseImage , for: UIControl.State.normal)
-        //self.tintColor = UIColor.black
-        //self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 260, bottom: 20.0, right: 20)
+        self.setImage(UIImage(named: "Playbutton") , for: UIControl.State.normal)
+        self.tintColor = UIColor.lightGray
+        self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left:260, bottom: 20.0, right: 0)
     }
-    
+        
     func routineButtonDesign() {
         self.translatesAutoresizingMaskIntoConstraints = false               // turn on constraints
 
@@ -336,7 +336,7 @@ extension UIButton {
         
         // text
         self.setTitleColor(UIColor.black, for: .normal)                      // button text color
-        self.setTitleColor(UIColor.gray, for: .selected)
+        //self.setTitleColor(UIColor.gray, for: .selected)
         self.contentHorizontalAlignment = .center                            // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_routineButtonFont       // button text font
