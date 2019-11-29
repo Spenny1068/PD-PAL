@@ -15,13 +15,13 @@ class TestVC: UIViewController{
     @IBOutlet weak var timerLabel: UILabel!
     
     // Timer stuff
-    var seconds = 5
+    var seconds = 7
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time
 //    var realtime: CFTimeInterval = 0.0
 //    var maxTime: CFTimeInterval = 0.0
-    var realtime: Int = 5
-    var maxTime: Int = 0
+    //var realtime: Int = 5
+    var maxTime: Int = 7
     
     // Animation stuff
     let shapelayer = CAShapeLayer()
@@ -29,7 +29,8 @@ class TestVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        
         // Draw Shape
         let circularPath = UIBezierPath(arcCenter: CGPoint(x: self.view.frame.size.width/2, y: 475), radius: 50, startAngle: 0, endAngle: 2*CGFloat.pi, clockwise: true)
         shapelayer.path = circularPath.cgPath
@@ -41,7 +42,7 @@ class TestVC: UIViewController{
         // Initial stroke
        shapelayer.strokeEnd = 0
         view.layer.addSublayer(shapelayer)
-   
+        
     }
     
     
@@ -50,6 +51,7 @@ class TestVC: UIViewController{
     }
     
     func runTimer() {
+        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
         isTimerRunning = true
 //        maxTime = CFTimeInterval(seconds)
@@ -59,6 +61,7 @@ class TestVC: UIViewController{
     }
     
     @objc func updateTimer() {
+        
 //        realtime -= 1     //This will decrement(count down)the seconds.
 //        timerLabel.text = "\(realtime)" + "s" //This will update the label
 //
@@ -88,18 +91,18 @@ class TestVC: UIViewController{
         timerLabel.text = "\(seconds)" + "s" //This will update the label
         
         // Animate circular progress
+        
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.fromValue = progress //start animation at this value
-        //        progress = maxTime - seconds
-        let interval = Float((2*(CGFloat.pi))/CGFloat(5)) //portion of circle that should be animated in 1 sec
-//        realtime -= 1
-//        maxTime = seconds - realtime
-        maxTime += 1
-        progress = (interval*Float(maxTime)) // update progress value
-        print("Log: seconds ", seconds)
-        print("Log: progress ", progress)
+        //divide by the time set
+        progress += 1/Float(maxTime)
+        //print("Log: seconds ", seconds)
+        //print("Log: progress ", progress)
         basicAnimation.toValue = progress //animate to finish value
-        basicAnimation.duration = CFTimeInterval(1)
+        //to make sure that the circular progress bar doesn't snap back to zero, point to the end value
+        shapelayer.strokeEnd = CGFloat(progress)
+        //basicAnimation.duration = CFTimeInterval(1)
+        basicAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         //basicAnimation.duration = 1
         
         shapelayer.add(basicAnimation, forKey: "Update")
