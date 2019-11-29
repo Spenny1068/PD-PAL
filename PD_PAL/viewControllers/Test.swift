@@ -18,8 +18,10 @@ class TestVC: UIViewController{
     var seconds = 5
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time
-    var realtime: CFTimeInterval = 0.0
-    var maxTime: CFTimeInterval = 0.0
+//    var realtime: CFTimeInterval = 0.0
+//    var maxTime: CFTimeInterval = 0.0
+    var realtime: Int = 5
+    var maxTime: Int = 0
     
     // Animation stuff
     let shapelayer = CAShapeLayer()
@@ -49,35 +51,64 @@ class TestVC: UIViewController{
     
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
-        maxTime = CFTimeInterval(seconds)
-        realtime = CFTimeInterval(seconds)
+//        maxTime = CFTimeInterval(seconds)
+//        realtime = CFTimeInterval(seconds)
+//        maxTime = Float(seconds)
+        
     }
     
     @objc func updateTimer() {
-        realtime -= 1     //This will decrement(count down)the seconds.
-        timerLabel.text = "\(realtime)" + "s" //This will update the label
+//        realtime -= 1     //This will decrement(count down)the seconds.
+//        timerLabel.text = "\(realtime)" + "s" //This will update the label
+//
+//        // Animate circular progress
+//        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+//        basicAnimation.fromValue = progress
+////        progress = maxTime - seconds
+//        let interval = Float((2*(CGFloat.pi))/CGFloat(maxTime))
+//        progress += interval
+//        basicAnimation.toValue = progress
+//        basicAnimation.duration = CFTimeInterval(maxTime)
+//        basicAnimation.duration = 1
+//
+//        shapelayer.add(basicAnimation, forKey: "Update")
+//
+//        /* when countdown is done, hide and show these elements */
+//        if realtime < 0 {
+//            timerLabel.text = "Complete!"
+//            timer.invalidate()
+//
+//            // Keeps animation after completion
+////            basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+////            basicAnimation.isRemovedOnCompletion = false
+//        }
+        
+        seconds -= 1     //This will decrement(count down)the seconds.
+        timerLabel.text = "\(seconds)" + "s" //This will update the label
         
         // Animate circular progress
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.fromValue = progress
-//        progress = maxTime - seconds
-        var interval = Float((2*(CGFloat.pi))/CGFloat(maxTime))
-        progress += interval
+        //        progress = maxTime - seconds
+        let interval = Float((2*(CGFloat.pi))/CGFloat(5))
+//        realtime -= 1
+//        maxTime = seconds - realtime
+        maxTime += 1
+        progress += (interval*Float(maxTime))
         basicAnimation.toValue = progress
-        basicAnimation.duration = CFTimeInterval(maxTime)
+        //basicAnimation.duration = CFTimeInterval(maxTime)
+        basicAnimation.duration = 1
         
         shapelayer.add(basicAnimation, forKey: "Update")
         
         /* when countdown is done, hide and show these elements */
         if realtime < 0 {
-            //stopButton.isHidden = true
-            //completedButton.isHidden = false
             timerLabel.text = "Complete!"
             timer.invalidate()
             
             // Keeps animation after completion
-            basicAnimation.fillMode = CAMediaTimingFillMode.forwards
-            basicAnimation.isRemovedOnCompletion = false
+            //            basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+            //            basicAnimation.isRemovedOnCompletion = false
         }
     }
 }
