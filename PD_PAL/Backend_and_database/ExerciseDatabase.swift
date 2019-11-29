@@ -279,7 +279,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "ARM_RAISES",
                         Intensity: "Moderate",
-                        Duration: 30)
+                        Duration: 30,
+                        Sets: 3)
         
         insert_exercise(Name: "JOGGING",
                         Desc: "For optimal results perform this exercise on a track. Try to stand in one place, and jog on the stop",
@@ -287,7 +288,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "JOGGING",
                         Intensity: "Moderate",
-                        Duration: 60)
+                        Duration: 60,
+                        Sets: 3)
         
         insert_exercise(Name: "JUMPING JACKS",
                         Desc: "Stand in one spot. Keep hands on your side and feet together. Now raise your hands and extend your legs as shown",
@@ -295,7 +297,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "JUMPING_JACKS",
                         Intensity: "Intense",
-                        Duration: 60)
+                        Duration: 60,
+                        Sets: 3)
         
     }
 

@@ -29,7 +29,7 @@ class RecommendAlg{
     var leastCombo: [String]
     var secondLeastCombo: [String]
     let exerciseList = global_ExerciseData.exercise_names()
-    var categoryMatch = (" ", " ", " ", " ", " ", 0)
+    var categoryMatch = (" ", " ", " ", " ", " ", 0, 0)
     let userAns = global_UserData.Get_User_Data()
     
     init(){
@@ -210,7 +210,7 @@ class RecommendAlg{
         //figure out the least completed category and the second least completed category
         let exerciseData = global_UserData.Get_Exercises_all()
         var twoLeastCompleted: [String] = [" ", " "]
-        var categoryMatch = (" ", " ", " ", " ", " ", 0)
+        var categoryMatch = (" ", " ", " ", " ", " ", 0, 0)
         var catCount = [0, 0, 0, 0]
                 
                 

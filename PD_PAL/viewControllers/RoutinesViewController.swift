@@ -14,12 +14,11 @@
 import UIKit
 
 class RoutinesViewController: UIViewController {
-    
     // IBOutlet buttons
     @IBOutlet weak var routineButton1: UIButton!
     @IBOutlet weak var routineButton2: UIButton!
     @IBOutlet weak var routineButton3: UIButton!
-    
+    //var window: UIWindow?
     
     /* stack view containing exercise buttons */
     lazy var stackView: UIStackView = {
@@ -76,13 +75,6 @@ class RoutinesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
-    
-   /* when home button on navigation bar is tapped */
-   @objc func homeButtonTapped(sender: UIButton!) {
-       let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-       let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
-       self.present(newViewController, animated: true, completion: nil)
-   }
 }
 
 

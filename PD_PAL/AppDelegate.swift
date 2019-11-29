@@ -24,6 +24,7 @@ struct Global {
     static var next_routine_exercise = ""
     static var routine_data: [String] = ["", "", ""]
     static var routine_index = 0
+    static var questionnaire_index = 0
     
     // color schemes
     struct color_schemes {
@@ -51,6 +52,8 @@ struct Global {
     }
 }
 
+let appdelegate = UIApplication.shared.delegate as! AppDelegate
+
 /* So we can use hex valued colors */
 extension UIColor {
    convenience init(red: Int, green: Int, blue: Int) {
@@ -70,6 +73,27 @@ extension UIColor {
    }
 }
 
+/* UINagivationController methods */
+extension UINavigationController{
+    
+    // Transparent Navigation Bar design
+    func transparentNavBar(){
+        self.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationBar.shadowImage = UIImage()
+        self.navigationBar.isTranslucent = true
+        self.view.backgroundColor = UIColor.clear
+    }
+    
+    // Pop to a specific view controller
+    func backToViewController(vc: Any){
+        for element in viewControllers as Array{
+            if "\(type(of: element)).Type" == "\(type(of: vc))"{
+                self.popToViewController(element, animated: true)
+                break;
+            }
+        }
+    }
+}
 /* UIViewController methods */
 extension UIViewController {
     
@@ -212,6 +236,11 @@ extension UIViewController {
             label.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -38),
         ])
     }
+    
+    // returns to Routines Main page when home button is tapped
+    @objc func homeTapped(){
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }
 
 /* UILabel methods */
@@ -237,14 +266,14 @@ extension UILabel {
     func applyExerciseLabelDesign() {
         self.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
         self.textAlignment = .center                                           // text alignment
-        self.font = UIFont(name:"HelveticaNeue", size: 25.0)                    // text font and size
+        self.font = Global.text_fonts.m_exerciseDescriptionDurationFont                    // text font and size
         self.textColor = UIColor.black
     }
     
     // applies to any input Error message 
     func applyErrorDesign(){
         self.font = UIFont(name:"HelveticaNeue-Italic", size: 15.0)
-        self.textColor = UIColor.red
+        self.textColor = UIColor.black
     }
     
     // applies to title on Questionnaire storyboard
@@ -253,12 +282,12 @@ extension UILabel {
         self.numberOfLines = 2
         self.textAlignment = .center                                           // text alignment
         self.font = UIFont(name:"HelveticaNeue", size: 35.0)                   // text font and size
-        self.textColor = UIColor.black
+        self.textColor = Global.color_schemes.m_blue1
     }
     
     // applies to instructional labels in Questionnaire
     func applyQlabels(){
-        self.font = UIFont(name:"HelveticaNeue", size: 25.0)                   // text font and size
+        self.font = Global.text_fonts.m_exerciseDescriptionDurationFont                    // text font and size
         self.textColor = UIColor.black
     }
     
@@ -382,14 +411,15 @@ extension UIButton {
         self.layer.cornerRadius = self.frame.height / 2                         // make button round
         self.setTitleColor(UIColor.white, for: .normal)                         // normal text colour
         self.setTitleColor(UIColor.gray, for: .selected)                        // selected text color
-        self.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 25.0)
+        self.titleLabel?.font = Global.text_fonts.m_routineButtonFont
     }
     
     // applied to Enter button on Registration page
     func applyInputButton(){
-        self.backgroundColor = UIColor.black                                    //background color
+        self.backgroundColor = Global.color_schemes.m_blue1                                    //background color
         self.layer.cornerRadius = self.frame.height / 4                         // make button rounded
         self.setTitleColor(UIColor.white, for: .normal)                         // text color
+        self.titleLabel?.font = Global.text_fonts.m_routineButtonFont   // text font and size
     }
     
     // applied to navigation to next Q in Questionnaire
@@ -455,11 +485,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //On cold start, if user does not exist, enter Questionnaire storyboard
         if(!global_UserData.User_Exists()){
-            print("USERNMAE: " + global_UserData.Get_User_Data().UserName)
-            //global_UserData.Clear_UserInfo_Database()
-            let view = UIStoryboard(name: "Questionnare", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
-            window?.rootViewController = view
-        }
+            print("USERNAME: " + global_UserData.Get_User_Data().UserName)
+//            //global_UserData.Clear_UserInfo_Database()
+//            let view = UIStoryboard(name: "Questionnare", bundle: nil).instantiateViewController(withIdentifier: "LoginPage")
+//            window?.rootViewController = view
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Questionnare", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "LoginPage")
+            let navController = UINavigationController(rootViewController: newViewController)
+            appdelegate.window?.rootViewController = navController //sets rootViewController to Questionnaire 
+        } 
         return true
     }
 

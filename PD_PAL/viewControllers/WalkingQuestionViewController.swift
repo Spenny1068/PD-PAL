@@ -9,11 +9,11 @@
 //<Oct. 28, 2019, Izyl Canonicato, Navigation to Routines (Home page)>
 //<Nov. 1, 2019, Izyl Canonicato, Slider functionality)>
 //<Nov. 2, 2019, Izyl Canonicato, Update/Insert WalkingDuration in UserData>
+//<Nov. 27, 2019, Izyl Canonicato, Navigation to Routines (Home page)>
 
 import UIKit
 
 class WalkingQuestionViewController: UIViewController {
-    let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
     //Buttons
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
@@ -27,7 +27,7 @@ class WalkingQuestionViewController: UIViewController {
     
     //Slider input
     @IBAction func sliderChanged(_ sender: UISlider) {
-        var newValue = roundf(slider.value)
+        let newValue = roundf(slider.value)
         slider.value = newValue
         walkingDurationVal = Int((sender.value)*5)
         if(newValue == 6){
@@ -59,19 +59,27 @@ class WalkingQuestionViewController: UIViewController {
         //Navigation Buttons
         completeButton.applyNextQButton()
         backButton.applyPrevQButton()
+        
     }
     
+    // Navigation to previous VC
     @IBAction func backTapped(_ sender: Any) {
-        guard let destinationViewController = QuestionStoryboard.instantiateViewController(withIdentifier: "EquipmentQuestionPage") as? EquipmentQuestionnaireViewController else{
-            print("Couldn't find the view controller")
-            return
-        }
-        present(destinationViewController, animated: true, completion: nil)
+        self.navigationController?.backToViewController(vc: EquipmentQuestionnaireViewController.self)
     }
     
+    // Navigation to main storyboard
     @IBAction func completeTapped(_ sender: UIButton) {
         //Update user's preferred walking duration
-        global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
+    global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         print(global_UserData.Get_User_Data())
+        
+        // Dismisses Questionnaire NC if coming from Routines Page or redefines root controller to Routines Main page if from cold start
+        if Global.questionnaire_index == 1 {
+            view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+            appdelegate.window?.rootViewController = newViewController //sets rootViewController to Routines main page
+        }
     }
 }
