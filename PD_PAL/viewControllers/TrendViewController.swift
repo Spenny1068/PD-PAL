@@ -96,7 +96,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         let username = userData.UserName
                 
         // message
-        self.show_page_message(s1: username + " Trends!", s2: "Trends")
+        self.show_page_message(s1: username + "'s Trends!", s2: "Trends")
         dateFormatter.dateFormat = "MM/dd/yyyy HH"
         startDate.text = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
         endDate.text = dateFormatter.string(from: Date())

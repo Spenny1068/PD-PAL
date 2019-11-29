@@ -153,8 +153,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "WALL_PUSH-UP",
                         Intensity: "Intense",
-                        Duration: 3,
-                        Sets: 3 )
+                        Duration: 30,
+                        Sets: 30)
         
         insert_exercise(Name: "WALKING",
                         Desc: "For optimal results perform this exercise on a track.",
@@ -162,8 +162,8 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "WALKING",
                         Intensity: "Light",
-                        Duration: 3,
-                        Sets: 1)
+                        Duration: 300,
+                        Sets: 3)
         
         insert_exercise(Name: "SINGLE LEG STANCE",
                         Desc: "Bend your knee and raise your leg beside a chair. Hold the chair with your hand that opposite to the side of your raised leg for support.",
@@ -171,7 +171,7 @@ class ExerciseDatabase {
                         Equipment: "Chair",
                         Link: "SINGLE_LEG_STANCE",
                         Intensity: "Light",
-                        Duration: 3,
+                        Duration: 25,
                         Sets: 3)
         
         insert_exercise(Name: "QUAD STRETCH",
@@ -180,7 +180,7 @@ class ExerciseDatabase {
                         Equipment: "Chair",
                         Link: "QUAD_STRETCH",
                         Intensity: "Moderate",
-                        Duration: 3,
+                        Duration: 25,
                         Sets: 3)
         
         insert_exercise(Name: "TRICEP KICKBACKS",
@@ -189,7 +189,7 @@ class ExerciseDatabase {
                         Equipment: "Weights",
                         Link: "TRICEP_KICKBACKS",
                         Intensity: "Light",
-                        Duration: 3,
+                        Duration: 30,
                         Sets: 3)
         
         insert_exercise(Name: "SIDE LEG LIFT",
@@ -198,7 +198,7 @@ class ExerciseDatabase {
                         Equipment: "Chair, Resistive Band",
                         Link: "SIDE_LEG_LIFT",
                         Intensity: "Light",
-                        Duration: 3,
+                        Duration: 30,
                         Sets: 3)
         
         insert_exercise(Name: "SHOULDER RAISES",
@@ -207,7 +207,7 @@ class ExerciseDatabase {
                         Equipment: "Weights",
                         Link: "SHOULDER_RAISES",
                         Intensity: "Light",
-                        Duration: 3,
+                        Duration: 30,
                         Sets: 3)
         
         insert_exercise(Name: "NECK SIDE STRETCH",
@@ -216,7 +216,7 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "NECK_SIDE_STRETCH",
                         Intensity: "Light",
-                        Duration: 3,
+                        Duration: 25,
                         Sets: 3)
         
         insert_exercise(Name: "LATERAL RAISES",
@@ -225,7 +225,7 @@ class ExerciseDatabase {
                         Equipment: "Weights",
                         Link: "LATERAL_RAISES",
                         Intensity: "Moderate",
-                        Duration: 3,
+                        Duration: 30,
                         Sets: 3)
         
         insert_exercise(Name: "KNEE MARCHING",
@@ -234,7 +234,7 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "KNEE_MARCHING",
                         Intensity: "Intense",
-                        Duration: 3,
+                        Duration: 60,
                         Sets: 3)
         
         insert_exercise(Name: "KNEE EXTENSION",
@@ -243,7 +243,7 @@ class ExerciseDatabase {
                         Equipment: "Chair",
                         Link: "KNEE_EXTENSION",
                         Intensity: "Moderate",
-                        Duration: 3,
+                        Duration: 30,
                         Sets: 3)
         
         insert_exercise(Name: "HEEL TO TOE",
@@ -252,7 +252,7 @@ class ExerciseDatabase {
                         Equipment: "None",
                         Link: "HEEL_TO_TOE",
                         Intensity: "Moderate",
-                        Duration: 3,
+                        Duration: 60,
                         Sets: 3)
         
         insert_exercise(Name: "HEEL STAND",
@@ -261,7 +261,7 @@ class ExerciseDatabase {
                         Equipment: "Chair",
                         Link: "HEEL_STAND",
                         Intensity: "Light",
-                        Duration: 3,
+                        Duration: 30,
                         Sets: 3)
         
         insert_exercise(Name: "CHEST STRETCH",
@@ -270,7 +270,7 @@ class ExerciseDatabase {
                         Equipment: "Weights",
                         Link: "CHEST_STRETCH",
                         Intensity: "Moderate",
-                        Duration: 3,
+                        Duration: 25,
                         Sets: 3)
         
         insert_exercise(Name: "ARM RAISES",
@@ -299,7 +299,6 @@ class ExerciseDatabase {
                         Intensity: "Intense",
                         Duration: 60,
                         Sets: 3)
-        
     }
 
     //Assuming the database is empty,
