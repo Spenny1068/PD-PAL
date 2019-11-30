@@ -31,12 +31,14 @@ Revision History
     Implemented Name_Available()
  - 30/11/2019 : William Huong
     Wrapped the asynchronous update functions into functions so calling them is easier.
+ - 30/11/2019 : William Huong
+    The Update functions now run asynchronously in the background
 */
 
 /*
 Known Bugs
  
- - 17/11/2019 : William Huong
+ - 17/11/2019 : William Huong --- Fixed
     Nothing works
 */
 
@@ -46,7 +48,6 @@ import Firebase
 /*
 
  Instead of directly interfacing with the Cloud Firestore database, call the methods implemented in this class.
- Ideally, call this class once every 24H to sync the data stored on this device with the data stored on Cloud Firestore.
  
  Cloud Firestore sorts data into two different objects, collections and documents.
  
@@ -70,25 +71,14 @@ import Firebase
         - Value : PoolAccessible - Boolean
         - Value : Intensity - String
         - Value : PushNotifications - Boolean
-        - Collection : Routines
-            - Document : Routine1
-                - Value : Exercise1
-                - Value : Exercise2
-                - Value : Exercise3
-                :
-            - Document : Routine2
-                - Value : Exercise4
-                :
-            - Document : Routine3
-                - Value : Exercise5
-                :
-            :
-        - Collection : ExercisesData
-            - Value : Year - Number
-            - Value : Month - Number
-            - Value : Day - Number
-            - Value : Hour - Number
-            - Value : ExercisesDone - [String]
+        - Collection : ExerciseData
+            - Document : YYYYMMDDHH
+                - Value : Year - Number
+                - Value : Month - Number
+                - Value : Day - Number
+                - Value : Hour - Number
+                - Value : ExercisesDone - [String]
+                - Value : StepsTaken - Int
         :
     - Document : User2
         :

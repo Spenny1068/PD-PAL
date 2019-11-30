@@ -82,7 +82,6 @@
 
 import Foundation
 import SQLite
-import Firebase
 
 /*
  
@@ -91,8 +90,8 @@ import Firebase
  The four databases are:
  - UserInfo: This database stores the name the user gives us, along with their answers to our questionnaire on first launch
     Columns:
-        - UUID = <String> A unique identifier for Firebase
         - UserName = <String> The name the user provides
+        - NameVerified = <Bool> Whether or not we have checked if the name is available in Firebase
         - QuestionsAnswered = <Bool> Whether or not the user answered the questionnaire
         - WalkingDuration = <Int> The duration for a walking exercise provided by the user
         - ChairAccessible = <Bool> Whether or not the user has access to a chair
