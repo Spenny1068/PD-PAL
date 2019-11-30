@@ -177,11 +177,15 @@ class tempViewController: UIViewController {
     
     /* put slow code in here to run on a different thread */
     override func viewDidAppear(_ animated: Bool) {
-        let temp = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
-        var gif = UIImage.gifImageWithName(temp.Link)
-        imageView = UIImageView(image: gif)
-        imageView.frame = CGRect(x: 0, y: 112, width: 375, height: 300)
-        view.addSubview(imageView)
+        /* gif */
+        do {
+            let temp = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
+            let gif = try UIImage(gifName: temp.Link)
+            self.imageView.setGifImage(gif)
+            imageView.frame = CGRect(x: 0, y: 112, width: 375, height: 300)
+            view.addSubview(imageView)
+
+        } catch { print(error) }
         
         LoadingLabel.isHidden = true
     }
