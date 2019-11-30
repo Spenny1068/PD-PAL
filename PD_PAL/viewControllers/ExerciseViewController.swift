@@ -33,6 +33,11 @@ class ExerciseViewController: UIViewController {
     var isTimerRunning = false
     var setNumber: Int = 1
     var restInterval = 0
+    
+    // Animation stuff
+    let shapelayer = CAShapeLayer()
+    var progress: Float = 0
+
 
     /* forward pass data between view controllers */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -102,7 +107,18 @@ class ExerciseViewController: UIViewController {
         SetsLabel.applySetsLabelFrame()
         SetsLabel.text = "SET " + "\(self.setNumber)"
         
+        //-> timer animation
+        let circularPath = UIBezierPath(arcCenter: CGPoint(x: 285, y: 488), radius: 50, startAngle: 0, endAngle: 2*CGFloat.pi, clockwise: true)
+        shapelayer.path = circularPath.cgPath
+        shapelayer.strokeColor = Global.color_schemes.m_blue1.cgColor
+        shapelayer.lineWidth = 10
+        shapelayer.lineCap = CAShapeLayerLineCap.round
+        shapelayer.fillColor = UIColor.clear.cgColor
+        shapelayer.strokeEnd = 0
+        view.layer.addSublayer(shapelayer)
+        
         /* when entering this page, hide these elements */
+        shapelayer.isHidden = true
         stopButton.isHidden = true
         timerLabel.isHidden = true
         SetsLabel.isHidden = true
@@ -173,6 +189,7 @@ class ExerciseViewController: UIViewController {
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
         
         /* when entering this page, hide these elements */
+        shapelayer.isHidden = true
         stopButton.isHidden = true
         timerLabel.isHidden = true
         SetsLabel.isHidden = true
@@ -190,7 +207,7 @@ class ExerciseViewController: UIViewController {
         
         /* gif */
         let temp = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
-        var gif = UIImage.gifImageWithName(temp.Link)
+        let gif = UIImage.gifImageWithName(temp.Link)
         imageView = UIImageView(image: gif)
         imageView.frame = CGRect(x: 0, y: 112, width: 375, height: 300)
         view.addSubview(imageView)
@@ -219,6 +236,7 @@ class ExerciseViewController: UIViewController {
         exitRoutineButton.isHidden = true
         
         /* show these elements */
+        shapelayer.isHidden = false
         stopButton.isHidden = false
         timerLabel.isHidden = false
         SetsLabel.isHidden = false
@@ -256,6 +274,7 @@ class ExerciseViewController: UIViewController {
         skipButton.isHidden = false
         
         /* hide these elements */
+        shapelayer.isHidden = true
         stopButton.isHidden = true
         timerLabel.isHidden = true
         SetsLabel.isHidden = true
@@ -263,15 +282,17 @@ class ExerciseViewController: UIViewController {
     
     /* when completed button is tapped */
     @IBAction func completedButton(_ sender: Any) {
-        
-        /* parse Date() function into year, month, day, and hour */
-        let year = Calendar.current.component(.year, from: Date())
-        let month = Calendar.current.component(.month, from: Date())
-        let day = Calendar.current.component(.day, from: Date())
-        let hour = Calendar.current.component(.hour, from: Date())
-        
-        /* insert excercise as done */
-        global_UserData.Add_Exercise_Done(ExerciseName: exercise_name ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+       
+        if self.setNumber == 1 {
+            /* parse Date() function into year, month, day, and hour */
+            let year = Calendar.current.component(.year, from: Date())
+            let month = Calendar.current.component(.month, from: Date())
+            let day = Calendar.current.component(.day, from: Date())
+            let hour = Calendar.current.component(.hour, from: Date())
+            
+            /* insert excercise as done */
+            global_UserData.Add_Exercise_Done(ExerciseName: exercise_name ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+        }
         
         killGif() /* kill running gif */
         
@@ -314,9 +335,21 @@ class ExerciseViewController: UIViewController {
     /* next set button is tapped  */
     @objc func nextSetButtonTapped(sender: UIButton!) {
 
+        if self.setNumber == 1 {
+            /* parse Date() function into year, month, day, and hour */
+            let year = Calendar.current.component(.year, from: Date())
+            let month = Calendar.current.component(.month, from: Date())
+            let day = Calendar.current.component(.day, from: Date())
+            let hour = Calendar.current.component(.hour, from: Date())
+            
+            /* insert excercise as done */
+            global_UserData.Add_Exercise_Done(ExerciseName: exercise_name ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+        }
+        
         /* update set number variable */
         self.setNumber = self.setNumber + 1
         SetsLabel.text = "SET " + "\(self.setNumber)"
+        self.progress = 0
         
         /* last set */
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
@@ -329,6 +362,7 @@ class ExerciseViewController: UIViewController {
         NextSetButton.isHidden = true
         
         /* show these elements */
+        shapelayer.isHidden = false
         timerLabel.isHidden = false
         SetsLabel.isHidden = false
         stopButton.isHidden = false
@@ -363,11 +397,23 @@ class ExerciseViewController: UIViewController {
             timerLabel.text = "REST: " + "\(seconds)" + "s"
         }
         
+        /* Animate circular progress */
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.fromValue = progress
+        let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
+        let maxTime = data.Duration
+        progress += 1/Float(maxTime)
+        basicAnimation.toValue = progress
+        shapelayer.strokeEnd = CGFloat(progress)
+        basicAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        shapelayer.add(basicAnimation, forKey: "Update")
+
         /* when countdown is done */
         if seconds <= 0 {
             stopButton.isHidden = true
             completedButton.isHidden = false
             NextSetButton.isHidden = false
+            shapelayer.isHidden = true
             
             SetsLabel.text = "SET " + "\(self.setNumber)" + " FINISHED!"
             self.restInterval = 1
