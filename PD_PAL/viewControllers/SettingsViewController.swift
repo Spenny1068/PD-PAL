@@ -26,8 +26,8 @@ class SettingsViewController: UIViewController {
         Global.questionnaire_index = 1
         /* page message */
         self.show_page_message(s1: "Change Your Settings!", s2: "Settings")
-        cloudSW.isOn = false //set initial status of permission to false
-        cloudSW.setOn(false, animated: true) //set initial switch status to false
+        cloudSW.isOn = userDB.Get_User_Data().FirestoreOK
+        cloudSW.setOn(userDB.Get_User_Data().FirestoreOK, animated: true) //set initial switch status to false
     }
     
     override func viewDidAppear(_ animated: Bool) {
