@@ -41,7 +41,7 @@ class TestVC: UIViewController{
         
         // Initial stroke
        shapelayer.strokeEnd = 0
-        view.layer.addSublayer(shapelayer)
+    view.layer.addSublayer(shapelayer)
         
     }
     
@@ -62,31 +62,6 @@ class TestVC: UIViewController{
     
     @objc func updateTimer() {
         
-//        realtime -= 1     //This will decrement(count down)the seconds.
-//        timerLabel.text = "\(realtime)" + "s" //This will update the label
-//
-//        // Animate circular progress
-//        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-//        basicAnimation.fromValue = progress
-////        progress = maxTime - seconds
-//        let interval = Float((2*(CGFloat.pi))/CGFloat(maxTime))
-//        progress += interval
-//        basicAnimation.toValue = progress
-//        basicAnimation.duration = CFTimeInterval(maxTime)
-//        basicAnimation.duration = 1
-//
-//        shapelayer.add(basicAnimation, forKey: "Update")
-//
-//        /* when countdown is done, hide and show these elements */
-//        if realtime < 0 {
-//            timerLabel.text = "Complete!"
-//            timer.invalidate()
-//
-//            // Keeps animation after completion
-////            basicAnimation.fillMode = CAMediaTimingFillMode.forwards
-////            basicAnimation.isRemovedOnCompletion = false
-//        }
-        
         seconds -= 1     //This will decrement(count down)the seconds.
         timerLabel.text = "\(seconds)" + "s" //This will update the label
         
@@ -96,15 +71,10 @@ class TestVC: UIViewController{
         basicAnimation.fromValue = progress //start animation at this value
         //divide by the time set
         progress += 1/Float(maxTime)
-        //print("Log: seconds ", seconds)
-        //print("Log: progress ", progress)
         basicAnimation.toValue = progress //animate to finish value
         //to make sure that the circular progress bar doesn't snap back to zero, point to the end value
         shapelayer.strokeEnd = CGFloat(progress)
-        //basicAnimation.duration = CFTimeInterval(1)
         basicAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        //basicAnimation.duration = 1
-        
         shapelayer.add(basicAnimation, forKey: "Update")
         
         /* when countdown is done, hide and show these elements */
