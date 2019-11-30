@@ -104,11 +104,13 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         
     }
     
+    override func viewDidAppear(_ animated: Bool){
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
+        self.updateAuto()
+    }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
         self.updateAuto()
-       
-       
     }
     
     override func viewDidLayoutSubviews() {
@@ -202,6 +204,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
             {
                 //start date is smaller than end date
                 self.view.endEditing(true)
+                self.updateAuto()
             }
             else
             {
@@ -235,6 +238,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         {
             //start date is smaller than end date
             self.view.endEditing(true)
+            self.updateAuto()
         }
         else
         {
