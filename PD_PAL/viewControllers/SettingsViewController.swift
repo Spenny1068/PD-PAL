@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var cloudSW: UISwitch!
     @IBOutlet weak var deleteData: UIButton!
-    let userDB = UserData()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +27,18 @@ class SettingsViewController: UIViewController {
         Global.questionnaire_index = 1
         /* page message */
         self.show_page_message(s1: "Change Your Settings!", s2: "Settings")
-        cloudSW.isOn = userDB.Get_User_Data().FirestoreOK
-        cloudSW.setOn(userDB.Get_User_Data().FirestoreOK, animated: true) //set initial switch status to false
+        cloudSW.isOn = global_UserData.Get_User_Data().FirestoreOK
+        cloudSW.setOn(global_UserData.Get_User_Data().FirestoreOK, animated: true) //set initial switch status to false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
+    override func viewWillAppear(_ animated: Bool){
+        cloudSW.isOn = global_UserData.Get_User_Data().FirestoreOK
+        cloudSW.setOn(cloudSW.isOn, animated: true)
+    }
+    
     
     @IBAction func buttonClicked(_ sender: Any) {
         if cloudSW.isOn{
@@ -41,7 +46,7 @@ class SettingsViewController: UIViewController {
             cloudSW.setOn(true, animated:true)
             
             //let firebase know that user agreed
-            userDB.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: true)
+           global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: true)
             //print(userDB.Get_User_Data())
         }
         else
@@ -50,7 +55,7 @@ class SettingsViewController: UIViewController {
             cloudSW.setOn(false, animated: true)
             
             //let firebase know that user did not allow
-            userDB.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: false)
+            global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: false)
             
             //print(userDB.Get_User_Data())
         }
@@ -70,11 +75,11 @@ class SettingsViewController: UIViewController {
     
     func requestDelete(){
         //call the DB function that clears user info
-        userDB.Delete_userInfo()
+        global_UserData.Delete_userInfo()
         //call the DB function that clears the step data
-        userDB.Clear_StepCount_Database()
+        global_UserData.Clear_StepCount_Database()
         //call the DB function that clears the exercises done
-        userDB.Clear_UserExerciseData_Database()
+        global_UserData.Clear_UserExerciseData_Database()
         //Clear the use info in the document
         global_UserDataFirestore.Clear_UserInfo(targetUser: nil) { returnVal in
             if( returnVal == 0 ) {
@@ -88,9 +93,11 @@ class SettingsViewController: UIViewController {
             }
         }
         
+        cloudSW.isOn = false
+        
         //test to see if UserInfo got deleted
-        print("Check User DB: \(userDB.Get_User_Data())")
-        print("Check Exercises Done DB: \(userDB.Get_Exercises_all())")
+        print("Check User DB: \(global_UserData.Get_User_Data())")
+        print("Check Exercises Done DB: \(global_UserData.Get_Exercises_all())")
         
     }
 }

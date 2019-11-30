@@ -8,6 +8,7 @@
 //<Oct. 27, 2019, Izyl Canonicato, Error handling>
 //<Nov. 2, 2019, Izyl Canonicato, Insert/Update questionsAnswered into UserData>
 //<Nov. 23, 2019, Izyl Canonicato, Updated IB constraints>
+//<Nov. 29, 2019, William Huong, Added check for unique names>
 
 import Foundation
 import UIKit
