@@ -30,11 +30,14 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
                 self.newVc(viewController: "SettingsPage")]
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        logNavigationStack()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         global_StepTracker.track_steps() //call step counter
         print("Recommendation Made:\(global_UserRecommendation.checkUserAns())")
-        
         self.dataSource = self
         
                                     /* NAVIGATION BAR CODE */

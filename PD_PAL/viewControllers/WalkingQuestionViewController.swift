@@ -73,13 +73,9 @@ class WalkingQuestionViewController: UIViewController {
     global_UserData.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: walkingDurationVal, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
         print(global_UserData.Get_User_Data())
         
-        // Dismisses Questionnaire NC if coming from Routines Page or redefines root controller to Routines Main page if from cold start
-        if Global.questionnaire_index == 1 {
-            view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        } else {
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
-            appdelegate.window?.rootViewController = newViewController //sets rootViewController to Routines main page
-        }
+        // Redefines root controller to mainNavVC
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
+        appdelegate.window?.rootViewController = newViewController //sets rootViewController to Routines main page
     }
 }
