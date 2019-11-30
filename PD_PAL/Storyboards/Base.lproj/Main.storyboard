@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZTo-ww-JRx">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZTo-ww-JRx">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -149,14 +147,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM1-5t-nag">
-                                        <rect key="frame" x="24" y="142" width="80" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Clear Dates"/>
-                                        <connections>
-                                            <action selector="clearDates:" destination="eOn-hd-4pY" eventType="touchUpInside" id="IEe-9U-CBo"/>
-                                        </connections>
-                                    </button>
                                     <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowDown.png" translatesAutoresizingMaskIntoConstraints="NO" id="FZU-MT-yDc">
                                         <rect key="frame" x="278" y="585" width="86" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -178,7 +168,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="330" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4K1-hI-FIh" id="Ssf-dw-JSx">
-                                                    <rect key="frame" x="0.0" y="0.0" width="330" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="330" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -189,14 +179,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMF-hp-Tgb">
-                                        <rect key="frame" x="280" y="140" width="72" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Update All"/>
-                                        <connections>
-                                            <action selector="Update:" destination="eOn-hd-4pY" eventType="touchUpInside" id="84i-Oa-kY4"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select the same day for hourly graph." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3n-H5-cv3">
                                         <rect key="frame" x="19" y="1210" width="345" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -224,9 +206,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="2100"/>
                     <connections>
-                        <outlet property="ClearDates" destination="eM1-5t-nag" id="1A4-aG-eMu"/>
                         <outlet property="TrendTableView" destination="Zdh-bc-bmA" id="eVk-5d-TSY"/>
-                        <outlet property="UpdateButton" destination="gMF-hp-Tgb" id="iMJ-kZ-bp0"/>
                         <outlet property="endDate" destination="AZy-mb-0yE" id="jg0-6a-j9d"/>
                         <outlet property="lineChartView" destination="PK4-Qk-EFZ" id="515-P7-7Ed"/>
                         <outlet property="rChartView" destination="E2T-ic-h5l" id="Haa-5I-ZYj"/>
@@ -247,47 +227,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CK7-Bd-oTj">
-                                <rect key="frame" x="16" y="198" width="123" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CK7-Bd-oTj">
+                                <rect key="frame" x="30" y="217" width="315" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="vDR-Xq-iGq"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Update Profile"/>
                                 <connections>
                                     <segue destination="Lhh-lh-0Gg" kind="show" id="Kuy-br-46A"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zeS-rm-SUl">
-                                <rect key="frame" x="312" y="140" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zeS-rm-SUl">
+                                <rect key="frame" x="312" y="139.5" width="51" height="31"/>
                                 <accessibility key="accessibilityConfiguration" label="CloudSW"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="buttonClicked:" destination="McI-Zk-BC7" eventType="valueChanged" id="sxs-Ol-njP"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Allow Pushing My Data to Cloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfN-xx-2Bi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Pushing My Data to Cloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfN-xx-2Bi">
                                 <rect key="frame" x="16" y="143" width="278" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWd-AZ-SfK">
-                                <rect key="frame" x="16" y="262" width="160" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWd-AZ-SfK">
+                                <rect key="frame" x="30" y="327" width="315" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="4ws-hd-qxX"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Delete All My Data"/>
                                 <connections>
                                     <action selector="doubleCheckDeleteRequest:" destination="McI-Zk-BC7" eventType="touchUpInside" id="iCQ-if-ScY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0v4-hU-qY2">
+                                <rect key="frame" x="30" y="437" width="315" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="A5W-St-VvS"/>
+                                </constraints>
+                                <state key="normal" title="View Website"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nWd-AZ-SfK" firstAttribute="top" secondItem="CK7-Bd-oTj" secondAttribute="bottom" constant="30" id="7Gp-7U-74K"/>
+                            <constraint firstItem="nWd-AZ-SfK" firstAttribute="leading" secondItem="Djm-G2-Hm1" secondAttribute="leading" constant="30" id="DFP-qc-Zb1"/>
+                            <constraint firstItem="0v4-hU-qY2" firstAttribute="top" secondItem="nWd-AZ-SfK" secondAttribute="bottom" constant="30" id="Jys-6p-m69"/>
+                            <constraint firstItem="CK7-Bd-oTj" firstAttribute="top" secondItem="RfN-xx-2Bi" secondAttribute="bottom" constant="50" id="O7b-TV-xIY"/>
+                            <constraint firstItem="Djm-G2-Hm1" firstAttribute="trailing" secondItem="CK7-Bd-oTj" secondAttribute="trailing" constant="30" id="OPq-23-H8x"/>
+                            <constraint firstItem="CK7-Bd-oTj" firstAttribute="leading" secondItem="Djm-G2-Hm1" secondAttribute="leading" constant="30" id="OgS-Ku-y2q"/>
+                            <constraint firstItem="RfN-xx-2Bi" firstAttribute="centerY" secondItem="zeS-rm-SUl" secondAttribute="centerY" id="Rtm-XP-bxJ"/>
+                            <constraint firstItem="RfN-xx-2Bi" firstAttribute="top" secondItem="Djm-G2-Hm1" secondAttribute="top" constant="123" id="aEC-lt-lZP"/>
+                            <constraint firstItem="zeS-rm-SUl" firstAttribute="leading" secondItem="RfN-xx-2Bi" secondAttribute="trailing" constant="18" id="cJ4-3X-gMq"/>
+                            <constraint firstItem="0v4-hU-qY2" firstAttribute="leading" secondItem="Djm-G2-Hm1" secondAttribute="leading" constant="30" id="czw-y8-49N"/>
+                            <constraint firstItem="Djm-G2-Hm1" firstAttribute="trailing" secondItem="0v4-hU-qY2" secondAttribute="trailing" constant="30" id="kuA-AK-peP"/>
+                            <constraint firstItem="Djm-G2-Hm1" firstAttribute="trailing" secondItem="nWd-AZ-SfK" secondAttribute="trailing" constant="30" id="ugP-az-faF"/>
+                            <constraint firstItem="RfN-xx-2Bi" firstAttribute="leading" secondItem="SVW-LK-URR" secondAttribute="leadingMargin" id="up8-Pw-XPe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Djm-G2-Hm1"/>
                     </view>
                     <connections>
                         <outlet property="cloudSW" destination="zeS-rm-SUl" id="sBy-AA-Jrp"/>
+                        <outlet property="cloudSWLabel" destination="RfN-xx-2Bi" id="Mrq-Lw-tKI"/>
                         <outlet property="deleteData" destination="nWd-AZ-SfK" id="gPn-1f-BB7"/>
+                        <outlet property="linkWebsiteBtn" destination="0v4-hU-qY2" id="1pg-Bi-a0N"/>
+                        <outlet property="updateProfile" destination="CK7-Bd-oTj" id="NE5-bk-iZL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4b-k2-MBM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -354,10 +361,10 @@
         <!--Navigation Controller-->
         <scene sceneID="FzC-PO-JL2">
             <objects>
-                <navigationController storyboardIdentifier="mainNavVC" automaticallyAdjustsScrollViewInsets="NO" id="ZTo-ww-JRx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="mainNavVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="ZTo-ww-JRx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Du-ce-XFQ">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

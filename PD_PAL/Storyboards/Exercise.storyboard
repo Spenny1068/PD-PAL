@@ -11,9 +11,9 @@
         <!--TEMP-->
         <scene sceneID="2nT-4e-hKT">
             <objects>
-                <viewController storyboardIdentifier="ExerciseVC2" title="TEMP" id="Sfd-H5-TxZ" customClass="tempViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExerciseVC2" title="TEMP" modalPresentationStyle="fullScreen" id="Sfd-H5-TxZ" customClass="tempViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uNs-yC-nfQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0V-gf-X9E">
@@ -117,9 +117,9 @@
         <!--GENERIC EXERCISE PAGE-->
         <scene sceneID="nQB-Gp-qfv">
             <objects>
-                <viewController storyboardIdentifier="ExerciseVC" title="GENERIC EXERCISE PAGE" id="WTe-r5-avd" customClass="ExerciseViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExerciseVC" title="GENERIC EXERCISE PAGE" modalPresentationStyle="fullScreen" id="WTe-r5-avd" customClass="ExerciseViewController" customModule="PD_PAL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cvE-fb-Ubc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msL-aA-58e">

@@ -17,8 +17,11 @@ class SettingsViewController: UIViewController {
     
     let QuestionStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
 
+    @IBOutlet weak var cloudSWLabel: UILabel!
     @IBOutlet weak var cloudSW: UISwitch!
     @IBOutlet weak var deleteData: UIButton!
+    @IBOutlet weak var updateProfile: UIButton!
+    @IBOutlet weak var linkWebsiteBtn: UIButton!
     let userDB = UserData()
     
     override func viewDidLoad() {
@@ -29,6 +32,10 @@ class SettingsViewController: UIViewController {
         self.show_page_message(s1: "Change Your Settings!", s2: "Settings")
         cloudSW.isOn = userDB.Get_User_Data().FirestoreOK
         cloudSW.setOn(userDB.Get_User_Data().FirestoreOK, animated: true) //set initial switch status to false
+        
+        deleteData.settingsButtonDesign()
+        updateProfile.settingsButtonDesign()
+        linkWebsiteBtn.settingsButtonDesign()
     }
     
     override func viewDidAppear(_ animated: Bool) {

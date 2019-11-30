@@ -386,13 +386,13 @@ extension UIButton {
         self.contentHorizontalAlignment = .center                              // button text aligned center of horizontal
         self.contentVerticalAlignment = .center                              // button text aligned bottom of self
         self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0.0)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 80)
         
         // play button image
-        //let exerciseImage = UIImage(named: "ppp.png")/
-        //self.setImage(exerciseImage , for: UIControl.State.normal)
-        //self.tintColor = UIColor.black
-        //self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 260, bottom: 20.0, right: 20)
+        let exerciseImage = UIImage(named: "PlayIcon")
+        self.setImage(exerciseImage , for: UIControl.State.normal)
+        self.tintColor = UIColor.lightGray
+        self.imageEdgeInsets = UIEdgeInsets(top: 20.0, left: 260, bottom: 20.0, right: 20)
     }
     
     //Use this for recommended exercises
@@ -488,6 +488,18 @@ extension UIButton {
     func applyHomeButton(){
         self.setImage(UIImage(named: "SmallLogo"), for: .normal)
         self.frame = CGRect(x: 0, y:0, width: 10, height: 5)
+    }
+    
+    /* design for buttons on settings page */
+    func settingsButtonDesign(){
+        self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
+        self.setTitleColor(UIColor.black, for: .normal)
+        self.backgroundColor = Global.color_schemes.m_grey
+        self.titleLabel?.numberOfLines = 2
+        
+        self.layer.cornerRadius = 40                                         // rounded edges
+        self.layer.borderWidth = 3                                           // border width in points
+        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
     }
     
     /* frames for the three different timer buttons */
