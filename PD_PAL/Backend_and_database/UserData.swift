@@ -982,26 +982,11 @@ Methods that insert or update data.
             print("Failed to update user info")
         }
         
-        //Update Firestore
-        let nextUserInfoBackup = Calendar.current.date(byAdding: .second, value: 1, to: lastBackups.UserInfo)
-        let nextExerciseBackup = Calendar.current.date(byAdding: .second, value: 1, to: lastBackups.Exercise)
+        //Update Firebase
+        global_UserDataFirestore.Update_UserInfo()
         
-        if( Date() >= nextUserInfoBackup! ) {
-            global_UserDataFirestore.Update_UserInfo() { returnedVal in
-                if( returnedVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: Date(), Exercise: nil)
-                }
-            }
-        }
-        
-        //If they are turning on Firestore, also push the exercise data right now, instead of waiting for them to do an exercise first.
-        if( (firestoreOK == true) && (Date() >= nextExerciseBackup!) ) {
-            global_UserDataFirestore.Update_ExerciseData() { returnVal in
-                if( returnVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: nil, Exercise: Date())
-                }
-            }
-        }
+        //If the user is turning on Firebase, also update the exercise data now instead of waiting for them to do an exercise first.
+        if( firestoreOK == true ){ global_UserDataFirestore.Update_ExerciseData() }
         
     }
     
@@ -1036,15 +1021,7 @@ Methods that insert or update data.
         }
         
         //Update Firestore
-        let nextBackup = Calendar.current.date(byAdding: .second, value: 1, to: self.Get_LastBackup().Exercise)
-        
-        if( Date() >= nextBackup! ) {
-            global_UserDataFirestore.Update_ExerciseData() { returnedVal in
-                if( returnedVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: nil, Exercise: Date())
-                }
-            }
-        }
+        global_UserDataFirestore.Update_ExerciseData()
         
     }
     
@@ -1060,15 +1037,7 @@ Methods that insert or update data.
         }
         
         //Update Firestore
-        let nextBackup = Calendar.current.date(byAdding: .second, value: 1, to: self.Get_LastBackup().Exercise)
-        
-        if( Date() >= nextBackup! ) {
-            global_UserDataFirestore.Update_ExerciseData() { returnedVal in
-                if( returnedVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: nil, Exercise: Date())
-                }
-            }
-        }
+        global_UserDataFirestore.Update_ExerciseData()
         
     }
     
