@@ -27,12 +27,18 @@ Revision History
     Removed Routines related methods
  - 24/11/2019 : William Huong
     Implemented Clear_UserInfo() and Clear_ExerciseData
+ - 29/11/2019 : William Huong
+    Implemented Name_Available()
+ - 30/11/2019 : William Huong
+    Wrapped the asynchronous update functions into functions so calling them is easier.
+ - 30/11/2019 : William Huong
+    The Update functions now run asynchronously in the background
 */
 
 /*
 Known Bugs
  
- - 17/11/2019 : William Huong
+ - 17/11/2019 : William Huong --- Fixed
     Nothing works
 */
 
@@ -42,7 +48,6 @@ import Firebase
 /*
 
  Instead of directly interfacing with the Cloud Firestore database, call the methods implemented in this class.
- Ideally, call this class once every 24H to sync the data stored on this device with the data stored on Cloud Firestore.
  
  Cloud Firestore sorts data into two different objects, collections and documents.
  
@@ -66,25 +71,14 @@ import Firebase
         - Value : PoolAccessible - Boolean
         - Value : Intensity - String
         - Value : PushNotifications - Boolean
-        - Collection : Routines
-            - Document : Routine1
-                - Value : Exercise1
-                - Value : Exercise2
-                - Value : Exercise3
-                :
-            - Document : Routine2
-                - Value : Exercise4
-                :
-            - Document : Routine3
-                - Value : Exercise5
-                :
-            :
-        - Collection : ExercisesData
-            - Value : Year - Number
-            - Value : Month - Number
-            - Value : Day - Number
-            - Value : Hour - Number
-            - Value : ExercisesDone - [String]
+        - Collection : ExerciseData
+            - Document : YYYYMMDDHH
+                - Value : Year - Number
+                - Value : Month - Number
+                - Value : Day - Number
+                - Value : Hour - Number
+                - Value : ExercisesDone - [String]
+                - Value : StepsTaken - Int
         :
     - Document : User2
         :
@@ -115,9 +109,32 @@ class UserDataFirestore {
         
     }
     
+    //Updates the user info on Firebase. Checks for schedule and updates the backup dates after.
+    func Update_UserInfo() {
+        
+        //Run the update code in the background so that it does not hold up the main thread.
+        DispatchQueue.global(qos: .background).async {
+            
+            //Get the date when we can next update.
+            let nextUpdate = Calendar.current.date(byAdding: .second, value: 1, to: self.UserDataSource.Get_LastBackup().UserInfo)!
+        
+            print("Next User Info update shceduled for : \(nextUpdate)")
+        
+            if( Date() >= nextUpdate ) {
+                //An update is now allowed.
+                self.Update_UserInfo_Helper() { returnVal in
+                    //Completion handler for Update function. Check the update was successful.
+                    if( returnVal == 0 ) { self.UserDataSource.Update_LastBackup(UserInfo: Date(), Exercise: nil) }
+                }
+            }
+        
+        }
+        
+    }
+    
     //Updates the user info on Firebase.
-    //This function will be called as a part of Update_Firebase() and should not be called on its own.
-    func Update_UserInfo(completion: @escaping (Int) -> ()) {
+    //This function is the asynchronous portions. Please call Update_UserInfo() instead.
+    func Update_UserInfo_Helper(completion: @escaping (Int) -> ()) {
         
         print(" --- Beginning update of UserInfo --- ")
         
@@ -193,9 +210,30 @@ class UserDataFirestore {
  
     }
     
+    //Updates the exercise data on Firebase. Checks for schedule and updates the backup dates after.
+    func Update_ExerciseData() {
+        
+        //Run the update code in the background so that it does not hold up the main thread.
+        DispatchQueue.global(qos: .background).async {
+        
+            //Get the date when we can next update.
+            let nextUpdate = Calendar.current.date(byAdding: .second, value: 5, to: self.UserDataSource.Get_LastBackup().Exercise)!
+        
+            if( Date() >= nextUpdate ) {
+                //An update is now allowed.
+                self.Update_ExerciseData_Helper() { returnVal in
+                    //Completion handler for Update function. Check the update was successful.
+                    if( returnVal == 0 ) { self.UserDataSource.Update_LastBackup(UserInfo: nil, Exercise: Date()) }
+                }
+            }
+        
+        }
+        
+    }
+    
     //Updates the exercise data on Firebase.
-    //This function will be called as a part of Update_Firebase() and should not be called on its own.
-    func Update_ExerciseData(completion: @escaping (Int) -> ()) {
+    //This function is the asynchronous portions. Please call Update_UserInfo() instead.
+    func Update_ExerciseData_Helper(completion: @escaping (Int) -> ()) {
         
         print(" --- Beginning updating of Exercise Data --- ")
         
