@@ -258,8 +258,14 @@ class RecommendAlg{
         balanceCount = 0
         strengthCount = 0
         
+        print("Check catCount: \(catCount)")
+        if catCount[0] == 0 && catCount[1] == 0 && catCount[2] == 0 && catCount[3] == 0
+        {
+                //there has been no exercises done yet
+            return ["None", "None"] //no recommendation to give yet
+        }
         //check least frequently completed category
-        if catCount[0] == catCount.min()
+        else if catCount[0] == catCount.min()
         {
             twoLeastCompleted[0] = "Flexbility"
             if catCount[1] <= catCount[2] && catCount[1] <= catCount[3]
@@ -326,7 +332,7 @@ class RecommendAlg{
         else
         {
             //no min
-            return [" ", " "]
+            return ["None", "None"]
         }
         
         //print("twoLeastCompleted: \(twoLeastCompleted)")

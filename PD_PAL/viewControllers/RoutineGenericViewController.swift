@@ -20,6 +20,10 @@ class RoutineGenericViewController: UIViewController {
     @IBOutlet weak var RoutineExercise2: UILabel!
     @IBOutlet weak var RoutineExercise3: UILabel!
     
+    /* IBOulet labels */
+    @IBOutlet weak var DescriptionText: UILabel!
+    @IBOutlet weak var DescriptionLabel: UILabel!
+    
     // global variables
     var routine_name: String!
 
@@ -69,20 +73,36 @@ class RoutineGenericViewController: UIViewController {
         /* page message */
         self.show_page_message(s1: routine_name, s2: routine_name)
         
-        /* routine exercise labels */
+        /* Description for Routines */
+        let happyDayDescription = "This is the description for Happy Day Workout"
+        let mondayMorningMoodDescription = "This is the description for Monday Morning Mood"
+        let fridayNightChillDescription = "This is the description for Friday Night Chill"
         
+        if (routine_name == "Happy Day Workout") {
+            self.show_routine_description(string:happyDayDescription, DLabel: DescriptionLabel, DText: DescriptionText)
+        }
+            
+        else if (routine_name == "Monday Morning Mood") {
+            self.show_routine_description(string:mondayMorningMoodDescription, DLabel: DescriptionLabel, DText: DescriptionText)
+        }
+            
+        else if (routine_name == "Friday Night Chill") {
+            self.show_routine_description(string:fridayNightChillDescription, DLabel: DescriptionLabel, DText: DescriptionText)
+        }
+
+        /* routine exercise labels */
         //-> label 1
-        RoutineExercise1.text = routineData[0]
+        RoutineExercise1.text = "   1) \(routineData[0])"
         RoutineExercise1.applyExerciseLabelDesign()
         RoutineExercise1.backgroundColor = Global.color_schemes.m_blue1          // background color
 
         //-> label 2
-        RoutineExercise2.text = routineData[1]
+        RoutineExercise2.text = "   2) \(routineData[1])"
         RoutineExercise2.applyExerciseLabelDesign()
         RoutineExercise2.backgroundColor = Global.color_schemes.m_blue1          // background color
 
         //-> label 3
-        RoutineExercise3.text = routineData[2]
+        RoutineExercise3.text = "   3) \(routineData[2])"
         RoutineExercise3.applyExerciseLabelDesign()
         RoutineExercise3.backgroundColor = Global.color_schemes.m_blue1          // background color
         
@@ -105,13 +125,14 @@ class RoutineGenericViewController: UIViewController {
         ])
         
         self.view.addSubview(stackView)
+        
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 25),
             stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -25),
-            stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 120),
-            stackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -150)
+            stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 240),
+            stackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -160)
         ])
     }
     
