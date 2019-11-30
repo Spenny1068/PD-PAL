@@ -273,7 +273,7 @@ class UserDataFirestore {
                         }
                         print("Some of the data was not null, proceeding to upload to Firestore")
                         
-                        let documentName = "\(year)\(month)\(day)\(hour)"
+                        let documentName = String(format: "%02d%02d%02d%02d", year, month, day, hour)
                         let exerciseDocRef = exerciseColRef.document(documentName)
                         
                         let docData: [String: Any] = [
