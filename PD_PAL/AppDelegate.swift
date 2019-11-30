@@ -525,5 +525,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 let global_UserData = UserData()
 let global_ExerciseData = ExerciseDatabase()
 let global_StepTracker = StepCount()
-let global_UserDataFirestore = UserDataFirestore()
+let global_UserDataFirestore = UserDataFirestore(sourceGiven: global_UserData)
 let global_UserRecommendation = RecommendAlg()

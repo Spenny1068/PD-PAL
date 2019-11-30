@@ -9,6 +9,7 @@
 // <Date, Name, Changes made>
 // <October 27, 2019, Spencer Lall, applied default page design>
 // <November 16, 2019, Julia Kim, added a sw to ask for user permission to push user data to cloud, adding a button to allow user to delete their data>
+// <November 17, 2019, William Huong, delete button now also clears data from Firebase>
 
 import UIKit
 
@@ -66,11 +67,23 @@ class SettingsViewController: UIViewController {
     
     func requestDelete(){
         //call the DB function that clears user info
-        userDB.Clear_UserInfo_Database()
+        userDB.Delete_userInfo()
         //call the DB function that clears the step data
         userDB.Clear_StepCount_Database()
         //call the DB function that clears the exercises done
         userDB.Clear_UserExerciseData_Database()
+        //Clear the use info in the document
+        global_UserDataFirestore.Clear_UserInfo(targetUser: nil) { returnVal in
+            if( returnVal == 0 ) {
+                global_UserData.Update_LastBackup(UserInfo: Date(), Routines: nil, Exercise: nil)
+            }
+        }
+        //Clear the exercise data
+        global_UserDataFirestore.Clear_ExerciseData(targetUser: nil) { returnVal in
+            if( returnVal == 0 ) {
+                global_UserData.Update_LastBackup(UserInfo: nil, Routines: nil, Exercise: Date())
+            }
+        }
         
         //test to see if UserInfo got deleted
         print("Check User DB: \(userDB.Get_User_Data())")
