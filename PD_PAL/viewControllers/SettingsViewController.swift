@@ -12,6 +12,7 @@
 // <November 17, 2019, William Huong, delete button now also clears data from Firebase>
 
 import UIKit
+import SafariServices
 
 class SettingsViewController: UIViewController {
     
@@ -40,6 +41,24 @@ class SettingsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
+    }
+    
+    //opens safari within the app to access the web component of PD PAL
+    @IBAction func accessWebsite(_ sender: Any){
+        var webUserName = "tester" //default test account
+        
+        //check that the current username exists in firebase. If not, just use a tester account as a sample
+        if global_UserData.Get_User_Data().NameVerified && global_UserData.Get_User_Data().FirestoreOK {
+            webUserName = global_UserData.Get_User_Data().UserName //local DB username also exists in firebase, therefore can access the website
+        }
+        
+        if let url = URL(string: "https://pd-pal.web.app/userDisplay/?name=\(webUserName)" /*"https://mail.sfu.ca"*/){
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
+        }
     }
     
     @IBAction func buttonClicked(_ sender: Any) {
