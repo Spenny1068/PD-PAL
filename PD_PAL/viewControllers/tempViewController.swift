@@ -33,6 +33,10 @@ class tempViewController: UIViewController {
     var setNumber: Int = 1
     var restInterval = 0
     
+    // Animation stuff
+    let shapelayer = CAShapeLayer()
+    var progress: Float = 0
+    
     /* forward pass data between view controllers */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -111,8 +115,18 @@ class tempViewController: UIViewController {
             nextSetButton.setTitle("NEXT SET", for: .normal)
             nextSetButton.backgroundColor = Global.color_schemes.m_lightGreen
             
+            //-> timer animation
+            let circularPath = UIBezierPath(arcCenter: CGPoint(x: 285, y: 488), radius: 50, startAngle: 0, endAngle: 2*CGFloat.pi, clockwise: true)
+            shapelayer.path = circularPath.cgPath
+            shapelayer.strokeColor = Global.color_schemes.m_blue1.cgColor
+            shapelayer.lineWidth = 10
+            shapelayer.lineCap = CAShapeLayerLineCap.round
+            shapelayer.fillColor = UIColor.clear.cgColor
+            shapelayer.strokeEnd = 0
+            view.layer.addSublayer(shapelayer)
             
             /* when entering this page, hide these elements */
+            shapelayer.isHidden = true
             stopButton.isHidden = true
             timerLabel.isHidden = true
             SetsLabel.isHidden = true
@@ -135,6 +149,7 @@ class tempViewController: UIViewController {
             logNavigationStack()
             
             /* when entering this page, hide these elements */
+            shapelayer.isHidden = true
             stopButton.isHidden = true
             timerLabel.isHidden = true
             completedButton.isHidden = true
@@ -177,6 +192,7 @@ class tempViewController: UIViewController {
         skipButton.isHidden = true
         
         /* show these elements */
+        shapelayer.isHidden = false
         stopButton.isHidden = false
         timerLabel.isHidden = false
         SetsLabel.isHidden = false
@@ -201,6 +217,7 @@ class tempViewController: UIViewController {
         skipButton.isHidden = false
         
         /* hide these elements */
+        shapelayer.isHidden = true
         stopButton.isHidden = true
         timerLabel.isHidden = true
         SetsLabel.isHidden = true
@@ -220,6 +237,7 @@ class tempViewController: UIViewController {
         /* update sets variable */
         self.setNumber = self.setNumber + 1
         SetsLabel.text = "SET " + "\(self.setNumber)"
+        self.progress = 0
         
         /* last set */
         let readResult = global_ExerciseData.read_exercise(NameOfExercise: exercise_name2 ?? "nil")
@@ -232,6 +250,7 @@ class tempViewController: UIViewController {
         nextSetButton.isHidden = true
         
         /* show these elements */
+        shapelayer.isHidden = false
         timerLabel.isHidden = false
         SetsLabel.isHidden = false
         stopButton.isHidden = false
@@ -300,6 +319,17 @@ class tempViewController: UIViewController {
             seconds += 1
             timerLabel.text = "REST: " + "\(seconds)" + "s"
         }
+        
+        /* Animate circular progress */
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.fromValue = progress
+        let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
+        let maxTime = data.Duration
+        progress += 1/Float(maxTime)
+        basicAnimation.toValue = progress
+        shapelayer.strokeEnd = CGFloat(progress)
+        basicAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        shapelayer.add(basicAnimation, forKey: "Update")
         
         /* when countdown is done */
         if seconds <= 0 {
