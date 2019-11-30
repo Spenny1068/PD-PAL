@@ -27,6 +27,8 @@ Revision History
     Removed Routines related methods
  - 24/11/2019 : William Huong
     Implemented Clear_UserInfo() and Clear_ExerciseData
+ - 29/11/2019 : William Huong
+    Implemented Name_Available()
 */
 
 /*
