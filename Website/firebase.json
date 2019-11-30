@@ -13,6 +13,10 @@
 		{
 			"source":"/login",
 			"function": "login"
+		},
+		{
+			"source":"/exercise_data",
+			"function": "exercise_data"
 		}]
   },
   "functions": {

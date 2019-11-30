@@ -1,4 +1,5 @@
 
+//configure http request to check if name exists in the database
 function validateName(name)
 {
 	var xhttp = new XMLHttpRequest();
@@ -13,7 +14,7 @@ function validateName(name)
 			{				
 				document.getElementById("loader").style.display = "none";
 				//alert("true");
-				location.href = "/userDisplay";
+				location.href = "/userDisplay?name="+name;
 				return true;
 			}
 			else
@@ -45,7 +46,7 @@ function validateName(name)
 
 
 
-
+//check that the name is not empty, and then send a request to verify the name
 function validateForm(txt) {
 	document.getElementById("loader").style.display = "block";
 	//var x = document.forms["loginForm"]["username"].value;
