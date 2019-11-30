@@ -75,12 +75,6 @@ UserData Class Tests
         //Check that the default values before inserting.
         var userData = userDB.Get_User_Data()
         
-        //Grab the UUID, it should never change.
-        let originalUUID = userData.UserUUID
-        
-        print("\(originalUUID)")
-        
-        XCTAssert( userData.UserUUID != "NULL" )
         XCTAssert( userData.UserName == "DEFAULT_NAME" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -101,7 +95,6 @@ UserData Class Tests
         //Get the user info
         userData = userDB.Get_User_Data()
         
-        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -119,7 +112,6 @@ UserData Class Tests
         userData = userDB.Get_User_Data()
         
         //Check values.
-        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == true )
         XCTAssert( userData.WalkingDuration == 30 )
@@ -136,7 +128,6 @@ UserData Class Tests
         
         userData = userDB.Get_User_Data()
         
-        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 30 )
@@ -153,7 +144,6 @@ UserData Class Tests
         
         userData = userDB.Get_User_Data()
         
-        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -174,8 +164,7 @@ UserData Class Tests
         userData = userDB.Get_User_Data()
         
         //Clear_UserInfo_Database() is not meant to be used normally, so it will generate a new UUID on next read.
-        XCTAssert( userData.UserUUID != "NULL" )
-        XCTAssert( userData.UserName == "DEFAULT_NAME" )
+        XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
         XCTAssert( userData.ChairAccessible == false )
@@ -205,12 +194,6 @@ UserData Class Tests
         //Check that the default values before inserting.
         var userData = userDB.Get_User_Data()
         
-        //Grab the UUID, it should never change.
-        let originalUUID = userData.UserUUID
-        
-        print("\(originalUUID)")
-        
-        XCTAssert( userData.UserUUID != "NULL" )
         XCTAssert( userData.UserName == "DEFAULT_NAME" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -231,7 +214,6 @@ UserData Class Tests
         //Get the user info
         userData = userDB.Get_User_Data()
         
-        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -249,7 +231,6 @@ UserData Class Tests
         userData = userDB.Get_User_Data()
         
         //Check values.
-        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Margaret" )
         XCTAssert( userData.QuestionsAnswered == true )
         XCTAssert( userData.WalkingDuration == 30 )
@@ -266,7 +247,6 @@ UserData Class Tests
         
         userData = userDB.Get_User_Data()
         
-        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 30 )
@@ -283,7 +263,6 @@ UserData Class Tests
         
         userData = userDB.Get_User_Data()
         
-        XCTAssert( userData.UserUUID == originalUUID )
         XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
@@ -304,8 +283,7 @@ UserData Class Tests
         userData = userDB.Get_User_Data()
         
         //Clear_UserInfo_Database() is not meant to be used normally, so it will generate a new UUID on next read.
-        XCTAssert( userData.UserUUID != "NULL" )
-        XCTAssert( userData.UserName == "DEFAULT_NAME" )
+        XCTAssert( userData.UserName == "Ebenezer Scrooge" )
         XCTAssert( userData.QuestionsAnswered == false )
         XCTAssert( userData.WalkingDuration == 0 )
         XCTAssert( userData.ChairAccessible == false )
@@ -334,11 +312,9 @@ UserData Class Tests
         //Check the default value is there
         var currentBackup = userData.Get_LastBackup()
         var userInfoBackup = dateFormatter.string(from: currentBackup.UserInfo)
-        var routinesBackup = dateFormatter.string(from: currentBackup.Routines)
         var exerciseBackup = dateFormatter.string(from: currentBackup.Exercise)
         print("\(currentBackup)")
         XCTAssert( userInfoBackup == defaultDateString )
-        XCTAssert( routinesBackup == defaultDateString )
         XCTAssert( exerciseBackup == defaultDateString )
         
         let currentDate = Date()
@@ -346,34 +322,20 @@ UserData Class Tests
         print("\(currentDate)")
         
         //Update the dates one by one and confirm it worked
-        userData.Update_LastBackup(UserInfo: currentDate, Routines: nil, Exercise: nil)
+        userData.Update_LastBackup(UserInfo: currentDate, Exercise: nil)
         currentBackup = userData.Get_LastBackup()
         userInfoBackup = dateFormatter.string(from: currentBackup.UserInfo)
-        routinesBackup = dateFormatter.string(from: currentBackup.Routines)
         exerciseBackup = dateFormatter.string(from: currentBackup.Exercise)
         print("\(currentBackup)")
         XCTAssert( userInfoBackup == currentDateString )
-        XCTAssert( routinesBackup == defaultDateString )
         XCTAssert( exerciseBackup == defaultDateString )
         
-        userData.Update_LastBackup(UserInfo: nil, Routines: currentDate, Exercise: nil)
+        userData.Update_LastBackup(UserInfo: nil, Exercise: currentDate)
         currentBackup = userData.Get_LastBackup()
         userInfoBackup = dateFormatter.string(from: currentBackup.UserInfo)
-        routinesBackup = dateFormatter.string(from: currentBackup.Routines)
         exerciseBackup = dateFormatter.string(from: currentBackup.Exercise)
         print("\(currentBackup)")
         XCTAssert( userInfoBackup == currentDateString )
-        XCTAssert( routinesBackup == currentDateString )
-        XCTAssert( exerciseBackup == defaultDateString )
-        
-        userData.Update_LastBackup(UserInfo: nil, Routines: nil, Exercise: currentDate)
-        currentBackup = userData.Get_LastBackup()
-        userInfoBackup = dateFormatter.string(from: currentBackup.UserInfo)
-        routinesBackup = dateFormatter.string(from: currentBackup.Routines)
-        exerciseBackup = dateFormatter.string(from: currentBackup.Exercise)
-        print("\(currentBackup)")
-        XCTAssert( userInfoBackup == currentDateString )
-        XCTAssert( routinesBackup == currentDateString )
         XCTAssert( exerciseBackup == currentDateString )
         
     }
@@ -1000,42 +962,6 @@ UserData Class Tests
         XCTAssert( firstCleared == 0 )
         XCTAssert( secondCleared == 0 )
         XCTAssert( nullCleared == 0 )
-        
-    }
-    
-    func test_UserName_Check() {
-        
-        let userData = UserData()
-        userData.Clear_UserInfo_Database()
-        userData.Clear_Routines_Database()
-        userData.Clear_UserExerciseData_Database()
-        userData.Clear_StepCount_Database()
-        
-        //Confirm a name in use returns false
-        let firstExp = expectation(description: "Name taken")
-        DispatchQueue.main.async {
-            
-            userData.Name_Available(desiredName: "tester") { returnVal in
-                XCTAssert( returnVal == false )
-            }
-            
-            firstExp.fulfill()
-            
-        }
-        waitForExpectations(timeout: 10, handler: nil)
-        
-        //Confurm a name that is not in use returns true
-        let secondExp = expectation(description: "Name available")
-        DispatchQueue.main.async {
-            
-            userData.Name_Available(desiredName: "non existant user") { returnVal in
-                XCTAssert( returnVal == true )
-            }
-            
-            secondExp.fulfill()
-            
-        }
-        waitForExpectations(timeout: 10, handler: nil)
         
     }
 

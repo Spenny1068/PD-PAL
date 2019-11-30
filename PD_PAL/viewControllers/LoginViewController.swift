@@ -8,6 +8,7 @@
 //<Oct. 27, 2019, Izyl Canonicato, Error handling>
 //<Nov. 2, 2019, Izyl Canonicato, Insert/Update questionsAnswered into UserData>
 //<Nov. 23, 2019, Izyl Canonicato, Updated IB constraints>
+//<Nov. 29, 2019, William Huong, Added check for unique names>
 
 import Foundation
 import UIKit
@@ -24,6 +25,7 @@ class LoginViewController: UIViewController{
         //self.fullScreen();
         //Load error and title label
         ValidationMessage.isHidden = true
+        ValidationMessage.applyErrorDesign()
         userNameTextField.delegate = self
         TitleLabel.text = "Welcome to PD PAL!"
         TitleLabel.textColor = Global.color_schemes.m_blue1
@@ -39,24 +41,33 @@ class LoginViewController: UIViewController{
         ValidationMessage.isHidden = true
         var validName = isValidName(name: userNameTextField.text!)
         guard let userName = userNameTextField.text, (userNameTextField.text?.count != 0), !(validName) else {
-            self.ValidationMessage.text = "Username is taken. Please try again."
-            self.ValidationMessage.applyErrorDesign()
+            self.ValidationMessage.text = "Username is not valid"
             self.ValidationMessage.isHidden = false
             return
         }
         
-        // Store username to DB
-        if(userNameTextField.text?.count != 0){
-            global_UserData.Update_User_Data(nameGiven: userName, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
-            print("Update Username")
-            print(global_UserData.Get_User_Data())
-        }
+        global_UserDataFirestore.Name_Available(nameToCheck: userName) { returnVal in
         
-        // Segue to Set up Question page
-        if !validName {
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Questionnare", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "SetUpQuestionPage")
-            self.navigationController?.pushViewController(newViewController, animated: true)
+            if( returnVal != true ) {
+                self.ValidationMessage.text = "Username has already been taken"
+                self.ValidationMessage.isHidden = false
+                return
+            }
+            
+            // Store username to DB
+            if(self.userNameTextField.text?.count != 0){
+                global_UserData.Update_User_Data(nameGiven: userName, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
+                print("Update Username")
+                print(global_UserData.Get_User_Data())
+            }
+        
+            // Segue to Set up Question page
+            if !validName {
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Questionnare", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "SetUpQuestionPage")
+                self.navigationController?.pushViewController(newViewController, animated: true)
+            }
+            
         }
         
     }
