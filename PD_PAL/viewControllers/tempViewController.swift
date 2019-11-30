@@ -217,6 +217,17 @@ class tempViewController: UIViewController {
     /* next set button is tapped  */
     @objc func nextSetButtonTapped(sender: UIButton!) {
         
+        if self.setNumber == 1 {
+            /* parse Date() function into year, month, day, and hour */
+            let year = Calendar.current.component(.year, from: Date())
+            let month = Calendar.current.component(.month, from: Date())
+            let day = Calendar.current.component(.day, from: Date())
+            let hour = Calendar.current.component(.hour, from: Date())
+            
+            /* insert excercise as done */
+            global_UserData.Add_Exercise_Done(ExerciseName: exercise_name2 ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+        }
+        
         /* update sets variable */
         self.setNumber = self.setNumber + 1
         SetsLabel.text = "SET " + "\(self.setNumber)"
@@ -251,14 +262,17 @@ class tempViewController: UIViewController {
     
     /* when completed button is tapped */
     @IBAction func completedButton(_ sender: Any) {
-        /* parse Date() function into year, month, day, and hour */
-        let year = Calendar.current.component(.year, from: Date())
-        let month = Calendar.current.component(.month, from: Date())
-        let day = Calendar.current.component(.day, from: Date())
-        let hour = Calendar.current.component(.hour, from: Date())
         
-        /* insert excercise as done */
-        global_UserData.Add_Exercise_Done(ExerciseName: exercise_name2 ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+        if self.setNumber == 1 {
+            /* parse Date() function into year, month, day, and hour */
+            let year = Calendar.current.component(.year, from: Date())
+            let month = Calendar.current.component(.month, from: Date())
+            let day = Calendar.current.component(.day, from: Date())
+            let hour = Calendar.current.component(.hour, from: Date())
+            
+            /* insert excercise as done */
+            global_UserData.Add_Exercise_Done(ExerciseName: exercise_name2 ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
+        }
         
         killGif() /* kill running gif */
         
