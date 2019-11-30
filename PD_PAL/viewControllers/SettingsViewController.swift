@@ -48,11 +48,14 @@ class SettingsViewController: UIViewController {
         var webUserName = "tester" //default test account
         
         //check that the current username exists in firebase. If not, just use a tester account as a sample
-        if global_UserData.Get_User_Data().NameVerified && global_UserData.Get_User_Data().FirestoreOK {
+        //print("Name Verified: \(global_UserData.Get_User_Data().NameVerified)")
+        //print("FireStoreOK: \(global_UserData.Get_User_Data().FirestoreOK)")
+        
+        if global_UserData.Get_User_Data().FirestoreOK {
             webUserName = global_UserData.Get_User_Data().UserName //local DB username also exists in firebase, therefore can access the website
         }
         
-        if let url = URL(string: "https://pd-pal.web.app/userDisplay/?name=\(webUserName)" /*"https://mail.sfu.ca"*/){
+        if let url = URL(string: "https://pd-pal.web.app/userDisplay/?name=\(webUserName)"){
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = true
             
