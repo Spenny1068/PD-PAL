@@ -9,7 +9,13 @@
 // REVISION HISTORY:
 // <Date, Name, Changes made>
 // <Oct. 26, 2019, Spencer Lall, added exercise buttons
+// <November 1, 2019, Spencer Lall, Updated the default page design>
+// <November 9, 2019, Spencer Lall, Put the buttons in the stackview>
+// <November 10, 2019, Spencer Lall, passed information into the exercise viewcontroller>
+// <November 11, 2019, Izyl Canonicato, Created the viewController button design>
 // <November 27, 2019, Arian Vafadar, Highlighted the exercises>
+// <November 28, 2019, Izyl Canonicato, Implemented the Timer>
+
 
 
 import UIKit

@@ -6,6 +6,15 @@
 //  Copyright © 2019 WareOne. All rights reserved.
 //
 
+/*
+ Revision History:
+ <Date, Name, Changes made>
+ <November 9, 2019, Spencer Lall, Added GIFs>
+ <November 10, 2019, Spencer Lall, Made GIFs Asynchronous>
+ <November 17, 2019, Spencer Lall, Fixed the memory leak issue>
+ 
+ */
+
 import Foundation
 import UIKit
 import ImageIO

@@ -11,6 +11,7 @@
 // <Oct. 26, 2019, Spencer Lall, added categories buttons>
 // <October 27, 2019, Spencer Lall, applied default page design>
 // <November 15, 2019, Izyl Canonicato, Category buttons >
+// <November 15, 2019, Izyl Canonicato,  Updated StoryBoard Layout for Categories>
 // <November 27, 2019, Arian Vafadar, Highlighted the Categories>
 
 
