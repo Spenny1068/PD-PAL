@@ -35,11 +35,10 @@ import Charts //import to allow bar or line chart
 class TrendViewController: UIViewController, UITableViewDataSource{
 
     // IBOutlet labels
-    @IBOutlet weak var Title_label: UILabel!
     @IBOutlet weak var trendTableView: UITableView!
-    @IBOutlet weak var UpdateButton: UIButton!
+    @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var endDateLabel: UILabel!
     
-    @IBOutlet weak var ClearDates: UIButton!
     
     @IBOutlet weak var rChartView: RadarChart.RadarChartView! //to avoid namespace clash
     @IBOutlet weak var scroller: UIScrollView!
@@ -105,10 +104,9 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
-        self.generateRadarChart()
-        self.prepareStepData()
+        self.updateAuto()
        
        
     }
@@ -151,28 +149,13 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         return cell
     }
 
-    @IBAction func Update(_ sender: UIButton) {
+    
+    func updateAuto(){
         exerciseData = global_UserData.Get_Exercises_all()
         self.trendTableView.reloadData()
         self.generateRadarChart()
         self.viewDidLayoutSubviews()
-        self.prepareStepData() //this will call generateStepChart
-       
-    }
-
-    @IBAction func clearDates(_ sender: UIButton){
-        /*reset to default dates
-        dateFormatter.dateFormat = "MM/dd/yyyy HH"
-        startDate.text = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
-        endDate.text = dateFormatter.string(from: Date())
-        */
-        //clear dates
-        startDate.text = nil
-        endDate.text = nil
-        startDate.placeholder = "Pick a Start Date"
-        endDate.placeholder = "Pick an End Date"
-        sdateSelected = false
-        edateSelected = false
+        self.prepareStepData()
     }
     
     func getDatePicker(){

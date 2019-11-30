@@ -485,6 +485,18 @@ extension UIButton {
         self.frame = CGRect(x: 0, y:0, width: 10, height: 5)
     }
     
+    /* design for buttons on settings page */
+    func settingsButtonDesign(){
+        self.titleLabel?.font = Global.text_fonts.m_exerciseButtonFont
+        self.setTitleColor(UIColor.black, for: .normal)
+        self.backgroundColor = Global.color_schemes.m_grey
+        self.titleLabel?.numberOfLines = 2
+        
+        self.layer.cornerRadius = 40                                         // rounded edges
+        self.layer.borderWidth = 3                                           // border width in points
+        self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
+    }
+    
     /* frames for the three different timer buttons */
     func applyDefaultTimerButtonFrame() { self.frame = CGRect(x: 36, y: 575, width: 300, height: 75) }
     func applyLeftTimerButtonFrame() { self.frame = CGRect(x: 10, y: 575, width: 175, height: 75) }
