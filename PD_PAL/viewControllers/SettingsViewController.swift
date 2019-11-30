@@ -27,8 +27,8 @@ class SettingsViewController: UIViewController {
         Global.questionnaire_index = 1
         /* page message */
         self.show_page_message(s1: "Change Your Settings!", s2: "Settings")
-        cloudSW.isOn = false //set initial status of permission to false
-        cloudSW.setOn(false, animated: true) //set initial switch status to false
+        cloudSW.isOn = userDB.Get_User_Data().FirestoreOK
+        cloudSW.setOn(userDB.Get_User_Data().FirestoreOK, animated: true) //set initial switch status to false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,9 +59,12 @@ class SettingsViewController: UIViewController {
     @IBAction func doubleCheckDeleteRequest(_ sender: UIButton)
     {
         /* adapted source from: stackoverflow.com/questions/31101958/swift-ios-how-to-use-uibutton-to-trigger-uialertcontroller?rq=1*/
-        let alert = UIAlertController(title: "Confirm Deletion", message: "Are you sure that you want to delete your data?", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Confirm Data Deletion", message: "Are you sure that you want to delete your data?", preferredStyle: UIAlertController.Style.alert)
         
-        alert.addAction(UIAlertAction(title: "Agree", style: UIAlertAction.Style.default, handler: {action in self.requestDelete()}))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: {action in self.requestDelete()}))
+        
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: {action in alert.dismiss(animated: true, completion: nil)}))
+        
         self.present(alert, animated: true, completion: nil)
     }
     
