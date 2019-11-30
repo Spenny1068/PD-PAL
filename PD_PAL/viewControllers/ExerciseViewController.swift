@@ -20,6 +20,7 @@ Revision History:
  */
 
 import UIKit
+import SwiftyGif
 
 class ExerciseViewController: UIViewController {
     
