@@ -4,6 +4,20 @@
 //
 //  Created by SpenC on 2019-11-15.
 //  Copyright © 2019 WareOne. All rights reserved.
+/*
+ Revision History:
+ <Date, Name, Changes made>
+ <October 25, 2019, Spencer Lall, applied default page design>
+ <November 5, 2019, Spencer Lall, Updated the default page design>
+ <November 7, 2019, Spencer Lall, Added dynamic elements>
+ <November 7, 2019, Spencer Lall, Created the Start, Stop, Complete button>
+ <November 9, 2019, Spencer Lall, Added GIFs>
+ <November 10, 2019, Spencer Lall, Made GIFs Asynchronous>
+ <November 10, 2019, Arian Vafadar, Created the Skip button and updated the Start button>
+ <November 11, 2019, Izyl Canonicato, Created and updated all of the button designs>
+ <November 17, 2019, Spencer Lall, Fixed the memory leak issue>
+ <November 28, 2019, Izyl Canonicato, Implemented the Timer>
+ */
 //
 
 import UIKit

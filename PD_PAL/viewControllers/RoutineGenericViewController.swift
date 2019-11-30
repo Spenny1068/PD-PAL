@@ -8,6 +8,13 @@
 //Revision History:
 // <Date, Name, Changes made>
 // <October 25 2019, Arian Vafadar, Designed Routine and Subroutine page>
+// <November 1, 2019, Spencer Lall, Updated the default page design>
+// <November 8, 2019, Spencer Lall, Changed the StoryBoard Layout for the Routines>
+// <November 9, 2019, Spencer Lall, Put the buttons in the stackview>
+// <November 10, 2019, Spencer Lall, passed information into the exercise viewcontroller>
+// <November 11, 2019, Izyl Canonicato, Created the viewController button design>
+// <November 27, 2019, Arian Vafadar, Highlighted the exercises>
+// <November 28, 2019, Izyl Canonicato, Implemented the Timer>
 //
 
 import UIKit
@@ -32,7 +39,7 @@ class RoutineGenericViewController: UIViewController {
         let sv = UIStackView(arrangedSubviews: [RoutineExercise1, RoutineExercise2, RoutineExercise3])    // elements in stackview
         sv.translatesAutoresizingMaskIntoConstraints = false    // use constraints
         sv.axis = .vertical                                     // stackview orientation
-        sv.spacing = 25                                         // spacing between elements
+        sv.spacing = 0                                         // spacing between elements
         sv.distribution = .fillEqually
         return sv
     }()
@@ -74,9 +81,9 @@ class RoutineGenericViewController: UIViewController {
         self.show_page_message(s1: routine_name, s2: routine_name)
         
         /* Description for Routines */
-        let happyDayDescription = "This is the description for Happy Day Workout"
-        let mondayMorningMoodDescription = "This is the description for Monday Morning Mood"
-        let fridayNightChillDescription = "This is the description for Friday Night Chill"
+        let happyDayDescription = "This routine is intended to brighten up your day and improve your mood"
+        let mondayMorningMoodDescription = "This routine will get your week started off right"
+        let fridayNightChillDescription = "This routine will end a long week with a relaxing and soothing workout"
         
         if (routine_name == "Happy Day Workout") {
             self.show_routine_description(string:happyDayDescription, DLabel: DescriptionLabel, DText: DescriptionText)

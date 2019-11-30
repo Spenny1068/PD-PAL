@@ -11,7 +11,12 @@
 // <Oct. 26, 2019, Spencer Lall, Added struct for global variables>
 // <Oct. 27, 2019, Spencer Lall, Added methods for designs, constraints, and positions for labels and buttons>
 // <Nov. 1, 2019, Izyl Canonicato, Added Questionnaire page button and label methods>
-// <Nov. 1, 2019, William Huong, Added global variables for UserData, ExerciseDatabase>
+// <Nov. 3, 2019, Izyl Canonicato, Created all of the colour schemes for the app>
+// <Nov. 4, 2019, William Huong, Added global variables for UserData, ExerciseDatabase>
+//<Nov. 5, 2019, Spencer Lall, Added the Start, Stop and Complete button design>
+//<Nov. 12, 2019, Arian Vafadar, Added the Skip button Design and updated the Start button design>
+//<Nov. 28, 2019, Arian Vafadar, Added the functions for highlighting feature>
+
 
 import UIKit
 import Firebase
@@ -159,7 +164,7 @@ extension UIViewController {
         DText.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
         DText.font = Global.text_fonts.m_exerciseDescriptionDurationFont        // text font and size
         DText.lineBreakMode = .byWordWrapping                                   // Word wrapping
-        DText.numberOfLines = 4                                                 // theres space for a maximum of 5 lines
+        DText.numberOfLines = 5                                                 // theres space for a maximum of 5 lines
         DText.text = string
         self.view.addSubview(DText)
 
