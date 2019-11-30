@@ -7,7 +7,7 @@
 // <November 24th, 2019, Julia Kim: Started Recommendation Algorithm>
 // <November 25th, 2019, Julia Kim: Added shuffling the list of exercises such that it's not always the same exercise from the category that is recommended; for redundancy, get two least completed categories in case there was no match with the least completed category with the user answers>
 // <November 28th, 2019, Julia Kim: Made minor changes in convertEquipment, got rid of images folder as requested by Spencer>
-
+// <November 30th, 2019, Julia Kim: Made minor logic changes in getExInCat>
 
 /*
  Notes:
@@ -197,13 +197,13 @@ class RecommendAlg{
         for entry in shuffledList{
             categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry)
             
-            if categoryMatch.1 as String == LeastCategory
+            if categoryMatch.1 == LeastCategory
             {
                 //print("getExInCat: \(entry)")
-                return entry as String //first exercise name that matched least completed category
+                return entry //first exercise name that matched least completed category
             }
         }
-         return "None" //no exercise
+         return "None" //no exercise, should not happen
     }
     
     func getLeastCat() -> [String]{
@@ -219,7 +219,7 @@ class RecommendAlg{
 
             categoryMatch = global_ExerciseData.read_exercise(NameOfExercise: entry.nameOfExercise)
                
-            if categoryMatch.1 as String == "Flexibility"
+            if categoryMatch.1 == "Flexibility"
             {
                 flexCount += 1
                 //print(categoryMatch.1)
@@ -228,19 +228,19 @@ class RecommendAlg{
                 
                 //print("catCount: \(catCount)")
             }
-            else if categoryMatch.1 as String == "Cardio"
+            else if categoryMatch.1  == "Cardio"
             {
                 cardioCount += 1
                 //print(categoryMatch.1)
                 //print(cardioCount)
                 catCount[1] = cardioCount
             }
-            else if categoryMatch.1 as String == "Balance"
+            else if categoryMatch.1 == "Balance"
             {
                 balanceCount += 1
                 catCount[2] = balanceCount
             }
-            else if categoryMatch.1 as String == "Strength"
+            else if categoryMatch.1 == "Strength"
             {
                 strengthCount += 1
                 catCount[3] = strengthCount
@@ -258,14 +258,10 @@ class RecommendAlg{
         balanceCount = 0
         strengthCount = 0
         
-        print("Check catCount: \(catCount)")
-        if catCount[0] == 0 && catCount[1] == 0 && catCount[2] == 0 && catCount[3] == 0
-        {
-                //there has been no exercises done yet
-            return ["None", "None"] //no recommendation to give yet
-        }
+        //print("Check catCount: \(catCount)")
+       
         //check least frequently completed category
-        else if catCount[0] == catCount.min()
+        if catCount[0] == catCount.min()
         {
             twoLeastCompleted[0] = "Flexbility"
             if catCount[1] <= catCount[2] && catCount[1] <= catCount[3]
@@ -331,7 +327,7 @@ class RecommendAlg{
         }
         else
         {
-            //no min
+            //no min, should not happen, but here for edge case check
             return ["None", "None"]
         }
         
