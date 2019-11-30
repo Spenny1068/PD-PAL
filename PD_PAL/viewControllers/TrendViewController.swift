@@ -35,11 +35,8 @@ import Charts //import to allow bar or line chart
 class TrendViewController: UIViewController, UITableViewDataSource{
 
     // IBOutlet labels
-    @IBOutlet weak var Title_label: UILabel!
     @IBOutlet weak var trendTableView: UITableView!
-    @IBOutlet weak var UpdateButton: UIButton!
     
-    @IBOutlet weak var ClearDates: UIButton!
     
     @IBOutlet weak var rChartView: RadarChart.RadarChartView! //to avoid namespace clash
     @IBOutlet weak var scroller: UIScrollView!
@@ -105,11 +102,9 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
-        self.generateRadarChart()
-        self.prepareStepData()
-       
+        self.updateAuto()
        
     }
     
@@ -151,29 +146,15 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         return cell
     }
 
-    @IBAction func Update(_ sender: UIButton) {
+    func updateAuto()
+    {
         exerciseData = global_UserData.Get_Exercises_all()
         self.trendTableView.reloadData()
         self.generateRadarChart()
         self.viewDidLayoutSubviews()
         self.prepareStepData() //this will call generateStepChart
-       
     }
-
-    @IBAction func clearDates(_ sender: UIButton){
-        /*reset to default dates
-        dateFormatter.dateFormat = "MM/dd/yyyy HH"
-        startDate.text = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
-        endDate.text = dateFormatter.string(from: Date())
-        */
-        //clear dates
-        startDate.text = nil
-        endDate.text = nil
-        startDate.placeholder = "Pick a Start Date"
-        endDate.placeholder = "Pick an End Date"
-        sdateSelected = false
-        edateSelected = false
-    }
+    
     
     func getDatePicker(){
         //let user select the date for step counter
@@ -219,6 +200,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
             {
                 //start date is smaller than end date
                 self.view.endEditing(true)
+                self.updateAuto()
             }
             else
             {
@@ -252,6 +234,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         {
             //start date is smaller than end date
             self.view.endEditing(true)
+            self.updateAuto()
         }
         else
         {
@@ -260,6 +243,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
    
    
     }
+    
     
     func clearStartDate(){
         startDate.text = nil
@@ -274,7 +258,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         edateSelected = false
         self.getDatePicker()
     }
-        
+    
     @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer){
         self.view.endEditing(true)
     }
