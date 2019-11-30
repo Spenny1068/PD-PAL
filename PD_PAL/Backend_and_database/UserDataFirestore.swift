@@ -122,20 +122,22 @@ class UserDataFirestore {
     //Updates the user info on Firebase. Checks for schedule and updates the backup dates after.
     func Update_UserInfo() {
         
-        //Get the date when we can next update.
-        let nextUpdate = Calendar.current.date(byAdding: .second, value: 1, to: self.UserDataSource.Get_LastBackup().UserInfo)!
+        //Run the update code in the background so that it does not hold up the main thread.
+        DispatchQueue.global(qos: .background).async {
+            
+            //Get the date when we can next update.
+            let nextUpdate = Calendar.current.date(byAdding: .second, value: 1, to: self.UserDataSource.Get_LastBackup().UserInfo)!
         
-        print("Next User Info update shceduled for : \(nextUpdate)")
+            print("Next User Info update shceduled for : \(nextUpdate)")
         
-        if( Date() >= nextUpdate ) {
-            //An update is now allowed.
-            self.Update_UserInfo_Helper() { returnVal in
-                //Completion handler for Update function. Check the update was successful.
-                if( returnVal == 0 ) {
-                    //Update was successful. Log the update time.
-                    self.UserDataSource.Update_LastBackup(UserInfo: Date(), Exercise: nil)
+            if( Date() >= nextUpdate ) {
+                //An update is now allowed.
+                self.Update_UserInfo_Helper() { returnVal in
+                    //Completion handler for Update function. Check the update was successful.
+                    if( returnVal == 0 ) { self.UserDataSource.Update_LastBackup(UserInfo: Date(), Exercise: nil) }
                 }
             }
+        
         }
         
     }
@@ -221,24 +223,26 @@ class UserDataFirestore {
     //Updates the exercise data on Firebase. Checks for schedule and updates the backup dates after.
     func Update_ExerciseData() {
         
-        //Get the date when we can next update.
-        let nextUpdate = Calendar.current.date(byAdding: .second, value: 5, to: self.UserDataSource.Get_LastBackup().Exercise)!
+        //Run the update code in the background so that it does not hold up the main thread.
+        DispatchQueue.global(qos: .background).async {
         
-        if( Date() >= nextUpdate ) {
-            //An update is now allowed.
-            self.Update_ExerciseData_Helper() { returnVal in
-                //Completion handler for Update function. Check the update was successful.
-                if( returnVal == 0 ) {
-                    //Update was successful. Log the update time.
-                    self.UserDataSource.Update_LastBackup(UserInfo: nil, Exercise: Date())
+            //Get the date when we can next update.
+            let nextUpdate = Calendar.current.date(byAdding: .second, value: 5, to: self.UserDataSource.Get_LastBackup().Exercise)!
+        
+            if( Date() >= nextUpdate ) {
+                //An update is now allowed.
+                self.Update_ExerciseData_Helper() { returnVal in
+                    //Completion handler for Update function. Check the update was successful.
+                    if( returnVal == 0 ) { self.UserDataSource.Update_LastBackup(UserInfo: nil, Exercise: Date()) }
                 }
             }
+        
         }
         
     }
     
     //Updates the exercise data on Firebase.
-    //This function will be called as a part of Update_Firebase() and should not be called on its own.
+    //This function is the asynchronous portions. Please call Update_UserInfo() instead.
     func Update_ExerciseData_Helper(completion: @escaping (Int) -> ()) {
         
         print(" --- Beginning updating of Exercise Data --- ")
