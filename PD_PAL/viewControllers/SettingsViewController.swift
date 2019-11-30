@@ -78,13 +78,13 @@ class SettingsViewController: UIViewController {
         //Clear the use info in the document
         global_UserDataFirestore.Clear_UserInfo(targetUser: nil) { returnVal in
             if( returnVal == 0 ) {
-                global_UserData.Update_LastBackup(UserInfo: Date(), Routines: nil, Exercise: nil)
+                global_UserData.Update_LastBackup(UserInfo: Date(), Exercise: nil)
             }
         }
         //Clear the exercise data
         global_UserDataFirestore.Clear_ExerciseData(targetUser: nil) { returnVal in
             if( returnVal == 0 ) {
-                global_UserData.Update_LastBackup(UserInfo: nil, Routines: nil, Exercise: Date())
+                global_UserData.Update_LastBackup(UserInfo: nil, Exercise: Date())
             }
         }
         

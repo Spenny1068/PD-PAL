@@ -106,14 +106,14 @@ class UserDataFirestoreTests: XCTestCase {
             Get_UserInfoFirestore.Get_UserInfo(targetUser: "tester") { remoteUserData in
                 //These values are pre-defined in the Firestore.
                 XCTAssert( remoteUserData.Status == "SUCCESS" )
-                XCTAssert( remoteUserData.UserName == "Tester" )
+                XCTAssert( remoteUserData.UserName == "tester" )
                 XCTAssert( remoteUserData.QuestionsAnswered == true )
-                XCTAssert( remoteUserData.WalkingDuration == 15 )
+                XCTAssert( remoteUserData.WalkingDuration == 30 )
                 XCTAssert( remoteUserData.ChairAccessible == true )
                 XCTAssert( remoteUserData.WeightsAccessible == true )
                 XCTAssert( remoteUserData.ResistBandAccessible == true )
                 XCTAssert( remoteUserData.PoolAccessible == true )
-                XCTAssert( remoteUserData.Intensity == "Moderate" )
+                XCTAssert( remoteUserData.Intensity == "Intense" )
                 XCTAssert( remoteUserData.PushNotifications == true )
                 
                 testerUserAsyncExpectation?.fulfill()
@@ -122,7 +122,7 @@ class UserDataFirestoreTests: XCTestCase {
             
         }
         
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 2, handler: nil)
     }
     
     func test_Get_ExercisesData() {
@@ -179,7 +179,7 @@ class UserDataFirestoreTests: XCTestCase {
             
         }
         
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 2, handler: nil)
         
     }
     
@@ -279,6 +279,41 @@ class UserDataFirestoreTests: XCTestCase {
         }
         wait(for: [secondReadAsyncExpectation], timeout: 1)
 
+    }
+    
+    func test_Name_Check() {
+        
+        //Instantiate the class for this test
+        let nameCheckFirestore = UserDataFirestore(sourceGiven: global_UserData)
+        
+        //Check looking for a name in use returns false.
+        let falseExpectation = expectation(description: "False check")
+        nameCheckFirestore.Name_Available(nameToCheck: "tester") { returnVal in
+            XCTAssert( returnVal == false )
+            falseExpectation.fulfill()
+        }
+        
+        //Check looking for a name not in use returns true.
+        let trueExpectation = expectation(description: "True check")
+        nameCheckFirestore.Name_Available(nameToCheck: "Mr. Non-existant") { returnVal in
+            XCTAssert( returnVal == true )
+            trueExpectation.fulfill()
+        }
+        
+        wait(for: [falseExpectation, trueExpectation], timeout: 2)
+        
+    }
+    
+    func test_Name_Check_Synchro() {
+        let nameCheckFirestore_Synchro = UserDataFirestore(sourceGiven: global_UserData)
+        
+        //Check looking for a name in use returns false.
+        //let falseReturn = nameCheckFirestore_Synchro.Name_Available_Synchro(nameToCheck: "tester")
+        //XCTAssert( falseReturn == false )
+        
+        //Check looking for a name not in use returns true.
+        let trueReturn = nameCheckFirestore_Synchro.Name_Available_Synchro(nameToCheck: "Mr. Non-Existant")
+        XCTAssert( trueReturn == true )
     }
     
 }

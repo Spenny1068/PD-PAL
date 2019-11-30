@@ -520,4 +520,22 @@ class UserDataFirestore {
         
     }
     
+    //Checks if the name is is available, based on what is in Firestore.
+    func Name_Available(nameToCheck: String, completion: @escaping (Bool) -> ()) {
+        
+        let userDocRef = self.FirestoreDB.collection("Users").document(nameToCheck)
+        
+        userDocRef.getDocument() { (document, error) in
+            guard let document = document, document.exists else {
+                print("There is no user in Firebase with the name : \(nameToCheck)")
+                completion(true)
+                return
+            }
+            
+            //The document exists, thus the name is already taken
+            completion(false)
+        }
+        
+    }
+    
 }

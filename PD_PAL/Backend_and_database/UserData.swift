@@ -58,6 +58,8 @@
     The insert methods now also call the relevant method from UserData_Firestore
  - 24/11/2019 : William Huong
     UserInfo database no longer has UUID, LastRoutinesBackup, now has NameVerified column.
+ - 29/11/2019 : William Huong
+    Moving Name_Available() to UserDataFirestore
  */
 
 /*
@@ -986,7 +988,7 @@ Methods that insert or update data.
         if( Date() >= nextBackup! ) {
             global_UserDataFirestore.Update_UserInfo() { returnedVal in
                 if( returnedVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: Date(), Routines: nil, Exercise: nil)
+                    self.Update_LastBackup(UserInfo: Date(), Exercise: nil)
                 }
             }
         }
@@ -1029,7 +1031,7 @@ Methods that insert or update data.
         if( Date() >= nextBackup! ) {
             global_UserDataFirestore.Update_ExerciseData() { returnedVal in
                 if( returnedVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: nil, Routines: nil, Exercise: Date())
+                    self.Update_LastBackup(UserInfo: nil, Exercise: Date())
                 }
             }
         }
@@ -1053,7 +1055,7 @@ Methods that insert or update data.
         if( Date() >= nextBackup! ) {
             global_UserDataFirestore.Update_ExerciseData() { returnedVal in
                 if( returnedVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: nil, Routines: nil, Exercise: Date())
+                    self.Update_LastBackup(UserInfo: nil, Exercise: Date())
                 }
             }
         }
@@ -1069,7 +1071,7 @@ Methods that insert or update data.
     }
     
     //Sets LastBackup value.
-    func Update_LastBackup(UserInfo: Date?, Routines: Date?, Exercise: Date?) {
+    func Update_LastBackup(UserInfo: Date?, Exercise: Date?) {
         
         //Get the current dates in the database
         let currentDates = self.Get_LastBackup()
@@ -1209,24 +1211,6 @@ Auxiliary Methods
     //Returns whether or not the user exists. Condition for existance is whether or not we have a name from them.
     func User_Exists() ->(Bool){
         return !( (self.Get_User_Data()).UserName == "DEFAULT_NAME" )
-    }
-    
-    //Checks if the name has already been taken. Returns true if the is available and false if the name has been taken
-    func Name_Available(desiredName: String, completion: @escaping (Bool) -> ()) {
-        
-        let userRef = Firestore.firestore().collection("Users").document(desiredName)
-        
-        userRef.getDocument() { (document, error) in
-            guard let document = document, document.exists else {
-                //The name has been taken if the document exists
-                completion(false)
-                return
-            }
-            
-            //If the document doesn't exist then the name is available
-           completion(true)
-        }
-        
     }
     
 /*
