@@ -259,7 +259,7 @@ class tempViewController: UIViewController {
             global_UserData.Add_Exercise_Done(ExerciseName: exercise_name2 ?? "nil", YearDone: year, MonthDone: month, DayDone: day, HourDone: hour)
         }
         
-        /* update sets variable */
+        /* update set number variable */
         self.setNumber = self.setNumber + 1
         SetsLabel.text = "SET " + "\(self.setNumber)"
         self.progress = 0
@@ -364,6 +364,7 @@ class tempViewController: UIViewController {
             stopButton.isHidden = true
             completedButton.isHidden = false
             nextSetButton.isHidden = false
+            shapelayer.isHidden = true
             
             SetsLabel.text = "SET " + "\(self.setNumber)" + " FINISHED!"
             self.restInterval = 1

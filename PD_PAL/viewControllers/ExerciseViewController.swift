@@ -37,7 +37,7 @@ class ExerciseViewController: UIViewController {
     @IBOutlet weak var skipButton: UIButton!
     @IBOutlet weak var exitRoutineButton: UIButton!
     @IBOutlet weak var NextSetButton: UIButton!
-    
+
     /* global variables */
     var exercise_name: String!
     var imageView = UIImageView()
