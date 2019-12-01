@@ -55,23 +55,29 @@ class SettingsViewController: UIViewController {
     
     //opens safari within the app to access the web component of PD PAL
     @IBAction func accessWebsite(_ sender: Any){
-        var webUserName = "tester" //default test account
-        
+        var webUserName: String = " "
         //check that the current username exists in firebase. If not, just use a tester account as a sample
         //print("Name Verified: \(global_UserData.Get_User_Data().NameVerified)")
         //print("FireStoreOK: \(global_UserData.Get_User_Data().FirestoreOK)")
         
         if global_UserData.Get_User_Data().FirestoreOK {
-            webUserName = global_UserData.Get_User_Data().UserName //local DB username also exists in firebase, therefore can access the website
+           webUserName = global_UserData.Get_User_Data().UserName //local DB username also exists in firebase, therefore can access the website
+            if let url = URL(string: "https://pd-pal.web.app/userDisplay/?name=\(webUserName)"){
+                let config = SFSafariViewController.Configuration()
+                config.entersReaderIfAvailable = true
+                
+                let vc = SFSafariViewController(url: url, configuration: config)
+                present(vc, animated: true)
+            }
+        }
+        else
+        {
+            let alertWeb = UIAlertController(title: "No Web Access", message: "You haven't enabled Firestore Access Yet.", preferredStyle: UIAlertController.Style.alert)
+            alertWeb.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {action in alertWeb.dismiss(animated: true, completion: nil)}))
+            self.present(alertWeb, animated: true, completion: nil)
         }
         
-        if let url = URL(string: "https://pd-pal.web.app/userDisplay/?name=\(webUserName)"){
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            
-            let vc = SFSafariViewController(url: url, configuration: config)
-            present(vc, animated: true)
-        }
+        
     }
     
     @IBAction func buttonClicked(_ sender: Any) {
