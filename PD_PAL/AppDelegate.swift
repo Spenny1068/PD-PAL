@@ -360,7 +360,7 @@ extension UIButton {
 
         // design
         self.layer.cornerRadius = 25                                         // rounded edges
-        self.layer.borderWidth = 6                                           // border width in points
+        self.layer.borderWidth = 3                                           // border width in points
         self.layer.borderColor = Global.color_schemes.m_grey.cgColor         // border color
         //self.clipsToBounds = true                                            // confines bounds of view
         

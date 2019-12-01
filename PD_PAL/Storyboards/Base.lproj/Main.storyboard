@@ -138,7 +138,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick a Start Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fOZ-qr-Xpv">
-                                        <rect key="frame" x="16" y="192" width="345" height="30"/>
+                                        <rect key="frame" x="19" y="154" width="345" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -181,19 +181,33 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select the same day for hourly graph." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3n-H5-cv3">
-                                        <rect key="frame" x="19" y="1210" width="345" height="38"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowUp.png" translatesAutoresizingMaskIntoConstraints="NO" id="iD8-lh-eqs">
+                                        <rect key="frame" x="280" y="1696" width="76" height="69"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exercises Completed in Each Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6W-JU-AzV">
+                                        <rect key="frame" x="8" y="278" width="353" height="59"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowUp.png" translatesAutoresizingMaskIntoConstraints="NO" id="iD8-lh-eqs">
-                                        <rect key="frame" x="280" y="1696" width="76" height="69"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuM-cz-9Mw">
+                                        <rect key="frame" x="19" y="205" width="237" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exercises Completed in Each Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6W-JU-AzV">
-                                        <rect key="frame" x="39" y="278" width="305" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTn-Df-Ijo">
+                                        <rect key="frame" x="19" y="125" width="219" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Step Graph for Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3n-H5-cv3">
+                                        <rect key="frame" x="19" y="1196" width="345" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -208,12 +222,16 @@
                     </view>
                     <size key="freeformSize" width="375" height="2100"/>
                     <connections>
+                        <outlet property="ChartMesg" destination="B3n-H5-cv3" id="UVY-t5-Mne"/>
+                        <outlet property="GraphLabel" destination="J6W-JU-AzV" id="d2J-qF-mRk"/>
                         <outlet property="TrendTableView" destination="Zdh-bc-bmA" id="eVk-5d-TSY"/>
                         <outlet property="endDate" destination="AZy-mb-0yE" id="jg0-6a-j9d"/>
+                        <outlet property="endDateLabel" destination="PuM-cz-9Mw" id="1sJ-Ga-Dba"/>
                         <outlet property="lineChartView" destination="PK4-Qk-EFZ" id="515-P7-7Ed"/>
                         <outlet property="rChartView" destination="E2T-ic-h5l" id="Haa-5I-ZYj"/>
                         <outlet property="scroller" destination="b0R-Vv-2Qh" id="CZ3-9t-hYk"/>
                         <outlet property="startDate" destination="fOZ-qr-Xpv" id="vI9-Kk-chd"/>
+                        <outlet property="startDateLabel" destination="RTn-Df-Ijo" id="8Rt-gK-Bp0"/>
                         <outlet property="trendTableView" destination="Zdh-bc-bmA" id="NqM-da-M4L"/>
                     </connections>
                 </viewController>

@@ -38,7 +38,9 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     @IBOutlet weak var trendTableView: UITableView!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var ChartMesg: UILabel!
     
+    @IBOutlet weak var GraphLabel: UILabel!
     
     @IBOutlet weak var rChartView: RadarChart.RadarChartView! //to avoid namespace clash
     @IBOutlet weak var scroller: UIScrollView!
@@ -107,6 +109,22 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     override func viewDidAppear(_ animated: Bool){
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
         self.updateAuto()
+        
+        // Label styling 
+        startDateLabel.applyQlabels()
+        startDateLabel.text = "Start Date"
+        startDateLabel.textColor = Global.color_schemes.m_blue1
+        endDateLabel.applyQlabels()
+        endDateLabel.text = "End Date"
+        endDateLabel.textColor = Global.color_schemes.m_blue1
+        GraphLabel.applyQlabels()
+        GraphLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
+        GraphLabel.textColor = Global.color_schemes.m_blue1
+        GraphLabel.numberOfLines = 2
+        ChartMesg.applyQlabels()
+        ChartMesg.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
+        ChartMesg.textColor = Global.color_schemes.m_blue1
+        ChartMesg.numberOfLines = 2
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
