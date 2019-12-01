@@ -82,7 +82,6 @@
 
 import Foundation
 import SQLite
-import Firebase
 
 /*
  
@@ -91,8 +90,8 @@ import Firebase
  The four databases are:
  - UserInfo: This database stores the name the user gives us, along with their answers to our questionnaire on first launch
     Columns:
-        - UUID = <String> A unique identifier for Firebase
         - UserName = <String> The name the user provides
+        - NameVerified = <Bool> Whether or not we have checked if the name is available in Firebase
         - QuestionsAnswered = <Bool> Whether or not the user answered the questionnaire
         - WalkingDuration = <Int> The duration for a walking exercise provided by the user
         - ChairAccessible = <Bool> Whether or not the user has access to a chair
@@ -982,16 +981,11 @@ Methods that insert or update data.
             print("Failed to update user info")
         }
         
-        //Update Firestore
-        let nextBackup = Calendar.current.date(byAdding: .second, value: 1, to: lastBackups.UserInfo)
+        //Update Firebase
+        global_UserDataFirestore.Update_UserInfo()
         
-        if( Date() >= nextBackup! ) {
-            global_UserDataFirestore.Update_UserInfo() { returnedVal in
-                if( returnedVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: Date(), Exercise: nil)
-                }
-            }
-        }
+        //If the user is turning on Firebase, also update the exercise data now instead of waiting for them to do an exercise first.
+        if( firestoreOK == true ){ global_UserDataFirestore.Update_ExerciseData() }
         
     }
     
@@ -1026,15 +1020,7 @@ Methods that insert or update data.
         }
         
         //Update Firestore
-        let nextBackup = Calendar.current.date(byAdding: .second, value: 1, to: self.Get_LastBackup().Exercise)
-        
-        if( Date() >= nextBackup! ) {
-            global_UserDataFirestore.Update_ExerciseData() { returnedVal in
-                if( returnedVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: nil, Exercise: Date())
-                }
-            }
-        }
+        global_UserDataFirestore.Update_ExerciseData()
         
     }
     
@@ -1050,15 +1036,7 @@ Methods that insert or update data.
         }
         
         //Update Firestore
-        let nextBackup = Calendar.current.date(byAdding: .second, value: 1, to: self.Get_LastBackup().Exercise)
-        
-        if( Date() >= nextBackup! ) {
-            global_UserDataFirestore.Update_ExerciseData() { returnedVal in
-                if( returnedVal == 0 ) {
-                    self.Update_LastBackup(UserInfo: nil, Exercise: Date())
-                }
-            }
-        }
+        global_UserDataFirestore.Update_ExerciseData()
         
     }
     

@@ -20,6 +20,10 @@ class SetUpViewController: UIViewController {
         super.viewDidLoad()
         let vc = LoginViewController()
         vc.dismiss(animated: true, completion: nil)
+        
+        //Hides back button of navigation bar
+        self.navigationItem.setHidesBackButton(true, animated: false)
+
         //Question Label
         QuestionLabel.text = "Would you like to set-up your preferences now?"
         QuestionLabel.applyQuestionDesign()

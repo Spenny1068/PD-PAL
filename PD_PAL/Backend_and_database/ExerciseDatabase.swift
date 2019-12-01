@@ -270,7 +270,7 @@ class ExerciseDatabase {
                         Sets: 3)
         
         //(index 12)
-        insert_exercise(Name: "HEEL STAND",
+        insert_exercise(Name: "CALF RAISES",
                         Desc: "Keep your knees shoulder-width apart. Raise up on your heels as high as possible. Slowly return to the starting position. Recommended: 1-3 sets",
                         Category: "Strength",
                         Equipment: "Chair",
