@@ -487,7 +487,9 @@ extension UIButton {
     /* home button on navigation bar */
     func applyHomeButton(){
         self.setImage(UIImage(named: "SmallLogo"), for: .normal)
-        self.frame = CGRect(x: 0, y:0, width: 10, height: 5)
+        //self.setTitle("Home", for: .normal)
+        self.setTitleColor(UIColor.red, for: .normal)
+        self.frame = CGRect(x: 0, y:0, width: 10, height: 5)	
     }
     
     /* design for buttons on settings page */
