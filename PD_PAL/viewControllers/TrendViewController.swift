@@ -378,7 +378,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         var dataEntries: [ChartDataEntry] = []
         
         
-        for i in 0..<dataPoints.count{
+        for i in 0...23{
             let dataEntry = ChartDataEntry(x: dataPoints[i], y: values[i])
             dataEntries.append(dataEntry)
             
@@ -393,35 +393,33 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
     func prepareStepData(){
         //get step data for the selected range of dates
-        //limit querying step data to be within the same day for hourly data
+        //limit querying step data to be within today for hourly data
         //any more data would just look very condensed on the mobile device.
         //leave the full dataset for the web?
         
         var stepDataHourly: [Double] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] //gets hourly data for the start date selected (one day)
         let hoursOfDay: [Double] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
         
-        if eDateDay == sDateDay && eDateHour != sDateHour //same day. Get hourly data
+        let cDateYear = Calendar.current.component(.year, from: Date())
+        let cDateMonth = Calendar.current.component(.month, from: Date())
+        let cDateDay = Calendar.current.component(.day, from: Date())
+        //let cDateHour = Calendar.current.component(.hour, from: Date())
+        //let cDateMinute = Calendar.current.component(.minute, from: Date())
+        
+        for i in 0...23 //eDateHour will always be greater than sDateHour if same year, month and day due to the input validation
         {
-            for i in 0..<(eDateHour-sDateHour) //eDateHour will always be greater than sDateHour if same year, month and day due to the input validation
-            {
-                stepDataHourly[i] = Double(global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour+i))
-                
-                //print("StepHourly: \(stepDataHourly[i])")
-            }
+            stepDataHourly[i] = Double(global_UserData.Get_Steps_Taken(TargetYear: cDateYear, TargetMonth: cDateMonth, TargetDay: cDateDay, TargetHour: i))
             
-            generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
-            /*
-             //test
-             stepDataHourly = [1.0, 2.0, 3.0, 4.0, 5.0] //dummy values
-             generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)*/
+            //print("StepHourly: \(stepDataHourly[i])")
         }
-        else
-        {
-            //max step data that can be queried is one day for hourly data
-            stepDataHourly = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] //default values
-            generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
-            print("No graph for step counter is generated. To generate a step counter graph, please set the duration to be within the same day.")
-        }
+        
+        generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
+        /*
+         //test
+         stepDataHourly = [1.0, 2.0, 3.0, 4.0, 5.0] //dummy values
+         generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)*/
+       
+      
         
     }
     /*
