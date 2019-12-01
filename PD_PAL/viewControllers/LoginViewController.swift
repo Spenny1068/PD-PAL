@@ -9,6 +9,7 @@
 //<Nov. 2, 2019, Izyl Canonicato, Insert/Update questionsAnswered into UserData>
 //<Nov. 23, 2019, Izyl Canonicato, Updated IB constraints>
 //<Nov. 29, 2019, William Huong, Added check for unique names>
+//<Nov. 30, 2019, William Huong, The name gets reserved in Firebase now if they go through with it>
 
 import Foundation
 import UIKit
@@ -53,6 +54,11 @@ class LoginViewController: UIViewController{
                 self.ValidationMessage.text = "Username has already been taken"
                 self.ValidationMessage.isHidden = false
                 return
+            }
+            
+            //Reserve the user name
+            global_UserDataFirestore.Reserve_Name(nameToReserve: userName) { returnVal in
+                
             }
             
             // Store username to DB

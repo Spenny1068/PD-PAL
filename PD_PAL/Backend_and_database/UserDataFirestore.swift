@@ -33,6 +33,8 @@ Revision History
     Wrapped the asynchronous update functions into functions so calling them is easier.
  - 30/11/2019 : William Huong
     The Update functions now run asynchronously in the background
+ - 30/11/2019 : William Huong
+    implemented Reserve_Name()
 */
 
 /*
@@ -134,7 +136,7 @@ class UserDataFirestore {
     
     //Updates the user info on Firebase.
     //This function is the asynchronous portions. Please call Update_UserInfo() instead.
-    func Update_UserInfo_Helper(completion: @escaping (Int) -> ()) {
+    private func Update_UserInfo_Helper(completion: @escaping (Int) -> ()) {
         
         print(" --- Beginning update of UserInfo --- ")
         
@@ -233,7 +235,7 @@ class UserDataFirestore {
     
     //Updates the exercise data on Firebase.
     //This function is the asynchronous portions. Please call Update_UserInfo() instead.
-    func Update_ExerciseData_Helper(completion: @escaping (Int) -> ()) {
+    private func Update_ExerciseData_Helper(completion: @escaping (Int) -> ()) {
         
         print(" --- Beginning updating of Exercise Data --- ")
         
@@ -572,6 +574,27 @@ class UserDataFirestore {
             
             //The document exists, thus the name is already taken
             completion(false)
+        }
+        
+    }
+    
+    //This function will just insert a document with the user name.
+    func Reserve_Name(nameToReserve: String, completion: @escaping (Int) -> ()) {
+        
+        let userDocRef = self.FirestoreDB.collection("Users").document(nameToReserve)
+        
+        let emptyData: [String : Any] = [:]
+        
+        userDocRef.setData(emptyData) { err in
+            if let err = err {
+                print("Failed to reserve the username : \(err)")
+                completion(1)
+                return
+            } else {
+                print("Successfully reserved the username")
+                completion(0)
+                return
+            }
         }
         
     }
