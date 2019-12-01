@@ -99,19 +99,19 @@ class RoutineGenericViewController: UIViewController {
 
         /* routine exercise labels */
         //-> label 1
-        RoutineExercise1.text = "   1) \(routineData[0])"
+        RoutineExercise1.text = "   1.) \(routineData[0])"
         RoutineExercise1.applyExerciseLabelDesign()
-        RoutineExercise1.backgroundColor = Global.color_schemes.m_blue1          // background color
+        //RoutineExercise1.backgroundColor = Global.color_schemes.m_blue1          // background color
 
         //-> label 2
-        RoutineExercise2.text = "   2) \(routineData[1])"
+        RoutineExercise2.text = "   2.) \(routineData[1])"
         RoutineExercise2.applyExerciseLabelDesign()
-        RoutineExercise2.backgroundColor = Global.color_schemes.m_blue1          // background color
+        //RoutineExercise2.backgroundColor = Global.color_schemes.m_blue1          // background color
 
         //-> label 3
-        RoutineExercise3.text = "   3) \(routineData[2])"
+        RoutineExercise3.text = "   3.) \(routineData[2])"
         RoutineExercise3.applyExerciseLabelDesign()
-        RoutineExercise3.backgroundColor = Global.color_schemes.m_blue1          // background color
+        //RoutineExercise3.backgroundColor = Global.color_schemes.m_blue1          // background color
         
         /* exercise buttons constraints */
         applyExerciseLabelConstraint(label: RoutineExercise1)
