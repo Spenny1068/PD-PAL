@@ -10,8 +10,14 @@
 // <October 27, 2019, Spencer Lall, applied default page design>
 // <November 16, 2019, Julia Kim, added a sw to ask for user permission to push user data to cloud, adding a button to allow user to delete their data>
 // <November 17, 2019, William Huong, delete button now also clears data from Firebase>
+// <November 30, 2019, Julia Kim, Added web access functionality and fixed SW bug>
+
+/*Known Bugs
+ -November 29, 2019: Julia Kim, Data push SW will turn off after rebooting -> fixed
+ */
 
 import UIKit
+import SafariServices
 
 class SettingsViewController: UIViewController {
     
@@ -22,7 +28,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var deleteData: UIButton!
     @IBOutlet weak var updateProfile: UIButton!
     @IBOutlet weak var linkWebsiteBtn: UIButton!
-    let userDB = UserData()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +52,33 @@ class SettingsViewController: UIViewController {
         cloudSW.setOn(cloudSW.isOn, animated: true)
     }
     
+    
+    //opens safari within the app to access the web component of PD PAL
+    @IBAction func accessWebsite(_ sender: Any){
+        var webUserName: String = " "
+        //check that the current username exists in firebase. If not, just use a tester account as a sample
+        //print("Name Verified: \(global_UserData.Get_User_Data().NameVerified)")
+        //print("FireStoreOK: \(global_UserData.Get_User_Data().FirestoreOK)")
+        
+        if global_UserData.Get_User_Data().FirestoreOK {
+           webUserName = global_UserData.Get_User_Data().UserName //local DB username also exists in firebase, therefore can access the website
+            if let url = URL(string: "https://pd-pal.web.app/userDisplay/?name=\(webUserName)"){
+                let config = SFSafariViewController.Configuration()
+                config.entersReaderIfAvailable = true
+                
+                let vc = SFSafariViewController(url: url, configuration: config)
+                present(vc, animated: true)
+            }
+        }
+        else
+        {
+            let alertWeb = UIAlertController(title: "No Web Access", message: "You haven't enabled Firestore Access Yet.", preferredStyle: UIAlertController.Style.alert)
+            alertWeb.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {action in alertWeb.dismiss(animated: true, completion: nil)}))
+            self.present(alertWeb, animated: true, completion: nil)
+        }
+        
+        
+    }
     
     @IBAction func buttonClicked(_ sender: Any) {
         if cloudSW.isOn{

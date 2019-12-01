@@ -20,6 +20,7 @@ Revision History:
  */
 
 import UIKit
+import SwiftyGif
 
 class ExerciseViewController: UIViewController {
     
@@ -219,11 +220,14 @@ class ExerciseViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         /* gif */
-        let temp = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
-        let gif = UIImage.gifImageWithName(temp.Link)
-        imageView = UIImageView(image: gif)
-        imageView.frame = CGRect(x: 0, y: 112, width: 375, height: 300)
-        view.addSubview(imageView)
+        do {
+            let temp = global_ExerciseData.read_exercise(NameOfExercise: exercise_name ?? "nil")
+            let gif = try UIImage(gifName: temp.Link)
+            self.imageView.setGifImage(gif)
+            imageView.frame = CGRect(x: 0, y: 112, width: 375, height: 300)
+            view.addSubview(imageView)
+
+        } catch { print(error) }
         
         /* hide loading label when gif has loaded */
         LoadingLabel.isHidden = true
