@@ -31,7 +31,7 @@ Known Bugs
     When an XTCAssert() throws after the function it is inside of has already returned, we get a hard SIGABRT error which crashes the app.
  - 17/11/2019 : William Huong
     The test methods all start at the same time, but also all use the global_UserData instance of the UserData class. This causes an issue where some functions will not do anything because a different test method cleared the database.
- - 17/11/2019 : William Huong
+ - 17/11/2019 : William Huong --- Fixed
     Get_Routines(), Get_ExerciseData(), Routines() all throw an error : API violation - multiple calls made to -[XCTestExpectation fulfill]
 */
 
@@ -185,99 +185,108 @@ class UserDataFirestoreTests: XCTestCase {
     
     func test_UserInfo() {
         
+        //Create a Firebase reference for use
+        let FirestoreRef = Firestore.firestore()
+        
         //Initialize a new UserData class that only this method will interact with, along with a UserDataFirestore class using that Database
         let UserInfoDB = UserData(DatabaseIdentifier: "UserInfo")
         let UserInfoFirestore = UserDataFirestore(sourceGiven: UserInfoDB)
         
-        //Clear out the database to generate a new UUID and set some values for our user
-        UserInfoDB.Clear_UserInfo_Database()
-        UserInfoDB.Update_User_Data(nameGiven: "UserInfoTester", questionsAnswered: true, walkingDuration: 15, chairAvailable: true, weightsAvailable: false, resistBandAvailable: true, poolAvailable: false, intensityDesired: "Light", pushNotificationsDesired: true, firestoreOK: true)
+        //Create a UUID to use as a guaranteed user name
+        let currentUser = UUID().uuidString
         
-        let nullUserAsyncExpectation = expectation(description: "Get_UserInfo() on non-existant user asnyc block started")
-        DispatchQueue.main.async {
-            
-            //At this point we should not have a user available. Confirm
-            UserInfoFirestore.Get_UserInfo(targetUser: nil) { remoteUserData in
-                print("Null user status : \(remoteUserData)")
-                XCTAssert( remoteUserData.Status == "NO_DOCUMENT" )
-                
-                nullUserAsyncExpectation.fulfill()
+        //Create the User Info document reference
+        let userDocRef = FirestoreRef.collection("User").document(currentUser)
+        
+        UserInfoDB.Update_User_Data(nameGiven: currentUser, questionsAnswered: true, walkingDuration: 10, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, poolAvailable: false, intensityDesired: "Moderate", pushNotificationsDesired: false, firestoreOK: true)
+        
+        //Push the user to Firebase
+        UserInfoFirestore.Update_UserInfo()
+        
+        //Wait 10 seconds for the push to finish
+        sleep(10)
+        
+        //Make sure the push actually went through
+        let initialExpecation = expectation(description: "Initial User Info push")
+        
+        userDocRef.getDocument() { (document, error) in
+            guard let document = document, document.exists else {
+                //The user did not exist.
+                return
             }
             
-        }
-        wait(for: [nullUserAsyncExpectation], timeout: 1)
-        
-        
-        let firstInsertAsnycExpectation = expectation(description: "Initial Update_UserInfo() asnyc block started")
-        DispatchQueue.main.async {
+            let dataReturned = document.data()
             
-            //Add the user to Firestore
-            UserInfoFirestore.Update_UserInfo() { returnVal in
-                XCTAssert( returnVal == 0 )
-                
-                firstInsertAsnycExpectation.fulfill()
+            //Grab the data, unwrap it.
+            let returnedUserName = dataReturned?["UserName"] as? String ?? "USERNAME_NIL"
+            let returnedQuestionsAnswered = dataReturned?["QuestionsAnswered"] as? Bool ?? false
+            let returnedWalkingDuration = dataReturned?["WalkingDuration"] as? Int ?? -1
+            let returnedChairAccessible = dataReturned?["ChairAccessible"] as? Bool ?? false
+            let returnedWeightsAccessible = dataReturned?["WeightsAccessible"] as? Bool ?? false
+            let returnedResistBandAccessible = dataReturned?["ResistBandAccessible"] as? Bool ?? false
+            let returnedPoolAccessible = dataReturned?["PoolAccessible"] as? Bool ?? false
+            let returnedIntensity = dataReturned?["Intensity"] as? String ?? "INTENSITY_NIL"
+            let returnedPushNotifications = dataReturned?["PushNotifications"] as? Bool ?? false
+            
+            XCTAssert( returnedUserName == currentUser )
+            XCTAssert( returnedQuestionsAnswered == true )
+            XCTAssert( returnedWalkingDuration == 10 )
+            XCTAssert( returnedChairAccessible == false )
+            XCTAssert( returnedWeightsAccessible == false )
+            XCTAssert( returnedResistBandAccessible == false )
+            XCTAssert( returnedPoolAccessible == false )
+            XCTAssert( returnedIntensity == "Moderate" )
+            XCTAssert( returnedPushNotifications == false )
+            
+            initialExpecation.fulfill()
+        }
+        
+        wait(for: [initialExpecation], timeout: 10)
+        
+        //Update the user info
+        UserInfoDB.Update_User_Data(nameGiven: nil, questionsAnswered: true, walkingDuration: 30, chairAvailable: true, weightsAvailable: true, resistBandAvailable: true, poolAvailable: true, intensityDesired: "Intense", pushNotificationsDesired: true, firestoreOK: true)
+        
+        UserInfoFirestore.Update_UserInfo()
+        
+        //Wait 10 seconds for the push to finish
+        sleep(10)
+        
+        //make sure the update actually went through
+        let updateExpecation = expectation(description: "Update User Info push")
+        
+        userDocRef.getDocument() { (document, error) in
+            guard let document = document, document.exists else {
+                //The user did not exist.
+                return
             }
             
+            let dataReturned = document.data()
+            
+            //Grab the data, unwrap it.
+            let returnedUserName = dataReturned?["UserName"] as? String ?? "USERNAME_NIL"
+            let returnedQuestionsAnswered = dataReturned?["QuestionsAnswered"] as? Bool ?? false
+            let returnedWalkingDuration = dataReturned?["WalkingDuration"] as? Int ?? -1
+            let returnedChairAccessible = dataReturned?["ChairAccessible"] as? Bool ?? false
+            let returnedWeightsAccessible = dataReturned?["WeightsAccessible"] as? Bool ?? false
+            let returnedResistBandAccessible = dataReturned?["ResistBandAccessible"] as? Bool ?? false
+            let returnedPoolAccessible = dataReturned?["PoolAccessible"] as? Bool ?? false
+            let returnedIntensity = dataReturned?["Intensity"] as? String ?? "INTENSITY_NIL"
+            let returnedPushNotifications = dataReturned?["PushNotifications"] as? Bool ?? false
+            
+            XCTAssert( returnedUserName == currentUser )
+            XCTAssert( returnedQuestionsAnswered == true )
+            XCTAssert( returnedWalkingDuration == 30 )
+            XCTAssert( returnedChairAccessible == true )
+            XCTAssert( returnedWeightsAccessible == true )
+            XCTAssert( returnedResistBandAccessible == true )
+            XCTAssert( returnedPoolAccessible == true )
+            XCTAssert( returnedIntensity == "Intense" )
+            XCTAssert( returnedPushNotifications == true )
+            
+            updateExpecation.fulfill()
         }
-        wait(for: [firstInsertAsnycExpectation], timeout: 1)
         
-        let firstReadAsyncExpectation = expectation(description: "First Get_UserInfo() async block started")
-        DispatchQueue.main.async {
-            
-            //Confirm the the user was uploaded to Firestore
-            UserInfoFirestore.Get_UserInfo(targetUser: nil) { remoteUserData in
-                XCTAssert( remoteUserData.UserName == UserInfoDB.Get_User_Data().UserName )
-                XCTAssert( remoteUserData.QuestionsAnswered == UserInfoDB.Get_User_Data().QuestionsAnswered )
-                XCTAssert( remoteUserData.WalkingDuration == UserInfoDB.Get_User_Data().WalkingDuration )
-                XCTAssert( remoteUserData.ChairAccessible == UserInfoDB.Get_User_Data().ChairAccessible )
-                XCTAssert( remoteUserData.WeightsAccessible == UserInfoDB.Get_User_Data().WeightsAccessible )
-                XCTAssert( remoteUserData.ResistBandAccessible == UserInfoDB.Get_User_Data().ResistBandAccessible )
-                XCTAssert( remoteUserData.PoolAccessible == UserInfoDB.Get_User_Data().PoolAccessible )
-                XCTAssert( remoteUserData.Intensity == UserInfoDB.Get_User_Data().Intensity )
-                XCTAssert( remoteUserData.PushNotifications == UserInfoDB.Get_User_Data().PushNotifications )
-                
-                firstReadAsyncExpectation.fulfill()
-            }
-            
-        }
-        wait(for: [firstReadAsyncExpectation], timeout: 1)
-        
-        //Update UserInfo
-        UserInfoDB.Update_User_Data(nameGiven: "UserInfoTester2", questionsAnswered: true, walkingDuration: 20, chairAvailable: false, weightsAvailable: false, resistBandAvailable: false, poolAvailable: false, intensityDesired: "Moderate", pushNotificationsDesired: true, firestoreOK: true)
-        
-        let secondInsertAsyncExpectation = expectation(description: "Second Update_UserInfo() async block started")
-        DispatchQueue.main.async {
-            
-            //Update the user in Firestore
-            UserInfoFirestore.Update_UserInfo() { returnVal in
-                XCTAssert( returnVal == 0 )
-                
-                secondInsertAsyncExpectation.fulfill()
-            }
-            
-        }
-        wait(for: [secondInsertAsyncExpectation], timeout: 1)
-        
-        let secondReadAsyncExpectation = expectation(description: "Second Get_UserInfo() async block started")
-        DispatchQueue.main.async {
-            
-            //Confirm the update went through
-            UserInfoFirestore.Get_UserInfo(targetUser: nil) { remoteUserData in
-                XCTAssert( remoteUserData.UserName == UserInfoDB.Get_User_Data().UserName )
-                XCTAssert( remoteUserData.QuestionsAnswered == UserInfoDB.Get_User_Data().QuestionsAnswered )
-                XCTAssert( remoteUserData.WalkingDuration == UserInfoDB.Get_User_Data().WalkingDuration )
-                XCTAssert( remoteUserData.ChairAccessible == UserInfoDB.Get_User_Data().ChairAccessible )
-                XCTAssert( remoteUserData.WeightsAccessible == UserInfoDB.Get_User_Data().WeightsAccessible )
-                XCTAssert( remoteUserData.ResistBandAccessible == UserInfoDB.Get_User_Data().ResistBandAccessible )
-                XCTAssert( remoteUserData.PoolAccessible == UserInfoDB.Get_User_Data().PoolAccessible )
-                XCTAssert( remoteUserData.Intensity == UserInfoDB.Get_User_Data().Intensity )
-                XCTAssert( remoteUserData.PushNotifications == UserInfoDB.Get_User_Data().PushNotifications )
-                
-                secondReadAsyncExpectation.fulfill()
-            }
-        
-        }
-        wait(for: [secondReadAsyncExpectation], timeout: 1)
+        wait(for: [updateExpecation], timeout: 10)
 
     }
     
@@ -302,18 +311,6 @@ class UserDataFirestoreTests: XCTestCase {
         
         wait(for: [falseExpectation, trueExpectation], timeout: 2)
         
-    }
-    
-    func test_Name_Check_Synchro() {
-        let nameCheckFirestore_Synchro = UserDataFirestore(sourceGiven: global_UserData)
-        
-        //Check looking for a name in use returns false.
-        //let falseReturn = nameCheckFirestore_Synchro.Name_Available_Synchro(nameToCheck: "tester")
-        //XCTAssert( falseReturn == false )
-        
-        //Check looking for a name not in use returns true.
-        let trueReturn = nameCheckFirestore_Synchro.Name_Available_Synchro(nameToCheck: "Mr. Non-Existant")
-        XCTAssert( trueReturn == true )
     }
     
 }
