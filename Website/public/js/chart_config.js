@@ -114,7 +114,7 @@ function set_stepcount(la_a, la_b, la_c, la_d, la_e, la_f, la_g, da_a, da_b, da_
 				legend: { display: false },
 				title: {
 					display: true,
-					text: 'Step Counter over the past Week!'
+					text: 'Step Counter over the selected time interval!'
 				}
 			}
 	});

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Your Exercise History</title>
+    <title id="title">Your Exercise History</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/7.3.0/firebase-app.js"></script>
@@ -34,6 +34,7 @@
 				//return to login page
 			  location.href = "../index.html";
 			}
+			document.getElementById("title").innerHTML = name + "'s Exercise History";
 		</script>
   </head>
   <body>
@@ -41,7 +42,7 @@
 			  
 			<h1> <img src="../images/pd_pal_logo.png" alt="PD PAL LOGO"
 			 title="PD PAL LOGO" width="73" height="61.5" align="bottom"  /> 	PD PAL</h1>
-			<h2>Your Exercise History</h2>
+			<h2 id="h2_dynamic">Your Exercise History</h2>
     </div>
 
 
@@ -57,6 +58,8 @@
 		<div id="History" class="tabcontent">
 			<h3>History</h3>
 			<h4> Your Exercise History depending on each category.</h4>
+			<p>Each colour represents a different category of exercises completed. You may remove a category from 
+			the graph by selecting the category in the legend. The x-axis indices displays hours in 24-Hour Time Format or Month/Day depending on the time interval selected.</p>
 			<select name="selInterval" id="selIntHist" onchange="updateHistory();">
 				<option value="p7hours">Past 7 Hours</option>
 				<option value="p7days">Past 7 Days</option>
@@ -68,7 +71,7 @@
 
 		<div id="Trends" class="tabcontent">
 			<h3>Trends</h3>
-			<p>Your Trends for the past 7 days!</p>			
+			<p>Percentage of Exercises Completed by Category!</p>			
 			<select name="selInterval" id="selIntTrends" onchange="updateTrends();">
 				<option value="p7hours">Past 7 Hours</option>
 				<option value="p7days">Past 7 Days</option>
@@ -79,7 +82,7 @@
 
 		<div id="Steps" class="tabcontent">
 			<h3>Steps</h3>
-			<p>These are the steps that you have taken over the past week!</p>
+			<p>These are the steps that you have taken over the selected time interval! The x-axis indices displays hours in 24-Hour Time Format or Month/Day depending on the time interval selected.</p>
 			<select name="selInterval" id="selIntSteps" onchange="updateSteps();">
 				<option value="p7hours">Past 7 Hours</option>
 				<option value="p7days">Past 7 Days</option>
@@ -96,6 +99,9 @@
 			document.getElementById("loader_ste").style.display = "none";
 			document.getElementById("loader_tre").style.display = "none";
 
+			var urlParams = new URLSearchParams(window.location.search);
+			var name = urlParams.get('name');
+			document.getElementById("h2_dynamic").innerHTML = name + "'s Exercise History";
 						
 			//get default graphs for 7 days
 			sendHttpDays(true);
