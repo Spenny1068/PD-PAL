@@ -70,9 +70,14 @@ class SettingsViewController: UIViewController {
                 let vc = SFSafariViewController(url: url, configuration: config)
                 present(vc, animated: true)
             }
+            else {
+                let alertWeb = UIAlertController(title: "Unable to load the website", message: "It's not you, it's us. Please access the website on your computer instead", preferredStyle: UIAlertController.Style.alert)
+                  alertWeb.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {action in alertWeb.dismiss(animated: true, completion: nil)}))
+                  self.present(alertWeb, animated: true, completion: nil)
+            }
         }
-        else
-        {
+            
+        else {
             let alertWeb = UIAlertController(title: "No Website Access", message: "Please enable pushing your data to cloud to access your website!", preferredStyle: UIAlertController.Style.alert)
             alertWeb.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {action in alertWeb.dismiss(animated: true, completion: nil)}))
             self.present(alertWeb, animated: true, completion: nil)
