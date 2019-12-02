@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Your Exercise History</title>
+    <title id="title">Your Exercise History</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/7.3.0/firebase-app.js"></script>
@@ -34,6 +34,7 @@
 				//return to login page
 			  location.href = "../index.html";
 			}
+			document.getElementById("title").innerHTML = name + "'s Exercise History";
 		</script>
   </head>
   <body>
@@ -41,7 +42,7 @@
 			  
 			<h1> <img src="../images/pd_pal_logo.png" alt="PD PAL LOGO"
 			 title="PD PAL LOGO" width="73" height="61.5" align="bottom"  /> 	PD PAL</h1>
-			<h2>Your Exercise History</h2>
+			<h2 id="h2_dynamic">Your Exercise History</h2>
     </div>
 
 
@@ -96,6 +97,9 @@
 			document.getElementById("loader_ste").style.display = "none";
 			document.getElementById("loader_tre").style.display = "none";
 
+			var urlParams = new URLSearchParams(window.location.search);
+			var name = urlParams.get('name');
+			document.getElementById("h2_dynamic").innerHTML = name + "'s Exercise History";
 						
 			//get default graphs for 7 days
 			sendHttpDays(true);
