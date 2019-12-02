@@ -50,8 +50,12 @@ class LoginViewController: UIViewController{
         
         global_UserDataFirestore.Name_Available(nameToCheck: userName) { returnVal in
         
-            if( returnVal != true ) {
+            if( returnVal == 1 ) {
                 self.ValidationMessage.text = "Username has already been taken"
+                self.ValidationMessage.isHidden = false
+                return
+            } else if( returnVal == 2 ) {
+                self.ValidationMessage.text = "No Internet, Please try again later"
                 self.ValidationMessage.isHidden = false
                 return
             }
