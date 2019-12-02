@@ -137,8 +137,8 @@ class SettingsViewController: UIViewController {
         cloudSW.isOn = false
         
         //test to see if UserInfo got deleted
-        print("Check User DB: \(global_UserData.Get_User_Data())")
-        print("Check Exercises Done DB: \(global_UserData.Get_Exercises_all())")
+        //print("Check User DB: \(global_UserData.Get_User_Data())")
+        //print("Check Exercises Done DB: \(global_UserData.Get_Exercises_all())")
         
     }
 }
