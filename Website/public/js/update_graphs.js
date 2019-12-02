@@ -12,6 +12,7 @@ var isSevenHours = true;
 function updateHistory()
 {
 	var Hist = document.getElementById("selIntHist");
+	document.getElementById("loader_his").style.display = "block";	
 	if (Hist.value == "p7hours"){
 		//alert("You clicked p7hours. his");
 		sendHttpDays(true/*is7Hours*/);
@@ -31,6 +32,7 @@ function updateHistory()
 function updateTrends()
 {
 	var trends = document.getElementById("selIntTrends");
+	document.getElementById("loader_tre").style.display = "block";	
 	if (trends.value == "p7hours"){
 		//alert("You clicked p7hours. trends");
 		sendHttpDays(true/*is7Hours*/);
@@ -46,6 +48,7 @@ function updateTrends()
 function updateSteps()
 {
 	var steps = document.getElementById("selIntSteps");
+	document.getElementById("loader_ste").style.display = "block";	
 	if (steps.value == "p7hours"){
 		//alert("You clicked p7hours. steps");
 		sendHttpDays(true/*is7Hours*/);
@@ -71,8 +74,11 @@ function getExData(name,sDate,eDate)
 			var res = this.responseText;
 			//alert(res);
 			update_graphs(res);
+			document.getElementById("loader_his").style.display = "none";
+			document.getElementById("loader_ste").style.display = "none";
+			document.getElementById("loader_tre").style.display = "none";
 			return res;
-				//document.getElementById("loader").style.display = "none";
+
 				//document.getElementById("loader").style.display = "none";	
 		}
 		else	

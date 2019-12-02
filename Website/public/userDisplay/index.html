@@ -62,6 +62,7 @@
 				<option value="p7days">Past 7 Days</option>
  			</select>
 			<!--<p>Select categories in the legend to remove them from the graph.</p>-->
+			<div id="loader_his"></div>
 			<canvas id="exHis"> </canvas>
 		</div>
 
@@ -72,6 +73,7 @@
 				<option value="p7hours">Past 7 Hours</option>
 				<option value="p7days">Past 7 Days</option>
  			</select>
+			<div id="loader_tre"></div>
 			<canvas id="trendsChart" width="800" height="450"></canvas> 
 		</div>
 
@@ -82,27 +84,19 @@
 				<option value="p7hours">Past 7 Hours</option>
 				<option value="p7days">Past 7 Days</option>
  			</select>
+			<div id="loader_ste"></div>
 			<canvas id="stepCountChart" height=200 width=200></canvas>
 		</div>
 		<script>
 			// Get the element with id="defaultOpen" and click on it
 			document.getElementById("defaultOpen").click();
 
-			//set default graph looks
-			set_exercise_history
-			(
-				'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
-				12, 2, 9, 17, 6, 3, 7,
-				2, 1, 5, 5, 2, 3, 10,
-				9, 3, 4, 2, 13, 4, 2,
-				1, 2, 7, 5, 3, 5, 10
-			);
-			set_trends("Flexibility", "Strength", "Cardio", "Balance" ,  2478, 5267, 734 , 784);
-			set_stepcount("Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday","Sunday",2478,3267,2134,7384,4433,1221,900);
-			
-			//var urlParams = new URLSearchParams(window.location.search);
-			//var name = urlParams.get('name');
-			
+			//turn off the loading animation
+			document.getElementById("loader_his").style.display = "none";
+			document.getElementById("loader_ste").style.display = "none";
+			document.getElementById("loader_tre").style.display = "none";
+
+						
 			//get default graphs for 7 days
 			sendHttpDays(true);
 			
