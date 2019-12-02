@@ -11,6 +11,7 @@
 // <November 16, 2019, Julia Kim, added a sw to ask for user permission to push user data to cloud, adding a button to allow user to delete their data>
 // <November 17, 2019, William Huong, delete button now also clears data from Firebase>
 // <November 30, 2019, Julia Kim, Added web access functionality and fixed SW bug>
+// <December 2, 2019, Julia Kim, Fixed the pop-up message for view website button based on the user feedback>
 
 /*Known Bugs
  -November 29, 2019: Julia Kim, Data push SW will turn off after rebooting -> fixed
@@ -72,7 +73,7 @@ class SettingsViewController: UIViewController {
         }
         else
         {
-            let alertWeb = UIAlertController(title: "No Web Access", message: "You haven't enabled Firestore Access Yet.", preferredStyle: UIAlertController.Style.alert)
+            let alertWeb = UIAlertController(title: "No Website Access", message: "Please enable pushing your data to cloud to access your website!", preferredStyle: UIAlertController.Style.alert)
             alertWeb.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {action in alertWeb.dismiss(animated: true, completion: nil)}))
             self.present(alertWeb, animated: true, completion: nil)
         }
