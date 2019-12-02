@@ -52,7 +52,6 @@ class ExerciseViewController: UIViewController {
     let shapelayer = CAShapeLayer()
     var progress: Float = 0
 
-
     /* forward pass data between view controllers */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -137,7 +136,6 @@ class ExerciseViewController: UIViewController {
         timerLabel.isHidden = true
         SetsLabel.isHidden = true
         completedButton.isHidden = true
-        exitRoutineButton.isHidden = true
         NextSetButton.isHidden = true
         
         /* show these elements */
@@ -155,6 +153,13 @@ class ExerciseViewController: UIViewController {
             skipButton.backgroundColor = Global.color_schemes.m_lightGreen
             skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
             self.view.addSubview(skipButton)
+            
+            /* exit routine button */
+            exitRoutineButton.applyLeftTimerButtonFrame()
+            exitRoutineButton.setTitle("EXIT ROUTINE", for: .normal)
+            exitRoutineButton.backgroundColor = Global.color_schemes.m_lightRed
+            exitRoutineButton.timerButtonDesign()
+            exitRoutineButton.isHidden = true
             
             /* start button */
             startButton.applyRightTimerButtonFrame()
@@ -185,11 +190,6 @@ class ExerciseViewController: UIViewController {
         if Global.routine_index == 2 {
             exitRoutineButton.isHidden = false
             skipButton.isHidden = true
-            
-            exitRoutineButton.applyLeftTimerButtonFrame()
-            exitRoutineButton.setTitle("EXIT ROUTINE", for: .normal)
-            exitRoutineButton.backgroundColor = Global.color_schemes.m_lightRed
-            exitRoutineButton.timerButtonDesign()
             
             completedButton.setTitle("EXIT", for: .normal)
         }
@@ -266,13 +266,16 @@ class ExerciseViewController: UIViewController {
     @IBAction func exitRoutine(_ sender: Any) {
         
         killGif() /* kill running gif */
-        
+        exitRoutineButton.isHidden = true
+
         /* navigate to main page */
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
         
-        exitRoutineButton.isHidden = true
+        Global.routine_index == 0
+        
+        print ("log: exit routine button preseed")
     }
     
     /* when stop button is tapped */
@@ -288,13 +291,18 @@ class ExerciseViewController: UIViewController {
         DescriptionLabel.isHidden = false
         DescriptionText.isHidden = false
         startButton.isHidden = false
-        skipButton.isHidden = false
         
         /* hide these elements */
         shapelayer.isHidden = true
         stopButton.isHidden = true
         timerLabel.isHidden = true
         SetsLabel.isHidden = true
+        
+        /* not last exercise */
+        if Global.routine_index != 2 { skipButton.isHidden = false }
+        
+        /* last exercise */
+        else { exitRoutineButton.isHidden = false }
     }
     
     /* when completed button is tapped */
