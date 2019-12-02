@@ -566,13 +566,6 @@ class UserDataFirestore {
         let userDocRef = self.FirestoreDB.collection("Users").document(nameToCheck)
         
         userDocRef.getDocument() { (document, error) in
-            if let error = error {
-                //There was an error, likely no internet
-                print("Firebase returned error code : \(error)")
-                completion(false)
-                return
-            }
-            
             guard let document = document, document.exists else {
                 print("There is no user in Firebase with the name : \(nameToCheck)")
                 completion(true)
