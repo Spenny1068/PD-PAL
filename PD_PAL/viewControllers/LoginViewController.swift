@@ -26,16 +26,16 @@ class LoginViewController: UIViewController{
         //Navigation bar styling
         self.navigationController?.transparentNavBar()
         //Load error and title label
-        ValidationMessage.isHidden = true
-        ValidationMessage.applyErrorDesign()
-        userNameTextField.delegate = self
-        TitleLabel.text = "Welcome to PD PAL!"
-        TitleLabel.textColor = Global.color_schemes.m_blue1
-        TitleLabel.applyTitle()
-        LoginButton.applyInputButton()
-        userNameLabel.applyQuestionDesign()
-        userNameLabel.text = "Username"
-        userNameLabel.textAlignment = .left
+        ValidationMessage?.isHidden = true
+        ValidationMessage?.applyErrorDesign()
+        userNameTextField?.delegate = self
+        TitleLabel?.text = "Welcome to PD PAL!"
+        TitleLabel?.textColor = Global.color_schemes.m_blue1
+        TitleLabel?.applyTitle()
+        LoginButton?.applyInputButton()
+        userNameLabel?.applyQuestionDesign()
+        userNameLabel?.text = "Username"
+        userNameLabel?.textAlignment = .left
       
     }
     
