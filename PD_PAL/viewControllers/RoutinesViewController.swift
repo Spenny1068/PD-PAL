@@ -9,17 +9,22 @@
 // <Date, Name, Changes made>
 // <October 25 2019, Arian Vafadar, Designed Routine and Subroutine page>
 // <October 26, 2019, Arian Vafadar, added pictures and updated Main routine page>
-// <October 27, 2019, Spencer Lall, applied default page design>
+// <November 1, 2019, Spencer Lall, Updated the default page design>
+// <November 8, 2019, Izyl Canonicato, Changed the StoryBoard Layout for the Routines>
+// <November 9, 2019, Spencer Lall, Put the buttons in the stackview>
+// <November 10, 2019, Spencer Lall, passed information into the exercise viewcontroller>
+// <November 11, 2019, Izyl Canonicato, Created the viewController button design>
+
+//
 
 import UIKit
 
 class RoutinesViewController: UIViewController {
-    
     // IBOutlet buttons
     @IBOutlet weak var routineButton1: UIButton!
     @IBOutlet weak var routineButton2: UIButton!
     @IBOutlet weak var routineButton3: UIButton!
-    
+    //var window: UIWindow?
     
     /* stack view containing exercise buttons */
     lazy var stackView: UIStackView = {
@@ -76,13 +81,6 @@ class RoutinesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
-    
-   /* when home button on navigation bar is tapped */
-   @objc func homeButtonTapped(sender: UIButton!) {
-       let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-       let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
-       self.present(newViewController, animated: true, completion: nil)
-   }
 }
 
 

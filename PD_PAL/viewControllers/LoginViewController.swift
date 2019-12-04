@@ -7,6 +7,9 @@
 //<Date, Name, Changes made>
 //<Oct. 27, 2019, Izyl Canonicato, Error handling>
 //<Nov. 2, 2019, Izyl Canonicato, Insert/Update questionsAnswered into UserData>
+//<Nov. 23, 2019, Izyl Canonicato, Updated IB constraints>
+//<Nov. 29, 2019, William Huong, Added check for unique names>
+//<Nov. 30, 2019, William Huong, The name gets reserved in Firebase now if they go through with it>
 
 import Foundation
 import UIKit
@@ -16,49 +19,67 @@ class LoginViewController: UIViewController{
     @IBOutlet weak var LoginButton: UIButton!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var ValidationMessage: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //Navigation bar styling
+        self.navigationController?.transparentNavBar()
         //Load error and title label
-        ValidationMessage.isHidden = true
-        userNameTextField.delegate = self
-        TitleLabel.text = "Welcome to PD PAL!"
-        TitleLabel.applyTitle()
-        LoginButton.applyInputButton()
-        LoginButton.titleLabel!.font = UIFont(name: "HelveticaNeue", size: 20)
+        ValidationMessage?.isHidden = true
+        ValidationMessage?.applyErrorDesign()
+        userNameTextField?.delegate = self
+        TitleLabel?.text = "Welcome to PD PAL!"
+        TitleLabel?.textColor = Global.color_schemes.m_blue1
+        TitleLabel?.applyTitle()
+        LoginButton?.applyInputButton()
+        userNameLabel?.applyQuestionDesign()
+        userNameLabel?.text = "Username"
+        userNameLabel?.textAlignment = .left
+      
     }
     
     @IBAction func LoginTapped(_ sender: Any) {
         ValidationMessage.isHidden = true
-        guard let userName = userNameTextField.text, (userNameTextField.text?.count != 0), !(isValidName(name: userNameTextField.text!)) else {
-            ValidationMessage.text = "Please enter a valid name"
-            ValidationMessage.applyErrorDesign()
-            ValidationMessage.isHidden = false
+        var validName = isValidName(name: userNameTextField.text!)
+        guard let userName = userNameTextField.text, (userNameTextField.text?.count != 0), !(validName) else {
+            self.ValidationMessage.text = "Username is not valid"
+            self.ValidationMessage.isHidden = false
             return
         }
         
-        //Store username to DB
-        if(userNameTextField.text?.count != 0){
-            global_UserData.Update_User_Data(nameGiven: userName, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
-            print("Update Username")
-            print(global_UserData.Get_User_Data())
-        }
-        navigateToQuestionnaire()
-    }
-    
-    //Give access to Questionnaire Storyboard
-    private func navigateToQuestionnaire(){
-        let mainStoryboard = UIStoryboard(name: "Questionnare", bundle: Bundle.main)
-        guard let quesNavigationVC = mainStoryboard.instantiateViewController(withIdentifier: "SetUpQuestionPage") as? SetUpViewController else {
-            return
+        global_UserDataFirestore.Name_Available(nameToCheck: userName) { returnVal in
+        
+            if( returnVal != true ) {
+                self.ValidationMessage.text = "Username has already been taken"
+                self.ValidationMessage.isHidden = false
+                return
+            }
+            
+            //Reserve the user name
+            global_UserDataFirestore.Reserve_Name(nameToReserve: userName) { returnVal in
+                
+            }
+            
+            // Store username to DB
+            if(self.userNameTextField.text?.count != 0){
+                global_UserData.Update_User_Data(nameGiven: userName, questionsAnswered: nil, walkingDuration: nil, chairAvailable: nil, weightsAvailable: nil, resistBandAvailable: nil, poolAvailable: nil, intensityDesired: nil, pushNotificationsDesired: nil, firestoreOK: nil)
+                print("Update Username")
+                print(global_UserData.Get_User_Data())
+            }
+        
+            // Segue to Set up Question page
+            if !validName {
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Questionnare", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "SetUpQuestionPage")
+                self.navigationController?.pushViewController(newViewController, animated: true)
+            }
+            
         }
         
-        //modular 
-        present(quesNavigationVC, animated: true ,completion: nil)
     }
     
-    //Check if name contains only letter and white spaces
+    // Check if name contains only letter and white spaces
     func isValidName(name:String)->Bool{
         let regex = "[^A-Za-z]+"
         let nameTest = NSPredicate(format: "SELF MATCHES %@", regex)
@@ -67,7 +88,7 @@ class LoginViewController: UIViewController{
     
 }
 
-//closes keyboard
+// Closes keyboard when 'return' is tapped 
 extension LoginViewController : UITextFieldDelegate{
     func textFieldShouldReturn(_ textfield: UITextField) -> Bool {
         textfield.resignFirstResponder()

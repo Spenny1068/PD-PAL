@@ -15,6 +15,7 @@
 // <November 14, 2019, Julia Kim, Refactored date querying to exercises completed database, fixed update button for radar>
 // <November 15, 2019, Julia Kim, Added Line Chart for step data, fixed scrollable view, refactored date input validation>
 // <November 18, 2019, Julia Kim, Fixed date querying input validation and radar chart>
+// <November 26, 2019, Julia Kim, fixed the default dates and input validation>
 
 /*
  Known Bugs
@@ -24,7 +25,7 @@
  November 14, 2019: Julia Kim
  -Comparing dates component wise will not handle edge cases -> Fixed to compare dates properly Nov 14, 2019
  November 18, 2019: Julia Kim
- -Having the default end date will introduce a bug with the input validation -> commented out this part since this was something extra
+ -Having the default end date will introduce a bug with the input validation -> fixed on Nov 26, 2019
  */
 
 import UIKit
@@ -34,11 +35,12 @@ import Charts //import to allow bar or line chart
 class TrendViewController: UIViewController, UITableViewDataSource{
 
     // IBOutlet labels
-    @IBOutlet weak var Title_label: UILabel!
     @IBOutlet weak var trendTableView: UITableView!
-    @IBOutlet weak var UpdateButton: UIButton!
+    @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var ChartMesg: UILabel!
     
-    @IBOutlet weak var ClearDates: UIButton!
+    @IBOutlet weak var GraphLabel: UILabel!
     
     @IBOutlet weak var rChartView: RadarChart.RadarChartView! //to avoid namespace clash
     @IBOutlet weak var scroller: UIScrollView!
@@ -47,25 +49,27 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
     
+   
     private var sDatePicker: UIDatePicker?
     private var eDatePicker: UIDatePicker?
-    private var sdateSelected = false
-    private var edateSelected = false
+    private var sdateSelected = true
+    private var edateSelected = true
     
     let dateFormatter = DateFormatter()
     
-    private var eDateYear = 0
-    private var eDateMonth = 0
-    private var eDateDay = 0
-    private var eDateHour = 0
-    private var eDateMinute = 0
+    private var eDateYear = Calendar.current.component(.year, from: Date())
+    private var eDateMonth = Calendar.current.component(.month, from: Date())
+    private var eDateDay = Calendar.current.component(.day, from: Date())
+    private var eDateHour = Calendar.current.component(.hour, from: Date())
+    private var eDateMinute = Calendar.current.component(.minute, from: Date())
     
-    private var sDateYear = 0
-    private var sDateMonth = 0
-    private var sDateDay = 0
-    private var sDateHour = 0
-    private var sDateMinute = 0
+    private var sDateYear = Calendar.current.component(.year, from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+    private var sDateMonth = Calendar.current.component(.month, from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+    private var sDateDay = Calendar.current.component(.day, from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+    private var sDateHour = Calendar.current.component(.hour, from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+    private var sDateMinute = Calendar.current.component(.minute, from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
     
+
     private var strengthCounter = 0
     private var flexCounter = 0
     private var cardioCounter = 0
@@ -76,7 +80,6 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor // background color
-
         getDatePicker()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TrendViewController.viewTapped(gestureRecognizer:)))
         self.view.addGestureRecognizer(tapGesture)
@@ -94,16 +97,38 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         let username = userData.UserName
                 
         // message
-        self.show_page_message(s1: username + " Trends!", s2: "Trends")
+        self.show_page_message(s1: username + "'s Trends!", s2: "Trends")
+        dateFormatter.dateFormat = "MM/dd/yyyy HH"
+        startDate.text = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: (-7), to: Date())!)
+        endDate.text = dateFormatter.string(from: Date())
         self.generateRadarChart()
         self.prepareStepData()
+        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool){
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
-        self.generateRadarChart() //load blank radar chart on load
-        self.prepareStepData() //load blank line chart on load
-       
+        self.updateAuto()
+        
+        // Label styling 
+        startDateLabel.applyQlabels()
+        startDateLabel.text = "Start Date"
+        startDateLabel.textColor = Global.color_schemes.m_blue1
+        endDateLabel.applyQlabels()
+        endDateLabel.text = "End Date"
+        endDateLabel.textColor = Global.color_schemes.m_blue1
+        GraphLabel.applyQlabels()
+        GraphLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
+        GraphLabel.textColor = Global.color_schemes.m_blue1
+        GraphLabel.numberOfLines = 2
+        ChartMesg.applyQlabels()
+        ChartMesg.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
+        ChartMesg.textColor = Global.color_schemes.m_blue1
+        ChartMesg.numberOfLines = 2
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
+        self.updateAuto()
     }
     
     override func viewDidLayoutSubviews() {
@@ -144,43 +169,28 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         return cell
     }
 
-    @IBAction func Update(_ sender: UIButton) {
+    
+    func updateAuto(){
         exerciseData = global_UserData.Get_Exercises_all()
         self.trendTableView.reloadData()
         self.generateRadarChart()
         self.viewDidLayoutSubviews()
-        self.prepareStepData() //this will call generateStepChart
-       
-    }
-
-    @IBAction func clearDates(_ sender: UIButton){
-        //clear date picker fields
-        startDate.text = nil
-        endDate.text = nil
-        startDate.placeholder = "Pick a Start Date"
-        endDate.placeholder = "Pick an End Date"
-        sdateSelected = false
-        edateSelected = false
+        self.prepareStepData()
     }
     
     func getDatePicker(){
         //let user select the date for step counter
+        dateFormatter.dateFormat = "MM/dd/yyyy HH"
+  
         sDatePicker = UIDatePicker()
         eDatePicker = UIDatePicker()
         sDatePicker?.datePickerMode = .dateAndTime
         sDatePicker?.addTarget(self, action: #selector(TrendViewController.sDateChanged(datePicker:)), for: .valueChanged)
-        startDate.inputView = sDatePicker
-        
+         
         eDatePicker?.datePickerMode = .dateAndTime
-        
-        /*
-        //default end date
-        eDatePicker?.date = Date() //default value of end date to be today's date
-        dateFormatter.dateFormat = "MM/dd/yyyy HH"
-        endDate.text = dateFormatter.string(from: eDatePicker!.date)
-         */
-        
         eDatePicker?.addTarget(self, action: #selector(TrendViewController.eDateChanged(datePicker:)), for: .valueChanged)
+        
+        startDate.inputView = sDatePicker
         endDate.inputView = eDatePicker
         
      
@@ -212,6 +222,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
             {
                 //start date is smaller than end date
                 self.view.endEditing(true)
+                self.updateAuto()
             }
             else
             {
@@ -245,6 +256,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         {
             //start date is smaller than end date
             self.view.endEditing(true)
+            self.updateAuto()
         }
         else
         {
@@ -292,7 +304,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     func exerciseCategoryCount() -> [Int]{
         let exerciseData = global_UserData.Get_Exercises_all()
     
-        var categoryMatch = (" ", " ", " ", " ", 0)
+        var categoryMatch = (" ", " ", " ", " "," ", 0, 0)
         var catCount = [0, 0, 0, 0]
         var rawDate = "00/00/0000 HH"
         dateFormatter.dateFormat = "MM/dd/yyyy HH"
@@ -366,7 +378,7 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         var dataEntries: [ChartDataEntry] = []
         
         
-        for i in 0..<dataPoints.count{
+        for i in 0...23{
             let dataEntry = ChartDataEntry(x: dataPoints[i], y: values[i])
             dataEntries.append(dataEntry)
             
@@ -381,35 +393,33 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     
     func prepareStepData(){
         //get step data for the selected range of dates
-        //limit querying step data to be within the same day for hourly data
+        //limit querying step data to be within today for hourly data
         //any more data would just look very condensed on the mobile device.
         //leave the full dataset for the web?
         
         var stepDataHourly: [Double] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] //gets hourly data for the start date selected (one day)
         let hoursOfDay: [Double] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
         
-        if eDateDay == sDateDay && eDateHour != sDateHour //same day. Get hourly data
+        let cDateYear = Calendar.current.component(.year, from: Date())
+        let cDateMonth = Calendar.current.component(.month, from: Date())
+        let cDateDay = Calendar.current.component(.day, from: Date())
+        //let cDateHour = Calendar.current.component(.hour, from: Date())
+        //let cDateMinute = Calendar.current.component(.minute, from: Date())
+        
+        for i in 0...23 //eDateHour will always be greater than sDateHour if same year, month and day due to the input validation
         {
-            for i in 0..<(eDateHour-sDateHour) //eDateHour will always be greater than sDateHour if same year, month and day due to the input validation
-            {
-                stepDataHourly[i] = Double(global_UserData.Get_Steps_Taken(TargetYear: sDateYear, TargetMonth: sDateMonth, TargetDay: sDateDay, TargetHour: sDateHour+i))
-                
-                //print("StepHourly: \(stepDataHourly[i])")
-            }
+            stepDataHourly[i] = Double(global_UserData.Get_Steps_Taken(TargetYear: cDateYear, TargetMonth: cDateMonth, TargetDay: cDateDay, TargetHour: i))
             
-            generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
-            /*
-             //test
-             stepDataHourly = [1.0, 2.0, 3.0, 4.0, 5.0] //dummy values
-             generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)*/
+            //print("StepHourly: \(stepDataHourly[i])")
         }
-        else
-        {
-            //max step data that can be queried is one day for hourly data
-            stepDataHourly = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] //default values
-            generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
-            print("No graph for step counter is generated. To generate a step counter graph, please set the duration to be within the same day.")
-        }
+        
+        generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)
+        /*
+         //test
+         stepDataHourly = [1.0, 2.0, 3.0, 4.0, 5.0] //dummy values
+         generateStepChart(dataPoints: hoursOfDay, values: stepDataHourly)*/
+       
+      
         
     }
     /*

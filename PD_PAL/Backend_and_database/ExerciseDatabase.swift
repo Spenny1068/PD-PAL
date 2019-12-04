@@ -19,6 +19,14 @@ Revision History
      Fixed File Initialization sequence, added read_exercise func and remove_database func
  - 01/11/2019 : William Xue
      Added function to return all of the exercise names
+ - 20/11/2019 : Julia Kim
+ Added Equipment to the Exercise database
+ - 10/11/2019 : Arian Vafadar
+ Used the insert_exercise function to updated the Exercise database
+ - 28/11/2019 : Arian Vafadar
+ Revised and updated the exercise database using the insert_exercise function
+ - 10/11/2019 : Spencer Lall
+ Added Sets to the Exercise Database
  */
 
 /*
@@ -40,7 +48,7 @@ import SQLite
  - Name: String
  - Desc: String
  - Category: String
- - Body: String
+ - Equipment: String
  */
 class ExerciseDatabase {
     
@@ -49,10 +57,12 @@ class ExerciseDatabase {
     let name = Expression<String>("Name") //column of sql table
     let descriptions = Expression<String>("Desc")
     let category = Expression<String>("Category")
-    let body = Expression<String>("Body")
+    let equipment = Expression<String>("Equipment")
     //create link "Identifier to actual media"
+    let intensity = Expression<String>("Intensity")
     let link = Expression<String>("Link")
     let duration = Expression<Int>("Duration")
+    let num_sets = Expression<Int>("Sets")
     
     
     let fileName = "exercises"
@@ -144,112 +154,170 @@ class ExerciseDatabase {
                
         }
         
-        // hardcoding all default exercises for version 1
+        // hardcoding all default exercises for version 1 (index 0)
         insert_exercise(Name: "WALL PUSH-UP",
-                        Desc: "Face the wall and extend your hands towards the wall. Now bend your elbows and lean towards the wall" ,
+                        Desc: "Face the wall and extend your hands towards the wall. Now bend your elbows and lean towards the wall. Recommended: 1-3 sets" ,
                         Category: "Strength",
-                        Body: "None",
+                        Equipment: "None",
                         Link: "WALL_PUSH-UP",
-                        Duration: 30)
-        
+                        Intensity: "Intense",
+                        Duration: 30,
+                        Sets: 3)
+        //(index 1)
         insert_exercise(Name: "WALKING",
-                        Desc: "For optimal results perform this exercise on a track.",
+                        Desc: "For optimal results perform this exercise on a track. Recommended: 1 set",
                         Category: "Cardio",
-                        Body: "None",
+                        Equipment: "None",
                         Link: "WALKING",
-                        Duration: 300)
-        
+                        Intensity: "Light",
+                        Duration: 300,
+                        Sets: 1)
+        //30 seconds because 15 seconds per leg (index 2 )
         insert_exercise(Name: "SINGLE LEG STANCE",
-                        Desc: "Bend your knee and raise your leg beside a chair. Hold the chair with your hand that opposite to the side of your raised leg for support.",
-                        Category: "Flexibility",
-                        Body: "None",
+                        Desc: "Stand next to a chair and use the chair for support. Bend you knee and raise your leg. Repeat with other leg. Recommended: 1-3 sets",
+                        Category: "Balance",
+                        Equipment: "Chair",
                         Link: "SINGLE_LEG_STANCE",
-                        Duration: 25)
-        
+                        Intensity: "Light",
+                        Duration: 30,
+                        Sets: 3)
+        //30 seconds because 15 seconds per leg (index 3)
         insert_exercise(Name: "QUAD STRETCH",
-                        Desc: "To perform a Quad stretch, stand on one leg and and hold you your leg with your hand. ",
+                        Desc: "To perform a Quad stretch, stand on one leg, and hold your other leg with your hand. Repeat with other leg. Recommended: 1-3 sets ",
                         Category: "Flexibility",
-                        Body: "None",
+                        Equipment: "Chair",
                         Link: "QUAD_STRETCH",
-                        Duration: 25)
-        
+                        Intensity: "Moderate",
+                        Duration: 30,
+                        Sets: 3)
+        //30 seconds because 15 seconds per arm (index 4)
         insert_exercise(Name: "TRICEP KICKBACKS",
-                        Desc: "Hold the weight, and lean over a chair. Straighten your elbow behind you as far as comfortable and slowly return to the starting position. ",
+                        Desc: "Hold the weight, and lean over a chair. Straighten your elbow behind you as far as possible, and slowly return to the starting position. Repeat with other arm. Recommended: 1-3 sets",
                         Category: "Strength",
-                        Body: "None",
+                        Equipment: "Weights",
                         Link: "TRICEP_KICKBACKS",
-                        Duration: 30)
+                        Intensity: "Light",
+                        Duration: 30,
+                        Sets: 3)
         
+        //30 seconds because 15 seconds per leg (index 5)
         insert_exercise(Name: "SIDE LEG LIFT",
-                        Desc: "Stand behind a chair with feet slightly apart. Slowly lift one leg out to one side. Slightly bend the leg you are standing on.",
+                        Desc: "Stand behind a chair with feet slightly apart. Lift one leg out to one side. Make sure the leg you are standing on is slightly bent. Repeat with other leg. Recommended: 1-3 sets",
                         Category: "Balance",
-                        Body: "None",
+                        Equipment: "Chair, Resistive Band",
                         Link: "SIDE_LEG_LIFT",
-                        Duration: 30)
-        
+                        Intensity: "Light",
+                        Duration: 30,
+                        Sets: 3)
+        //(index 6)
         insert_exercise(Name: "SHOULDER RAISES",
-                        Desc: "Begin by sitting in a chair. Slowly raise your shoulders up to your ears and then relax. ",
+                        Desc: "Begin by sitting in a chair. Slowly raise your shoulders up to your ears, and then relax. Recommended: 1-3 sets",
                         Category: "Flexibility",
-                        Body: "None",
+                        Equipment: "Weights",
                         Link: "SHOULDER_RAISES",
-                        Duration: 30)
+                        Intensity: "Light",
+                        Duration: 30,
+                        Sets: 3)
         
+        //(index 7)
         insert_exercise(Name: "NECK SIDE STRETCH",
-                        Desc: "Begin by sitting in a chair. Look to the right as far as comfortable and hold. Then look to the left as far as comfortable and hold.",
+                        Desc: "Begin by sitting in a chair. Look to the right as far as possible, and hold. Then look to the left as far as possible, and hold. Recommended: 1-3 sets",
                         Category: "Flexibility",
-                        Body: "None",
+                        Equipment: "None",
                         Link: "NECK_SIDE_STRETCH",
-                        Duration: 25)
+                        Intensity: "Light",
+                        Duration: 25,
+                        Sets: 3)
         
+        //(index 8)
         insert_exercise(Name: "LATERAL RAISES",
-                        Desc: "Begin with arms at your side and your palms facing inwards. Slowly raise your arms to a comfortable level. ",
+                        Desc: "Begin with arms at your side, and your palms facing inwards. Slowly raise your arms to a comfortable level. Now slowly drop your arms to the starting position. Recommended: 1-3 sets",
                         Category: "Strength",
-                        Body: "None",
+                        Equipment: "Weights",
                         Link: "LATERAL_RAISES",
-                        Duration: 30)
+                        Intensity: "Moderate",
+                        Duration: 30,
+                        Sets: 3)
         
+        //(index 9)
         insert_exercise(Name: "KNEE MARCHING",
-                        Desc: "Begin with arms at your side and feet shoulder width apart. Raise one knee up as high as comfortable. Lower that knee and raise the other.",
+                        Desc: "Begin with arms at your side, and feet shoulder-width apart. Raise one of your knee's as high as possible. Now lower that knee and raise the other knee. Recommended: 1-3 sets",
                         Category: "Balance",
-                        Body: "None",
+                        Equipment: "None",
                         Link: "KNEE_MARCHING",
-                        Duration: 60)
+                        Intensity: "Intense",
+                        Duration: 60,
+                        Sets: 3)
         
+        //30 seconds because 15 seconds per leg (index 10)
         insert_exercise(Name: "KNEE EXTENSION",
-                        Desc: "Sit with your feet flat against the floor. Slowly straighten your knee out, hold and slowly bend your knee back into the starting position.",
+                        Desc: "Sit with your feet flat against the floor. Slowly straighten your knee out, and hold. Now slowly bend your knee back into the starting position. Repeat with other leg. Recommended: 1-3 sets",
                         Category: "Strength",
-                        Body: "None",
+                        Equipment: "Chair",
                         Link: "KNEE_EXTENSION",
-                        Duration: 30)
+                        Intensity: "Moderate",
+                        Duration: 30,
+                        Sets: 3)
         
+        //(index 11)
         insert_exercise(Name: "HEEL TO TOE",
-                        Desc: "To perform a heal to toe, look forward, relax your shoulders and begin walking forward by pacing one foot in front of the other.",
+                        Desc: "To perform a heel to toe, look forward, and relax your shoulders. Begin walking forward by pacing one foot in front of the other. Recommended: 1-3 sets",
                         Category: "Balance",
-                        Body: "None",
+                        Equipment: "None",
                         Link: "HEEL_TO_TOE",
-                        Duration: 60)
+                        Intensity: "Moderate",
+                        Duration: 60,
+                        Sets: 3)
         
-        insert_exercise(Name: "HEEL STAND",
-                        Desc: "Keep your knees shoulder-width apart. Raise up on your heels as high as possible. Slowly return to the starting position.",
+        //(index 12)
+        insert_exercise(Name: "CALF RAISES",
+                        Desc: "Keep your knees shoulder-width apart. Raise up on your heels as high as possible. Slowly return to the starting position. Recommended: 1-3 sets",
                         Category: "Strength",
-                        Body: "None",
+                        Equipment: "Chair",
                         Link: "HEEL_STAND",
-                        Duration: 30)
+                        Intensity: "Light",
+                        Duration: 30,
+                        Sets: 3)
         
+        //(index 13)
         insert_exercise(Name: "CHEST STRETCH",
-                        Desc: "Raise your arms and place hands behind your head. Breathe in while bringing your neck and shoulder back. Hold and release.",
+                        Desc: "Raise your arms, and place hands behind your head. Bring your neck and shoulders back while taking slow and deep breathes. Hold and release. Recommended: 1-3 sets",
                         Category: "Flexibility",
-                        Body: "None",
+                        Equipment: "Weights",
                         Link: "CHEST_STRETCH",
-                        Duration: 25)
+                        Intensity: "Moderate",
+                        Duration: 25,
+                        Sets: 3)
         
+        //(index 14)
         insert_exercise(Name: "ARM RAISES",
-                        Desc: "Begin with your arms at your sides. Inhale and slowly you lift both arms over your head. Slowly bring your arms back to your sides.",
+                        Desc: "Begin with your arms at your sides. Inhale and slowly lift both arms over your head.Now, slowly bring your arms back to your sides. Recommended: 1-3 sets",
                         Category: "Flexibility",
-                        Body: "None",
+                        Equipment: "None",
                         Link: "ARM_RAISES",
-                        Duration: 30)
+                        Intensity: "Moderate",
+                        Duration: 30,
+                        Sets: 3)
         
+        //(index 15)
+        insert_exercise(Name: "JOGGING",
+                        Desc: "For optimal results perform this exercise on a track. Try to stand in one place, and jog on the spot. Recommended: 1-3 sets",
+                        Category: "Cardio",
+                        Equipment: "None",
+                        Link: "JOGGING",
+                        Intensity: "Moderate",
+                        Duration: 60,
+                        Sets: 3)
+        
+        //(index 16)
+        insert_exercise(Name: "JUMPING JACKS",
+                        Desc: "Stand in one spot. Keep hands on your side, and feet together. Now raise your hands, and extend your legs as shown. Recommended: 1-3 sets",
+                        Category: "Cardio",
+                        Equipment: "None",
+                        Link: "JUMPING_JACKS",
+                        Intensity: "Intense",
+                        Duration: 30,
+                        Sets: 3)
     }
 
     //Assuming the database is empty,
@@ -257,17 +325,19 @@ class ExerciseDatabase {
     //create the table and insert all exercises.
     func fill_database() {
         let createTable = exerciseList.create{ (table) in
-            table.column(name, primaryKey: true)
-            table.column(descriptions)
-            table.column(category)
-            table.column(body)
-            table.column(link)
-            table.column(duration)
+            table.column(name, primaryKey: true)    /* name of exercise */
+            table.column(descriptions)              /* exercise description */
+            table.column(category)                  /* exercise category */
+            table.column(equipment)                 /* exercise equipment */
+            table.column(link)                      /* name of gif file */
+            table.column(intensity)                 /* level of intensity */
+            table.column(duration)                  /* duration in seconds for one set */
+            table.column(num_sets)                  /* number of sets */
         }
-        do{
+        do {
             try self.database.run(createTable)
             print("created table")
-        }catch{
+        } catch {
             print("Failed to create table: \(error)")
         }
         
@@ -276,9 +346,8 @@ class ExerciseDatabase {
     
     
     //Insert an individual exercise.
-    func insert_exercise(Name: String , Desc: String, Category: String, Body: String, Link: String, Duration: Int) {
-        let insert = exerciseList.insert(name <- Name, descriptions <- Desc, category <- Category,
-                                         body <- Body, link <- Link, duration <- Duration)
+    func insert_exercise(Name: String , Desc: String, Category: String, Equipment: String, Link: String, Intensity: String, Duration: Int, Sets: Int) {
+        let insert = exerciseList.insert(name <- Name, descriptions <- Desc, category <- Category, equipment <- Equipment, link <- Link, intensity <- Intensity, duration <- Duration, num_sets <- Sets)
         do {
             try database.run(insert)
         }
@@ -288,7 +357,7 @@ class ExerciseDatabase {
     }
     
     
-    //returns all exercise names in an array
+    // returns all exercise names in an array
     func exercise_names() -> ([String])
     {
         var returnVal = [String]()
@@ -315,13 +384,13 @@ class ExerciseDatabase {
     //Read an individual exercise
     //Will X, func tested in Unit Test testDatabase_insertion
     //Make sure to give it a NameOfExercise that exists in the database, otherwise will return empty string
-    func read_exercise(NameOfExercise: String) ->(Description: String,Category: String, Body: String, Link: String, Duration: Int)
+    func read_exercise(NameOfExercise: String) ->(Description: String, Category: String, Equipment: String, Link: String, Intensity: String, Duration: Int, Sets: Int)
     {
-        do{
+        do {
             let query = exerciseList.filter(name == NameOfExercise)
             for exercise in try database.prepare(query)
             {
-                let returnVal = (exercise[descriptions],exercise[category],exercise[body], exercise[link], exercise[duration])
+                let returnVal = (exercise[descriptions],exercise[category],exercise[equipment], exercise[link], exercise[intensity], exercise[duration], exercise[num_sets])
                 return returnVal
             }
         }
@@ -331,7 +400,7 @@ class ExerciseDatabase {
         }
         
         //could not find so return empty
-        return ("","","","",0)
+        return ("","","","","",0, 0)
     }
     
     

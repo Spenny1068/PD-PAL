@@ -8,6 +8,13 @@
 // Revision History:
 // <Date, Name, Changes made>
 // <October 27, 2019, Spencer Lall, applied default page design>
+// <November 1, 2019, Spencer Lall, Updated the default page design>
+// <November 9, 2019, Spencer Lall, Put the buttons in the stackview>
+// <November 10, 2019, Spencer Lall, passed information into the exercise viewcontroller>
+// <November 11, 2019, Izyl Canonicato, Created the viewController button design>
+// <November 27, 2019, Arian Vafadar, Highlighted the exercises>
+// <November 28, 2019, Izyl Canonicato, Implemented the Timer>
+
 import UIKit
 
 class StrengthViewController: UIViewController {
@@ -45,13 +52,14 @@ class StrengthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Global.color_schemes.m_bgColor  // background color
+        logNavigationStack()
         
         /* navigation bar stuff */
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.title = nil
         let homeButton = UIButton(type: .custom)
         homeButton.applyHomeButton()
-        homeButton.addTarget(self, action: #selector(homeButtonTapped), for: .touchUpInside)
+        homeButton.addTarget(self, action: #selector(homeTapped), for: .touchUpInside)
         let barButton = UIBarButtonItem(customView: homeButton)
         self.navigationItem.rightBarButtonItem  = barButton
 
@@ -61,6 +69,9 @@ class StrengthViewController: UIViewController {
         
         let exercise_list = global_ExerciseData.exercise_names()
         
+        //Use this to hightlight an exercise
+        let exerciseRecommend = global_UserRecommendation.checkUserAns()
+        
         /* exercise buttons */
         
         
@@ -68,26 +79,51 @@ class StrengthViewController: UIViewController {
         exerciseButton.setTitle(exercise_list[0],for: .normal)                        // button text
         exerciseButton.exerciseButtonDesign()
         exerciseButton.backgroundColor = Global.color_schemes.m_blue2          // background color
+        //Highlights a Exercise if needed
+        if (exerciseRecommend[1] == exercise_list[0])
+        {
+            exerciseButton.shadowButtonDesign()
+        }
 
         //-> button 2
         exerciseButton2.setTitle(exercise_list[4],for: .normal)                        // button text
         exerciseButton2.exerciseButtonDesign()
         exerciseButton2.backgroundColor = Global.color_schemes.m_blue2          // background color
+        //Highlights a Exercise if needed
+        if (exerciseRecommend[1] == exercise_list[4])
+        {
+            exerciseButton2.shadowButtonDesign()
+        }
 
         //-> button 3
         exerciseButton3.setTitle(exercise_list[8],for: .normal)                        // button text
         exerciseButton3.exerciseButtonDesign()
         exerciseButton3.backgroundColor = Global.color_schemes.m_blue2          // background color
+        //Highlights a Exercise if needed
+        if (exerciseRecommend[1] == exercise_list[8])
+        {
+            exerciseButton3.shadowButtonDesign()
+        }
         
         //-> button 4
         exerciseButton4.setTitle(exercise_list[10],for: .normal)                        // button text
         exerciseButton4.exerciseButtonDesign()
         exerciseButton4.backgroundColor = Global.color_schemes.m_blue2          // background color
+        //Highlights a Exercise if needed
+        if (exerciseRecommend[1] == exercise_list[10])
+        {
+            exerciseButton4.shadowButtonDesign()
+        }
         
         //-> button 5
         exerciseButton5.setTitle(exercise_list[12],for: .normal)                        // button text
         exerciseButton5.exerciseButtonDesign()
         exerciseButton5.backgroundColor = Global.color_schemes.m_blue2          // background color
+        //Highlights a Exercise if needed
+        if (exerciseRecommend[1] == exercise_list[12])
+        {
+            exerciseButton5.shadowButtonDesign()
+        }
         
         /* exercise buttons constraints */
         applyExerciseButtonConstraint(button: exerciseButton)

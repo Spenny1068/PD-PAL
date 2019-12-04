@@ -19,7 +19,8 @@ import UIKit
 class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     var pageControl = UIPageControl()
-    var refreshTrendGraph = TrendViewController()
+    //var refreshTrendGraph = TrendViewController()
+   
     
     // view controllers in PageViewController
     lazy var orderedViewControllers: [UIViewController] = {
@@ -29,9 +30,14 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
                 self.newVc(viewController: "SettingsPage")]
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        logNavigationStack()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         global_StepTracker.track_steps() //call step counter
+        //print("Recommendation Made:\(global_UserRecommendation.checkUserAns())")
         self.dataSource = self
         
                                     /* NAVIGATION BAR CODE */
@@ -43,6 +49,7 @@ class mainPageViewController: UIPageViewController, UIPageViewControllerDelegate
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+//        self.navigationController?.transparentNavBar()
         
         // just show back arrow
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

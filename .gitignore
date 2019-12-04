@@ -1,4 +1,5 @@
 *.swp
+showDBfiles.sh
 .DS_Store
 *~
 xcuserdata
