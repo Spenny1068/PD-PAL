@@ -306,8 +306,8 @@ extension UILabel {
     /* routine generic page labels */
     func applyExerciseLabelDesign() {
         self.translatesAutoresizingMaskIntoConstraints = false                 // turn off rectangle coordinates
-        self.textAlignment = .left                                           // text alignment
-        self.font = Global.text_fonts.m_exerciseDescriptionDurationFont                    // text font and size
+        self.textAlignment = .left                                             // text alignment
+        self.font = UIFont(name: "HelveticaNeue-Bold", size: 25.0)              // text font and size
         self.textColor = UIColor.black
     }
     

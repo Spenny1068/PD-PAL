@@ -17,6 +17,50 @@
 
 import UIKit
 
+/* nested stack view for grid of category buttons */
+class GridStack: UIStackView {
+
+    private var cells: [UIView] = []
+    private var currentRow: UIStackView?
+    let rowSize: Int
+    let rowHeight: CGFloat
+    
+    // constructor
+    init(rowSize: Int, rowHeight: CGFloat) {
+        self.rowSize = rowSize
+        self.rowHeight = rowHeight
+        super.init(frame: .zero)
+        self.translatesAutoresizingMaskIntoConstraints = false   // turn constraints on
+        self.axis = .vertical
+        self.distribution = .fillEqually
+        self.spacing = 25                                        // vertical spacing between elements
+    }
+    
+    required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
+    private func prepareRow() -> UIStackView {
+        let row = UIStackView(arrangedSubviews: [])
+        row.translatesAutoresizingMaskIntoConstraints = false
+        row.axis = .horizontal
+        row.distribution = .fillEqually
+        row.spacing = 25    // horizontal spacing between elements
+        return row
+    }
+    
+    func addCell(view: UIButton) {
+        let firstCellInRow = self.cells.count % self.rowSize == 0
+        if self.currentRow == nil || firstCellInRow {
+            self.currentRow = self.prepareRow()
+            self.addArrangedSubview(self.currentRow!)
+        }
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: self.rowHeight).isActive = true
+        self.cells.append(view)
+        self.currentRow!.addArrangedSubview(view)
+    }
+}
+
 class CategoriesViewController: UIViewController {
 
     /* IBOutlet Buttons */
@@ -35,93 +79,61 @@ class CategoriesViewController: UIViewController {
         /* category buttons */
         
         //-> flexibility
-        flexibilityButton.setTitle("Flexibility",for: .normal)                            // button text
-        flexibilityButton.categoryButtonDesign()
-        flexibilityButton.backgroundColor = Global.color_schemes.m_flexButton             // background color
-        //flexibilityButton.setBackgroundImage(UIImage(named: "FlexibilityBtnImg"), for: .normal)
-        flexibilityButton.setBackgroundImage(UIImage(named: "FlexibilityIcon"), for: .normal)
-        //Highlights a category if needed
-        if (exerciseRecommend[0] == "Flexibility")
-        {
+        flexibilityButton.setTitle("Flexibility",for: .normal)                                  // button text
+        flexibilityButton.categoryButtonDesign()                                                // button design
+        flexibilityButton.backgroundColor = Global.color_schemes.m_flexButton                   // background color
+        flexibilityButton.setBackgroundImage(UIImage(named: "FlexibilityIcon"), for: .normal)   // background image
+        // category highlighting
+        if (exerciseRecommend[0] == "Flexibility") {
             flexibilityButton.shadowCategoryButtonDesign()
         }
         
         //-> strength
-        strengthButton.setTitle("Strength",for: .normal)                            // button text
+        strengthButton.setTitle("Strength",for: .normal)
         strengthButton.categoryButtonDesign()
-        strengthButton.backgroundColor = Global.color_schemes.m_blue2             // background color
+        strengthButton.backgroundColor = Global.color_schemes.m_blue2
         strengthButton.setBackgroundImage(UIImage(named: "StrengthIcon"), for: .normal)
-        //Highlights a category if needed
-        if (exerciseRecommend[0] == "Strength")
-        {
+        // category highlighting
+        if (exerciseRecommend[0] == "Strength") {
             strengthButton.shadowCategoryButtonDesign()
         }
         
         //-> cardio
-        cardioButton.setTitle("Cardio",for: .normal)                            // button text
+        cardioButton.setTitle("Cardio",for: .normal)
         cardioButton.categoryButtonDesign()
-        cardioButton.backgroundColor = Global.color_schemes.m_blue4             // background color
-//        cardioButton.setBackgroundImage(UIImage(named: "CardioBtnImg"), for: .normal)
+        cardioButton.backgroundColor = Global.color_schemes.m_blue4
         cardioButton.setBackgroundImage(UIImage(named: "CardioIcon"), for: .normal)
-        //Highlights a category if needed
-        if (exerciseRecommend[0] == "Cardio")
-        {
+        // category highlighting
+        if (exerciseRecommend[0] == "Cardio") {
             cardioButton.shadowCategoryButtonDesign()
         }
         
         //-> balance
-        balanceButton.setTitle("Balance",for: .normal)                            // button text
+        balanceButton.setTitle("Balance",for: .normal)
         balanceButton.categoryButtonDesign()
-        balanceButton.backgroundColor = Global.color_schemes.m_blue1             // background color
+        balanceButton.backgroundColor = Global.color_schemes.m_blue1
         balanceButton.setBackgroundImage(UIImage(named: "BalanceIcon"), for: .normal)
-        //Highlights a category if needed
-        if (exerciseRecommend[0] == "Balance")
-        {
+        // category highlighting
+        if (exerciseRecommend[0] == "Balance") {
             balanceButton.shadowCategoryButtonDesign()
         }
         
-        /* show buttons */
-        self.view.addSubview(flexibilityButton)
-        self.view.addSubview(strengthButton)
-        self.view.addSubview(cardioButton)
-        self.view.addSubview(balanceButton)
-
-
-        /* flexiblity button constraints */
-        NSLayoutConstraint.activate([
-            flexibilityButton.widthAnchor.constraint(equalToConstant: 152),
-            flexibilityButton.heightAnchor.constraint(equalToConstant: 208),
-            flexibilityButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 23),
-            flexibilityButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -200),
-            flexibilityButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 135)
-        ])
+        /* create grid of category buttons */
+        let categoryGrid = GridStack(rowSize: 2, rowHeight: 208)
+        categoryGrid.addCell(view: strengthButton)
+        categoryGrid.addCell(view: cardioButton)
+        categoryGrid.addCell(view: flexibilityButton)
+        categoryGrid.addCell(view: balanceButton)
+        self.view.addSubview(categoryGrid)
         
-        /* cardio button constraints */
+        // category grid stackview constraints
         NSLayoutConstraint.activate([
-            cardioButton.widthAnchor.constraint(equalToConstant: 152),
-            cardioButton.heightAnchor.constraint(equalToConstant: 208),
-            cardioButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 200),
-            cardioButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -23),
-            cardioButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 135)
-        ])
-
-        /* strength button constraints */
-        NSLayoutConstraint.activate([
-            strengthButton.widthAnchor.constraint(equalToConstant: 152),
-            strengthButton.heightAnchor.constraint(equalToConstant: 208),
-            strengthButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 23),
-            strengthButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -200),
-            strengthButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 391)
-        ])
-        
-        
-        /* balance button constraints */
-        NSLayoutConstraint.activate([
-            balanceButton.widthAnchor.constraint(equalToConstant: 152),
-            balanceButton.heightAnchor.constraint(equalToConstant: 208),
-            balanceButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 200),
-            balanceButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -23),
-            balanceButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 391)
+            categoryGrid.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            categoryGrid.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            categoryGrid.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 25),
+            categoryGrid.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -25),
+            categoryGrid.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 130),
+            categoryGrid.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -75)
         ])
         
         /* page message */
@@ -131,4 +143,8 @@ class CategoriesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = Global.color_schemes.m_blue3     // nav bar color
     }
+    
+    
 }
+
+

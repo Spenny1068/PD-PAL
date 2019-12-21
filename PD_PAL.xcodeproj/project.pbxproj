@@ -53,23 +53,6 @@
 		7C7A43E1D25FE74F26282E5F /* Pods_PD_PAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7A43FCF847554461E3A17E /* Pods_PD_PAL.framework */; };
 		7D7B90E5236D2E54005247CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9BD2351587700E5ED83 /* AppDelegate.swift */; };
 		7DF12D04236E197300FC94D6 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		AE3D08F4239337CD007DCFB2 /* SINGLE_LEG_STANCE.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08E3239337CD007DCFB2 /* SINGLE_LEG_STANCE.gif */; };
-		AE3D08F5239337CD007DCFB2 /* WALKING.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08E4239337CD007DCFB2 /* WALKING.gif */; };
-		AE3D08F6239337CD007DCFB2 /* JOGGING.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08E5239337CD007DCFB2 /* JOGGING.gif */; };
-		AE3D08F7239337CD007DCFB2 /* CHEST_STRETCH.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08E6239337CD007DCFB2 /* CHEST_STRETCH.gif */; };
-		AE3D08F8239337CD007DCFB2 /* JUMPING_JACKS.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08E7239337CD007DCFB2 /* JUMPING_JACKS.gif */; };
-		AE3D08F9239337CD007DCFB2 /* NECK_SIDE_STRETCH.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08E8239337CD007DCFB2 /* NECK_SIDE_STRETCH.gif */; };
-		AE3D08FA239337CD007DCFB2 /* HEEL_TO_TOE.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08E9239337CD007DCFB2 /* HEEL_TO_TOE.gif */; };
-		AE3D08FB239337CD007DCFB2 /* KNEE_EXTENSION.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08EA239337CD007DCFB2 /* KNEE_EXTENSION.gif */; };
-		AE3D08FC239337CD007DCFB2 /* HEEL_STAND.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08EB239337CD007DCFB2 /* HEEL_STAND.gif */; };
-		AE3D08FD239337CD007DCFB2 /* WALL_PUSH-UP.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08EC239337CD007DCFB2 /* WALL_PUSH-UP.gif */; };
-		AE3D08FE239337CD007DCFB2 /* TRICEP_KICKBACKS.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08ED239337CD007DCFB2 /* TRICEP_KICKBACKS.gif */; };
-		AE3D08FF239337CD007DCFB2 /* QUAD_STRETCH.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08EE239337CD007DCFB2 /* QUAD_STRETCH.gif */; };
-		AE3D0900239337CD007DCFB2 /* KNEE_MARCHING.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08EF239337CD007DCFB2 /* KNEE_MARCHING.gif */; };
-		AE3D0901239337CD007DCFB2 /* SIDE_LEG_LIFT.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08F0239337CD007DCFB2 /* SIDE_LEG_LIFT.gif */; };
-		AE3D0902239337CD007DCFB2 /* LATERAL_RAISES.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08F1239337CD007DCFB2 /* LATERAL_RAISES.gif */; };
-		AE3D0903239337CD007DCFB2 /* ARM_RAISES.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08F2239337CD007DCFB2 /* ARM_RAISES.gif */; };
-		AE3D0904239337CD007DCFB2 /* SHOULDER_RAISES.gif in Resources */ = {isa = PBXBuildFile; fileRef = AE3D08F3239337CD007DCFB2 /* SHOULDER_RAISES.gif */; };
 		AE47282D23833C3F00733C28 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		AE4D724D236BCB5A003A8BE3 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */; };
 		BC79E0D22AE48100B7F9C782 /* Pods_PD_PAL_PD_PALUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEB881E1F4E6D95068DCF1B /* Pods_PD_PAL_PD_PALUITests.framework */; };
@@ -249,23 +232,6 @@
 		766D385B20558057D5AB2ABF /* Pods-PD_PALTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PD_PALTests.debug.xcconfig"; path = "Target Support Files/Pods-PD_PALTests/Pods-PD_PALTests.debug.xcconfig"; sourceTree = "<group>"; };
 		797007B8C601A40F7D0EEBF3 /* Pods-PD_PAL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PD_PAL.release.xcconfig"; path = "Target Support Files/Pods-PD_PAL/Pods-PD_PAL.release.xcconfig"; sourceTree = "<group>"; };
 		8BEB881E1F4E6D95068DCF1B /* Pods_PD_PAL_PD_PALUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PD_PAL_PD_PALUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE3D08E3239337CD007DCFB2 /* SINGLE_LEG_STANCE.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SINGLE_LEG_STANCE.gif; sourceTree = "<group>"; };
-		AE3D08E4239337CD007DCFB2 /* WALKING.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = WALKING.gif; sourceTree = "<group>"; };
-		AE3D08E5239337CD007DCFB2 /* JOGGING.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JOGGING.gif; sourceTree = "<group>"; };
-		AE3D08E6239337CD007DCFB2 /* CHEST_STRETCH.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CHEST_STRETCH.gif; sourceTree = "<group>"; };
-		AE3D08E7239337CD007DCFB2 /* JUMPING_JACKS.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JUMPING_JACKS.gif; sourceTree = "<group>"; };
-		AE3D08E8239337CD007DCFB2 /* NECK_SIDE_STRETCH.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = NECK_SIDE_STRETCH.gif; sourceTree = "<group>"; };
-		AE3D08E9239337CD007DCFB2 /* HEEL_TO_TOE.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HEEL_TO_TOE.gif; sourceTree = "<group>"; };
-		AE3D08EA239337CD007DCFB2 /* KNEE_EXTENSION.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = KNEE_EXTENSION.gif; sourceTree = "<group>"; };
-		AE3D08EB239337CD007DCFB2 /* HEEL_STAND.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = HEEL_STAND.gif; sourceTree = "<group>"; };
-		AE3D08EC239337CD007DCFB2 /* WALL_PUSH-UP.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "WALL_PUSH-UP.gif"; sourceTree = "<group>"; };
-		AE3D08ED239337CD007DCFB2 /* TRICEP_KICKBACKS.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TRICEP_KICKBACKS.gif; sourceTree = "<group>"; };
-		AE3D08EE239337CD007DCFB2 /* QUAD_STRETCH.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = QUAD_STRETCH.gif; sourceTree = "<group>"; };
-		AE3D08EF239337CD007DCFB2 /* KNEE_MARCHING.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = KNEE_MARCHING.gif; sourceTree = "<group>"; };
-		AE3D08F0239337CD007DCFB2 /* SIDE_LEG_LIFT.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SIDE_LEG_LIFT.gif; sourceTree = "<group>"; };
-		AE3D08F1239337CD007DCFB2 /* LATERAL_RAISES.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LATERAL_RAISES.gif; sourceTree = "<group>"; };
-		AE3D08F2239337CD007DCFB2 /* ARM_RAISES.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ARM_RAISES.gif; sourceTree = "<group>"; };
-		AE3D08F3239337CD007DCFB2 /* SHOULDER_RAISES.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SHOULDER_RAISES.gif; sourceTree = "<group>"; };
 		AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		B68D58E0B6F2C382EF010E78 /* Pods-PD_PAL-PD_PALUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PD_PAL-PD_PALUITests.release.xcconfig"; path = "Target Support Files/Pods-PD_PAL-PD_PALUITests/Pods-PD_PAL-PD_PALUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BD2C3CF9750A2C83B18456BD /* Pods-PD_PAL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PD_PAL.debug.xcconfig"; path = "Target Support Files/Pods-PD_PAL/Pods-PD_PAL.debug.xcconfig"; sourceTree = "<group>"; };
@@ -387,7 +353,6 @@
 		4517F9BC2351587700E5ED83 /* PD_PAL */ = {
 			isa = PBXGroup;
 			children = (
-				AE3D08E2239337CD007DCFB2 /* Exercise_GIFS */,
 				45B575CA238E3A3F0008523A /* arrowDown.png */,
 				45B575C9238E3A3F0008523A /* arrowUp.png */,
 				2E2108D5237F0F4C00D724E6 /* Charts.xcodeproj */,
@@ -471,30 +436,6 @@
 				DAFC4D2D3C51BD6824891B98 /* Pods-PD_PALTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		AE3D08E2239337CD007DCFB2 /* Exercise_GIFS */ = {
-			isa = PBXGroup;
-			children = (
-				AE3D08E3239337CD007DCFB2 /* SINGLE_LEG_STANCE.gif */,
-				AE3D08E4239337CD007DCFB2 /* WALKING.gif */,
-				AE3D08E5239337CD007DCFB2 /* JOGGING.gif */,
-				AE3D08E6239337CD007DCFB2 /* CHEST_STRETCH.gif */,
-				AE3D08E7239337CD007DCFB2 /* JUMPING_JACKS.gif */,
-				AE3D08E8239337CD007DCFB2 /* NECK_SIDE_STRETCH.gif */,
-				AE3D08E9239337CD007DCFB2 /* HEEL_TO_TOE.gif */,
-				AE3D08EA239337CD007DCFB2 /* KNEE_EXTENSION.gif */,
-				AE3D08EB239337CD007DCFB2 /* HEEL_STAND.gif */,
-				AE3D08EC239337CD007DCFB2 /* WALL_PUSH-UP.gif */,
-				AE3D08ED239337CD007DCFB2 /* TRICEP_KICKBACKS.gif */,
-				AE3D08EE239337CD007DCFB2 /* QUAD_STRETCH.gif */,
-				AE3D08EF239337CD007DCFB2 /* KNEE_MARCHING.gif */,
-				AE3D08F0239337CD007DCFB2 /* SIDE_LEG_LIFT.gif */,
-				AE3D08F1239337CD007DCFB2 /* LATERAL_RAISES.gif */,
-				AE3D08F2239337CD007DCFB2 /* ARM_RAISES.gif */,
-				AE3D08F3239337CD007DCFB2 /* SHOULDER_RAISES.gif */,
-			);
-			path = Exercise_GIFS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -703,37 +644,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE3D08F8239337CD007DCFB2 /* JUMPING_JACKS.gif in Resources */,
-				AE3D0902239337CD007DCFB2 /* LATERAL_RAISES.gif in Resources */,
 				26DC60F02364C51C0064B314 /* Questionnare.storyboard in Resources */,
-				AE3D08F4239337CD007DCFB2 /* SINGLE_LEG_STANCE.gif in Resources */,
-				AE3D0903239337CD007DCFB2 /* ARM_RAISES.gif in Resources */,
 				4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */,
-				AE3D08FE239337CD007DCFB2 /* TRICEP_KICKBACKS.gif in Resources */,
-				AE3D08FB239337CD007DCFB2 /* KNEE_EXTENSION.gif in Resources */,
-				AE3D08F5239337CD007DCFB2 /* WALKING.gif in Resources */,
-				AE3D0901239337CD007DCFB2 /* SIDE_LEG_LIFT.gif in Resources */,
-				AE3D08F7239337CD007DCFB2 /* CHEST_STRETCH.gif in Resources */,
 				AE47282D23833C3F00733C28 /* (null) in Resources */,
 				45B575CC238E3A3F0008523A /* arrowDown.png in Resources */,
-				AE3D0900239337CD007DCFB2 /* KNEE_MARCHING.gif in Resources */,
 				2EF5A738237FC322000AF9AD /* GoogleService-Info.plist in Resources */,
-				AE3D08F9239337CD007DCFB2 /* NECK_SIDE_STRETCH.gif in Resources */,
-				AE3D08FA239337CD007DCFB2 /* HEEL_TO_TOE.gif in Resources */,
-				AE3D08FF239337CD007DCFB2 /* QUAD_STRETCH.gif in Resources */,
 				26DC60F02364C51C0064B314 /* Questionnare.storyboard in Resources */,
 				4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */,
 				7DF12D04236E197300FC94D6 /* (null) in Resources */,
 				2EF5A738237FC322000AF9AD /* GoogleService-Info.plist in Resources */,
 				4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */,
-				AE3D08FC239337CD007DCFB2 /* HEEL_STAND.gif in Resources */,
-				AE3D08F6239337CD007DCFB2 /* JOGGING.gif in Resources */,
 				457C0F6A2366B54500A918B2 /* Exercise.storyboard in Resources */,
 				4517F9C72351587700E5ED83 /* Main.storyboard in Resources */,
-				AE3D0904239337CD007DCFB2 /* SHOULDER_RAISES.gif in Resources */,
 				45B575CB238E3A3F0008523A /* arrowUp.png in Resources */,
 				45BE9269236660920076E729 /* Categories.storyboard in Resources */,
-				AE3D08FD239337CD007DCFB2 /* WALL_PUSH-UP.gif in Resources */,
 				4517F9C72351587700E5ED83 /* Main.storyboard in Resources */,
 				45BE9269236660920076E729 /* Categories.storyboard in Resources */,
 				45EA1DEE236597B800E6D070 /* RoutineGenericpage.storyboard in Resources */,
