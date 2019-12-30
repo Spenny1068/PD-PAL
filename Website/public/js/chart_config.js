@@ -44,6 +44,25 @@ function set_exercise_history
 				data: [bala_a, bala_b, bala_c, bala_d, bala_e, bala_f, bala_g],
 				backgroundColor: "rgba(153,255,0,0.4)"
 			}]
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: true,
+			legend: { display: false },
+			title: {
+				display: true,
+				text: 'Recent Exercise Distribution Over Selected Interval!'
+			},
+			scales: 
+			{
+				yAxes: 
+				[{
+					ticks: 
+					{
+						beginAtZero: true
+					}
+				}]
+			}
 		}
 	});
 }
@@ -115,6 +134,16 @@ function set_stepcount(la_a, la_b, la_c, la_d, la_e, la_f, la_g, da_a, da_b, da_
 				title: {
 					display: true,
 					text: 'Step Counter over the selected time interval!'
+				},
+				scales: 
+				{
+					yAxes: 
+					[{
+						ticks: 
+						{
+							beginAtZero: true
+						}
+					}]
 				}
 			}
 	});
