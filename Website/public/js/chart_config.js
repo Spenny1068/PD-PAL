@@ -47,7 +47,7 @@ function set_exercise_history
 		},
 		options: {
 			responsive: true,
-			maintainAspectRatio: true,
+			maintainAspectRatio: false,
 			legend: { display: false },
 			title: {
 				display: true,
