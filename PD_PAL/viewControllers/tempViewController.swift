@@ -46,6 +46,7 @@ class tempViewController: UIViewController {
     var isTimerRunning = false
     var setNumber: Int = 1
     var restInterval = 0
+    let DEBUG = false
     
     // Animation stuff
     let shapelayer = CAShapeLayer()
@@ -225,7 +226,8 @@ class tempViewController: UIViewController {
         /* reset timer value */
         timer.invalidate()
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
-        seconds = data.Duration
+        if (DEBUG == true) { seconds = 3 }
+        else { seconds = data.Duration }
         timerLabel.text = "\(seconds)"
         
         /* show these elements */
@@ -287,7 +289,8 @@ class tempViewController: UIViewController {
         /* reset timer */
         timer.invalidate()
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
-        seconds = data.Duration
+        if (DEBUG == true) { seconds = 3 }
+        else { seconds = data.Duration }
         self.restInterval = 0
         runTimer()
     }
@@ -339,7 +342,8 @@ class tempViewController: UIViewController {
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
-        seconds = data.Duration
+        if (DEBUG == true) { seconds = 3 }
+        else { seconds = data.Duration }
     }
     
     /* decrements timer */
@@ -356,7 +360,9 @@ class tempViewController: UIViewController {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.fromValue = progress
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name2 ?? "nil")
-        let maxTime = data.Duration
+        var maxTime = 0
+        if (DEBUG == true) { maxTime = 3 }
+        else { maxTime = data.Duration }
         progress += 1/Float(maxTime)
         basicAnimation.toValue = progress
         shapelayer.strokeEnd = CGFloat(progress)

@@ -47,6 +47,7 @@ class ExerciseViewController: UIViewController {
     var isTimerRunning = false
     var setNumber: Int = 1
     var restInterval = 0
+    let DEBUG = false
     
     // Animation stuff
     let shapelayer = CAShapeLayer()
@@ -68,7 +69,7 @@ class ExerciseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print ("log: exerciseViewController")
-
+        
         if Global.next_routine_exercise != "" { self.exercise_name = Global.next_routine_exercise }
         Global.next_routine_exercise = ""
         
@@ -273,7 +274,7 @@ class ExerciseViewController: UIViewController {
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
         
-        Global.routine_index == 0
+        Global.routine_index = 0
         
         print ("log: exit routine button preseed")
     }
@@ -284,7 +285,8 @@ class ExerciseViewController: UIViewController {
         /* reset timer value */
         timer.invalidate()
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
-        seconds = data.Duration
+        if (DEBUG == true) { seconds = 3 }
+        else { seconds = data.Duration }
         timerLabel.text = "\(seconds)"
         
         /* show these elements */
@@ -395,7 +397,8 @@ class ExerciseViewController: UIViewController {
         /* reset timer */
         timer.invalidate()
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
-        seconds = data.Duration
+        if (DEBUG == true) { seconds = 3 }
+        else { seconds = data.Duration }
         self.restInterval = 0
         runTimer()
     }
@@ -409,7 +412,9 @@ class ExerciseViewController: UIViewController {
     func runTimer() {
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
-        seconds = data.Duration
+        if (DEBUG == true) { seconds = 3 }
+        else { seconds = data.Duration }
+        
     }
     
     /* decrements timer */
@@ -426,7 +431,9 @@ class ExerciseViewController: UIViewController {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.fromValue = progress
         let data = global_ExerciseData.read_exercise(NameOfExercise: self.exercise_name ?? "nil")
-        let maxTime = data.Duration
+        var maxTime = 0
+        if (DEBUG == true) { maxTime = 3 }
+        else { maxTime = data.Duration }
         progress += 1/Float(maxTime)
         basicAnimation.toValue = progress
         shapelayer.strokeEnd = CGFloat(progress)
