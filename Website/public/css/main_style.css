@@ -122,3 +122,49 @@ body
 }
 
 
+/*Mobile Phone friendly code*/
+/*Changes CSS elements when max-width is below 620 px*/
+
+@media only screen and (max-width:620px) {
+  /* For mobile phones: */
+	/* Style the tab */
+	/*body {
+    background-color: lightblue;
+  }*/
+	.tab {
+		overflow: hidden;
+		border: 1px solid #ccc;
+		background-color: #f1f1f1;
+		width: 100%;
+		height: 70px;
+	}
+	/* Style the buttons inside the tab */
+	.tab button {
+		float: left;
+		display: block;
+		background-color: inherit;
+		color: black;
+		padding: 22px 16px;
+		width: 33%;
+		border: 1px solid #ccc;
+		outline: none;
+		text-align: left;
+		cursor: pointer;
+		transition: 0.3s;
+		font-size: 17px;
+	}
+	#Header h2
+	{
+		float: left;
+		margin: 20px 0px 10px 0px;
+	}
+	.tabcontent 
+	{
+		float: left;
+		padding: 0px 12px;
+		/*border: 1px solid #ccc;*/
+		width: 93%;
+		border-left: none;
+		/*height: 500px;*/
+	}
+}
