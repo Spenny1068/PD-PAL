@@ -46,7 +46,7 @@ class tempViewController: UIViewController {
     var isTimerRunning = false
     var setNumber: Int = 1
     var restInterval = 0
-    let DEBUG = false
+    let DEBUG = true
     
     // Animation stuff
     let shapelayer = CAShapeLayer()
