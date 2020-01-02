@@ -16,7 +16,7 @@ extension GifLevelOfIntegrity {
 }
 
 enum GifParseError: Error {
-    case invalidFilename
+    case fileNotFound
     case noImages
     case noProperties
     case noGifDictionary
@@ -26,7 +26,7 @@ enum GifParseError: Error {
 extension GifParseError: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case .invalidFilename:
+        case .fileNotFound:
             return "Invalid file name"
         case .noImages,.noProperties, .noGifDictionary,.noTimingInfo:
             return "Invalid gif file "
@@ -122,7 +122,7 @@ public extension UIImage {
                 try setGifFromData(data, levelOfIntegrity: levelOfIntegrity)
             }
         } else {
-            throw GifParseError.invalidFilename
+            throw GifParseError.fileNotFound
         }
     }
     
