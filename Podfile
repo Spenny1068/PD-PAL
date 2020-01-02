@@ -10,6 +10,7 @@ target 'PD_PAL' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   pod 'SwiftyGif'
+  pod 'Firebase/Auth'
 
   target 'PD_PALTests' do
     inherit! :search_paths
