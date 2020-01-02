@@ -46,7 +46,7 @@ class tempViewController: UIViewController {
     var isTimerRunning = false
     var setNumber: Int = 1
     var restInterval = 0
-    let DEBUG = false
+    let DEBUG = true
     
     // Animation stuff
     let shapelayer = CAShapeLayer()
@@ -302,6 +302,10 @@ class tempViewController: UIViewController {
     
     /* when completed button is tapped */
     @IBAction func completedButton(_ sender: Any) {
+        
+        if Global.IsRoutineExercise == 0 {
+            Global.routine_index = 0
+        }
         
         if self.setNumber == 1 {
             /* parse Date() function into year, month, day, and hour */
