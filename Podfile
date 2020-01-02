@@ -11,6 +11,7 @@ target 'PD_PAL' do
   pod 'Firebase/Firestore'
   pod 'SwiftyGif'
   pod 'Firebase/Auth'
+  pod 'FirebaseUI'
 
   target 'PD_PALTests' do
     inherit! :search_paths

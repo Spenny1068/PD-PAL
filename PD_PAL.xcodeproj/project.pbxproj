@@ -52,8 +52,8 @@
 		45EB46242367C0AA009BA044 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB46142367C0AA009BA044 /* SettingsViewController.swift */; };
 		7C7A43E1D25FE74F26282E5F /* Pods_PD_PAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7A43FCF847554461E3A17E /* Pods_PD_PAL.framework */; };
 		7D7B90E5236D2E54005247CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4517F9BD2351587700E5ED83 /* AppDelegate.swift */; };
-		7DF12D04236E197300FC94D6 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		AE47282D23833C3F00733C28 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		7DF12D04236E197300FC94D6 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		AE47282D23833C3F00733C28 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		AE4D724D236BCB5A003A8BE3 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D724C236BCB5A003A8BE3 /* ExerciseViewController.swift */; };
 		BC79E0D22AE48100B7F9C782 /* Pods_PD_PAL_PD_PALUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEB881E1F4E6D95068DCF1B /* Pods_PD_PAL_PD_PALUITests.framework */; };
 /* End PBXBuildFile section */
@@ -451,6 +451,7 @@
 				4517F9B82351587700E5ED83 /* Resources */,
 				2EF4E825236D081A00CCECBB /* Embed Frameworks */,
 				4D58FA47E43641A5947C1F12 /* [CP] Embed Pods Frameworks */,
+				745DA8094B23DFB066D9F243 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -491,6 +492,7 @@
 				4517F9DA2351587800E5ED83 /* Frameworks */,
 				4517F9DB2351587800E5ED83 /* Resources */,
 				B71716D5F7977BD3155FF214 /* [CP] Embed Pods Frameworks */,
+				7831A0E443BEBDCE34A48A0D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -646,12 +648,12 @@
 			files = (
 				26DC60F02364C51C0064B314 /* Questionnare.storyboard in Resources */,
 				4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */,
-				AE47282D23833C3F00733C28 /* (null) in Resources */,
+				AE47282D23833C3F00733C28 /* BuildFile in Resources */,
 				45B575CC238E3A3F0008523A /* arrowDown.png in Resources */,
 				2EF5A738237FC322000AF9AD /* GoogleService-Info.plist in Resources */,
 				26DC60F02364C51C0064B314 /* Questionnare.storyboard in Resources */,
 				4517F9CC2351587800E5ED83 /* LaunchScreen.storyboard in Resources */,
-				7DF12D04236E197300FC94D6 /* (null) in Resources */,
+				7DF12D04236E197300FC94D6 /* BuildFile in Resources */,
 				2EF5A738237FC322000AF9AD /* GoogleService-Info.plist in Resources */,
 				4517F9C92351587800E5ED83 /* Assets.xcassets in Resources */,
 				457C0F6A2366B54500A918B2 /* Exercise.storyboard in Resources */,
@@ -696,6 +698,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PD_PAL/Pods-PD_PAL-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		745DA8094B23DFB066D9F243 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PD_PAL/Pods-PD_PAL-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PD_PAL/Pods-PD_PAL-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PD_PAL/Pods-PD_PAL-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7831A0E443BEBDCE34A48A0D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PD_PAL-PD_PALUITests/Pods-PD_PAL-PD_PALUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PD_PAL-PD_PALUITests/Pods-PD_PAL-PD_PALUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PD_PAL-PD_PALUITests/Pods-PD_PAL-PD_PALUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A1C4C3440538C36FDC575254 /* [CP] Check Pods Manifest.lock */ = {
