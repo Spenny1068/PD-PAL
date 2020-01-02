@@ -149,10 +149,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowDown.png" translatesAutoresizingMaskIntoConstraints="NO" id="FZU-MT-yDc">
-                                        <rect key="frame" x="278" y="585" width="86" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2T-ic-h5l" customClass="RadarChartView" customModule="RadarChart">
                                         <rect key="frame" x="23" y="296" width="330" height="310"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -181,10 +177,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowUp.png" translatesAutoresizingMaskIntoConstraints="NO" id="iD8-lh-eqs">
-                                        <rect key="frame" x="280" y="1696" width="76" height="69"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exercises Completed in Each Category" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6W-JU-AzV">
                                         <rect key="frame" x="8" y="278" width="353" height="59"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -213,6 +205,18 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="scrollArrows" translatesAutoresizingMaskIntoConstraints="NO" id="f3a-y6-bBB">
+                                        <rect key="frame" x="8" y="12" width="359" height="646"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.047830755922587564" green="0.35063358965881697" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scroll Up and Down. Tap to Dimiss." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uK-k9-x3t">
+                                        <rect key="frame" x="43" y="427" width="297" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="8pG-BG-nua"/>
                             </scrollView>
@@ -229,6 +233,8 @@
                         <outlet property="endDateLabel" destination="PuM-cz-9Mw" id="1sJ-Ga-Dba"/>
                         <outlet property="lineChartView" destination="PK4-Qk-EFZ" id="515-P7-7Ed"/>
                         <outlet property="rChartView" destination="E2T-ic-h5l" id="Haa-5I-ZYj"/>
+                        <outlet property="scrollArrows" destination="f3a-y6-bBB" id="NrC-kQ-IJU"/>
+                        <outlet property="scrollInstructions" destination="0uK-k9-x3t" id="X3A-Eg-a3z"/>
                         <outlet property="scroller" destination="b0R-Vv-2Qh" id="CZ3-9t-hYk"/>
                         <outlet property="startDate" destination="fOZ-qr-Xpv" id="vI9-Kk-chd"/>
                         <outlet property="startDateLabel" destination="RTn-Df-Ijo" id="8Rt-gK-Bp0"/>
@@ -401,8 +407,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrowDown.png" width="310" height="163"/>
-        <image name="arrowUp.png" width="310" height="163"/>
+        <image name="scrollArrows" width="61.5" height="118"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5bg-9e-8Nq"/>

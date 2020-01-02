@@ -68,7 +68,7 @@ class FlexibilityViewController: UIViewController {
         self.title = nil
         
         /* page message */
-        self.show_page_message(s1: "Flexiblity Exercises!", s2: "Flexiblity")
+        self.show_page_message(s1: "Flexibility Exercises!", s2: "Flexibility")
         
         let exercise_list = global_ExerciseData.exercise_names()
         

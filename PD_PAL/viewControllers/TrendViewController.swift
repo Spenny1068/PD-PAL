@@ -49,7 +49,9 @@ class TrendViewController: UIViewController, UITableViewDataSource{
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
     
-   
+    @IBOutlet weak var scrollArrows: UIImageView!
+    @IBOutlet weak var scrollInstructions: UILabel!
+    
     private var sDatePicker: UIDatePicker?
     private var eDatePicker: UIDatePicker?
     private var sdateSelected = true
@@ -83,6 +85,11 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         getDatePicker()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TrendViewController.viewTapped(gestureRecognizer:)))
         self.view.addGestureRecognizer(tapGesture)
+        
+        //to dimiss the scroll arrows, tap on the arrows
+        self.scrollArrows.isUserInteractionEnabled = true
+        let scrollRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissScrollInstruction(scrollRecognizer:)))
+        self.scrollArrows.addGestureRecognizer(scrollRecognizer)
         
         //to get the scroll working
         //stackoverflow.com/questions/28144739/swift-uiscrollview-not-scrolling
@@ -139,6 +146,11 @@ class TrendViewController: UIViewController, UITableViewDataSource{
         rChartView?.setNeedsDisplay()   
     }
   
+    @objc func dismissScrollInstruction(scrollRecognizer: UITapGestureRecognizer)
+    {
+        self.scrollArrows.removeFromSuperview()
+        self.scrollInstructions.removeFromSuperview()
+    }
     // table View Material From https://www.youtube.com/watch?v=kCIQM7L-w4Y
     func numberOfSections(in tableView: UITableView) -> Int {
         //one section for exercise history and one section for step count

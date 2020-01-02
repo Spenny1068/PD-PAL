@@ -12,7 +12,7 @@
 /*
  Notes:
  -Need to be tested with the highlighting. -> works
- -When calling my func, Arian will have to check if there's at least one exercise completed since my funcs will provide recommendation for the least completed category with the default behaviour as flexbility if there's a 4-way tie i.e. no exercises were completed or all categories have the same numbers completed.
+ -When calling my func, Arian will have to check if there's at least one exercise completed since my funcs will provide recommendation for the least completed category with the default behaviour as flexibility if there's a 4-way tie i.e. no exercises were completed or all categories have the same numbers completed.
  -I will refactor, time permitting
  */
 
@@ -263,7 +263,7 @@ class RecommendAlg{
         //check least frequently completed category
         if catCount[0] == catCount.min()
         {
-            twoLeastCompleted[0] = "Flexbility"
+            twoLeastCompleted[0] = "Flexibility"
             if catCount[1] <= catCount[2] && catCount[1] <= catCount[3]
             {
                 twoLeastCompleted[1] = "Cardio"
