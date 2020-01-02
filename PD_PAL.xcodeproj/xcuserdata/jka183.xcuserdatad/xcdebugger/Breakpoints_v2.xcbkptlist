@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PD_PAL/viewControllers/TrendViewController.swift"
-            timestampString = "596398726.515419"
+            timestampString = "599694601.262879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
             landmarkName = "exerciseCategoryCount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PD_PAL/viewControllers/TrendViewController.swift"
-            timestampString = "596398726.515738"
+            timestampString = "599694601.262989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
             landmarkName = "exerciseCategoryCount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PD_PAL/viewControllers/TrendViewController.swift"
-            timestampString = "596398726.516036"
+            timestampString = "599694601.263078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "exerciseCategoryCount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PD_PAL/viewControllers/TrendViewController.swift"
-            timestampString = "596398726.516354"
+            timestampString = "599694601.2631609"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
             landmarkName = "exerciseCategoryCount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PD_PAL/viewControllers/TrendViewController.swift"
-            timestampString = "596398726.516661"
+            timestampString = "599694601.263243"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
-            landmarkName = "generateStepChart(dataPoints:values:)"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
+            landmarkName = "exerciseCategoryCount()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PD_PAL/viewControllers/TrendViewController.swift"
-            timestampString = "596398726.516957"
+            timestampString = "599694601.263324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
             landmarkName = "exerciseCategoryCount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PD_PAL/viewControllers/TrendViewController.swift"
-            timestampString = "596398726.517254"
+            timestampString = "599694601.263404"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
-            landmarkName = "exerciseCategoryCount()"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
+            landmarkName = "generateRadarChart()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PD_PAL/viewControllers/TrendViewController.swift"
-            timestampString = "596398726.517596"
+            timestampString = "599694601.263483"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "exerciseCategoryCount()"
             landmarkType = "7">
          </BreakpointContent>
