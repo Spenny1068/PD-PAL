@@ -273,7 +273,7 @@ class ExerciseViewController: UIViewController {
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainNavVC")
         self.present(newViewController, animated: true, completion: nil)
         
-        Global.routine_index == 0
+        Global.routine_index = 0
         
         print ("log: exit routine button preseed")
     }
